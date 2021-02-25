@@ -11,6 +11,11 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
+    /* ** Edition ** */
+    "declaration": true,    /* should generate d.ts */
+    "noImplicitAny": true,  /* to be sure */
+    "outDir": "./dist",     /* should be consistent with package.json */
+    /* ** Edition ** */
     "types": [
       "webpack-env",
       "jest"
