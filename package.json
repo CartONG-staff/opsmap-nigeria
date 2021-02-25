@@ -2,12 +2,11 @@
   "name": "opsmap-toolkit",
   "version": "0.1.0",
   "private": true,
-  "main": "dist/opsmap-toolkit.common.js",
+  "main": "dist/opsmap-toolkit.umd.js",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build-lib": "vue-cli-service build --target lib src/index.ts",
+    "build-lib": "vue-cli-service build --target lib src/index.ts && tsc --emitDeclarationOnly -p tsconfig.json",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
