@@ -6,7 +6,7 @@
   "types": "dist/src/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build-lib": "vue-cli-service build --target lib src/index.ts && tsc --emitDeclarationOnly -p tsconfig.json",
+    "build-lib": "vue-cli-service build --target lib src/index.ts --formats umd && tsc --emitDeclarationOnly -p tsconfig.json",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
