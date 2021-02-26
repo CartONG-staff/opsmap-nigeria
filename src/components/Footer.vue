@@ -1,6 +1,6 @@
 <template lang="html">
-  <div>
-    <h1>footer from {{ source }}</h1>
+  <div class="foo">
+    <h1>Footer from {{ source }}</h1>
   </div>
 </template>
 
@@ -14,10 +14,10 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-div {
+.foo {
   background-color: darkred;
 }
-h1 {
+.foo h1 {
   color: #42b983;
 }
 </style>
