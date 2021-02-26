@@ -1,6 +1,6 @@
-<template>
+<template lang="html">
   <div>
-    <h1>THIS IS THE FOOTER FORM THE LIB</h1>
+    <h1>footer from {{ source }}</h1>
   </div>
 </template>
 
@@ -8,7 +8,8 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "Footer"
+  name: "Footer",
+  props: ["source"]
 });
 </script>
 
