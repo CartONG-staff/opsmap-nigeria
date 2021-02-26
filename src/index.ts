@@ -1,5 +1,4 @@
-export { sayHello, helloMessage } from "./helloworld";
+import TKFooter from "./components/TKFooter.vue";
+import TKHeader from "./components/TKHeader.vue";
 
-import Footer from "./components/Footer.vue";
-import Header from "./components/Header.vue";
-export { Footer, Header };
+export { TKFooter, TKHeader };

@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="foo">
-    <h1>Footer from {{ source }}</h1>
+  <div class="hea">
+    <h1>TKHeader</h1>
   </div>
 </template>
 
@@ -8,16 +8,16 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "Footer",
+  name: "TKHeader",
   props: ["source"]
 });
 </script>
 
 <style scoped>
-.foo {
+.hea {
   background-color: darkred;
 }
-.foo h1 {
+.hea h1 {
   color: #42b983;
 }
 </style>
