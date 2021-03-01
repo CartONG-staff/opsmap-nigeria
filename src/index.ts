@@ -1,4 +1,6 @@
 import TKFooter from "./components/TKFooter.vue";
 import TKHeader from "./components/TKHeader.vue";
 
-export { TKFooter, TKHeader };
+export { TKFooter };
+export { TKHeader };
+export default { TKFooter, TKHeader };
