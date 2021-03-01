@@ -7,5 +7,8 @@ module.exports = {
     output: {
       libraryExport: ""
     }
+  },
+  css: {
+    extract: false
   }
 };
