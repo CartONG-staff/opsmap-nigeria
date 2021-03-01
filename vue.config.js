@@ -8,12 +8,16 @@ module.exports = {
       libraryExport: ""
     }
   },
+
   css: {
     extract: false
   },
+
   pages: {
     index: {
       entry: "src/entry-point-app.ts"
     }
-  }
+  },
+
+  transpileDependencies: ["vuetify"]
 };
