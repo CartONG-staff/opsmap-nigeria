@@ -7,10 +7,10 @@
       myItem"
     >
       <div class="d-flex pa-2">
-        <TKCampSelectorCombos :states="campList" />
+        <TKCampSelectorCombos :states="campList" @campSelected="campSelected" />
       </div>
       <div class="d-flex pa-2">
-        <TKCampSelectorMap />
+        <TKCampSelectorMap :currentCamp="currentCamp" />
       </div>
     </div>
   </div>
@@ -28,13 +28,18 @@ export default Vue.extend({
     TKCampSelectorMap
   },
   data: () => ({
-    selectedCamp: "",
+    currentCamp: "",
     campList: [
       { id: "01", name: "Herault", state: "herault01" },
       { id: "02", name: "Gard", state: "gard03" },
       { id: "03", name: "Haute Garonne", state: "haute-garrone03" }
     ]
-  })
+  }),
+  methods: {
+    campSelected(camp: string) {
+      this.currentCamp = camp;
+    }
+  }
 });
 </script>
 

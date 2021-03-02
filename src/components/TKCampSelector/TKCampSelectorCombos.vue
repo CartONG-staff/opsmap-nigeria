@@ -10,6 +10,7 @@
       :items="states"
       item-text="name"
       item-value="id"
+      @change="campSelected"
     />
   </div>
 </template>
@@ -23,6 +24,11 @@ export default Vue.extend({
   props: {
     states: {
       type: Object as () => ICamp
+    }
+  },
+  methods: {
+    campSelected(event: any) {
+      this.$emit("campSelected", event.state);
     }
   }
 });

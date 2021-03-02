@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="tk-camp-selector-map">
-    <h1>THIS IS THE COMBO MAP SPACE</h1>
+    <h1>CURRENT CAMP: {{ currentCamp }}</h1>
   </div>
 </template>
 
@@ -8,7 +8,10 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "TKCampSelectorMap"
+  name: "TKCampSelectorMap",
+  props: {
+    currentCamp: String
+  }
 });
 </script>
 
