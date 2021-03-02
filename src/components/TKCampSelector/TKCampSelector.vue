@@ -1,7 +1,18 @@
 <template lang="html">
-  <div>
-    <TKCampSelectorCombos v-bind:states="campList" />
-    <TKCampSelectorMap />
+  <div id="flex-container">
+    <div
+      class="d-flex
+      flex-column
+      align-center
+      myItem"
+    >
+      <div class="d-flex pa-2">
+        <TKCampSelectorCombos :states="campList" />
+      </div>
+      <div class="d-flex pa-2">
+        <TKCampSelectorMap />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,4 +38,8 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.myItem {
+  background-color: green;
+}
+</style>
