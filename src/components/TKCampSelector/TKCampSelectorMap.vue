@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="tk-camp-selector-map">
     <h1>THIS IS THE COMBO MAP SPACE</h1>
   </div>
 </template>
@@ -12,4 +12,8 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.tk-camp-selector-map {
+  background-color: lightcoral;
+}
+</style>
