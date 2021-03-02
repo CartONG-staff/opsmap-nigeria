@@ -8,17 +8,22 @@
       placeholder="none selected"
       prefix="State:"
       :items="states"
+      item-text="name"
+      item-value="id"
     />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import ICamp from "./ICamp";
 
 export default Vue.extend({
   name: "TKCampSelectorCombos",
   props: {
-    states: [String]
+    states: {
+      type: Object as () => ICamp
+    }
   }
 });
 </script>

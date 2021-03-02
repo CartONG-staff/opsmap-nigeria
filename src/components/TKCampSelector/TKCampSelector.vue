@@ -18,7 +18,11 @@ export default Vue.extend({
   },
   data: () => ({
     selectedCamp: "",
-    campList: ["Herault", "Gard", "Haute Garonne"]
+    campList: [
+      { id: "01", name: "Herault", state: "herault01" },
+      { id: "02", name: "Gard", state: "gard03" },
+      { id: "03", name: "Haute Garonne", state: "haute-garrone03" }
+    ]
   })
 });
 </script>
