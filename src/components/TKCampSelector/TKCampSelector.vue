@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <TKCampSelectorCombos />
+    <TKCampSelectorCombos v-bind:states="campList" />
     <TKCampSelectorMap />
   </div>
 </template>
