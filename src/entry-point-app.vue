@@ -1,9 +1,11 @@
 <template>
-  <div id="app">
-    <TKHeader source="generic lib - HEADER" />
-    <TKComponentTest />
-    <TKFooter source="generic lib - FOOTER" />
-  </div>
+  <v-app>
+    <v-main>
+      <TKHeader source="generic lib - HEADER" />
+      <TKComponentTest />
+      <TKFooter source="generic lib - FOOTER" />
+    </v-main>
+  </v-app>
 </template>
 
 <script lang="ts">

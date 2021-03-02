@@ -38,7 +38,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/components/StatesList.js"  ],
   "exclude": [
     "node_modules"
   ]
