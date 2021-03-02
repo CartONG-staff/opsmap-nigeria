@@ -16,19 +16,34 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import ICamp from "./ICamp";
+import Vue, { PropType } from "vue";
+import Camp from "./ICamp";
 
 export default Vue.extend({
   name: "TKCampSelectorCombos",
   props: {
     states: {
-      type: Object as () => ICamp
+      type: Array as PropType<Camp[]>
     }
   },
   methods: {
-    campSelected(event: any) {
-      this.$emit("campSelected", event.state);
+    campSelected(event: Camp) {
+      if (event != null) {
+        if (event.id != "undefined") {
+          console.log("campSelected: " + event.id);
+          this.$emit("campSelected", {
+            id: event.id,
+            name: event.name,
+            state: event.state
+          });
+        } else {
+          console.log("selectionInvalid");
+          this.$emit("selectionInvalid");
+        }
+      } else {
+        console.log("selectionCleared");
+        this.$emit("selectionCleared");
+      }
     }
   }
 });

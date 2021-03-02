@@ -1,16 +1,17 @@
 <template lang="html">
   <div class="tk-camp-selector-map">
-    <h1>CURRENT CAMP: {{ currentCamp }}</h1>
+    <h1>CURRENT CAMP: {{ currentCamp.state }}</h1>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { PropType } from "vue";
+import Camp from "./ICamp";
 
 export default Vue.extend({
   name: "TKCampSelectorMap",
   props: {
-    currentCamp: String
+    currentCamp: Object as PropType<Camp>
   }
 });
 </script>

@@ -1,5 +1,7 @@
-export default interface ICamp{
+export interface Camp {
     id: string,
     name: string,
     state: string
 }
+
+export default Camp;
