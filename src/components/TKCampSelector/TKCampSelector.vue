@@ -30,8 +30,8 @@ import TKCampSelectorMap from "./TKCampSelectorMap.vue";
 @Component({
   components: {
     TKCampSelectorCombos,
-    TKCampSelectorMap,
-  },
+    TKCampSelectorMap
+  }
 })
 export default class TKCampSelector extends Vue {
   readonly NoCamp = new Camp();
@@ -41,7 +41,7 @@ export default class TKCampSelector extends Vue {
   campList: Camp[] = [
     { id: "01", name: "Herault", state: "herault01" },
     { id: "02", name: "Gard", state: "gard03" },
-    { id: "03", name: "Haute Garonne", state: "haute-garrone03" },
+    { id: "03", name: "Haute Garonne", state: "haute-garrone03" }
   ];
 
   campSelected(camp: Camp) {

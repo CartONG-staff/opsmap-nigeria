@@ -37,17 +37,17 @@ export default class TKCampSelectorMap extends Vue {
   }
 
   @Emit("camp-selection-changed")
-  campSelectionChanged(c: Camp) {
+  campSelectionChanged(c: Camp): void {
     console.log("campSelected: " + c.id + " # " + c.name + " # " + c.state);
   }
 
   @Emit("camp-selection-cleared")
-  campSelectionCleared() {
+  campSelectionCleared(): void {
     console.log("selectionCleared");
   }
 
   @Emit("camp-selection-unknown")
-  campSelectionUnknown() {
+  campSelectionUnknown(): void {
     console.log("selectionUnknown");
   }
 }
