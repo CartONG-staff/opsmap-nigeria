@@ -15,6 +15,7 @@
     "declaration": true,    /* should generate d.ts */
     "noImplicitAny": true,  /* to be sure */
     "outDir": "./dist",     /* should be consistent with package.json */
+    "experimentalDecorators": true, /* class component */
     /* ** Edition ** */
     "types": [
       "webpack-env",
@@ -38,7 +39,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/components/StatesList.js"  ],
   "exclude": [
     "node_modules"
   ]

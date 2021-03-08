@@ -5,12 +5,13 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
-export default Vue.extend({
-  name: "TKFooter",
-  props: ["source"]
-});
+@Component
+export default class TKFooter extends Vue {
+  @Prop({ default: "", type: String })
+  readonly source!: string;
+}
 </script>
 
 <style scoped>

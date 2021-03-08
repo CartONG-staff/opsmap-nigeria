@@ -1,24 +1,25 @@
 <template>
-  <div id="app">
-    <TKHeader source="generic lib - HEADER" />
-    <TKFooter source="generic lib - FOOTER" />
-  </div>
+  <v-app>
+    <v-main>
+      <TKHeader source="generic lib - HEADER" />
+      <TKCampSelector />
+      <TKFooter source="generic lib - FOOTER" />
+    </v-main>
+  </v-app>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
+import { TKHeader, TKFooter, TKCampSelector } from "@/components"; // @ is an alias to /src
 
-import TKFooter from "./components/TKFooter.vue";
-import TKHeader from "./components/TKHeader.vue";
-
-export default Vue.extend({
-  name: "App",
+@Component({
   components: {
+    TKHeader,
     TKFooter,
-    TKHeader
-  },
-  methods: {}
-});
+    TKCampSelector
+  }
+})
+export default class App extends Vue {}
 </script>
 
 <style></style>
