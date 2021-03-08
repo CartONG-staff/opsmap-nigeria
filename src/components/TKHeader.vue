@@ -1,16 +1,17 @@
 <template lang="html">
   <div class="hea">
-    <h1>TKHeader</h1>
+    <h1>TKFooter from {{ source }}</h1>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
-export default Vue.extend({
-  name: "TKHeader",
-  props: ["source"]
-});
+@Component
+export default class TKHeader extends Vue {
+  @Prop({ type: String, default: "" })
+  readonly source!: string;
+}
 </script>
 
 <style scoped>

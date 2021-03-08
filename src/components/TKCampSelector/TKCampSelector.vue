@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import Camp from "./Camp";
+import Camp from "@/types/Camp";
 import TKCampSelectorCombos from "./TKCampSelectorCombos.vue";
 import TKCampSelectorMap from "./TKCampSelectorMap.vue";
 

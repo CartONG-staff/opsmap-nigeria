@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
-import Camp from "./Camp";
+import Camp from "@/types/Camp";
 
 @Component
 export default class TKCampSelectorMap extends Vue {
