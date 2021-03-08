@@ -5,15 +5,14 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import Camp from "./ICamp";
 
-export default Vue.extend({
-  name: "TKCampSelectorMap",
-  props: {
-    currentCamp: Object as PropType<Camp>
-  }
-});
+@Component
+export default class TKCampSelectorMap extends Vue {
+  @Prop()
+  currentCamp!: () => Camp;
+}
 </script>
 
 <style scoped>
