@@ -6,12 +6,12 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import Camp from "./ICamp";
+import Camp from "./Camp";
 
 @Component
 export default class TKCampSelectorMap extends Vue {
-  @Prop()
-  currentCamp!: () => Camp;
+  @Prop({ default: () => new Camp() })
+  currentCamp!: Camp;
 }
 </script>
 

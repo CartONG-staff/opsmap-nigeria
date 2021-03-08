@@ -8,7 +8,7 @@
     >
       <div class="d-flex pa-2">
         <TKCampSelectorCombos
-          :states="campList"
+          :states="this.campList"
           @campSelected="campSelected"
           @selectionCleared="selectionCleared"
           @selectionInvalid="selectionInvalid"
@@ -22,38 +22,37 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import Camp from "./ICamp";
+import { Vue, Component } from "vue-property-decorator";
+import Camp from "./Camp";
 import TKCampSelectorCombos from "./TKCampSelectorCombos.vue";
 import TKCampSelectorMap from "./TKCampSelectorMap.vue";
 
-export default Vue.extend({
-  name: "TKCampSelector",
+@Component({
   components: {
     TKCampSelectorCombos,
     TKCampSelectorMap
-  },
-  data: () => ({
-    currentCamp: Object as PropType<Camp>,
-    campList: [
-      { id: "01", name: "Herault", state: "herault01" },
-      { id: "02", name: "Gard", state: "gard03" },
-      { id: "03", name: "Haute Garonne", state: "haute-garrone03" }
-    ]
-  }),
-  methods: {
-    campSelected(camp: PropType<Camp>) {
-      console.log(camp);
-      this.currentCamp = camp;
-    },
-    selectionCleared() {
-      console.log("Selection cleared");
-    },
-    selectionInvalid() {
-      console.log("Selection invalided");
-    }
   }
-});
+})
+export default class TKCampSelector extends Vue {
+  currentCamp: Camp = new Camp();
+
+  campList: Camp[] = [
+    { id: "01", name: "Herault", state: "herault01" },
+    { id: "02", name: "Gard", state: "gard03" },
+    { id: "03", name: "Haute Garonne", state: "haute-garrone03" }
+  ];
+
+  campSelected(camp: Camp) {
+    console.log(camp);
+    this.currentCamp = camp;
+  }
+  selectionCleared() {
+    console.log("Selection cleared");
+  }
+  selectionInvalid() {
+    console.log("Selection invalided");
+  }
+}
 </script>
 
 <style scoped>
