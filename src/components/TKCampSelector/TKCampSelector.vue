@@ -9,9 +9,9 @@
       <div class="d-flex pa-2">
         <TKCampSelectorCombos
           :states="this.campList"
-          @campSelected="campSelected"
-          @selectionCleared="selectionCleared"
-          @selectionInvalid="selectionInvalid"
+          @camp-selection-changed="campSelected"
+          @camp-selection-cleared="selectionCleared"
+          @camp-selection-unknown="selectionUnknown"
         />
       </div>
       <div class="d-flex pa-2">
@@ -30,27 +30,33 @@ import TKCampSelectorMap from "./TKCampSelectorMap.vue";
 @Component({
   components: {
     TKCampSelectorCombos,
-    TKCampSelectorMap
-  }
+    TKCampSelectorMap,
+  },
 })
 export default class TKCampSelector extends Vue {
-  currentCamp: Camp = new Camp();
+  readonly NoCamp = new Camp();
+  readonly CampUnknown = { id: "unknown", state: "unknown", name: "unknown" };
+  currentCamp: Camp = this.NoCamp;
 
   campList: Camp[] = [
     { id: "01", name: "Herault", state: "herault01" },
     { id: "02", name: "Gard", state: "gard03" },
-    { id: "03", name: "Haute Garonne", state: "haute-garrone03" }
+    { id: "03", name: "Haute Garonne", state: "haute-garrone03" },
   ];
 
   campSelected(camp: Camp) {
-    console.log(camp);
+    console.log("Selector: " + camp.id);
     this.currentCamp = camp;
   }
+
   selectionCleared() {
-    console.log("Selection cleared");
+    console.log("Selector: " + "Selection cleared");
+    this.currentCamp = this.NoCamp;
   }
-  selectionInvalid() {
-    console.log("Selection invalided");
+
+  selectionUnknown() {
+    console.log("Selector: " + "Selection unknown");
+    this.currentCamp = this.CampUnknown;
   }
 }
 </script>

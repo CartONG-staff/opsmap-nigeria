@@ -16,31 +16,39 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import Camp from "./Camp";
 
 @Component
 export default class TKCampSelectorMap extends Vue {
   @Prop({ default: () => [] })
-  states!: Camp[];
+  readonly states!: Camp[];
 
   campSelected(event: Camp) {
     if (event != null) {
-      if (event.id != "undefined") {
-        console.log("campSelected: " + event.id);
-        this.$emit("campSelected", {
-          id: event.id,
-          name: event.name,
-          state: event.state
-        });
+      if (event.id) {
+        this.campSelectionChanged(event);
       } else {
-        console.log("selectionInvalid");
-        this.$emit("selectionInvalid");
+        this.campSelectionUnknown();
       }
     } else {
-      console.log("selectionCleared");
-      this.$emit("selectionCleared");
+      this.campSelectionCleared();
     }
+  }
+
+  @Emit("camp-selection-changed")
+  campSelectionChanged(c: Camp) {
+    console.log("campSelected: " + c.id + " # " + c.name + " # " + c.state);
+  }
+
+  @Emit("camp-selection-cleared")
+  campSelectionCleared() {
+    console.log("selectionCleared");
+  }
+
+  @Emit("camp-selection-unknown")
+  campSelectionUnknown() {
+    console.log("selectionUnknown");
   }
 }
 </script>
