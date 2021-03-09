@@ -1,24 +1,16 @@
 <template lang="html">
-  <div class="foo">
-    <h1>TKFooter from {{ source }}</h1>
-  </div>
+  <div class="tk-footer"></div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 
 @Component
-export default class TKFooter extends Vue {
-  @Prop({ default: "", type: String })
-  readonly source!: string;
-}
+export default class TKFooter extends Vue {}
 </script>
 
 <style scoped>
-.foo {
-  background-color: darkred;
-}
-.foo h1 {
-  color: #42b983;
+.tk-footer {
+  background-color: cornflowerblue;
 }
 </style>
