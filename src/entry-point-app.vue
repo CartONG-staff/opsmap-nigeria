@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <v-main>
-      <TKHeader source="generic lib - HEADER" />
+      <TKHeader />
       <TKCampSelector />
-      <TKFooter source="generic lib - FOOTER" />
+      <TKFooter />
     </v-main>
   </v-app>
 </template>
