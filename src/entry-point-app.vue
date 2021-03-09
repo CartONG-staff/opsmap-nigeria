@@ -2,8 +2,10 @@
   <v-app>
     <v-main>
       <TKHeader />
-      <TKCampSelector />
-      <TKInfosDisplayer />
+      <div class="tk-app-layout">
+        <TKCampSelector />
+        <TKInfosDisplayer class="tk-infos-displayer" />
+      </div>
       <TKFooter />
     </v-main>
   </v-app>
@@ -29,4 +31,21 @@ import {
 export default class App extends Vue {}
 </script>
 
-<style></style>
+<style>
+.tk-app-layout {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-around;
+  padding: 500;
+}
+
+.tk-app-layout > * {
+  margin: 0 20px;
+}
+
+.tk-infos-displayer {
+  flex: 1;
+}
+</style>
