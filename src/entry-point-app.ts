@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./entry-point-app.vue";
-import vuetify from './plugins/vuetify';
+import vuetify from "./plugins/vuetify";
 
 Vue.config.productionTip = false;
 
