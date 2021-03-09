@@ -1,7 +1,9 @@
 <template lang="html">
-  <div class="tk-footer">
-    TKFooter
-  </div>
+  <v-footer padless>
+    <div class="tk-footer flex">
+      footer
+    </div>
+  </v-footer>
 </template>
 
 <script lang="ts">
