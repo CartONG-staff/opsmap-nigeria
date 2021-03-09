@@ -1,7 +1,7 @@
 <template lang="html">
-  <v-footer padless>
+  <v-footer padless :absolute="true">
     <div class="tk-footer flex">
-      footer
+      TKFooter
     </div>
   </v-footer>
 </template>
