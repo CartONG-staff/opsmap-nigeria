@@ -2,9 +2,10 @@
   <v-app>
     <v-main>
       <TKHeader />
-      <div class="tk-app-layout">
+      <v-container fluid>
         <TKCampSelector />
         <TKSurveyVisualizer />
+      </v-container>
       <TKFooter />
     </v-main>
   </v-app>
@@ -31,20 +32,6 @@ export default class App extends Vue {}
 </script>
 
 <style>
-.tk-app-layout {
-  background-color: red;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  justify-content: space-around;
-  padding: 500;
-}
-
-.tk-app-layout > * {
-  margin: 0 20px;
-}
-
-.tk-infos-displayer {
-  flex: 1;
-}
-</style>
+body {
+  min-height: 100vh; /* toute la hauteur du viewport (compatible IE9+) */
+}</style>
