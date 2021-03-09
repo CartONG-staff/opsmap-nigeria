@@ -1,5 +1,9 @@
 <template lang="html">
-  <div class="tk-footer"></div>
+  <v-footer padless :absolute="true">
+    <div class="tk-footer flex">
+      TKFooter
+    </div>
+  </v-footer>
 </template>
 
 <script lang="ts">

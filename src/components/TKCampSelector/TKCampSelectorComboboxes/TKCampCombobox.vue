@@ -1,5 +1,7 @@
 <template lang="html">
-  <div class="tk-camp-combobox"></div>
+  <div class="tk-camp-combobox">
+    TKCampCombobox
+  </div>
 </template>
 
 <script lang="ts">

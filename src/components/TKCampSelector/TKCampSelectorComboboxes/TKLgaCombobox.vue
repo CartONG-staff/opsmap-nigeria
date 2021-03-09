@@ -1,5 +1,7 @@
 <template lang="html">
-  <div class="tk-lga-combobox"></div>
+  <div class="tk-lga-combobox">
+    TKLgaCombobox
+  </div>
 </template>
 
 <script lang="ts">

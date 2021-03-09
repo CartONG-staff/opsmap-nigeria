@@ -1,20 +1,7 @@
 <template lang="html">
   <div class="tk-camp-selector">
-    <div id="flex-container">
-      <div
-        class="d-flex
-      flex-column
-      align-center
-      myItem"
-      >
-        <div class="d-flex pa-2">
-          <TKCampSelectorComboboxes />
-        </div>
-        <div class="d-flex pa-2">
-          <TKCampSelectorMap />
-        </div>
-      </div>
-    </div>
+    <TKCampSelectorComboboxes />
+    <TKCampSelectorMap />
   </div>
 </template>
 
@@ -33,7 +20,7 @@ export default class TKCampSelector extends Vue {}
 </script>
 
 <style scoped>
-.myItem {
-  background-color: green;
+.tk-camp-selector {
+  background-color: aquamarine;
 }
 </style>

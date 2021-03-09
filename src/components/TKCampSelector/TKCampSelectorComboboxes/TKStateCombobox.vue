@@ -1,5 +1,7 @@
 <template lang="html">
-  <div class="tk-state-combobox"></div>
+  <div class="tk-state-combobox">
+    TKStateCombobox
+  </div>
 </template>
 
 <script lang="ts">

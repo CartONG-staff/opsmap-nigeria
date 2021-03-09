@@ -1,7 +1,9 @@
 <template lang="html">
-  <div class="tk-header">
-    <h1>TKFooter from {{ source }}</h1>
-  </div>
+  <v-app-bar-title>
+    <div class="tk-header">
+      TKHeader
+    </div>
+  </v-app-bar-title>
 </template>
 
 <script lang="ts">

@@ -1,5 +1,7 @@
 <template lang="html">
-  <div class="tk-camp-selector-map"></div>
+  <div class="tk-camp-selector-map">
+    TKCampSelectorMap
+  </div>
 </template>
 
 <script lang="ts">
