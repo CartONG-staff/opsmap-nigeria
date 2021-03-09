@@ -3,7 +3,7 @@
     TKSurveyVisualizer
   </div>
 </template>
-w
+
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 

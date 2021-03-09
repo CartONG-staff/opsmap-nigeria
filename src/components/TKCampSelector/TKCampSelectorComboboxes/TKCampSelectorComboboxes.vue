@@ -25,5 +25,7 @@ export default class TKCampSelectorComboboxes extends Vue {}
 <style scoped>
 .tk-camp-selector-comboboxes {
   background-color: mediumslateblue;
+  display: flex;
+  flex-direction: row;
 }
 </style>
