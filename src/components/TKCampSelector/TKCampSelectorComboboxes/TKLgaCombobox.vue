@@ -1,16 +1,16 @@
 <template lang="html">
-  <div class="tk-camp-selector-map"></div>
+  <div class="tk-lga-combobox"></div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 
 @Component
-export default class TKCampSelectorMap extends Vue {}
+export default class TKLgaCombobox extends Vue {}
 </script>
 
 <style scoped>
-.tk-camp-selector-map {
-  background-color: lightcoral;
+.tk-lga-combobox {
+  background-color: mediumaquamarine;
 }
 </style>

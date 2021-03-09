@@ -1,21 +1,18 @@
 <template lang="html">
-  <div id="flex-container">
-    <div
-      class="d-flex
+  <div class="tk-camp-selector">
+    <div id="flex-container">
+      <div
+        class="d-flex
       flex-column
       align-center
       myItem"
-    >
-      <div class="d-flex pa-2">
-        <TKCampSelectorCombos
-          :states="this.campList"
-          @camp-selection-changed="campSelected"
-          @camp-selection-cleared="selectionCleared"
-          @camp-selection-unknown="selectionUnknown"
-        />
-      </div>
-      <div class="d-flex pa-2">
-        <TKCampSelectorMap :currentCamp="this.currentCamp" />
+      >
+        <div class="d-flex pa-2">
+          <TKCampSelectorComboboxes />
+        </div>
+        <div class="d-flex pa-2">
+          <TKCampSelectorMap />
+        </div>
       </div>
     </div>
   </div>
@@ -23,42 +20,16 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import Camp from "@/types/Camp";
-import TKCampSelectorCombos from "./TKCampSelectorCombos.vue";
+import TKCampSelectorComboboxes from "./TKCampSelectorComboboxes";
 import TKCampSelectorMap from "./TKCampSelectorMap.vue";
 
 @Component({
   components: {
-    TKCampSelectorCombos,
+    TKCampSelectorComboboxes,
     TKCampSelectorMap
   }
 })
-export default class TKCampSelector extends Vue {
-  readonly NoCamp = new Camp();
-  readonly CampUnknown = { id: "unknown", state: "unknown", name: "unknown" };
-  currentCamp: Camp = this.NoCamp;
-
-  campList: Camp[] = [
-    { id: "01", name: "Herault", state: "herault01" },
-    { id: "02", name: "Gard", state: "gard03" },
-    { id: "03", name: "Haute Garonne", state: "haute-garrone03" }
-  ];
-
-  campSelected(camp: Camp) {
-    console.log("Selector: " + camp.id);
-    this.currentCamp = camp;
-  }
-
-  selectionCleared() {
-    console.log("Selector: " + "Selection cleared");
-    this.currentCamp = this.NoCamp;
-  }
-
-  selectionUnknown() {
-    console.log("Selector: " + "Selection unknown");
-    this.currentCamp = this.CampUnknown;
-  }
-}
+export default class TKCampSelector extends Vue {}
 </script>
 
 <style scoped>
