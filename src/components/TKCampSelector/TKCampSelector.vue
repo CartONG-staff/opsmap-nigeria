@@ -34,6 +34,6 @@ export default class TKCampSelector extends Vue {}
 
 <style scoped>
 .myItem {
-  background-color: green;
+  background-color: aquamarine;
 }
 </style>
