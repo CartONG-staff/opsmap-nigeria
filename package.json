@@ -12,7 +12,7 @@
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "doc": "typedoc --options typedoc.json"
+    "doc": "typedoc --options typedoc.json src/"
   },
   "dependencies": {
     "core-js": "^3.9.1",
