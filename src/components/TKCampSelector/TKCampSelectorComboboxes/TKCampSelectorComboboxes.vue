@@ -1,5 +1,9 @@
 <template lang="html">
-  <div class="tk-camp-selector-comboboxes"></div>
+  <div class="tk-camp-selector-comboboxes">
+    <TKStateCombobox />
+    <TKLgaCombobox />
+    <TKCampCombobox />
+  </div>
 </template>
 
 <script lang="ts">

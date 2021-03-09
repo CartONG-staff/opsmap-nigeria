@@ -1,5 +1,7 @@
 <template lang="html">
-  <div class="tk-infos-displayer"></div>
+  <div class="tk-infos-displayer">
+    TKInfosDisplayer
+  </div>
 </template>
 
 <script lang="ts">

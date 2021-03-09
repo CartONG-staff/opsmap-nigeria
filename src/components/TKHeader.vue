@@ -1,5 +1,7 @@
 <template lang="html">
-  <div class="tk-header"></div>
+  <div class="tk-header">
+    TKHeader
+  </div>
 </template>
 
 <script lang="ts">

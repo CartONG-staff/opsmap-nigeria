@@ -1,5 +1,7 @@
 <template lang="html">
-  <div class="tk-footer"></div>
+  <div class="tk-footer">
+    TKFooter
+  </div>
 </template>
 
 <script lang="ts">
