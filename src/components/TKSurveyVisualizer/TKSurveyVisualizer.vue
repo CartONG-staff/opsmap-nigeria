@@ -1,18 +1,18 @@
 <template lang="html">
-  <div class="tk-infos-displayer">
-    TKInfosDisplayer
+  <div class="tk-survey-visualizer">
+    TKSurveyVisualizer
   </div>
 </template>
-
+w
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 
 @Component
-export default class TKInfosDisplayer extends Vue {}
+export default class TKSurveyVisualizer extends Vue {}
 </script>
 
 <style scoped>
-.tk-infos-displayer {
+.tk-survey-visualizer {
   background-color: aquamarine;
 }
 </style>

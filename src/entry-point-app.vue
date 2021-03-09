@@ -4,8 +4,7 @@
       <TKHeader />
       <div class="tk-app-layout">
         <TKCampSelector />
-        <TKInfosDisplayer class="tk-infos-displayer" />
-      </div>
+        <TKSurveyVisualizer />
       <TKFooter />
     </v-main>
   </v-app>
@@ -17,7 +16,7 @@ import {
   TKHeader,
   TKFooter,
   TKCampSelector,
-  TKInfosDisplayer
+  TKSurveyVisualizer
 } from "@/components"; // @ is an alias to /src
 
 @Component({
@@ -25,7 +24,7 @@ import {
     TKCampSelector,
     TKHeader,
     TKFooter,
-    TKInfosDisplayer
+    TKSurveyVisualizer
   }
 })
 export default class App extends Vue {}
