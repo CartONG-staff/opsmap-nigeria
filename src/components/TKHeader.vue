@@ -1,7 +1,5 @@
 <template lang="html">
-  <div class="tk-header">
-    <h1>TKFooter from {{ source }}</h1>
-  </div>
+  <div class="tk-header"></div>
 </template>
 
 <script lang="ts">
