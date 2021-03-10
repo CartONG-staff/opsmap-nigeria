@@ -7,7 +7,7 @@ At this point, it is just a place to drop every infos relatives to the project.
 This document is **NOT** a comitment to anything. It is **NOT** an official technical specifications.
 
 Resources:
-
+- [Task Board](https://cartong.teamwork.com/#/projects/500913/tasks/board)
 - [nextcloud](https://cloud.cartong.org/s/zgsDFfpjTNHseZS)
 - [teamwork](https://cartong.teamwork.com/#/projects/233096/overview/summary) : opsmap is a task of gds, containing a list of subtasks.
 - [teamwork new](https://cartong.teamwork.com/#/projects/500913/tasks) : migrating dev task to a specific opsmap project.
