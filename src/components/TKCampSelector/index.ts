@@ -1,6 +1,7 @@
 /**
+ * This contains the map and the comboboxes. This is the "select a camp" part.
+ *
  * @module
- * @internal
  */
 
 import TKCampSelector from "./TKCampSelector.vue";

@@ -1,6 +1,7 @@
 /**
+ * This contains all the components.
+ *
  * @module
- * @internal
  */
 
 import TKCampSelector from "./TKCampSelector";
