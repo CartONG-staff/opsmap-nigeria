@@ -6,7 +6,7 @@
         <TKCampSelector />
         <TKSurveyVisualizer />
       </v-container>
-      <TKFooter />
+      <TKFooter :partners="partners" />
     </v-main>
   </v-app>
 </template>
