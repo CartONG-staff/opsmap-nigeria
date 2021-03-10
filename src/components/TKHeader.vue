@@ -7,11 +7,11 @@
         class="tk-header-logos-item"
       >
         <a :href="urlRedirection" target="_blank">
-          <img :src="urlLogo" :alt="name" class="opsmapLogo" />
+          <img :src="urlLogo" :alt="name" class="tk-header-logos-item-logo" />
         </a>
       </div>
     </div>
-    <div class="d-flex align-center justify-end">
+    <div class="tk-header-title">
       <h3 class="secondary--text">Opsmap Name: {{ country.name }}</h3>
     </div>
   </div>
@@ -58,8 +58,13 @@ export default class TKHeader extends Vue {
   margin: auto;
 }
 
-.opsmapLogo {
+.tk-header-logos-item-logo {
   height: 50px;
+}
+
+.tk-header-title {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 </style>
 s
