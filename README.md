@@ -12,6 +12,7 @@ Resources:
 - [teamwork](https://cartong.teamwork.com/#/projects/233096/overview/summary) : opsmap is a task of gds, containing a list of subtasks.
 - [teamwork new](https://cartong.teamwork.com/#/projects/500913/tasks) : migrating dev task to a specific opsmap project.
 - [gitlab](https://gitlab.cartong.org/HCR/opsmap) : opsmap is a group, with all the opsmap related projects
+- [Feature list](Feature-list.md) : Reference list of the features, dev oriented
 
 People:
 
