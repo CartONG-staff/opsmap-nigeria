@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <TKHeader :country="country" :partners="partners" />
+      <TKHeader :country="country" :clusterMembers="clusterMembers" />
       <v-container fluid>
         <TKCampSelector />
         <TKSurveyVisualizer />
@@ -13,10 +13,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { TKPartnerInfos } from "@/domain/TKPartnerInfos";
+import { TKClusterMemberInfos } from "@/domain/TKClusterMemberInfos";
 import { TKCountry } from "@/domain/TKCountry";
 
-import { SYLDAVIE, PARTNERS } from "@/domain/sampleTest";
+import { SYLDAVIE, CLUSTERMEMBERS } from "@/domain/sampleTest";
 
 import {
   TKHeader,
@@ -35,7 +35,7 @@ import {
 })
 export default class App extends Vue {
   readonly country: TKCountry = SYLDAVIE;
-  readonly partners: Array<TKPartnerInfos> = PARTNERS;
+  readonly clusterMembers: Array<TKClusterMemberInfos> = CLUSTERMEMBERS;
 }
 </script>
 

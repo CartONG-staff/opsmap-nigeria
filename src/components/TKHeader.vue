@@ -2,12 +2,12 @@
   <div class="tk-header">
     <div class="tk-header-logos">
       <div
-        v-for="{ partnerName, urlLogo, urlRedirection } in partners"
-        :key="partnerName"
+        v-for="{ name, urlLogo, urlRedirection } in clusterMembers"
+        :key="name"
         class="tk-header-logos-item"
       >
         <a :href="urlRedirection" target="_blank">
-          <img :src="urlLogo" :alt="partnerName" class="opsmapLogo" />
+          <img :src="urlLogo" :alt="name" class="opsmapLogo" />
         </a>
       </div>
     </div>
@@ -20,7 +20,7 @@
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
 
-import { TKPartnerInfos, TKCountry } from "@/domain";
+import { TKClusterMemberInfos, TKCountry } from "@/domain";
 
 @Component
 export default class TKHeader extends Vue {
@@ -30,7 +30,7 @@ export default class TKHeader extends Vue {
   @Prop({
     default: () => []
   })
-  readonly partners!: Array<TKPartnerInfos>;
+  readonly clusterMembers!: Array<TKClusterMemberInfos>;
 }
 </script>
 
