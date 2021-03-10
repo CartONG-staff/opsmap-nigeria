@@ -1,21 +1,20 @@
 <template lang="html">
-  <v-app-bar-title>
-    <div class="tk-header">
-      <div class="tk-header-logos">
-        <div
-          v-for="{ partnerName, urlLogo, urlRedirection } in partners"
-          :key="partnerName"
-        >
-          <a :href="urlRedirection" style="display:block" target="_blank">
-            <img :src="urlLogo" :alt="partnerName" class="opsmapLogo" />
-          </a>
-        </div>
-      </div>
-      <div class="d-flex align-center justify-end">
-        <h3 class="secondary--text">Opsmap Name: {{ opsmapName }}</h3>
+  <div class="tk-header">
+    <div class="tk-header-logos">
+      <div
+        v-for="{ partnerName, urlLogo, urlRedirection } in partners"
+        :key="partnerName"
+        class="tk-header-logos-item"
+      >
+        <a :href="urlRedirection" target="_blank">
+          <img :src="urlLogo" :alt="partnerName" class="opsmapLogo" />
+        </a>
       </div>
     </div>
-  </v-app-bar-title>
+    <div class="d-flex align-center justify-end">
+      <h3 class="secondary--text">Opsmap Name: {{ opsmapName }}</h3>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -37,10 +36,12 @@ export default class TKHeader extends Vue {
 
 <style scoped>
 .tk-header {
-  background-color: darkslategray;
+  background-color: antiquewhite;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  vertical-align: middle;
+  height: 100px;
 }
 
 .tk-header > * {
@@ -50,12 +51,11 @@ export default class TKHeader extends Vue {
 .tk-header-logos {
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
-  background-color: bisque;
+  column-gap: 5px;
 }
 
 .tk-header-logos > * {
-  margin: 0 15px;
+  margin: auto;
 }
 
 .opsmapLogo {
