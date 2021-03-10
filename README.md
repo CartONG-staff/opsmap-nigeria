@@ -24,7 +24,14 @@ Tech summary:
 Front only, based on [Vue.js v2](https://vuejs.org) + [Typescript](https://www.typescriptlang.org) + class-style Vue components.
 The map engine is [Mapbox](https://www.mapbox.com).
 
-[[_TOC_]]
+## Usage
+
+- `npm run build-lib` --> generates the lib
+- `npm run build` --> generates the app (no lib)
+- `npm run serve` --> generates the app (no lib) and start localhost
+- `npm run doc` --> generates the doc in the docs folder
+
+The doc is generated using TypeDoc. It doesn't seems to be ok with vuejs components. We'll see.
 
 ## Project architecture
 
