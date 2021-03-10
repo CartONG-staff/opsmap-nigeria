@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <TKHeader :opsmapName="opsmapName" :partners="partners" />
+      <TKHeader :country="country" :partners="partners" />
       <v-container fluid>
         <TKCampSelector />
         <TKSurveyVisualizer />
@@ -13,7 +13,11 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { TKPartnerInfos, PARTNERS } from "@/domain/TKPartnerInfos";
+import { TKPartnerInfos } from "@/domain/TKPartnerInfos";
+import { TKCountry } from "@/domain/TKCountry";
+
+import { SYLDAVIE, PARTNERS } from "@/domain/sampleTest";
+
 import {
   TKHeader,
   TKFooter,
@@ -30,7 +34,7 @@ import {
   }
 })
 export default class App extends Vue {
-  readonly opsmapName = "Syldavie";
+  readonly country: TKCountry = SYLDAVIE;
   readonly partners: Array<TKPartnerInfos> = PARTNERS;
 }
 </script>

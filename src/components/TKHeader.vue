@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="d-flex align-center justify-end">
-      <h3 class="secondary--text">Opsmap Name: {{ opsmapName }}</h3>
+      <h3 class="secondary--text">Opsmap Name: {{ country.name }}</h3>
     </div>
   </div>
 </template>
@@ -20,12 +20,12 @@
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
 
-import { TKPartnerInfos } from "@/domain/TKPartnerInfos";
+import { TKPartnerInfos, TKCountry } from "@/domain";
 
 @Component
 export default class TKHeader extends Vue {
-  @Prop({ type: String, default: "NAME-NOT-DEFINED" })
-  readonly opsmapName!: string;
+  @Prop()
+  readonly country!: TKCountry;
 
   @Prop({
     default: () => []
