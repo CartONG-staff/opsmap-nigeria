@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import TKPartnerInfos from "@/domain/TKPartnersInfos";
+import TKPartnerInfos from "@/domain/TKPartnerInfos";
 import { Vue, Prop, Component } from "vue-property-decorator";
 
 @Component
@@ -61,5 +61,4 @@ export default class TKFooter extends Vue {
 .tk-footer-logos-item-logo {
   height: 50px;
 }
-
 </style>

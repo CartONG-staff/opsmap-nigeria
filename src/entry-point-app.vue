@@ -13,9 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { TKClusterMemberInfos } from "@/domain/TKClusterMemberInfos";
-import { TKCountry } from "@/domain/TKCountry";
-import { TKPartnerInfos } from "@/domain/TKPartnerInfos";
+import { TKCountry, TKClusterMemberInfos, TKPartnerInfos } from "@/domain";
 
 import { SYLDAVIE, CLUSTERMEMBERS, PARTNERS } from "@/domain/sampleTest";
 

@@ -1,7 +1,6 @@
-
 import TKCountry from "./TKCountry";
 import TKClusterMemberInfos from "./TKClusterMemberInfos";
-import TKPartnerInfos from "./TKPartnersInfos";
+import TKPartnerInfos from "./TKPartnerInfos";
 
 const SYLDAVIE: TKCountry = {
     iso3: "SYL",
