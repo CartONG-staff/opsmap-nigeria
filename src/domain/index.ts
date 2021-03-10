@@ -6,7 +6,8 @@
  */
 
  import TKCountry from "./TKCountry";
- import TKClusterMemberInfos from "./TKClusterMemberInfos.vue";
+ import TKClusterMemberInfos from "./TKClusterMemberInfos";
+ import TKPartnersInfos from "./TKPartnersInfos";
 
- export { TKCountry, TKClusterMemberInfos };
- export default { TKCountry, TKClusterMemberInfos };
+ export { TKCountry, TKClusterMemberInfos, TKPartnersInfos };
+ export default { TKCountry, TKClusterMemberInfos, TKPartnersInfos };

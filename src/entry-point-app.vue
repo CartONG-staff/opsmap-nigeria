@@ -15,8 +15,9 @@
 import { Component, Vue } from "vue-property-decorator";
 import { TKClusterMemberInfos } from "@/domain/TKClusterMemberInfos";
 import { TKCountry } from "@/domain/TKCountry";
+import { TKPartnerInfos } from "@/domain/TKPartnerInfos";
 
-import { SYLDAVIE, CLUSTERMEMBERS } from "@/domain/sampleTest";
+import { SYLDAVIE, CLUSTERMEMBERS, PARTNERS } from "@/domain/sampleTest";
 
 import {
   TKHeader,
@@ -36,6 +37,7 @@ import {
 export default class App extends Vue {
   readonly country: TKCountry = SYLDAVIE;
   readonly clusterMembers: Array<TKClusterMemberInfos> = CLUSTERMEMBERS;
+  readonly partners: Array<TKPartnerInfos> = PARTNERS;
 }
 </script>
 

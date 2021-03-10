@@ -1,6 +1,7 @@
 
 import TKCountry from "./TKCountry";
 import TKClusterMemberInfos from "./TKClusterMemberInfos";
+import TKPartnerInfos from "./TKPartnersInfos";
 
 const SYLDAVIE: TKCountry = {
     iso3: "SYL",
@@ -18,14 +19,24 @@ const CLUSTERMEMBERS: Array<TKClusterMemberInfos> = [
         urlLogo:
         "https://www.cartong.org/sites/cartong/files/images/CartONG_logo_long_0_0_0.png",
         urlRedirection: "https://www.cartong.org"
-    },
+    }
+];
+
+const PARTNERS: Array<TKPartnerInfos> = [
     {
         name: "Syldavie",
         urlLogo:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Syldavian_lippu.jpg/1280px-Syldavian_lippu.jpg",
         urlRedirection: "https://fr.wikipedia.org/wiki/Syldavie"
+    },
+    {
+        name: "CartONG",
+        urlLogo:
+        "https://www.cartong.org/sites/cartong/files/images/CartONG_logo_long_0_0_0.png",
+        urlRedirection: "https://www.cartong.org"
     }
 ];
 
 export { SYLDAVIE };
 export { CLUSTERMEMBERS };
+export { PARTNERS };
