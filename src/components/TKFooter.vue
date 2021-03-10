@@ -45,29 +45,21 @@ export default class TKFooter extends Vue {
 
 <style scoped>
 .tk-footer {
-  background-color: cornflowerblue;
+  background-color: antiquewhite;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+  flex-flow: column wrap;
   vertical-align: middle;
 }
 
-.tk-footer > * {
-  margin: 0 50px;
-}
-
 .tk-footer-logos {
-  background-color: yellow;
   display: flex;
   flex-flow: row wrap;
   column-gap: 50px;
-}
-
-.tk-footer-logos > * {
-  margin: auto;
+  justify-content: center;
 }
 
 .tk-footer-logos-item-logo {
   height: 50px;
 }
+
 </style>
