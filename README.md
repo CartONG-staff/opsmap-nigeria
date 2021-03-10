@@ -111,3 +111,22 @@ Others api used:
 - [Jest](https://jestjs.io): testing framework
 - [sinonjs](https://sinonjs.org): improvement of Jest testing framework
 - [Cypress.io](https://www.cypress.io): end to end testing
+
+#### [MIT Licence](https://en.wikipedia.org/wiki/MIT_License)
+
+Permissive. Do whatever you want, only if:
+> The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+#### [Apache V2](https://www.apache.org/licenses/LICENSE-2.0)
+
+Permissive. Do whatever you want, only if:
+> You should include a copy of the Apache License, typically in a file called LICENSE, in your work, and consider also including a NOTICE file.
+
+#### [BSD Licence](https://opensource.org/licenses/BSD-3-Clause)
+
+Persmissive. Do whatever you want, only if:
+> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+>
+> Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+>
+> Neither the name of Christian Johansen nor the names of his contributors may be used to endorse or promote products derived from this software without specific prior written permission.
