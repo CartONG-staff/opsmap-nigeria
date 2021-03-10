@@ -21,11 +21,7 @@
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
 
-type PartnerInfos = {
-  partnerName: string;
-  urlLogo: string;
-  urlRedirection: string;
-};
+import { TKPartnerInfos } from "@/domain/TKPartnerInfos";
 
 @Component
 export default class TKHeader extends Vue {
@@ -33,29 +29,15 @@ export default class TKHeader extends Vue {
   readonly opsmapName!: string;
 
   @Prop({
-    default: () => [
-      {
-        partnerName: "GOOGLE",
-        urlLogo:
-          "https://www.hicom.fr/wp-content/uploads/2017/09/Logo_TV_2015.png",
-        urlRedirection: "https://www.google.com"
-      },
-      {
-        partnerName: "STACKOVERFLOW",
-        urlLogo:
-          "https://www.hicom.fr/wp-content/uploads/2017/09/Logo_TV_2015.png",
-        urlRedirection:
-          "https://stackoverflow.com/questions/7653483/github-relative-link-in-markdown-file/7658676"
-      }
-    ]
+    default: () => []
   })
-  readonly partners!: Array<PartnerInfos>;
+  readonly partners!: Array<TKPartnerInfos>;
 }
 </script>
 
 <style scoped>
 .tk-header {
-  background-color: black;
+  background-color: darkslategray;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -77,8 +59,7 @@ export default class TKHeader extends Vue {
 }
 
 .opsmapLogo {
-  height: 100px;
-} 
-
+  height: 50px;
+}
 </style>
 s

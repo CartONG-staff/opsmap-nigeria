@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <TKHeader />
+      <TKHeader :opsmapName="opsmapName" :partners="partners" />
       <v-container fluid>
         <TKCampSelector />
         <TKSurveyVisualizer />
@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { TKPartnerInfos, PARTNERS } from "@/domain/TKPartnerInfos";
 import {
   TKHeader,
   TKFooter,
@@ -28,10 +29,14 @@ import {
     TKSurveyVisualizer
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  readonly opsmapName = "Syldavie";
+  readonly partners: Array<TKPartnerInfos> = PARTNERS;
+}
 </script>
 
 <style>
 body {
   min-height: 100vh; /* toute la hauteur du viewport (compatible IE9+) */
-}</style>
+}
+</style>
