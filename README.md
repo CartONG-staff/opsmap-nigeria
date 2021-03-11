@@ -100,7 +100,7 @@ The 3rd Party licences are mentionned in LICENCE-3RD-PARTY.md.
 - Front
   - Vue.js v2: [_MIT Licence_](https://vuejs.org)
   - Typescript: [_Apache v2.0_](https://github.com/microsoft/TypeScript/blob/master/LICENSE.txt)
-  - Mapbox: _TBD_
+  - Mapbox: Custom Licence. Free under 50k users per month. OK With this project. 
   - Chart.js: [_MIT Licence_](https://www.chartjs.org/docs/latest/notes/license.html)
   - PDF.js: [_MIT Licence_](https://github.com/mozilla/pdf.js/blob/master/LICENSE)
   - html2canvas: [_MIT Licence_](https://github.com/niklasvh/html2canvas/blob/master/LICENSE)
