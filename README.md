@@ -33,6 +33,13 @@ The map engine is [Mapbox](https://www.mapbox.com).
 
 The doc is generated using TypeDoc. It doesn't seems to be ok with vuejs components. We'll see.
 
+## Kobo Management
+
+A kobo user for this proejct has been created. The objective is to have a readonly access to every potential opsmap related survey. 
+
+> username: cartong_reader
+> passwd: @bitwarden
+
 ## Project architecture
 
 For the seek of opsmap-tookit related files, variables, etc. , we will use the following prefix: TK. (ex: TKHellowWorld).
