@@ -1,4 +1,4 @@
-# Kind of tech specs
+# Hello, you
 
 This document is aimed at helping developer understand this project.
 
