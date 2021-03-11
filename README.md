@@ -7,18 +7,17 @@ At this point, it is just a place to drop every infos relatives to the project.
 This document is **NOT** a comitment to anything. It is **NOT** an official technical specifications.
 
 Resources:
-- [Task Board](https://cartong.teamwork.com/#/projects/500913/tasks/board)
+- [teamwork : task board](https://cartong.teamwork.com/#/projects/500913/tasks/board)
+- [teamwork : old](https://cartong.teamwork.com/#/projects/233096/overview/summary)
 - [nextcloud](https://cloud.cartong.org/s/zgsDFfpjTNHseZS)
-- [teamwork](https://cartong.teamwork.com/#/projects/233096/overview/summary) : opsmap is a task of gds, containing a list of subtasks.
-- [teamwork new](https://cartong.teamwork.com/#/projects/500913/tasks) : migrating dev task to a specific opsmap project.
-- [gitlab](https://gitlab.cartong.org/HCR/opsmap) : opsmap is a group, with all the opsmap related projects
-- [Feature list](Feature-list.md) : Reference list of the features, dev oriented
+- [gitlab](https://gitlab.cartong.org/HCR/opsmap)
+- [features list](Feature-list.md) : Reference list of the features, dev oriented
 
 People:
 
 - Pole Manager: Sylvie de Laborderie
 - PO: Maelle Aubert
-- Devs: Joaquim Martin, Olivier Ribiere, Etienne Delclaux (Backup: Miguel Moreno)
+- Devs: Joaquim Martin, Olivier Ribiere, Miguel Moreno, Etienne Delclaux
 
 Tech summary:
 
