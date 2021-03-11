@@ -69,16 +69,16 @@ We observe the following folder structure:
 ```bash
 src
 ├──components
-│   ├── TKCampSelector
-│   │     ├── TKCampSelector.vue
-│   │     ├── TKCampSelectorComboBoxes.vue
-│   │     └── TKCampSelectorMap.vue
-│   ├── TKFooter.vue
-│   └── TKHeader.vue
+│   ├── TKComponent1
+│   │     ├── index.ts
+│   │     ├── TKComponent1.vue
+│   │     ├── TKComponent1Subpart1.vue
+│   │     └── TKComponent1Subpart2.vue
+│   └── TKComponent2.vue
 ├──plugins
 │   └── vuetify.ts
-└──types
-    └── Camp.ts
+└──domain
+    └── TKdomain-related-stuff.ts
 
 ```
 
@@ -86,9 +86,9 @@ We observe the following behavior:
 
 - components: the folder + file structure follows the components tree in the UI
 - plugins: auto, needed by vuetify
-- types: attempt to structure. It's like a domain folder. It holds the domain related competences.
+- domain: attempt to structure. It holds the domain related competences.
 
-This architecture needs to be reshaped. This is a bit too intuitive.
+This architecture needs to be reshaped. This was made a bit too on-the-fly.
 
 ## Licences
 
