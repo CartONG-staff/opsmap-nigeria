@@ -1,4 +1,4 @@
-import { GeneralConfiguration } from "@/domain/GeneralConfiguration";
+import { GeneralConfiguration } from "@/domain/TKGeneralConfiguration";
 import { koboInfo, headerLogo, footerLogo } from "@/constants/appConfiguration";
 
 export const APPCONFIG: GeneralConfiguration = {
