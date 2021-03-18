@@ -17,12 +17,16 @@
       </div>
       <div class="tk-footer-logos">
         <div
-          v-for="{ name, urlLogo, urlRedirection } in partners"
-          :key="name"
+          v-for="items in appConfig.footerLogo"
+          :key="items.name"
           class="tk-footer-logos-item"
         >
-          <a :href="urlRedirection" target="_blank">
-            <img :src="urlLogo" :alt="name" class="tk-footer-logos-item-logo" />
+          <a :href="items.urlRedirection" target="_blank">
+            <img
+              :src="items.urlLogo"
+              :alt="items.name"
+              class="tk-footer-logos-item-logo"
+            />
           </a>
         </div>
       </div>
@@ -31,15 +35,13 @@
 </template>
 
 <script lang="ts">
-import TKPartnerInfos from "@/domain/TKPartnerInfos";
 import { Vue, Prop, Component } from "vue-property-decorator";
+import { GeneralConfiguration } from "@/domain/TKGeneralConfiguration";
 
 @Component
 export default class TKFooter extends Vue {
-  @Prop({
-    default: () => []
-  })
-  readonly partners!: Array<TKPartnerInfos>;
+  @Prop()
+  readonly appConfig!: GeneralConfiguration;
 }
 </script>
 

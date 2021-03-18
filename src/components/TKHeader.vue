@@ -2,35 +2,33 @@
   <div class="tk-header">
     <div class="tk-header-logos">
       <div
-        v-for="{ name, urlLogo, urlRedirection } in clusterMembers"
-        :key="name"
+        v-for="items in appConfig.headerLogo"
+        :key="items.urlLogo"
         class="tk-header-logos-item"
       >
-        <a :href="urlRedirection" target="_blank">
-          <img :src="urlLogo" :alt="name" class="tk-header-logos-item-logo" />
+        <a :href="items.urlRedirection" target="_blank">
+          <img
+            :src="items.urlLogo"
+            :alt="items.name"
+            class="tk-header-logos-item-logo"
+          />
         </a>
       </div>
     </div>
     <div class="tk-header-title">
-      <h3 class="secondary--text">Opsmap Name: {{ country.name }}</h3>
+      <h3 class="secondary--text">{{ appConfig.name }}</h3>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
-
-import { TKClusterMemberInfos, TKCountry } from "@/domain";
+import { GeneralConfiguration } from "@/domain/TKGeneralConfiguration";
 
 @Component
 export default class TKHeader extends Vue {
   @Prop()
-  readonly country!: TKCountry;
-
-  @Prop({
-    default: () => []
-  })
-  readonly clusterMembers!: Array<TKClusterMemberInfos>;
+  readonly appConfig!: GeneralConfiguration;
 }
 </script>
 

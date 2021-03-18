@@ -5,9 +5,6 @@
  * @internal
  */
 
- import TKCountry from "./TKCountry";
- import TKClusterMemberInfos from "./TKClusterMemberInfos";
- import TKPartnerInfos from "./TKPartnerInfos";
+import { GeneralConfiguration } from "@/domain/TKGeneralConfiguration";
 
- export { TKCountry, TKClusterMemberInfos, TKPartnerInfos };
- export default { TKCountry, TKClusterMemberInfos, TKPartnerInfos };
+export { GeneralConfiguration };

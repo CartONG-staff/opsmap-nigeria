@@ -1,27 +1,26 @@
 <template>
   <v-app>
     <v-main>
-      <TKHeader :country="country" :clusterMembers="clusterMembers" />
+      <TKHeader :appConfig="appConfig" />
       <v-container fluid>
         <TKCampSelector />
         <TKSurveyVisualizer />
       </v-container>
-      <TKFooter :partners="partners" />
+      <TKFooter :appConfig="appConfig" />
     </v-main>
   </v-app>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { TKCountry, TKClusterMemberInfos, TKPartnerInfos } from "@/domain";
-
-import { SYLDAVIE, CLUSTERMEMBERS, PARTNERS } from "@/domain/sampleTest";
+import { GeneralConfiguration } from "./domain/TKGeneralConfiguration";
+import { APPCONFIG } from "@/testouille/config";
 
 import {
   TKHeader,
   TKFooter,
   TKCampSelector,
-  TKSurveyVisualizer
+  TKSurveyVisualizer,
 } from "@/components"; // @ is an alias to /src
 
 @Component({
@@ -29,13 +28,11 @@ import {
     TKCampSelector,
     TKHeader,
     TKFooter,
-    TKSurveyVisualizer
-  }
+    TKSurveyVisualizer,
+  },
 })
 export default class App extends Vue {
-  readonly country: TKCountry = SYLDAVIE;
-  readonly clusterMembers: Array<TKClusterMemberInfos> = CLUSTERMEMBERS;
-  readonly partners: Array<TKPartnerInfos> = PARTNERS;
+  private appConfig: GeneralConfiguration = APPCONFIG;
 }
 </script>
 
