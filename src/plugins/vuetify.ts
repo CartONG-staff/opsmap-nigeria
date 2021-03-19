@@ -8,11 +8,31 @@ import Vuetify from "vuetify/lib/framework";
 
 Vue.use(Vuetify);
 
-// export default new Vuetify({});
+/*
+theme.options.customeProperties: generates css var
+primary color --> var(--v-primary-base);
+primary: because it's primary field
+base: among 11 values:
 
-// NIGERIA CONFIG
+REF:
+interface ParsedThemeItem {
+  base: string
+  lighten5: string
+  lighten4: string
+  lighten3: string
+  lighten2: string
+  lighten1: string
+  darken1: string
+  darken2: string
+  darken3: string
+  darken4: string
+  [name: string]: string
+}
+*/
+
 export default new Vuetify({
   theme: {
+    options: { customProperties: true }, // Generates CSS var
     themes: {
       light: {
         primary: "#286090",
