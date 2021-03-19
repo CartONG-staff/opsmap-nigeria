@@ -15,19 +15,21 @@
           officia deserunt mollit anim id est laborum.
         </p>
       </div>
-      <div class="tk-footer-logos">
-        <div
-          v-for="items in appConfig.footerLogo"
-          :key="items.name"
-          class="tk-footer-logos-item"
-        >
-          <a :href="items.urlRedirection" target="_blank">
-            <img
-              :src="items.urlLogo"
-              :alt="items.name"
-              class="tk-footer-logos-item-logo"
-            />
-          </a>
+      <div class="tk-footer-logos-container">
+        <div class="tk-footer-logos">
+          <div
+            v-for="items in appConfig.footerLogo"
+            :key="items.name"
+            class="tk-footer-logos-item"
+          >
+            <a :href="items.urlRedirection" target="_blank">
+              <img
+                :src="items.urlLogo"
+                :alt="items.name"
+                class="tk-footer-logos-item-logo"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -47,20 +49,31 @@ export default class TKFooter extends Vue {
 
 <style scoped>
 .tk-footer {
-  background-color: antiquewhite;
+  background-color: var(--v-background-base);
   display: flex;
   flex-flow: column wrap;
-  vertical-align: middle;
+}
+
+.tk-footer-disclaimer {
+  background-color: var(--v-disclaimerBackground-base);
+}
+
+.tk-footer-container {
+  background-color: blue;
 }
 
 .tk-footer-logos {
+  background-color: red;
   display: flex;
   flex-flow: row wrap;
   column-gap: 50px;
   justify-content: center;
+  vertical-align: middle;
 }
 
 .tk-footer-logos-item-logo {
-  height: 50px;
+  background-color: green;
+  height: 40px;
+  vertical-align: middle;
 }
 </style>

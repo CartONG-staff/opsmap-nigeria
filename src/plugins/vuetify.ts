@@ -39,6 +39,7 @@ export default new Vuetify({
         secondary: "#428fdf",
         tertiary: "#a6a6a6",
         background: "#fff",
+        disclaimerBackground: "#fafafa",
         // accent
         // anchor
         // error

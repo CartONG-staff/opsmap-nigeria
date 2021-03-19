@@ -53,6 +53,7 @@ export default class TKHeader extends Vue {
   display: flex;
   flex-flow: row wrap;
   column-gap: 5px;
+  background-color: blue;
 }
 
 .tk-header-logos > * {
