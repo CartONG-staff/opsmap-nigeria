@@ -2,9 +2,9 @@
   <div class="tk-dashboard">
     <v-btn v-on:click="switchPage()">Switch page</v-btn>
     <div v-if="isHomePage" class="tk-homepage"></div>
-    <div v-if="!isHomePage" class="tk-dashboard" visible="false">
-      <TKCampSelector />
-      <TKSurveyVisualizer />
+    <div class="tk-dashboard" visible="false">
+      <TKHomePage v-if="isHomePage" />
+      <TKCampPage v-if="!isHomePage" />
     </div>
   </div>
 </template>
@@ -12,18 +12,17 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-import TKCampSelector from "./TKCampSelector";
-import TKSurveyVisualizer from "./TKSurveyVisualizer";
+import TKCampPage from "./TKCampPage";
+import TKHomePage from "./TKHomePage";
 
 @Component({
   components: {
-    TKCampSelector,
-    TKSurveyVisualizer,
+    TKCampPage,
+    TKHomePage,
   },
 })
 export default class TKDashBoard extends Vue {
   isHomePage = true;
-  // Component method
   switchPage() {
     this.isHomePage = !this.isHomePage;
   }
