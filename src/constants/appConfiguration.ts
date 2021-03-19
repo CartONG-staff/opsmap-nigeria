@@ -13,12 +13,6 @@ export const headerLogo = [
     urlLogo: "https://www.unhcr.org/assets/img/unhcr-logo.png",
     urlRedirection: "https://www.unhcr.org",
   },
-  {
-    name: "CartONG",
-    urlLogo:
-      "https://www.cartong.org/sites/cartong/files/images/CartONG_logo_long_0_0_0.png",
-    urlRedirection: "https://www.cartong.org",
-  },
 ];
 
 export const footerLogo = [

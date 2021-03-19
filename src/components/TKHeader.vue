@@ -21,6 +21,8 @@
         <span class="tk-header-title-opsmap">{{ appConfig.name }}</span>
       </h3>
     </div>
+
+    <div class="tk-header-spacer"></div>
   </div>
 </template>
 
@@ -45,19 +47,14 @@ export default class TKHeader extends Vue {
   height: 70px;
 }
 
-.tk-header > * {
-  margin: 0 50px;
-}
-
 .tk-header-logos {
   display: flex;
   flex-flow: row wrap;
   column-gap: 5px;
-  background-color: blue;
-}
-
-.tk-header-logos > * {
-  margin: auto;
+  width: 30%;
+  justify-content: left;
+  align-items: center;
+  padding-left: 160px;
 }
 
 .tk-header-logos-item-logo {
@@ -67,12 +64,21 @@ export default class TKHeader extends Vue {
 .tk-header-title {
   margin-top: auto;
   margin-bottom: auto;
+  width: 40%;
+}
+.tk-header-title > h3 {
+  text-align: center;
 }
 
-.tk-header-title-base {
+h3 .tk-header-title-base {
   color: var(--v-tertiary-base);
 }
+
 .tk-header-title-opsmap {
   color: var(--v-secondary-base);
+}
+
+.tk-header-spacer {
+  width: 30%;
 }
 </style>
