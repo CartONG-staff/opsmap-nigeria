@@ -17,8 +17,8 @@ import { GeneralConfiguration } from "./domain/TKGeneralConfiguration";
 import { APPCONFIG } from "@/testouille/config";
 
 import {
-  TKHeader,
   TKFooter,
+  TKHeader,
   TKCampSelector,
   TKSurveyVisualizer,
 } from "@/components"; // @ is an alias to /src
@@ -39,6 +39,7 @@ export default class App extends Vue {
 <style>
 body {
   min-height: 100vh; /* toute la hauteur du viewport (compatible IE9+) */
+  --padding-small: 10px;
   --padding-medium: 25px;
   --padding-large: 50px;
 }

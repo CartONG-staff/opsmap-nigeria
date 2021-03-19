@@ -19,22 +19,23 @@
           </p>
         </div>
       </div>
-      <div class="tk-footer-logos-container">
-        <div class="tk-footer-logos">
-          <div
-            v-for="items in appConfig.footerLogo"
-            :key="items.name"
-            class="tk-footer-logos-item"
-          >
-            <a :href="items.urlRedirection" target="_blank">
-              <img
-                :src="items.urlLogo"
-                :alt="items.name"
-                class="tk-footer-logos-item-logo"
-              />
-            </a>
-          </div>
-        </div>
+      <div class="tk-footer-logos">
+        <TKFooterLogoItem
+          title="Cluster Led by"
+          :logos="appConfig.footerLogos.clusterLed"
+        />
+        <TKFooterLogoItem
+          title="Coordination and IM support by"
+          :logos="appConfig.footerLogos.coordinationAndIMSupport"
+        />
+        <TKFooterLogoItem
+          title="Fieldwork by"
+          :logos="appConfig.footerLogos.Fieldwork"
+        />
+        <TKFooterLogoItem
+          title="Webdev by"
+          :logos="appConfig.footerLogos.Webdev"
+        />
       </div>
     </div>
   </v-footer>
@@ -43,8 +44,13 @@
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
 import { GeneralConfiguration } from "@/domain/TKGeneralConfiguration";
+import TKFooterLogoItem from "./TKFooterLogoItem.vue";
 
-@Component
+@Component({
+  components: {
+    TKFooterLogoItem,
+  },
+})
 export default class TKFooter extends Vue {
   @Prop()
   readonly appConfig!: GeneralConfiguration;
@@ -79,17 +85,12 @@ export default class TKFooter extends Vue {
 }
 
 .tk-footer-logos {
-  background-color: red;
   display: flex;
   flex-flow: row wrap;
-  column-gap: 50px;
-  justify-content: center;
+  column-gap: var(--padding-large);
+  justify-content: space-evenly;
   vertical-align: middle;
-}
-
-.tk-footer-logos-item-logo {
-  background-color: green;
-  height: 40px;
-  vertical-align: middle;
+  padding-top: var(--padding-large);
+  padding-bottom: var(--padding-large);
 }
 </style>

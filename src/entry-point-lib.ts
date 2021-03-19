@@ -4,7 +4,7 @@
  * @internal
  */
 
-import TKFooter from "./components/TKFooter.vue";
+import TKFooter from "./components/TKFooter/TKFooter.vue";
 import TKHeader from "./components/TKHeader.vue";
 import TKCampSelector from "./components/TKCampSelector";
 import TKSurveyVisualizer from "./components/TKSurveyVisualizer";

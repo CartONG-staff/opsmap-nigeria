@@ -1,17 +1,24 @@
-interface KoboSurveyInfo {
+export interface KoboSurveyInfo {
   name: string;
   url: string;
   token: string;
 }
 
-interface CSVSurveyInfo {
+export interface CSVSurveyInfo {
   name: string;
 }
 
-interface Logo {
+export interface Logo {
   name: string;
   urlLogo: string;
   urlRedirection: string;
+}
+
+export interface FooterLogos {
+  clusterLed: Logo[];
+  coordinationAndIMSupport: Logo[];
+  Fieldwork: Logo[];
+  Webdev: Logo[];
 }
 
 export interface GeneralConfiguration {
@@ -20,5 +27,5 @@ export interface GeneralConfiguration {
   readonly surveyFormat: "csv" | "kobo";
   readonly surveyDescription: KoboSurveyInfo[] | CSVSurveyInfo[];
   readonly headerLogo: Logo[];
-  readonly footerLogo: Logo[];
+  readonly footerLogos: FooterLogos;
 }
