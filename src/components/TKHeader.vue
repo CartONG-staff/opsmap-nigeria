@@ -17,8 +17,8 @@
     </div>
     <div class="tk-header-title">
       <h3>
-        <span class="tk-title-base">CCCM SITE TRACKER </span>
-        <span class="tk-title-opsmap">{{ appConfig.name }}</span>
+        <span class="tk-header-title-base">CCCM SITE TRACKER </span>
+        <span class="tk-header-title-opsmap">{{ appConfig.name }}</span>
       </h3>
     </div>
   </div>
@@ -42,7 +42,7 @@ export default class TKHeader extends Vue {
   flex-flow: row wrap;
   justify-content: space-between;
   vertical-align: middle;
-  height: 100px;
+  height: 70px;
 }
 
 .tk-header > * {
@@ -60,7 +60,7 @@ export default class TKHeader extends Vue {
 }
 
 .tk-header-logos-item-logo {
-  height: 50px;
+  height: 35px;
 }
 
 .tk-header-title {
@@ -68,11 +68,10 @@ export default class TKHeader extends Vue {
   margin-bottom: auto;
 }
 
-.tk-title-base {
+.tk-header-title-base {
   color: var(--v-tertiary-base);
 }
-.tk-title-opsmap {
+.tk-header-title-opsmap {
   color: var(--v-secondary-base);
 }
 </style>
-s
