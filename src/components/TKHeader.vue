@@ -54,7 +54,6 @@ export default class TKHeader extends Vue {
   width: 30%;
   justify-content: left;
   align-items: center;
-  padding-left: 160px;
 }
 
 .tk-header-logos-item-logo {

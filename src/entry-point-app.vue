@@ -39,5 +39,7 @@ export default class App extends Vue {
 <style>
 body {
   min-height: 100vh; /* toute la hauteur du viewport (compatible IE9+) */
+  --padding-medium: 25px;
+  --padding-large: 50px;
 }
 </style>

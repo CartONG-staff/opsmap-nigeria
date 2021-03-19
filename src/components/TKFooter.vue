@@ -2,18 +2,22 @@
   <v-footer padless :absolute="true">
     <div class="tk-footer flex">
       <div class="tk-footer-disclaimer">
-        <p class="font-italic caption text-center">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
-        </p>
-        <p class="font-weight-medium text-center">
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-          officia deserunt mollit anim id est laborum.
-        </p>
+        <div class="tk-footer-disclaimer-title">
+          <p>
+            More informations
+          </p>
+        </div>
+        <div class="tk-footer-disclaimer-text">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
       </div>
       <div class="tk-footer-logos-container">
         <div class="tk-footer-logos">
@@ -55,11 +59,23 @@ export default class TKFooter extends Vue {
 }
 
 .tk-footer-disclaimer {
-  background-color: var(--v-disclaimerBackground-base);
+  background-color: var(--v-sectionBGSecondary-base);
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: var(--padding-large);
+  padding-top: var(--padding-large);
+  padding-bottom: var(--padding-large);
 }
 
-.tk-footer-container {
-  background-color: blue;
+.tk-footer-disclaimer-title {
+  color: var(--v-sectionTitleSecondary-base);
+  white-space: nowrap;
+}
+
+.tk-footer-disclaimer-text {
+  color: var(--v-primary-base);
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .tk-footer-logos {
