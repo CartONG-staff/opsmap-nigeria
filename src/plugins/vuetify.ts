@@ -35,10 +35,16 @@ export default new Vuetify({
     options: { customProperties: true }, // Generates CSS var
     themes: {
       light: {
-        primary: "#286090",
-        secondary: "#337FDD",
-        accent: "#8c9eff",
-        error: "#b71c1c",
+        primary: "#333",
+        secondary: "#428fdf",
+        tertiary: "#a6a6a6",
+        background: "#fff",
+        // accent
+        // anchor
+        // error
+        // info
+        // success
+        // warning
       },
     },
   },
