@@ -1,3 +1,5 @@
 {
-  "message": "hello i18n !!"
+  "header":{
+    "prefix": "CCCM SITE TRACKER "
+  }
 }
