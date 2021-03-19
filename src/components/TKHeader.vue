@@ -17,7 +17,7 @@
     </div>
     <div class="tk-header-title">
       <h3>
-        <span class="tk-header-title-base">CCCM SITE TRACKER </span>
+        <span class="tk-header-title-base">{{ $t("prefixTitle") }} </span>
         <span class="tk-header-title-opsmap">{{ appConfig.name }}</span>
       </h3>
     </div>
@@ -83,3 +83,11 @@ h3 .tk-header-title-base {
   width: 30%;
 }
 </style>
+
+<i18n>
+{
+  "en": {
+    "prefixTitle": "CCCM SITE TRACKER"
+  }
+}
+</i18n>
