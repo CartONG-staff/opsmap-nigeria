@@ -4,5 +4,5 @@
  * @module
  */
 
-import TKDashBoard from "./TKDashBoard.vue";
-export default TKDashBoard;
+import TKMainComponent from "./TKMainComponent.vue";
+export default TKMainComponent;

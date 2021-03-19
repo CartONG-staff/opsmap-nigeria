@@ -6,8 +6,8 @@
 
 import TKHeader from "./TKHeader.vue";
 import TKFooter from "./TKFooter";
-import TKDashBoard from "./TKDashBoard";
+import TKMainComponent from "./TKMainComponent";
 
 export { TKFooter };
 export { TKHeader };
-export { TKDashBoard };
+export { TKMainComponent };

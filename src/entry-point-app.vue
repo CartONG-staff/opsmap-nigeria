@@ -3,7 +3,7 @@
     <v-main>
       <div class="tk-main">
         <TKHeader :appConfig="appConfig" />
-        <TKDashBoard class="tk-main-dashboard" />
+        <TKMainComponent class="tk-main-dashboard" />
         <TKFooter :appConfig="appConfig" />
       </div>
     </v-main>
@@ -15,13 +15,13 @@ import { Component, Vue } from "vue-property-decorator";
 import { GeneralConfiguration } from "./domain/TKGeneralConfiguration";
 import { APPCONFIG } from "@/testouille/config";
 
-import { TKFooter, TKDashBoard, TKHeader } from "@/components"; // @ is an alias to /src
+import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an alias to /src
 
 @Component({
   components: {
     TKHeader,
     TKFooter,
-    TKDashBoard,
+    TKMainComponent,
   },
 })
 export default class App extends Vue {

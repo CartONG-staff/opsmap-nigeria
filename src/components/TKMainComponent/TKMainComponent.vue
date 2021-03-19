@@ -1,11 +1,8 @@
 <template>
-  <div class="tk-dashboard">
+  <div class="tk-maincomponent">
     <v-btn v-on:click="switchPage()">Switch page</v-btn>
-    <div v-if="isHomePage" class="tk-homepage"></div>
-    <div class="tk-dashboard" visible="false">
-      <TKHomePage v-if="isHomePage" />
-      <TKCampPage v-if="!isHomePage" />
-    </div>
+    <TKHomePage v-if="isHomePage" />
+    <TKCampPage v-if="!isHomePage" />
   </div>
 </template>
 
@@ -21,7 +18,7 @@ import TKHomePage from "./TKHomePage";
     TKHomePage,
   },
 })
-export default class TKDashBoard extends Vue {
+export default class TKMainComponent extends Vue {
   isHomePage = true;
   switchPage() {
     this.isHomePage = !this.isHomePage;
@@ -30,7 +27,7 @@ export default class TKDashBoard extends Vue {
 </script>
 
 <style>
-.tk-dashboard {
+.tk-maincomponent {
   background-image: url("https://streetartutopia.com/wp-content/uploads/2019/12/BANKSY-Bench-Birmingham_Moment.jpg");
   background-size: 100% 100%;
 }
