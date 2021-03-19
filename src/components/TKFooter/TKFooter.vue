@@ -71,6 +71,8 @@ export default class TKFooter extends Vue {
   column-gap: var(--padding-large);
   padding-top: var(--padding-large);
   padding-bottom: var(--padding-large);
+  padding-left: var(--side-padding);
+  padding-right: var(--side-padding);
 }
 
 .tk-footer-disclaimer-title {
@@ -88,9 +90,11 @@ export default class TKFooter extends Vue {
   display: flex;
   flex-flow: row wrap;
   column-gap: var(--padding-large);
-  justify-content: space-evenly;
+  justify-content: space-between;
   vertical-align: middle;
   padding-top: var(--padding-large);
   padding-bottom: var(--padding-large);
+  padding-left: var(--side-padding);
+  padding-right: var(--side-padding);
 }
 </style>

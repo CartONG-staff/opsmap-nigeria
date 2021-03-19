@@ -49,6 +49,6 @@ export default class TKFooterLogoItem extends Vue {
 }
 
 .tk-footer-logos-item-logo {
-  height: 80px;
+  height: 50px;
 }
 </style>

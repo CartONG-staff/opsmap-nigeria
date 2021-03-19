@@ -2,10 +2,7 @@
   <v-app>
     <v-main>
       <TKHeader :appConfig="appConfig" />
-      <v-container fluid>
-        <TKCampSelector />
-        <TKSurveyVisualizer />
-      </v-container>
+      <TKDashBoard />
       <TKFooter :appConfig="appConfig" />
     </v-main>
   </v-app>
@@ -16,19 +13,13 @@ import { Component, Vue } from "vue-property-decorator";
 import { GeneralConfiguration } from "./domain/TKGeneralConfiguration";
 import { APPCONFIG } from "@/testouille/config";
 
-import {
-  TKFooter,
-  TKHeader,
-  TKCampSelector,
-  TKSurveyVisualizer,
-} from "@/components"; // @ is an alias to /src
+import { TKFooter, TKDashBoard, TKHeader } from "@/components"; // @ is an alias to /src
 
 @Component({
   components: {
-    TKCampSelector,
     TKHeader,
     TKFooter,
-    TKSurveyVisualizer,
+    TKDashBoard,
   },
 })
 export default class App extends Vue {
@@ -42,5 +33,6 @@ body {
   --padding-small: 10px;
   --padding-medium: 25px;
   --padding-large: 50px;
+  --side-padding: 5%;
 }
 </style>

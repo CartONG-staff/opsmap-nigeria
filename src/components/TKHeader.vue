@@ -45,6 +45,8 @@ export default class TKHeader extends Vue {
   justify-content: space-between;
   vertical-align: middle;
   height: 70px;
+  padding-left: var(--side-padding);
+  padding-right: var(--side-padding);
 }
 
 .tk-header-logos {
@@ -57,7 +59,7 @@ export default class TKHeader extends Vue {
 }
 
 .tk-header-logos-item-logo {
-  height: 35px;
+  height: 50px;
 }
 
 .tk-header-title {
