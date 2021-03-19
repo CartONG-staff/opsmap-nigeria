@@ -17,8 +17,8 @@
     </div>
     <div class="tk-header-title">
       <h3>
-        <a class="tk-title-base">CCCM SITE TRACKER </a>
-        <a class="tk-title-opsmap">{{ appConfig.name }}</a>
+        <span class="tk-title-base">CCCM SITE TRACKER </span>
+        <span class="tk-title-opsmap">{{ appConfig.name }}</span>
       </h3>
     </div>
   </div>
