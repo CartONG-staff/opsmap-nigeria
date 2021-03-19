@@ -6,8 +6,8 @@
 
 import TKFooter from "./components/TKFooter/TKFooter.vue";
 import TKHeader from "./components/TKHeader.vue";
-import TKCampSelector from "./components/TKCampSelector";
-import TKSurveyVisualizer from "./components/TKSurveyVisualizer";
+import TKCampSelector from "./components/TKDashBoard/TKCampSelector";
+import TKSurveyVisualizer from "./components/TKDashBoard/TKSurveyVisualizer";
 
 export { TKFooter };
 export { TKHeader };

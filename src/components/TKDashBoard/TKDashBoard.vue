@@ -1,13 +1,12 @@
 <template>
-  <v-container fluid>
-    <button v-on:click="switchPage()">Switch</button>
-    <div v-if="isHomePage" class="tk-homepage">
-      <TKSurveyVisualizer />
-    </div>
+  <div class="tk-dashboard">
+    <v-btn v-on:click="switchPage()">Switch page</v-btn>
+    <div v-if="isHomePage" class="tk-homepage"></div>
     <div v-if="!isHomePage" class="tk-dashboard" visible="false">
       <TKCampSelector />
+      <TKSurveyVisualizer />
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">
@@ -24,7 +23,6 @@ import TKSurveyVisualizer from "./TKSurveyVisualizer";
 })
 export default class TKDashBoard extends Vue {
   isHomePage = true;
-
   // Component method
   switchPage() {
     this.isHomePage = !this.isHomePage;
@@ -32,4 +30,9 @@ export default class TKDashBoard extends Vue {
 }
 </script>
 
-<style></style>
+<style>
+.tk-dashboard {
+  background-image: url("https://streetartutopia.com/wp-content/uploads/2019/12/BANKSY-Bench-Birmingham_Moment.jpg");
+  background-size: 100% 100%;
+}
+</style>
