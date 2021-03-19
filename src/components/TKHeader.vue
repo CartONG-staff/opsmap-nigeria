@@ -16,7 +16,10 @@
       </div>
     </div>
     <div class="tk-header-title">
-      <h3 class="secondary--text">{{ appConfig.name }}</h3>
+      <h3>
+        <a class="tk-title-base">CCCM SITE TRACKER</a>
+        <a class="tk-title-opsmap">{{ appConfig.name }}</a>
+      </h3>
     </div>
   </div>
 </template>
@@ -34,7 +37,7 @@ export default class TKHeader extends Vue {
 
 <style scoped>
 .tk-header {
-  background-color: antiquewhite;
+  background-color: var(--v-background-base);
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -63,6 +66,13 @@ export default class TKHeader extends Vue {
 .tk-header-title {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.tk-title-base {
+  color: var(--v-tertiary-base);
+}
+.tk-title-opsmap {
+  color: var(--v-secondary-base);
 }
 </style>
 s
