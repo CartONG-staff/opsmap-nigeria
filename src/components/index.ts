@@ -4,12 +4,10 @@
  * @module
  */
 
-import TKCampSelector from "./TKCampSelector";
 import TKHeader from "./TKHeader.vue";
-import TKFooter from "./TKFooter.vue";
-import TKSurveyVisualizer from "./TKSurveyVisualizer";
+import TKFooter from "./TKFooter";
+import TKMainComponent from "./TKMainComponent";
 
-export { TKCampSelector };
 export { TKFooter };
 export { TKHeader };
-export { TKSurveyVisualizer };
+export { TKMainComponent };

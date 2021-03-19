@@ -16,8 +16,13 @@
       </div>
     </div>
     <div class="tk-header-title">
-      <h3 class="secondary--text">{{ appConfig.name }}</h3>
+      <h3>
+        <span class="tk-header-title-base">CCCM SITE TRACKER </span>
+        <span class="tk-header-title-opsmap">{{ appConfig.name }}</span>
+      </h3>
     </div>
+
+    <div class="tk-header-spacer"></div>
   </div>
 </template>
 
@@ -34,26 +39,23 @@ export default class TKHeader extends Vue {
 
 <style scoped>
 .tk-header {
-  background-color: antiquewhite;
+  background-color: var(--v-background-base);
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   vertical-align: middle;
-  height: 100px;
-}
-
-.tk-header > * {
-  margin: 0 50px;
+  height: 70px;
+  padding-left: var(--side-padding);
+  padding-right: var(--side-padding);
 }
 
 .tk-header-logos {
   display: flex;
   flex-flow: row wrap;
   column-gap: 5px;
-}
-
-.tk-header-logos > * {
-  margin: auto;
+  width: 30%;
+  justify-content: left;
+  align-items: center;
 }
 
 .tk-header-logos-item-logo {
@@ -63,6 +65,21 @@ export default class TKHeader extends Vue {
 .tk-header-title {
   margin-top: auto;
   margin-bottom: auto;
+  width: 40%;
+}
+.tk-header-title > h3 {
+  text-align: center;
+}
+
+h3 .tk-header-title-base {
+  color: var(--v-tertiary-base);
+}
+
+.tk-header-title-opsmap {
+  color: var(--v-secondary-base);
+}
+
+.tk-header-spacer {
+  width: 30%;
 }
 </style>
-s

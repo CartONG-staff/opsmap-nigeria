@@ -1,12 +1,11 @@
 <template>
   <v-app>
     <v-main>
-      <TKHeader :appConfig="appConfig" />
-      <v-container fluid>
-        <TKCampSelector />
-        <TKSurveyVisualizer />
-      </v-container>
-      <TKFooter :appConfig="appConfig" />
+      <div class="tk-main">
+        <TKHeader :appConfig="appConfig" />
+        <TKMainComponent class="tk-main-dashboard" />
+        <TKFooter :appConfig="appConfig" />
+      </div>
     </v-main>
   </v-app>
 </template>
@@ -16,19 +15,13 @@ import { Component, Vue } from "vue-property-decorator";
 import { GeneralConfiguration } from "./domain/TKGeneralConfiguration";
 import { APPCONFIG } from "@/testouille/config";
 
-import {
-  TKHeader,
-  TKFooter,
-  TKCampSelector,
-  TKSurveyVisualizer,
-} from "@/components"; // @ is an alias to /src
+import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an alias to /src
 
 @Component({
   components: {
-    TKCampSelector,
     TKHeader,
     TKFooter,
-    TKSurveyVisualizer,
+    TKMainComponent,
   },
 })
 export default class App extends Vue {
@@ -39,5 +32,19 @@ export default class App extends Vue {
 <style>
 body {
   min-height: 100vh; /* toute la hauteur du viewport (compatible IE9+) */
+  --padding-small: 5px;
+  --padding-medium: 10px;
+  --padding-large: 15px;
+  --side-padding: 5%;
+}
+.tk-main {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 0px;
+  height: 100%;
+  width: 100%;
+}
+.tk-main-dashboard {
+  flex-grow: 2;
 }
 </style>
