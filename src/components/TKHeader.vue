@@ -17,12 +17,15 @@
     </div>
     <div class="tk-header-title">
       <h3>
-        <span class="tk-header-title-base">CCCM SITE TRACKER </span>
+        <span class="tk-header-title-base">{{ $t("header.prefix") }} </span>
         <span class="tk-header-title-opsmap">{{ appConfig.name }}</span>
       </h3>
     </div>
 
-    <div class="tk-header-spacer"></div>
+    <div class="tk-header-spacer">
+      <v-btn v-on:click="$root.$i18n.locale = 'en'">en</v-btn>
+      <v-btn v-on:click="$root.$i18n.locale = 'fr'">fr</v-btn>
+    </div>
   </div>
 </template>
 
