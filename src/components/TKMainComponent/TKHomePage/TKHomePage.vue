@@ -11,6 +11,7 @@
       class="tk-homepage-indicators"
       :appConfig="appConfig"
     />
+    <TKHomePageMoreInfos />
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import TKMap from "@/components/TKMainComponent/TKMap";
 import TKHomePageTitle from "./TKHomePageTitle.vue";
 import TKHomePageCombos from "./TKHomePageCombos";
 import TKHomePageIndicators from "./TKHomePageIndicators";
+import TKHomePageMoreInfos from "./TKHomePageMoreInfos.vue";
 
 @Component({
   components: {
@@ -28,6 +30,7 @@ import TKHomePageIndicators from "./TKHomePageIndicators";
     TKHomePageTitle,
     TKHomePageCombos,
     TKHomePageIndicators,
+    TKHomePageMoreInfos,
   },
 })
 export default class TKHomePage extends Vue {

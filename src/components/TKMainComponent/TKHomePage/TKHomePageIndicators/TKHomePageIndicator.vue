@@ -1,19 +1,26 @@
 <template>
   <div class="tk-homepage-indicator">
-    <p>
-      INDICATOR 1
-    </p>
+    <div class="tk-homepage-indicator-value">
+      <div class="tk-homepage-indicator-value-number">
+        {{ indicator.value }}
+      </div>
+      <div class="tk-homepage-indicator-value-decription">
+        {{ indicator.name }}
+      </div>
+    </div>
+    <div class="tk-homepage-indicator-icon"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/TKGeneralConfiguration";
+
+import { TKHomeIndicator } from "@/domain/TKHomeIndicator";
 
 @Component({})
 export default class TKHomePageIndicator extends Vue {
   @Prop()
-  readonly appConfig!: TKGeneralConfiguration;
+  readonly indicator!: TKHomeIndicator;
 }
 </script>
 
@@ -23,6 +30,39 @@ export default class TKHomePageIndicator extends Vue {
   border-color: transparent;
   border-radius: 5px;
   height: 200px;
-  /* box-shadow: 0 0 3px var(--v-homeTitle-base); */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.tk-homepage-indicator-value {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: left;
+  padding: 30px;
+}
+
+.tk-homepage-indicator-value-number {
+  color: var(--v-secondary-base);
+  font-size: 60px;
+}
+
+.tk-homepage-indicator-value-decription {
+  color: var(#fff);
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.tk-homepage-indicator-icon {
+  align-self: flex-start;
+  background-image: url("https://img.icons8.com/cotton/2x/info--v3.png");
+  background-size: 100% 100%;
+
+  height: 80px;
+  width: 80px;
+  display: block;
 }
 </style>
