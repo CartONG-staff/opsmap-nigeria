@@ -20,4 +20,4 @@ import TKSurveyVisualizer from "./TKSurveyVisualizer";
 export default class TKCampPage extends Vue {}
 </script>
 
-<style></style>
+<style scoped></style>

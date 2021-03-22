@@ -35,7 +35,7 @@ body {
   --padding-small: 5px;
   --padding-medium: 10px;
   --padding-large: 15px;
-  --side-padding: 5%;
+  --side-padding: 10%;
 }
 .tk-main {
   display: flex;
