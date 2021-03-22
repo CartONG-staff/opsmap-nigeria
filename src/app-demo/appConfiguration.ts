@@ -1,10 +1,10 @@
-import {
-  KoboSurveyInfo,
-  Logo,
-  FooterLogos,
-} from "@/domain/TKGeneralConfiguration";
+import { TKKoboSurveyInfo } from "@/domain/TKKoboSurveyInfo";
+import { TKFooterLogos } from "@/domain/TKFooterLogos";
+import { TKCSVSurveyInfo } from "@/domain/TKCSVSurveyInfo";
 
-export const koboInfo: KoboSurveyInfo[] = [
+import { TKLogo } from "@/domain/TKLogo";
+
+export const koboInfo: TKKoboSurveyInfo[] = [
   {
     name: "dataset1",
     url:
@@ -13,7 +13,7 @@ export const koboInfo: KoboSurveyInfo[] = [
   },
 ];
 
-export const headerLogo: Logo[] = [
+export const headerLogo: TKLogo[] = [
   {
     name: "Syldavie",
     urlLogo:
@@ -22,7 +22,7 @@ export const headerLogo: Logo[] = [
   },
 ];
 
-export const footerLogos: FooterLogos = {
+export const footerLogos: TKFooterLogos = {
   clusterLed: [
     {
       name: "Pierre Kwenders",
