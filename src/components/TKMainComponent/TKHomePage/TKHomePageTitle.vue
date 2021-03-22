@@ -26,10 +26,6 @@ export default class TKHomePageTitle extends Vue {
 </script>
 
 <style scoped>
-.tk-homepage-title {
-  background-color: rgb(255, 255, 255, 0.8);
-}
-
 .tk-homepage-title-base {
   color: var(--v-secondary-base);
   font-size: 40px;

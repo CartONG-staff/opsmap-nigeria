@@ -1,7 +1,16 @@
 <template>
   <div class="tk-homepage">
-    <TKHomePageTitle class="tk-homepage-title" :appConfig="appConfig" />
-    <TKMap class="tk-homepage-map" :config="appConfig.mapConfig" />
+    <div class="tk-homepage-top">
+      <div class="tk-homepage-left">
+        <TKHomePageTitle class="tk-homepage-title" :appConfig="appConfig" />
+        <TKHomePageCombos class="tk-homepage-combos" :appConfig="appConfig" />
+      </div>
+      <TKMap class="tk-homepage-map" :config="appConfig.mapConfig" />
+    </div>
+    <TKHomePageIndicators
+      class="tk-homepage-indicators"
+      :appConfig="appConfig"
+    />
   </div>
 </template>
 
@@ -10,9 +19,16 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/TKGeneralConfiguration";
 import TKMap from "@/components/TKMainComponent/TKMap";
 import TKHomePageTitle from "./TKHomePageTitle.vue";
+import TKHomePageCombos from "./TKHomePageCombos";
+import TKHomePageIndicators from "./TKHomePageIndicators";
 
 @Component({
-  components: { TKMap, TKHomePageTitle },
+  components: {
+    TKMap,
+    TKHomePageTitle,
+    TKHomePageCombos,
+    TKHomePageIndicators,
+  },
 })
 export default class TKHomePage extends Vue {
   @Prop()
@@ -23,17 +39,35 @@ export default class TKHomePage extends Vue {
 <style scoped>
 .tk-homepage {
   display: flex;
-  flex-grow: column nowrap;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: 50px;
+}
+
+.tk-homepage-top {
+  display: flex;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: top;
   column-gap: 50px;
+  width: 100%;
 }
-
-.tk-homepage-title {
-  flex-basis: 33%;
-}
-
 .tk-homepage-map {
   flex-basis: 64%;
+}
+
+.tk-homepage-left {
+  background-color: rgb(255, 255, 255, 0.8);
+
+  flex-basis: 33%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: left;
+}
+
+.tk-homepage-indicators {
+  width: 100%;
 }
 </style>
