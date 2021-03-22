@@ -1,9 +1,5 @@
 import { GeneralConfiguration } from "@/domain/TKGeneralConfiguration";
-import {
-  koboInfo,
-  headerLogo,
-  footerLogos,
-} from "@/constants/appConfiguration";
+import { koboInfo, headerLogo, footerLogos } from "@/app-demo/appConfiguration";
 
 export const APPCONFIG: GeneralConfiguration = {
   name: "SYLDAVIE",

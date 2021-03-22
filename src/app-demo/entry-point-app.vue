@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { GeneralConfiguration } from "./domain/TKGeneralConfiguration";
-import { APPCONFIG } from "@/testouille/config";
+import { GeneralConfiguration } from "@/domain/TKGeneralConfiguration";
+import { APPCONFIG } from "@/app-demo/config";
 
 import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an alias to /src
 
