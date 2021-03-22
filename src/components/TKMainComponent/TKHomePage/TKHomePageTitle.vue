@@ -28,12 +28,12 @@ export default class TKHomePageTitle extends Vue {
 <style scoped>
 .tk-homepage-title-base {
   color: var(--v-secondary-base);
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .tk-homepage-title-country {
   color: var(--v-homeTitle-base);
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
 }
 </style>

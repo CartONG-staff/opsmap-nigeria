@@ -29,7 +29,7 @@ export default class TKHomePageIndicator extends Vue {
   background-color: white;
   border-color: transparent;
   border-radius: 5px;
-  height: 200px;
+  /* height: 200px; */
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -42,18 +42,17 @@ export default class TKHomePageIndicator extends Vue {
   flex-flow: column nowrap;
   justify-content: space-around;
   align-items: left;
-  padding: 30px;
 }
 
 .tk-homepage-indicator-value-number {
   color: var(--v-secondary-base);
-  font-size: 60px;
+  font-size: 30px;
 }
 
 .tk-homepage-indicator-value-decription {
   color: var(#fff);
   font-weight: bold;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .tk-homepage-indicator-icon {
@@ -61,8 +60,8 @@ export default class TKHomePageIndicator extends Vue {
   background-image: url("https://img.icons8.com/cotton/2x/info--v3.png");
   background-size: 100% 100%;
 
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   display: block;
 }
 </style>

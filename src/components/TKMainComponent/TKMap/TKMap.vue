@@ -36,6 +36,6 @@ export default class TKMap extends Vue {
   background-color: purple;
   border-radius: 15px;
   width: 100%;
-  height: 500px;
+  height: 450px;
 }
 </style>
