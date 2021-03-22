@@ -1,9 +1,11 @@
 <template>
   <div class="tk-homepage-combos">
-    <p class="tk-homepage-combos-title">ZOOM ON THE MAP</p>
-    <v-combobox placeholder="Select a state"></v-combobox>
-    <v-combobox placeholder="Select a LGA"></v-combobox>
-    <v-combobox placeholder="Select a camp"></v-combobox>
+    <p class="tk-homepage-combos-title">
+      {{ $t("home.combosTitle") }}
+    </p>
+    <v-combobox :placeholder="$t('home.comboStatePlaceholder')"></v-combobox>
+    <v-combobox :placeholder="$t('home.comboLGAPlaceholder')"></v-combobox>
+    <v-combobox :placeholder="$t('home.comboCampPlaceholder')"></v-combobox>
   </div>
 </template>
 
