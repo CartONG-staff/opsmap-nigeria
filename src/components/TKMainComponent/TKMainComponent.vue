@@ -32,8 +32,7 @@ export default class TKMainComponent extends Vue {
 
 <style scoped>
 .tk-maincomponent {
-  background-image: url("https://streetartutopia.com/wp-content/uploads/2019/12/BANKSY-Bench-Birmingham_Moment.jpg");
-  background-size: 100% 100%;
+  background-color: whitesmoke;
   padding-left: var(--side-padding);
   padding-right: var(--side-padding);
 }
