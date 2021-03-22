@@ -1,8 +1,8 @@
-import {
-  TKKoboSurveyInfo,
-  TKLogo,
-  TKFooterLogos,
-} from "@/domain/TKGeneralConfiguration";
+import { TKKoboSurveyInfo } from "@/domain/TKKoboSurveyInfo";
+import { TKFooterLogos } from "@/domain/TKFooterLogos";
+import { TKCSVSurveyInfo } from "@/domain/TKCSVSurveyInfo";
+
+import { TKLogo } from "@/domain/TKLogo";
 
 export const koboInfo: TKKoboSurveyInfo[] = [
   {

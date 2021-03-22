@@ -1,27 +1,8 @@
 import { TKMapboxConfiguration } from "./TKMapboxConfiguration";
-
-export interface TKKoboSurveyInfo {
-  name: string;
-  url: string;
-  token: string;
-}
-
-export interface TKCSVSurveyInfo {
-  name: string;
-}
-
-export interface TKLogo {
-  name: string;
-  urlLogo: string;
-  urlRedirection: string;
-}
-
-export interface TKFooterLogos {
-  clusterLed: TKLogo[];
-  coordinationAndIMSupport: TKLogo[];
-  Fieldwork: TKLogo[];
-  Webdev: TKLogo[];
-}
+import { TKLogo } from "./TKLogo";
+import { TKKoboSurveyInfo } from "./TKKoboSurveyInfo";
+import { TKFooterLogos } from "./TKFooterLogos";
+import { TKCSVSurveyInfo } from "./TKCSVSurveyInfo";
 
 export interface TKGeneralConfiguration {
   readonly name: string;
