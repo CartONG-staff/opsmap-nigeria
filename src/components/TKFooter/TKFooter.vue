@@ -1,36 +1,34 @@
 <template lang="html">
-  <v-footer padless :absolute="true">
-    <div class="tk-footer flex">
-      <div class="tk-footer-disclaimer">
-        <div class="tk-footer-disclaimer-title">
-          <p>{{ $t("footer.moreInfos") }}</p>
-        </div>
-        <div class="tk-footer-disclaimer-text">
-          <p>
-            {{ $t("footer.moreInfosText") }}
-          </p>
-        </div>
+  <div class="tk-footer flex">
+    <div class="tk-footer-disclaimer">
+      <div class="tk-footer-disclaimer-title">
+        <p>{{ $t("footer.moreInfos") }}</p>
       </div>
-      <div class="tk-footer-logos">
-        <TKFooterLogoItem
-          :title="$t('footer.partnerLed')"
-          :logos="appConfig.footerLogos.clusterLed"
-        />
-        <TKFooterLogoItem
-          :title="$t('footer.partnerCoordination')"
-          :logos="appConfig.footerLogos.coordinationAndIMSupport"
-        />
-        <TKFooterLogoItem
-          :title="$t('footer.partnerFieldwork')"
-          :logos="appConfig.footerLogos.Fieldwork"
-        />
-        <TKFooterLogoItem
-          :title="$t('footer.partnerWebdev')"
-          :logos="appConfig.footerLogos.Webdev"
-        />
+      <div class="tk-footer-disclaimer-text">
+        <p>
+          {{ $t("footer.moreInfosText") }}
+        </p>
       </div>
     </div>
-  </v-footer>
+    <div class="tk-footer-logos">
+      <TKFooterLogoItem
+        :title="$t('footer.partnerLed')"
+        :logos="appConfig.footerLogos.clusterLed"
+      />
+      <TKFooterLogoItem
+        :title="$t('footer.partnerCoordination')"
+        :logos="appConfig.footerLogos.coordinationAndIMSupport"
+      />
+      <TKFooterLogoItem
+        :title="$t('footer.partnerFieldwork')"
+        :logos="appConfig.footerLogos.Fieldwork"
+      />
+      <TKFooterLogoItem
+        :title="$t('footer.partnerWebdev')"
+        :logos="appConfig.footerLogos.Webdev"
+      />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
