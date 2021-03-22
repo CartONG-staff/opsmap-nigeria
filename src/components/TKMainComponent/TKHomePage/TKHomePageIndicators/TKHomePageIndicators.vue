@@ -1,14 +1,21 @@
 <template>
   <div class="tk-homepage-indicators">
-    <p>INDICATOR</p>
+    <TKHomePageIndicator />
+    <TKHomePageIndicator />
+    <TKHomePageIndicator />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/TKGeneralConfiguration";
+import TKHomePageIndicator from "./TKHomePageIndicator.vue";
 
-@Component({})
+@Component({
+  components: {
+    TKHomePageIndicator,
+  },
+})
 export default class TKHomePageIndicators extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
@@ -17,7 +24,18 @@ export default class TKHomePageIndicators extends Vue {
 
 <style scoped>
 .tk-homepage-indicators {
-  background-color: yellow;
-  height: 400px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: top;
+}
+
+.tk-homepage-indicators > * {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: top;
+  width: 30%;
+  border-radius: 15px;
 }
 </style>

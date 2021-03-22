@@ -1,9 +1,9 @@
 <template>
   <div class="tk-homepage-combos">
-    <p>ZOOM ON THE MAP</p>
-    <p>COMBO 1</p>
-    <p>COMBO 2</p>
-    <p>COMBO 3</p>
+    <p class="tk-homepage-combos-title">ZOOM ON THE MAP</p>
+    <v-combobox placeholder="Select a state"></v-combobox>
+    <v-combobox placeholder="Select a LGA"></v-combobox>
+    <v-combobox placeholder="Select a camp"></v-combobox>
   </div>
 </template>
 
@@ -22,7 +22,12 @@ export default class TKHomePageCombos extends Vue {
 .tk-homepage-combos {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: middle;
+}
+
+.tk-homepage-combos-title {
+  font-size: 30px;
+  color: var(--v-sectionTitle-base);
 }
 </style>

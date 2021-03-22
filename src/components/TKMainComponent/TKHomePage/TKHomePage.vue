@@ -50,21 +50,19 @@ export default class TKHomePage extends Vue {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: top;
-  column-gap: 50px;
   width: 100%;
-}
-.tk-homepage-map {
-  flex-basis: 64%;
 }
 
 .tk-homepage-left {
   background-color: rgb(255, 255, 255, 0.8);
-
-  flex-basis: 33%;
+  width: 25%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: left;
+}
+.tk-homepage-map {
+  width: 65%;
 }
 
 .tk-homepage-indicators {
