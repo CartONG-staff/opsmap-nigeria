@@ -1,6 +1,6 @@
 <template>
   <div class="tk-maincomponent">
-    <v-btn v-on:click="switchPage()">Switch page</v-btn>
+    <v-btn v-on:click="switchPage()">{{ $t("main.switchPage") }}</v-btn>
     <TKHomePage v-if="isHomePage" />
     <TKCampPage v-if="!isHomePage" />
   </div>

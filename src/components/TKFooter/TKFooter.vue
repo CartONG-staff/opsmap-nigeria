@@ -3,37 +3,29 @@
     <div class="tk-footer flex">
       <div class="tk-footer-disclaimer">
         <div class="tk-footer-disclaimer-title">
-          <p>
-            More informations
-          </p>
+          <p>{{ $t("footer.moreInfos") }}</p>
         </div>
         <div class="tk-footer-disclaimer-text">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            {{ $t("footer.moreInfosText") }}
           </p>
         </div>
       </div>
       <div class="tk-footer-logos">
         <TKFooterLogoItem
-          title="Cluster Led by"
+          :title="$t('footer.partnerLed')"
           :logos="appConfig.footerLogos.clusterLed"
         />
         <TKFooterLogoItem
-          title="Coordination and IM support by"
+          :title="$t('footer.partnerCoordination')"
           :logos="appConfig.footerLogos.coordinationAndIMSupport"
         />
         <TKFooterLogoItem
-          title="Fieldwork by"
+          :title="$t('footer.partnerFieldwork')"
           :logos="appConfig.footerLogos.Fieldwork"
         />
         <TKFooterLogoItem
-          title="Webdev by"
+          :title="$t('footer.partnerWebdev')"
           :logos="appConfig.footerLogos.Webdev"
         />
       </div>
