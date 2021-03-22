@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
-import { Logo } from "@/domain/TKGeneralConfiguration";
+import { TKLogo } from "@/domain/TKGeneralConfiguration";
 
 @Component
 export default class TKFooterLogoItem extends Vue {
@@ -25,7 +25,7 @@ export default class TKFooterLogoItem extends Vue {
   readonly title!: string;
 
   @Prop()
-  readonly logos!: Logo[];
+  readonly logos!: TKLogo[];
 }
 </script>
 

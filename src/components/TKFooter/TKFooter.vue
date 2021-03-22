@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
-import { GeneralConfiguration } from "@/domain/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/TKGeneralConfiguration";
 import TKFooterLogoItem from "./TKFooterLogoItem.vue";
 
 @Component({
@@ -45,7 +45,7 @@ import TKFooterLogoItem from "./TKFooterLogoItem.vue";
 })
 export default class TKFooter extends Vue {
   @Prop()
-  readonly appConfig!: GeneralConfiguration;
+  readonly appConfig!: TKGeneralConfiguration;
 }
 </script>
 

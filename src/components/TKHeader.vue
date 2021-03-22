@@ -31,12 +31,12 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
-import { GeneralConfiguration } from "@/domain/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/TKGeneralConfiguration";
 
 @Component
 export default class TKHeader extends Vue {
   @Prop()
-  readonly appConfig!: GeneralConfiguration;
+  readonly appConfig!: TKGeneralConfiguration;
 }
 </script>
 

@@ -1,31 +1,34 @@
-export interface KoboSurveyInfo {
+import { TKMapboxConfiguration } from "./TKMapboxConfiguration";
+
+export interface TKKoboSurveyInfo {
   name: string;
   url: string;
   token: string;
 }
 
-export interface CSVSurveyInfo {
+export interface TKCSVSurveyInfo {
   name: string;
 }
 
-export interface Logo {
+export interface TKLogo {
   name: string;
   urlLogo: string;
   urlRedirection: string;
 }
 
-export interface FooterLogos {
-  clusterLed: Logo[];
-  coordinationAndIMSupport: Logo[];
-  Fieldwork: Logo[];
-  Webdev: Logo[];
+export interface TKFooterLogos {
+  clusterLed: TKLogo[];
+  coordinationAndIMSupport: TKLogo[];
+  Fieldwork: TKLogo[];
+  Webdev: TKLogo[];
 }
 
-export interface GeneralConfiguration {
+export interface TKGeneralConfiguration {
   readonly name: string;
   readonly iso3: string;
   readonly surveyFormat: "csv" | "kobo";
-  readonly surveyDescription: KoboSurveyInfo[] | CSVSurveyInfo[];
-  readonly headerLogo: Logo[];
-  readonly footerLogos: FooterLogos;
+  readonly surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[];
+  readonly headerLogo: TKLogo[];
+  readonly footerLogos: TKFooterLogos;
+  readonly mapConfig: TKMapboxConfiguration;
 }
