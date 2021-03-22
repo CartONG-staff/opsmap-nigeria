@@ -17,7 +17,10 @@
     </div>
     <div class="tk-header-title">
       <h3>
-        <span class="tk-header-title-base">{{ $t("header.prefix") }} </span>
+        <span class="tk-header-title-base"
+          >{{ $t("opsmapTitle").toUpperCase() }}
+          {{ $t("opsmapSubtitle").toUpperCase() }}
+        </span>
         <span class="tk-header-title-opsmap">{{ appConfig.name }}</span>
       </h3>
     </div>

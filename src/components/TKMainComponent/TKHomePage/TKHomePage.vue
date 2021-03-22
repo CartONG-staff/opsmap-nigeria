@@ -1,6 +1,6 @@
 <template>
   <div class="tk-homepage">
-    <TKHomePageTitle class="tk-homepage-title" />
+    <TKHomePageTitle class="tk-homepage-title" :appConfig="appConfig" />
     <TKMap class="tk-homepage-map" :config="appConfig.mapConfig" />
   </div>
 </template>
