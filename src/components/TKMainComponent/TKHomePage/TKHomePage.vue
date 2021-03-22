@@ -57,7 +57,6 @@ export default class TKHomePage extends Vue {
 }
 
 .tk-homepage-left {
-  background-color: rgb(255, 255, 255, 0.8);
   width: 25%;
   display: flex;
   flex-flow: column nowrap;
