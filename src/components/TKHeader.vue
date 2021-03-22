@@ -22,21 +22,30 @@
       </h3>
     </div>
 
-    <div class="tk-header-spacer">
-      <v-btn v-on:click="$root.$i18n.locale = 'en'">en</v-btn>
-      <v-btn v-on:click="$root.$i18n.locale = 'fr'">fr</v-btn>
+    <div class="tk-header-buttons">
+      <v-btn-toggle v-model="language" mandatory group>
+        <v-btn value="en">English</v-btn>
+        <v-btn value="fr">French</v-btn>
+      </v-btn-toggle>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component } from "vue-property-decorator";
+import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/TKGeneralConfiguration";
 
 @Component
 export default class TKHeader extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
+
+  language = "en";
+  @Watch("language")
+  // whenever question changes, this function will run
+  onLanguageChanged(val: string) {
+    this.$root.$i18n.locale = val;
+  }
 }
 </script>
 
@@ -56,7 +65,7 @@ export default class TKHeader extends Vue {
   display: flex;
   flex-flow: row wrap;
   column-gap: 5px;
-  width: 30%;
+  flex-basis: 30%;
   justify-content: left;
   align-items: center;
 }
@@ -68,7 +77,7 @@ export default class TKHeader extends Vue {
 .tk-header-title {
   margin-top: auto;
   margin-bottom: auto;
-  width: 40%;
+  flex-basis: 40%;
 }
 .tk-header-title > h3 {
   text-align: center;
@@ -82,7 +91,12 @@ h3 .tk-header-title-base {
   color: var(--v-secondary-base);
 }
 
-.tk-header-spacer {
-  width: 30%;
+.tk-header-buttons {
+  flex-basis: 30%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 10px;
 }
 </style>

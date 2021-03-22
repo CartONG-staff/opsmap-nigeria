@@ -26,12 +26,12 @@ export default class TKMap extends Vue {
   }
 }
 </script>
-
-<style lang="css" scoped>
+<style scoped>
+@import url("https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css");
 #tk-map {
   background-color: purple;
-  width: 200px;
-  height: 200px;
   border-radius: 15px;
+  width: 100%;
+  height: 500px;
 }
 </style>
