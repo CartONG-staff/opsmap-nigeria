@@ -1,8 +1,8 @@
-import { TKMapboxConfiguration } from "./TKMapboxConfiguration";
-import { TKLogo } from "./TKLogo";
-import { TKKoboSurveyInfo } from "./TKKoboSurveyInfo";
-import { TKFooterLogos } from "./TKFooterLogos";
-import { TKCSVSurveyInfo } from "./TKCSVSurveyInfo";
+import { TKMapboxConfiguration } from "./Map/TKMapboxConfiguration";
+import { TKLogo } from "./UI/TKLogo";
+import { TKKoboSurveyInfo } from "./Data/Kobo/TKKoboSurveyInfo";
+import { TKFooterLogos } from "./UI/TKFooterLogos";
+import { TKCSVSurveyInfo } from "./Data/CSV/TKCSVSurveyInfo";
 
 export interface TKGeneralConfiguration {
   readonly name: string;

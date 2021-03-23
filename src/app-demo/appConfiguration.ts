@@ -1,12 +1,18 @@
-import { TKKoboSurveyInfo } from "@/domain/TKKoboSurveyInfo";
-import { TKFooterLogos } from "@/domain/TKFooterLogos";
-import { TKCSVSurveyInfo } from "@/domain/TKCSVSurveyInfo";
+import { TKKoboSurveyInfo } from "@/domain/Data/Kobo/TKKoboSurveyInfo";
+import { TKFooterLogos } from "@/domain/UI/TKFooterLogos";
+import { TKCSVSurveyInfo } from "@/domain/Data/CSV/TKCSVSurveyInfo";
 
-import { TKLogo } from "@/domain/TKLogo";
+import { TKLogo } from "@/domain/UI/TKLogo";
 
 export const koboInfo: TKKoboSurveyInfo[] = [
   {
     name: "dataset1",
+    url:
+      "https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json",
+    token: "ab46c724b720d44c4c8d44e86241219ce5cec6d6",
+  },
+  {
+    name: "dataset2",
     url:
       "https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json",
     token: "ab46c724b720d44c4c8d44e86241219ce5cec6d6",

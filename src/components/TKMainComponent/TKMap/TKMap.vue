@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import mapboxgl from "mapbox-gl";
-import { TKMapboxConfiguration } from "@/domain/TKMapboxConfiguration";
+import { TKMapboxConfiguration } from "@/domain/Map/TKMapboxConfiguration";
 mapboxgl.accessToken =
   "pk.eyJ1IjoiY2FydG9uZyIsImEiOiJjazJldzVobGkwOWRxM2hzNTB1M3o2cG94In0.w7FyG31FWqXm3vXSh6WtxQ";
 

@@ -1,7 +1,6 @@
 import { TKGeneralConfiguration } from "@/domain/TKGeneralConfiguration";
 import { koboInfo, headerLogo, footerLogos } from "@/app-demo/appConfiguration";
-
-import { TKMapboxConfiguration } from "@/domain/TKMapboxConfiguration";
+import { TKMapboxConfiguration } from "@/domain/Map/TKMapboxConfiguration";
 
 const mapConfig: TKMapboxConfiguration = {
   token:
