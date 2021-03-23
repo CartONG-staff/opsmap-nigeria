@@ -25,17 +25,20 @@ export default class TKHomePageIndicators extends Vue {}
   border: 5px solid #f2f2f2;
   background-color: white;
   width: 100%;
-  padding: var(--padding-large);
-  padding-top: 45px;
-  padding-left: 45px;
+
   font-size: 20px;
 }
 
 .tk-homepage-moreinfos-title {
   width: 30%;
+  padding-top: var(--padding-large);
+  padding-left: var(--padding-large);
 }
 
 .tk-homepage-moreinfos-content {
   width: 65%;
+  padding-top: var(--padding-large);
+  padding-bottom: var(--padding-large);
+  padding-right: var(--padding-large);
 }
 </style>
