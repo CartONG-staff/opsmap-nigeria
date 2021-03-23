@@ -1,5 +1,7 @@
 <template lang="html">
-  <div id="tk-map"></div>
+  <div>
+    <div id="tk-map"></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -27,11 +29,10 @@ export default class TKMap extends Vue {
 }
 </script>
 <style scoped>
-@import url("https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css");
 #tk-map {
   background-color: purple;
   border-radius: 15px;
   width: 100%;
-  height: 500px;
+  height: 450px;
 }
 </style>
