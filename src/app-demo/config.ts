@@ -1,5 +1,11 @@
-import { TKGeneralConfiguration } from "@/domain/TKGeneralConfiguration";
-import { koboInfo, headerLogo, footerLogos } from "@/app-demo/appConfiguration";
+import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import {
+  languages,
+  koboInfo,
+  csvInfo,
+  headerLogo,
+  footerLogos,
+} from "@/app-demo/appConfiguration";
 import { TKMapboxConfiguration } from "@/domain/Map/TKMapboxConfiguration";
 
 const mapConfig: TKMapboxConfiguration = {
@@ -13,8 +19,10 @@ const mapConfig: TKMapboxConfiguration = {
 export const APPCONFIG: TKGeneralConfiguration = {
   name: "SYLDAVIE",
   iso3: "NGA",
+  language: languages,
   surveyFormat: "kobo",
   surveyDescription: koboInfo,
+  // surveyDescription: csvInfo,
   headerLogo: headerLogo,
   footerLogos: footerLogos,
   mapConfig: mapConfig,

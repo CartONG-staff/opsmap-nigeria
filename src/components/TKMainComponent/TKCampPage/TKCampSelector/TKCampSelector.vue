@@ -13,8 +13,8 @@ import TKCampSelectorMap from "./TKCampSelectorMap.vue";
 @Component({
   components: {
     TKCampSelectorComboboxes,
-    TKCampSelectorMap,
-  },
+    TKCampSelectorMap
+  }
 })
 export default class TKCampSelector extends Vue {}
 </script>
