@@ -11,13 +11,14 @@ Resources:
 - [teamwork : old](https://cartong.teamwork.com/#/projects/233096/overview/summary)
 - [nextcloud](https://cloud.cartong.org/s/zgsDFfpjTNHseZS)
 - [gitlab](https://gitlab.cartong.org/HCR/opsmap)
-- [features list](Feature-list.md) : Reference list of the features, dev oriented
 
 People:
 
 - Pole Manager: Sylvie de Laborderie
 - PO: Maelle Aubert
-- Devs: Joaquim Martin, Olivier Ribiere, Miguel Moreno, Etienne Delclaux
+- Main devs: Olivier Ribiere, Etienne Delclaux
+- Devs: Joaquim Martin, Miguel Moreno
+- Design: Lucile Collignon
 
 Tech summary:
 
@@ -31,14 +32,14 @@ The map engine is [Mapbox](https://www.mapbox.com).
 - `npm run serve` --> generates the app (no lib) and start localhost
 - `npm run doc` --> generates the doc in the docs folder
 
-The doc is generated using TypeDoc. It doesn't seems to be ok with vuejs components. We'll see.
+> The doc is generated using TypeDoc. It doesn't seems to be ok with vuejs components. We'll see.
 
 ## Kobo Management
 
 A kobo user for this proejct has been created. The objective is to have a readonly access to every potential opsmap related survey. 
 
 > username: cartong_reader
-> passwd: @bitwarden
+> passwd: @bw
 
 ## Project architecture
 
@@ -67,7 +68,7 @@ The entry point is entry-point-lib.ts of the lib.
 The objective is to provide multiple components and tools to a typical oppsmap, the standard opsmap.
 
 - an app implementation
-The two entry points are entry-point-app.ts and entry-point-app.vue
+The two entry points are app-demo/entry-point-app.ts and app-demo/entry-point-app.vue
 
 The objective is to provide a way to test development inside the lib before porting them to the app. This app is for development only !
 
@@ -75,6 +76,9 @@ We observe the following folder structure:
 
 ```bash
 src
+├──app-demo/
+│   ├── entry-point-app.ts
+│   └── entry-point-app.vue
 ├──components
 │   ├── TKComponent1
 │   │     ├── index.ts
@@ -82,6 +86,9 @@ src
 │   │     ├── TKComponent1Subpart1.vue
 │   │     └── TKComponent1Subpart2.vue
 │   └── TKComponent2.vue
+├──locales
+│   ├── fr.json
+│   └── en.json
 ├──plugins
 │   └── vuetify.ts
 └──domain
@@ -92,10 +99,10 @@ src
 We observe the following behavior:
 
 - components: the folder + file structure follows the components tree in the UI
-- plugins: auto, needed by vuetify
 - domain: attempt to structure. It holds the domain related competences.
+- locales: traduction files. conforms to i18n standards. `en.json` act as a reference. 
+- plugins: auto, needed by vuetify
 
-This architecture needs to be reshaped. This was made a bit too on-the-fly.
 
 ## Licences
 
