@@ -24,13 +24,18 @@
         <span class="tk-header-title-opsmap">{{ appConfig.name }}</span>
       </h3>
     </div>
-
-    <div class="tk-header-buttons">
-      <v-btn-toggle v-model="language" mandatory group>
-        <v-btn value="en">English</v-btn>
-        <v-btn value="fr">French</v-btn>
-      </v-btn-toggle>
-    </div>
+    <v-btn-toggle
+      v-model="language"
+      mandatory
+      group
+      dense
+      color="accent"
+      class="tk-header-buttons"
+    >
+      <v-btn plain text :ripple="false" value="en">EN</v-btn>
+      <div class="tk-header-buttons-sep"></div>
+      <v-btn plain text :ripple="false" value="fr">FR</v-btn>
+    </v-btn-toggle>
   </div>
 </template>
 
@@ -74,7 +79,7 @@ export default class TKHeader extends Vue {
 }
 
 .tk-header-logos-item-logo {
-  height: 50px;
+  height: 47px;
 }
 
 .tk-header-title {
@@ -87,11 +92,12 @@ export default class TKHeader extends Vue {
 }
 
 h3 .tk-header-title-base {
-  color: var(--v-tertiary-base);
+  /* color: var(--v-tertiary-base); */
+  color: #333333;
 }
 
 .tk-header-title-opsmap {
-  color: var(--v-secondary-base);
+  color: var(--v-accent-base);
 }
 
 .tk-header-buttons {
@@ -100,6 +106,20 @@ h3 .tk-header-title-base {
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
-  column-gap: 10px;
+
+  column-gap: 0px;
+  font-family: "Arial";
+  font-size: 13px;
+  font-weight: bold;
+
+  color: #919191;
+}
+
+.tk-header-buttons-sep {
+  display: block;
+  text-align: center;
+  height: 10px;
+  width: 2px;
+  background: #919191;
 }
 </style>
