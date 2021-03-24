@@ -37,6 +37,13 @@ body {
   --padding-large: 15px;
   --side-padding: 10%;
 }
+
+h3 {
+  font-family: "Arial";
+  font-size: 18px;
+  letter-spacing: 1.5px;
+}
+
 .tk-main {
   display: flex;
   flex-flow: column nowrap;
@@ -44,6 +51,7 @@ body {
   height: 100%;
   width: 100%;
 }
+
 .tk-main-dashboard {
   flex-grow: 2;
 }
