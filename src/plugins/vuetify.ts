@@ -35,6 +35,7 @@ export default new Vuetify({
     options: { customProperties: true }, // Generates CSS var
     themes: {
       light: {
+        accent: "#428fdf",
         primary: "#333",
         secondary: "#428fdf",
         tertiary: "#a6a6a6",
