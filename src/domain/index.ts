@@ -5,6 +5,6 @@
  * @internal
  */
 
-import { TKGeneralConfiguration } from "@/domain/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
 
 export { TKGeneralConfiguration };

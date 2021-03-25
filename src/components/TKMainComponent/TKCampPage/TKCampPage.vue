@@ -14,8 +14,8 @@ import TKSurveyVisualizer from "./TKSurveyVisualizer";
 @Component({
   components: {
     TKCampSelector,
-    TKSurveyVisualizer,
-  },
+    TKSurveyVisualizer
+  }
 })
 export default class TKCampPage extends Vue {}
 </script>

@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
 
 import TKCampPage from "./TKCampPage";
 import TKHomePage from "./TKHomePage";

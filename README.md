@@ -7,6 +7,7 @@ At this point, it is just a place to drop every infos relatives to the project.
 This document is **NOT** a comitment to anything. It is **NOT** an official technical specifications.
 
 Resources:
+
 - [teamwork : task board](https://cartong.teamwork.com/#/projects/500913/tasks/board)
 - [teamwork : old](https://cartong.teamwork.com/#/projects/233096/overview/summary)
 - [nextcloud](https://cloud.cartong.org/s/zgsDFfpjTNHseZS)
@@ -36,10 +37,17 @@ The map engine is [Mapbox](https://www.mapbox.com).
 
 ## Kobo Management
 
-A kobo user for this proejct has been created. The objective is to have a readonly access to every potential opsmap related survey. 
+A kobo user for this proejct has been created. The objective is to have a readonly access to every potential opsmap related survey.
 
 > username: cartong_reader
 > passwd: @bw
+
+## Mapbox Account
+
+A Mapbox account dedicated for Opsmaps project has been created in order to have a better monitoring of tiles consumation.
+
+> username: opsmap.basemaps@gmail.com
+> passwd: @bitwarden / Same pwd for gmail account and mapbox account
 
 ## Project architecture
 
@@ -63,12 +71,12 @@ end
 This project holds two differents projects:
 
 - a lib declaration
-The entry point is entry-point-lib.ts of the lib.
+  The entry point is entry-point-lib.ts of the lib.
 
 The objective is to provide multiple components and tools to a typical oppsmap, the standard opsmap.
 
 - an app implementation
-The two entry points are app-demo/entry-point-app.ts and app-demo/entry-point-app.vue
+  The two entry points are app-demo/entry-point-app.ts and app-demo/entry-point-app.vue
 
 The objective is to provide a way to test development inside the lib before porting them to the app. This app is for development only !
 
@@ -100,9 +108,8 @@ We observe the following behavior:
 
 - components: the folder + file structure follows the components tree in the UI
 - domain: attempt to structure. It holds the domain related competences.
-- locales: traduction files. conforms to i18n standards. `en.json` act as a reference. 
+- locales: traduction files. conforms to i18n standards. `en.json` act as a reference.
 - plugins: auto, needed by vuetify
-
 
 ## Licences
 
@@ -114,7 +121,7 @@ The 3rd Party licences are mentionned in LICENCE-3RD-PARTY.md.
 - Front
   - Vue.js v2: [_MIT Licence_](https://vuejs.org)
   - Typescript: [_Apache v2.0_](https://github.com/microsoft/TypeScript/blob/master/LICENSE.txt)
-  - Mapbox: Custom Licence. Free under 50k users per month. OK With this project. 
+  - Mapbox: Custom Licence. Free under 50k users per month. OK With this project.
   - Chart.js: [_MIT Licence_](https://www.chartjs.org/docs/latest/notes/license.html)
   - PDF.js: [_MIT Licence_](https://github.com/mozilla/pdf.js/blob/master/LICENSE)
   - html2canvas: [_MIT Licence_](https://github.com/niklasvh/html2canvas/blob/master/LICENSE)
@@ -123,7 +130,7 @@ The 3rd Party licences are mentionned in LICENCE-3RD-PARTY.md.
   - Jest: [_MIT Licence_](https://pypi.org/project/sphinx-js/)
   - sinonjs: [_BSD Licence_](https://github.com/sinonjs/sinon/blob/master/LICENSE)
   - Cypress.io test runner: [_MIT Licence_](MIT licence)
-Others api used:
+    Others api used:
 - [Vue.js v2](https://vuejs.org) + [Typescript](https://www.typescriptlang.org)
 - [Mapbox](https://www.mapbox.com): map engine (could try OpenLayers or MapLibre)
 - [Chart.js](https://www.chartjs.org)
@@ -136,16 +143,19 @@ Others api used:
 #### [MIT Licence](https://en.wikipedia.org/wiki/MIT_License)
 
 Permissive. Do whatever you want, only if:
+
 > The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 #### [Apache V2](https://www.apache.org/licenses/LICENSE-2.0)
 
 Permissive. Do whatever you want, only if:
+
 > You should include a copy of the Apache License, typically in a file called LICENSE, in your work, and consider also including a NOTICE file.
 
 #### [BSD Licence](https://opensource.org/licenses/BSD-3-Clause)
 
 Persmissive. Do whatever you want, only if:
+
 > Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 >
 > Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.

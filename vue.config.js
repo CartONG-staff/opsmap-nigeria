@@ -5,18 +5,18 @@
 module.exports = {
   configureWebpack: {
     output: {
-      libraryExport: "",
-    },
+      libraryExport: ""
+    }
   },
 
   css: {
-    extract: false,
+    extract: false
   },
 
   pages: {
     index: {
-      entry: "src/app-demo/entry-point-app.ts",
-    },
+      entry: "src/app-demo/entry-point-app.ts"
+    }
   },
 
   transpileDependencies: ["vuetify"],
@@ -26,9 +26,9 @@ module.exports = {
       locale: "en",
       fallbackLocale: "en",
       localeDir: "locales",
-      enableInSFC: true,
-    },
+      enableInSFC: true
+    }
   },
-  
-  publicPath: '',
+
+  publicPath: ""
 };

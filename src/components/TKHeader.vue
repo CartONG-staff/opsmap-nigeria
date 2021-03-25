@@ -27,8 +27,13 @@
 
     <div class="tk-header-buttons">
       <v-btn-toggle v-model="language" mandatory group>
-        <v-btn value="en">English</v-btn>
-        <v-btn value="fr">French</v-btn>
+        <v-btn
+          v-for="item in appConfig.language"
+          :key="item.code"
+          :value="item.code"
+        >
+          <img :src="item.flag" :alt="item.name" />
+        </v-btn>
       </v-btn-toggle>
     </div>
   </div>
@@ -36,7 +41,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
 
 @Component
 export default class TKHeader extends Vue {

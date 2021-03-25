@@ -23,7 +23,7 @@ export default class TKMap extends Vue {
       container: "tk-map",
       style: this.config.style,
       center: this.config.center,
-      zoom: this.config.zoom,
+      zoom: this.config.zoom
     });
   }
 }
