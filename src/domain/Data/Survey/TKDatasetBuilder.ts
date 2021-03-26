@@ -12,10 +12,10 @@ export async function TKDatasetBuilder(
     const surveyConfiguration = await TKSurveyConfigurationBuilder(item);
     console.log(surveyConfiguration);
     if (surveyFormat === "csv") {
-      const flop = await TKCSVDataGetter(item);
+      const flop = await TKCSVDataGetter(item as TKCSVSurveyInfo);
       console.log(flop);
     } else {
-      const flap = await TKKoboDataGetter(item);
+      const flap = await TKKoboDataGetter(item as TKKoboSurveyInfo);
       console.log(flap);
     }
   }

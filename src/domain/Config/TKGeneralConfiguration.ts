@@ -2,7 +2,7 @@ import { TKMapboxConfiguration } from "@/domain/Map/TKMapboxConfiguration";
 import { TKLogo } from "@/domain/UI/TKLogo";
 import { TKKoboSurveyInfo } from "@/domain/Data/Kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/UI/TKFooterLogos";
-import { TKCSVSurveyInfo } from "@/domain/Data/CSV/TKCSVSurveyInfo";
+import { TKCSVSurveyInfo } from "@/domain/Data/CSV/TKCSVTypes";
 import { TKLanguageDescription } from "@/domain/Config/TKLanguageDescription";
 
 export interface TKGeneralConfiguration {

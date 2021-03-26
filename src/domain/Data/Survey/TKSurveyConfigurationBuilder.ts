@@ -25,18 +25,20 @@ interface SurveyConfiguration {
 
 export async function TKSurveyConfigurationBuilder(
   survey: TKKoboSurveyInfo | TKCSVSurveyInfo
-): SurveyConfiguration {
-  const rawCategories: TKCategory[] = await TKCSVReader(
+): Promise<SurveyConfiguration> {
+  const rawCategories: TKCategory[] = await TKCSVReader<TKCategory[]>(
     "categories",
     survey.folder,
     true
   );
-  const rawTrafficLights: TKTrafficLightsRaw[] = await TKCSVReader(
-    "traffic_lights",
+  const rawTrafficLights: TKTrafficLightsRaw[] = await TKCSVReader<
+    TKTrafficLightsRaw[]
+  >("traffic_lights", survey.folder, true);
+  const rawLabels: TKLabel[] = await TKCSVReader<TKLabel[]>(
+    "labels",
     survey.folder,
     true
   );
-  const rawLabels: TKLabel[] = await TKCSVReader("labels", survey.folder, true);
   return {
     categories: TKCategoriesCollectionBuilder(rawCategories),
     trafficLights: TKTrafficLightsCollectionBuilder(rawTrafficLights),
