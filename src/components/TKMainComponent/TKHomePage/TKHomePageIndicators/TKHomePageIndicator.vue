@@ -52,7 +52,6 @@ export default class TKHomePageIndicator extends Vue {
 .tk-homepage-indicator-value-decription {
   color: var(#fff);
   font-weight: bold;
-  font-size: 20px;
 }
 
 .tk-homepage-indicator-icon {

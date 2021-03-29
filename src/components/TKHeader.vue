@@ -106,13 +106,9 @@ h3 .tk-header-title-base {
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
-
   column-gap: 0px;
-  font-family: "Arial";
-  font-size: 13px;
-  font-weight: bold;
-
   color: #919191;
+  font-size: 13px;
 }
 
 .tk-header-buttons-sep {

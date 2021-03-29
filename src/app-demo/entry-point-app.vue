@@ -36,6 +36,9 @@ body {
   --padding-medium: 10px;
   --padding-large: 15px;
   --side-padding: 10%;
+
+  font-family: "Arial";
+  font-size: 16px;
 }
 
 h3 {

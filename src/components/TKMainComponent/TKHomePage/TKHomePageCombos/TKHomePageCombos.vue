@@ -29,7 +29,6 @@ export default class TKHomePageCombos extends Vue {
 }
 
 .tk-homepage-combos-title {
-  font-size: 20px;
   color: var(--v-sectionTitle-base);
 }
 </style>

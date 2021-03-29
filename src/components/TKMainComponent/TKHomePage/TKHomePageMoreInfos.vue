@@ -25,8 +25,6 @@ export default class TKHomePageIndicators extends Vue {}
   border: 5px solid #f2f2f2;
   background-color: white;
   width: 100%;
-
-  font-size: 20px;
 }
 
 .tk-homepage-moreinfos-title {
