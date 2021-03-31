@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import mapboxgl, { accessToken } from "mapbox-gl";
+import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import { TKMapboxConfiguration } from "@/domain/TKMapboxConfiguration";
