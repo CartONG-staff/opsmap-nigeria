@@ -18,7 +18,7 @@ const mapConfig: TKMapboxConfiguration = {
 
 export const APPCONFIG: TKGeneralConfiguration = {
   name: "SYLDAVIE",
-  iso3: "NGA",
+  iso3: "BRA",
   language: languages,
   surveyFormat: "kobo",
   surveyDescription: koboInfo,

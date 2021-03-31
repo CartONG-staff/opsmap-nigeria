@@ -35,15 +35,18 @@ export default new Vuetify({
     options: { customProperties: true }, // Generates CSS var
     themes: {
       light: {
-        primary: "#333",
-        secondary: "#428fdf",
+        accent: "#428fdf",
+        primary: "#333333",
+        secondary: "#999999",
         tertiary: "#a6a6a6",
-        background: "#fff",
-        sectionBG: "#fff",
+        quaternary: "#000000",
+        background: "#ffffff",
+        discrete: "#d8d8d8",
+        sectionBG: "#ffffff",
         sectionTitle: "#a1a1a1",
         sectionBGSecondary: "#fafafa",
         sectionTitleSecondary: "#999",
-        homeTitle: "#000"
+        homeTitle: "#000000",
         // accent
         // anchor
         // error

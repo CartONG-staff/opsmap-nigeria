@@ -8,7 +8,7 @@
         {{ indicator.name }}
       </div>
     </div>
-    <div class="tk-homepage-indicator-icon"></div>
+    <img class="tk-homepage-indicator-icon" :src="indicator.icon" />
   </div>
 </template>
 
@@ -29,12 +29,12 @@ export default class TKHomePageIndicator extends Vue {
   background-color: white;
   border-color: transparent;
   border-radius: 5px;
-  /* height: 200px; */
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  height: 100px;
 }
 
 .tk-homepage-indicator-value {
@@ -45,23 +45,19 @@ export default class TKHomePageIndicator extends Vue {
 }
 
 .tk-homepage-indicator-value-number {
-  color: var(--v-secondary-base);
-  font-size: 30px;
+  color: var(--v-accent-base);
+  font-size: 40px;
 }
 
 .tk-homepage-indicator-value-decription {
-  color: var(#fff);
+  color: var;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .tk-homepage-indicator-icon {
   align-self: flex-start;
-  background-image: url("https://img.icons8.com/cotton/2x/info--v3.png");
-  background-size: 100% 100%;
-
-  height: 60px;
-  width: 60px;
+  height: 36px;
   display: block;
 }
 </style>

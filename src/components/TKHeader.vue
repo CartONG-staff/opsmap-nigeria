@@ -18,24 +18,26 @@
     <div class="tk-header-title">
       <h3>
         <span class="tk-header-title-base"
-          >{{ $t("opsmapTitle").toUpperCase() }}
-          {{ $t("opsmapSubtitle").toUpperCase() }}
+          >{{ $t("title").toUpperCase() }}
         </span>
         <span class="tk-header-title-opsmap">{{ appConfig.name }}</span>
       </h3>
     </div>
-
-    <div class="tk-header-buttons">
-      <v-btn-toggle v-model="language" mandatory group>
-        <v-btn
-          v-for="item in appConfig.language"
-          :key="item.code"
-          :value="item.code"
-        >
-          <img :src="item.flag" :alt="item.name" />
-        </v-btn>
-      </v-btn-toggle>
-    </div>
+    <v-btn-toggle
+      v-model="language"
+      mandatory
+      group
+      dense
+      color="accent"
+      class="tk-header-buttons"
+    >
+      <v-btn plain text :ripple="false" value="en">EN</v-btn>
+      <img
+        src="@/assets/vertical-separator.png"
+        class="tk-header-buttons-sep"
+      />
+      <v-btn plain text :ripple="false" value="fr">FR</v-btn>
+    </v-btn-toggle>
   </div>
 </template>
 
@@ -79,24 +81,25 @@ export default class TKHeader extends Vue {
 }
 
 .tk-header-logos-item-logo {
-  height: 50px;
+  height: 47px;
 }
 
 .tk-header-title {
   margin-top: auto;
   margin-bottom: auto;
   flex-basis: 40%;
+  letter-spacing: 1.5px;
 }
 .tk-header-title > h3 {
   text-align: center;
 }
 
 h3 .tk-header-title-base {
-  color: var(--v-tertiary-base);
+  color: var(--v-primary-base);
 }
 
 .tk-header-title-opsmap {
-  color: var(--v-secondary-base);
+  color: var(--v-accent-base);
 }
 
 .tk-header-buttons {
@@ -105,6 +108,12 @@ h3 .tk-header-title-base {
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
-  column-gap: 10px;
+  column-gap: 0px;
+  color: #919191;
+  font-size: 13px;
+}
+
+.tk-header-buttons-sep {
+  height: 10px;
 }
 </style>

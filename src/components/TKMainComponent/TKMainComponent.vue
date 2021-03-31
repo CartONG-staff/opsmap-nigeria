@@ -1,6 +1,8 @@
 <template>
   <div class="tk-maincomponent">
-    <v-btn v-on:click="switchPage()">{{ $t("main.switchPage") }}</v-btn>
+    <v-btn :ripple="false" v-on:click="switchPage()">{{
+      $t("main.switchPage")
+    }}</v-btn>
     <TKHomePage v-if="isHomePage" :appConfig="appConfig" />
     <TKCampPage v-if="!isHomePage" />
   </div>
@@ -16,8 +18,8 @@ import TKHomePage from "./TKHomePage";
 @Component({
   components: {
     TKCampPage,
-    TKHomePage,
-  },
+    TKHomePage
+  }
 })
 export default class TKMainComponent extends Vue {
   @Prop()
