@@ -34,6 +34,7 @@ export default class TKHomePageIndicator extends Vue {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  height: 100px;
 }
 
 .tk-homepage-indicator-value {
