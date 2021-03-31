@@ -54,6 +54,7 @@ export default class TKHomePage extends Vue {
   justify-content: space-between;
   align-items: top;
   width: 100%;
+  margin-top: 100px;
 }
 
 .tk-homepage-left {
