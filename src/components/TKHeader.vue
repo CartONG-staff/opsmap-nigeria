@@ -85,14 +85,14 @@ export default class TKHeader extends Vue {
   margin-top: auto;
   margin-bottom: auto;
   flex-basis: 40%;
+  letter-spacing: 1.5px;
 }
 .tk-header-title > h3 {
   text-align: center;
 }
 
 h3 .tk-header-title-base {
-  /* color: var(--v-tertiary-base); */
-  color: #333333;
+  color: var(--v-primary-base);
 }
 
 .tk-header-title-opsmap {
