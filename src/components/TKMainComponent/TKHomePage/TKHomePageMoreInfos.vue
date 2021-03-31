@@ -22,21 +22,30 @@ export default class TKHomePageIndicators extends Vue {}
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: top;
-  border: 5px solid #f2f2f2;
-  background-color: white;
+  border: 2px solid #f1f3f3;
+  box-sizing: border-box;
+  background-color: var(--v-background-base);
   width: 100%;
+  padding-top: 42px;
+  padding-bottom: 42px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .tk-homepage-moreinfos-title {
   width: 30%;
-  padding-top: var(--padding-large);
-  padding-left: var(--padding-large);
+  font-weight: bold;
+  font-size: 12px;
+  color: var(--v-secondary-base);
+  letter-spacing: 0.86px;
 }
 
 .tk-homepage-moreinfos-content {
   width: 65%;
-  padding-top: var(--padding-large);
-  padding-bottom: var(--padding-large);
-  padding-right: var(--padding-large);
+  font-size: 16px;
+  color: var(--v-primary-base);
+  line-height: 1.375;
+  text-align: justify;
+  text-justify: inter-word;
 }
 </style>
