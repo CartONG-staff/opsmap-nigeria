@@ -45,7 +45,7 @@ export default class TKHomePage extends Vue {
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  row-gap: 50px;
+  row-gap: 25px;
 }
 
 .tk-homepage-top {
