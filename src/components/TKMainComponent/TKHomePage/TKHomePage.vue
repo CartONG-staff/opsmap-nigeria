@@ -61,7 +61,8 @@ export default class TKHomePage extends Vue {
   width: 25%;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  row-gap: 25px;
   align-items: left;
 }
 .tk-homepage-map {
