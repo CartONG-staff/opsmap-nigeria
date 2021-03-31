@@ -4,7 +4,7 @@
       $t("main.switchPage")
     }}</v-btn>
     <TKHomePage v-if="isHomePage" :appConfig="appConfig" />
-    <TKCampPage v-if="!isHomePage" />
+    <TKCampPage v-if="!isHomePage" :appConfig="appConfig" />
   </div>
 </template>
 

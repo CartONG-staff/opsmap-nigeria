@@ -5,7 +5,7 @@
         <TKHomePageTitle class="tk-homepage-title" :appConfig="appConfig" />
         <TKHomePageCombos class="tk-homepage-combos" :appConfig="appConfig" />
       </div>
-      <TKMap class="tk-homepage-map" :config="appConfig.mapConfig" />
+      <tk-map class="tk-homepage-map" :config="appConfig.mapConfig" />
     </div>
     <TKHomePageIndicators
       class="tk-homepage-indicators"
@@ -18,7 +18,6 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
-import TKMap from "@/components/TKMainComponent/TKMap";
 import TKHomePageTitle from "./TKHomePageTitle.vue";
 import TKHomePageCombos from "./TKHomePageCombos";
 import TKHomePageIndicators from "./TKHomePageIndicators";
@@ -26,7 +25,6 @@ import TKHomePageMoreInfos from "./TKHomePageMoreInfos.vue";
 
 @Component({
   components: {
-    TKMap,
     TKHomePageTitle,
     TKHomePageCombos,
     TKHomePageIndicators,
