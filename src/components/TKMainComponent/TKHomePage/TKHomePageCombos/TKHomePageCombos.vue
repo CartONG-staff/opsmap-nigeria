@@ -3,9 +3,29 @@
     <p class="tk-homepage-combos-title">
       {{ $t("home.combosTitle") }}
     </p>
-    <v-combobox :placeholder="$t('home.comboStatePlaceholder')"></v-combobox>
-    <v-combobox :placeholder="$t('home.comboLGAPlaceholder')"></v-combobox>
-    <v-combobox :placeholder="$t('home.comboCampPlaceholder')"></v-combobox>
+    <v-combobox
+      class="tk-home-select"
+      color="discrete"
+      item-color="quaternary"
+      flat
+      dense
+      :ripple="false"
+      :placeholder="$t('home.comboStatePlaceholder')"
+    ></v-combobox>
+    <v-combobox
+      class="tk-home-select"
+      color="discrete"
+      dense
+      :ripple="false"
+      :placeholder="$t('home.comboLGAPlaceholder')"
+    ></v-combobox>
+    <v-combobox
+      class="tk-home-select"
+      color="discrete"
+      dense
+      :ripple="false"
+      :placeholder="$t('home.comboCampPlaceholder')"
+    ></v-combobox>
   </div>
 </template>
 
@@ -30,5 +50,7 @@ export default class TKHomePageCombos extends Vue {
 
 .tk-homepage-combos-title {
   color: var(--v-sectionTitle-base);
+  letter-spacing: 0.86px;
+  font-size: 12px;
 }
 </style>
