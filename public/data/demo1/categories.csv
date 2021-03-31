@@ -1,0 +1,19 @@
+label,formatted_name,icon_name
+General,group_general_info,About
+Camp Management,group_cccm,Camp-Coordination-and-Camp-Management
+Demographic distribution,group_demo,People-in-need
+Protection,group_protection,Protection
+Shelter - NFI,group_shelternfi,Shelter
+"Water, sanitation and hygiene",group_wash,Water-Sanitation-and-Hygiene
+Nutrition,group_nutrition,Nutrition
+Displacement,group_displacement,Deployment
+Food Security,group_fs,Food-Security
+Health,group_health,Health
+Education,group_education,Education
+Communication,group_com,Public-information
+Validation,group_val,Preparedness
+Non-food items,group_nonfood,Non-food-items
+COVID-19,group_covid,COVID-19
+Vulnerable population,group_vulpop,Elderly
+Who is doing what ?,group_partner,Partnership
+Livelihood,group_livelihoods,Livelihood

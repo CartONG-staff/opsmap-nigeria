@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
-import { TKLogo } from "@/domain/TKLogo";
+import { TKLogo } from "@/domain/UI/TKLogo";
 
 @Component
 export default class TKFooterLogoItem extends Vue {

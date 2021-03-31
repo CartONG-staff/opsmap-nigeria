@@ -8,14 +8,14 @@
         {{ indicator.name }}
       </div>
     </div>
-    <img class="tk-homepage-indicator-icon" :src="indicator.icon"></img>
+    <img class="tk-homepage-indicator-icon" :src="indicator.icon" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import { TKHomeIndicator } from "@/domain/TKHomeIndicator";
+import { TKHomeIndicator } from "@/domain/UI/TKHomeIndicator";
 
 @Component({})
 export default class TKHomePageIndicator extends Vue {

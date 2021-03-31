@@ -9,7 +9,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import { TKMapboxConfiguration } from "@/domain/TKMapboxConfiguration";
+import { TKMapboxConfiguration } from "@/domain/Map/TKMapboxConfiguration";
 
 @Component
 export default class TKMap extends Vue {
@@ -18,7 +18,7 @@ export default class TKMap extends Vue {
 
   map!: mapboxgl.Map;
 
-  mounted() {
+  mounted(): void {
     this.map = new mapboxgl.Map({
       container: "tk-map",
       style: this.config.style,

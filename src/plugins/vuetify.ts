@@ -53,7 +53,7 @@ export default new Vuetify({
         // info
         // success
         // warning
-      },
-    },
-  },
+      }
+    }
+  }
 });
