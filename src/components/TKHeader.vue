@@ -32,7 +32,7 @@
       class="tk-header-buttons"
     >
       <v-btn plain text :ripple="false" value="en">EN</v-btn>
-      <div class="tk-header-buttons-sep"></div>
+      <img src="@/assets/vertical-separator.png" class="tk-header-buttons-sep"></img>
       <v-btn plain text :ripple="false" value="fr">FR</v-btn>
     </v-btn-toggle>
   </div>
@@ -111,10 +111,6 @@ h3 .tk-header-title-base {
 }
 
 .tk-header-buttons-sep {
-  display: block;
-  text-align: center;
   height: 10px;
-  width: 2px;
-  background: #919191;
 }
 </style>
