@@ -58,20 +58,25 @@ export default class TKFooter extends Vue {
   background-color: var(--v-sectionBGSecondary-base);
   display: flex;
   flex-flow: row nowrap;
-  column-gap: var(--padding-large);
-  padding-top: var(--padding-large);
-  padding-bottom: var(--padding-large);
+  column-gap: 84px;
+  padding-top: 42px;
+  padding-bottom: 42px;
   padding-left: var(--side-padding);
   padding-right: var(--side-padding);
 }
 
 .tk-footer-disclaimer-title {
-  color: var(--v-sectionTitleSecondary-base);
   white-space: nowrap;
+  font-weight: bold;
+  font-size: 12px;
+  color: var(--v-secondary-base);
+  letter-spacing: 0.86px;
 }
 
 .tk-footer-disclaimer-text {
+  font-size: 16px;
   color: var(--v-primary-base);
+  line-height: 1.375;
   text-align: justify;
   text-justify: inter-word;
 }
