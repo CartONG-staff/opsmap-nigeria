@@ -1,9 +1,9 @@
 <template>
-  <div class="tk-homepage-moreinfos">
-    <div class="tk-homepage-moreinfos-title">
+  <div class="tk-home-moreinfos">
+    <div class="tk-home-moreinfos-title">
       {{ $t("home.moreInfosTitle") }}
     </div>
-    <div class="tk-homepage-moreinfos-content">
+    <div class="tk-home-moreinfos-content">
       {{ $t("home.moreInfosContent") }}
     </div>
   </div>
@@ -13,11 +13,11 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class TKHomePageIndicators extends Vue {}
+export default class TKHomeIndicators extends Vue {}
 </script>
 
 <style scoped>
-.tk-homepage-moreinfos {
+.tk-home-moreinfos {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -32,7 +32,7 @@ export default class TKHomePageIndicators extends Vue {}
   padding-right: 30px;
 }
 
-.tk-homepage-moreinfos-title {
+.tk-home-moreinfos-title {
   width: 30%;
   font-weight: bold;
   font-size: 12px;
@@ -40,7 +40,7 @@ export default class TKHomePageIndicators extends Vue {}
   letter-spacing: 0.86px;
 }
 
-.tk-homepage-moreinfos-content {
+.tk-home-moreinfos-content {
   width: 65%;
   font-size: 16px;
   color: var(--v-primary-base);
