@@ -37,7 +37,7 @@ export default new Vuetify({
       light: {
         accent: "#428fdf",
         primary: "#333",
-        secondary: "#428fdf",
+        secondary: "#999999",
         tertiary: "#a6a6a6",
         background: "#fff",
         sectionBG: "#fff",

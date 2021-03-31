@@ -7,6 +7,10 @@
     <span class="tk-homepage-title-country">
       {{ appConfig.name }}
     </span>
+    <br />
+    <span class="tk-homepage-title-last-update">
+      {{ $t("home.lastUpdate") }}: 14/02/2002
+    </span>
   </div>
 </template>
 
@@ -23,7 +27,7 @@ export default class TKHomePageTitle extends Vue {
 
 <style scoped>
 .tk-homepage-title-base {
-  color: var(--v-secondary-base);
+  color: var(--v-accent-base);
   font-size: 40px;
 }
 
@@ -31,5 +35,10 @@ export default class TKHomePageTitle extends Vue {
   color: var(--v-homeTitle-base);
   font-size: 40px;
   font-weight: bold;
+}
+
+.tk-homepage-title-last-update {
+  color: var(--v-secondary-base);
+  font-size: 11px;
 }
 </style>
