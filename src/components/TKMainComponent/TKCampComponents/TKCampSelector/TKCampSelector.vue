@@ -40,7 +40,7 @@ export default class TKCampSelector extends Vue {}
 
 <style scoped>
 .tk-camp-selector {
-  background-color: #f0fbff88;
+  background-color: #f0fbffcc;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
