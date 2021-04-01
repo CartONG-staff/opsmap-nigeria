@@ -46,14 +46,14 @@ export default new Vuetify({
         sectionTitle: "#a1a1a1",
         sectionBGSecondary: "#fafafa",
         sectionTitleSecondary: "#999",
-        homeTitle: "#000000",
+        homeTitle: "#000000"
         // accent
         // anchor
         // error
         // info
         // success
         // warning
-      },
-    },
-  },
+      }
+    }
+  }
 });

@@ -13,29 +13,29 @@ import TKHomeIndicator from "./TKHomeIndicator.vue";
 import { TKIndicator } from "@/domain/UI/TKIndicator";
 @Component({
   components: {
-    TKHomeIndicator,
-  },
+    TKHomeIndicator
+  }
 })
 export default class TKHomeIndicators extends Vue {
   indicator1: TKIndicator = {
     value: 57,
     name: "Sites",
     icon:
-      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/IDP-refugee-camp.png",
+      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/IDP-refugee-camp.png"
   };
 
   indicator2: TKIndicator = {
     value: 520,
     name: "People",
     icon:
-      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/People-in-need.png",
+      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/People-in-need.png"
   };
 
   indicator3: TKIndicator = {
     value: 20,
     name: "Sites overcrowded",
     icon:
-      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/Permanent-camp.png",
+      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/Permanent-camp.png"
   };
 
   @Prop()
