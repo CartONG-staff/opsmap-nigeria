@@ -12,12 +12,13 @@
             $t("main.switchPage")
           }}</v-btn>
           <TKTitle class="tk-home-title" :appConfig="appConfig" />
-          <div v-if="isHomePage" class="tk-home-left">
+          <div v-if="!isHomePage" class="tk-home-left">
             <TKHomeSubtitle />
             <TKHomeCombos class="tk-home-combos" :appConfig="appConfig" />
           </div>
-          <div v-if="!isHomePage" class="tk-camp-left">
+          <div v-if="isHomePage" class="tk-camp-left">
             <TKCampSubtitle class="tk-camp-title" />
+            <TKCampInfos class="tk-camp-infos" />
           </div>
         </div>
         <TKMap class="tk-main-map" :config="appConfig.mapConfig" />
@@ -51,6 +52,7 @@ import {
 
 import {
   TKCampIndicators,
+  TKCampInfos,
   TKCampSelector,
   TKCampSubtitle,
 } from "./TKCampComponents";
@@ -58,6 +60,7 @@ import {
 @Component({
   components: {
     TKCampIndicators,
+    TKCampInfos,
     TKCampSelector,
     TKCampSubtitle,
     TKHomeCombos,
@@ -130,6 +133,17 @@ export default class TKMainComponent extends Vue {
   justify-content: flex-start;
   row-gap: 25px;
   align-items: left;
+}
+
+.tk-camp-left {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: top;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.tk-camp-infos {
 }
 
 .tk-main-map {
