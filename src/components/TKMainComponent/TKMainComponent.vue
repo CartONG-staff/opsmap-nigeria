@@ -1,33 +1,36 @@
 <template>
   <div class="tk-maincomponent">
-    <div class="tk-main-header">
-      <!-- <div v-if="!isHomePage" class="tk-home-header"></div> -->
-      <div class="tk-camp-header"><TKCampSelector /></div>
-    </div>
-    <div class="tk-main-top">
-      <div class="tk-main-left">
-        <v-btn :ripple="false" v-on:click="switchPage()">{{
-          $t("main.switchPage")
-        }}</v-btn>
-        <TKTitle class="tk-home-title" :appConfig="appConfig" />
-        <div v-if="isHomePage" class="tk-home-left">
-          <TKHomeSubtitle />
-          <TKHomeCombos class="tk-home-combos" :appConfig="appConfig" />
-        </div>
-        <div v-if="!isHomePage" class="tk-camp-left">
-          <TKCampSubtitle class="tk-camp-title" />
-        </div>
+    <div class="tk-maincomponent-blur"></div>
+    <div class="tk-maincomponent-container">
+      <div class="tk-main-header">
+        <!-- <div v-if="!isHomePage" class="tk-home-header"></div> -->
+        <div class="tk-camp-header"><TKCampSelector /></div>
       </div>
-      <TKMap class="tk-main-map" :config="appConfig.mapConfig" />
-    </div>
+      <div class="tk-main-top">
+        <div class="tk-main-left">
+          <v-btn :ripple="false" v-on:click="switchPage()">{{
+            $t("main.switchPage")
+          }}</v-btn>
+          <TKTitle class="tk-home-title" :appConfig="appConfig" />
+          <div v-if="isHomePage" class="tk-home-left">
+            <TKHomeSubtitle />
+            <TKHomeCombos class="tk-home-combos" :appConfig="appConfig" />
+          </div>
+          <div v-if="!isHomePage" class="tk-camp-left">
+            <TKCampSubtitle class="tk-camp-title" />
+          </div>
+        </div>
+        <TKMap class="tk-main-map" :config="appConfig.mapConfig" />
+      </div>
 
-    <div class="tk-main-content">
-      <div v-if="isHomePage" class="tk-home-content">
-        <TKHomeIndicators class="tk-home-indicators" :appConfig="appConfig" />
-        <TKHomeMoreInfos />
-      </div>
-      <div v-if="!isHomePage" class="tk-camp-content">
-        <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
+      <div class="tk-main-content">
+        <div v-if="isHomePage" class="tk-home-content">
+          <TKHomeIndicators class="tk-home-indicators" :appConfig="appConfig" />
+          <TKHomeMoreInfos />
+        </div>
+        <div v-if="!isHomePage" class="tk-camp-content">
+          <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
+        </div>
       </div>
     </div>
   </div>
@@ -77,14 +80,25 @@ export default class TKMainComponent extends Vue {
 </script>
 
 <style scoped>
-.tk-maincomponent {
-  background-color: whitesmoke;
+.tk-maincomponent-blur {
+  position: absolute;
+  width: 100%;
+  height: 365px;
+  opacity: 0.21;
+  background: linear-gradient(#3a9ed3ff, #3a9ed300);
+}
+
+.tk-maincomponent-container {
   padding-left: var(--side-padding);
   padding-right: var(--side-padding);
+  padding-top: 25px;
+  padding-bottom: 25px;
+
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   row-gap: 25px;
+  height: 100%;
 }
 
 .tk-main-header {
