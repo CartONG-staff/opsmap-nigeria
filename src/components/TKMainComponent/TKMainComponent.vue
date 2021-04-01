@@ -1,18 +1,22 @@
 <template>
   <div class="tk-maincomponent">
-    <v-btn :ripple="false" v-on:click="switchPage()">{{
-      $t("main.switchPage")
-    }}</v-btn>
-
+    <div class="tk-main-header">
+      <v-btn :ripple="false" v-on:click="switchPage()">{{
+        $t("main.switchPage")
+      }}</v-btn>
+      <div v-if="isHomePage" class="tk-home-header"></div>
+      <div v-if="!isHomePage" class="tk-camp-header"><TKCampSelector /></div>
+    </div>
     <div class="tk-main-top">
-      <div class="tk-main-header"></div>
-
       <div class="tk-main-left">
+        <TKTitle class="tk-home-title" :appConfig="appConfig" />
         <div v-if="isHomePage" class="tk-home-left">
-          <TKHomeTitle class="tk-home-title" :appConfig="appConfig" />
+          <TKHomeSubtitle />
           <TKHomeCombos class="tk-home-combos" :appConfig="appConfig" />
         </div>
-        <div v-if="!isHomePage" class="tk-camp-left"></div>
+        <div v-if="!isHomePage" class="tk-camp-left">
+          <TKCampSubtitle class="tk-camp-title" />
+        </div>
       </div>
       <tk-map class="tk-main-map" :config="appConfig.mapConfig" />
     </div>
@@ -30,21 +34,27 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import TKTitle from "./TKTitle.vue";
 
 import {
-  TKHomeTitle,
   TKHomeCombos,
   TKHomeIndicators,
   TKHomeMoreInfos,
+  TKHomeSubtitle
 } from "./TKHomeComponents";
+
+import { TKCampSelector, TKCampSubtitle } from "./TKCampComponents";
 
 @Component({
   components: {
-    TKHomeTitle,
+    TKCampSelector,
+    TKCampSubtitle,
     TKHomeCombos,
     TKHomeIndicators,
     TKHomeMoreInfos,
-  },
+    TKHomeSubtitle,
+    TKTitle
+  }
 })
 export default class TKMainComponent extends Vue {
   @Prop()
@@ -66,6 +76,10 @@ export default class TKMainComponent extends Vue {
   flex-flow: column nowrap;
   justify-content: flex-start;
   row-gap: 25px;
+}
+
+.tk-main-header {
+  height: 75px;
 }
 
 .tk-main-top {
