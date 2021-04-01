@@ -1,9 +1,9 @@
 <template lang="html">
   <div class="tk-camp-selector">
-    <TKSurveyCombobox />
-    <TKStateCombobox />
-    <TKLgaCombobox />
-    <TKCampCombobox />
+    <TKSurveyCombobox class="tk-camp-combobox" />
+    <TKStateCombobox class="tk-camp-combobox" />
+    <TKLgaCombobox class="tk-camp-combobox" />
+    <TKCampCombobox class="tk-camp-combobox" />
   </div>
 </template>
 
@@ -35,10 +35,11 @@ export default class TKCampSelector extends Vue {}
   flex-flow: row wrap;
   justify-content: center;
   border-radius: 8px;
-  height: 50px;
+  height: 100%;
 }
 
-.tk-camp-selector > * {
+.tk-camp-combobox {
   margin: 0 15px;
+  height: 30px;
 }
 </style>

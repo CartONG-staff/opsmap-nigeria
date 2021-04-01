@@ -64,6 +64,7 @@ h3 {
 
 .tk-main-dashboard {
   flex-grow: 2;
-  padding-bottom: 60px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 </style>

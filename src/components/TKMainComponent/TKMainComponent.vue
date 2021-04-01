@@ -1,14 +1,14 @@
 <template>
   <div class="tk-maincomponent">
     <div class="tk-main-header">
-      <v-btn :ripple="false" v-on:click="switchPage()">{{
-        $t("main.switchPage")
-      }}</v-btn>
       <div v-if="!isHomePage" class="tk-home-header"></div>
       <div v-if="isHomePage" class="tk-camp-header"><TKCampSelector /></div>
     </div>
     <div class="tk-main-top">
       <div class="tk-main-left">
+        <v-btn :ripple="false" v-on:click="switchPage()">{{
+          $t("main.switchPage")
+        }}</v-btn>
         <TKTitle class="tk-home-title" :appConfig="appConfig" />
         <div v-if="isHomePage" class="tk-home-left">
           <TKHomeSubtitle />
@@ -43,13 +43,13 @@ import {
   TKHomeCombos,
   TKHomeIndicators,
   TKHomeMoreInfos,
-  TKHomeSubtitle
+  TKHomeSubtitle,
 } from "./TKHomeComponents";
 
 import {
   TKCampIndicators,
   TKCampSelector,
-  TKCampSubtitle
+  TKCampSubtitle,
 } from "./TKCampComponents";
 
 @Component({
@@ -62,8 +62,8 @@ import {
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
-    TKTitle
-  }
+    TKTitle,
+  },
 })
 export default class TKMainComponent extends Vue {
   @Prop()
@@ -88,7 +88,12 @@ export default class TKMainComponent extends Vue {
 }
 
 .tk-main-header {
-  height: 75px;
+  background: red;
+  height: 50px;
+}
+.tk-camp-header {
+  align-items: flex-end;
+  height: 100%;
 }
 
 .tk-main-top {
