@@ -3,8 +3,8 @@
     <div class="tk-maincomponent-blur"></div>
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
-        <!-- <div v-if="!isHomePage" class="tk-home-header"></div> -->
-        <div class="tk-camp-header"><TKCampSelector /></div>
+        <div v-if="isHomePage" class="tk-home-header"></div>
+        <div v-if="!isHomePage" class="tk-camp-header"><TKCampSelector /></div>
       </div>
       <div class="tk-main-top">
         <div class="tk-main-left">
@@ -12,11 +12,11 @@
             $t("main.switchPage")
           }}</v-btn>
           <TKTitle class="tk-home-title" :appConfig="appConfig" />
-          <div v-if="!isHomePage" class="tk-home-left">
+          <div v-if="isHomePage" class="tk-home-left">
             <TKHomeSubtitle />
             <TKHomeCombos class="tk-home-combos" :appConfig="appConfig" />
           </div>
-          <div v-if="isHomePage" class="tk-camp-left">
+          <div v-if="!isHomePage" class="tk-camp-left">
             <TKCampSubtitle class="tk-camp-title" />
             <TKCampInfos class="tk-camp-infos" />
           </div>
