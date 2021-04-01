@@ -88,7 +88,6 @@ export default class TKMainComponent extends Vue {
 }
 
 .tk-main-header {
-  background: red;
   height: 50px;
 }
 .tk-camp-header {

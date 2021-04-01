@@ -33,13 +33,15 @@ export default class TKCampSelector extends Vue {}
   background-color: #7b68ee88;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   border-radius: 8px;
   height: 100%;
+  align-items: center;
 }
 
 .tk-camp-combobox {
   margin: 0 15px;
   height: 30px;
+  width: 20%;
 }
 </style>
