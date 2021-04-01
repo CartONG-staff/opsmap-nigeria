@@ -1,23 +1,44 @@
 <template lang="html">
   <div class="tk-camp-selector">
-    <TKCampSelectorComboboxes />
+    <TKSurveyCombobox />
+    <TKStateCombobox />
+    <TKLgaCombobox />
+    <TKCampCombobox />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TKCampSelectorComboboxes from "./TKCampSelectorComboboxes";
+
+import {
+  TKCampCombobox,
+  TKLgaCombobox,
+  TKStateCombobox,
+  TKSurveyCombobox,
+} from "./TKCampSelectorComboboxes";
 
 @Component({
   components: {
-    TKCampSelectorComboboxes
-  }
+    TKCampCombobox,
+    TKLgaCombobox,
+    TKStateCombobox,
+    TKSurveyCombobox,
+  },
 })
 export default class TKCampSelector extends Vue {}
 </script>
 
 <style scoped>
 .tk-camp-selector {
-  background-color: aquamarine;
+  background-color: #7b68ee88;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  border-radius: 8px;
+  height: 50px;
+}
+
+.tk-camp-selector > * {
+  margin: 0 15px;
 }
 </style>

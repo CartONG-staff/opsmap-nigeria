@@ -4,8 +4,8 @@
       <v-btn :ripple="false" v-on:click="switchPage()">{{
         $t("main.switchPage")
       }}</v-btn>
-      <div v-if="isHomePage" class="tk-home-header"></div>
-      <div v-if="!isHomePage" class="tk-camp-header"><TKCampSelector /></div>
+      <div v-if="!isHomePage" class="tk-home-header"></div>
+      <div v-if="isHomePage" class="tk-camp-header"><TKCampSelector /></div>
     </div>
     <div class="tk-main-top">
       <div class="tk-main-left">
