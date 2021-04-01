@@ -1,7 +1,9 @@
+import TKCampIndicators from "./TKCampIndicators.vue";
 import TKCampSelector from "./TKCampSelector";
-import TKSurveyVisualizer from "./TKSurveyVisualizer";
 import TKCampSubtitle from "./TKCampSubtitle.vue";
+import TKSurveyVisualizer from "./TKSurveyVisualizer";
 
-export { TKCampSubtitle };
+export { TKCampIndicators };
 export { TKCampSelector };
+export { TKCampSubtitle };
 export { TKSurveyVisualizer };

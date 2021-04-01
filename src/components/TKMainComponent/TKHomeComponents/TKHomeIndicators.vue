@@ -1,19 +1,19 @@
 <template>
   <div class="tk-home-indicators">
-    <TKHomeIndicator :indicator="this.indicator1" />
-    <TKHomeIndicator :indicator="this.indicator2" />
-    <TKHomeIndicator :indicator="this.indicator3" />
+    <TKIndicatorComponent :indicator="this.indicator1" />
+    <TKIndicatorComponent :indicator="this.indicator2" />
+    <TKIndicatorComponent :indicator="this.indicator3" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
-import TKHomeIndicator from "./TKHomeIndicator.vue";
+import TKIndicatorComponent from "../TKIndicator.vue";
 import { TKIndicator } from "@/domain/UI/TKIndicator";
 @Component({
   components: {
-    TKHomeIndicator
+    TKIndicatorComponent
   }
 })
 export default class TKHomeIndicators extends Vue {

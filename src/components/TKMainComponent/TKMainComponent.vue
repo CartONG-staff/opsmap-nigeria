@@ -26,7 +26,9 @@
         <TKHomeIndicators class="tk-home-indicators" :appConfig="appConfig" />
         <TKHomeMoreInfos />
       </div>
-      <div v-if="!isHomePage" class="tk-camp-content"></div>
+      <div v-if="!isHomePage" class="tk-camp-content">
+        <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
+      </div>
     </div>
   </div>
 </template>
@@ -44,10 +46,15 @@ import {
   TKHomeSubtitle
 } from "./TKHomeComponents";
 
-import { TKCampSelector, TKCampSubtitle } from "./TKCampComponents";
+import {
+  TKCampIndicators,
+  TKCampSelector,
+  TKCampSubtitle
+} from "./TKCampComponents";
 
 @Component({
   components: {
+    TKCampIndicators,
     TKCampSelector,
     TKCampSubtitle,
     TKHomeCombos,
