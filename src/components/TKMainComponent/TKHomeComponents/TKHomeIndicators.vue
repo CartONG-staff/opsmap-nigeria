@@ -20,22 +20,19 @@ export default class TKHomeIndicators extends Vue {
   indicator1: TKIndicator = {
     value: 57,
     name: "Sites",
-    icon:
-      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/IDP-refugee-camp.png"
+    iconOchaName: "IDP-refugee-camp"
   };
 
   indicator2: TKIndicator = {
     value: 520,
     name: "People",
-    icon:
-      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/People-in-need.png"
+    iconOchaName: "People-in-need"
   };
 
   indicator3: TKIndicator = {
     value: 20,
     name: "Sites overcrowded",
-    icon:
-      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/Permanent-camp.png"
+    iconOchaName: "Permanent-camp"
   };
 
   @Prop()

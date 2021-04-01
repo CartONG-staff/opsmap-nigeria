@@ -8,7 +8,7 @@
         {{ indicator.name }}
       </div>
     </div>
-    <img class="tk-indicator-icon" :src="indicator.icon" />
+    <img class="tk-indicator-icon" :src="iconUrl" />
   </div>
 </template>
 
@@ -16,11 +16,13 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 import { TKIndicator } from "@/domain/UI/TKIndicator";
+import { TKIconUrl } from "@/domain/UI/TKIcons";
 
 @Component
 export default class TKIndicatorComponent extends Vue {
   @Prop()
   readonly indicator!: TKIndicator;
+  readonly iconUrl = TKIconUrl(this.indicator.iconOchaName);
 }
 </script>
 
