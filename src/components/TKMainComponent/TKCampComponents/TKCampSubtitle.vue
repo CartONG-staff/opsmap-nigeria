@@ -12,7 +12,7 @@ export default class TKCampSubtitle extends Vue {}
 </script>
 
 <style scoped>
-.tk-camp-title-subtitle {
+.tk-camp-subtitle {
   color: var(--v-campTitle-base);
   font-size: 30px;
   line-height: 1.467;
