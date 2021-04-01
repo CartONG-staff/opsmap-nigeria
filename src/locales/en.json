@@ -20,5 +20,11 @@
     "comboStatePlaceholder": "Select a state",
     "comboLGAPlaceholder": "Select a LGA",
     "comboCampPlaceholder": "Select a camp"
+  },
+  "camp": {
+    "comboSurveyPlaceholder": "Select a survey",
+    "comboStatePlaceholder": "Select a state",
+    "comboLGAPlaceholder": "Select a LGA",
+    "comboCampPlaceholder": "Select a camp"
   }
 }

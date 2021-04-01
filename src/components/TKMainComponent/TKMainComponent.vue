@@ -1,8 +1,8 @@
 <template>
   <div class="tk-maincomponent">
     <div class="tk-main-header">
-      <div v-if="!isHomePage" class="tk-home-header"></div>
-      <div v-if="isHomePage" class="tk-camp-header"><TKCampSelector /></div>
+      <!-- <div v-if="!isHomePage" class="tk-home-header"></div> -->
+      <div class="tk-camp-header"><TKCampSelector /></div>
     </div>
     <div class="tk-main-top">
       <div class="tk-main-left">
@@ -93,6 +93,8 @@ export default class TKMainComponent extends Vue {
 .tk-camp-header {
   align-items: flex-end;
   height: 100%;
+  margin-left: -20px;
+  margin-right: -20px;
 }
 
 .tk-main-top {

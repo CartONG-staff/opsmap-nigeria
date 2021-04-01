@@ -1,36 +1,46 @@
 <template lang="html">
   <div class="tk-camp-selector">
-    <TKSurveyCombobox class="tk-camp-combobox" />
-    <TKStateCombobox class="tk-camp-combobox" />
-    <TKLgaCombobox class="tk-camp-combobox" />
-    <TKCampCombobox class="tk-camp-combobox" />
+    <v-combobox
+      class="tk-camp-combobox"
+      color="discrete"
+      dense
+      :ripple="false"
+      :placeholder="$t('camp.comboSurveyPlaceholder')"
+    ></v-combobox>
+    <v-combobox
+      class="tk-camp-combobox"
+      color="discrete"
+      dense
+      :ripple="false"
+      :placeholder="$t('camp.comboStatePlaceholder')"
+    ></v-combobox>
+    <v-combobox
+      class="tk-camp-combobox"
+      color="discrete"
+      dense
+      :ripple="false"
+      :placeholder="$t('camp.comboLGAPlaceholder')"
+    ></v-combobox>
+    <v-combobox
+      class="tk-camp-combobox"
+      color="discrete"
+      dense
+      :ripple="false"
+      :placeholder="$t('camp.comboCampPlaceholder')"
+    ></v-combobox>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 
-import {
-  TKCampCombobox,
-  TKLgaCombobox,
-  TKStateCombobox,
-  TKSurveyCombobox,
-} from "./TKCampSelectorComboboxes";
-
-@Component({
-  components: {
-    TKCampCombobox,
-    TKLgaCombobox,
-    TKStateCombobox,
-    TKSurveyCombobox,
-  },
-})
+@Component
 export default class TKCampSelector extends Vue {}
 </script>
 
 <style scoped>
 .tk-camp-selector {
-  background-color: #7b68ee88;
+  background-color: #f0fbff88;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
