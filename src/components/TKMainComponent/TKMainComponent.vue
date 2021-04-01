@@ -123,8 +123,13 @@ export default class TKMainComponent extends Vue {
 }
 
 .tk-main-left {
-  width: 35%;
-  padding-right: 10%;
+  width: 30%;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: left;
 }
 
 .tk-home-left {
@@ -136,6 +141,7 @@ export default class TKMainComponent extends Vue {
 }
 
 .tk-camp-left {
+  flex-grow: 1;
   display: flex;
   flex-flow: column nowrap;
   align-items: top;
