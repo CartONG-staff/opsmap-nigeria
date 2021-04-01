@@ -1,6 +1,6 @@
 <template>
-  <div class="tk-homepage-combos">
-    <p class="tk-homepage-combos-title">
+  <div class="tk-home-combos">
+    <p class="tk-home-combos-title">
       {{ $t("home.combosTitle") }}
     </p>
     <v-combobox
@@ -34,21 +34,21 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
 
 @Component({})
-export default class TKHomePageCombos extends Vue {
+export default class TKHomeCombos extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 }
 </script>
 
 <style scoped>
-.tk-homepage-combos {
+.tk-home-combos {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
   align-items: middle;
 }
 
-.tk-homepage-combos-title {
+.tk-home-combos-title {
   color: var(--v-sectionTitle-base);
   letter-spacing: 0.86px;
   font-size: 12px;
