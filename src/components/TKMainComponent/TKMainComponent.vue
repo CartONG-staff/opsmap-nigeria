@@ -18,7 +18,7 @@
           <TKCampSubtitle class="tk-camp-title" />
         </div>
       </div>
-      <tk-map class="tk-main-map" :config="appConfig.mapConfig" />
+      <TKMap class="tk-main-map" :config="appConfig.mapConfig" />
     </div>
 
     <div class="tk-main-content">
@@ -35,6 +35,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
 import TKTitle from "./TKTitle.vue";
+import TKMap from "@/components/TKMainComponent/TKMap";
 
 import {
   TKHomeCombos,
@@ -53,6 +54,7 @@ import { TKCampSelector, TKCampSubtitle } from "./TKCampComponents";
     TKHomeIndicators,
     TKHomeMoreInfos,
     TKHomeSubtitle,
+    TKMap,
     TKTitle
   }
 })
