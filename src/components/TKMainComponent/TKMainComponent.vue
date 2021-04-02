@@ -8,7 +8,6 @@
       </div>
       <div class="tk-main-top">
         <div class="tk-main-left">
-          <v-btn v-on:click="switchPage()">{{ $t("main.switchPage") }}</v-btn>
           <TKTitle class="tk-home-title" :appConfig="appConfig" />
           <div v-if="isHomePage" class="tk-home-left">
             <TKHomeSubtitle />
@@ -20,6 +19,7 @@
             <TKCampInfos class="tk-camp-infos" />
           </div>
         </div>
+        <v-btn v-on:click="switchPage">{{ $t("main.switchPage") }}</v-btn>
         <TKMap class="tk-main-map" :config="appConfig.mapConfig" />
       </div>
 
