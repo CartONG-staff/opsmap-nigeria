@@ -20,16 +20,17 @@ export default class TKCampSubtitle extends Vue {
     { key: "PROSPER", value: "prosper" },
     { key: "HOP", value: "hop" },
     { key: "LA", value: "la" },
-    { key: "BOUM", value: "boum" },
+    { key: "BOUM", value: "boum" }
   ];
 }
 </script>
 
 <style scoped>
 .tk-camp-infos {
-  color: purple;
-  font-size: 30px;
-  line-height: 1.467;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .tk-hseparator {
