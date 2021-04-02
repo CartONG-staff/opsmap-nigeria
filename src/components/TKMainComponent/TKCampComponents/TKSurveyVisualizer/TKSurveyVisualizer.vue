@@ -26,17 +26,17 @@ import TKSurveyThematic from "./TKSurveyThematic.vue";
 })
 export default class TKSurveyVisualizer extends Vue {
   thematic1 = {
-    name: "avions",
+    name: "Avions",
     iconOchaName: "Airport"
   };
 
   thematic2 = {
-    name: "agile",
+    name: "Agile",
     iconOchaName: "Agile"
   };
 
   thematic3 = {
-    name: "confinés",
+    name: "Confinés",
     iconOchaName: "Confined"
   };
 }
@@ -52,9 +52,6 @@ export default class TKSurveyVisualizer extends Vue {
 
 .tk-survey-visualizer > * {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: top;
   width: 30%;
 }
 </style>
