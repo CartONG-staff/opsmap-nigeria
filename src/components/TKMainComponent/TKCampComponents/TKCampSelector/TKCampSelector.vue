@@ -1,29 +1,29 @@
 <template lang="html">
   <div class="tk-camp-selector">
-    <v-combobox
-      class="tk-camp-combobox"
+    <v-autocomplete
+      class="tk-autocomplete"
       color="discrete"
       dense
       :placeholder="$t('camp.comboSurveyPlaceholder')"
-    ></v-combobox>
-    <v-combobox
-      class="tk-camp-combobox"
+    ></v-autocomplete>
+    <v-autocomplete
+      class="tk-autocomplete"
       color="discrete"
       dense
       :placeholder="$t('camp.comboStatePlaceholder')"
-    ></v-combobox>
-    <v-combobox
-      class="tk-camp-combobox"
+    ></v-autocomplete>
+    <v-autocomplete
+      class="tk-autocomplete"
       color="discrete"
       dense
       :placeholder="$t('camp.comboLGAPlaceholder')"
-    ></v-combobox>
-    <v-combobox
-      class="tk-camp-combobox"
+    ></v-autocomplete>
+    <v-autocomplete
+      class="tk-autocomplete"
       color="discrete"
       dense
       :placeholder="$t('camp.comboCampPlaceholder')"
-    ></v-combobox>
+    ></v-autocomplete>
   </div>
 </template>
 
@@ -45,7 +45,7 @@ export default class TKCampSelector extends Vue {}
   align-items: center;
 }
 
-.tk-camp-combobox {
+.tk-autocomplete {
   margin: 0 15px;
   height: 30px;
   width: 20%;
