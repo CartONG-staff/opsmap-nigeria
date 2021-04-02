@@ -79,7 +79,7 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
-  isHomePage = false;
+  isHomePage = true;
   switchPage() {
     this.isHomePage = !this.isHomePage;
   }
