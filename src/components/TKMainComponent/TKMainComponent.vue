@@ -18,6 +18,7 @@
           </div>
           <div v-if="!isHomePage" class="tk-camp-left">
             <TKCampSubtitle class="tk-camp-title" />
+            <TKCampToolbar class="tk-camp-toolbar" />
             <TKCampInfos class="tk-camp-infos" />
           </div>
         </div>
@@ -47,14 +48,15 @@ import {
   TKHomeCombos,
   TKHomeIndicators,
   TKHomeMoreInfos,
-  TKHomeSubtitle,
+  TKHomeSubtitle
 } from "./TKHomeComponents";
 
 import {
   TKCampIndicators,
   TKCampInfos,
   TKCampSelector,
-  TKCampSubtitle,
+  TKCampToolbar,
+  TKCampSubtitle
 } from "./TKCampComponents";
 
 @Component({
@@ -63,13 +65,14 @@ import {
     TKCampInfos,
     TKCampSelector,
     TKCampSubtitle,
+    TKCampToolbar,
     TKHomeCombos,
     TKHomeIndicators,
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
-    TKTitle,
-  },
+    TKTitle
+  }
 })
 export default class TKMainComponent extends Vue {
   @Prop()
@@ -96,7 +99,6 @@ export default class TKMainComponent extends Vue {
   padding-right: var(--side-padding);
   padding-top: 25px;
   padding-bottom: 25px;
-
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -149,9 +151,6 @@ export default class TKMainComponent extends Vue {
   justify-content: space-between;
 }
 
-.tk-camp-infos {
-}
-
 .tk-main-map {
   width: 65%;
 }
@@ -165,5 +164,13 @@ export default class TKMainComponent extends Vue {
   flex-flow: column nowrap;
   justify-content: flex-start;
   row-gap: 25px;
+}
+
+.tk-camp-toolbar {
+  height: 44px;
+}
+
+.tk-camp-infos {
+  flex-grow: 1;
 }
 </style>
