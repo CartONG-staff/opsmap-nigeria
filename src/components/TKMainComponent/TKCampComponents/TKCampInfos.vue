@@ -14,8 +14,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class TKCampSubtitle extends Vue {
-  @Prop()
+export default class TKCampInfos extends Vue {
   readonly campsInfos = [
     { key: "PROSPER", value: "prosper" },
     { key: "HOP", value: "hop" },
