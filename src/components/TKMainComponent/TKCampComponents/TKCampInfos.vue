@@ -1,9 +1,9 @@
 <template>
   <div class="tk-camp-infos">
-    <div v-for="info in this.campsInfos" :key="info" class="tk-camp-info">
+    <div v-for="info in campsInfos" :key="info.name" class="tk-camp-info">
       <div class="tk-camp-infos-field">
-        <div class="tk-camp-infos-field-key">{{ info.key }}</div>
-        <div class="tk-camp-infos-field-value">{{ info.value }}</div>
+        <div class="tk-camp-infos-field-key">{{ info.name }}</div>
+        <div class="tk-camp-infos-field-value">{{ info.longName }}</div>
       </div>
       <div class="tk-hseparator" />
     </div>
@@ -11,15 +11,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class TKCampInfos extends Vue {
   readonly campsInfos = [
-    { key: "PROSPER", value: "prosper" },
-    { key: "HOP", value: "hop" },
-    { key: "LA", value: "la" },
-    { key: "BOUM", value: "boum" }
+    { name: "PROSPER", longName: "prosper" },
+    { name: "HOP", longName: "hop" },
+    { name: "LA", longName: "la" },
+    { name: "BOUM", longName: "boum" }
   ];
 }
 </script>
