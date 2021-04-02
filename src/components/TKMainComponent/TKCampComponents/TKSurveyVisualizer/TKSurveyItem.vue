@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="tk-survey-item-container">
-    <div v-if="item.trafficLight" class="tk-layout-w-trafficlight" :key="key">
-      <div :key="item.name" class="tk-item-content">
+    <div v-if="item.trafficLight" class="tk-layout-w-trafficlight">
+      <div class="tk-item-content">
         <div class="tk-item-field-name">
           {{ item.name }}
         </div>
@@ -16,8 +16,8 @@
       </div>
     </div>
 
-    <div v-if="!item.trafficLight" class="tk-layout-wo-trafficLight" :key="key">
-      <div :key="key" class="tk-item-content">
+    <div v-if="!item.trafficLight" class="tk-layout-wo-trafficLight">
+      <div class="tk-item-content">
         <div class="tk-item-field-name">
           {{ item.name }}
         </div>
