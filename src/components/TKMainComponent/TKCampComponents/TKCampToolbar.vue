@@ -2,7 +2,7 @@
   <div class="tk-camp-toolbar">
     <v-combobox
       background-color="#418fde"
-      :items="datesItems"
+      :items="['14/02/2002', '14/02/2003', '14/02/2004']"
       flat
       filled
       solo
@@ -22,13 +22,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class TKCampToolbar extends Vue {
-  @Prop()
-  readonly datesItems = ["14/02/2002", "14/02/2003", "14/02/2004"];
-}
+export default class TKCampToolbar extends Vue {}
 </script>
 
 <style>
