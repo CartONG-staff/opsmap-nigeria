@@ -3,29 +3,25 @@
     <p class="tk-home-combos-title">
       {{ $t("home.combosTitle") }}
     </p>
-    <v-combobox
-      class="tk-home-select"
-      color="discrete"
-      item-color="quaternary"
+    <v-autocomplete
+      class="tk-autocomplete"
       flat
       dense
-      :ripple="false"
       :placeholder="$t('home.comboStatePlaceholder')"
-    ></v-combobox>
-    <v-combobox
-      class="tk-home-select"
-      color="discrete"
+      :items="['Braaaaazil', 'Arjentina', 'Coloombia']"
+    ></v-autocomplete>
+    <v-autocomplete
+      class="tk-autocomplete"
+      flat
       dense
-      :ripple="false"
       :placeholder="$t('home.comboLGAPlaceholder')"
-    ></v-combobox>
-    <v-combobox
-      class="tk-home-select"
-      color="discrete"
+    ></v-autocomplete>
+    <v-autocomplete
+      class="tk-autocomplete"
+      flat
       dense
-      :ripple="false"
       :placeholder="$t('home.comboCampPlaceholder')"
-    ></v-combobox>
+    ></v-autocomplete>
   </div>
 </template>
 

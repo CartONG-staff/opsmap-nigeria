@@ -1,6 +1,6 @@
 import TKHomeSubtitle from "./TKHomeSubtitle.vue";
-import TKHomeCombos from "./TKHomeCombos";
-import TKHomeIndicators from "./TKHomeIndicators";
+import TKHomeCombos from "./TKHomeCombos.vue";
+import TKHomeIndicators from "./TKHomeIndicators.vue";
 import TKHomeMoreInfos from "./TKHomeMoreInfos.vue";
 
 export { TKHomeSubtitle };

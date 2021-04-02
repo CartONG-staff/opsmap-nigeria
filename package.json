@@ -14,8 +14,11 @@
   },
   "main": "dist/opsmap-toolkit.umd.js",
   "dependencies": {
+    "@types/chart.js": "^2.9.31",
     "@types/mapbox-gl": "^2.1.1",
     "@types/papaparse": "^5.2.5",
+    "chart.js": "^3.0.0",
+    "chartjs": "^0.3.24",
     "core-js": "^3.9.1",
     "mapbox-gl": "^2.1.1",
     "papaparse": "^5.3.0",

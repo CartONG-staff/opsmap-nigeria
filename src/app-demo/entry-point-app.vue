@@ -22,8 +22,8 @@ import { TKDatasetBuilder } from "@/domain/Data/Survey/TKDatasetBuilder";
   components: {
     TKHeader,
     TKFooter,
-    TKMainComponent,
-  },
+    TKMainComponent
+  }
 })
 export default class App extends Vue {
   private appConfig: TKGeneralConfiguration = APPCONFIG;
@@ -64,6 +64,43 @@ h3 {
 
 .tk-main-dashboard {
   flex-grow: 2;
-  padding-bottom: 60px;
+}
+
+.v-ripple__container {
+  display: none !important;
+}
+
+<style>
+.tk-autocomplete input {
+  color: #000 !important;
+  font-family: "Arial";
+  font-weight: bold !important;
+  font-size: 16px !important;
+}
+
+.tk-autocomplete input::placeholder {
+  color: #000 !important;
+  font-family: "Arial";
+  font-weight: bold !important;
+  font-size: 16px !important;
+}
+
+.tk-autocomplete .theme--light.v-icon {
+  color: #d8d8d8 !important;
+}
+
+.tk-autocomplete .v-input__slot {
+  border-color: #d8d8d8 !important;
+  transition: none !important;
+}
+
+.tk-autocomplete .v-input__slot:before {
+  border-color: #d8d8d8 !important;
+  transition: none !important;
+}
+
+.tk-autocomplete .v-input__slot:after {
+  border-color: #d8d8d8 !important;
+  transition: none !important;
 }
 </style>

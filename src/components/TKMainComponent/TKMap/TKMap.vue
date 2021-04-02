@@ -36,3 +36,9 @@ export default class TKMap extends Vue {
   height: 450px;
 }
 </style>
+
+<style>
+#tk-map canvas {
+  outline: 0 !important;
+}
+</style>

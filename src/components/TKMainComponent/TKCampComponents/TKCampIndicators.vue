@@ -1,41 +1,38 @@
 <template>
-  <div class="tk-home-indicators">
-    <TKHomeIndicator :indicator="this.indicator1" />
-    <TKHomeIndicator :indicator="this.indicator2" />
-    <TKHomeIndicator :indicator="this.indicator3" />
+  <div class="tk-camp-indicators">
+    <TKIndicatorComponent :indicator="this.indicator1" />
+    <TKIndicatorComponent :indicator="this.indicator2" />
+    <TKIndicatorComponent :indicator="this.indicator3" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
-import TKHomeIndicator from "./TKHomeIndicator.vue";
+import TKIndicatorComponent from "../TKIndicator.vue";
 import { TKIndicator } from "@/domain/UI/TKIndicator";
 @Component({
   components: {
-    TKHomeIndicator,
-  },
+    TKIndicatorComponent
+  }
 })
-export default class TKHomeIndicators extends Vue {
+export default class TKCampIndicators extends Vue {
   indicator1: TKIndicator = {
-    value: 57,
+    value: 20,
     name: "Sites",
-    icon:
-      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/IDP-refugee-camp.png",
+    iconOchaName: "IDP-refugee-camp"
   };
 
   indicator2: TKIndicator = {
-    value: 520,
+    value: 100,
     name: "People",
-    icon:
-      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/People-in-need.png",
+    iconOchaName: "People-in-need"
   };
 
   indicator3: TKIndicator = {
-    value: 20,
-    name: "Sites overcrowded",
-    icon:
-      "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/Permanent-camp.png",
+    value: 0,
+    name: "Overcrowded",
+    iconOchaName: "Permanent-camp"
   };
 
   @Prop()
@@ -44,14 +41,14 @@ export default class TKHomeIndicators extends Vue {
 </script>
 
 <style scoped>
-.tk-home-indicators {
+.tk-camp-indicators {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: top;
 }
 
-.tk-home-indicators > * {
+.tk-camp-indicators > * {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
