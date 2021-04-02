@@ -5,10 +5,11 @@
       <img class="tk-survey-icon" :src="icon_url" />
     </div>
     <div class="tk-survey-thematic-content">
-      <template v-for="(item, key) in items">
-        <div v-if="key !== 0" class="tk-hseparator" :key="item.name"></div>
-        <TKSurveyItem :item="item" :key="item.name" />
-      </template>
+      <!-- <TKSurveyPyramidChart /> -->
+      <div v-for="(item, key) in items" :key="item.id">
+        <div v-if="key !== 0" class="tk-hseparator"></div>
+        <TKSurveyItem :item="item" />
+      </div>
     </div>
   </div>
 </template>
@@ -18,10 +19,12 @@ import { Vue, Prop, Component } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/UI/TKIcons";
 import { TKSurveyItemI, TrafficLight } from "./TKSurveyItemI";
 import TKSurveyItem from "./TKSurveyItem.vue";
+// import TKSurveyPyramidChart from "./TKSurveyPyramidChart";
 
 @Component({
   components: {
     TKSurveyItem
+    // TKSurveyPyramidChart
   }
 })
 export default class TKSurveyThematic extends Vue {
@@ -53,7 +56,7 @@ export default class TKSurveyThematic extends Vue {
     },
     {
       name: "Market inside the site",
-      value: "NO",
+      value: "?",
       trafficLight: TrafficLight.CRITICAL
     }
   ];
@@ -103,5 +106,4 @@ export default class TKSurveyThematic extends Vue {
   height: 1px;
   width: 100%;
 }
-
 </style>
