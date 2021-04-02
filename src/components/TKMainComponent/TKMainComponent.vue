@@ -8,9 +8,7 @@
       </div>
       <div class="tk-main-top">
         <div class="tk-main-left">
-          <v-btn v-on:click="switchPage()">{{
-            $t("main.switchPage")
-          }}</v-btn>
+          <v-btn v-on:click="switchPage()">{{ $t("main.switchPage") }}</v-btn>
           <TKTitle class="tk-home-title" :appConfig="appConfig" />
           <div v-if="isHomePage" class="tk-home-left">
             <TKHomeSubtitle />
@@ -78,7 +76,7 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
-  isHomePage = true;
+  isHomePage = false;
   switchPage() {
     this.isHomePage = !this.isHomePage;
   }
@@ -164,10 +162,6 @@ export default class TKMainComponent extends Vue {
   flex-flow: column nowrap;
   justify-content: flex-start;
   row-gap: 25px;
-}
-
-.tk-camp-toolbar {
-  height: 44px;
 }
 
 .tk-camp-infos {
