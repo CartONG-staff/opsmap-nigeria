@@ -8,7 +8,7 @@
       </div>
       <div class="tk-main-top">
         <div class="tk-main-left">
-          <v-btn :ripple="false" v-on:click="switchPage()">{{
+          <v-btn v-on:click="switchPage()">{{
             $t("main.switchPage")
           }}</v-btn>
           <TKTitle class="tk-home-title" :appConfig="appConfig" />

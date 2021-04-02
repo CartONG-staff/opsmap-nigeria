@@ -4,28 +4,24 @@
       class="tk-camp-combobox"
       color="discrete"
       dense
-      :ripple="false"
       :placeholder="$t('camp.comboSurveyPlaceholder')"
     ></v-combobox>
     <v-combobox
       class="tk-camp-combobox"
       color="discrete"
       dense
-      :ripple="false"
       :placeholder="$t('camp.comboStatePlaceholder')"
     ></v-combobox>
     <v-combobox
       class="tk-camp-combobox"
       color="discrete"
       dense
-      :ripple="false"
       :placeholder="$t('camp.comboLGAPlaceholder')"
     ></v-combobox>
     <v-combobox
       class="tk-camp-combobox"
       color="discrete"
       dense
-      :ripple="false"
       :placeholder="$t('camp.comboCampPlaceholder')"
     ></v-combobox>
   </div>

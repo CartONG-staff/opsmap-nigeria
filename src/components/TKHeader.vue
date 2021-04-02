@@ -31,12 +31,12 @@
       color="accent"
       class="tk-header-buttons"
     >
-      <v-btn plain text :ripple="false" value="en">EN</v-btn>
+      <v-btn plain text value="en">EN</v-btn>
       <img
         src="@/assets/vertical-separator.png"
         class="tk-header-buttons-sep"
       />
-      <v-btn plain text :ripple="false" value="fr">FR</v-btn>
+      <v-btn plain text value="fr">FR</v-btn>
     </v-btn-toggle>
   </div>
 </template>

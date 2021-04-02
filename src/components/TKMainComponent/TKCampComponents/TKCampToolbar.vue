@@ -15,7 +15,6 @@
       elevation="0"
       class="tk-camp-toolbar-export"
       height="44"
-      :ripple="false"
     >
       Export as CSV
     </v-btn>

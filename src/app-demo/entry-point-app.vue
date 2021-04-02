@@ -22,8 +22,8 @@ import { TKDatasetBuilder } from "@/domain/Data/Survey/TKDatasetBuilder";
   components: {
     TKHeader,
     TKFooter,
-    TKMainComponent,
-  },
+    TKMainComponent
+  }
 })
 export default class App extends Vue {
   private appConfig: TKGeneralConfiguration = APPCONFIG;
@@ -64,5 +64,9 @@ h3 {
 
 .tk-main-dashboard {
   flex-grow: 2;
+}
+
+.v-ripple__container {
+  display: none !important;
 }
 </style>

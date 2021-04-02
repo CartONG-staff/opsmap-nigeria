@@ -3,29 +3,25 @@
     <p class="tk-home-combos-title">
       {{ $t("home.combosTitle") }}
     </p>
-    <v-combobox
+    <v-autocomplete
       class="tk-home-select"
-      color="discrete"
-      item-color="quaternary"
       flat
       dense
-      :ripple="false"
       :placeholder="$t('home.comboStatePlaceholder')"
-    ></v-combobox>
-    <v-combobox
+      :items="['Braaaaazil', 'Arjentina', 'Coloombia']"
+    ></v-autocomplete>
+    <v-autocomplete
       class="tk-home-select"
-      color="discrete"
+      flat
       dense
-      :ripple="false"
       :placeholder="$t('home.comboLGAPlaceholder')"
-    ></v-combobox>
-    <v-combobox
+    ></v-autocomplete>
+    <v-autocomplete
       class="tk-home-select"
-      color="discrete"
+      flat
       dense
-      :ripple="false"
       :placeholder="$t('home.comboCampPlaceholder')"
-    ></v-combobox>
+    ></v-autocomplete>
   </div>
 </template>
 
@@ -52,5 +48,40 @@ export default class TKHomeCombos extends Vue {
   color: var(--v-sectionTitle-base);
   letter-spacing: 0.86px;
   font-size: 12px;
+}
+</style>
+
+<style>
+.tk-home-combos input {
+  color: #000 !important;
+  font-family: "Arial";
+  font-weight: bold !important;
+  font-size: 16px !important;
+}
+
+.tk-home-combos input::placeholder {
+  color: #000 !important;
+  font-family: "Arial";
+  font-weight: bold !important;
+  font-size: 16px !important;
+}
+
+.tk-home-combos .theme--light.v-icon {
+  color: #d8d8d8 !important;
+}
+
+.tk-home-combos .v-input__slot {
+  border-color: #d8d8d8 !important;
+  transition: none !important;
+}
+
+.tk-home-combos .v-input__slot:before {
+  border-color: #d8d8d8 !important;
+  transition: none !important;
+}
+
+.tk-home-combos .v-input__slot:after {
+  border-color: #d8d8d8 !important;
+  transition: none !important;
 }
 </style>
