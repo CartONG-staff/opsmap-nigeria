@@ -30,6 +30,7 @@
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
           <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
+          <TKSurveyVisualizer />
         </div>
       </div>
     </div>
@@ -54,7 +55,8 @@ import {
   TKCampInfos,
   TKCampSelector,
   TKCampToolbar,
-  TKCampSubtitle
+  TKCampSubtitle,
+  TKSurveyVisualizer
 } from "./TKCampComponents";
 
 @Component({
@@ -64,6 +66,7 @@ import {
     TKCampSelector,
     TKCampSubtitle,
     TKCampToolbar,
+    TKSurveyVisualizer,
     TKHomeCombos,
     TKHomeIndicators,
     TKHomeMoreInfos,
@@ -166,5 +169,12 @@ export default class TKMainComponent extends Vue {
 
 .tk-camp-infos {
   flex-grow: 1;
+}
+
+.tk-camp-content {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  row-gap: 25px;
 }
 </style>
