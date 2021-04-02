@@ -104,5 +104,3 @@ h3 {
   transition: none !important;
 }
 </style>
-
-</style>
