@@ -7,49 +7,7 @@
     <div class="tk-survey-thematic-content">
       <template v-for="(item, key) in items">
         <div v-if="key !== 0" class="tk-hseparator" :key="item.name"></div>
-        <div
-          v-if="item.trafficLight"
-          class="tk-survey-thematic-content-layout-w-trafficLight"
-          :key="key"
-        >
-          <div :key="item.name" class="tk-survey-thematic-content-item">
-            <div class="tk-survey-thematic-content-item-field-name">
-              {{ item.name }}
-            </div>
-            <div class="tk-survey-thematic-content-item-field-value">
-              {{ item.value }}
-            </div>
-            <div class="tk-trafficlight">
-              <div
-                v-if="item.trafficLight === 1"
-                class="tk-trafficlight-ok"
-              ></div>
-              <div
-                v-if="item.trafficLight === 2"
-                class="tk-trafficlight-warning"
-              ></div>
-              <div
-                v-if="item.trafficLight === 3"
-                class="tk-trafficlight-critical"
-              ></div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          v-if="!item.trafficLight"
-          class="tk-survey-thematic-content-layout-wo-trafficLight"
-          :key="key"
-        >
-          <div :key="key" class="tk-survey-thematic-content-item">
-            <div class="tk-survey-thematic-content-item-field-name">
-              {{ item.name }}
-            </div>
-            <div class="tk-survey-thematic-content-item-field-value">
-              {{ item.value }}
-            </div>
-          </div>
-        </div>
+        <TKSurveyItem :item="item" :key="item.name" />
       </template>
     </div>
   </div>
@@ -59,8 +17,13 @@
 import { Vue, Prop, Component } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/UI/TKIcons";
 import { TKSurveyItemI, TrafficLight } from "./TKSurveyItemI";
+import TKSurveyItem from "./TKSurveyItem.vue";
 
-@Component
+@Component({
+  components: {
+    TKSurveyItem
+  }
+})
 export default class TKSurveyThematic extends Vue {
   @Prop()
   readonly title!: string;
@@ -141,59 +104,4 @@ export default class TKSurveyThematic extends Vue {
   width: 100%;
 }
 
-.tk-survey-thematic-content-item {
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.tk-survey-thematic-content-item-field-name {
-  font-weight: bold;
-  font-size: 11px;
-  color: #999;
-  flex-grow: 1;
-}
-
-.tk-survey-thematic-content-item-field-value {
-  font-weight: bold;
-  font-size: 11px;
-  color: #333;
-  line-height: 2.727;
-}
-
-.tk-survey-thematic-content-layout-w-trafficLight {
-  margin-right: -20px;
-}
-
-.tk-trafficlight {
-  width: 20px;
-  text-align: center;
-  height: 100%;
-}
-
-.tk-trafficlight-ok {
-  height: 8px;
-  width: 8px;
-  background-color: green;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.tk-trafficlight-warning {
-  height: 8px;
-  width: 8px;
-  background-color: orange;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.tk-trafficlight-critical {
-  height: 8px;
-  width: 8px;
-  background-color: #e91d1d;
-  border-radius: 50%;
-  margin: 0 auto;
-}
 </style>
