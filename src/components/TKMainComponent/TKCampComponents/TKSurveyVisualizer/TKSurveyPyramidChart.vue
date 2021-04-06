@@ -138,7 +138,6 @@ export default class TKSurveyPyramidChart extends Vue {
               const value = Math.abs(Number(tooltipItem.raw));
               let label = tooltipItem.dataset.label;
               label = value > 1 ? label + "s" : label;
-
               return label + ": " + value.toString();
             },
             title: function(tooltipItems): string {
@@ -154,11 +153,6 @@ export default class TKSurveyPyramidChart extends Vue {
           }
         }
       }
-      // scales: {
-      //   yAxes: [{
-      //     barThickness: 15
-      //   }]
-      // },
     }
   };
 
