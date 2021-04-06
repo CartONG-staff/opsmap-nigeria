@@ -5,7 +5,11 @@
       <img class="tk-survey-icon" :src="icon_url" />
     </div>
     <div class="tk-survey-thematic-content">
-      <TKSurveyPyramidChart class="tk-survey-chart" :name="title" />
+      <TKSurveyPyramidChart class="tk-survey-chart" :name="title + 'bars'" />
+      <TKSurveyDoughnutChart
+        class="tk-survey-chart"
+        :name="title + 'doughnut'"
+      />
       <div v-for="(item, key) in items" :key="item.id">
         <div v-if="key !== 0" class="tk-hseparator"></div>
         <TKSurveyItem :item="item" />
@@ -20,10 +24,12 @@ import { TKIconUrl } from "@/domain/UI/TKIcons";
 import { TKSurveyItemI, TrafficLight } from "./TKSurveyItemI";
 import TKSurveyItem from "./TKSurveyItem.vue";
 import TKSurveyPyramidChart from "./TKSurveyPyramidChart.vue";
+import TKSurveyDoughnutChart from "./TKSurveyDoughnutChart.vue";
 
 @Component({
   components: {
     TKSurveyItem,
+    TKSurveyDoughnutChart,
     TKSurveyPyramidChart
   }
 })
