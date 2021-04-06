@@ -80,16 +80,21 @@ export default class TKSurveyPyramidChart extends Vue {
         {
           label: "Female",
           data: [12, 19, 3, 5, 0],
-          backgroundColor: "#f37788"
+          backgroundColor: "#f37788",
+          barThickness: 15,
+          minBarLength: 1
         },
         {
           label: "Male",
-          data: [-4, -8, -1, -14, 0],
-          backgroundColor: "#4095cd"
+          data: [-4, -8, -2, -14, 0],
+          backgroundColor: "#4095cd",
+          barThickness: 15,
+          minBarLength: 1
         }
       ]
     },
     options: {
+      indexAxis: "y", // Make bar horizontal !
       responsive: true,
       maintainAspectRatio: false,
       layout: {
@@ -115,7 +120,6 @@ export default class TKSurveyPyramidChart extends Vue {
           stacked: true
         }
       },
-      indexAxis: "y", // Make bar horizontal !
       plugins: {
         title: {
           display: true,
@@ -129,19 +133,22 @@ export default class TKSurveyPyramidChart extends Vue {
           reverse: true
         },
         tooltip: {
-          callbacks: {
-            label: function(context) {
-              return "";
-            }
-          }
+          // callbacks: {
+          //   label: function(context) {
+          //     let label = "";
+          //     label = context.dataset.indexAxis === "y" ? "4" : "5";
+          //     return label;
+          //   }
+          // }
+          //   obj: (t, d) =>
+          //     d.datasets[t[0].datasetIndex].label + ": " + d.labels[t[0].index],
+          //   label: (t, d) =>
+          //     t.datasetIndex === 1
+          //       ? Number(0 - d.datasets[1].data[t.index])
+          //       : d.datasets[0].data[t.index]
         }
       }
       // scales: {
-      //   xAxes: [{
-      //     ticks: {
-      //       callback: (label) => label < 0 ? 0 - label : label
-      //     }
-      //   }],
       //   yAxes: [{
       //     barThickness: 15
       //   }]
