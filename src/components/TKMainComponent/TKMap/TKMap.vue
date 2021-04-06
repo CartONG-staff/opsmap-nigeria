@@ -1,6 +1,8 @@
 <template lang="html">
   <div>
-    <div id="tk-map"></div>
+    <div id="tk-map">
+      <TKMapZoom class="tk-map-zoom" />
+    </div>
   </div>
 </template>
 
@@ -11,7 +13,13 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 import { TKMapboxConfiguration } from "@/domain/Map/TKMapboxConfiguration";
 
-@Component
+import TKMapZoom from "./TKMapZoom.vue";
+
+@Component({
+  components: {
+    TKMapZoom
+  }
+})
 export default class TKMap extends Vue {
   @Prop()
   readonly config!: TKMapboxConfiguration;
@@ -34,6 +42,14 @@ export default class TKMap extends Vue {
   border-radius: 15px;
   width: 100%;
   height: 450px;
+}
+
+.tk-map-zoom {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2500;
+  background-color: #fff;
 }
 </style>
 
