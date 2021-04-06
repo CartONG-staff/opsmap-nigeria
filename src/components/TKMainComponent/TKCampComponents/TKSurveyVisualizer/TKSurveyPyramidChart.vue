@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="tk-survey-pyramid-chart">
-    <canvas :id="ctx" width="400" height="400"> </canvas>
+    <canvas :id="ctx" height="260"> </canvas>
   </div>
 </template>
 
@@ -97,6 +97,9 @@ export default class TKSurveyPyramidChart extends Vue {
       indexAxis: "y", // Make bar horizontal !
       responsive: true,
       maintainAspectRatio: false,
+      font: {
+        size: 11
+      },
       layout: {
         padding: 20
       },
@@ -125,12 +128,17 @@ export default class TKSurveyPyramidChart extends Vue {
           display: true,
           text: "AgePyramid",
           font: {
-            size: 14
+            size: 12
           }
         },
         legend: {
           position: "top",
-          reverse: true
+          reverse: true,
+          labels: {
+            font: {
+              size: 11
+            }
+          }
         },
         tooltip: {
           callbacks: {
@@ -150,6 +158,12 @@ export default class TKSurveyPyramidChart extends Vue {
               0);
               return tooltipItems[0].label + ": " + sum.toString();
             }
+          },
+          titleFont:{
+            size: 11
+          },
+          bodyFont: {
+            size: 11
           }
         }
       }
