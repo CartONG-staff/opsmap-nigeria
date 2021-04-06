@@ -1,19 +1,19 @@
 <template lang="html">
   <div class="tk-map-zoom">
     <div class="tk-icon-container">
-      <v-icon>
+      <v-icon @click="$emit('zoomin')">
         mdi-plus
       </v-icon>
     </div>
     <div class="tk-hseparator" />
     <div class="tk-icon-container">
-      <v-icon>
+      <v-icon @click="$emit('zoomout')">
         mdi-minus
       </v-icon>
     </div>
     <div class="tk-hseparator" />
     <div class="tk-icon-container">
-      <v-icon>
+      <v-icon @click="$emit('zoomreset')">
         mdi-stretch-to-page-outline
       </v-icon>
     </div>

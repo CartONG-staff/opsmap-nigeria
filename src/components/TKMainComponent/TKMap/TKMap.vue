@@ -1,7 +1,12 @@
 <template lang="html">
   <div>
     <div id="tk-map">
-      <TKMapZoom class="tk-map-zoom" />
+      <TKMapZoom
+        class="tk-map-zoom"
+        v-on:zoomin="zoomIn"
+        v-on:zoomout="zoomOut"
+        v-on:zoomreset="zoomReset"
+      />
     </div>
   </div>
 </template>
@@ -26,6 +31,38 @@ export default class TKMap extends Vue {
 
   map!: mapboxgl.Map;
 
+  // navOption = {
+  //   showZoom: true,
+  //   showCompass: false,
+  //   visualizePitch: true
+  // };
+  scaleOption = {
+    maxWidth: 100,
+    unit: "metric"
+  };
+
+  zoomIn(): void {
+    if (this.map) {
+      this.map.zoomIn();
+    }
+  }
+
+  zoomOut(): void {
+    if (this.map) {
+      this.map.zoomOut();
+    }
+  }
+
+  zoomReset(): void {
+    if (this.map) {
+      this.map.flyTo({
+        center: this.config.center,
+        zoom: this.config.zoom,
+        speed: 2
+      });
+    }
+  }
+
   mounted(): void {
     this.map = new mapboxgl.Map({
       container: "tk-map",
@@ -34,6 +71,18 @@ export default class TKMap extends Vue {
       zoom: this.config.zoom,
       accessToken: this.config.token
     });
+
+    // const nav = new mapboxgl.NavigationControl(this.navOption);
+    // this.map.addControl(nav, "top-right");
+
+    const scale = new mapboxgl.ScaleControl(this.scaleOption);
+    this.map.addControl(scale);
+
+    // disable map rotation using right click + drag
+    this.map.dragRotate.disable();
+
+    // disable map rotation using touch rotation gesture
+    this.map.touchZoomRotate.disableRotation();
   }
 }
 </script>
