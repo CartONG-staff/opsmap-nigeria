@@ -5,7 +5,7 @@
       <img class="tk-survey-icon" :src="icon_url" />
     </div>
     <div class="tk-survey-thematic-content">
-      <!-- <TKSurveyPyramidChart /> -->
+      <TKSurveyPyramidChart class="tk-survey-chart" :name="title" />
       <div v-for="(item, key) in items" :key="item.id">
         <div v-if="key !== 0" class="tk-hseparator"></div>
         <TKSurveyItem :item="item" />
@@ -19,12 +19,12 @@ import { Vue, Prop, Component } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/UI/TKIcons";
 import { TKSurveyItemI, TrafficLight } from "./TKSurveyItemI";
 import TKSurveyItem from "./TKSurveyItem.vue";
-// import TKSurveyPyramidChart from "./TKSurveyPyramidChart";
+import TKSurveyPyramidChart from "./TKSurveyPyramidChart.vue";
 
 @Component({
   components: {
-    TKSurveyItem
-    // TKSurveyPyramidChart
+    TKSurveyItem,
+    TKSurveyPyramidChart
   }
 })
 export default class TKSurveyThematic extends Vue {
@@ -89,6 +89,11 @@ export default class TKSurveyThematic extends Vue {
   font-size: 16px;
   font-weight: bold;
   color: #333;
+}
+
+.tk-survey-chart {
+  margin-bottom: 13px;
+  margin-top: 13px;
 }
 
 .tk-survey-icon {
