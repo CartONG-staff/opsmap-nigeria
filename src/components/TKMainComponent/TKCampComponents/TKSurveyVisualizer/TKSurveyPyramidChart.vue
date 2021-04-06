@@ -105,15 +105,9 @@ export default class TKSurveyPyramidChart extends Vue {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      // legend: {
-      //   position: "top",
-      //   reverse: true
-      // // },
-      // title: {
-      //   display: true,
-      //   fontSize: 14,
-      //   text: "Age Pyramid"
-      // },
+      layout: {
+        padding: 20
+      },
       scales: {
         y: {
           beginAtZero: true,
@@ -128,6 +122,10 @@ export default class TKSurveyPyramidChart extends Vue {
           font: {
             size: 14
           }
+        },
+        legend: {
+          position: "top",
+          reverse: true
         }
       }
       // scales: {
@@ -137,7 +135,6 @@ export default class TKSurveyPyramidChart extends Vue {
       //     }
       //   }],
       //   yAxes: [{
-      //     stacked: true,
       //     barThickness: 15
       //   }]
       // },
