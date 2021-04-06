@@ -1,14 +1,17 @@
 <template>
   <div class="tk-camp-toolbar">
-    <v-combobox
+    <v-autocomplete
       background-color="#418fde"
-      :items="['14/02/2002', '14/02/2003', '14/02/2004']"
+      color="#ffffff"
+      :items="surveys"
+      v-model="surveys[0]"
       flat
       filled
       solo
+      dense
       class="tk-camp-toolbar-survey"
-      placeholder="PLACEHOLDER"
-    ></v-combobox>
+      height="44"
+    ></v-autocomplete>
     <v-btn
       depressed
       color="#000"
@@ -25,7 +28,9 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class TKCampToolbar extends Vue {}
+export default class TKCampToolbar extends Vue {
+  surveys = ["14/02/2002", "14/02/2003", "14/02/2004"];
+}
 </script>
 
 <style>
@@ -67,4 +72,9 @@ export default class TKCampToolbar extends Vue {}
   font-size: 12px !important;
   letter-spacing: 0.86px !important;
 }
+
+.tk-camp-toolbar-survey .v-icon.v-icon {
+  color: #fff !important;
+}
+
 </style>
