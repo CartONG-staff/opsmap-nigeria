@@ -7,6 +7,8 @@
         v-on:zoomout="zoomOut"
         v-on:zoomreset="zoomReset"
       />
+
+      <TKMapFilters class="tk-map-filters" />
     </div>
   </div>
 </template>
@@ -18,10 +20,12 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 import { TKMapboxConfiguration } from "@/domain/Map/TKMapboxConfiguration";
 
+import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 
 @Component({
   components: {
+    TKMapFilters,
     TKMapZoom
   }
 })
@@ -96,6 +100,14 @@ export default class TKMap extends Vue {
 .tk-map-zoom {
   position: absolute;
   top: 8px;
+  right: 8px;
+  z-index: 2500;
+  background-color: #fff;
+}
+
+.tk-map-filters {
+  position: absolute;
+  bottom: 8px;
   right: 8px;
   z-index: 2500;
   background-color: #fff;

@@ -28,8 +28,7 @@ export default class TKMapZoom extends Vue {}
 </script>
 <style scoped>
 .tk-map-zoom {
-  opacity: 1;
-  border-radius: 4px;
+  border-radius: 8px;
   overflow: hidden;
   border: 2px solid #00000011;
   display: flex;
