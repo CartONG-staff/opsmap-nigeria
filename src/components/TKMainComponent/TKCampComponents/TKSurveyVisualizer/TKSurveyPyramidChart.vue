@@ -79,7 +79,7 @@ export default class TKSurveyPyramidChart extends Vue {
       datasets: [
         {
           label: "Female",
-          data: [12, 19, 3, 5, 0],
+          data: [12, 19, 1, 5, 0],
           backgroundColor: "#f37788",
           barThickness: 15,
           minBarLength: 1
@@ -133,19 +133,25 @@ export default class TKSurveyPyramidChart extends Vue {
           reverse: true
         },
         tooltip: {
-          // callbacks: {
-          //   label: function(context) {
-          //     let label = "";
-          //     label = context.dataset.indexAxis === "y" ? "4" : "5";
-          //     return label;
-          //   }
-          // }
-          //   obj: (t, d) =>
-          //     d.datasets[t[0].datasetIndex].label + ": " + d.labels[t[0].index],
-          //   label: (t, d) =>
-          //     t.datasetIndex === 1
-          //       ? Number(0 - d.datasets[1].data[t.index])
-          //       : d.datasets[0].data[t.index]
+          callbacks: {
+            label: function(tooltipItem): string {
+              const value = Math.abs(Number(tooltipItem.raw));
+              let label = tooltipItem.dataset.label;
+              label = value > 1 ? label + "s" : label;
+
+              return label + ": " + value.toString();
+            },
+            title: function(tooltipItems): string {
+              const sum = tooltipItems.reduce(function(
+                accumulateur,
+                valeurCourante
+              ): number {
+                return accumulateur + Math.abs(Number(valeurCourante.raw));
+              },
+              0);
+              return tooltipItems[0].label + ": " + sum.toString();
+            }
+          }
         }
       }
       // scales: {
