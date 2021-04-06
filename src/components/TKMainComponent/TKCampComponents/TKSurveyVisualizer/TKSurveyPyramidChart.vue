@@ -159,7 +159,7 @@ export default class TKSurveyPyramidChart extends Vue {
               return tooltipItems[0].label + ": " + sum.toString();
             }
           },
-          titleFont:{
+          titleFont: {
             size: 11
           },
           bodyFont: {
@@ -186,5 +186,10 @@ export default class TKSurveyPyramidChart extends Vue {
 .tk-survey-pyramid-chart {
   background-color: #ffffff;
   border-radius: 8px;
+}
+
+.tk-survey-pyramid-chart {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 </style>
