@@ -116,10 +116,31 @@ export default class TKSurveyPyramidChart extends Vue {
       // },
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          stacked: true
         }
       },
-      indexAxis: "y" // Make bar horizontal !
+      indexAxis: "y", // Make bar horizontal !
+      plugins: {
+        title: {
+          display: true,
+          text: "AgePyramid",
+          font: {
+            size: 14
+          }
+        }
+      }
+      // scales: {
+      //   xAxes: [{
+      //     ticks: {
+      //       callback: (label) => label < 0 ? 0 - label : label
+      //     }
+      //   }],
+      //   yAxes: [{
+      //     stacked: true,
+      //     barThickness: 15
+      //   }]
+      // },
     }
   };
 
