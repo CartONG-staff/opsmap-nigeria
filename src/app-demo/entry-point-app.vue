@@ -70,7 +70,6 @@ h3 {
   display: none !important;
 }
 
-<style>
 .tk-autocomplete input {
   color: #000 !important;
   font-family: "Arial";
