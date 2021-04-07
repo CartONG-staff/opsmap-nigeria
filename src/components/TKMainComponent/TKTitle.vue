@@ -5,7 +5,10 @@
     </span>
     <br />
     <span class="tk-title-country">
-      {{ appConfig.name }}
+      {{
+        appConfig.name.charAt(0).toUpperCase() +
+          appConfig.name.slice(1).toLowerCase()
+      }}
     </span>
   </div>
 </template>
