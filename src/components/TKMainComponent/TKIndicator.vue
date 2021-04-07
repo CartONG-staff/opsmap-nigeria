@@ -1,17 +1,17 @@
 <template>
   <div class="tk-indicator">
     <img
-      v-if="isType1"
+      v-if="backgroundType === 1"
       class="tk-indicator-bg"
       src="@/assets/bg-indicator-1.png"
     />
     <img
-      v-if="isType2"
+      v-if="backgroundType === 2"
       class="tk-indicator-bg"
       src="@/assets/bg-indicator-2.png"
     />
     <img
-      v-if="isType3"
+      v-if="backgroundType === 3"
       class="tk-indicator-bg"
       src="@/assets/bg-indicator-3.png"
     />
@@ -33,17 +33,15 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import { TKIndicator } from "@/domain/UI/TKIndicator";
+import { TKIndicator, TKIndicatorBackground } from "@/domain/UI/TKIndicator";
 import { TKIconUrl } from "@/domain/UI/TKIcons";
 
 @Component
 export default class TKIndicatorComponent extends Vue {
   @Prop()
-  readonly type!: number;
-
-  readonly isType1 = this.type === 1;
-  readonly isType2 = this.type === 2;
-  readonly isType3 = this.type === 3;
+  readonly backgroundType!: TKIndicatorBackground;
+  // 1 or 2 or 3. no background if anything else.
+  // Couldn't make enum work with that
 
   @Prop()
   readonly indicator!: TKIndicator;
@@ -91,8 +89,8 @@ export default class TKIndicatorComponent extends Vue {
 }
 
 .tk-indicator-value-decription {
-  color: var;
-  font-weight: bold;
+  color: var(--v-quaternary-base);
+  font-weight: bolder;
   font-size: 16px;
   height: 17px;
   line-height: 17px;
