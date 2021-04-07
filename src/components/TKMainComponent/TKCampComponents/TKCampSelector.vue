@@ -36,13 +36,15 @@ export default class TKCampSelector extends Vue {}
 
 <style scoped>
 .tk-camp-selector {
-  background-color: #f0fbffcc;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
   border-radius: 8px;
   height: 100%;
   align-items: center;
+  background-color: #f0fbffcc;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
 .tk-autocomplete {

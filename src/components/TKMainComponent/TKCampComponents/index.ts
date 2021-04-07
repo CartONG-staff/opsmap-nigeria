@@ -1,6 +1,6 @@
 import TKCampIndicators from "./TKCampIndicators.vue";
 import TKCampInfos from "./TKCampInfos.vue";
-import TKCampSelector from "./TKCampSelector";
+import TKCampSelector from "./TKCampSelector.vue";
 import TKCampSubtitle from "./TKCampSubtitle.vue";
 import TKCampToolbar from "./TKCampToolbar.vue";
 import TKSurveyVisualizer from "./TKSurveyVisualizer";
