@@ -1,8 +1,8 @@
 <template>
   <div class="tk-home-indicators">
-    <TKIndicatorComponent :indicator="this.indicator1" />
-    <TKIndicatorComponent :indicator="this.indicator2" />
-    <TKIndicatorComponent :indicator="this.indicator3" />
+    <TKIndicatorComponent :backgroundType="1" :indicator="this.indicator1" />
+    <TKIndicatorComponent :backgroundType="2" :indicator="this.indicator2" />
+    <TKIndicatorComponent :backgroundType="3" :indicator="this.indicator3" />
   </div>
 </template>
 
@@ -13,26 +13,26 @@ import TKIndicatorComponent from "../TKIndicator.vue";
 import { TKIndicator } from "@/domain/UI/TKIndicator";
 @Component({
   components: {
-    TKIndicatorComponent,
-  },
+    TKIndicatorComponent
+  }
 })
 export default class TKHomeIndicators extends Vue {
   indicator1: TKIndicator = {
     value: 57,
     name: "Sites",
-    iconOchaName: "IDP-refugee-camp",
+    iconOchaName: "IDP-refugee-camp"
   };
 
   indicator2: TKIndicator = {
     value: 520,
     name: "People",
-    iconOchaName: "People-in-need",
+    iconOchaName: "People-in-need"
   };
 
   indicator3: TKIndicator = {
     value: 20,
     name: "Sites overcrowded",
-    iconOchaName: "Permanent-camp",
+    iconOchaName: "Permanent-camp"
   };
 
   @Prop()

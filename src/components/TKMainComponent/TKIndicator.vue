@@ -1,5 +1,21 @@
 <template>
   <div class="tk-indicator">
+    <img
+      v-if="backgroundType === 1"
+      class="tk-indicator-bg"
+      src="@/assets/bg-indicator-1.png"
+    />
+    <img
+      v-if="backgroundType === 2"
+      class="tk-indicator-bg"
+      src="@/assets/bg-indicator-2.png"
+    />
+    <img
+      v-if="backgroundType === 3"
+      class="tk-indicator-bg"
+      src="@/assets/bg-indicator-3.png"
+    />
+
     <div class="tk-indicator-value">
       <div class="tk-indicator-value-number">
         {{ indicator.value }}
@@ -8,18 +24,25 @@
         {{ indicator.name }}
       </div>
     </div>
-    <img class="tk-indicator-icon" :src="iconUrl" />
+    <div class="tk-indicator-icon-container">
+      <img class="tk-indicator-icon" :src="iconUrl" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import { TKIndicator } from "@/domain/UI/TKIndicator";
+import { TKIndicator, TKIndicatorBackground } from "@/domain/UI/TKIndicator";
 import { TKIconUrl } from "@/domain/UI/TKIcons";
 
 @Component
 export default class TKIndicatorComponent extends Vue {
+  @Prop()
+  readonly backgroundType!: TKIndicatorBackground;
+  // 1 or 2 or 3. no background if anything else.
+  // Couldn't make enum work with that
+
   @Prop()
   readonly indicator!: TKIndicator;
   readonly iconUrl = TKIconUrl(this.indicator.iconOchaName);
@@ -28,39 +51,56 @@ export default class TKIndicatorComponent extends Vue {
 
 <style scoped>
 .tk-indicator {
+  position: relative;
   box-shadow: 0px 2px 5px 0px #00000011;
   background-color: white;
   border-color: transparent;
   border-radius: 5px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
   height: 100px;
+  overflow: hidden;
+}
+
+.tk-indicator-icon-container {
+  position: absolute;
+  height: 36px;
+  right: 30px;
+  bottom: 55px;
+}
+
+.tk-indicator-icon {
+  height: 100%;
 }
 
 .tk-indicator-value {
+  position: absolute;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-around;
   align-items: left;
+  height: 60px;
+  top: 20px;
+  left: 30px;
 }
 
 .tk-indicator-value-number {
   color: var(--v-accent-base);
   font-size: 40px;
+  height: 43px;
+  line-height: 43px;
 }
 
 .tk-indicator-value-decription {
-  color: var;
-  font-weight: bold;
+  color: var(--v-quaternary-base);
+  font-weight: bolder;
   font-size: 16px;
+  height: 17px;
+  line-height: 17px;
 }
 
-.tk-indicator-icon {
-  align-self: flex-start;
-  height: 36px;
-  display: block;
+.tk-indicator-bg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 129px;
+  height: 63px;
 }
 </style>

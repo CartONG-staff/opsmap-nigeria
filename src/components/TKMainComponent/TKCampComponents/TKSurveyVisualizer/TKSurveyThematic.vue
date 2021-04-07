@@ -93,8 +93,8 @@ export default class TKSurveyThematic extends Vue {
 
 .tk-survey-thematic-title {
   font-size: 16px;
-  font-weight: bold;
-  color: #333;
+  font-weight: bolder;
+  color: var(--v-quaternary-base);
 }
 
 .tk-survey-chart {

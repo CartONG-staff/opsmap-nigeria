@@ -20,7 +20,9 @@
         <span class="tk-header-title-base"
           >{{ $t("title").toUpperCase() }}
         </span>
-        <span class="tk-header-title-opsmap">{{ appConfig.name }}</span>
+        <span class="tk-header-title-opsmap">{{
+          appConfig.name.toUpperCase()
+        }}</span>
       </h3>
     </div>
     <v-btn-toggle
