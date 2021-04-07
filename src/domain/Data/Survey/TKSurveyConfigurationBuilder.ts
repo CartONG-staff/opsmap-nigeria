@@ -12,15 +12,24 @@ import {
   TKTrafficLightsCollectionBuilder,
 } from "./TKTrafficLightsCollectionBuilder";
 import {
-  TKLabel,
+  TKFieldLabel,
+  TKAnswerLabel,
   TKLabelsCollection,
   TKLabelsCollectionBuilder,
 } from "./TKLabelsCollectionBuilder";
 
+import {
+  TKSubmissionRule,
+  TKSubmissionsRulesCollection,
+  TKSubmissionsRulesCollectionBuilder,
+} from "./TKSubmissionsRulesBuilder";
+
 interface SurveyConfiguration {
   categories: TKCategoriesCollection;
   trafficLights: TKTrafficLightsCollection;
-  labels: TKLabelsCollection;
+  fieldsLabels: TKLabelsCollection;
+  answersLabels: TKLabelsCollection;
+  submissionsRules: TKSubmissionsRulesCollection;
 }
 
 export async function TKSurveyConfigurationBuilder(
@@ -31,17 +40,32 @@ export async function TKSurveyConfigurationBuilder(
     survey.folder,
     true
   );
+
   const rawTrafficLights: TKTrafficLightsRaw[] = await TKCSVReader<
     TKTrafficLightsRaw[]
   >("traffic_lights", survey.folder, true);
-  const rawLabels: TKLabel[] = await TKCSVReader<TKLabel[]>(
-    "labels",
+
+  const rawFieldsLabels: TKFieldLabel[] = await TKCSVReader<TKFieldLabel[]>(
+    "field_labels",
     survey.folder,
     true
   );
+
+  const rawAnswerLabels: TKAnswerLabel[] = await TKCSVReader<TKAnswerLabel[]>(
+    "answer_labels",
+    survey.folder,
+    true
+  );
+
+  const rawSubmissionsRules: TKSubmissionRule[] = await TKCSVReader<
+    TKSubmissionRule[]
+  >("submissions_rules", survey.folder, true);
+
   return {
     categories: TKCategoriesCollectionBuilder(rawCategories),
     trafficLights: TKTrafficLightsCollectionBuilder(rawTrafficLights),
-    labels: TKLabelsCollectionBuilder(rawLabels),
+    fieldsLabels: TKLabelsCollectionBuilder(rawFieldsLabels),
+    answersLabels: TKLabelsCollectionBuilder(rawAnswerLabels),
+    submissionsRules: TKSubmissionsRulesCollectionBuilder(rawSubmissionsRules),
   };
 }

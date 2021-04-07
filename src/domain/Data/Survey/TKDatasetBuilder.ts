@@ -1,8 +1,8 @@
 import { TKCSVSurveyInfo } from "../CSV/TKCSVTypes";
 import { TKKoboSurveyInfo } from "../Kobo/TKKoboSurveyInfo";
 import { TKSurveyConfigurationBuilder } from "./TKSurveyConfigurationBuilder";
-import { TKCSVDataGetter } from "../CSV/TKCSVDataGetter";
-import { TKKoboDataGetter } from "../Kobo/TKKoboDataGetter";
+import { TKCSVSubmissionsGetter } from "@/domain/Data/CSV/TKCSVSubmissionsGetter";
+import { TKKoboSubmissionsGetter } from "../Kobo/TKKoboSubmissionsGetter";
 
 export async function TKDatasetBuilder(
   surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[],
@@ -12,10 +12,10 @@ export async function TKDatasetBuilder(
     const surveyConfiguration = await TKSurveyConfigurationBuilder(item);
     console.log(surveyConfiguration);
     if (surveyFormat === "csv") {
-      const flop = await TKCSVDataGetter(item as TKCSVSurveyInfo);
+      const flop = await TKCSVSubmissionsGetter(item as TKCSVSurveyInfo);
       console.log(flop);
     } else {
-      const flap = await TKKoboDataGetter(item as TKKoboSurveyInfo);
+      const flap = await TKKoboSubmissionsGetter(item as TKKoboSurveyInfo);
       console.log(flap);
     }
   }

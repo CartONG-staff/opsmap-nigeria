@@ -38,8 +38,8 @@ import TKFooterLogoItem from "./TKFooterLogoItem.vue";
 
 @Component({
   components: {
-    TKFooterLogoItem,
-  },
+    TKFooterLogoItem
+  }
 })
 export default class TKFooter extends Vue {
   @Prop()

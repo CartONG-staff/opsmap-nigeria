@@ -6,7 +6,10 @@ import { Bar, mixins } from "vue-chartjs";
   mixins: [mixins.reactiveProp]
 })
 @Component
-export default class TKSurveyPyramidChart extends Mixins(mixins.reactiveProp, Bar) {
+export default class TKSurveyPyramidChart extends Mixins(
+  mixins.reactiveProp,
+  Bar
+) {
   mounted() {
     // Overwriting base render method with actual data.
     this.renderChart({

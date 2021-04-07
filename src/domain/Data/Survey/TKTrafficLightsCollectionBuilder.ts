@@ -25,7 +25,7 @@ export function TKTrafficLightsCollectionBuilder(
     if (trafficLights[item.name]) {
       trafficLights[item.name].values.push({
         value: item.value,
-        color: item.color,
+        color: item.color
       });
     } else {
       if (item.name.length > 0) {
@@ -34,9 +34,9 @@ export function TKTrafficLightsCollectionBuilder(
           values: [
             {
               value: item.value,
-              color: item.color,
-            },
-          ],
+              color: item.color
+            }
+          ]
         };
       }
     }

@@ -12,7 +12,7 @@ export function TKCategoriesCollectionBuilder(
   categories: TKCategory[]
 ): TKCategoriesCollection {
   const categoriesCollection: TKCategoriesCollection = {};
-  categories.map((item) => {
+  categories.map(item => {
     if (item.label?.length > 0) {
       categoriesCollection[item.formatted_name] = { ...item };
     }
