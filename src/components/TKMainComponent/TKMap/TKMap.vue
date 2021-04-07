@@ -17,7 +17,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import { TKMapboxConfiguration } from "@/domain/Map/TKMapboxConfiguration";
-
+import { TKRetrieveAdmin0Boundaries } from "@/domain/Data/Boundaries/TKBoundaries";
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 
@@ -77,6 +77,27 @@ export default class TKMap extends Vue {
 
     // disable map rotation using touch rotation gesture
     this.map.touchZoomRotate.disableRotation();
+
+    // Retrieve borders
+    TKRetrieveAdmin0Boundaries("BRA").then(boundaries => {
+      this.map.addSource("nationalBoundaries", {
+        type: "geojson",
+        data: boundaries
+      });
+      this.map.addLayer({
+        id: "nationalBoundaries",
+        type: "fill",
+        source: "nationalBoundaries",
+        layout: {},
+        paint: {
+          "fill-color": "#585858",
+          "fill-opacity": 0.7
+        }
+      });
+
+      const bounds = this.map.getBounds();
+      this.map.fitBounds(bounds);
+    });
   }
 }
 </script>
