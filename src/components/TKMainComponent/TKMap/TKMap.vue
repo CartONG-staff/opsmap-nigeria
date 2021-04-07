@@ -35,11 +35,6 @@ export default class TKMap extends Vue {
 
   map!: mapboxgl.Map;
 
-  // navOption = {
-  //   showZoom: true,
-  //   showCompass: false,
-  //   visualizePitch: true
-  // };
   scaleOption = {
     maxWidth: 100,
     unit: "metric"
@@ -76,9 +71,6 @@ export default class TKMap extends Vue {
       accessToken: this.config.token
     });
 
-    // const nav = new mapboxgl.NavigationControl(this.navOption);
-    // this.map.addControl(nav, "top-right");
-
     const scale = new mapboxgl.ScaleControl(this.scaleOption);
     this.map.addControl(scale);
 
@@ -107,7 +99,7 @@ export default class TKMap extends Vue {
 
 .tk-map-filters {
   position: absolute;
-  bottom: 8px;
+  bottom: 26px;
   right: 8px;
   z-index: 2500;
   background-color: #fff;
