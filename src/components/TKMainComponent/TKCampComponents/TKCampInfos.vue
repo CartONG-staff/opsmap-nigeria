@@ -2,8 +2,10 @@
   <div class="tk-camp-infos">
     <div v-for="info in campsInfos" :key="info.name" class="tk-camp-info">
       <div class="tk-camp-infos-field">
-        <div class="tk-camp-infos-field-key">{{ info.name }}</div>
-        <div class="tk-camp-infos-field-value">{{ info.longName }}</div>
+        <div class="tk-camp-infos-field-key">{{ info.name.toUpperCase() }}</div>
+        <div class="tk-camp-infos-field-value">
+          {{ info.longName.toUpperCase() }}
+        </div>
       </div>
       <div class="tk-hseparator" />
     </div>
@@ -16,10 +18,11 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class TKCampInfos extends Vue {
   readonly campsInfos = [
-    { name: "PROSPER", longName: "prosper" },
-    { name: "HOP", longName: "hop" },
-    { name: "LA", longName: "la" },
-    { name: "BOUM", longName: "boum" }
+    { name: "STATE", longName: "adamaya" },
+    { name: "LGA", longName: "yola south " },
+    { name: "WARD", longName: "ngurore" },
+    { name: "GPS COORDINATES", longName: "12.233223, 12.233223" },
+    { name: "SITE manage BY", longName: "name" }
   ];
 }
 </script>

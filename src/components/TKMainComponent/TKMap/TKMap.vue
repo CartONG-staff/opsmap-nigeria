@@ -1,15 +1,13 @@
 <template lang="html">
-  <div>
-    <div id="tk-map">
-      <TKMapZoom
-        class="tk-map-zoom"
-        v-on:zoomin="zoomIn"
-        v-on:zoomout="zoomOut"
-        v-on:zoomreset="zoomReset"
-      />
+  <div id="tk-map">
+    <TKMapZoom
+      class="tk-map-zoom"
+      v-on:zoomin="zoomIn"
+      v-on:zoomout="zoomOut"
+      v-on:zoomreset="zoomReset"
+    />
 
-      <TKMapFilters class="tk-map-filters" />
-    </div>
+    <TKMapFilters class="tk-map-filters" />
   </div>
 </template>
 
@@ -85,8 +83,6 @@ export default class TKMap extends Vue {
 <style scoped>
 #tk-map {
   border-radius: 15px;
-  width: 100%;
-  height: 450px;
 }
 
 .tk-map-zoom {
