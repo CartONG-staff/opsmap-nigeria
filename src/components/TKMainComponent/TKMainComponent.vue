@@ -1,6 +1,8 @@
 <template>
   <div class="tk-maincomponent">
-    <div class="tk-maincomponent-blur"></div>
+    <img class="tk-maincomponent-png" src="@/assets/bg-isoline-custom.png">
+      <div class="tk-maincomponent-blur" />
+    </img>
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
         <div v-if="isHomePage" class="tk-home-header"></div>
@@ -87,6 +89,12 @@ export default class TKMainComponent extends Vue {
 </script>
 
 <style scoped>
+.tk-maincomponent-decoration {
+  position: absolute;
+  width: 100%;
+  height: 365px;
+}
+
 .tk-maincomponent-blur {
   position: absolute;
   width: 100%;
@@ -94,6 +102,23 @@ export default class TKMainComponent extends Vue {
   opacity: 0.21;
   background: linear-gradient(#3a9ed3ff, #3a9ed300);
 }
+
+.tk-maincomponent-png {
+  position: absolute;
+  width: 100%;
+  height: 365px;
+  background-size: 100% 365px;
+}
+
+/* .tk-maincomponent-svg {
+  position: absolute;
+  width: 100%;
+  height: 365px;
+  background-color: coral;
+
+  background-size: 150%;
+  padding: 0px;
+} */
 
 .tk-maincomponent-container {
   padding-left: var(--side-padding);
