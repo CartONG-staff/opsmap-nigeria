@@ -44,10 +44,9 @@ export const languages: TKLanguageDescription[] = [
 
 export const headerLogo: TKLogo[] = [
   {
-    name: "Syldavie",
-    urlLogo:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Syldavian_lippu.jpg/1280px-Syldavian_lippu.jpg",
-    urlRedirection: "https://fr.wikipedia.org/wiki/Syldavie",
+    name: "Brasil",
+    urlLogo: "https://raw.githubusercontent.com/cccmiraq/RASP/master/img/CCCMClusterLogo.bmp",
+    urlRedirection: "https://cccmcluster.org",
   },
 ];
 
