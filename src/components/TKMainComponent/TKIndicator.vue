@@ -1,5 +1,21 @@
 <template>
   <div class="tk-indicator">
+    <img
+      v-if="isType1"
+      class="tk-indicator-bg"
+      src="@/assets/bg-indicator-1.png"
+    />
+    <img
+      v-if="isType2"
+      class="tk-indicator-bg"
+      src="@/assets/bg-indicator-2.png"
+    />
+    <img
+      v-if="isType3"
+      class="tk-indicator-bg"
+      src="@/assets/bg-indicator-3.png"
+    />
+
     <div class="tk-indicator-value">
       <div class="tk-indicator-value-number">
         {{ indicator.value }}
@@ -23,6 +39,13 @@ import { TKIconUrl } from "@/domain/UI/TKIcons";
 @Component
 export default class TKIndicatorComponent extends Vue {
   @Prop()
+  readonly type!: number;
+
+  readonly isType1 = this.type === 1;
+  readonly isType2 = this.type === 2;
+  readonly isType3 = this.type === 3;
+
+  @Prop()
   readonly indicator!: TKIndicator;
   readonly iconUrl = TKIconUrl(this.indicator.iconOchaName);
 }
@@ -30,6 +53,7 @@ export default class TKIndicatorComponent extends Vue {
 
 <style scoped>
 .tk-indicator {
+  position: relative;
   box-shadow: 0px 2px 5px 0px #00000011;
   background-color: white;
   border-color: transparent;
@@ -37,11 +61,12 @@ export default class TKIndicatorComponent extends Vue {
   height: 100px;
   overflow: hidden;
 }
+
 .tk-indicator-icon-container {
-  position: relative;
+  position: absolute;
   height: 36px;
   right: 30px;
-  top: 16px;
+  bottom: 55px;
 }
 
 .tk-indicator-icon {
@@ -49,7 +74,7 @@ export default class TKIndicatorComponent extends Vue {
 }
 
 .tk-indicator-value {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-flow: column nowrap;
   align-items: left;
@@ -71,5 +96,13 @@ export default class TKIndicatorComponent extends Vue {
   font-size: 16px;
   height: 17px;
   line-height: 17px;
+}
+
+.tk-indicator-bg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 129px;
+  height: 63px;
 }
 </style>

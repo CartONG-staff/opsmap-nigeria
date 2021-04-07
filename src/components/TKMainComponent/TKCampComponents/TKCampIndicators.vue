@@ -1,8 +1,8 @@
 <template>
   <div class="tk-camp-indicators">
-    <TKIndicatorComponent :indicator="this.indicator1" />
-    <TKIndicatorComponent :indicator="this.indicator2" />
-    <TKIndicatorComponent :indicator="this.indicator3" />
+    <TKIndicatorComponent :type="1" :indicator="this.indicator1" />
+    <TKIndicatorComponent :type="2" :indicator="this.indicator2" />
+    <TKIndicatorComponent :type="3" :indicator="this.indicator3" />
   </div>
 </template>
 
