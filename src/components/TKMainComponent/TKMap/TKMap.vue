@@ -57,48 +57,54 @@ export default class TKMap extends Vue {
   zoomReset(): void {
     if (this.map) {
       if (this.bound) {
-        this.map.fitBounds(this.bound, { padding: 100 });
+        this.map.fitBounds(this.bound, {
+          padding: this.appConfig.mapConfig.padding,
+          speed: this.appConfig.mapConfig.zoomspeed
+        });
       }
     }
   }
 
   mounted(): void {
-    // Retrieve borders // this.appConfig.iso3
-    TKRetrieveAdmin0Boundaries("SOM").then(boundaries => {
+    // Init the map - world level
+    this.bound = new mapboxgl.LngLatBounds(
+      new mapboxgl.LngLat(-90, 90),
+      new mapboxgl.LngLat(90, -90)
+    );
+    this.map = new mapboxgl.Map({
+      container: "tk-map",
+      style: this.appConfig.mapConfig.style,
+      accessToken: this.appConfig.mapConfig.token,
+      bounds: this.bound
+    });
+
+    const scale = new mapboxgl.ScaleControl(this.scaleOption);
+    this.map.addControl(scale);
+
+    // disable map rotation using right click + drag
+    this.map.dragRotate.disable();
+
+    // disable map rotation using touch rotation gesture
+    this.map.touchZoomRotate.disableRotation();
+
+    // Init the boundaries
+    TKRetrieveAdmin0Boundaries(this.appConfig.iso3).then(boundaries => {
       if (boundaries) {
-        // update bounding view
+        // compute global bbox
         const bbox = turf.bbox(boundaries);
-        const padding = 0;
+        const squared = turf.square(bbox);
         this.bound = new mapboxgl.LngLatBounds(
-          new mapboxgl.LngLat(bbox[0] + padding, bbox[3] - padding),
-          new mapboxgl.LngLat(bbox[2] - padding, bbox[1] + padding)
+          new mapboxgl.LngLat(squared[0], squared[3]),
+          new mapboxgl.LngLat(squared[2], squared[1])
         );
 
-        this.map = new mapboxgl.Map({
-          container: "tk-map",
-          style: this.appConfig.mapConfig.style,
-          accessToken: this.appConfig.mapConfig.token,
-          bounds: this.bound
-        });
-
-        const scale = new mapboxgl.ScaleControl(this.scaleOption);
-        this.map.addControl(scale);
-
-        // disable map rotation using right click + drag
-        this.map.dragRotate.disable();
-
-        // disable map rotation using touch rotation gesture
-        this.map.touchZoomRotate.disableRotation();
-
-        const map = this.map;
-        const zoomReset = this.zoomReset;
-
-        this.map.on("load", function() {
-          map.addSource("nationalBoundaries", {
+        // hack to access map and zoomReset inside the callback
+        this.map.once("load", () => {
+          this.map.addSource("nationalBoundaries", {
             type: "geojson",
             data: boundaries
           });
-          map.addLayer({
+          this.map.addLayer({
             id: "nationalBoundaries",
             type: "fill",
             source: "nationalBoundaries",
@@ -108,7 +114,11 @@ export default class TKMap extends Vue {
               "fill-opacity": 0.7
             }
           });
-          zoomReset();
+          this.zoomReset();
+          this.map.once("zoomend", () => {
+            this.map.setMinZoom(this.map.getZoom());
+            this.map.setMaxBounds(this.map.getBounds());
+          });
         });
       }
     });
