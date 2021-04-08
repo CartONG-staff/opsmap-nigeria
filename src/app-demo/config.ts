@@ -12,8 +12,8 @@ const mapConfig: TKMapboxConfiguration = {
   token:
     "pk.eyJ1IjoiY2FydG9uZyIsImEiOiJjazJldzVobGkwOWRxM2hzNTB1M3o2cG94In0.w7FyG31FWqXm3vXSh6WtxQ",
   style: "mapbox://styles/mapbox/streets-v11",
-  center: [-68.48130213973545, -54.8458772648677],
-  zoom: 15,
+  center: [-53.69, -16.79], // BRAZIL, empiric
+  zoom: 2.5, // BRAZIL, empiric
 };
 
 export const APPCONFIG: TKGeneralConfiguration = {
