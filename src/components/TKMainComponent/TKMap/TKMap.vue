@@ -78,9 +78,6 @@ export default class TKMap extends Vue {
       bounds: this.bound
     });
 
-    const scale = new mapboxgl.ScaleControl(this.scaleOption);
-    this.map.addControl(scale);
-
     // disable map rotation using right click + drag
     this.map.dragRotate.disable();
 
@@ -97,28 +94,38 @@ export default class TKMap extends Vue {
           new mapboxgl.LngLat(squared[0], squared[3]),
           new mapboxgl.LngLat(squared[2], squared[1])
         );
+        const poly = turf.multiPolygon(
+          boundaries.features[0].geometry.coordinates
+        );
+        const bboxPoly = turf.bboxPolygon([-180, -90, 180, 90]);
+        const outsidemask = turf.difference(bboxPoly, poly);
+
+        this.zoomReset();
+        this.map.once("zoomend", () => {
+          this.map.setMinZoom(this.map.getZoom());
+          this.map.setMaxBounds(this.map.getBounds());
+          const scale = new mapboxgl.ScaleControl(this.scaleOption);
+          this.map.addControl(scale);
+        });
 
         // hack to access map and zoomReset inside the callback
         this.map.once("load", () => {
-          this.map.addSource("nationalBoundaries", {
-            type: "geojson",
-            data: boundaries
-          });
-          this.map.addLayer({
-            id: "nationalBoundaries",
-            type: "fill",
-            source: "nationalBoundaries",
-            layout: {},
-            paint: {
-              "fill-color": "#585858",
-              "fill-opacity": 0.7
-            }
-          });
-          this.zoomReset();
-          this.map.once("zoomend", () => {
-            this.map.setMinZoom(this.map.getZoom());
-            this.map.setMaxBounds(this.map.getBounds());
-          });
+          if (outsidemask) {
+            this.map.addSource("outsidemask", {
+              type: "geojson",
+              data: outsidemask
+            });
+            this.map.addLayer({
+              id: "outsidemask",
+              type: "fill",
+              source: "outsidemask",
+              layout: {},
+              paint: {
+                "fill-color": "#585858",
+                "fill-opacity": 0.7
+              }
+            });
+          }
         });
       }
     });

@@ -18,7 +18,7 @@ const mapConfig: TKMapboxConfiguration = {
 
 export const APPCONFIG: TKGeneralConfiguration = {
   name: "brazil",
-  iso3: "SOM",
+  iso3: "BRA",
   language: languages,
   surveyFormat: "kobo",
   surveyDescription: koboInfo,
