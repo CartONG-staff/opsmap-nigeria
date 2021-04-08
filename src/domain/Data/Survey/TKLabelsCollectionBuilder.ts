@@ -16,7 +16,7 @@ export interface TKLabelsCollection {
   [propName: string]: TKFieldLabel | TKAnswerLabel;
 }
 
-export function TKLabelsCollectionBuilder(
+export function TKLabelsCollectionBuild(
   labels: TKFieldLabel[] | TKAnswerLabel[]
 ): TKLabelsCollection {
   const labelsCollection: TKLabelsCollection = {};

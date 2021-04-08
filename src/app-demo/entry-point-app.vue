@@ -16,21 +16,22 @@ import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
 import { APPCONFIG } from "@/app-demo/config";
 
 import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an alias to /src
-import { TKDatasetBuilder } from "@/domain/Data/Survey/TKDatasetBuilder";
+import { TKDatasetBuild } from "@/domain/Data/Survey/TKDatasetBuilder";
 
 @Component({
   components: {
     TKHeader,
     TKFooter,
-    TKMainComponent
-  }
+    TKMainComponent,
+  },
 })
 export default class App extends Vue {
   private appConfig: TKGeneralConfiguration = APPCONFIG;
   async mounted() {
-    TKDatasetBuilder(
+    TKDatasetBuild(
       this.appConfig.surveyDescription,
-      this.appConfig.surveyFormat
+      this.appConfig.surveyFormat,
+      this.appConfig.spatialDescription
     );
   }
 }
@@ -70,7 +71,7 @@ h3 {
   display: none !important;
 }
 
-<style > .tk-autocomplete input {
+.tk-autocomplete input {
   color: #000 !important;
   font-family: "Arial";
   font-weight: bold !important;

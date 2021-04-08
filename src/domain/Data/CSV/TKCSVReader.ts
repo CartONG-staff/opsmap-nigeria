@@ -1,6 +1,6 @@
 import { parse } from "papaparse";
 
-export async function TKCSVReader<T>(
+export async function TKCSVRead<T>(
   name: string,
   folder: string,
   header: boolean

@@ -4,6 +4,7 @@ import { TKKoboSurveyInfo } from "@/domain/Data/Kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/UI/TKFooterLogos";
 import { TKCSVSurveyInfo } from "@/domain/Data/CSV/TKCSVTypes";
 import { TKLanguageDescription } from "@/domain/Config/TKLanguageDescription";
+import { TKSpatialDescription } from "@/domain/Config/TKSpatialDescription";
 
 export interface TKGeneralConfiguration {
   readonly name: string;
@@ -14,4 +15,5 @@ export interface TKGeneralConfiguration {
   readonly headerLogo: TKLogo[];
   readonly footerLogos: TKFooterLogos;
   readonly mapConfig: TKMapboxConfiguration;
+  readonly spatialDescription: TKSpatialDescription;
 }

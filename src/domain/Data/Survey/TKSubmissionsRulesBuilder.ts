@@ -13,7 +13,7 @@ export interface TKSubmissionsRulesCollection {
   [propName: string]: TKSubmissionRule;
 }
 
-export function TKSubmissionsRulesCollectionBuilder(
+export function TKSubmissionsRulesCollectionBuild(
   submissions: TKSubmissionRule[]
 ): TKSubmissionsRulesCollection {
   const submissionsRules: TKSubmissionsRulesCollection = {};
