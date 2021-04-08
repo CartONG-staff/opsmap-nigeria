@@ -13,10 +13,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import mapboxgl from "mapbox-gl";
+import mapboxgl, { LngLatBounds } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import * as turf from "@turf/turf";
 
-import { TKMapboxConfiguration } from "@/domain/Map/TKMapboxConfiguration";
+import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+
 import { TKRetrieveAdmin0Boundaries } from "@/domain/Data/Boundaries/TKBoundaries";
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
@@ -29,9 +31,11 @@ import TKMapZoom from "./TKMapZoom.vue";
 })
 export default class TKMap extends Vue {
   @Prop()
-  readonly config!: TKMapboxConfiguration;
+  readonly appConfig!: TKGeneralConfiguration;
 
   map!: mapboxgl.Map;
+
+  bound!: mapboxgl.LngLatBounds;
 
   scaleOption = {
     maxWidth: 100,
@@ -52,51 +56,61 @@ export default class TKMap extends Vue {
 
   zoomReset(): void {
     if (this.map) {
-      this.map.flyTo({
-        center: this.config.center,
-        zoom: this.config.zoom,
-        speed: 2
-      });
+      if (this.bound) {
+        this.map.fitBounds(this.bound, { padding: 100 });
+      }
     }
   }
 
   mounted(): void {
-    this.map = new mapboxgl.Map({
-      container: "tk-map",
-      style: this.config.style,
-      center: this.config.center,
-      zoom: this.config.zoom,
-      accessToken: this.config.token
-    });
+    // Retrieve borders // this.appConfig.iso3
+    TKRetrieveAdmin0Boundaries("SOM").then(boundaries => {
+      if (boundaries) {
+        // update bounding view
+        const bbox = turf.bbox(boundaries);
+        const padding = 0;
+        this.bound = new mapboxgl.LngLatBounds(
+          new mapboxgl.LngLat(bbox[0] + padding, bbox[3] - padding),
+          new mapboxgl.LngLat(bbox[2] - padding, bbox[1] + padding)
+        );
 
-    const scale = new mapboxgl.ScaleControl(this.scaleOption);
-    this.map.addControl(scale);
+        this.map = new mapboxgl.Map({
+          container: "tk-map",
+          style: this.appConfig.mapConfig.style,
+          accessToken: this.appConfig.mapConfig.token,
+          bounds: this.bound
+        });
 
-    // disable map rotation using right click + drag
-    this.map.dragRotate.disable();
+        const scale = new mapboxgl.ScaleControl(this.scaleOption);
+        this.map.addControl(scale);
 
-    // disable map rotation using touch rotation gesture
-    this.map.touchZoomRotate.disableRotation();
+        // disable map rotation using right click + drag
+        this.map.dragRotate.disable();
 
-    // Retrieve borders
-    TKRetrieveAdmin0Boundaries("BRA").then(boundaries => {
-      this.map.addSource("nationalBoundaries", {
-        type: "geojson",
-        data: boundaries
-      });
-      this.map.addLayer({
-        id: "nationalBoundaries",
-        type: "fill",
-        source: "nationalBoundaries",
-        layout: {},
-        paint: {
-          "fill-color": "#585858",
-          "fill-opacity": 0.7
-        }
-      });
+        // disable map rotation using touch rotation gesture
+        this.map.touchZoomRotate.disableRotation();
 
-      const bounds = this.map.getBounds();
-      this.map.fitBounds(bounds);
+        const map = this.map;
+        const zoomReset = this.zoomReset;
+
+        this.map.on("load", function() {
+          map.addSource("nationalBoundaries", {
+            type: "geojson",
+            data: boundaries
+          });
+          map.addLayer({
+            id: "nationalBoundaries",
+            type: "fill",
+            source: "nationalBoundaries",
+            layout: {},
+            paint: {
+              "fill-color": "#585858",
+              "fill-opacity": 0.7
+            }
+          });
+          zoomReset();
+        });
+      }
     });
   }
 }

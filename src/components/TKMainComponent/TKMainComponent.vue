@@ -23,7 +23,7 @@
           </div>
         </div>
         <v-btn v-on:click="switchPage">{{ $t("main.switchPage") }}</v-btn>
-        <TKMap class="tk-main-map" :config="appConfig.mapConfig" />
+        <TKMap class="tk-main-map" :appConfig="appConfig" />
       </div>
 
       <div class="tk-main-content">
