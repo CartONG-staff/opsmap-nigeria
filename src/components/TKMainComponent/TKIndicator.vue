@@ -33,13 +33,13 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import { TKIndicator, TKIndicatorBackground } from "@/domain/UI/TKIndicator";
+import { TKIndicator } from "@/domain/UI/TKIndicator";
 import { TKIconUrl } from "@/domain/UI/TKIcons";
 
 @Component
 export default class TKIndicatorComponent extends Vue {
   @Prop()
-  readonly backgroundType!: TKIndicatorBackground;
+  readonly backgroundType!: number;
   // 1 or 2 or 3. no background if anything else.
   // Couldn't make enum work with that
 
