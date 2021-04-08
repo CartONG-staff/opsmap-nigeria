@@ -68,8 +68,8 @@ export default class TKMap extends Vue {
   mounted(): void {
     // Init the map - world level
     this.bound = new mapboxgl.LngLatBounds(
-      new mapboxgl.LngLat(-90, 90),
-      new mapboxgl.LngLat(90, -90)
+      new mapboxgl.LngLat(-90, -90),
+      new mapboxgl.LngLat(90, 90)
     );
     this.map = new mapboxgl.Map({
       container: "tk-map",
@@ -87,47 +87,43 @@ export default class TKMap extends Vue {
     // Init the boundaries
     TKRetrieveAdmin0Boundaries(this.appConfig.iso3).then(boundaries => {
       if (boundaries) {
-        // compute global bbox
+        // Setup outside of boundaries mask
         const bbox = turf.bbox(boundaries);
-        const squared = turf.square(bbox);
         this.bound = new mapboxgl.LngLatBounds(
-          new mapboxgl.LngLat(squared[0], squared[3]),
-          new mapboxgl.LngLat(squared[2], squared[1])
+          new mapboxgl.LngLat(bbox[0], bbox[1]),
+          new mapboxgl.LngLat(bbox[2], bbox[3])
         );
         const poly = turf.multiPolygon(
           boundaries.features[0].geometry.coordinates
         );
+
         const bboxPoly = turf.bboxPolygon([-180, -90, 180, 90]);
         const outsidemask = turf.difference(bboxPoly, poly);
-
-        this.zoomReset();
-        this.map.once("zoomend", () => {
-          this.map.setMinZoom(this.map.getZoom());
-          this.map.setMaxBounds(this.map.getBounds());
-          const scale = new mapboxgl.ScaleControl(this.scaleOption);
-          this.map.addControl(scale);
-        });
-
-        // hack to access map and zoomReset inside the callback
-        this.map.once("load", () => {
-          if (outsidemask) {
-            this.map.addSource("outsidemask", {
-              type: "geojson",
-              data: outsidemask
-            });
-            this.map.addLayer({
-              id: "outsidemask",
-              type: "fill",
-              source: "outsidemask",
-              layout: {},
-              paint: {
-                "fill-color": "#585858",
-                "fill-opacity": 0.7
-              }
-            });
-          }
-        });
+        if (outsidemask) {
+          this.map.addSource("outsidemask", {
+            type: "geojson",
+            data: outsidemask
+          });
+          this.map.addLayer({
+            id: "outsidemask",
+            type: "fill",
+            source: "outsidemask",
+            layout: {},
+            paint: {
+              "fill-color": "#585858",
+              "fill-opacity": 0.7
+            }
+          });
+        }
       }
+
+      // Setup zoom properties
+      this.zoomReset();
+      this.map.once("zoomend", () => {
+        // Avoid multiple zoom variation when on fly
+        const scale = new mapboxgl.ScaleControl(this.scaleOption);
+        this.map.addControl(scale);
+      });
     });
   }
 }
