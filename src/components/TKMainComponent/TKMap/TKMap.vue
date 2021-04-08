@@ -24,8 +24,8 @@ import TKMapZoom from "./TKMapZoom.vue";
 @Component({
   components: {
     TKMapFilters,
-    TKMapZoom
-  }
+    TKMapZoom,
+  },
 })
 export default class TKMap extends Vue {
   @Prop()
@@ -35,7 +35,7 @@ export default class TKMap extends Vue {
 
   scaleOption = {
     maxWidth: 100,
-    unit: "metric"
+    unit: "metric",
   };
 
   zoomIn(): void {
@@ -55,7 +55,7 @@ export default class TKMap extends Vue {
       this.map.flyTo({
         center: this.config.center,
         zoom: this.config.zoom,
-        speed: 2
+        speed: 2,
       });
     }
   }
@@ -66,7 +66,7 @@ export default class TKMap extends Vue {
       style: this.config.style,
       center: this.config.center,
       zoom: this.config.zoom,
-      accessToken: this.config.token
+      accessToken: this.config.token,
     });
 
     const scale = new mapboxgl.ScaleControl(this.scaleOption);
@@ -79,10 +79,10 @@ export default class TKMap extends Vue {
     this.map.touchZoomRotate.disableRotation();
 
     // Retrieve borders
-    TKRetrieveAdmin0Boundaries("BRA").then(boundaries => {
+    TKRetrieveAdmin0Boundaries("BRA").then((boundaries) => {
       this.map.addSource("nationalBoundaries", {
         type: "geojson",
-        data: boundaries
+        data: boundaries,
       });
       this.map.addLayer({
         id: "nationalBoundaries",
@@ -91,8 +91,8 @@ export default class TKMap extends Vue {
         layout: {},
         paint: {
           "fill-color": "#585858",
-          "fill-opacity": 0.7
-        }
+          "fill-opacity": 0.7,
+        },
       });
 
       const bounds = this.map.getBounds();
@@ -103,6 +103,7 @@ export default class TKMap extends Vue {
 </script>
 <style scoped>
 #tk-map {
+  position: relative;
   border-radius: 15px;
 }
 
