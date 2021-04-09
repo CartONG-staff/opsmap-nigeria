@@ -1,7 +1,7 @@
 <template>
   <div class="tk-home-combos">
     <p class="tk-home-combos-title">
-      {{ $t("home.combosTitle") }}
+      {{ $t("home.combosTitle").toUpperCase() }}
     </p>
     <v-autocomplete
       class="tk-autocomplete"
