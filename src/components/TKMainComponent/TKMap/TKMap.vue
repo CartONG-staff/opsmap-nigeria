@@ -37,10 +37,52 @@ export default class TKMap extends Vue {
 
   bound!: mapboxgl.LngLatBounds;
 
-  scaleOption = {
-    maxWidth: 100,
-    unit: "metric"
-  };
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+  // map object management method
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  initMap(): void {
+    if (!this.bound) {
+      // Init the map - world level
+      this.bound = new mapboxgl.LngLatBounds(
+        new mapboxgl.LngLat(-90, -90),
+        new mapboxgl.LngLat(90, 90)
+      );
+    }
+    if (!this.map) {
+      this.map = new mapboxgl.Map({
+        container: "tk-map",
+        style: this.appConfig.mapConfig.style,
+        accessToken: this.appConfig.mapConfig.token,
+        bounds: this.bound
+      });
+
+      // disable map rotation using right click + drag
+      this.map.dragRotate.disable();
+
+      // disable map rotation using touch rotation gesture
+      this.map.touchZoomRotate.disableRotation();
+    }
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+  // Zoom related
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  initZoom(): void {
+    if (!this.map) {
+      return;
+    }
+    this.zoomReset();
+    this.map.once("zoomend", () => {
+      // Avoid multiple zoom variation when on fly
+      const scale = new mapboxgl.ScaleControl({
+        maxWidth: 100,
+        unit: "metric"
+      });
+      this.map.addControl(scale);
+    });
+  }
 
   zoomIn(): void {
     if (this.map) {
@@ -65,66 +107,58 @@ export default class TKMap extends Vue {
     }
   }
 
-  mounted(): void {
-    // Init the map - world level
-    this.bound = new mapboxgl.LngLatBounds(
-      new mapboxgl.LngLat(-90, -90),
-      new mapboxgl.LngLat(90, 90)
-    );
-    this.map = new mapboxgl.Map({
-      container: "tk-map",
-      style: this.appConfig.mapConfig.style,
-      accessToken: this.appConfig.mapConfig.token,
-      bounds: this.bound
-    });
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+  // boundaries management
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // disable map rotation using right click + drag
-    this.map.dragRotate.disable();
-
-    // disable map rotation using touch rotation gesture
-    this.map.touchZoomRotate.disableRotation();
-
+  setupCountryBoundaries() {
     // Init the boundaries
-    TKRetrieveAdmin0Boundaries(this.appConfig.iso3).then(boundaries => {
-      if (boundaries) {
-        // Setup outside of boundaries mask
-        const bbox = turf.bbox(boundaries);
-        this.bound = new mapboxgl.LngLatBounds(
-          new mapboxgl.LngLat(bbox[0], bbox[1]),
-          new mapboxgl.LngLat(bbox[2], bbox[3])
-        );
-        const poly = turf.multiPolygon(
-          boundaries.features[0].geometry.coordinates
-        );
+    TKRetrieveAdmin0Boundaries(this.appConfig.iso3)
+      .then(boundaries => {
+        if (boundaries) {
+          // Setup outside of boundaries mask
+          const bbox = turf.bbox(boundaries);
+          this.bound = new mapboxgl.LngLatBounds(
+            new mapboxgl.LngLat(bbox[0], bbox[1]),
+            new mapboxgl.LngLat(bbox[2], bbox[3])
+          );
+          const poly = turf.multiPolygon(
+            boundaries.features[0].geometry.coordinates
+          );
+          console.log(poly);
 
-        const bboxPoly = turf.bboxPolygon([-180, -90, 180, 90]);
-        const outsidemask = turf.difference(bboxPoly, poly);
-        if (outsidemask) {
-          this.map.addSource("outsidemask", {
-            type: "geojson",
-            data: outsidemask
-          });
-          this.map.addLayer({
-            id: "outsidemask",
-            type: "fill",
-            source: "outsidemask",
-            layout: {},
-            paint: {
-              "fill-color": "#585858",
-              "fill-opacity": 0.7
-            }
-          });
+          const bboxPoly = turf.bboxPolygon([-180, -90, 180, 90]);
+          const outsidemask = turf.difference(bboxPoly, poly);
+          if (outsidemask) {
+            this.map.addSource("outsidemask", {
+              type: "geojson",
+              data: outsidemask
+            });
+            this.map.addLayer({
+              id: "outsidemask",
+              type: "fill",
+              source: "outsidemask",
+              layout: {},
+              paint: {
+                "fill-color": "#585858",
+                "fill-opacity": 0.7
+              }
+            });
+          }
         }
-      }
-
-      // Setup zoom properties
-      this.zoomReset();
-      this.map.once("zoomend", () => {
-        // Avoid multiple zoom variation when on fly
-        const scale = new mapboxgl.ScaleControl(this.scaleOption);
-        this.map.addControl(scale);
+      })
+      .then(() => {
+        this.initZoom();
       });
-    });
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+  // Component lifecycle methods
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  mounted(): void {
+    this.initMap();
+    this.setupCountryBoundaries();
   }
 }
 </script>
