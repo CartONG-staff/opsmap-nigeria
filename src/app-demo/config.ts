@@ -1,4 +1,4 @@
-import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 import {
   languages,
   koboSurveyInfo,
@@ -7,7 +7,7 @@ import {
   headerLogo,
   footerLogos,
 } from "@/app-demo/appConfiguration";
-import { TKMapboxConfiguration } from "@/domain/Map/TKMapboxConfiguration";
+import { TKMapboxConfiguration } from "@/domain/map/TKMapboxConfiguration";
 
 const mapConfig: TKMapboxConfiguration = {
   token:

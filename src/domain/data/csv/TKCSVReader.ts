@@ -9,6 +9,7 @@ export async function TKCSVRead<T>(
     parse(`./data/${folder}/${name}.csv`, {
       header: header,
       download: true,
+      skipEmptyLines: true,
       complete(results: any) {
         resolve(results.data);
       },

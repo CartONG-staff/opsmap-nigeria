@@ -39,7 +39,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
+import { TKDatasetBuild } from "@/domain/data/survey/TKDatasetBuilder";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "@/components/TKMainComponent/TKMap";
 
@@ -47,7 +48,7 @@ import {
   TKHomeCombos,
   TKHomeIndicators,
   TKHomeMoreInfos,
-  TKHomeSubtitle
+  TKHomeSubtitle,
 } from "./TKHomeComponents";
 
 import {
@@ -56,7 +57,7 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSurveyVisualizer
+  TKSurveyVisualizer,
 } from "./TKCampComponents";
 
 @Component({
@@ -72,8 +73,8 @@ import {
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
-    TKTitle
-  }
+    TKTitle,
+  },
 })
 export default class TKMainComponent extends Vue {
   @Prop()
@@ -82,6 +83,15 @@ export default class TKMainComponent extends Vue {
   isHomePage = true;
   switchPage() {
     this.isHomePage = !this.isHomePage;
+  }
+
+  async mounted() {
+    const dataset = await TKDatasetBuild(
+      this.appConfig.surveyDescription,
+      this.appConfig.surveyFormat,
+      this.appConfig.spatialDescription
+    );
+    console.log(dataset);
   }
 }
 </script>

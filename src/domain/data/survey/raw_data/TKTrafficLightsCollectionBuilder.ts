@@ -1,5 +1,5 @@
-type TrafficLightTypes = "string" | "math" | "list";
-type TrafficLightColors = "green" | "yellow" | "orange" | "red";
+export type TrafficLightTypes = "string" | "math" | "list";
+export type TrafficLightColors = "green" | "yellow" | "orange" | "red" | "";
 
 export interface TKTrafficLightItem {
   traffic_light_name: string;
@@ -7,7 +7,7 @@ export interface TKTrafficLightItem {
   value: string;
   color: TrafficLightColors;
 }
-interface TKTrafficLightGrouped {
+export interface TKTrafficLightGrouped {
   type: TrafficLightTypes;
   values: [
     {
@@ -31,17 +31,15 @@ export function TKTrafficLightsCollectionBuild(
         color: item.color,
       });
     } else {
-      if (item.traffic_light_name.length > 0) {
-        trafficLights[item.traffic_light_name] = {
-          type: item.type,
-          values: [
-            {
-              value: item.value,
-              color: item.color,
-            },
-          ],
-        };
-      }
+      trafficLights[item.traffic_light_name] = {
+        type: item.type,
+        values: [
+          {
+            value: item.value,
+            color: item.color,
+          },
+        ],
+      };
     }
   }
   return trafficLights;

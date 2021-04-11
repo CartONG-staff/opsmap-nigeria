@@ -15,8 +15,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import { TKIndicator } from "@/domain/UI/TKIndicator";
-import { TKIconUrl } from "@/domain/UI/TKIcons";
+import { TKIndicator } from "@/domain/ui/TKIndicator";
+import { TKIconUrl } from "@/domain/ui/TKIcons";
 
 @Component
 export default class TKIndicatorComponent extends Vue {

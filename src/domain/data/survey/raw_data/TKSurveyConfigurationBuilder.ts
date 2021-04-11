@@ -1,11 +1,11 @@
-import { TKCSVRead } from "../CSV/TKCSVReader";
-import { TKCSVSurveyInfo } from "../CSV/TKCSVTypes";
-import { TKKoboSurveyInfo } from "../Kobo/TKKoboSurveyInfo";
+import { TKCSVRead } from "../../csv/TKCSVReader";
+import { TKCSVSurveyInfo } from "../../csv/TKCSVTypes";
+import { TKKoboSurveyInfo } from "../../kobo/TKKoboSurveyInfo";
 import {
-  TKCategory,
-  TKCategoriesCollection,
-  TKCategoriesCollectionBuild,
-} from "./TKCategoriesCollectionBuilder";
+  TKThematic,
+  TKThematicsCollection,
+  TKThematicsCollectionBuild,
+} from "./TKThematicsCollectionBuilder";
 import {
   TKTrafficLightItem,
   TKTrafficLightsCollection,
@@ -14,8 +14,10 @@ import {
 import {
   TKFieldLabel,
   TKAnswerLabel,
-  TKLabelsCollection,
-  TKLabelsCollectionBuild,
+  TKFieldLabelsCollection,
+  TKAnswerLabelsCollection,
+  TKFieldLabelsCollectionBuild,
+  TKAnswerLabelsCollectionBuild,
 } from "./TKLabelsCollectionBuilder";
 
 import {
@@ -24,18 +26,18 @@ import {
   TKSubmissionsRulesCollectionBuild,
 } from "./TKSubmissionsRulesBuilder";
 
-interface SurveyConfiguration {
-  categories: TKCategoriesCollection;
+export interface TKSurveyConfiguration {
+  thematics: TKThematicsCollection;
   trafficLights: TKTrafficLightsCollection;
-  fieldsLabels: TKLabelsCollection;
-  answersLabels: TKLabelsCollection;
+  fieldsLabels: TKFieldLabelsCollection;
+  answersLabels: TKAnswerLabelsCollection;
   submissionsRules: TKSubmissionsRulesCollection;
 }
 
 export async function TKSurveyConfigurationBuild(
   survey: TKKoboSurveyInfo | TKCSVSurveyInfo
-): Promise<SurveyConfiguration> {
-  const rawCategories: TKCategory[] = await TKCSVRead<TKCategory[]>(
+): Promise<TKSurveyConfiguration> {
+  const rawThematics: TKThematic[] = await TKCSVRead<TKThematic[]>(
     "thematic_config",
     survey.folder,
     true
@@ -45,13 +47,13 @@ export async function TKSurveyConfigurationBuild(
     TKTrafficLightItem[]
   >("traffic_light_config", survey.folder, true);
 
-  const rawFieldsLabels: TKFieldLabel[] = await TKCSVRead<TKFieldLabel[]>(
+  const rawFieldsLabels: TKFieldLabel[] = await TKCSVRead(
     "field_labels",
     survey.folder,
     true
   );
 
-  const rawAnswerLabels: TKAnswerLabel[] = await TKCSVRead<TKAnswerLabel[]>(
+  const rawAnswerLabels: TKAnswerLabel[] = await TKCSVRead(
     "answer_labels",
     survey.folder,
     true
@@ -62,10 +64,10 @@ export async function TKSurveyConfigurationBuild(
   >("submissions_rules", survey.folder, true);
 
   return {
-    categories: TKCategoriesCollectionBuild(rawCategories),
+    thematics: TKThematicsCollectionBuild(rawThematics),
     trafficLights: TKTrafficLightsCollectionBuild(rawTrafficLights),
-    fieldsLabels: TKLabelsCollectionBuild(rawFieldsLabels),
-    answersLabels: TKLabelsCollectionBuild(rawAnswerLabels),
+    fieldsLabels: TKFieldLabelsCollectionBuild(rawFieldsLabels),
+    answersLabels: TKAnswerLabelsCollectionBuild(rawAnswerLabels),
     submissionsRules: TKSubmissionsRulesCollectionBuild(rawSubmissionsRules),
   };
 }

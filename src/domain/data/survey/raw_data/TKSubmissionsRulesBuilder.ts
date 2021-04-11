@@ -18,9 +18,7 @@ export function TKSubmissionsRulesCollectionBuild(
 ): TKSubmissionsRulesCollection {
   const submissionsRules: TKSubmissionsRulesCollection = {};
   submissions.map((item) => {
-    if (item.field_name?.length > 0) {
-      submissionsRules[item.field_name] = { ...item };
-    }
+    submissionsRules[item.field_name] = { ...item };
   });
   return submissionsRules;
 }
