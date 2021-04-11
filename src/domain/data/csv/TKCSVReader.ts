@@ -1,9 +1,6 @@
 import { parse } from "papaparse";
-import { TKCategory } from "@/domain/Data/Survey/TKCategoriesCollectionBuilder";
-import { TKLabel } from "@/domain/Data/Survey/TKLabelsCollectionBuilder";
-import { TKTrafficLightsRaw } from "@/domain/Data/Survey/TKTrafficLightsCollectionBuilder";
 
-export async function TKCSVReader<T>(
+export async function TKCSVRead<T>(
   name: string,
   folder: string,
   header: boolean
@@ -12,6 +9,7 @@ export async function TKCSVReader<T>(
     parse(`./data/${folder}/${name}.csv`, {
       header: header,
       download: true,
+      skipEmptyLines: true,
       complete(results: any) {
         resolve(results.data);
       },

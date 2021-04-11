@@ -1,11 +1,24 @@
-import { TKKoboSurveyInfo } from "@/domain/Data/Kobo/TKKoboSurveyInfo";
-import { TKFooterLogos } from "@/domain/UI/TKFooterLogos";
-import { TKCSVSurveyInfo } from "@/domain/Data/CSV/TKCSVTypes";
-import { TKLanguageDescription } from "@/domain/Config/TKLanguageDescription";
+import { TKKoboSurveyInfo } from "@/domain/data/kobo/TKKoboSurveyInfo";
+import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
+import { TKCSVSurveyInfo } from "@/domain/data/csv/TKCSVTypes";
+import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
+import { TKLogo } from "@/domain/ui/TKLogo";
+import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
 
-import { TKLogo } from "@/domain/UI/TKLogo";
+export const spatialDescription: TKSpatialDescription = {
+  siteIDField: "mp_site_id",
+  siteNameField: "mp_site_name",
+  siteTypeField: "mp_shelter_type",
+  siteLastUpdateField: "mp_last_date",
+  siteLatitudeField: "mp_latitude",
+  siteLongitudeField: "mp_longitude",
+  adm1Pcode: "adm1pcode",
+  adm1Name: "ggi_state",
+  adm2Pcode: "adm2pcode",
+  adm2Name: "ggi_city",
+};
 
-export const koboInfo: TKKoboSurveyInfo[] = [
+export const koboSurveyInfo: TKKoboSurveyInfo[] = [
   {
     name: "dataset1",
     folder: "demo1",
@@ -22,9 +35,9 @@ export const koboInfo: TKKoboSurveyInfo[] = [
   },
 ];
 
-export const csvInfo: TKCSVSurveyInfo[] = [
+export const csvSurveyInfo: TKCSVSurveyInfo[] = [
   {
-    name: "demo1",
+    name: "2021",
     folder: "demo1",
   },
 ];
@@ -36,9 +49,9 @@ export const languages: TKLanguageDescription[] = [
     flag: "https://www.countryflags.io/gb/flat/64.png",
   },
   {
-    name: "Français",
-    code: "fr",
-    flag: "https://www.countryflags.io/fr/flat/64.png",
+    name: "Português",
+    code: "pt",
+    flag: "https://www.countryflags.io/br/flat/64.png",
   },
 ];
 
