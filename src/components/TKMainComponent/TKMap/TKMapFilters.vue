@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { TKIconUrl } from "@/domain/UI/TKIcons";
+import { TKIconUrl } from "@/domain/ui/TKIcons";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component

@@ -17,17 +17,17 @@ import mapboxgl, { LngLatBounds } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import * as turf from "@turf/turf";
 
-import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 
-import { TKRetrieveAdmin0Boundaries } from "@/domain/Data/Boundaries/TKBoundaries";
+import { TKRetrieveAdmin0Boundaries } from "@/domain/data/boundaries/TKBoundaries";
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 
 @Component({
   components: {
     TKMapFilters,
-    TKMapZoom
-  }
+    TKMapZoom,
+  },
 })
 export default class TKMap extends Vue {
   @Prop()
@@ -39,7 +39,7 @@ export default class TKMap extends Vue {
 
   scaleOption = {
     maxWidth: 100,
-    unit: "metric"
+    unit: "metric",
   };
 
   zoomIn(): void {
@@ -59,7 +59,7 @@ export default class TKMap extends Vue {
       if (this.bound) {
         this.map.fitBounds(this.bound, {
           padding: this.appConfig.mapConfig.padding,
-          speed: this.appConfig.mapConfig.zoomspeed
+          speed: this.appConfig.mapConfig.zoomspeed,
         });
       }
     }
@@ -75,7 +75,7 @@ export default class TKMap extends Vue {
       container: "tk-map",
       style: this.appConfig.mapConfig.style,
       accessToken: this.appConfig.mapConfig.token,
-      bounds: this.bound
+      bounds: this.bound,
     });
 
     // disable map rotation using right click + drag
@@ -85,7 +85,7 @@ export default class TKMap extends Vue {
     this.map.touchZoomRotate.disableRotation();
 
     // Init the boundaries
-    TKRetrieveAdmin0Boundaries(this.appConfig.iso3).then(boundaries => {
+    TKRetrieveAdmin0Boundaries(this.appConfig.iso3).then((boundaries) => {
       if (boundaries) {
         // Setup outside of boundaries mask
         const bbox = turf.bbox(boundaries);
@@ -102,7 +102,7 @@ export default class TKMap extends Vue {
         if (outsidemask) {
           this.map.addSource("outsidemask", {
             type: "geojson",
-            data: outsidemask
+            data: outsidemask,
           });
           this.map.addLayer({
             id: "outsidemask",
@@ -111,8 +111,8 @@ export default class TKMap extends Vue {
             layout: {},
             paint: {
               "fill-color": "#585858",
-              "fill-opacity": 0.7
-            }
+              "fill-opacity": 0.7,
+            },
           });
         }
       }
