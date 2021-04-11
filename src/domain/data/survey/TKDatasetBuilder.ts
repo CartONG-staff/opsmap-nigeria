@@ -24,7 +24,7 @@ export async function TKDatasetBuild(
   surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[],
   surveyFormat: "csv" | "kobo",
   spatialDescription: TKSpatialDescription
-): DatasetCollection {
+): Promise<DatasetCollection> {
   const datasetCollection: DatasetCollection = {};
   for (const item of surveyDescription) {
     let rawData;
