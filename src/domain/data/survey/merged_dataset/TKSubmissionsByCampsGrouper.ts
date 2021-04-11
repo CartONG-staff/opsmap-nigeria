@@ -1,4 +1,4 @@
-import { TKGroupAnswersByThematics } from "./TKAnswersByThematicGrouper";
+import { TKGroupAnswersByThematics } from "./TKEntriesByThematicGrouper";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
 import { Dataset } from "@/domain/data/survey/TKDatasetBuilder";
