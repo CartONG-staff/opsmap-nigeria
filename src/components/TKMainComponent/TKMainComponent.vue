@@ -36,7 +36,14 @@
             <TKCampInfos class="tk-camp-infos" />
           </div>
         </div>
-        <TKMap class="tk-main-map" :appConfig="appConfig" />
+        <TKMap
+          class="tk-main-map"
+          :appConfig="appConfig"
+          :campList="campsList"
+          :currentCampId="currentCamp"
+          @camp-selection-cleared="campSelectionCleared"
+          @camp-selection-changed="campSelectionChanged"
+        />
       </div>
 
       <div class="tk-main-content">
