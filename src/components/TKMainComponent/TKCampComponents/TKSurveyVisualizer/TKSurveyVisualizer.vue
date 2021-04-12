@@ -1,22 +1,13 @@
 <template lang="html">
   <div class="tk-survey-visualizer">
-    <TKSurveyThematic
-      :title="thematic1.name"
-      :icon_name="thematic1.iconOchaName"
-    />
-    <TKSurveyThematic
-      :title="thematic2.name"
-      :icon_name="thematic2.iconOchaName"
-    />
-    <TKSurveyThematic
-      :title="thematic3.name"
-      :icon_name="thematic3.iconOchaName"
-    />
+    <TKSurveyThematic :survey="survey1" />
+    <TKSurveyThematic :survey="survey2" />
+    <TKSurveyThematic :survey="survey3" />
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TKSurveyThematic from "./TKSurveyThematic.vue";
 
 @Component({
@@ -25,20 +16,22 @@ import TKSurveyThematic from "./TKSurveyThematic.vue";
   }
 })
 export default class TKSurveyVisualizer extends Vue {
-  thematic1 = {
-    name: "Avions",
-    iconOchaName: "Airport"
-  };
+  @Prop({ default: {} })
+  readonly survey!: { [key: string]: { [key: string]: object } };
 
-  thematic2 = {
-    name: "Agile",
-    iconOchaName: "Agile"
-  };
+  survey1: object = {};
+  survey2: object = {};
+  survey3: object = {};
 
-  thematic3 = {
-    name: "Confinés",
-    iconOchaName: "Confined"
-  };
+  @Watch("survey", { immediate: true })
+  onSurveyChanged() {
+    console.log(this.survey);
+    const keys = Object.keys(this.survey);
+    const surv = this.survey[keys[0]];
+    this.survey1 = surv["group_cccm"];
+    this.survey2 = surv["group_education"];
+    this.survey3 = surv["group_health"];
+  }
 }
 </script>
 

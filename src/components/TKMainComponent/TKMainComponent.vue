@@ -116,7 +116,7 @@ export default class TKMainComponent extends Vue {
   currentCamp!: CampDescription;
   currentCampId = "";
   currentCampName = "";
-  currentSubmissions: { [key: string]: object } = { "": {} };
+  currentSubmissions: object = {};
   isHomePage = true;
 
   campSelectionCleared() {
@@ -133,7 +133,6 @@ export default class TKMainComponent extends Vue {
       this.currentCamp = found;
       this.currentCampName = found.name;
       this.currentSubmissions = this.dataset.submissionsByCamps[campId];
-      console.log("Submission Changed: " + this.currentSubmissions);
     }
   }
 
