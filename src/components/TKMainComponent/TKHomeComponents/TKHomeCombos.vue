@@ -26,7 +26,7 @@
       flat
       dense
       :placeholder="$t('home.comboCampPlaceholder')"
-      v-model="campListModel"
+      :v-model="campListModel"
       :items="campList"
       item-text="name"
       item-value="id"

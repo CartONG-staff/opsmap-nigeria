@@ -5,7 +5,7 @@
       <img class="tk-survey-icon" :src="iconurl" />
     </div>
     <div class="tk-survey-thematic-content">
-      <div v-for="(item, key) in items" :key="item.id">
+      <div v-for="(item, key) in dataFiltered" :key="item.id">
         <div v-if="key !== 0" class="tk-hseparator"></div>
         <TKSurveyItem :item="item" />
       </div>
@@ -16,7 +16,6 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import { TKSurveyItemI, TrafficLight } from "./TKSurveyItemI";
 import TKSurveyItem from "./TKSurveyItem.vue";
 
 @Component({
@@ -28,41 +27,47 @@ export default class TKSurveyThematic extends Vue {
   @Prop()
   readonly survey!: any;
 
+  dataFiltered = [];
+
   title = "";
   iconurl = "";
+  items = [];
 
   @Watch("survey", { immediate: true })
   onSurveychanged() {
-    this.title = this.survey["thematic_label_en"];
-    this.iconurl = TKIconUrl(this.survey["icon_file_name"]);
-    console.log(this.iconurl);
+    this.title = this.survey.thematic_label_en;
+    this.iconurl = TKIconUrl(this.survey.icon_file_name);
+    this.items = this.survey.data;
+    this.dataFiltered = this.survey.data.filter(
+      (item: any) => item.answerLabel_en !== ""
+    );
   }
 
-  readonly items: TKSurveyItemI[] = [
-    {
-      name: "Camp management on site",
-      value: "No",
-      trafficLight: TrafficLight.OK
-    },
-    {
-      name: "Site facilitation",
-      value: "MOBILE"
-    },
-    {
-      name: "Site facilitatorrs covering the site",
-      value: "1"
-    },
-    {
-      name: "Rate number of site facilitator by population",
-      value: "867",
-      trafficLight: TrafficLight.WARNING
-    },
-    {
-      name: "Market inside the site",
-      value: "?",
-      trafficLight: TrafficLight.CRITICAL
-    }
-  ];
+  // readonly items: TKSurveyItemI[] = [
+  //   {
+  //     name: "Camp management on site",
+  //     value: "No",
+  //     trafficLight: TrafficLight.OK
+  //   },
+  //   {
+  //     name: "Site facilitation",
+  //     value: "MOBILE"
+  //   },
+  //   {
+  //     name: "Site facilitatorrs covering the site",
+  //     value: "1"
+  //   },
+  //   {
+  //     name: "Rate number of site facilitator by population",
+  //     value: "867",
+  //     trafficLight: TrafficLight.WARNING
+  //   },
+  //   {
+  //     name: "Market inside the site",
+  //     value: "?",
+  //     trafficLight: TrafficLight.CRITICAL
+  //   }
+  // ];
 }
 </script>
 

@@ -3,10 +3,10 @@
     <div v-if="item.trafficLight" class="tk-layout-w-trafficlight">
       <div class="tk-item-content">
         <div class="tk-item-field-name">
-          {{ item.name }}
+          {{ item.fieldLabel_en }}
         </div>
         <div class="tk-item-field-value">
-          {{ item.value }}
+          {{ item.answerLabel_en }}
         </div>
         <div class="tk-trafficlight">
           <div v-if="isOK" class="tk-trafficlight-ok"></div>
@@ -19,10 +19,10 @@
     <div v-if="!item.trafficLight" class="tk-layout-wo-trafficLight">
       <div class="tk-item-content">
         <div class="tk-item-field-name">
-          {{ item.name }}
+          {{ item.fieldLabel_en }}
         </div>
         <div class="tk-item-field-value">
-          {{ item.value }}
+          {{ item.answerLabel_en }}
         </div>
       </div>
     </div>
@@ -31,16 +31,15 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
-import { TKSurveyItemI, TrafficLight } from "./TKSurveyItemI";
 
 @Component
 export default class TKSurveyItem extends Vue {
   @Prop()
-  readonly item!: TKSurveyItemI;
+  readonly item!: { [key: string]: string };
 
-  readonly isOK = this.item.trafficLight === TrafficLight.OK;
-  readonly isWarning = this.item.trafficLight === TrafficLight.WARNING;
-  readonly isCritical = this.item.trafficLight === TrafficLight.CRITICAL;
+  readonly isOK = this.item.trafficLightColor === "green";
+  readonly isWarning = this.item.trafficLightColor === "";
+  readonly isCritical = this.item.trafficLightColor === "red";
 }
 </script>
 
@@ -58,6 +57,7 @@ export default class TKSurveyItem extends Vue {
   font-size: 11px;
   color: #999;
   flex-grow: 1;
+  line-height: 2.727;
 }
 
 .tk-item-field-value {

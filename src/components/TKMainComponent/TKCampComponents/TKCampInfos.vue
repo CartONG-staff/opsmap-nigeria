@@ -70,7 +70,6 @@ export default class TKCampInfos extends Vue {
 
   @Watch("camp", { immediate: true })
   onCampChanged() {
-    console.log("INFOS: change!");
     this.name = this.camp.name;
     this.coordinates =
       this.camp.coordinates[0] + "," + this.camp.coordinates[1];

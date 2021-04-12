@@ -179,7 +179,6 @@ export default class TKMap extends Vue {
           const poly = turf.multiPolygon(
             boundaries.features[0].geometry.coordinates
           );
-          console.log(poly);
 
           const bboxPoly = turf.bboxPolygon([-180, -90, 180, 90]);
           const polygon = turf.difference(bboxPoly, poly);

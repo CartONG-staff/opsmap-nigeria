@@ -25,12 +25,13 @@ export default class TKSurveyVisualizer extends Vue {
 
   @Watch("survey", { immediate: true })
   onSurveyChanged() {
-    console.log(this.survey);
     const keys = Object.keys(this.survey);
     const surv = this.survey[keys[0]];
     this.survey1 = surv["group_cccm"];
     this.survey2 = surv["group_education"];
     this.survey3 = surv["group_health"];
+
+    console.log(surv);
   }
 }
 </script>
