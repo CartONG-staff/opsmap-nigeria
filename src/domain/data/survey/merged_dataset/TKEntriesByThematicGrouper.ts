@@ -21,10 +21,10 @@ function TKIsSubmissionInThematic(
 }
 
 export function TKGroupAnswersByThematics(
-  submissionItem: object,
+  submissionItem: any,
   surveyConfiguration: TKSurveyConfiguration
 ) {
-  const thematics = {};
+  const thematics: { [index: string]: any } = {};
 
   for (const thematic in surveyConfiguration.thematics) {
     thematics[thematic] = {
