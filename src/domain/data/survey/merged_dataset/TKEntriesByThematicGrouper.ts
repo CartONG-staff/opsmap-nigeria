@@ -1,4 +1,4 @@
-import { TKSurveyConfiguration } from "@/domain/dataaaaa/survey/raw_data/TKSurveyConfigurationBuilder";
+import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
 import { TKSubmissionsRulesCollection } from "../raw_data/TKSubmissionsRulesBuilder";
 import { TKSetSubmissionVisualisationProfile } from "./TKSubmissionProfiler";
 

@@ -3,7 +3,7 @@ import {
   TrafficLightColors,
   TKTrafficLightGrouped,
 } from "../raw_data/TKTrafficLightsCollectionBuilder";
-import { TKSurveyConfiguration } from "@/domain/dataaaaa/survey/raw_data/TKSurveyConfigurationBuilder";
+import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
 
 interface TKSubmissionVisualisationProfile {
   fieldLabel_en: string;
