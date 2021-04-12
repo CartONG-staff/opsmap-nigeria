@@ -12,27 +12,19 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 import { APPCONFIG } from "@/app-demo/config";
-
 import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an alias to /src
-import { TKDatasetBuilder } from "@/domain/Data/Survey/TKDatasetBuilder";
 
 @Component({
   components: {
     TKHeader,
     TKFooter,
-    TKMainComponent
-  }
+    TKMainComponent,
+  },
 })
 export default class App extends Vue {
   private appConfig: TKGeneralConfiguration = APPCONFIG;
-  async mounted() {
-    TKDatasetBuilder(
-      this.appConfig.surveyDescription,
-      this.appConfig.surveyFormat
-    );
-  }
 }
 </script>
 

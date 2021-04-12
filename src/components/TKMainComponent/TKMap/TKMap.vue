@@ -19,9 +19,9 @@ import mapboxgl, { LngLatBounds } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import * as turf from "@turf/turf";
 
-import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 
-import { TKRetrieveAdmin0Boundaries } from "@/domain/Data/Boundaries/TKBoundaries";
+import { TKRetrieveAdmin0Boundaries } from "@/domain/data/boundaries/TKBoundaries";
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
@@ -30,8 +30,8 @@ import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
   components: {
     TKMapBasemapPicker,
     TKMapFilters,
-    TKMapZoom
-  }
+    TKMapZoom,
+  },
 })
 export default class TKMap extends Vue {
   @Prop()
@@ -131,7 +131,7 @@ export default class TKMap extends Vue {
       if (this.bound) {
         this.map.fitBounds(this.bound, {
           padding: this.appConfig.mapConfig.padding,
-          speed: this.appConfig.mapConfig.zoomspeed
+          speed: this.appConfig.mapConfig.zoomspeed,
         });
       }
     }

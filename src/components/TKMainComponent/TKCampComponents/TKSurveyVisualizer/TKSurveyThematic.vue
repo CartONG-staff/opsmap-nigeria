@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
-import { TKIconUrl } from "@/domain/UI/TKIcons";
+import { TKIconUrl } from "@/domain/ui/TKIcons";
 import { TKSurveyItemI, TrafficLight } from "./TKSurveyItemI";
 import TKSurveyItem from "./TKSurveyItem.vue";
 import TKSurveyPyramidChart from "./TKSurveyPyramidChart.vue";
@@ -30,8 +30,8 @@ import TKSurveyDoughnutChart from "./TKSurveyDoughnutChart.vue";
   components: {
     TKSurveyItem,
     TKSurveyDoughnutChart,
-    TKSurveyPyramidChart
-  }
+    TKSurveyPyramidChart,
+  },
 })
 export default class TKSurveyThematic extends Vue {
   @Prop()
@@ -45,26 +45,26 @@ export default class TKSurveyThematic extends Vue {
     {
       name: "Camp management on site",
       value: "No",
-      trafficLight: TrafficLight.OK
+      trafficLight: TrafficLight.OK,
     },
     {
       name: "Site facilitation",
-      value: "MOBILE"
+      value: "MOBILE",
     },
     {
       name: "Site facilitatorrs covering the site",
-      value: "1"
+      value: "1",
     },
     {
       name: "Rate number of site facilitator by population",
       value: "867",
-      trafficLight: TrafficLight.WARNING
+      trafficLight: TrafficLight.WARNING,
     },
     {
       name: "Market inside the site",
       value: "?",
-      trafficLight: TrafficLight.CRITICAL
-    }
+      trafficLight: TrafficLight.CRITICAL,
+    },
   ];
 }
 </script>

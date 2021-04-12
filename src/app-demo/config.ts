@@ -1,29 +1,31 @@
-import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 import {
   languages,
-  koboInfo,
-  // csvInfo,
+  koboSurveyInfo,
+  csvSurveyInfo,
+  spatialDescription,
   headerLogo,
-  footerLogos
+  footerLogos,
 } from "@/app-demo/appConfiguration";
-import { TKMapboxConfiguration } from "@/domain/Map/TKMapboxConfiguration";
+import { TKMapboxConfiguration } from "@/domain/map/TKMapboxConfiguration";
 
 const mapConfig: TKMapboxConfiguration = {
   token:
-    "pk.eyJ1IjoiY2FydG9uZyIsImEiOiJjazJldzVobGkwOWRxM2hzNTB1M3o2cG94In0.w7FyG31FWqXm3vXSh6WtxQ",
-  style: "mapbox://styles/mapbox/streets-v11",
+    "pk.eyJ1Ijoib3BzbWFwcGVyIiwiYSI6ImNrbW5xMWFuYzBqejMydnBnN2VjMTBjcG8ifQ.OtWWd9kzJdJjogrY7gb-sw",
+  style: "mapbox://styles/opsmapper/ckmnq4jfb12r217o7yon9r383",
   padding: 100,
-  zoomspeed: 2
+  zoomspeed: 2,
 };
 
 export const APPCONFIG: TKGeneralConfiguration = {
   name: "brazil",
   iso3: "BRA",
   language: languages,
-  surveyFormat: "kobo",
-  surveyDescription: koboInfo,
-  // surveyDescription: csvInfo,
+  surveyFormat: "csv",
+  // surveyDescription: koboInfo,
+  surveyDescription: csvSurveyInfo,
+  spatialDescription: spatialDescription,
   headerLogo: headerLogo,
   footerLogos: footerLogos,
-  mapConfig: mapConfig
+  mapConfig: mapConfig,
 };

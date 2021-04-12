@@ -1,4 +1,4 @@
-import { TKLogo } from "@/domain/UI/TKLogo";
+import { TKLogo } from "@/domain/ui/TKLogo";
 
 export const TKLOGO_UNHCR: TKLogo =  {
     name: "UNHCR",
