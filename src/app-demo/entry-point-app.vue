@@ -20,8 +20,8 @@ import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an a
   components: {
     TKHeader,
     TKFooter,
-    TKMainComponent,
-  },
+    TKMainComponent
+  }
 })
 export default class App extends Vue {
   private appConfig: TKGeneralConfiguration = APPCONFIG;
