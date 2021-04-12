@@ -31,7 +31,7 @@
             />
           </div>
           <div v-if="!isHomePage" class="tk-camp-left">
-            <TKCampSubtitle class="tk-camp-title" />
+            <TKCampSubtitle class="tk-camp-title"  :name="currentCampName"/>
             <TKCampToolbar class="tk-camp-toolbar" />
             <TKCampInfos class="tk-camp-infos" />
           </div>
@@ -53,7 +53,7 @@
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
           <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
-          <TKSurveyVisualizer />
+          <TKSurveyVisualizer :survey="currentSubmissions" />
         </div>
       </div>
     </div>
@@ -63,10 +63,14 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
-import { TKDatasetBuild } from "@/domain/data/survey/TKDatasetBuilder";
+import {
+  DatasetCollection,
+  TKDatasetBuild
+} from "@/domain/data/survey/TKDatasetBuilder";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "@/components/TKMainComponent/TKMap";
 import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { Dataset } from "@/domain/data/survey/TKDatasetBuilder";
 
 import {
   TKHomeCombos,
@@ -104,31 +108,39 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
+  dataset!: Dataset;
   campsList: CampDescription[] = [];
 
   currentCamp = "";
+  currentSubmissions: object = {};
+  currentCampName = "";
+
   isHomePage = true;
 
   campSelectionCleared() {
+    this.currentCamp = "";
     this.currentCamp = "";
     this.isHomePage = true;
   }
   campSelectionChanged(campId: string) {
     this.currentCamp = campId;
     this.isHomePage = false;
+    const found = this.campsList.find(element => element.id === campId);
+    if (found) {
+      this.currentCampName = found.name;
+    }
   }
 
   async mounted() {
-    const dataset = await TKDatasetBuild(
+    const datasets = await TKDatasetBuild(
       this.appConfig.surveyDescription,
       this.appConfig.surveyFormat,
       this.appConfig.spatialDescription
     );
 
     // TODO : make this nice. This isn't
-    this.campsList = dataset["2021"].campsList;
-    // this.currentCamp = this.campsList[5].id;
-    // console.log("[MAIN] Force camp: " + this.currentCamp);
+    this.dataset = datasets["2021"];
+    this.campsList = this.dataset.campsList;
   }
 }
 </script>
