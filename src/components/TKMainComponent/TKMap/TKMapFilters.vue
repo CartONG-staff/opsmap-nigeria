@@ -34,6 +34,7 @@ export default class TKMapFilter extends Vue {
   align-items: left;
   padding: 5px;
   row-gap: 10px;
+  background-color: #fff;
 }
 .tk-map-filter {
   display: flex;

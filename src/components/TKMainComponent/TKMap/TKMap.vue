@@ -8,6 +8,8 @@
     />
 
     <TKMapFilters class="tk-map-filters" />
+
+    <TKMapBasemapPicker class="tk-basemap-picker" v-on:change="updateBasemap" />
   </div>
 </template>
 
@@ -22,9 +24,11 @@ import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
 import { TKRetrieveAdmin0Boundaries } from "@/domain/Data/Boundaries/TKBoundaries";
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
+import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
 
 @Component({
   components: {
+    TKMapBasemapPicker,
     TKMapFilters,
     TKMapZoom
   }
@@ -36,6 +40,10 @@ export default class TKMap extends Vue {
   map!: mapboxgl.Map;
 
   bound!: mapboxgl.LngLatBounds;
+
+  boundariesMask!: turf.Feature<
+    turf.helpers.MultiPolygon | turf.helpers.Polygon
+  >;
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   // map object management method
@@ -56,13 +64,35 @@ export default class TKMap extends Vue {
         accessToken: this.appConfig.mapConfig.token,
         bounds: this.bound
       });
-
-      // disable map rotation using right click + drag
-      this.map.dragRotate.disable();
-
-      // disable map rotation using touch rotation gesture
-      this.map.touchZoomRotate.disableRotation();
     }
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+  // layers management
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  addLayers() {
+    if (this.boundariesMask) {
+      this.map.addSource("outsidemask", {
+        type: "geojson",
+        data: this.boundariesMask
+      });
+      this.map.addLayer({
+        id: "outsidemask",
+        type: "fill",
+        source: "outsidemask",
+        layout: {},
+        paint: {
+          "fill-color": "#585858",
+          "fill-opacity": 0.7
+        }
+      });
+    }
+  }
+
+  updateBasemap() {
+    // this.map.setStyle(this.appConfig.mapConfig.style);
+    this.addLayers();
   }
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -108,7 +138,7 @@ export default class TKMap extends Vue {
   }
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
-  // boundaries management
+  // Boundaries management
   // ////////////////////////////////////////////////////////////////////////////////////////////////
 
   setupCountryBoundaries() {
@@ -128,22 +158,10 @@ export default class TKMap extends Vue {
           console.log(poly);
 
           const bboxPoly = turf.bboxPolygon([-180, -90, 180, 90]);
-          const outsidemask = turf.difference(bboxPoly, poly);
-          if (outsidemask) {
-            this.map.addSource("outsidemask", {
-              type: "geojson",
-              data: outsidemask
-            });
-            this.map.addLayer({
-              id: "outsidemask",
-              type: "fill",
-              source: "outsidemask",
-              layout: {},
-              paint: {
-                "fill-color": "#585858",
-                "fill-opacity": 0.7
-              }
-            });
+          const polygon = turf.difference(bboxPoly, poly);
+          if (polygon) {
+            this.boundariesMask = polygon;
+            this.addLayers();
           }
         }
       })
@@ -158,7 +176,14 @@ export default class TKMap extends Vue {
 
   mounted(): void {
     this.initMap();
-    this.setupCountryBoundaries();
+    this.map.on("load", () => {
+      // disable map rotation using right click + drag
+      this.map.dragRotate.disable();
+      // disable map rotation using touch rotation gesture
+      this.map.touchZoomRotate.disableRotation();
+
+      this.setupCountryBoundaries();
+    });
   }
 }
 </script>
@@ -181,7 +206,13 @@ export default class TKMap extends Vue {
   bottom: 26px;
   right: 8px;
   z-index: 2500;
-  background-color: #fff;
+}
+
+.tk-basemap-picker {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2500;
 }
 </style>
 
