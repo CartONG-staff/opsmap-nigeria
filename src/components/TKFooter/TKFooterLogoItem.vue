@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="tk-footer-logos-item-container">
-    <div class="tk-footer-logos-item-title">{{ title }} :</div>
+    <div class="tk-footer-logos-item-title">{{ title }}</div>
     <div class="tk-footer-logos-item-logos">
       <div v-for="item in logos" :key="item.name">
         <a :href="item.urlRedirection" target="_blank">
