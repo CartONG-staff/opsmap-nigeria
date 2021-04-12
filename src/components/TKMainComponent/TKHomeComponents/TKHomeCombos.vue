@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 
 @Component({})
 export default class TKHomeCombos extends Vue {
