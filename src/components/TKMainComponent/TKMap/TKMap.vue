@@ -9,12 +9,12 @@
 
     <TKMapFilters class="tk-map-filters" />
 
-    <TKMapBasemapPicker class="tk-basemap-picker" v-on:change="updateBasemap" />
+    <!-- <TKMapBasemapPicker class="tk-basemap-picker" v-on:change="updateBasemap" /> -->
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Emit, Watch } from "vue-property-decorator";
 import mapboxgl, { LngLatBounds } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import * as turf from "@turf/turf";
@@ -25,17 +25,41 @@ import { TKRetrieveAdmin0Boundaries } from "@/domain/data/boundaries/TKBoundarie
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
+import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
 
 @Component({
   components: {
     TKMapBasemapPicker,
     TKMapFilters,
-    TKMapZoom,
-  },
+    TKMapZoom
+  }
 })
 export default class TKMap extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
+
+  @Prop({ default: () => [] })
+  readonly campList!: CampDescription[];
+
+  // Hold the app current camp property
+  @Prop()
+  readonly currentCampId!: string;
+  // campListModel = this.currentCampId;
+
+  @Watch("currentCampId")
+  currentCampIdChanged() {
+    // this.campListModel = this.currentCampId;
+    // Ready to apply map maneuver here !!!
+  }
+
+  @Emit("camp-selection-changed")
+  campSelectionChanged(id: string): void {
+    console.log("campSelected: " + id);
+  }
+  @Emit("camp-selection-cleared")
+  campSelectionCleared() {
+    console.log("Camp Selectio cleared");
+  }
 
   map!: mapboxgl.Map;
 
@@ -131,7 +155,7 @@ export default class TKMap extends Vue {
       if (this.bound) {
         this.map.fitBounds(this.bound, {
           padding: this.appConfig.mapConfig.padding,
-          speed: this.appConfig.mapConfig.zoomspeed,
+          speed: this.appConfig.mapConfig.zoomspeed
         });
       }
     }
@@ -155,7 +179,6 @@ export default class TKMap extends Vue {
           const poly = turf.multiPolygon(
             boundaries.features[0].geometry.coordinates
           );
-          console.log(poly);
 
           const bboxPoly = turf.bboxPolygon([-180, -90, 180, 90]);
           const polygon = turf.difference(bboxPoly, poly);

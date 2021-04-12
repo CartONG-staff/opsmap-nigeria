@@ -7,23 +7,48 @@
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
         <div v-if="isHomePage" class="tk-home-header"></div>
-        <div v-if="!isHomePage" class="tk-camp-header"><TKCampSelector /></div>
+        <div v-if="!isHomePage" class="tk-camp-header">
+          <TKCampSelector
+            :campList="campsList"
+            :currentCampId="currentCampId"
+            @camp-selection-cleared="campSelectionCleared"
+            @camp-selection-changed="campSelectionChanged"
+          />
+        </div>
       </div>
       <div class="tk-main-top">
         <div class="tk-main-left">
           <TKTitle class="tk-home-title" :appConfig="appConfig" />
           <div v-if="isHomePage" class="tk-home-left">
             <TKHomeSubtitle />
-            <TKHomeCombos class="tk-home-combos" :appConfig="appConfig" />
+            <TKHomeCombos
+              class="tk-home-combos"
+              :appConfig="appConfig"
+              :campList="campsList"
+              :currentCampId="currentCampId"
+              @camp-selection-cleared="campSelectionCleared"
+              @camp-selection-changed="campSelectionChanged"
+            />
           </div>
           <div v-if="!isHomePage" class="tk-camp-left">
-            <TKCampSubtitle class="tk-camp-title" />
-            <TKCampToolbar class="tk-camp-toolbar" />
-            <TKCampInfos class="tk-camp-infos" />
+            <TKCampSubtitle class="tk-camp-title" :name="currentCampName" />
+            <TKCampToolbar
+              class="tk-camp-toolbar"
+              :campList="campsList"
+              :survey="currentSubmissions"
+              :currentCampId="currentCampId"
+            />
+            <TKCampInfos class="tk-camp-infos" :camp="currentCamp" />
           </div>
         </div>
-        <v-btn v-on:click="switchPage">{{ $t("main.switchPage") }}</v-btn>
-        <TKMap class="tk-main-map" :appConfig="appConfig" />
+        <TKMap
+          class="tk-main-map"
+          :appConfig="appConfig"
+          :campList="campsList"
+          :currentCampId="currentCampId"
+          @camp-selection-cleared="campSelectionCleared"
+          @camp-selection-changed="campSelectionChanged"
+        />
       </div>
 
       <div class="tk-main-content">
@@ -33,7 +58,7 @@
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
           <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
-          <TKSurveyVisualizer />
+          <TKSurveyVisualizer :survey="currentSubmissions" />
         </div>
       </div>
     </div>
@@ -46,12 +71,14 @@ import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 import { TKDatasetBuild } from "@/domain/data/survey/TKDatasetBuilder";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "@/components/TKMainComponent/TKMap";
+import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { Dataset } from "@/domain/data/survey/TKDatasetBuilder";
 
 import {
   TKHomeCombos,
   TKHomeIndicators,
   TKHomeMoreInfos,
-  TKHomeSubtitle,
+  TKHomeSubtitle
 } from "./TKHomeComponents";
 
 import {
@@ -60,7 +87,7 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSurveyVisualizer,
+  TKSurveyVisualizer
 } from "./TKCampComponents";
 
 @Component({
@@ -76,25 +103,49 @@ import {
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
-    TKTitle,
-  },
+    TKTitle
+  }
 })
 export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
+  dataset!: Dataset;
+  campsList: CampDescription[] = [];
+
+  currentCamp!: CampDescription;
+  currentCampId = "";
+  currentCampName = "";
+  currentSubmissions: object = {};
   isHomePage = true;
-  switchPage() {
-    this.isHomePage = !this.isHomePage;
+
+  campSelectionCleared() {
+    this.currentCampId = "";
+    this.currentCampName = "";
+    this.currentSubmissions = {};
+    this.isHomePage = true;
+  }
+  campSelectionChanged(campId: string) {
+    this.isHomePage = false;
+    this.currentCampId = campId;
+    const found = this.campsList.find(element => element.id === campId);
+    if (found) {
+      this.currentCamp = found;
+      this.currentCampName = found.name;
+      this.currentSubmissions = this.dataset.submissionsByCamps[campId];
+    }
   }
 
   async mounted() {
-    const dataset = await TKDatasetBuild(
+    const datasets = await TKDatasetBuild(
       this.appConfig.surveyDescription,
       this.appConfig.surveyFormat,
       this.appConfig.spatialDescription
     );
-    console.log(dataset);
+
+    // TODO : make this nice. This isn't
+    this.dataset = datasets["2021"];
+    this.campsList = this.dataset.campsList;
   }
 }
 </script>

@@ -174,7 +174,6 @@ export default class TKSurveyPyramidChart extends Vue {
     if (this.chart) {
       this.chart.destroy();
     }
-    console.log(this.ctx);
     if (this.ctx && this.config) {
       this.chart = new Chart(this.ctx, this.config);
     }
