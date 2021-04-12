@@ -3,7 +3,7 @@
     <div class="tk-survey-visualizer-col">
       <TKSurveyThematic :survey="surveyCccm" />
       <TKSurveyThematic :survey="surveyCom" />
-      <TKSurveyThematic :survey="surveyDemo" />
+      <!-- <TKSurveyThematic :survey="surveyDemo" /> -->
       <TKSurveyThematic :survey="surveyEducation" />
       <TKSurveyThematic :survey="surveySports" />
     </div>

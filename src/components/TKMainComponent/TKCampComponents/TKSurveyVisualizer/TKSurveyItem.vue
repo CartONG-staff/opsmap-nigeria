@@ -64,7 +64,6 @@ export default class TKSurveyItem extends Vue {
   font-weight: bold;
   font-size: 11px;
   color: #333;
-  line-height: 2.727;
 }
 
 .tk-layout-w-trafficlight {
