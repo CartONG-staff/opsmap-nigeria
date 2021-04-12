@@ -2,7 +2,7 @@ import { TKGroupAnswersByThematics } from "./TKEntriesByThematicGrouper";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
 import { Dataset } from "@/domain/data/survey/TKDatasetBuilder";
-// import { spatialDescription } from "@/app-demo/appConfiguration";
+// import { spatialDescriptio n } from "@/app-demo/appConfiguration";
 
 export interface CampDescription {
   id: string;
@@ -22,18 +22,14 @@ export interface BoundariesCollection {
   admin2: BoundarieDescription[];
 }
 
-// interface BoundariesCollection {
-//   admin1:
-// }
-
-// const siteIDField: string = spatialDescription.siteIDField as string;
+// const siteIDField: string = spatialDescription.siteIDField;
 // const siteNameField = spatialDescription.siteNameField;
 // const siteTypeField = spatialDescription.siteTypeField;
 // const siteLastUpdateField = spatialDescription.siteLastUpdateField;
 // const siteLatitudeField = spatialDescription.siteLatitudeField;
 // const siteLongitudeField = spatialDescription.siteLongitudeField;
 
-// interface Submission {
+// type Submission {
 //   [siteIDField]: string;
 //   [siteNameField]: string;
 //   [siteTypeField]: string;
@@ -44,7 +40,7 @@ export interface BoundariesCollection {
 // }
 
 export function TKGroupSubmissionsByCamp(
-  sumbmissions: any[],
+  sumbmissions: Submission[],
   survey: TKSurveyConfiguration,
   spatialDescription: TKSpatialDescription
 ): Dataset {

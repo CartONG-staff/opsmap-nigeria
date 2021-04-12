@@ -8,31 +8,31 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
-import { TKIndicator } from "@/domain/UI/TKIndicator";
+import { TKIndicator } from "@/domain/ui/TKIndicator";
 @Component({
   components: {
-    TKIndicatorComponent
-  }
+    TKIndicatorComponent,
+  },
 })
 export default class TKHomeIndicators extends Vue {
   indicator1: TKIndicator = {
     value: 57,
     name: "Sites",
-    iconOchaName: "IDP-refugee-camp"
+    iconOchaName: "IDP-refugee-camp",
   };
 
   indicator2: TKIndicator = {
     value: 520,
     name: "People",
-    iconOchaName: "People-in-need"
+    iconOchaName: "People-in-need",
   };
 
   indicator3: TKIndicator = {
     value: 20,
     name: "Sites overcrowded",
-    iconOchaName: "Permanent-camp"
+    iconOchaName: "Permanent-camp",
   };
 
   @Prop()
