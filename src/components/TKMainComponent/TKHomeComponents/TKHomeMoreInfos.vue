@@ -1,7 +1,7 @@
 <template>
   <div class="tk-home-moreinfos">
     <div class="tk-home-moreinfos-title">
-      {{ $t("home.moreInfosTitle") }}
+      {{ $t("home.moreInfosTitle").toUpperCase() }}
     </div>
     <div class="tk-home-moreinfos-content">
       {{ $t("home.moreInfosContent") }}
