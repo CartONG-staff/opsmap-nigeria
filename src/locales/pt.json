@@ -26,6 +26,11 @@
     "comboSurveyPlaceholder": "Selecione uma pesquisa",
     "comboStatePlaceholder": "Selecione um Estado",
     "comboLGAPlaceholder": "Selecione um LGA",
-    "comboCampPlaceholder": "Selecione um acampamento"
+    "comboCampPlaceholder": "Selecione um acampamento",
+    "infosState": "Estado",
+    "infosLGA": "LGA",
+    "infosWard": "ala",
+    "infosCoordinates": "coordenadas GPS",
+    "infosManageBy": "site gerenciado por"
   }
 }

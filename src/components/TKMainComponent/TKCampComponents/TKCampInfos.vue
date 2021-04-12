@@ -1,29 +1,80 @@
 <template>
   <div class="tk-camp-infos">
-    <div v-for="info in campsInfos" :key="info.name" class="tk-camp-info">
-      <div class="tk-camp-infos-field">
-        <div class="tk-camp-infos-field-key">{{ info.name.toUpperCase() }}</div>
-        <div class="tk-camp-infos-field-value">
-          {{ info.longName.toUpperCase() }}
-        </div>
+    <!-- STATE -->
+    <div class="tk-camp-infos-field">
+      <div class="tk-camp-infos-field-key">
+        {{ $t("camp.infosState").toUpperCase() }}
       </div>
-      <div class="tk-hseparator" />
+      <div class="tk-camp-infos-field-value">
+        {{ state.toUpperCase() }}
+      </div>
     </div>
+    <div class="tk-hseparator" />
+    <!-- LGA -->
+    <div class="tk-camp-infos-field">
+      <div class="tk-camp-infos-field-key">
+        {{ $t("camp.infosLGA").toUpperCase() }}
+      </div>
+      <div class="tk-camp-infos-field-value">
+        {{ lga.toUpperCase() }}
+      </div>
+    </div>
+    <div class="tk-hseparator" />
+    <!-- WARD -->
+    <div class="tk-camp-infos-field">
+      <div class="tk-camp-infos-field-key">
+        {{ $t("camp.infosWard").toUpperCase() }}
+      </div>
+      <div class="tk-camp-infos-field-value">
+        {{ name.toUpperCase() }}
+      </div>
+    </div>
+    <div class="tk-hseparator" />
+    <!-- GPS COORDINATES -->
+    <div class="tk-camp-infos-field">
+      <div class="tk-camp-infos-field-key">
+        {{ $t("camp.infosCoordinates").toUpperCase() }}
+      </div>
+      <div class="tk-camp-infos-field-value">
+        {{ coordinates.toUpperCase() }}
+      </div>
+    </div>
+    <div class="tk-hseparator" />
+    <!-- Manage BY -->
+    <div class="tk-camp-infos-field">
+      <div class="tk-camp-infos-field-key">
+        {{ $t("camp.infosManageBy").toUpperCase() }}
+      </div>
+      <div class="tk-camp-infos-field-value">
+        {{ manageby.toUpperCase() }}
+      </div>
+    </div>
+    <div class="tk-hseparator" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKCampInfos extends Vue {
-  readonly campsInfos = [
-    { name: "STATE", longName: "adamaya" },
-    { name: "LGA", longName: "yola south " },
-    { name: "WARD", longName: "ngurore" },
-    { name: "GPS COORDINATES", longName: "12.233223, 12.233223" },
-    { name: "SITE manage BY", longName: "name" }
-  ];
+  @Prop()
+  readonly camp!: CampDescription;
+
+  state = "";
+  lga = "";
+  name = "";
+  coordinates = "";
+  manageby = "";
+
+  @Watch("camp")
+  onCampChanged() {
+    console.log("INFOS: change!");
+    this.name = this.camp.name;
+    this.coordinates =
+      this.camp.coordinates[0] + "," + this.camp.coordinates[1];
+  }
 }
 </script>
 

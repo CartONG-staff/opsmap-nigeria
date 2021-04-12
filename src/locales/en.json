@@ -26,6 +26,11 @@
     "comboSurveyPlaceholder": "Select a survey",
     "comboStatePlaceholder": "Select a state",
     "comboLGAPlaceholder": "Select a LGA",
-    "comboCampPlaceholder": "Select a camp"
+    "comboCampPlaceholder": "Select a camp",
+    "infosState": "STATE",
+    "infosLGA": "LGA",
+    "infosWard": "Ward",
+    "infosCoordinates": "gps coordinates",
+    "infosManageBy": "SITE MANAGE BY"
   }
 }

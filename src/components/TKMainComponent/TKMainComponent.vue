@@ -10,7 +10,7 @@
         <div v-if="!isHomePage" class="tk-camp-header">
           <TKCampSelector
             :campList="campsList"
-            :currentCampId="currentCamp"
+            :currentCampId="currentCampId"
             @camp-selection-cleared="campSelectionCleared"
             @camp-selection-changed="campSelectionChanged"
           />
@@ -25,22 +25,27 @@
               class="tk-home-combos"
               :appConfig="appConfig"
               :campList="campsList"
-              :currentCampId="currentCamp"
+              :currentCampId="currentCampId"
               @camp-selection-cleared="campSelectionCleared"
               @camp-selection-changed="campSelectionChanged"
             />
           </div>
           <div v-if="!isHomePage" class="tk-camp-left">
-            <TKCampSubtitle class="tk-camp-title"  :name="currentCampName"/>
-            <TKCampToolbar class="tk-camp-toolbar" />
-            <TKCampInfos class="tk-camp-infos" />
+            <TKCampSubtitle class="tk-camp-title" :name="currentCampName" />
+            <TKCampToolbar
+              class="tk-camp-toolbar"
+              :campList="campsList"
+              :survey="currentSubmissions"
+              :currentCampId="currentCampId"
+            />
+            <TKCampInfos class="tk-camp-infos" :camp="currentCamp" />
           </div>
         </div>
         <TKMap
           class="tk-main-map"
           :appConfig="appConfig"
           :campList="campsList"
-          :currentCampId="currentCamp"
+          :currentCampId="currentCampId"
           @camp-selection-cleared="campSelectionCleared"
           @camp-selection-changed="campSelectionChanged"
         />
@@ -63,10 +68,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
-import {
-  DatasetCollection,
-  TKDatasetBuild
-} from "@/domain/data/survey/TKDatasetBuilder";
+import { TKDatasetBuild } from "@/domain/data/survey/TKDatasetBuilder";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "@/components/TKMainComponent/TKMap";
 import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
@@ -111,23 +113,27 @@ export default class TKMainComponent extends Vue {
   dataset!: Dataset;
   campsList: CampDescription[] = [];
 
-  currentCamp = "";
-  currentSubmissions: object = {};
+  currentCamp!: CampDescription;
+  currentCampId = "";
   currentCampName = "";
-
+  currentSubmissions: { [key: string]: object } = { "": {} };
   isHomePage = true;
 
   campSelectionCleared() {
-    this.currentCamp = "";
-    this.currentCamp = "";
+    this.currentCampId = "";
+    this.currentCampName = "";
+    this.currentSubmissions = {};
     this.isHomePage = true;
   }
   campSelectionChanged(campId: string) {
-    this.currentCamp = campId;
     this.isHomePage = false;
+    this.currentCampId = campId;
     const found = this.campsList.find(element => element.id === campId);
     if (found) {
+      this.currentCamp = found;
       this.currentCampName = found.name;
+      this.currentSubmissions = this.dataset.submissionsByCamps[campId];
+      console.log("Submission Changed: " + this.currentSubmissions);
     }
   }
 

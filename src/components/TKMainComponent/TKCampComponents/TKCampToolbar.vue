@@ -3,8 +3,8 @@
     <v-autocomplete
       background-color="#418fde"
       color="#ffffff"
-      :items="surveys"
-      v-model="surveys[0]"
+      :items="surveysDate"
+      v-model="surveysDateModel"
       flat
       filled
       solo
@@ -25,11 +25,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKCampToolbar extends Vue {
-  surveys = ["14/02/2002", "14/02/2003", "14/02/2004"];
+  @Prop({ default: {} })
+  readonly survey!: object;
+
+  surveysDate = [];
+  surveysDateModel = "";
+
+  @Watch("survey")
+  surveyChanged() {
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@ New Surey: " + this.survey);
+  }
 }
 </script>
 
@@ -76,5 +85,4 @@ export default class TKCampToolbar extends Vue {
 .tk-camp-toolbar-survey .v-icon.v-icon {
   color: #fff !important;
 }
-
 </style>
