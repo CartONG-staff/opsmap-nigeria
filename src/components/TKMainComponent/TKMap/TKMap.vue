@@ -110,8 +110,8 @@ export default class TKMap extends Vue {
             source: "outsidemask",
             layout: {},
             paint: {
-              "fill-color": "#585858",
-              "fill-opacity": 0.7,
+              "fill-color": "#1f1e1e",
+              "fill-opacity": 0.8,
             },
           });
         }

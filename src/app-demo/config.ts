@@ -11,8 +11,8 @@ import { TKMapboxConfiguration } from "@/domain/map/TKMapboxConfiguration";
 
 const mapConfig: TKMapboxConfiguration = {
   token:
-    "pk.eyJ1IjoiY2FydG9uZyIsImEiOiJjazJldzVobGkwOWRxM2hzNTB1M3o2cG94In0.w7FyG31FWqXm3vXSh6WtxQ",
-  style: "mapbox://styles/mapbox/streets-v11",
+    "pk.eyJ1Ijoib3BzbWFwcGVyIiwiYSI6ImNrbW5xMWFuYzBqejMydnBnN2VjMTBjcG8ifQ.OtWWd9kzJdJjogrY7gb-sw",
+  style: "mapbox://styles/opsmapper/ckmnq4jfb12r217o7yon9r383",
   padding: 100,
   zoomspeed: 2,
 };
