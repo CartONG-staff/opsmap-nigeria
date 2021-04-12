@@ -11,7 +11,7 @@ import {
 } from "./merged_dataset/TKSubmissionsByCampsGrouper";
 
 export interface Dataset {
-  submissionsByCamps: object;
+  submissionsByCamps: {[key: string]: object};
   campsList: CampDescription[];
   boundariesList: BoundariesCollection;
 }
