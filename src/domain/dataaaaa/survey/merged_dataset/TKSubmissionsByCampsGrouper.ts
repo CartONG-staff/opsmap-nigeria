@@ -1,7 +1,7 @@
 import { TKGroupAnswersByThematics } from "./TKEntriesByThematicGrouper";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
-import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
-import { Dataset } from "@/domain/data/survey/TKDatasetBuilder";
+import { TKSurveyConfiguration } from "@/domain/dataaaaa/survey/raw_data/TKSurveyConfigurationBuilder";
+import { Dataset } from "@/domain/dataaaaa/survey/TKDatasetBuilder";
 // import { spatialDescription } from "@/app-demo/appConfiguration";
 
 export interface CampDescription {

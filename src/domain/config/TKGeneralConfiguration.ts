@@ -1,8 +1,8 @@
 import { TKMapboxConfiguration } from "@/domain/map/TKMapboxConfiguration";
 import { TKLogo } from "@/domain/ui/TKLogo";
-import { TKKoboSurveyInfo } from "@/domain/data/kobo/TKKoboSurveyInfo";
+import { TKKoboSurveyInfo } from "@/domain/dataaaaa/kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
-import { TKCSVSurveyInfo } from "@/domain/data/csv/TKCSVTypes";
+import { TKCSVSurveyInfo } from "@/domain/dataaaaa/csv/TKCSVTypes";
 import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
 
