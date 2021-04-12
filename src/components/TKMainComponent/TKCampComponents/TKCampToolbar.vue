@@ -32,12 +32,13 @@ export default class TKCampToolbar extends Vue {
   @Prop({ default: {} })
   readonly survey!: object;
 
-  surveysDate = [];
+  surveysDate = [""];
   surveysDateModel = "";
 
   @Watch("survey")
   surveyChanged() {
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@ New Surey: " + this.survey);
+    this.surveysDate = Object.keys(this.survey);
+    this.surveysDateModel = this.surveysDate[0];
   }
 }
 </script>
