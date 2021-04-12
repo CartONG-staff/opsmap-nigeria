@@ -68,7 +68,7 @@ export default class TKCampInfos extends Vue {
   coordinates = "";
   manageby = "";
 
-  @Watch("camp")
+  @Watch("camp", { immediate: true })
   onCampChanged() {
     console.log("INFOS: change!");
     this.name = this.camp.name;
