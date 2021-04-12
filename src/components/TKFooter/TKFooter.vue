@@ -2,7 +2,7 @@
   <div class="tk-footer flex">
     <div class="tk-footer-disclaimer">
       <div class="tk-footer-disclaimer-title">
-        <p>{{ $t("footer.moreInfos") }}</p>
+        <p>{{ $t("footer.moreInfos").toUpperCase() }}</p>
       </div>
       <div class="tk-footer-disclaimer-text">
         <p>

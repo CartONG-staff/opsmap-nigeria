@@ -33,6 +33,7 @@ export default class TKMapZoom extends Vue {}
   border: 2px solid #00000011;
   display: flex;
   flex-flow: column nowrap;
+  background-color: #dddddd;
 }
 
 .tk-icon-container {
@@ -46,6 +47,5 @@ export default class TKMapZoom extends Vue {}
 .tk-hseparator {
   height: 1px;
   width: 100%;
-  background-color: #dddddd;
 }
 </style>

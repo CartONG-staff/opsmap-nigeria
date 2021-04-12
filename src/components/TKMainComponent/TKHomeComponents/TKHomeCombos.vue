@@ -1,14 +1,19 @@
 <template>
   <div class="tk-home-combos">
     <p class="tk-home-combos-title">
-      {{ $t("home.combosTitle") }}
+      {{ $t("home.combosTitle").toUpperCase() }}
     </p>
     <v-autocomplete
       class="tk-autocomplete"
       flat
       dense
+      :placeholder="$t('home.comboSurveyPlaceholder')"
+    ></v-autocomplete>
+    <v-autocomplete
+      class="tk-autocomplete"
+      flat
+      dense
       :placeholder="$t('home.comboStatePlaceholder')"
-      :items="['Braaaaazil', 'Arjentina', 'Coloombia']"
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
@@ -27,7 +32,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 
 @Component({})
 export default class TKHomeCombos extends Vue {

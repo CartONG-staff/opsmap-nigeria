@@ -30,27 +30,31 @@
       mandatory
       group
       dense
-      color="accent"
       class="tk-header-buttons"
+      color="accent"
     >
-      <v-btn plain text value="en">EN</v-btn>
-      <img
-        src="@/assets/vertical-separator.png"
-        class="tk-header-buttons-sep"
-      />
-      <v-btn plain text value="fr">FR</v-btn>
+      <v-btn
+        v-for="locale in locales"
+        :key="locale"
+        plain
+        text
+        :value="locale"
+        >{{ locale.toUpperCase() }}</v-btn
+      >
     </v-btn-toggle>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 
 @Component
 export default class TKHeader extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
+
+  locales = this.$root.$i18n.availableLocales;
 
   language = "en";
   @Watch("language")
