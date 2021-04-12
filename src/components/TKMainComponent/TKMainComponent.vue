@@ -7,14 +7,28 @@
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
         <div v-if="isHomePage" class="tk-home-header"></div>
-        <div v-if="!isHomePage" class="tk-camp-header"><TKCampSelector /></div>
+        <div v-if="!isHomePage" class="tk-camp-header">
+          <TKCampSelector
+            :campList="campsList"
+            :currentCampId="currentCamp"
+            @camp-selection-cleared="campSelectionCleared"
+            @camp-selection-changed="campSelectionChanged"
+          />
+        </div>
       </div>
       <div class="tk-main-top">
         <div class="tk-main-left">
           <TKTitle class="tk-home-title" :appConfig="appConfig" />
           <div v-if="isHomePage" class="tk-home-left">
             <TKHomeSubtitle />
-            <TKHomeCombos class="tk-home-combos" :appConfig="appConfig" />
+            <TKHomeCombos
+              class="tk-home-combos"
+              :appConfig="appConfig"
+              :campList="campsList"
+              :currentCampId="currentCamp"
+              @camp-selection-cleared="campSelectionCleared"
+              @camp-selection-changed="campSelectionChanged"
+            />
           </div>
           <div v-if="!isHomePage" class="tk-camp-left">
             <TKCampSubtitle class="tk-camp-title" />
@@ -22,7 +36,6 @@
             <TKCampInfos class="tk-camp-infos" />
           </div>
         </div>
-        <v-btn v-on:click="switchPage">{{ $t("main.switchPage") }}</v-btn>
         <TKMap class="tk-main-map" :appConfig="appConfig" />
       </div>
 
@@ -46,12 +59,13 @@ import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 import { TKDatasetBuild } from "@/domain/data/survey/TKDatasetBuilder";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "@/components/TKMainComponent/TKMap";
+import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
 
 import {
   TKHomeCombos,
   TKHomeIndicators,
   TKHomeMoreInfos,
-  TKHomeSubtitle,
+  TKHomeSubtitle
 } from "./TKHomeComponents";
 
 import {
@@ -60,7 +74,7 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSurveyVisualizer,
+  TKSurveyVisualizer
 } from "./TKCampComponents";
 
 @Component({
@@ -76,16 +90,25 @@ import {
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
-    TKTitle,
-  },
+    TKTitle
+  }
 })
 export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
+  campsList: CampDescription[] = [];
+
+  currentCamp = "";
   isHomePage = true;
-  switchPage() {
-    this.isHomePage = !this.isHomePage;
+
+  campSelectionCleared() {
+    this.currentCamp = "";
+    this.isHomePage = true;
+  }
+  campSelectionChanged(campId: string) {
+    this.currentCamp = campId;
+    this.isHomePage = false;
   }
 
   async mounted() {
@@ -94,7 +117,11 @@ export default class TKMainComponent extends Vue {
       this.appConfig.surveyFormat,
       this.appConfig.spatialDescription
     );
-    console.log(dataset);
+
+    // TODO : make this nice. This isn't
+    this.campsList = dataset["2021"].campsList;
+    // this.currentCamp = this.campsList[5].id;
+    // console.log("[MAIN] Force camp: " + this.currentCamp);
   }
 }
 </script>
