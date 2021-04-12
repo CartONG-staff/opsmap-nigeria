@@ -7,8 +7,13 @@
       class="tk-autocomplete"
       flat
       dense
+      :placeholder="$t('home.comboSurveyPlaceholder')"
+    ></v-autocomplete>
+    <v-autocomplete
+      class="tk-autocomplete"
+      flat
+      dense
       :placeholder="$t('home.comboStatePlaceholder')"
-      :items="['Braaaaazil', 'Arjentina', 'Coloombia']"
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
