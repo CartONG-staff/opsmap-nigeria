@@ -44,11 +44,11 @@ export interface BoundariesCollection {
 // }
 
 export function TKGroupSubmissionsByCamp(
-  sumbmissions: object[],
+  sumbmissions: any[],
   survey: TKSurveyConfiguration,
   spatialDescription: TKSpatialDescription
 ): Dataset {
-  const submissionsByCamps = {};
+  const submissionsByCamps: { [index: string]: any } = {};
   const campsList: CampDescription[] = [];
   const boundariesList: BoundariesCollection = {
     admin1: [],
