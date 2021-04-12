@@ -9,7 +9,7 @@
 
     <TKMapFilters class="tk-map-filters" />
 
-    <TKMapBasemapPicker class="tk-basemap-picker" v-on:change="updateBasemap" />
+    <!-- <TKMapBasemapPicker class="tk-basemap-picker" v-on:change="updateBasemap" /> -->
   </div>
 </template>
 
