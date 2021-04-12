@@ -1,31 +1,31 @@
 {
   "title": "Opsmap",
   "footer":{
-    "moreInfos": "Plus d'informations",
-    "moreInfosText":" FR Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiat nullapariatur.Excepteur sint occaecat cupidatat non proident, sunt inculpa qui officia deserunt mollit anim id est laborum.",
-    "partnerLed":"Cluster Dirigé par",
-    "partnerCoordination":"Coordination et support IM par",
-    "partnerFieldwork":"Travail de terrain par",
-    "partnerWebdev":"Webdev par"
+    "moreInfos": "Sobre Opsmap",
+    "moreInfosText":"PT Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiat nullapariatur.Excepteur sint occaecat cupidatat non proident, sunt inculpa qui officia deserunt mollit anim id est laborum.",
+    "partnerLed":"Líder do grupo",
+    "partnerCoordination":"Coordenação e IM apoio ",
+    "partnerFieldwork":"Trabalho de campo",
+    "partnerWebdev":"Desenvolvimento Web"
   },
   "main": {
-    "switchPage": "Changement de page",
-    "title": "Traqueur de site"
+    "switchPage": "Interruptor",
+    "title": "Rastreador de site"
   },
   "home": {
-    "lastUpdate": "Dernière mise à jour",
-    "moreInfosTitle": "Plus d'informations",
-    "moreInfosContent": "The DSA site profile dashboard is an output of the CCCM Information Management Technical Working Group, which is comprised of the CCCM Cluster, REACH, IOM Displacement Tracking and Monitoring Unit, the UNHCR-led Protection & Returns Monitoring Network (PRMN), NRC, SomRep, Protection Cluster and Shelter Cluster. The profiles display site-level information collected by REACH, NRC and PRMN with the overall objective of strengthening the predictability and effectiveness of multi-sectorial interventions at site level and/or within areas of concentrated sites. Information is collected through key informants at each IDP site; figures are to be taken as indicative. As of January 2018, the DSA covered 1,751 sites in 22 districts. For further information visit the Somalia CCCM Cluster Web Portal or to provide feedback, kindly email cluster coordination (ilyas@unhcr.org and kziga@iom.int).",
-    "combosTitle": "Zoom sur la map",
-    "comboSurveyPlaceholder": "Choisis une enquête",
-    "comboStatePlaceholder": "Choisis un état",
-    "comboLGAPlaceholder": "Choisis un LGA",
-    "comboCampPlaceholder": "Choisis un camp"
+    "lastUpdate": "Última atualização",
+    "moreInfosTitle": "Mais Informações",
+    "moreInfosContent": "PT The DSA site profile dashboard is an output of the CCCM Information Management Technical Working Group, which is comprised of the CCCM Cluster, REACH, IOM Displacement Tracking and Monitoring Unit, the UNHCR-led Protection & Returns Monitoring Network (PRMN), NRC, SomRep, Protection Cluster and Shelter Cluster. The profiles display site-level information collected by REACH, NRC and PRMN with the overall objective of strengthening the predictability and effectiveness of multi-sectorial interventions at site level and/or within areas of concentrated sites. Information is collected through key informants at each IDP site; figures are to be taken as indicative. As of January 2018, the DSA covered 1,751 sites in 22 districts. For further information visit the Somalia CCCM Cluster Web Portal or to provide feedback, kindly email cluster coordination (ilyas@unhcr.org and kziga@iom.int).",
+    "combosTitle": "zoom no mapa",
+    "comboSurveyPlaceholder": "Selecione uma pesquisa",
+    "comboStatePlaceholder": "Selecione um Estado",
+    "comboLGAPlaceholder": "Selecione um LGA",
+    "comboCampPlaceholder": "Selecione um acampamento"
   },
   "camp": {
-    "comboSurveyPlaceholder": "Choisis une enquête",
-    "comboStatePlaceholder": "Choisis un état",
-    "comboLGAPlaceholder": "Choisis un LGA",
-    "comboCampPlaceholder": "Choisis un camp"
+    "comboSurveyPlaceholder": "Selecione uma pesquisa",
+    "comboStatePlaceholder": "Selecione um Estado",
+    "comboLGAPlaceholder": "Selecione um LGA",
+    "comboCampPlaceholder": "Selecione um acampamento"
   }
 }
