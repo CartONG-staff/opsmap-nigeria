@@ -45,6 +45,7 @@ export default class TKMapZoom extends Vue {}
 }
 
 .tk-hseparator {
+  background-color: #00000011;
   height: 1px;
   width: 100%;
 }
