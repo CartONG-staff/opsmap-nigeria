@@ -35,12 +35,25 @@ export default class TKSurveyThematic extends Vue {
 
   @Watch("survey", { immediate: true })
   onSurveychanged() {
-    this.title = this.survey.thematic_label_en;
+    let suffix = "tr";
+    if (this.$root.$i18n.locale == "en") {
+      suffix = "en";
+    }
+    this.title = this.survey["thematic_label_" + suffix];
     this.iconurl = TKIconUrl(this.survey.icon_file_name);
     this.items = this.survey.data;
     this.dataFiltered = this.survey.data.filter(
       (item: any) => item.answerLabel_en !== ""
     );
+  }
+
+  @Watch("$root.$i18n.locale", { immediate: true })
+  onLocalChanged() {
+    let suffix = "tr";
+    if (this.$root.$i18n.locale == "en") {
+      suffix = "en";
+    }
+    this.title = this.survey["thematic_label_" + suffix];
   }
 
   // readonly items: TKSurveyItemI[] = [
