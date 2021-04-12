@@ -45,7 +45,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/Config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 
 @Component
 export default class TKHeader extends Vue {
