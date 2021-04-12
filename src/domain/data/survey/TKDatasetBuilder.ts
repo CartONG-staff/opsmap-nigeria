@@ -16,7 +16,7 @@ export interface Dataset {
   boundariesList: BoundariesCollection;
 }
 
-interface DatasetCollection {
+export interface DatasetCollection {
   [fdf: string]: Dataset;
 }
 
