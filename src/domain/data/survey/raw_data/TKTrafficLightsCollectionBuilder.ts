@@ -1,4 +1,4 @@
-import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
+import { TKTrafficLightColors } from "@/domain/core/TKTrafficLightColors";
 
 export type TrafficLightTypes = "string" | "math" | "list";
 
