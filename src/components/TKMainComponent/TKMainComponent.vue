@@ -68,10 +68,12 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 import { TKDatasetBuild } from "@/domain/data/survey/TKDatasetBuilder";
+
 import TKTitle from "./TKTitle.vue";
-import TKMap from "@/components/TKMainComponent/TKMap";
+import TKMap from "./TKMap";
+
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
-import { Dataset } from "@/domain/data/survey/TKDatasetBuilder";
+import { TKDataset } from "@/domain/core/TKDataset";
 
 import {
   TKHomeCombos,
@@ -117,7 +119,7 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
-  dataset!: Dataset;
+  dataset!: TKDataset;
   campsList: TKCampDescription[] = [];
 
   currentCamp: TKCampDescription = DEFAULT_CAMP_DESCRIPTION;

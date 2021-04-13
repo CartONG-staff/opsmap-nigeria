@@ -1,21 +1,13 @@
 import { TKGroupAnswersByThematics } from "./TKEntriesByThematicGrouper";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
-import { Dataset } from "@/domain/data/survey/TKDatasetBuilder";
 
+import { TKBoundarieDescription } from "@/domain/core/TKBoundarieDescription";
+import { TKBoundariesCollection } from "@/domain/core/TKBoundariesCollection";
+import { TKDataset } from "@/domain/core/TKDataset";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 
 // import { spatialDescription } from "@/app-demo/appConfiguration";
-interface BoundarieDescription {
-  pcode: string;
-  name: string;
-}
-
-export interface BoundariesCollection {
-  admin1: BoundarieDescription[];
-  admin2: BoundarieDescription[];
-}
-
 // const siteIDField: string = spatialDescription.siteIDField;
 // const siteNameField = spatialDescription.siteNameField;
 // const siteTypeField = spatialDescription.siteTypeField;
@@ -37,10 +29,10 @@ export function TKGroupSubmissionsByCamp(
   sumbmissions: any[],
   survey: TKSurveyConfiguration,
   spatialDescription: TKSpatialDescription
-): Dataset {
+): TKDataset {
   const submissionsByCamps: { [index: string]: any } = {};
   const campsList: TKCampDescription[] = [];
-  const boundariesList: BoundariesCollection = {
+  const boundariesList: TKBoundariesCollection = {
     admin1: [],
     admin2: [],
   };
