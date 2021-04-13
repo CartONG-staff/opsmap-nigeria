@@ -10,7 +10,7 @@
         <div v-if="!isHomePage" class="tk-camp-header">
           <TKCampSelector
             :campList="campsList"
-            :currentCampId="currentCamp.id"
+            :currentCamp="currentCamp"
             @camp-selection-cleared="campSelectionCleared"
             @camp-selection-changed="campSelectionChanged"
           />

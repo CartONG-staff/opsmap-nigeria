@@ -23,7 +23,7 @@
       color="discrete"
       dense
       clearable
-      v-model="campListModel"
+      v-model="campModel"
       :items="campList"
       item-text="name"
       item-value="id"
@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
 
 @Component
@@ -44,12 +44,8 @@ export default class TKCampSelector extends Vue {
 
   // Hold the app current camp property
   @Prop()
-  readonly currentCampId!: string;
-  campListModel = this.currentCampId;
-  @Watch("currentCampId")
-  currentCampIdChanged() {
-    this.campListModel = this.currentCampId;
-  }
+  readonly currentCamp!: CampDescription;
+  campModel = this.currentCamp ? this.currentCamp.id : "";
 
   // Hold the current camp at an app level
   // BEHAVIOR
