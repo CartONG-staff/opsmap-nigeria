@@ -50,32 +50,6 @@ export default class TKSurveyThematic extends Vue {
       this.title = this.survey.thematic_label_en;
     }
   }
-
-  // readonly items: TKSurveyItemI[] = [
-  //   {
-  //     name: "Camp management on site",
-  //     value: "No",
-  //     trafficLight: TrafficLight.OK
-  //   },
-  //   {
-  //     name: "Site facilitation",
-  //     value: "MOBILE"
-  //   },
-  //   {
-  //     name: "Site facilitatorrs covering the site",
-  //     value: "1"
-  //   },
-  //   {
-  //     name: "Rate number of site facilitator by population",
-  //     value: "867",
-  //     trafficLight: TrafficLight.WARNING
-  //   },
-  //   {
-  //     name: "Market inside the site",
-  //     value: "?",
-  //     trafficLight: TrafficLight.CRITICAL
-  //   }
-  // ];
 }
 </script>
 
