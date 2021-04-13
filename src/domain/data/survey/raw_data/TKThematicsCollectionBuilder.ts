@@ -2,7 +2,7 @@ export interface TKThematic {
   formatted_name: string;
   icon_file_name: string;
   thematic_label_en: string;
-  thematic_label_tr: string;
+  thematic_label_pt: string;
 }
 
 export interface TKThematicsCollection {
