@@ -17,14 +17,11 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import mapboxgl, { LngLatBounds } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import * as turf from "@turf/turf";
-
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
-
-import { TKRetrieveAdmin0Boundaries } from "@/domain/data/boundaries/TKBoundaries";
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
+import { mask } from "@/secondary/map/mask";
 
 @Component({
   components: {
@@ -41,9 +38,9 @@ export default class TKMap extends Vue {
 
   bound!: mapboxgl.LngLatBounds;
 
-  boundariesMask!: turf.Feature<
-    turf.helpers.MultiPolygon | turf.helpers.Polygon
-  >;
+  // boundariesMask!: turf.Feature<
+  //   turf.helpers.MultiPolygon | turf.helpers.Polygon
+  // >;
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   // map object management method
@@ -53,8 +50,8 @@ export default class TKMap extends Vue {
     if (!this.bound) {
       // Init the map - world level
       this.bound = new mapboxgl.LngLatBounds(
-        new mapboxgl.LngLat(-90, -90),
-        new mapboxgl.LngLat(90, 90)
+        new mapboxgl.LngLat(-74.17, -33.34),
+        new mapboxgl.LngLat(-33.57, 5.02)
       );
     }
     if (!this.map) {
@@ -62,7 +59,7 @@ export default class TKMap extends Vue {
         container: "tk-map",
         style: this.appConfig.mapConfig.style,
         accessToken: this.appConfig.mapConfig.token,
-        bounds: this.bound
+        bounds: this.bound,
       });
     }
   }
@@ -72,22 +69,22 @@ export default class TKMap extends Vue {
   // ////////////////////////////////////////////////////////////////////////////////////////////////
 
   addLayers() {
-    if (this.boundariesMask) {
-      this.map.addSource("outsidemask", {
-        type: "geojson",
-        data: this.boundariesMask
-      });
-      this.map.addLayer({
-        id: "outsidemask",
-        type: "fill",
-        source: "outsidemask",
-        layout: {},
-        paint: {
-          "fill-color": "#585858",
-          "fill-opacity": 0.7
-        }
-      });
-    }
+    console.log("lets go");
+
+    this.map.addSource("mask", {
+      type: "geojson",
+      data: mask,
+    });
+    this.map.addLayer({
+      id: "mask",
+      type: "fill",
+      source: "mask",
+      layout: {},
+      paint: {
+        "fill-color": "#585858",
+        "fill-opacity": 0.7,
+      },
+    });
   }
 
   updateBasemap() {
@@ -108,7 +105,7 @@ export default class TKMap extends Vue {
       // Avoid multiple zoom variation when on fly
       const scale = new mapboxgl.ScaleControl({
         maxWidth: 100,
-        unit: "metric"
+        unit: "metric",
       });
       this.map.addControl(scale);
     });
@@ -141,34 +138,34 @@ export default class TKMap extends Vue {
   // Boundaries management
   // ////////////////////////////////////////////////////////////////////////////////////////////////
 
-  setupCountryBoundaries() {
-    // Init the boundaries
-    TKRetrieveAdmin0Boundaries(this.appConfig.iso3)
-      .then(boundaries => {
-        if (boundaries) {
-          // Setup outside of boundaries mask
-          const bbox = turf.bbox(boundaries);
-          this.bound = new mapboxgl.LngLatBounds(
-            new mapboxgl.LngLat(bbox[0], bbox[1]),
-            new mapboxgl.LngLat(bbox[2], bbox[3])
-          );
-          const poly = turf.multiPolygon(
-            boundaries.features[0].geometry.coordinates
-          );
-          console.log(poly);
+  // setupCountryBoundaries() {
+  //   // Init the boundaries
+  //   TKRetrieveAdmin0Boundaries(this.appConfig.iso3)
+  //     .then((boundaries) => {
+  //       if (boundaries) {
+  //         // Setup outside of boundaries mask
+  //         const bbox = turf.bbox(boundaries);
+  //         this.bound = new mapboxgl.LngLatBounds(
+  //           new mapboxgl.LngLat(bbox[0], bbox[1]),
+  //           new mapboxgl.LngLat(bbox[2], bbox[3])
+  //         );
+  //         const poly = turf.multiPolygon(
+  //           boundaries.features[0].geometry.coordinates
+  //         );
+  //         console.log(poly);
 
-          const bboxPoly = turf.bboxPolygon([-180, -90, 180, 90]);
-          const polygon = turf.difference(bboxPoly, poly);
-          if (polygon) {
-            this.boundariesMask = polygon;
-            this.addLayers();
-          }
-        }
-      })
-      .then(() => {
-        this.initZoom();
-      });
-  }
+  //         const bboxPoly = turf.bboxPolygon([-180, -90, 180, 90]);
+  //         const polygon = turf.difference(bboxPoly, poly);
+  //         if (polygon) {
+  //           this.boundariesMask = polygon;
+  //           this.addLayers();
+  //         }
+  //       }
+  //     })
+  //     .then(() => {
+  //       this.initZoom();
+  //     });
+  // }
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   // Component lifecycle methods
@@ -182,7 +179,8 @@ export default class TKMap extends Vue {
       // disable map rotation using touch rotation gesture
       this.map.touchZoomRotate.disableRotation();
 
-      this.setupCountryBoundaries();
+      // this.setupCountryBoundaries();
+      this.addLayers();
     });
   }
 }
