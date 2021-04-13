@@ -25,7 +25,7 @@ import { TKRetrieveAdmin0Boundaries } from "@/domain/data/boundaries/TKBoundarie
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
-import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
 
 @Component({
   components: {
@@ -39,7 +39,7 @@ export default class TKMap extends Vue {
   readonly appConfig!: TKGeneralConfiguration;
 
   @Prop({ default: () => [] })
-  readonly campList!: CampDescription[];
+  readonly campList!: TKCampDescription[];
 
   // Hold the app current camp property
   @Prop()

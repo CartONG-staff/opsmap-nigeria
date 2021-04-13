@@ -2,16 +2,10 @@ import { TKGroupAnswersByThematics } from "./TKEntriesByThematicGrouper";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
 import { Dataset } from "@/domain/data/survey/TKDatasetBuilder";
+
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
+
 // import { spatialDescription } from "@/app-demo/appConfiguration";
-
-export interface CampDescription {
-  id: string;
-  name: string;
-  type: string;
-  submissionsDates: string[];
-  coordinates: [number, number];
-}
-
 interface BoundarieDescription {
   pcode: string;
   name: string;
@@ -45,7 +39,7 @@ export function TKGroupSubmissionsByCamp(
   spatialDescription: TKSpatialDescription
 ): Dataset {
   const submissionsByCamps: { [index: string]: any } = {};
-  const campsList: CampDescription[] = [];
+  const campsList: TKCampDescription[] = [];
   const boundariesList: BoundariesCollection = {
     admin1: [],
     admin2: [],

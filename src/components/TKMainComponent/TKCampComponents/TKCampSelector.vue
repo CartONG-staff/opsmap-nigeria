@@ -35,16 +35,16 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
 
 @Component
 export default class TKCampSelector extends Vue {
   @Prop({ default: () => [] })
-  readonly campList!: CampDescription[];
+  readonly campList!: TKCampDescription[];
 
   // Hold the app current camp property
   @Prop()
-  readonly currentCamp!: CampDescription;
+  readonly currentCamp!: TKCampDescription;
   campModel = "";
 
   @Watch("currentCamp", { immediate: true })

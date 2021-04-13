@@ -39,18 +39,18 @@
 import { Component, Prop, Emit, Vue, Watch } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 
-import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
 
 @Component({})
 export default class TKHomeCombos extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
   @Prop({ default: () => [] })
-  readonly campList!: CampDescription[];
+  readonly campList!: TKCampDescription[];
 
   // Hold the app current camp property
   @Prop()
-  readonly currentCamp!: CampDescription;
+  readonly currentCamp!: TKCampDescription;
   campModel = "";
 
   @Watch("currentCamp", { immediate: true })

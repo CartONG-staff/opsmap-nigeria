@@ -5,14 +5,16 @@ import { TKCSVSubmissionsGet } from "@/domain/data/csv/TKCSVSubmissionsGetter";
 import { TKKoboSubmissionsGet } from "../kobo/TKKoboSubmissionsGetter";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
 import { TKGroupSubmissionsByCamp } from "./merged_dataset/TKSubmissionsByCampsGrouper";
+
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
+
 import {
-  CampDescription,
   BoundariesCollection,
 } from "./merged_dataset/TKSubmissionsByCampsGrouper";
 
 export interface Dataset {
   submissionsByCamps: {[key: string]: object};
-  campsList: CampDescription[];
+  campsList: TKCampDescription[];
   boundariesList: BoundariesCollection;
 }
 

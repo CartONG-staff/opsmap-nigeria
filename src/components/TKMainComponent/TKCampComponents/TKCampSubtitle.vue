@@ -6,12 +6,12 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
 
 @Component
 export default class TKCampSubtitle extends Vue {
   @Prop()
-  readonly camp!: CampDescription;
+  readonly camp!: TKCampDescription;
 
   name = "";
 

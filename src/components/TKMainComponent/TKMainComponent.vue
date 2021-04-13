@@ -70,7 +70,7 @@ import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 import { TKDatasetBuild } from "@/domain/data/survey/TKDatasetBuilder";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "@/components/TKMainComponent/TKMap";
-import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { Dataset } from "@/domain/data/survey/TKDatasetBuilder";
 
 import {
@@ -89,7 +89,7 @@ import {
   TKSurveyVisualizer
 } from "./TKCampComponents";
 
-const DEFAULT_CAMP_DESCRIPTION: CampDescription = {
+const DEFAULT_CAMP_DESCRIPTION: TKCampDescription = {
   id: "",
   name: "",
   type: "",
@@ -118,9 +118,9 @@ export default class TKMainComponent extends Vue {
   readonly appConfig!: TKGeneralConfiguration;
 
   dataset!: Dataset;
-  campsList: CampDescription[] = [];
+  campsList: TKCampDescription[] = [];
 
-  currentCamp: CampDescription = DEFAULT_CAMP_DESCRIPTION;
+  currentCamp: TKCampDescription = DEFAULT_CAMP_DESCRIPTION;
   currentSubmissions: object = {};
   isHomePage = true;
 

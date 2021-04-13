@@ -54,13 +54,13 @@
 </template>
 
 <script lang="ts">
-import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKCampInfos extends Vue {
   @Prop()
-  readonly camp!: CampDescription;
+  readonly camp!: TKCampDescription;
 
   state = "";
   lga = "";
