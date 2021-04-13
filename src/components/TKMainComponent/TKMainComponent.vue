@@ -25,7 +25,7 @@
               class="tk-home-combos"
               :appConfig="appConfig"
               :campList="campsList"
-              :currentCampId="currentCamp.id"
+              :currentCamp="currentCamp"
               @camp-selection-cleared="campSelectionCleared"
               @camp-selection-changed="campSelectionChanged"
             />

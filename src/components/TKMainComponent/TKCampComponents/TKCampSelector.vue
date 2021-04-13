@@ -50,21 +50,21 @@ export default class TKCampSelector extends Vue {
   // Hold the current camp at an app level
   // BEHAVIOR
   campSelected(campId: string) {
-    if (campId != null) {
-      this.campSelectionChanged(campId);
+    if (campId) {
+      this.$emit("camp-selection-changed", campId);
     } else {
-      this.campSelectionCleared();
+      this.$emit("camp-selection-cleared");
     }
   }
 
-  @Emit("camp-selection-changed")
-  campSelectionChanged(id: string): void {
-    console.log("campSelected: " + id);
-  }
-  @Emit("camp-selection-cleared")
-  campSelectionCleared() {
-    console.log("Camp Selectio cleared");
-  }
+  // @Emit("camp-selection-changed")
+  // campSelectionChanged(id: string): void {
+  //   console.log("campSelected: " + id);
+  // }
+  // @Emit("camp-selection-cleared")
+  // campSelectionCleared() {
+  //   console.log("Camp Selectio cleared");
+  // }
 }
 </script>
 
