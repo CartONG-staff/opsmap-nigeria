@@ -1,5 +1,13 @@
 export type TrafficLightTypes = "string" | "math" | "list";
-export type TrafficLightColors = "green" | "yellow" | "orange" | "red" | "";
+
+export enum TrafficLightColors {
+  OK = "green",
+  WARNING = "yellow",
+  DANGER = "orange",
+  CRITICAL = "red",
+  UNDEFINED = "purple"
+}
+
 
 export interface TKTrafficLightItem {
   traffic_light_name: string;
@@ -7,7 +15,7 @@ export interface TKTrafficLightItem {
   value: string;
   color: TrafficLightColors;
 }
-export interface TKTrafficLightGrouped {
+  export interface TKTrafficLightGrouped {
   type: TrafficLightTypes;
   values: [
     {

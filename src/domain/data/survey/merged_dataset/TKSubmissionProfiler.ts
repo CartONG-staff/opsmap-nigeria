@@ -25,9 +25,9 @@ function getTrafficLightColor(
       .filter((x) => x.value.toLowerCase() === value.toLowerCase())
       .map((x) => x.color)
       .pop();
-    return match === undefined ? "" : match;
+    return match === undefined ? TrafficLightColors.UNDEFINED : match;
   }
-  return "";
+  return TrafficLightColors.UNDEFINED;
 }
 
 export function TKSetSubmissionVisualisationProfile(
@@ -49,7 +49,7 @@ export function TKSetSubmissionVisualisationProfile(
               surveyConfiguration.submissionsRules[field].traffic_light_name
             ]
           )
-        : "",
+        : TrafficLightColors.UNDEFINED,
   };
   return profil;
 }

@@ -12,6 +12,7 @@
           <div v-if="isOK" class="tk-trafficlight-ok"></div>
           <div v-if="isWarning" class="tk-trafficlight-warning"></div>
           <div v-if="isCritical" class="tk-trafficlight-critical"></div>
+          <div v-if="isOther" class="tk-trafficlight-other"></div>
         </div>
       </div>
     </div>
@@ -30,18 +31,32 @@
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component } from "vue-property-decorator";
+import { Vue, Prop, Component, Watch } from "vue-property-decorator";
+import { TrafficLightColors } from "@/domain/data/survey/raw_data/TKTrafficLightsCollectionBuilder";
 
 @Component
 export default class TKSurveyItem extends Vue {
   @Prop()
   readonly item!: { [key: string]: string };
 
-  readonly isOK = this.item.trafficLightColor === "green";
-  readonly isWarning =
-    this.item.trafficLightColor === "" ||
-    this.item.trafficLightColor === "orange";
-  readonly isCritical = this.item.trafficLightColor === "red";
+  isOK = false;
+  isWarning = false;
+  isCritical = false;
+  isOther = false;
+
+  @Watch("item", { immediate: true })
+  onItemChanged() {
+    this.isOK = this.item
+      ? this.item.trafficLightColor === TrafficLightColors.OK
+      : false;
+    this.isWarning = this.item
+      ? this.item.trafficLightColor === TrafficLightColors.DANGER
+      : false;
+    this.isCritical = this.item
+      ? this.item.trafficLightColor === TrafficLightColors.CRITICAL
+      : false;
+    this.isOther = !this.isOK && !this.isWarning && !this.isCritical;
+  }
 }
 </script>
 
@@ -98,6 +113,14 @@ export default class TKSurveyItem extends Vue {
   height: 8px;
   width: 8px;
   background-color: #e91d1d;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.tk-trafficlight-other {
+  height: 8px;
+  width: 8px;
+  background-color: purple;
   border-radius: 50%;
   margin: 0 auto;
 }
