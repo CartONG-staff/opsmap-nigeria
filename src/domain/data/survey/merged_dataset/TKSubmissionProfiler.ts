@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import {
-  TrafficLightColors,
   TKTrafficLightGrouped,
 } from "../raw_data/TKTrafficLightsCollectionBuilder";
 import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
+import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
 
 interface TKSubmissionVisualisationProfile {
   fieldLabel_en: string;
@@ -13,21 +13,21 @@ interface TKSubmissionVisualisationProfile {
   answerLabel_fr?: string;
   answerLabel_pt?: string;
   trafficLight: boolean;
-  trafficLightColor: TrafficLightColors;
+  trafficLightColor: TKTrafficLightColors;
 }
 
 function getTrafficLightColor(
   value: string,
   trafficLight: TKTrafficLightGrouped
-): TrafficLightColors {
+): TKTrafficLightColors {
   if (trafficLight.type === "string") {
     const match = trafficLight.values
       .filter((x) => x.value.toLowerCase() === value.toLowerCase())
       .map((x) => x.color)
       .pop();
-    return match === undefined ? TrafficLightColors.UNDEFINED : match;
+    return match === undefined ? TKTrafficLightColors.UNDEFINED : match;
   }
-  return TrafficLightColors.UNDEFINED;
+  return TKTrafficLightColors.UNDEFINED;
 }
 
 export function TKSetSubmissionVisualisationProfile(
@@ -49,7 +49,7 @@ export function TKSetSubmissionVisualisationProfile(
               surveyConfiguration.submissionsRules[field].traffic_light_name
             ]
           )
-        : TrafficLightColors.UNDEFINED,
+        : TKTrafficLightColors.UNDEFINED,
   };
   return profil;
 }

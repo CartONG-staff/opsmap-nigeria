@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TrafficLightColors } from "@/domain/data/survey/raw_data/TKTrafficLightsCollectionBuilder";
+import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
 
 @Component
 export default class TKSurveyItem extends Vue {
@@ -47,13 +47,13 @@ export default class TKSurveyItem extends Vue {
   @Watch("item", { immediate: true })
   onItemChanged() {
     this.isOK = this.item
-      ? this.item.trafficLightColor === TrafficLightColors.OK
+      ? this.item.trafficLightColor === TKTrafficLightColors.OK
       : false;
     this.isWarning = this.item
-      ? this.item.trafficLightColor === TrafficLightColors.DANGER
+      ? this.item.trafficLightColor === TKTrafficLightColors.DANGER
       : false;
     this.isCritical = this.item
-      ? this.item.trafficLightColor === TrafficLightColors.CRITICAL
+      ? this.item.trafficLightColor === TKTrafficLightColors.CRITICAL
       : false;
     this.isOther = !this.isOK && !this.isWarning && !this.isCritical;
   }
