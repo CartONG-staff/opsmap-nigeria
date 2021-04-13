@@ -5,5 +5,6 @@ export interface TKSubmission {
     icon_file_name: string;
     thematic_label_en: string;
     thematic_label_pt?: string;
-    // [lang: string] : string;
 }
+
+// TODO: a more flexible approach for language.
