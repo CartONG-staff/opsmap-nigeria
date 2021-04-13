@@ -38,7 +38,9 @@ export default class TKSurveyItem extends Vue {
   readonly item!: { [key: string]: string };
 
   readonly isOK = this.item.trafficLightColor === "green";
-  readonly isWarning = this.item.trafficLightColor === "";
+  readonly isWarning =
+    this.item.trafficLightColor === "" ||
+    this.item.trafficLightColor === "orange";
   readonly isCritical = this.item.trafficLightColor === "red";
 }
 </script>
