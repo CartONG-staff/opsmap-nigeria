@@ -10,7 +10,7 @@
         <div v-if="!isHomePage" class="tk-camp-header">
           <TKCampSelector
             :campList="campsList"
-            :currentCampId="currentCampId"
+            :currentCampId="currentCamp.id"
             @camp-selection-cleared="campSelectionCleared"
             @camp-selection-changed="campSelectionChanged"
           />
@@ -25,18 +25,18 @@
               class="tk-home-combos"
               :appConfig="appConfig"
               :campList="campsList"
-              :currentCampId="currentCampId"
+              :currentCampId="currentCamp.id"
               @camp-selection-cleared="campSelectionCleared"
               @camp-selection-changed="campSelectionChanged"
             />
           </div>
           <div v-if="!isHomePage" class="tk-camp-left">
-            <TKCampSubtitle class="tk-camp-title" :name="currentCampName" />
+            <TKCampSubtitle class="tk-camp-title" :name="currentCamp.name" />
             <TKCampToolbar
               class="tk-camp-toolbar"
               :campList="campsList"
               :survey="currentSubmissions"
-              :currentCampId="currentCampId"
+              :currentCampId="currentCamp.id"
             />
             <TKCampInfos class="tk-camp-infos" :camp="currentCamp" />
           </div>
@@ -45,7 +45,7 @@
           class="tk-main-map"
           :appConfig="appConfig"
           :campList="campsList"
-          :currentCampId="currentCampId"
+          :currentCampId="currentCamp.id"
           @camp-selection-cleared="campSelectionCleared"
           @camp-selection-changed="campSelectionChanged"
         />
@@ -90,6 +90,14 @@ import {
   TKSurveyVisualizer
 } from "./TKCampComponents";
 
+const DEFAULT_CAMP_DESCRIPTION: CampDescription = {
+  id: "",
+  name: "",
+  type: "",
+  submissionsDates: [""],
+  coordinates: [0, 0]
+};
+
 @Component({
   components: {
     TKCampIndicators,
@@ -113,26 +121,23 @@ export default class TKMainComponent extends Vue {
   dataset!: Dataset;
   campsList: CampDescription[] = [];
 
-  currentCamp!: CampDescription;
-  currentCampId = "";
-  currentCampName = "";
+  currentCamp: CampDescription = DEFAULT_CAMP_DESCRIPTION;
   currentSubmissions: object = {};
   isHomePage = true;
 
   campSelectionCleared() {
-    this.currentCampId = "";
-    this.currentCampName = "";
+    this.currentCamp = DEFAULT_CAMP_DESCRIPTION;
     this.currentSubmissions = {};
     this.isHomePage = true;
   }
   campSelectionChanged(campId: string) {
     this.isHomePage = false;
-    this.currentCampId = campId;
     const found = this.campsList.find(element => element.id === campId);
     if (found) {
       this.currentCamp = found;
-      this.currentCampName = found.name;
       this.currentSubmissions = this.dataset.submissionsByCamps[campId];
+    } else {
+      this.currentCamp = DEFAULT_CAMP_DESCRIPTION;
     }
   }
 
