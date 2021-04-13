@@ -71,7 +71,6 @@ export default class TKSurveyVisualizer extends Vue {
       this.surveySecurity = surv["group_security"];
       this.surveySports = surv["group_sports"];
       this.surveyWash = surv["group_wash"];
-      console.log(surv);
     }
   }
 }

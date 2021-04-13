@@ -17,6 +17,8 @@
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import TKSurveyItem from "./TKSurveyItem.vue";
+import { TKSubmission } from "@/domain/core/TKSubmission";
+import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
 
 @Component({
   components: {
@@ -25,27 +27,28 @@ import TKSurveyItem from "./TKSurveyItem.vue";
 })
 export default class TKSurveyThematic extends Vue {
   @Prop()
-  readonly survey!: any;
+  readonly survey!: TKSubmission;
 
-  dataFiltered = [];
+  dataFiltered: TKSubmissionItem[] = [];
 
   title = "";
   iconurl = "";
-  items = [];
-
   @Watch("survey", { immediate: true })
   onSurveychanged() {
-    this.title = this.survey["thematic_label_" + this.$root.$i18n.locale];
-    this.iconurl = TKIconUrl(this.survey.icon_file_name);
-    this.items = this.survey.data;
+    this.handleLocaleOnTitle();
+    this.iconurl = TKIconUrl(this.survey.icon_file_name as string);
     this.dataFiltered = this.survey.data.filter(
-      (item: any) => item.answerLabel_en !== ""
+      (item: TKSubmissionItem) => item.answerLabel_en !== ""
     );
   }
 
   @Watch("$root.$i18n.locale", { immediate: true })
-  onLocalChanged() {
-    this.title = this.survey["thematic_label_" + this.$root.$i18n.locale];
+  handleLocaleOnTitle() {
+    if (this.$root.$i18n.locale == "pt" && this.survey.thematic_label_pt) {
+      this.title = this.survey.thematic_label_pt;
+    } else {
+      this.title = this.survey.thematic_label_en;
+    }
   }
 
   // readonly items: TKSurveyItemI[] = [

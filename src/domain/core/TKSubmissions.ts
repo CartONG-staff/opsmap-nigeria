@@ -1,3 +1,3 @@
-export interface TKSubmissions {
-    [category: string]: { [key: string]: object } ;
-}
+import { TKSubmissionSingleDate } from "./TKSubmissionSingleDate";
+
+export interface TKSubmissions extends Record<string, TKSubmissionSingleDate> {}
