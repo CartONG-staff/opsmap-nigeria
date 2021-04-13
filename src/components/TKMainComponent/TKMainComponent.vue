@@ -74,6 +74,7 @@ import TKMap from "./TKMap";
 
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKDataset } from "@/domain/core/TKDataset";
+import { TKSubmissions } from "@/domain/core/TKSubmissions";
 
 import {
   TKHomeCombos,
@@ -123,7 +124,7 @@ export default class TKMainComponent extends Vue {
   campsList: TKCampDescription[] = [];
 
   currentCamp: TKCampDescription = DEFAULT_CAMP_DESCRIPTION;
-  currentSubmissions: object = {};
+  currentSubmissions: TKSubmissions = {};
   isHomePage = true;
 
   campSelectionCleared() {

@@ -26,6 +26,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TKSurveyThematic from "./TKSurveyThematic.vue";
+import { TKSubmissions } from "@/domain/core/TKSubmissions";
 
 @Component({
   components: {
@@ -33,8 +34,8 @@ import TKSurveyThematic from "./TKSurveyThematic.vue";
   }
 })
 export default class TKSurveyVisualizer extends Vue {
-  @Prop({ default: {} })
-  readonly survey!: { [key: string]: { [key: string]: object } };
+  @Prop()
+  readonly survey!: TKSubmissions;
 
   surveyCccm: object = {};
   surveyCom: object = {};
@@ -53,23 +54,25 @@ export default class TKSurveyVisualizer extends Vue {
 
   @Watch("survey", { immediate: true })
   onSurveyChanged() {
-    const keys = Object.keys(this.survey);
-    const surv = this.survey[keys[0]];
-    this.surveyCccm = surv["group_cccm"];
-    this.surveyCom = surv["group_com"];
-    this.surveyDemo = surv["group_demo"];
-    this.surveyEducation = surv["group_education"];
-    this.surveyEnvironment = surv["group_environment"];
-    this.surveyGeneralInfo = surv["group_general_info"];
-    this.surveyHealth = surv["group_health"];
-    this.surveyInfrastructure = surv["group_infrastructure"];
-    this.surveyInteriorisation = surv["group_interiorisation"];
-    this.surveyNonfood = surv["group_nonfood"];
-    this.surveyProtection = surv["group_protection"];
-    this.surveySecurity = surv["group_security"];
-    this.surveySports = surv["group_sports"];
-    this.surveyWash = surv["group_wash"];
-    console.log(surv);
+    if (this.survey) {
+      const keys = Object.keys(this.survey);
+      const surv = this.survey[keys[0]];
+      this.surveyCccm = surv["group_cccm"];
+      this.surveyCom = surv["group_com"];
+      this.surveyDemo = surv["group_demo"];
+      this.surveyEducation = surv["group_education"];
+      this.surveyEnvironment = surv["group_environment"];
+      this.surveyGeneralInfo = surv["group_general_info"];
+      this.surveyHealth = surv["group_health"];
+      this.surveyInfrastructure = surv["group_infrastructure"];
+      this.surveyInteriorisation = surv["group_interiorisation"];
+      this.surveyNonfood = surv["group_nonfood"];
+      this.surveyProtection = surv["group_protection"];
+      this.surveySecurity = surv["group_security"];
+      this.surveySports = surv["group_sports"];
+      this.surveyWash = surv["group_wash"];
+      console.log(surv);
+    }
   }
 }
 </script>
@@ -88,6 +91,6 @@ export default class TKSurveyVisualizer extends Vue {
   justify-content: flex-start;
   align-items: center;
   width: 30%;
-  row-gap: 25px;;
+  row-gap: 25px;
 }
 </style>
