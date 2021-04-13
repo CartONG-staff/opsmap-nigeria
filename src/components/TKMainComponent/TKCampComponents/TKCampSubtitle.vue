@@ -1,14 +1,17 @@
 <template>
   <div class="tk-camp-subtitle">
-    Sabon Pegi Ngurore
+    {{ name }}
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
-export default class TKCampSubtitle extends Vue {}
+export default class TKCampSubtitle extends Vue {
+  @Prop()
+  readonly name!: string;
+}
 </script>
 
 <style scoped>

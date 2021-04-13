@@ -2,15 +2,10 @@
   <div class="tk-survey-thematic-container">
     <div class="tk-survey-thematic-header">
       <div class="tk-survey-thematic-title">{{ title }}</div>
-      <img class="tk-survey-icon" :src="icon_url" />
+      <img class="tk-survey-icon" :src="iconurl" />
     </div>
     <div class="tk-survey-thematic-content">
-      <TKSurveyPyramidChart class="tk-survey-chart" :name="title + 'bars'" />
-      <TKSurveyDoughnutChart
-        class="tk-survey-chart"
-        :name="title + 'doughnut'"
-      />
-      <div v-for="(item, key) in items" :key="item.id">
+      <div v-for="(item, key) in dataFiltered" :key="item.id">
         <div v-if="key !== 0" class="tk-hseparator"></div>
         <TKSurveyItem :item="item" />
       </div>
@@ -19,53 +14,73 @@
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component } from "vue-property-decorator";
+import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import { TKSurveyItemI, TrafficLight } from "./TKSurveyItemI";
 import TKSurveyItem from "./TKSurveyItem.vue";
-import TKSurveyPyramidChart from "./TKSurveyPyramidChart.vue";
-import TKSurveyDoughnutChart from "./TKSurveyDoughnutChart.vue";
 
 @Component({
   components: {
-    TKSurveyItem,
-    TKSurveyDoughnutChart,
-    TKSurveyPyramidChart,
-  },
+    TKSurveyItem
+  }
 })
 export default class TKSurveyThematic extends Vue {
   @Prop()
-  readonly title!: string;
+  readonly survey!: any;
 
-  @Prop()
-  readonly icon_name!: string;
-  icon_url = TKIconUrl(this.icon_name);
+  dataFiltered = [];
 
-  readonly items: TKSurveyItemI[] = [
-    {
-      name: "Camp management on site",
-      value: "No",
-      trafficLight: TrafficLight.OK,
-    },
-    {
-      name: "Site facilitation",
-      value: "MOBILE",
-    },
-    {
-      name: "Site facilitatorrs covering the site",
-      value: "1",
-    },
-    {
-      name: "Rate number of site facilitator by population",
-      value: "867",
-      trafficLight: TrafficLight.WARNING,
-    },
-    {
-      name: "Market inside the site",
-      value: "?",
-      trafficLight: TrafficLight.CRITICAL,
-    },
-  ];
+  title = "";
+  iconurl = "";
+  items = [];
+
+  @Watch("survey", { immediate: true })
+  onSurveychanged() {
+    let suffix = "tr";
+    if (this.$root.$i18n.locale == "en") {
+      suffix = "en";
+    }
+    this.title = this.survey["thematic_label_" + suffix];
+    this.iconurl = TKIconUrl(this.survey.icon_file_name);
+    this.items = this.survey.data;
+    this.dataFiltered = this.survey.data.filter(
+      (item: any) => item.answerLabel_en !== ""
+    );
+  }
+
+  @Watch("$root.$i18n.locale", { immediate: true })
+  onLocalChanged() {
+    let suffix = "tr";
+    if (this.$root.$i18n.locale == "en") {
+      suffix = "en";
+    }
+    this.title = this.survey["thematic_label_" + suffix];
+  }
+
+  // readonly items: TKSurveyItemI[] = [
+  //   {
+  //     name: "Camp management on site",
+  //     value: "No",
+  //     trafficLight: TrafficLight.OK
+  //   },
+  //   {
+  //     name: "Site facilitation",
+  //     value: "MOBILE"
+  //   },
+  //   {
+  //     name: "Site facilitatorrs covering the site",
+  //     value: "1"
+  //   },
+  //   {
+  //     name: "Rate number of site facilitator by population",
+  //     value: "867",
+  //     trafficLight: TrafficLight.WARNING
+  //   },
+  //   {
+  //     name: "Market inside the site",
+  //     value: "?",
+  //     trafficLight: TrafficLight.CRITICAL
+  //   }
+  // ];
 }
 </script>
 

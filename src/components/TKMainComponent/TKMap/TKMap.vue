@@ -9,12 +9,12 @@
 
     <TKMapFilters class="tk-map-filters" />
 
-    <TKMapBasemapPicker class="tk-basemap-picker" v-on:change="updateBasemap" />
+    <!-- <TKMapBasemapPicker class="tk-basemap-picker" v-on:change="updateBasemap" /> -->
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Emit, Watch } from "vue-property-decorator";
 import mapboxgl, { LngLatBounds } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
@@ -22,6 +22,7 @@ import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
 import { mask } from "@/secondary/map/mask";
+import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
 
 @Component({
   components: {
@@ -33,6 +34,29 @@ import { mask } from "@/secondary/map/mask";
 export default class TKMap extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
+
+  @Prop({ default: () => [] })
+  readonly campList!: CampDescription[];
+
+  // Hold the app current camp property
+  @Prop()
+  readonly currentCampId!: string;
+  // campListModel = this.currentCampId;
+
+  @Watch("currentCampId")
+  currentCampIdChanged() {
+    // this.campListModel = this.currentCampId;
+    // Ready to apply map maneuver here !!!
+  }
+
+  @Emit("camp-selection-changed")
+  campSelectionChanged(id: string): void {
+    console.log("campSelected: " + id);
+  }
+  @Emit("camp-selection-cleared")
+  campSelectionCleared() {
+    console.log("Camp Selectio cleared");
+  }
 
   map!: mapboxgl.Map;
 
