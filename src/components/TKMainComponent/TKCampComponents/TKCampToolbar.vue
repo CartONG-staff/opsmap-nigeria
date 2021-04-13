@@ -36,9 +36,9 @@ export default class TKCampToolbar extends Vue {
   surveysDateModel = "";
 
   @Watch("survey", { immediate: true })
-  surveyChanged() {
-    this.surveysDate = Object.keys(this.survey);
-    this.surveysDateModel = this.surveysDate[0];
+  onChange() {
+    this.surveysDate = this.survey ? Object.keys(this.survey) : [""];
+    this.surveysDateModel = this.surveysDate.length ? this.surveysDate[0] : "";
   }
 }
 </script>

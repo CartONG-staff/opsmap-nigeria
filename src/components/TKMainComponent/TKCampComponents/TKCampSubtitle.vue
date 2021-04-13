@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
 
 @Component
@@ -13,7 +13,12 @@ export default class TKCampSubtitle extends Vue {
   @Prop()
   readonly camp!: CampDescription;
 
-  readonly name = this.camp ? this.camp.name : "";
+  name = "";
+
+  @Watch("camp", { immediate: true })
+  onChange() {
+    this.name = this.camp ? this.camp.name : "";
+  }
 }
 </script>
 

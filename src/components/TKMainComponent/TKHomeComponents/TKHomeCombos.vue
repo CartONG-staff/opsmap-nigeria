@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Emit, Vue } from "vue-property-decorator";
+import { Component, Prop, Emit, Vue, Watch } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 
 import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
@@ -51,7 +51,12 @@ export default class TKHomeCombos extends Vue {
   // Hold the app current camp property
   @Prop()
   readonly currentCamp!: CampDescription;
-  campModel = this.currentCamp ? this.currentCamp.id : "";
+  campModel = "";
+
+  @Watch("currentCamp", { immediate: true })
+  onChange() {
+    this.campModel = this.currentCamp ? this.currentCamp.id : "";
+  }
 
   // Hold the current camp at an app level
   // BEHAVIOR
