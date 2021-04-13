@@ -31,12 +31,11 @@
             />
           </div>
           <div v-if="!isHomePage" class="tk-camp-left">
-            <TKCampSubtitle class="tk-camp-title" :name="currentCamp.name" />
+            <TKCampSubtitle class="tk-camp-title" :camp="currentCamp" />
             <TKCampToolbar
               class="tk-camp-toolbar"
               :campList="campsList"
               :survey="currentSubmissions"
-              :currentCampId="currentCamp.id"
             />
             <TKCampInfos class="tk-camp-infos" :camp="currentCamp" />
           </div>

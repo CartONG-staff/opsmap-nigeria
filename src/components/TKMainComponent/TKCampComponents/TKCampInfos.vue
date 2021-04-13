@@ -55,7 +55,7 @@
 
 <script lang="ts">
 import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
 export default class TKCampInfos extends Vue {
@@ -64,16 +64,11 @@ export default class TKCampInfos extends Vue {
 
   state = "";
   lga = "";
-  name = "";
-  coordinates = "";
+  name = this.camp ? this.camp.name : "";
+  coordinates = this.camp
+    ? this.camp.coordinates[0] + "," + this.camp.coordinates[1]
+    : "";
   manageby = "";
-
-  @Watch("camp", { immediate: true })
-  onCampChanged() {
-    this.name = this.camp.name;
-    this.coordinates =
-      this.camp.coordinates[0] + "," + this.camp.coordinates[1];
-  }
 }
 </script>
 
