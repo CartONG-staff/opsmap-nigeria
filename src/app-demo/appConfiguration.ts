@@ -7,12 +7,13 @@ import {
 } from "@/domain/core/TKLanguageDescription";
 import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
+
 import {
   TKLOGO_CARTONG,
   TKLOGO_CCCM,
   TKLOGO_REACH,
   TKLOGO_UNHCR
-} from "@/domain/logos";
+} from "@/domain/ui/TKLogosConst";
 
 export const spatialDescription: TKSpatialDescription = {
   siteIDField: "mp_site_id",
