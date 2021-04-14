@@ -80,7 +80,7 @@ import {
   TKHomeCombos,
   TKHomeIndicators,
   TKHomeMoreInfos,
-  TKHomeSubtitle
+  TKHomeSubtitle,
 } from "./TKHomeComponents";
 
 import {
@@ -89,7 +89,7 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSurveyVisualizer
+  TKSurveyVisualizer,
 } from "./TKCampComponents";
 
 const DEFAULT_CAMP_DESCRIPTION: TKCampDescription = {
@@ -97,7 +97,7 @@ const DEFAULT_CAMP_DESCRIPTION: TKCampDescription = {
   name: "",
   type: "",
   submissionsDates: [""],
-  coordinates: [0, 0]
+  coordinates: [0, 0],
 };
 
 @Component({
@@ -113,8 +113,8 @@ const DEFAULT_CAMP_DESCRIPTION: TKCampDescription = {
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
-    TKTitle
-  }
+    TKTitle,
+  },
 })
 export default class TKMainComponent extends Vue {
   @Prop()
@@ -134,7 +134,7 @@ export default class TKMainComponent extends Vue {
   }
   campSelectionChanged(campId: string) {
     this.isHomePage = false;
-    const found = this.campsList.find(element => element.id === campId);
+    const found = this.campsList.find((element) => element.id === campId);
     if (found) {
       this.currentCamp = found;
       this.currentSubmissions = this.dataset.submissionsByCamps[campId];
@@ -147,8 +147,10 @@ export default class TKMainComponent extends Vue {
     const datasets = await TKDatasetBuild(
       this.appConfig.surveyDescription,
       this.appConfig.surveyFormat,
-      this.appConfig.spatialDescription
+      this.appConfig.spatialDescription,
+      this.appConfig.language
     );
+    console.log(datasets);
 
     // TODO : make this nice. This isn't
     this.dataset = datasets["2021"];

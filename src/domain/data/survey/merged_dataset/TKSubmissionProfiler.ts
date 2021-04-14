@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import {
-  TKTrafficLightGrouped,
-} from "../raw_data/TKTrafficLightsCollectionBuilder";
+import { TKTrafficLightGrouped } from "../raw_data/TKTrafficLightsCollectionBuilder";
 import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLightColors";
+import {
+  LanguageCode,
+  TKLanguageDescription,
+} from "@/domain/config/TKLanguageDescription";
 
 interface TKSubmissionVisualisationProfile {
+  field: string;
   fieldLabel_en: string;
   fieldLabel_fr?: string;
   fieldLabel_pt?: string;
@@ -33,12 +36,27 @@ function getTrafficLightColor(
 export function TKSetSubmissionVisualisationProfile(
   value: string,
   field: string,
-  surveyConfiguration: TKSurveyConfiguration
-) {
+  surveyConfiguration: TKSurveyConfiguration,
+  languages: TKLanguageDescription[]
+): TKSubmissionVisualisationProfile {
+  const languagesList = [...new Set(languages.map((x) => x.code))];
   const profil: TKSubmissionVisualisationProfile = {
+    field: field,
     fieldLabel_en: surveyConfiguration.fieldsLabels[field].field_label_en,
+    fieldLabel_fr: languagesList.includes(LanguageCode.FR)
+      ? surveyConfiguration.fieldsLabels[field].field_label_fr
+      : undefined,
+    fieldLabel_pt: languagesList.includes(LanguageCode.PT)
+      ? surveyConfiguration.fieldsLabels[field].field_label_pt
+      : undefined,
     answerLabel_en:
       surveyConfiguration.answersLabels[field]?.choice_name_en || value,
+    answerLabel_fr: languagesList.includes(LanguageCode.FR)
+      ? surveyConfiguration.answersLabels[field]?.choice_name_fr || value
+      : undefined,
+    answerLabel_pt: languagesList.includes(LanguageCode.PT)
+      ? surveyConfiguration.answersLabels[field]?.choice_name_pt || value
+      : undefined,
     trafficLight:
       surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
     trafficLightColor:

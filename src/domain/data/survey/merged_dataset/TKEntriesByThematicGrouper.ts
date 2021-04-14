@@ -1,3 +1,4 @@
+import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
 import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
 import { TKSubmissionsRulesCollection } from "../raw_data/TKSubmissionsRulesBuilder";
 import { TKSetSubmissionVisualisationProfile } from "./TKSubmissionProfiler";
@@ -22,7 +23,8 @@ function TKIsSubmissionInThematic(
 
 export function TKGroupAnswersByThematics(
   submissionItem: any,
-  surveyConfiguration: TKSurveyConfiguration
+  surveyConfiguration: TKSurveyConfiguration,
+  languages: TKLanguageDescription[]
 ) {
   const thematics: { [index: string]: any } = {};
 
@@ -44,7 +46,8 @@ export function TKGroupAnswersByThematics(
             TKSetSubmissionVisualisationProfile(
               submissionItem[field],
               field,
-              surveyConfiguration
+              surveyConfiguration,
+              languages
             )
           );
         }

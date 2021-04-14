@@ -1,10 +1,18 @@
 import { TKKoboSurveyInfo } from "@/domain/data/kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
 import { TKCSVSurveyInfo } from "@/domain/data/csv/TKCSVTypes";
-import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
+import {
+  LanguageCode,
+  TKLanguageDescription,
+} from "@/domain/config/TKLanguageDescription";
 import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
-import { TKLOGO_CARTONG, TKLOGO_CCCM, TKLOGO_REACH, TKLOGO_UNHCR  } from "@/domain/data/logos"
+import {
+  TKLOGO_CARTONG,
+  TKLOGO_CCCM,
+  TKLOGO_REACH,
+  TKLOGO_UNHCR,
+} from "@/domain/data/logos";
 
 export const spatialDescription: TKSpatialDescription = {
   siteIDField: "mp_site_id",
@@ -45,32 +53,21 @@ export const csvSurveyInfo: TKCSVSurveyInfo[] = [
 export const languages: TKLanguageDescription[] = [
   {
     name: "English",
-    code: "en",
+    code: LanguageCode.EN,
     flag: "https://www.countryflags.io/gb/flat/64.png",
   },
   {
     name: "Português",
-    code: "pt",
+    code: LanguageCode.PT,
     flag: "https://www.countryflags.io/br/flat/64.png",
   },
 ];
 
-export const headerLogo: TKLogo[] = [
-  TKLOGO_CCCM
-];
+export const headerLogo: TKLogo[] = [TKLOGO_CCCM];
 
 export const footerLogos: TKFooterLogos = {
-  clusterLed: [
-    TKLOGO_UNHCR,
-    TKLOGO_CCCM
-    ],
-  coordinationAndIMSupport: [
-    TKLOGO_CCCM
-  ],
-  Fieldwork: [
-    TKLOGO_REACH
-  ],
-  Webdev: [
-    TKLOGO_CARTONG,
-  ],
+  clusterLed: [TKLOGO_UNHCR, TKLOGO_CCCM],
+  coordinationAndIMSupport: [TKLOGO_CCCM],
+  Fieldwork: [TKLOGO_REACH],
+  Webdev: [TKLOGO_CARTONG],
 };

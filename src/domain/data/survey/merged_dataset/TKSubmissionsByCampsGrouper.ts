@@ -6,6 +6,7 @@ import { TKBoundarieDescription } from "@/domain/core/TKBoundarieDescription";
 import { TKBoundariesCollection } from "@/domain/core/TKBoundariesCollection";
 import { TKDataset } from "@/domain/core/TKDataset";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
+import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
 
 // import { spatialDescription } from "@/app-demo/appConfiguration";
 // const siteIDField: string = spatialDescription.siteIDField;
@@ -27,8 +28,9 @@ import { TKCampDescription } from "@/domain/core/TKCampDescription";
 
 export function TKGroupSubmissionsByCamp(
   sumbmissions: any[],
-  survey: TKSurveyConfiguration,
-  spatialDescription: TKSpatialDescription
+  surveyConfig: TKSurveyConfiguration,
+  spatialDescription: TKSpatialDescription,
+  languages: TKLanguageDescription[]
 ): TKDataset {
   const submissionsByCamps: { [index: string]: any } = {};
   const campsList: TKCampDescription[] = [];
@@ -47,7 +49,7 @@ export function TKGroupSubmissionsByCamp(
       });
       submissionsByCamps[submission[spatialDescription.siteIDField]][
         submission[spatialDescription.siteLastUpdateField]
-      ] = TKGroupAnswersByThematics(submission, survey);
+      ] = TKGroupAnswersByThematics(submission, surveyConfig, languages);
     } else {
       campsList.push({
         id: submission[spatialDescription.siteIDField],
@@ -87,7 +89,7 @@ export function TKGroupSubmissionsByCamp(
       submissionsByCamps[submission[spatialDescription.siteIDField]] = {
         [submission[
           spatialDescription.siteLastUpdateField
-        ]]: TKGroupAnswersByThematics(submission, survey),
+        ]]: TKGroupAnswersByThematics(submission, surveyConfig, languages),
       };
     }
   }
