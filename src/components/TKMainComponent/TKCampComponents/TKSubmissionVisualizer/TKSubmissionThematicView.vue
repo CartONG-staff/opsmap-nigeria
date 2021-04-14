@@ -21,7 +21,6 @@ import {
   TKSubmissionThematic,
   filterThematicUnanswered
 } from "@/domain/core/TKSubmissionThematic";
-// import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
 
 @Component({
   components: {
@@ -31,8 +30,6 @@ import {
 export default class TKSubmissionThematicView extends Vue {
   @Prop()
   readonly submissionThematic!: TKSubmissionThematic;
-
-  // dataFiltered: TKSubmissionItem[] = [];
 
   title = "";
   iconurl = "";
