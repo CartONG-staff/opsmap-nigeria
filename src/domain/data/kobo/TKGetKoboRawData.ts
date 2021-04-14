@@ -1,6 +1,6 @@
 import { TKKoboSurveyInfo } from "./TKKoboSurveyInfo";
 
-export async function TKGetKoboSubmissions(config: TKKoboSurveyInfo) {
+export async function TKGetKoboRawData(config: TKKoboSurveyInfo) {
   try {
     const response = await fetch(config.url, {
       method: "get",

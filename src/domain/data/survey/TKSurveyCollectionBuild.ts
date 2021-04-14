@@ -1,8 +1,8 @@
 import { TKCSVSurveyInfo } from "../csv/TKCSVTypes";
 import { TKKoboSurveyInfo } from "../kobo/TKKoboSurveyInfo";
-import { TKSurveyConfigurationBuild } from "./raw_data/TKSurveyConfigurationBuilder";
-import { TKGetCSVSubmissions } from "@/domain/data/csv/TKGetCSVSubmissions";
-import { TKGetKoboSubmissions } from "../kobo/TKGetKoboSubmissions";
+import { TKCreateSurveyConfiguration } from "./raw_data/TKCreateSurveyConfiguration";
+import { TKGetCSVRawData } from "@/domain/data/csv/TKGetCSVRawData";
+import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
 import { TKGroupSubmissionsByCamp } from "./merged_surveys/TKGroupSubmissionsByCamp";
 
@@ -20,15 +20,18 @@ export async function TKSurveyCollectionBuild(
 
   // foreach survey info
   for (const info of surveyDescription) {
+    // Retrieve raw data
     let rawData;
     if (surveyFormat === "csv") {
-      rawData = await TKGetCSVSubmissions(info as TKCSVSurveyInfo);
+      rawData = await TKGetCSVRawData(info as TKCSVSurveyInfo);
     } else {
-      rawData = await TKGetKoboSubmissions(info as TKKoboSurveyInfo);
+      rawData = await TKGetKoboRawData(info as TKKoboSurveyInfo);
     }
 
-    const surveyConfig = await TKSurveyConfigurationBuild(info);
+    // Retrieve config
+    const surveyConfig = await TKCreateSurveyConfiguration(info);
 
+    // Create survey
     surveyCollection[info.name] = TKGroupSubmissionsByCamp(
       rawData,
       surveyConfig,
