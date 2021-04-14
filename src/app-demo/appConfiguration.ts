@@ -1,6 +1,6 @@
-import { TKKoboSurveyInfo } from "@/domain/survey/surveyraws/kobo/TKKoboSurveyInfo";
+import { TKKoboSurveyInfo } from "@/domain/survey/surveyraw/kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
-import { TKCSVSurveyInfo } from "@/domain/survey/surveyraws/csv/TKCSVTypes";
+import { TKCSVSurveyInfo } from "@/domain/survey/surveyraw/csv/TKCSVTypes";
 import {
   LanguageCode,
   TKLanguageDescription

@@ -8,7 +8,7 @@ export interface TKTrafficLightItem {
   value: string;
   color: TKTrafficLightColors;
 }
-  export interface TKTrafficLightGrouped {
+export interface TKTrafficLightGrouped {
   type: TrafficLightTypes;
   values: [
     {
@@ -29,7 +29,7 @@ export function TKTrafficLightsCollectionBuild(
     if (trafficLights[item.traffic_light_name]) {
       trafficLights[item.traffic_light_name].values.push({
         value: item.value,
-        color: item.color,
+        color: item.color
       });
     } else {
       trafficLights[item.traffic_light_name] = {
@@ -37,9 +37,9 @@ export function TKTrafficLightsCollectionBuild(
         values: [
           {
             value: item.value,
-            color: item.color,
-          },
-        ],
+            color: item.color
+          }
+        ]
       };
     }
   }
