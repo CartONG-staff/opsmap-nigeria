@@ -73,15 +73,15 @@ export default class TKSubmissionItemView extends Vue {
   handleLocale() {
     if (this.item) {
       if (this.$root.$i18n.locale === "pt") {
-        this.question = this.item.fieldLabel_pt
-          ? this.item.fieldLabel_pt
-          : this.item.fieldLabel_en;
-        this.answer = this.item.answerLabel_pt
-          ? this.item.answerLabel_pt
-          : this.item.answerLabel_en;
+        this.question = this.item.fieldLabelPt
+          ? this.item.fieldLabelPt
+          : this.item.fieldLabelEn;
+        this.answer = this.item.answerLabelPt
+          ? this.item.answerLabelPt
+          : this.item.answerLabelEn;
       } else {
-        this.question = this.item.fieldLabel_en;
-        this.answer = this.item.answerLabel_en;
+        this.question = this.item.fieldLabelEn;
+        this.answer = this.item.answerLabelEn;
       }
     } else {
       this.question = "";

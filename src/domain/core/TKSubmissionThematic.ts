@@ -1,4 +1,4 @@
-import { TKSubmissionItem, isAnswered } from "./TKSubmissionItem";
+import { TKSubmissionItem } from "./TKSubmissionItem";
 
 export interface TKSubmissionThematic {
     data: Array<TKSubmissionItem>;
@@ -10,6 +10,6 @@ export interface TKSubmissionThematic {
 
 export function filterThematicUnanswered(thematic: TKSubmissionThematic){
     thematic.data = thematic.data.filter(
-        (item: TKSubmissionItem) => isAnswered(item)
+        (item: TKSubmissionItem) => item.isAnswered()
     );
 }

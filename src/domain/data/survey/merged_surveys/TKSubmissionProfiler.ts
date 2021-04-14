@@ -6,7 +6,7 @@ import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
 
 import {
   LanguageCode,
-  TKLanguageDescription,
+  TKLanguageDescription
 } from "@/domain/config/TKLanguageDescription";
 
 function getTrafficLightColor(
@@ -30,27 +30,16 @@ export function TKSetSubmissionVisualisationProfile(
   languages: TKLanguageDescription[]
 ): TKSubmissionItem {
   const languagesList = [...new Set(languages.map((x) => x.code))];
-  return {
-    field: field,
-    fieldLabel_en: surveyConfiguration.fieldsLabels[field].field_label_en,
-    fieldLabel_fr: languagesList.includes(LanguageCode.FR)
-      ? surveyConfiguration.fieldsLabels[field].field_label_fr
-      : undefined,
-    fieldLabel_pt: languagesList.includes(LanguageCode.PT)
-      ? surveyConfiguration.fieldsLabels[field].field_label_pt
-      : undefined,
-    answerLabel_en:
-      surveyConfiguration.answersLabels[field]?.choice_name_en || value,
-    answerLabel_fr: languagesList.includes(LanguageCode.FR)
-      ? surveyConfiguration.answersLabels[field]?.choice_name_fr || value
-      : undefined,
-    answerLabel_pt: languagesList.includes(LanguageCode.PT)
-      ? surveyConfiguration.answersLabels[field]?.choice_name_pt || value
-      : undefined,
-    trafficLight:
-      surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
-    trafficLightColor:
-      surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
+  return new TKSubmissionItem(
+    field,
+    surveyConfiguration.fieldsLabels[field].field_label_en,
+    // (languagesList.includes(LanguageCode.PT) ? surveyConfiguration.fieldsLabels[field].field_label_pt : ""),
+    (languagesList.includes(LanguageCode.PT) ? surveyConfiguration.fieldsLabels[field]?.field_label_pt || value : ""),
+    surveyConfiguration.answersLabels[field]?.choice_name_en || value,
+    (languagesList.includes(LanguageCode.PT) ? surveyConfiguration.answersLabels[field]?.choice_name_pt || value : ""),
+
+    surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
+    surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
         ? getTrafficLightColor(
             value,
             surveyConfiguration.trafficLights[
@@ -58,5 +47,6 @@ export function TKSetSubmissionVisualisationProfile(
             ]
           )
         : TKTrafficLightColors.UNDEFINED,
-  };
+
+  );
 }
