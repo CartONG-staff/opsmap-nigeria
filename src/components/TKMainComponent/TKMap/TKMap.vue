@@ -21,7 +21,7 @@ import * as turf from "@turf/turf";
 
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 
-import { TKRetrieveAdmin0Boundaries } from "@/domain/map/TKBoundaries";
+import { TKRetrieveAdmin0Boundaries } from "@/domain/map/TKRetrieveBoundaries";
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
