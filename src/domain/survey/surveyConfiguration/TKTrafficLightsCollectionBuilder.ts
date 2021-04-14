@@ -1,7 +1,10 @@
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLightColors";
 
-export type TrafficLightTypes = "string" | "math" | "list";
-
+export enum TrafficLightTypes {
+  STRING = "string",
+  MATH = "math",
+  LIST = "list"
+}
 export interface TKTrafficLightItem {
   traffic_light_name: string;
   type: TrafficLightTypes;

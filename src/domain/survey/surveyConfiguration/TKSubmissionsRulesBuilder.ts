@@ -1,6 +1,13 @@
+export enum TKSubmissionItemType {
+  STRING = "string",
+  INTEGER = "integer",
+  LIST = "list",
+  DATE = "date",
+  CALCUL = "calcul"
+}
 export interface TKSubmissionRule {
   field_name: string;
-  type: "string" | "integer" | "list" | "date" | "calcul";
+  type: TKSubmissionItemType;
   thematic_group: string;
   traffic_light_name: string;
   chart_id: string;
