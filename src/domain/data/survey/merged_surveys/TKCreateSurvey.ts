@@ -25,7 +25,7 @@ import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
 //   [propName: string]: string | number;
 // }
 
-export function TKGroupSubmissionsByCamp(
+export function TKCreateSurvey(
   sumbmissions: any[],
   surveyConfig: TKSurveyConfiguration,
   spatialDescription: TKSpatialDescription,

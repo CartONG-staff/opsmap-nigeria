@@ -4,12 +4,12 @@ import { TKCreateSurveyConfiguration } from "./raw_data/TKCreateSurveyConfigurat
 import { TKGetCSVRawData } from "@/domain/data/csv/TKGetCSVRawData";
 import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
-import { TKGroupSubmissionsByCamp } from "./merged_surveys/TKGroupSubmissionsByCamp";
+import { TKCreateSurvey } from "./merged_surveys/TKCreateSurvey";
 
 import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
 import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
 
-export async function TKSurveyCollectionBuild(
+export async function TKCreateSurveyCollection(
   surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[],
   surveyFormat: "csv" | "kobo",
   spatialDescription: TKSpatialDescription,
@@ -32,7 +32,7 @@ export async function TKSurveyCollectionBuild(
     const surveyConfig = await TKCreateSurveyConfiguration(info);
 
     // Create survey
-    surveyCollection[info.name] = TKGroupSubmissionsByCamp(
+    surveyCollection[info.name] = TKCreateSurvey(
       rawData,
       surveyConfig,
       spatialDescription,

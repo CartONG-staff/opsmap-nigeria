@@ -69,7 +69,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
-import { TKSurveyCollectionBuild } from "@/domain/data/survey/TKSurveyCollectionBuild";
+import { TKCreateSurveyCollection } from "@/domain/data/survey/TKSurveyCollectionBuild";
 
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
@@ -131,7 +131,7 @@ export default class TKMainComponent extends Vue {
 
   campSelectionChanged(campId: string) {
     this.isHomePage = false;
-    const found = this.campsList.find((element) => element.id === campId);
+    const found = this.campsList.find(element => element.id === campId);
     if (found) {
       this.currentCamp = found;
       this.currentSubmissions = this.survey.submissionsByCamps[campId];
@@ -145,7 +145,6 @@ export default class TKMainComponent extends Vue {
   }
 
   dateSelected(date: string) {
-    console.log("DATE PICKED : " + date);
     if (
       this.currentSubmissions &&
       Object.keys(this.currentSubmissions).includes(date)
@@ -155,7 +154,7 @@ export default class TKMainComponent extends Vue {
   }
 
   async mounted() {
-    const surveys = await TKSurveyCollectionBuild(
+    const surveys = await TKCreateSurveyCollection(
       this.appConfig.surveyDescription,
       this.appConfig.surveyFormat,
       this.appConfig.spatialDescription,
