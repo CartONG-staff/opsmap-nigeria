@@ -95,9 +95,11 @@ export default class TKSurveyItem extends Vue {
 .tk-item-content {
   width: 100%;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  min-height: 30px;
+  padding: 5px;
 }
 
 .tk-item-field-name {
@@ -105,13 +107,17 @@ export default class TKSurveyItem extends Vue {
   font-size: 11px;
   color: #999;
   flex-grow: 1;
-  line-height: 2.727;
+  margin-right: 5px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .tk-item-field-value {
   font-weight: bold;
   font-size: 11px;
   color: #333;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .tk-layout-w-trafficlight {
