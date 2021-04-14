@@ -1,3 +1,3 @@
-import { TKSubmissionSingleDate } from "./TKSubmissionSingleDate";
+import { TKSubmission } from "./TKSubmission";
 
-export interface TKSubmissions extends Record<string, TKSubmissionSingleDate> {}
+export interface TKSubmissions extends Record<string, TKSubmission> {}

@@ -35,7 +35,7 @@
             <TKCampToolbar
               class="tk-camp-toolbar"
               :campList="campsList"
-              :survey="currentSubmissions"
+              :submission="currentSubmission"
             />
             <TKCampInfos class="tk-camp-infos" :camp="currentCamp" />
           </div>
@@ -57,7 +57,7 @@
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
           <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
-          <TKSurveyVisualizer :survey="currentSubmissions" />
+          <TKSubmissionVisualizer :submission="currentSubmission" />
         </div>
       </div>
     </div>
@@ -74,7 +74,7 @@ import TKMap from "./TKMap";
 
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKDataset } from "@/domain/core/TKDataset";
-import { TKSubmissions } from "@/domain/core/TKSubmissions";
+import { TKSubmission } from "@/domain/core/TKSubmission";
 
 import {
   TKHomeCombos,
@@ -89,7 +89,7 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSurveyVisualizer
+  TKSubmissionVisualizer
 } from "./TKCampComponents";
 
 @Component({
@@ -99,7 +99,7 @@ import {
     TKCampSelector,
     TKCampSubtitle,
     TKCampToolbar,
-    TKSurveyVisualizer,
+    TKSubmissionVisualizer,
     TKHomeCombos,
     TKHomeIndicators,
     TKHomeMoreInfos,
@@ -116,12 +116,12 @@ export default class TKMainComponent extends Vue {
   campsList: TKCampDescription[] = [];
 
   currentCamp: TKCampDescription | null = null;
-  currentSubmissions: TKSubmissions = {};
+  currentSubmission: TKSubmission | null = null;
   isHomePage = true;
 
   campSelectionCleared() {
     this.currentCamp = null;
-    this.currentSubmissions = {};
+    this.currentSubmission = null;
     this.isHomePage = true;
   }
 
@@ -130,8 +130,11 @@ export default class TKMainComponent extends Vue {
     const found = this.campsList.find(element => element.id === campId);
     if (found) {
       this.currentCamp = found;
-      this.currentSubmissions = this.dataset.submissionsByCamps[campId];
+      const submissionCollection = this.dataset.submissionsByCamps[campId];
+      const keys = Object.keys(submissionCollection);
+      this.currentSubmission = submissionCollection[keys[0]];
     } else {
+      this.currentSubmission = null;
       this.currentCamp = null;
     }
   }

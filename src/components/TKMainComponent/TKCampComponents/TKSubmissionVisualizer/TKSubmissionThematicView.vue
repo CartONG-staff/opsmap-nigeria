@@ -34,23 +34,33 @@ export default class TKSubmissionThematicView extends Vue {
   title = "";
   iconurl = "";
   @Watch("submissionThematic", { immediate: true })
-  onSurveychanged() {
-    this.handleLocaleOnTitle();
-    this.iconurl = TKIconUrl(this.submissionThematic.icon_file_name as string);
-    this.dataFiltered = this.submissionThematic.data.filter(
-      (item: TKSubmissionItem) => item.answerLabel_en !== ""
-    );
+  onSubmissionThematicchanged() {
+    console.log("CHNAGAADSDSD: " + this.submissionThematic);
+    if (this.submissionThematic) {
+      this.handleLocaleOnTitle();
+      this.iconurl = TKIconUrl(
+        this.submissionThematic.icon_file_name as string
+      );
+      this.dataFiltered = this.submissionThematic.data.filter(
+        (item: TKSubmissionItem) => item.answerLabel_en !== ""
+      );
+    }
   }
 
   @Watch("$root.$i18n.locale", { immediate: true })
   handleLocaleOnTitle() {
-    if (
-      this.$root.$i18n.locale === "pt" &&
-      this.submissionThematic.thematic_label_pt
-    ) {
-      this.title = this.submissionThematic.thematic_label_pt;
-    } else {
-      this.title = this.submissionThematic.thematic_label_en;
+    if (this.submissionThematic) {
+      if (
+        this.$root.$i18n.locale === "pt" &&
+        this.submissionThematic.thematic_label_pt
+      ) {
+        this.title = this.submissionThematic.thematic_label_pt;
+      } else {
+        this.title = this.submissionThematic.thematic_label_en;
+      }
+    }
+    else {
+        this.title = "";
     }
   }
 }
