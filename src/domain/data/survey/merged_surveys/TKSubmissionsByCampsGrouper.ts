@@ -2,7 +2,6 @@ import { TKCreateSubmissionThematics } from "./TKCreateSubmissionThematics";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
 
-import { TKBoundarieDescription } from "@/domain/core/TKBoundarieDescription";
 import { TKBoundariesCollection } from "@/domain/core/TKBoundariesCollection";
 import { TKSurvey } from "@/domain/core/TKSurvey";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
