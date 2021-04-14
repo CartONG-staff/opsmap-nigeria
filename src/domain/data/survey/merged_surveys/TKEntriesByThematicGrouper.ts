@@ -1,7 +1,7 @@
 import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
 import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
 import { TKSubmissionsRulesCollection } from "../raw_data/TKSubmissionsRulesBuilder";
-import { TKSetSubmissionVisualisationProfile } from "./TKSubmissionProfiler";
+import { TKCreateSubmissionItem } from "./TKCreateSubmissionItem";
 
 // TO DEVELOP
 function TKIsSubmissionIsRelevant(): boolean {
@@ -31,7 +31,7 @@ export function TKGroupAnswersByThematics(
   for (const thematic in surveyConfiguration.thematics) {
     thematics[thematic] = {
       ...surveyConfiguration.thematics[thematic],
-      data: [],
+      data: []
     };
     for (const field in submissionItem) {
       if (
@@ -43,7 +43,7 @@ export function TKGroupAnswersByThematics(
       ) {
         if (TKIsSubmissionIsRelevant()) {
           thematics[thematic].data.push(
-            TKSetSubmissionVisualisationProfile(
+            TKCreateSubmissionItem(
               submissionItem[field],
               field,
               surveyConfiguration,

@@ -23,7 +23,7 @@ function getTrafficLightColor(
   return TKTrafficLightColors.UNDEFINED;
 }
 
-export function TKSetSubmissionVisualisationProfile(
+export function TKCreateSubmissionItem(
   value: string,
   field: string,
   surveyConfiguration: TKSurveyConfiguration,
@@ -34,19 +34,21 @@ export function TKSetSubmissionVisualisationProfile(
     field,
     surveyConfiguration.fieldsLabels[field].field_label_en,
     // (languagesList.includes(LanguageCode.PT) ? surveyConfiguration.fieldsLabels[field].field_label_pt : ""),
-    (languagesList.includes(LanguageCode.PT) ? surveyConfiguration.fieldsLabels[field]?.field_label_pt || value : ""),
+    languagesList.includes(LanguageCode.PT)
+      ? surveyConfiguration.fieldsLabels[field]?.field_label_pt || value
+      : "",
     surveyConfiguration.answersLabels[field]?.choice_name_en || value,
-    (languagesList.includes(LanguageCode.PT) ? surveyConfiguration.answersLabels[field]?.choice_name_pt || value : ""),
-
+    languagesList.includes(LanguageCode.PT)
+      ? surveyConfiguration.answersLabels[field]?.choice_name_pt || value
+      : "",
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
-        ? getTrafficLightColor(
-            value,
-            surveyConfiguration.trafficLights[
-              surveyConfiguration.submissionsRules[field].traffic_light_name
-            ]
-          )
-        : TKTrafficLightColors.UNDEFINED,
-
+      ? getTrafficLightColor(
+          value,
+          surveyConfiguration.trafficLights[
+            surveyConfiguration.submissionsRules[field].traffic_light_name
+          ]
+        )
+      : TKTrafficLightColors.UNDEFINED
   );
 }
