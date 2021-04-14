@@ -1,17 +1,17 @@
-import { TKCSVSurveyInfo } from "./csv/TKCSVTypes";
-import { TKKoboSurveyInfo } from "./kobo/TKKoboSurveyInfo";
+import { TKCSVSurveyInfo } from "./surveyraws/csv/TKCSVTypes";
+import { TKKoboSurveyInfo } from "./surveyraws/kobo/TKKoboSurveyInfo";
 import { TKCreateSurveyConfiguration } from "./surveyconfiguration/TKCreateSurveyConfiguration";
-import { TKGetCSVRawData } from "@/domain/survey/csv/TKGetCSVRawData";
-import { TKGetKoboRawData } from "./kobo/TKGetKoboRawData";
+import { TKGetCSVRawData } from "@/domain/survey/surveyraws/csv/TKGetCSVRawData";
+import { TKGetKoboRawData } from "./surveyraws/kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
-import { TKCreateSurvey } from "./survey/TKCreateSurvey";
-
+import { TKCreateSurvey } from "./TKCreateSurvey";
 import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
 import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
+import { TKSurveyFormat } from "@/domain/core/TKSurveyFormat";
 
 export async function TKCreateSurveyCollection(
   surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[],
-  surveyFormat: "csv" | "kobo",
+  surveyFormat: TKSurveyFormat,
   spatialDescription: TKSpatialDescription,
   languages: TKLanguageDescription[]
 ): Promise<TKSurveyCollection> {
@@ -22,9 +22,9 @@ export async function TKCreateSurveyCollection(
   for (const info of surveyDescription) {
     // Retrieve raw data
     let rawData;
-    if (surveyFormat === "csv") {
+    if (surveyFormat === TKSurveyFormat.CSV) {
       rawData = await TKGetCSVRawData(info as TKCSVSurveyInfo);
-    } else {
+    } else if (surveyFormat === TKSurveyFormat.KOBO) {
       rawData = await TKGetKoboRawData(info as TKKoboSurveyInfo);
     }
 

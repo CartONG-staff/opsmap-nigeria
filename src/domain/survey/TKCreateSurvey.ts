@@ -1,4 +1,4 @@
-import { TKCreateSubmissionThematics } from "./TKCreateSubmissionThematics";
+import { TKCreateSubmissionThematics } from "./surveyraws/TKCreateSubmissionThematics";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 

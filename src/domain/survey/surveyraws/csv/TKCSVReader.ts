@@ -15,7 +15,7 @@ export async function TKCSVRead<T>(
       },
       error(err) {
         reject(err);
-      },
+      }
     });
   });
 }
