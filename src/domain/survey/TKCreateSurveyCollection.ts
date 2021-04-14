@@ -1,13 +1,13 @@
 import { TKCSVSurveyInfo } from "./csv/TKCSVTypes";
 import { TKKoboSurveyInfo } from "./kobo/TKKoboSurveyInfo";
 import { TKCreateSurveyConfiguration } from "./surveyconfiguration/TKCreateSurveyConfiguration";
-import { TKGetCSVRawData } from "@/domain/data/csv/TKGetCSVRawData";
+import { TKGetCSVRawData } from "@/domain/survey/csv/TKGetCSVRawData";
 import { TKGetKoboRawData } from "./kobo/TKGetKoboRawData";
-import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
+import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKCreateSurvey } from "./survey/TKCreateSurvey";
 
 import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
-import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
+import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 
 export async function TKCreateSurveyCollection(
   surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[],

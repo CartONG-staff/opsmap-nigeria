@@ -19,7 +19,7 @@ import mapboxgl, { LngLatBounds } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import * as turf from "@turf/turf";
 
-import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 
 import { TKRetrieveAdmin0Boundaries } from "@/domain/map/TKRetrieveBoundaries";
 import TKMapFilters from "./TKMapFilters.vue";

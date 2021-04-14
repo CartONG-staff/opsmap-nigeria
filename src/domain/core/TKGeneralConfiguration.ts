@@ -1,10 +1,10 @@
 import { TKMapboxConfiguration } from "@/domain/map/TKMapboxConfiguration";
 import { TKLogo } from "@/domain/ui/TKLogo";
-import { TKKoboSurveyInfo } from "@/domain/data/kobo/TKKoboSurveyInfo";
+import { TKKoboSurveyInfo } from "@/domain/survey/kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
-import { TKCSVSurveyInfo } from "@/domain/data/csv/TKCSVTypes";
-import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
-import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
+import { TKCSVSurveyInfo } from "@/domain/survey/csv/TKCSVTypes";
+import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
+import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 
 export interface TKGeneralConfiguration {
   readonly name: string;

@@ -7,7 +7,7 @@ import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
 import {
   LanguageCode,
   TKLanguageDescription
-} from "@/domain/config/TKLanguageDescription";
+} from "@/domain/core/TKLanguageDescription";
 
 function getTrafficLightColor(
   value: string,

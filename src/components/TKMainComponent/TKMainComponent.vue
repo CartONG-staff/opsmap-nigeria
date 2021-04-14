@@ -68,8 +68,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
-import { TKCreateSurveyCollection } from "@/domain/data/TKCreateSurveyCollection";
+import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
+import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
 
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";

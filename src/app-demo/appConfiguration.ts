@@ -1,18 +1,18 @@
-import { TKKoboSurveyInfo } from "@/domain/data/kobo/TKKoboSurveyInfo";
+import { TKKoboSurveyInfo } from "@/domain/survey/kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
-import { TKCSVSurveyInfo } from "@/domain/data/csv/TKCSVTypes";
+import { TKCSVSurveyInfo } from "@/domain/survey/csv/TKCSVTypes";
 import {
   LanguageCode,
   TKLanguageDescription
-} from "@/domain/config/TKLanguageDescription";
+} from "@/domain/core/TKLanguageDescription";
 import { TKLogo } from "@/domain/ui/TKLogo";
-import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
+import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import {
   TKLOGO_CARTONG,
   TKLOGO_CCCM,
   TKLOGO_REACH,
   TKLOGO_UNHCR
-} from "@/domain/data/logos";
+} from "@/domain/logos";
 
 export const spatialDescription: TKSpatialDescription = {
   siteIDField: "mp_site_id",

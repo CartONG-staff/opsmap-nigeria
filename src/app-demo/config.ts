@@ -1,4 +1,4 @@
-import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import {
   languages,
   koboSurveyInfo,

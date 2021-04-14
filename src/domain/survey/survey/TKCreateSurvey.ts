@@ -1,11 +1,11 @@
 import { TKCreateSubmissionThematics } from "./TKCreateSubmissionThematics";
-import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
+import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 
 import { TKBoundariesCollection } from "@/domain/core/TKBoundariesCollection";
 import { TKSurvey } from "@/domain/core/TKSurvey";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
-import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
+import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 
 // import { spatialDescription } from "@/app-demo/appConfiguration";
 // const siteIDField: string = spatialDescription.siteIDField;

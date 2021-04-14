@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 
 @Component
 export default class TKTitle extends Vue {
