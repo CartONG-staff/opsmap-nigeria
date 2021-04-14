@@ -4,7 +4,7 @@ import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyCon
 
 import { TKBoundarieDescription } from "@/domain/core/TKBoundarieDescription";
 import { TKBoundariesCollection } from "@/domain/core/TKBoundariesCollection";
-import { TKDataset } from "@/domain/core/TKDataset";
+import { TKSurvey } from "@/domain/core/TKSurvey";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
 
@@ -31,7 +31,7 @@ export function TKGroupSubmissionsByCamp(
   surveyConfig: TKSurveyConfiguration,
   spatialDescription: TKSpatialDescription,
   languages: TKLanguageDescription[]
-): TKDataset {
+): TKSurvey {
   const submissionsByCamps: { [index: string]: any } = {};
   const campsList: TKCampDescription[] = [];
   const boundariesList: TKBoundariesCollection = {

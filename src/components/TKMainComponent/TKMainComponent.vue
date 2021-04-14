@@ -67,13 +67,13 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
-import { TKDatasetBuild } from "@/domain/data/survey/TKDatasetBuilder";
+import { TKSurveyCollectionBuild } from "@/domain/data/survey/TKSurveyCollectionBuild";
 
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
 
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
-import { TKDataset } from "@/domain/core/TKDataset";
+import { TKSurvey } from "@/domain/core/TKSurvey";
 import { TKSubmission } from "@/domain/core/TKSubmission";
 
 import {
@@ -112,7 +112,7 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
-  dataset!: TKDataset;
+  dataset!: TKSurvey;
   campsList: TKCampDescription[] = [];
 
   currentCamp: TKCampDescription | null = null;
@@ -140,7 +140,7 @@ export default class TKMainComponent extends Vue {
   }
 
   async mounted() {
-    const datasets = await TKDatasetBuild(
+    const datasets = await TKSurveyCollectionBuild(
       this.appConfig.surveyDescription,
       this.appConfig.surveyFormat,
       this.appConfig.spatialDescription,

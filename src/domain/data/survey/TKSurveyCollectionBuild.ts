@@ -4,18 +4,18 @@ import { TKSurveyConfigurationBuild } from "./raw_data/TKSurveyConfigurationBuil
 import { TKCSVSubmissionsGet } from "@/domain/data/csv/TKCSVSubmissionsGetter";
 import { TKKoboSubmissionsGet } from "../kobo/TKKoboSubmissionsGetter";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
-import { TKGroupSubmissionsByCamp } from "./merged_dataset/TKSubmissionsByCampsGrouper";
+import { TKGroupSubmissionsByCamp } from "./merged_surveys/TKSubmissionsByCampsGrouper";
 
-import { TKDatasetCollection } from "@/domain/core/TKDatasetCollection";
+import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
 import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
 
-export async function TKDatasetBuild(
+export async function TKSurveyCollectionBuild(
   surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[],
   surveyFormat: "csv" | "kobo",
   spatialDescription: TKSpatialDescription,
   languages: TKLanguageDescription[]
-): Promise<TKDatasetCollection> {
-  const datasetCollection: TKDatasetCollection = {};
+): Promise<TKSurveyCollection> {
+  const datasetCollection: TKSurveyCollection = {};
   for (const item of surveyDescription) {
     let rawData;
     if (surveyFormat === "csv") {
