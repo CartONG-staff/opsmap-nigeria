@@ -21,7 +21,7 @@ function TKIsSubmissionInThematic(
     : false;
 }
 
-export function TKGroupAnswersByThematics(
+export function TKCreateSubmissionThematics(
   submissionItem: any,
   surveyConfiguration: TKSurveyConfiguration,
   languages: TKLanguageDescription[]

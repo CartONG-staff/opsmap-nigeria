@@ -1,4 +1,4 @@
-import { TKGroupAnswersByThematics } from "./TKEntriesByThematicGrouper";
+import { TKCreateSubmissionThematics } from "./TKCreateSubmissionThematics";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
 
@@ -36,7 +36,7 @@ export function TKGroupSubmissionsByCamp(
   const campsList: TKCampDescription[] = [];
   const boundariesList: TKBoundariesCollection = {
     admin1: [],
-    admin2: [],
+    admin2: []
   };
   for (const submission of sumbmissions) {
     if (submissionsByCamps[submission[spatialDescription.siteIDField]]) {
@@ -49,7 +49,7 @@ export function TKGroupSubmissionsByCamp(
       });
       submissionsByCamps[submission[spatialDescription.siteIDField]][
         submission[spatialDescription.siteLastUpdateField]
-      ] = TKGroupAnswersByThematics(submission, surveyConfig, languages);
+      ] = TKCreateSubmissionThematics(submission, surveyConfig, languages);
     } else {
       campsList.push({
         id: submission[spatialDescription.siteIDField],
@@ -62,20 +62,20 @@ export function TKGroupSubmissionsByCamp(
           ),
           Number(
             submission[spatialDescription.siteLongitudeField].replace(",", ".")
-          ),
+          )
         ],
         admin1: {
           pcode: submission[spatialDescription.adm1Pcode],
-          name: submission[spatialDescription.adm1Name],
+          name: submission[spatialDescription.adm1Name]
         },
         admin2: {
           pcode: submission[spatialDescription.adm2Pcode],
-          name: submission[spatialDescription.adm2Name],
+          name: submission[spatialDescription.adm2Name]
         },
         admin3: {
           pcode: submission[spatialDescription.adm3Pcode],
-          name: submission[spatialDescription.adm3Name],
-        },
+          name: submission[spatialDescription.adm3Name]
+        }
       });
       if (
         !boundariesList.admin2
@@ -84,7 +84,7 @@ export function TKGroupSubmissionsByCamp(
       ) {
         boundariesList.admin2.push({
           pcode: submission[spatialDescription.adm2Pcode],
-          name: submission[spatialDescription.adm2Name],
+          name: submission[spatialDescription.adm2Name]
         });
         if (
           !boundariesList.admin1
@@ -93,7 +93,7 @@ export function TKGroupSubmissionsByCamp(
         ) {
           boundariesList.admin1.push({
             pcode: submission[spatialDescription.adm1Pcode],
-            name: submission[spatialDescription.adm1Name],
+            name: submission[spatialDescription.adm1Name]
           });
         }
       }
@@ -101,13 +101,13 @@ export function TKGroupSubmissionsByCamp(
       submissionsByCamps[submission[spatialDescription.siteIDField]] = {
         [submission[
           spatialDescription.siteLastUpdateField
-        ]]: TKGroupAnswersByThematics(submission, surveyConfig, languages),
+        ]]: TKCreateSubmissionThematics(submission, surveyConfig, languages)
       };
     }
   }
   return {
     submissionsByCamps: submissionsByCamps,
     campsList: campsList,
-    boundariesList: boundariesList,
+    boundariesList: boundariesList
   };
 }
