@@ -3,14 +3,15 @@
     <div v-if="item.trafficLight" class="tk-layout-w-trafficlight">
       <div class="tk-item-content">
         <div class="tk-item-field-name">
-          {{ item.fieldLabel_en }}
+          {{ question }}
         </div>
         <div class="tk-item-field-value">
-          {{ item.answerLabel_en }}
+          {{ answer }}
         </div>
         <div class="tk-trafficlight">
           <div v-if="isOK" class="tk-trafficlight-ok"></div>
           <div v-if="isWarning" class="tk-trafficlight-warning"></div>
+          <div v-if="isDanger" class="tk-trafficlight-danger"></div>
           <div v-if="isCritical" class="tk-trafficlight-critical"></div>
           <div v-if="isOther" class="tk-trafficlight-other"></div>
         </div>
@@ -20,10 +21,10 @@
     <div v-if="!item.trafficLight" class="tk-layout-wo-trafficLight">
       <div class="tk-item-content">
         <div class="tk-item-field-name">
-          {{ item.fieldLabel_en }}
+          {{ question }}
         </div>
         <div class="tk-item-field-value">
-          {{ item.answerLabel_en }}
+          {{ answer }}
         </div>
       </div>
     </div>
@@ -39,8 +40,12 @@ export default class TKSurveyItem extends Vue {
   @Prop()
   readonly item!: { [key: string]: string };
 
+  question = "";
+  answer = "";
+
   isOK = false;
   isWarning = false;
+  isDanger = false;
   isCritical = false;
   isOther = false;
 
@@ -50,12 +55,38 @@ export default class TKSurveyItem extends Vue {
       ? this.item.trafficLightColor === TKTrafficLightColors.OK
       : false;
     this.isWarning = this.item
+      ? this.item.trafficLightColor === TKTrafficLightColors.WARNING
+      : false;
+    this.isDanger = this.item
       ? this.item.trafficLightColor === TKTrafficLightColors.DANGER
       : false;
     this.isCritical = this.item
       ? this.item.trafficLightColor === TKTrafficLightColors.CRITICAL
       : false;
-    this.isOther = !this.isOK && !this.isWarning && !this.isCritical;
+    this.isOther =
+      !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;
+
+    this.handleLocale();
+  }
+
+  @Watch("$root.$i18n.locale", { immediate: true })
+  handleLocale() {
+    if (this.item) {
+      if (this.$root.$i18n.locale === "pt") {
+        this.question = this.item.fieldLabel_pt
+          ? this.item.fieldLabel_pt
+          : this.item.fieldLabel_en;
+        this.answer = this.item.answerLabel_pt
+          ? this.item.answerLabel_pt
+          : this.item.answerLabel_en;
+      } else {
+        this.question = this.item.fieldLabel_en;
+        this.answer = this.item.answerLabel_en;
+      }
+    } else {
+      this.question = "";
+      this.answer = "";
+    }
   }
 }
 </script>
@@ -97,6 +128,14 @@ export default class TKSurveyItem extends Vue {
   height: 8px;
   width: 8px;
   background-color: green;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.tk-trafficlight-warning {
+  height: 8px;
+  width: 8px;
+  background-color: yellow;
   border-radius: 50%;
   margin: 0 auto;
 }
