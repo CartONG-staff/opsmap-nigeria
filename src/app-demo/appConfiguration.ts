@@ -25,6 +25,8 @@ export const spatialDescription: TKSpatialDescription = {
   adm1Name: "ggi_state",
   adm2Pcode: "adm2pcode",
   adm2Name: "ggi_city",
+  adm3Pcode: "",
+  adm3Name: "ggi_address",
 };
 export const koboSurveyInfo: TKKoboSurveyInfo[] = [
   {

@@ -64,6 +64,18 @@ export function TKGroupSubmissionsByCamp(
             submission[spatialDescription.siteLongitudeField].replace(",", ".")
           ),
         ],
+        admin1: {
+          pcode: submission[spatialDescription.adm1Pcode],
+          name: submission[spatialDescription.adm1Name],
+        },
+        admin2: {
+          pcode: submission[spatialDescription.adm2Pcode],
+          name: submission[spatialDescription.adm2Name],
+        },
+        admin3: {
+          pcode: submission[spatialDescription.adm3Pcode],
+          name: submission[spatialDescription.adm3Name],
+        },
       });
       if (
         !boundariesList.admin2

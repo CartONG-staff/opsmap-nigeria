@@ -9,4 +9,6 @@ export interface TKSpatialDescription {
   adm1Name: string;
   adm2Pcode: string;
   adm2Name: string;
+  adm3Pcode: string;
+  adm3Name: string;
 }
