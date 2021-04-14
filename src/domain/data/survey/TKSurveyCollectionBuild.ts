@@ -4,7 +4,7 @@ import { TKSurveyConfigurationBuild } from "./raw_data/TKSurveyConfigurationBuil
 import { TKCSVSubmissionsGet } from "@/domain/data/csv/TKCSVSubmissionsGetter";
 import { TKKoboSubmissionsGet } from "../kobo/TKKoboSubmissionsGetter";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
-import { TKGroupSubmissionsByCamp } from "./merged_surveys/TKSubmissionsByCampsGrouper";
+import { TKGroupSubmissionsByCamp } from "./merged_surveys/TKGroupSubmissionsByCamp";
 
 import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
 import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
