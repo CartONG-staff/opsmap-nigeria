@@ -146,7 +146,7 @@ export default class TKSubmissionItemView extends Vue {
   margin: 0 auto;
 }
 
-.tk-trafficlight-warning {
+.tk-trafficlight-danger {
   height: 8px;
   width: 8px;
   background-color: orange;
