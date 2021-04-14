@@ -1,32 +1,32 @@
 <template>
   <div class="tk-camp-infos">
-    <!-- STATE -->
+    <!-- ADMIN1 -->
     <div class="tk-camp-infos-field">
       <div class="tk-camp-infos-field-key">
-        {{ $t("camp.infosState").toUpperCase() }}
+        {{ $t("infosAdmin1").toUpperCase() }}
       </div>
       <div class="tk-camp-infos-field-value">
-        {{ state.toUpperCase() }}
+        {{ admin1.toUpperCase() }}
       </div>
     </div>
     <div class="tk-hseparator" />
-    <!-- LGA -->
+    <!-- ADMIN2 -->
     <div class="tk-camp-infos-field">
       <div class="tk-camp-infos-field-key">
-        {{ $t("camp.infosLGA").toUpperCase() }}
+        {{ $t("infosAdmin2").toUpperCase() }}
       </div>
       <div class="tk-camp-infos-field-value">
-        {{ lga.toUpperCase() }}
+        {{ admin2.toUpperCase() }}
       </div>
     </div>
     <div class="tk-hseparator" />
-    <!-- WARD -->
+    <!-- ADMIN3 -->
     <div class="tk-camp-infos-field">
       <div class="tk-camp-infos-field-key">
-        {{ $t("camp.infosWard").toUpperCase() }}
+        {{ $t("infosAdmin3").toUpperCase() }}
       </div>
       <div class="tk-camp-infos-field-value">
-        {{ name.toUpperCase() }}
+        {{ admin3.toUpperCase() }}
       </div>
     </div>
     <div class="tk-hseparator" />
@@ -37,16 +37,6 @@
       </div>
       <div class="tk-camp-infos-field-value">
         {{ coordinates.toUpperCase() }}
-      </div>
-    </div>
-    <div class="tk-hseparator" />
-    <!-- Manage BY -->
-    <div class="tk-camp-infos-field">
-      <div class="tk-camp-infos-field-key">
-        {{ $t("camp.infosManageBy").toUpperCase() }}
-      </div>
-      <div class="tk-camp-infos-field-value">
-        {{ manageby.toUpperCase() }}
       </div>
     </div>
     <div class="tk-hseparator" />
@@ -62,21 +52,21 @@ export default class TKCampInfos extends Vue {
   @Prop()
   readonly camp!: TKCampDescription;
 
-  state = "";
-  lga = "";
+  admin1 = "";
+  admin2 = "";
+  admin3 = "";
   name = "";
   coordinates = "";
-  manageby = "";
 
   @Watch("camp", { immediate: true })
   onChange() {
-    this.state = "";
-    this.lga = "";
+    this.admin1 = this.camp ? this.camp.admin1.name : "";
+    this.admin2 = this.camp ? this.camp.admin2.name : "";
+    this.admin3 = this.camp ? this.camp.admin3.name : "";
     this.name = this.camp ? this.camp.name : "";
     this.coordinates = this.camp
       ? this.camp.coordinates[0] + "," + this.camp.coordinates[1]
       : "";
-    this.manageby = "";
   }
 }
 </script>
