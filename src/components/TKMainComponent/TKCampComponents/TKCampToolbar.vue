@@ -20,7 +20,7 @@
       class="tk-camp-toolbar-export"
       height="44"
     >
-      Export as CSV
+      {{ $t("site.exportAsCSV") }}
     </v-btn>
   </div>
 </template>

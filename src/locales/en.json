@@ -25,6 +25,7 @@
     "combosTitle": "Zoom on the map"
   },
   "site": {
+    "exportAsCSV": "Export (CSV)",
     "infosCoordinates": "gps coordinates"
   }
 }
