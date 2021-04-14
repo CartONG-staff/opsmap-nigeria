@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="tk-survey-doughnut-chart">
+  <div class="tk-submission-item-doughnut-chart">
     <canvas :id="ctx"> </canvas>
   </div>
 </template>
@@ -58,7 +58,7 @@ Chart.register(
 );
 
 @Component
-export default class TKSurveyDoughnutChart extends Vue {
+export default class TKSubmissionItemDoughnutChart extends Vue {
   @Prop()
   readonly name!: string;
 
@@ -122,7 +122,7 @@ export default class TKSurveyDoughnutChart extends Vue {
 </script>
 
 <style scoped>
-.tk-survey-doughnut-chart {
+.tk-submission-item-doughnut-chart {
   background-color: #ffffff;
   border-radius: 8px;
   padding-top: 15px;

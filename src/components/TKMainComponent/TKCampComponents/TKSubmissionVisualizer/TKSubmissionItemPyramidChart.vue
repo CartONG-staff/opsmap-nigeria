@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="tk-survey-pyramid-chart">
+  <div class="tk-submission-item-pyramid-chart">
     <canvas :id="ctx" height="260"> </canvas>
   </div>
 </template>
@@ -58,7 +58,7 @@ Chart.register(
 );
 
 @Component
-export default class TKSurveyPyramidChart extends Vue {
+export default class TKSubmissionItemPyramidChart extends Vue {
   @Prop()
   readonly name!: string;
 
@@ -182,12 +182,12 @@ export default class TKSurveyPyramidChart extends Vue {
 </script>
 
 <style scoped>
-.tk-survey-pyramid-chart {
+.tk-submission-item-pyramid-chart {
   background-color: #ffffff;
   border-radius: 8px;
 }
 
-.tk-survey-pyramid-chart {
+.tk-submission-item-pyramid-chart {
   padding-top: 15px;
   padding-bottom: 15px;
 }
