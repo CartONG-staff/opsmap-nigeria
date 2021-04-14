@@ -19,9 +19,9 @@ import mapboxgl, { LngLatBounds } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import * as turf from "@turf/turf";
 
-import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 
-import { TKRetrieveAdmin0Boundaries } from "@/domain/data/boundaries/TKBoundaries";
+import { TKRetrieveAdmin0Boundaries } from "@/domain/map/TKRetrieveBoundaries";
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
@@ -47,19 +47,7 @@ export default class TKMap extends Vue {
 
   @Watch("currentCamp")
   currentCampIdChanged() {
-    if (this.currentCamp) {
-      console.log("TKMap - Camp selectin changed");
-    }
     // Ready to apply map maneuver here !!!
-  }
-
-  @Emit("camp-selection-changed")
-  campSelectionChanged(id: string): void {
-    console.log("campSelected: " + id);
-  }
-  @Emit("camp-selection-cleared")
-  campSelectionCleared() {
-    console.log("Camp Selectio cleared");
   }
 
   map!: mapboxgl.Map;
@@ -169,7 +157,7 @@ export default class TKMap extends Vue {
   setupCountryBoundaries() {
     // Init the boundaries
     TKRetrieveAdmin0Boundaries(this.appConfig.iso3)
-      .then(boundaries => {
+      .then((boundaries) => {
         if (boundaries) {
           // Setup outside of boundaries mask
           const bbox = turf.bbox(boundaries);

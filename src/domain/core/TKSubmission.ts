@@ -1,10 +1,3 @@
-import { TKSubmissionItem } from "./TKSubmissionItem"
-export interface TKSubmission {
-    data: Array<TKSubmissionItem>;
-    formatted_name: string;
-    icon_file_name: string;
-    thematic_label_en: string;
-    thematic_label_pt?: string;
-}
+import { TKSubmissionThematic } from "./TKSubmissionThematic";
 
-// TODO: a more flexible approach for language.
+export interface TKSubmission extends Record<string, TKSubmissionThematic> {}

@@ -25,6 +25,7 @@
     "combosTitle": "zoom no mapa"
   },
   "site": {
+    "exportAsCSV": "Exportar (CSV)",
     "infosCoordinates": "coordenadas GPS"
   }
 }
