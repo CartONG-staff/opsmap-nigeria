@@ -15,7 +15,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Emit, Watch } from "vue-property-decorator";
-import mapboxgl, { LngLatBounds } from "mapbox-gl";
+import mapboxgl, {
+  GeoJSONSource,
+  LngLatBounds,
+  MapEventType,
+  SymbolLayer,
+} from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 import TKMapFilters from "./TKMapFilters.vue";
@@ -23,6 +28,10 @@ import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
 import { mask } from "@/secondary/map/mask";
 import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { campDescriptiontoGeoJSON } from "@/domain/map/mapUtils";
+import { layers } from "@/domain/map/mapStyles";
+const devEnv = process.env.NODE_ENV === "development";
+const imgURL = devEnv ? "/markers/" : `./markers/`;
 
 @Component({
   components: {
@@ -40,13 +49,68 @@ export default class TKMap extends Vue {
 
   // Hold the app current camp property
   @Prop()
-  readonly currentCampId!: string;
+  currentCampId!: string;
   // campListModel = this.currentCampId;
+  localCurrentCamppId = this.currentCampId;
+  mapMarkersList = ["planned_site", "spontaneous_site"];
+  markersLoadedCount = 0;
+  filteredCamps = {
+    selectedCamp: campDescriptiontoGeoJSON(
+      this.campList.filter((x) => x.id == this.currentCampId)
+    ),
+    otherCamps: campDescriptiontoGeoJSON(
+      this.campList.filter((x) => x.id != this.currentCampId)
+    ),
+  };
 
+  @Watch("markersLoadedCount")
+  mapMarkersLoaded() {
+    if (
+      this.markersLoadedCount === this.mapMarkersList.length &&
+      this.campList.length > 0
+    ) {
+      this.addCampsSources();
+    }
+  }
+
+  @Watch("campList")
+  changeOnCampList() {
+    this.filteredCamps = {
+      selectedCamp: campDescriptiontoGeoJSON(
+        this.campList.filter((x) => x.id == this.currentCampId)
+      ),
+      otherCamps: campDescriptiontoGeoJSON(
+        this.campList.filter((x) => x.id != this.currentCampId)
+      ),
+    };
+  }
   @Watch("currentCampId")
   currentCampIdChanged() {
-    // this.campListModel = this.currentCampId;
-    // Ready to apply map maneuver here !!!
+    console.log("change on current");
+    this.filteredCamps = {
+      selectedCamp: campDescriptiontoGeoJSON(
+        this.campList.filter((x) => x.id == this.currentCampId)
+      ),
+      otherCamps: campDescriptiontoGeoJSON(
+        this.campList.filter((x) => x.id != this.currentCampId)
+      ),
+    };
+    if (this.filteredCamps.otherCamps.features.length > 0) {
+      const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(
+        "otherCamps"
+      ) as mapboxgl.GeoJSONSource;
+      otherCampsSource.setData(this.filteredCamps.otherCamps);
+
+      const selectedCampSource: mapboxgl.GeoJSONSource = this.map.getSource(
+        "selectedCamp"
+      ) as mapboxgl.GeoJSONSource;
+      selectedCampSource.setData(this.filteredCamps.selectedCamp);
+    }
+  }
+
+  @Watch("localCurrentCamppId")
+  localCurrentCamp() {
+    this.campSelectionChanged(this.localCurrentCamppId);
   }
 
   @Emit("camp-selection-changed")
@@ -57,14 +121,8 @@ export default class TKMap extends Vue {
   campSelectionCleared() {
     console.log("Camp Selectio cleared");
   }
-
   map!: mapboxgl.Map;
-
   bound!: mapboxgl.LngLatBounds;
-
-  // boundariesMask!: turf.Feature<
-  //   turf.helpers.MultiPolygon | turf.helpers.Polygon
-  // >;
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   // map object management method
@@ -85,6 +143,36 @@ export default class TKMap extends Vue {
         accessToken: this.appConfig.mapConfig.token,
         bounds: this.bound,
       });
+
+      this.map.on("load", () => {
+        this.mapMarkersList.map((img) => {
+          this.map.loadImage(`${imgURL}${img}.png`, (error, image) => {
+            this.markersLoadedCount++;
+            this.map.addImage(img, image as ImageBitmap);
+            if (error) throw error;
+          });
+        });
+        this.map.addSource("mask", {
+          type: "geojson",
+          data: mask,
+        });
+        this.map.addLayer({
+          id: "mask",
+          type: "fill",
+          source: "mask",
+          layout: {},
+          paint: {
+            "fill-color": "#585858",
+            "fill-opacity": 0.7,
+          },
+        });
+        if (
+          this.markersLoadedCount === this.mapMarkersList.length &&
+          this.campList.length > 0
+        ) {
+          this.addCampsSources();
+        }
+      });
     }
   }
 
@@ -92,29 +180,113 @@ export default class TKMap extends Vue {
   // layers management
   // ////////////////////////////////////////////////////////////////////////////////////////////////
 
-  addLayers() {
-    console.log("lets go");
-
-    this.map.addSource("mask", {
+  addCampsSources() {
+    console.log(this.filteredCamps);
+    this.map.addSource("otherCamps", {
       type: "geojson",
-      data: mask,
+      data: this.filteredCamps.otherCamps,
+      cluster: true,
+      clusterMaxZoom: 14, // Max zoom to cluster points on
+      clusterRadius: 50,
     });
+
+    this.map.addSource("selectedCamp", {
+      type: "geojson",
+      data: this.filteredCamps.selectedCamp,
+    });
+    this.addCampsLayer();
+  }
+  addCampsLayer() {
+    console.log("Adding Layers");
+    // ADD CLUSTERS
+    console.log(this.map.getSource("otherCamps"));
     this.map.addLayer({
-      id: "mask",
-      type: "fill",
-      source: "mask",
-      layout: {},
+      id: "clusters",
+      type: "circle",
+      source: "otherCamps",
+      filter: ["has", "point_count"],
       paint: {
-        "fill-color": "#585858",
-        "fill-opacity": 0.7,
+        "circle-color": [
+          "step",
+          ["get", "point_count"],
+          "#78b4ff",
+          10,
+          "#337fdd",
+          30,
+          "#286090",
+        ],
+        "circle-radius": ["step", ["get", "point_count"], 10, 10, 15, 30, 20],
       },
     });
-  }
+    this.map.addLayer({
+      id: "cluster-count",
+      type: "symbol",
+      source: "otherCamps",
+      filter: ["has", "point_count"],
+      layout: {
+        "text-field": "{point_count_abbreviated}",
+        "text-font": ["Arial Unicode MS Bold"],
+        "text-size": 12,
+      },
+      paint: {
+        "text-color": "#ffffff",
+      },
+    });
+    this.map.addLayer({
+      id: "camps",
+      type: "symbol",
+      source: "otherCamps",
+      filter: ["!", ["has", "point_count"]],
+      layout: {
+        "icon-image": "planned_site",
+        "icon-size": 0.25,
+      },
+    });
 
-  updateBasemap() {
-    // this.map.setStyle(this.appConfig.mapConfig.style);
-    this.addLayers();
+    this.map.addLayer({
+      id: "camp",
+      type: "symbol",
+      source: "selectedCamp",
+      layout: {
+        "icon-image": "spontaneous_site",
+        "icon-size": 0.35,
+      },
+    });
+
+    // // CLUSTERS BEHAVIOR
+    this.map.on("click", "clusters", (e) => {
+      const features = this.map.queryRenderedFeatures(e.point, {
+        layers: ["clusters"],
+      });
+      const clusterId = features[0].properties.cluster_id;
+
+      const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(
+        "otherCamps"
+      ) as mapboxgl.GeoJSONSource;
+      otherCampsSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
+        if (err) return;
+        this.map.easeTo({
+          center: features[0].geometry.coordinates,
+          zoom: zoom,
+        });
+      });
+    });
+
+    // CAMPS BEHAVIOR
+    this.map.on("click", "camps", (e) => {
+      this.localCurrentCamppId = e.features[0].properties.id;
+    });
+    this.map.on("mouseenter", "camps", (e) => {
+      this.map.getCanvas().style.cursor = "pointer";
+    });
+    this.map.on("mouseleave", "camps", () => {
+      this.map.getCanvas().style.cursor = "";
+    });
   }
+  // updateBasemap() {
+  //   // this.map.setStyle(this.appConfig.mapConfig.style);
+  //   this.addLayers();
+  // }
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   // Zoom related
@@ -197,15 +369,6 @@ export default class TKMap extends Vue {
 
   mounted(): void {
     this.initMap();
-    this.map.on("load", () => {
-      // disable map rotation using right click + drag
-      this.map.dragRotate.disable();
-      // disable map rotation using touch rotation gesture
-      this.map.touchZoomRotate.disableRotation();
-
-      // this.setupCountryBoundaries();
-      this.addLayers();
-    });
   }
 }
 </script>
