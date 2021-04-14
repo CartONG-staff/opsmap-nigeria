@@ -44,7 +44,7 @@ export default class TKSurveyThematic extends Vue {
 
   @Watch("$root.$i18n.locale", { immediate: true })
   handleLocaleOnTitle() {
-    if (this.$root.$i18n.locale == "pt" && this.survey.thematic_label_pt) {
+    if (this.$root.$i18n.locale === "pt" && this.survey.thematic_label_pt) {
       this.title = this.survey.thematic_label_pt;
     } else {
       this.title = this.survey.thematic_label_en;
