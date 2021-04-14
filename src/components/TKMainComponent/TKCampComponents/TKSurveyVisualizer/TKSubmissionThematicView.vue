@@ -1,10 +1,10 @@
 <template lang="html">
-  <div class="tk-survey-thematic-container">
-    <div class="tk-survey-thematic-header">
-      <div class="tk-survey-thematic-title">{{ title }}</div>
-      <img class="tk-survey-icon" :src="iconurl" />
+  <div class="tk-submission-thematic-container">
+    <div class="tk-submission-thematic-header">
+      <div class="tk-submission-thematic-title">{{ title }}</div>
+      <img class="tk-submission-icon" :src="iconurl" />
     </div>
-    <div class="tk-survey-thematic-content">
+    <div class="tk-submission-thematic-content">
       <div v-for="(item, key) in dataFiltered" :key="item.id">
         <div v-if="key !== 0" class="tk-hseparator"></div>
         <TKSubmissionItemView :item="item" />
@@ -17,7 +17,7 @@
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import TKSubmissionItemView from "./TKSubmissionItemView.vue";
-import { TKSubmission } from "@/domain/core/TKSubmission";
+import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
 import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
 
 @Component({
@@ -25,36 +25,39 @@ import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
     TKSubmissionItemView
   }
 })
-export default class TKSurveyThematic extends Vue {
+export default class TKSubmissionThematicView extends Vue {
   @Prop()
-  readonly survey!: TKSubmission;
+  readonly submissionThematic!: TKSubmissionThematic;
 
   dataFiltered: TKSubmissionItem[] = [];
 
   title = "";
   iconurl = "";
-  @Watch("survey", { immediate: true })
+  @Watch("submissionThematic", { immediate: true })
   onSurveychanged() {
     this.handleLocaleOnTitle();
-    this.iconurl = TKIconUrl(this.survey.icon_file_name as string);
-    this.dataFiltered = this.survey.data.filter(
+    this.iconurl = TKIconUrl(this.submissionThematic.icon_file_name as string);
+    this.dataFiltered = this.submissionThematic.data.filter(
       (item: TKSubmissionItem) => item.answerLabel_en !== ""
     );
   }
 
   @Watch("$root.$i18n.locale", { immediate: true })
   handleLocaleOnTitle() {
-    if (this.$root.$i18n.locale === "pt" && this.survey.thematic_label_pt) {
-      this.title = this.survey.thematic_label_pt;
+    if (
+      this.$root.$i18n.locale === "pt" &&
+      this.submissionThematic.thematic_label_pt
+    ) {
+      this.title = this.submissionThematic.thematic_label_pt;
     } else {
-      this.title = this.survey.thematic_label_en;
+      this.title = this.submissionThematic.thematic_label_en;
     }
   }
 }
 </script>
 
 <style scoped>
-.tk-survey-thematic-container {
+.tk-submission-thematic-container {
   border-radius: 15px;
   display: flex;
   flex-flow: column nowrap;
@@ -65,7 +68,7 @@ export default class TKSurveyThematic extends Vue {
   overflow: hidden;
 }
 
-.tk-survey-thematic-header {
+.tk-submission-thematic-header {
   padding: 0px 20px;
   display: flex;
   flex-flow: row nowrap;
@@ -75,23 +78,23 @@ export default class TKSurveyThematic extends Vue {
   background-color: #fff;
 }
 
-.tk-survey-thematic-title {
+.tk-submission-thematic-title {
   font-size: 16px;
   font-weight: bolder;
   color: var(--v-quaternary-base);
 }
 
-.tk-survey-chart {
+.tk-submission-chart {
   margin-bottom: 13px;
   margin-top: 13px;
 }
 
-.tk-survey-icon {
+.tk-submission-icon {
   height: 36px;
   display: block;
 }
 
-.tk-survey-thematic-content {
+.tk-submission-thematic-content {
   padding: 0px 20px;
   width: 100%;
 }

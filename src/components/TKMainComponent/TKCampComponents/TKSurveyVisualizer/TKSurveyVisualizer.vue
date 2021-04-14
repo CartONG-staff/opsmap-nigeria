@@ -1,36 +1,36 @@
 <template lang="html">
   <div class="tk-survey-visualizer">
     <div class="tk-survey-visualizer-col">
-      <TKSurveyThematic :survey="surveyCccm" />
-      <TKSurveyThematic :survey="surveyCom" />
-      <!-- <TKSurveyThematic :survey="surveyDemo" /> -->
-      <TKSurveyThematic :survey="surveyEducation" />
-      <TKSurveyThematic :survey="surveySports" />
+      <TKSubmissionThematicView :submissionThematic="surveyCccm" />
+      <TKSubmissionThematicView :submissionThematic="surveyCom" />
+      <!-- <TKSurveyThematic :submissionThematic="surveyDemo" /> -->
+      <TKSubmissionThematicView :submissionThematic="surveyEducation" />
+      <TKSubmissionThematicView :submissionThematic="surveySports" />
     </div>
     <div class="tk-survey-visualizer-col">
-      <TKSurveyThematic :survey="surveyEnvironment" />
-      <TKSurveyThematic :survey="surveyGeneralInfo" />
-      <TKSurveyThematic :survey="surveyHealth" />
-      <TKSurveyThematic :survey="surveyInfrastructure" />
-      <TKSurveyThematic :survey="surveyWash" />
+      <TKSubmissionThematicView :submissionThematic="surveyEnvironment" />
+      <TKSubmissionThematicView :submissionThematic="surveyGeneralInfo" />
+      <TKSubmissionThematicView :submissionThematic="surveyHealth" />
+      <TKSubmissionThematicView :submissionThematic="surveyInfrastructure" />
+      <TKSubmissionThematicView :submissionThematic="surveyWash" />
     </div>
     <div class="tk-survey-visualizer-col">
-      <TKSurveyThematic :survey="surveyInteriorisation" />
-      <TKSurveyThematic :survey="surveyNonfood" />
-      <TKSurveyThematic :survey="surveyProtection" />
-      <TKSurveyThematic :survey="surveySecurity" />
+      <TKSubmissionThematicView :submissionThematic="surveyInteriorisation" />
+      <TKSubmissionThematicView :submissionThematic="surveyNonfood" />
+      <TKSubmissionThematicView :submissionThematic="surveyProtection" />
+      <TKSubmissionThematicView :submissionThematic="surveySecurity" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import TKSurveyThematic from "./TKSurveyThematic.vue";
+import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
 import { TKSubmissions } from "@/domain/core/TKSubmissions";
 
 @Component({
   components: {
-    TKSurveyThematic
+    TKSubmissionThematicView
   }
 })
 export default class TKSurveyVisualizer extends Vue {
