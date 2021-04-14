@@ -5,7 +5,7 @@
       <img class="tk-submission-icon" :src="iconurl" />
     </div>
     <div class="tk-submission-thematic-content">
-      <div v-for="(item, key) in dataFiltered" :key="item.id">
+      <div v-for="(item, key) in submissionThematic.data" :key="item.id">
         <div v-if="key !== 0" class="tk-hseparator"></div>
         <TKSubmissionItemView :item="item" />
       </div>
@@ -17,8 +17,11 @@
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import TKSubmissionItemView from "./TKSubmissionItemView.vue";
-import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
-import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
+import {
+  TKSubmissionThematic,
+  filterThematicUnanswered
+} from "@/domain/core/TKSubmissionThematic";
+// import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
 
 @Component({
   components: {
@@ -29,21 +32,18 @@ export default class TKSubmissionThematicView extends Vue {
   @Prop()
   readonly submissionThematic!: TKSubmissionThematic;
 
-  dataFiltered: TKSubmissionItem[] = [];
+  // dataFiltered: TKSubmissionItem[] = [];
 
   title = "";
   iconurl = "";
   @Watch("submissionThematic", { immediate: true })
   onSubmissionThematicchanged() {
-    console.log("CHNAGAADSDSD: " + this.submissionThematic);
     if (this.submissionThematic) {
       this.handleLocaleOnTitle();
       this.iconurl = TKIconUrl(
         this.submissionThematic.icon_file_name as string
       );
-      this.dataFiltered = this.submissionThematic.data.filter(
-        (item: TKSubmissionItem) => item.answerLabel_en !== ""
-      );
+      filterThematicUnanswered(this.submissionThematic);
     }
   }
 
@@ -58,9 +58,8 @@ export default class TKSubmissionThematicView extends Vue {
       } else {
         this.title = this.submissionThematic.thematic_label_en;
       }
-    }
-    else {
-        this.title = "";
+    } else {
+      this.title = "";
     }
   }
 }

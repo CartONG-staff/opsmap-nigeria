@@ -10,3 +10,7 @@ export interface TKSubmissionItem {
     trafficLight: boolean;
     trafficLightColor: TKTrafficLightColors;
   }
+
+  export function isAnswered(item: TKSubmissionItem){
+    return item.answerLabel_en !== "";
+  }
