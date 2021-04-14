@@ -34,8 +34,10 @@
             <TKCampSubtitle class="tk-camp-title" :camp="currentCamp" />
             <TKCampToolbar
               class="tk-camp-toolbar"
-              :campList="campsList"
-              :submission="currentSubmission"
+              :submissionsDates="
+                currentSubmissions ? Object.keys(currentSubmissions) : ['']
+              "
+              @date-selection-changed="dateSelected"
             />
             <TKCampInfos class="tk-camp-infos" :camp="currentCamp" />
           </div>
@@ -117,6 +119,8 @@ export default class TKMainComponent extends Vue {
 
   currentCamp: TKCampDescription | null = null;
   currentSubmission: TKSubmission | null = null;
+  currentSubmissions: { [date: string]: TKSubmission } | null = null;
+
   isHomePage = true;
 
   campSelectionCleared() {
@@ -130,12 +134,23 @@ export default class TKMainComponent extends Vue {
     const found = this.campsList.find(element => element.id === campId);
     if (found) {
       this.currentCamp = found;
-      const submissionCollection = this.dataset.submissionsByCamps[campId];
-      const keys = Object.keys(submissionCollection);
-      this.currentSubmission = submissionCollection[keys[0]];
+      this.currentSubmissions = this.dataset.submissionsByCamps[campId];
+      const keys = Object.keys(this.currentSubmissions);
+      this.currentSubmission = this.currentSubmissions[keys[0]];
     } else {
+      this.currentSubmissions = null;
       this.currentSubmission = null;
       this.currentCamp = null;
+    }
+  }
+
+  dateSelected(date: string) {
+    console.log("DATE PICKED : " + date);
+    if (
+      this.currentSubmissions &&
+      Object.keys(this.currentSubmissions).includes(date)
+    ) {
+      this.currentSubmission = this.currentSubmissions[date];
     }
   }
 

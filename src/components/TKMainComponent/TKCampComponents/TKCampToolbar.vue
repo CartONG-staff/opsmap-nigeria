@@ -1,17 +1,18 @@
 <template>
   <div class="tk-camp-toolbar">
-    <v-autocomplete
+    <v-select
       background-color="#418fde"
       color="#ffffff"
-      :items="submissionsDate"
-      v-model="submissionsModel"
+      :items="submissionsDates"
+      v-model="model"
       flat
       filled
       solo
       dense
-      class="tk-camp-toolbar-survey"
+      class="tk-camp-toolbar-date"
       height="44"
-    ></v-autocomplete>
+      @change="dateSelected"
+    ></v-select>
     <v-btn
       depressed
       color="#000"
@@ -25,18 +26,27 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKCampToolbar extends Vue {
-  submissionsDate = [""];
-  submissionsModel = "";
+  @Prop()
+  readonly submissionsDates!: [""];
+  model = "";
 
-  // @Watch("survey", { immediate: true })
-  // onChange() {
-  //   this.surveysDate = this.survey ? Object.keys(this.survey) : [""];
-  //   this.surveysDateModel = this.surveysDate.length ? this.surveysDate[0] : "";
-  // }
+  @Watch("submissionsDates", { immediate: true })
+  onChange() {
+    this.model =
+      this.submissionsDates && this.submissionsDates.length
+        ? this.submissionsDates[0]
+        : "";
+  }
+
+  dateSelected(date: string) {
+    if (date) {
+      this.$emit("date-selection-changed", date);
+    }
+  }
 }
 </script>
 
@@ -49,7 +59,7 @@ export default class TKCampToolbar extends Vue {
   column-gap: 5%;
 }
 
-.tk-camp-toolbar-survey {
+.tk-camp-toolbar-date {
   width: 55%;
 }
 .tk-camp-toolbar-export {
@@ -64,7 +74,7 @@ export default class TKCampToolbar extends Vue {
   letter-spacing: 0.86px !important;
 }
 
-.tk-camp-toolbar-survey input {
+.tk-camp-toolbar-date .v-select__selection {
   color: #fff !important;
   font-family: "Arial";
   font-weight: bold !important;
@@ -72,15 +82,7 @@ export default class TKCampToolbar extends Vue {
   letter-spacing: 0.86px !important;
 }
 
-.tk-camp-toolbar-survey input::placeholder {
-  color: #fff !important;
-  font-family: "Arial";
-  font-weight: bold !important;
-  font-size: 12px !important;
-  letter-spacing: 0.86px !important;
-}
-
-.tk-camp-toolbar-survey .v-icon.v-icon {
+.tk-camp-toolbar-date .v-icon.v-icon {
   color: #fff !important;
 }
 </style>
