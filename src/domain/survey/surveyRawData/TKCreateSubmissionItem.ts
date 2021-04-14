@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { TKTrafficLightGrouped } from "../surveyconfiguratio/TKTrafficLightsCollectionBuilder";
+import { TKTrafficLightGrouped } from "../surveyConfiguration/TKTrafficLightsCollectionBuilder";
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLightColors";
 import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";

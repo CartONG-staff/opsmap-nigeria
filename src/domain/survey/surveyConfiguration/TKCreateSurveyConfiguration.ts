@@ -1,8 +1,8 @@
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 
-import { TKCSVRead } from "../surveyraw/csv/TKCSVReader";
-import { TKCSVSurveyInfo } from "../surveyraw/csv/TKCSVTypes";
-import { TKKoboSurveyInfo } from "../surveyraw/kobo/TKKoboSurveyInfo";
+import { TKCSVRead } from "../surveyRawData/csv/TKCSVReader";
+import { TKCSVSurveyInfo } from "../surveyRawData/csv/TKCSVTypes";
+import { TKKoboSurveyInfo } from "../surveyRawData/kobo/TKKoboSurveyInfo";
 import {
   TKThematic,
   TKThematicsCollectionBuild
