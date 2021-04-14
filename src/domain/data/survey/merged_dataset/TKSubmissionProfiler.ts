@@ -2,22 +2,12 @@
 import { TKTrafficLightGrouped } from "../raw_data/TKTrafficLightsCollectionBuilder";
 import { TKSurveyConfiguration } from "@/domain/data/survey/raw_data/TKSurveyConfigurationBuilder";
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLightColors";
+import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
+
 import {
   LanguageCode,
   TKLanguageDescription,
 } from "@/domain/config/TKLanguageDescription";
-
-interface TKSubmissionVisualisationProfile {
-  field: string;
-  fieldLabel_en: string;
-  fieldLabel_fr?: string;
-  fieldLabel_pt?: string;
-  answerLabel_en: string;
-  answerLabel_fr?: string;
-  answerLabel_pt?: string;
-  trafficLight: boolean;
-  trafficLightColor: TKTrafficLightColors;
-}
 
 function getTrafficLightColor(
   value: string,
@@ -38,9 +28,9 @@ export function TKSetSubmissionVisualisationProfile(
   field: string,
   surveyConfiguration: TKSurveyConfiguration,
   languages: TKLanguageDescription[]
-): TKSubmissionVisualisationProfile {
+): TKSubmissionItem {
   const languagesList = [...new Set(languages.map((x) => x.code))];
-  const profil: TKSubmissionVisualisationProfile = {
+  return {
     field: field,
     fieldLabel_en: surveyConfiguration.fieldsLabels[field].field_label_en,
     fieldLabel_fr: languagesList.includes(LanguageCode.FR)
@@ -69,5 +59,4 @@ export function TKSetSubmissionVisualisationProfile(
           )
         : TKTrafficLightColors.UNDEFINED,
   };
-  return profil;
 }

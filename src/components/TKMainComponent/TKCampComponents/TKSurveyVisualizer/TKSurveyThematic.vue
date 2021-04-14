@@ -7,7 +7,7 @@
     <div class="tk-survey-thematic-content">
       <div v-for="(item, key) in dataFiltered" :key="item.id">
         <div v-if="key !== 0" class="tk-hseparator"></div>
-        <TKSurveyItem :item="item" />
+        <TKSubmissionItemView :item="item" />
       </div>
     </div>
   </div>
@@ -16,13 +16,13 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import TKSurveyItem from "./TKSurveyItem.vue";
+import TKSubmissionItemView from "./TKSubmissionItemView.vue";
 import { TKSubmission } from "@/domain/core/TKSubmission";
 import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
 
 @Component({
   components: {
-    TKSurveyItem
+    TKSubmissionItemView
   }
 })
 export default class TKSurveyThematic extends Vue {

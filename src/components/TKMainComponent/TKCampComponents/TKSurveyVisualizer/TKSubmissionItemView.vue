@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="tk-survey-item-container">
+  <div class="tk-submission-item-container">
     <div v-if="item.trafficLight" class="tk-layout-w-trafficlight">
       <div class="tk-item-content">
         <div class="tk-item-field-name">
@@ -34,11 +34,11 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLightColors";
-
+import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
 @Component
-export default class TKSurveyItem extends Vue {
+export default class TKSubmissionItemView extends Vue {
   @Prop()
-  readonly item!: { [key: string]: string };
+  readonly item!: TKSubmissionItem;
 
   question = "";
   answer = "";
