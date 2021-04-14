@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKTrafficLightColors } from "@/domain/core/TKTrafficLightColors";
+import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
 import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
 @Component
 export default class TKSubmissionItemView extends Vue {

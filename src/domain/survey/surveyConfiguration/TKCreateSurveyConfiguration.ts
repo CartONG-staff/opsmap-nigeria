@@ -1,5 +1,5 @@
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
-
+import { TKTrafficLightItem } from "@/domain/core/TKTrafficLight";
 import { TKCSVRead } from "../surveyRawData/csv/TKCSVReader";
 import { TKCSVSurveyInfo } from "../surveyRawData/csv/TKCSVTypes";
 import { TKKoboSurveyInfo } from "../surveyRawData/kobo/TKKoboSurveyInfo";
@@ -7,10 +7,7 @@ import {
   TKThematic,
   TKThematicsCollectionBuild
 } from "./TKThematicsCollectionBuilder";
-import {
-  TKTrafficLightItem,
-  TKTrafficLightsCollectionBuild
-} from "./TKTrafficLightsCollectionBuilder";
+import { TKTrafficLightsCollectionBuild } from "./TKTrafficLightsCollectionBuilder";
 import {
   TKFieldLabel,
   TKAnswerLabel,

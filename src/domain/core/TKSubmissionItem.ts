@@ -1,4 +1,4 @@
-import { TKTrafficLightColors } from "./TKTrafficLightColors";
+import { TKTrafficLightColors } from "./TKTrafficLight";
 export class TKSubmissionItem {
   field = "";
   fieldLabelEn = "";

@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { TKTrafficLightGrouped } from "../surveyConfiguration/TKTrafficLightsCollectionBuilder";
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
-import { TKTrafficLightColors } from "@/domain/core/TKTrafficLightColors";
+import {
+  TKTrafficLightColors,
+  TKTrafficLightGrouped,
+  TrafficLightTypes
+} from "@/domain/core/TKTrafficLight";
 import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
 
 import {
@@ -13,7 +16,7 @@ function getTrafficLightColor(
   value: string,
   trafficLight: TKTrafficLightGrouped
 ): TKTrafficLightColors {
-  if (trafficLight.type === "string") {
+  if (trafficLight.type === TrafficLightTypes.STRING) {
     const match = trafficLight.values
       .filter((x) => x.value.toLowerCase() === value.toLowerCase())
       .map((x) => x.color)

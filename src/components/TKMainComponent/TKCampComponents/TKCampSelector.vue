@@ -61,15 +61,6 @@ export default class TKCampSelector extends Vue {
       this.$emit("camp-selection-cleared");
     }
   }
-
-  // @Emit("camp-selection-changed")
-  // campSelectionChanged(id: string): void {
-  //   console.log("campSelected: " + id);
-  // }
-  // @Emit("camp-selection-cleared")
-  // campSelectionCleared() {
-  //   console.log("Camp Selectio cleared");
-  // }
 }
 </script>
 

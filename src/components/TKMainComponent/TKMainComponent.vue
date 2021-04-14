@@ -131,7 +131,7 @@ export default class TKMainComponent extends Vue {
 
   campSelectionChanged(campId: string) {
     this.isHomePage = false;
-    const found = this.campsList.find(element => element.id === campId);
+    const found = this.campsList.find((element) => element.id === campId);
     if (found) {
       this.currentCamp = found;
       this.currentSubmissions = this.survey.submissionsByCamps[campId];
@@ -160,6 +160,7 @@ export default class TKMainComponent extends Vue {
       this.appConfig.spatialDescription,
       this.appConfig.language
     );
+
     console.log(surveys);
 
     // TODO : make this nice. This isn't

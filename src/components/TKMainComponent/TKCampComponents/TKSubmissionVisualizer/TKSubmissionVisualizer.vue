@@ -59,7 +59,6 @@ export default class TKSubmissionVisualizer extends Vue {
   @Watch("submission", { immediate: true })
   onSurveyChanged() {
     if (this.submission) {
-      console.log("SUBMISSION CHANGED: " + this.submission);
       this.submissionCccm = this.submission["group_cccm"];
       this.submissionCom = this.submission["group_com"];
       this.submissionDemo = this.submission["group_demo"];
