@@ -37,7 +37,7 @@ import { TKSubmission } from "@/domain/core/TKSubmission";
     TKSubmissionThematicView
   }
 })
-export default class TKSurveyVisualizer extends Vue {
+export default class TKSubmissionVisualizer extends Vue {
   @Prop()
   readonly submission!: TKSubmission;
 
