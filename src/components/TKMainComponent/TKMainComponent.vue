@@ -114,7 +114,7 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
-  dataset!: TKSurvey;
+  survey!: TKSurvey;
   campsList: TKCampDescription[] = [];
 
   currentCamp: TKCampDescription | null = null;
@@ -131,10 +131,10 @@ export default class TKMainComponent extends Vue {
 
   campSelectionChanged(campId: string) {
     this.isHomePage = false;
-    const found = this.campsList.find(element => element.id === campId);
+    const found = this.campsList.find((element) => element.id === campId);
     if (found) {
       this.currentCamp = found;
-      this.currentSubmissions = this.dataset.submissionsByCamps[campId];
+      this.currentSubmissions = this.survey.submissionsByCamps[campId];
       const keys = Object.keys(this.currentSubmissions);
       this.currentSubmission = this.currentSubmissions[keys[0]];
     } else {
@@ -155,17 +155,17 @@ export default class TKMainComponent extends Vue {
   }
 
   async mounted() {
-    const datasets = await TKSurveyCollectionBuild(
+    const surveys = await TKSurveyCollectionBuild(
       this.appConfig.surveyDescription,
       this.appConfig.surveyFormat,
       this.appConfig.spatialDescription,
       this.appConfig.language
     );
-    console.log(datasets);
+    console.log(surveys);
 
     // TODO : make this nice. This isn't
-    this.dataset = datasets["2021"];
-    this.campsList = this.dataset.campsList;
+    this.survey = surveys["2021"];
+    this.campsList = this.survey.campsList;
   }
 }
 </script>

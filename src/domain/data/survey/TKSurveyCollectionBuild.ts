@@ -15,7 +15,7 @@ export async function TKSurveyCollectionBuild(
   spatialDescription: TKSpatialDescription,
   languages: TKLanguageDescription[]
 ): Promise<TKSurveyCollection> {
-  const datasetCollection: TKSurveyCollection = {};
+  const surveyCollection: TKSurveyCollection = {};
   for (const item of surveyDescription) {
     let rawData;
     if (surveyFormat === "csv") {
@@ -24,12 +24,12 @@ export async function TKSurveyCollectionBuild(
       rawData = await TKKoboSubmissionsGet(item as TKKoboSurveyInfo);
     }
     const surveyConfig = await TKSurveyConfigurationBuild(item);
-    datasetCollection[item.name] = TKGroupSubmissionsByCamp(
+    surveyCollection[item.name] = TKGroupSubmissionsByCamp(
       rawData,
       surveyConfig,
       spatialDescription,
       languages
     );
   }
-  return datasetCollection;
+  return surveyCollection;
 }
