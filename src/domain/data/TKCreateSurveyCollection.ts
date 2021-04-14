@@ -1,10 +1,10 @@
 import { TKCSVSurveyInfo } from "./csv/TKCSVTypes";
 import { TKKoboSurveyInfo } from "./kobo/TKKoboSurveyInfo";
-import { TKCreateSurveyConfiguration } from "./survey/raw_data/TKCreateSurveyConfiguration";
+import { TKCreateSurveyConfiguration } from "./surveyconfiguration/TKCreateSurveyConfiguration";
 import { TKGetCSVRawData } from "@/domain/data/csv/TKGetCSVRawData";
 import { TKGetKoboRawData } from "./kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/config/TKSpatialDescription";
-import { TKCreateSurvey } from "./survey/merged_surveys/TKCreateSurvey";
+import { TKCreateSurvey } from "./survey/TKCreateSurvey";
 
 import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
 import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";

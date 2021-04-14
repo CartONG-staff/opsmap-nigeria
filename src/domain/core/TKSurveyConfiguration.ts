@@ -1,11 +1,11 @@
-import { TKThematicsCollection } from "@/domain/data/survey/raw_data/TKThematicsCollectionBuilder";
-import { TKTrafficLightsCollection } from "@/domain/data/survey/raw_data/TKTrafficLightsCollectionBuilder";
+import { TKThematicsCollection } from "@/domain/data/surveyconfiguration/TKThematicsCollectionBuilder";
+import { TKTrafficLightsCollection } from "@/domain/data/surveyconfiguration/TKTrafficLightsCollectionBuilder";
 import {
   TKFieldLabelsCollection,
   TKAnswerLabelsCollection
-} from "@/domain/data/survey/raw_data/TKLabelsCollectionBuilder";
+} from "@/domain/data/surveyconfiguration/TKLabelsCollectionBuilder";
 
-import { TKSubmissionsRulesCollection } from "@/domain/data/survey/raw_data/TKSubmissionsRulesBuilder";
+import { TKSubmissionsRulesCollection } from "@/domain/data/surveyconfiguration/TKSubmissionsRulesBuilder";
 
 export interface TKSurveyConfiguration {
   thematics: TKThematicsCollection;

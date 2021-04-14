@@ -1,6 +1,6 @@
 import { TKLanguageDescription } from "@/domain/config/TKLanguageDescription";
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
-import { TKSubmissionsRulesCollection } from "../raw_data/TKSubmissionsRulesBuilder";
+import { TKSubmissionsRulesCollection } from "../surveyconfiguration/TKSubmissionsRulesBuilder";
 import { TKCreateSubmissionItem } from "./TKCreateSubmissionItem";
 
 // TO DEVELOP
