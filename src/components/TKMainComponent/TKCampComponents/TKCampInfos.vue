@@ -33,7 +33,7 @@
     <!-- GPS COORDINATES -->
     <div class="tk-camp-infos-field">
       <div class="tk-camp-infos-field-key">
-        {{ $t("camp.infosCoordinates").toUpperCase() }}
+        {{ $t("site.infosCoordinates").toUpperCase() }}
       </div>
       <div class="tk-camp-infos-field-value">
         {{ coordinates.toUpperCase() }}

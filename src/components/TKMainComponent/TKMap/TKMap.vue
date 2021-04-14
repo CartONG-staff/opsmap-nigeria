@@ -43,12 +43,13 @@ export default class TKMap extends Vue {
 
   // Hold the app current camp property
   @Prop()
-  readonly currentCampId!: string;
-  // campListModel = this.currentCampId;
+  readonly currentCamp!: TKCampDescription;
 
-  @Watch("currentCampId")
+  @Watch("currentCamp")
   currentCampIdChanged() {
-    // this.campListModel = this.currentCampId;
+    if (this.currentCamp) {
+      console.log("TKMap - Camp selectin changed");
+    }
     // Ready to apply map maneuver here !!!
   }
 

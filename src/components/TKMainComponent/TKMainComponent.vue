@@ -44,7 +44,7 @@
           class="tk-main-map"
           :appConfig="appConfig"
           :campList="campsList"
-          :currentCampId="currentCamp.id"
+          :currentCamp="currentCamp"
           @camp-selection-cleared="campSelectionCleared"
           @camp-selection-changed="campSelectionChanged"
         />
@@ -80,7 +80,7 @@ import {
   TKHomeCombos,
   TKHomeIndicators,
   TKHomeMoreInfos,
-  TKHomeSubtitle,
+  TKHomeSubtitle
 } from "./TKHomeComponents";
 
 import {
@@ -89,16 +89,8 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSurveyVisualizer,
+  TKSurveyVisualizer
 } from "./TKCampComponents";
-
-const DEFAULT_CAMP_DESCRIPTION: TKCampDescription = {
-  id: "",
-  name: "",
-  type: "",
-  submissionsDates: [""],
-  coordinates: [0, 0],
-};
 
 @Component({
   components: {
@@ -113,8 +105,8 @@ const DEFAULT_CAMP_DESCRIPTION: TKCampDescription = {
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
-    TKTitle,
-  },
+    TKTitle
+  }
 })
 export default class TKMainComponent extends Vue {
   @Prop()
@@ -123,23 +115,24 @@ export default class TKMainComponent extends Vue {
   dataset!: TKDataset;
   campsList: TKCampDescription[] = [];
 
-  currentCamp: TKCampDescription = DEFAULT_CAMP_DESCRIPTION;
+  currentCamp: TKCampDescription | null = null;
   currentSubmissions: TKSubmissions = {};
   isHomePage = true;
 
   campSelectionCleared() {
-    this.currentCamp = DEFAULT_CAMP_DESCRIPTION;
+    this.currentCamp = null;
     this.currentSubmissions = {};
     this.isHomePage = true;
   }
+
   campSelectionChanged(campId: string) {
     this.isHomePage = false;
-    const found = this.campsList.find((element) => element.id === campId);
+    const found = this.campsList.find(element => element.id === campId);
     if (found) {
       this.currentCamp = found;
       this.currentSubmissions = this.dataset.submissionsByCamps[campId];
     } else {
-      this.currentCamp = DEFAULT_CAMP_DESCRIPTION;
+      this.currentCamp = null;
     }
   }
 

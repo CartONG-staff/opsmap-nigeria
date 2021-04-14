@@ -4,19 +4,19 @@
       class="tk-autocomplete"
       color="discrete"
       dense
-      :placeholder="$t('camp.comboSurveyPlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
       color="discrete"
       dense
-      :placeholder="$t('camp.comboStatePlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
       color="discrete"
       dense
-      :placeholder="$t('camp.comboLGAPlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
@@ -28,7 +28,7 @@
       item-text="name"
       item-value="id"
       @change="campSelected"
-      :placeholder="$t('camp.comboCampPlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
     ></v-autocomplete>
   </div>
 </template>

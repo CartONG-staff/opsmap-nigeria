@@ -7,25 +7,25 @@
       class="tk-autocomplete"
       flat
       dense
-      :placeholder="$t('home.comboSurveyPlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
       flat
       dense
-      :placeholder="$t('home.comboStatePlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
       flat
       dense
-      :placeholder="$t('home.comboLGAPlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
       flat
       dense
-      :placeholder="$t('home.comboCampPlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
       :v-model="campModel"
       :items="campList"
       item-text="name"
@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Emit, Vue, Watch } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
 
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
