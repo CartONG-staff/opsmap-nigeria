@@ -17,9 +17,3 @@ export const TK_SUBMISSION_THEMATIC_DEFAULT: TKSubmissionThematic = {
   thematic_label_en: "",
   thematic_label_pt: ""
 };
-
-export function filterThematicUnanswered(thematic: TKSubmissionThematic) {
-  thematic.data = thematic.data.filter((item: TKSubmissionEntry) =>
-    item.isAnswered()
-  );
-}

@@ -5,7 +5,7 @@
       <img class="tk-submission-icon" :src="iconurl" />
     </div>
     <div class="tk-submission-thematic-content">
-      <div v-for="(item, key) in submissionThematic.data" :key="item.id">
+      <div v-for="(item, key) in thematicData" :key="item.id">
         <div v-if="key !== 0" class="tk-hseparator"></div>
         <TKSubmissionItemView :item="item" />
       </div>
@@ -17,10 +17,8 @@
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import TKSubmissionItemView from "./TKSubmissionEntryView.vue";
-import {
-  TKSubmissionThematic,
-  filterThematicUnanswered
-} from "@/domain/core/TKSubmissionThematic";
+import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
+import { TKSubmissionEntry } from "@/domain/core/TKSubmissionEntry";
 
 @Component({
   components: {
@@ -31,6 +29,10 @@ export default class TKSubmissionThematicView extends Vue {
   @Prop()
   readonly submissionThematic!: TKSubmissionThematic;
 
+  thematicData: TKSubmissionEntry[] = this.submissionThematic
+    ? this.submissionThematic.data.filter(item => item.isAnswered())
+    : [];
+
   title = "";
   iconurl = "";
   @Watch("submissionThematic", { immediate: true })
@@ -40,7 +42,12 @@ export default class TKSubmissionThematicView extends Vue {
       this.iconurl = TKIconUrl(
         this.submissionThematic.icon_file_name as string
       );
-      filterThematicUnanswered(this.submissionThematic);
+      this.thematicData = this.submissionThematic.data.filter(item =>
+        item.isAnswered()
+      );
+    } else {
+      this.thematicData = [];
+      this.iconurl = "";
     }
   }
 
