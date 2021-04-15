@@ -37,11 +37,12 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
-import { TKSubmissionEntry } from "@/domain/core/TKSubmissionEntry";
+import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
+import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
 @Component
 export default class TKSubmissionentryView extends Vue {
   @Prop()
-  readonly entry!: TKSubmissionEntry;
+  readonly entry!: TKSubmissionEntryText | TKSubmissionEntryChart;
 
   question = "";
   answer = "";
@@ -54,22 +55,26 @@ export default class TKSubmissionentryView extends Vue {
 
   @Watch("entry", { immediate: true })
   onentryChanged() {
-    this.isOK = this.entry
-      ? this.entry.trafficLightColor === TKTrafficLightColors.OK
-      : false;
-    this.isWarning = this.entry
-      ? this.entry.trafficLightColor === TKTrafficLightColors.WARNING
-      : false;
-    this.isDanger = this.entry
-      ? this.entry.trafficLightColor === TKTrafficLightColors.DANGER
-      : false;
-    this.isCritical = this.entry
-      ? this.entry.trafficLightColor === TKTrafficLightColors.CRITICAL
-      : false;
-    this.isOther =
-      !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;
+    if (this.entry instanceof TKSubmissionEntryText) {
+      this.isOK = this.entry
+        ? this.entry.trafficLightColor === TKTrafficLightColors.OK
+        : false;
+      this.isWarning = this.entry
+        ? this.entry.trafficLightColor === TKTrafficLightColors.WARNING
+        : false;
+      this.isDanger = this.entry
+        ? this.entry.trafficLightColor === TKTrafficLightColors.DANGER
+        : false;
+      this.isCritical = this.entry
+        ? this.entry.trafficLightColor === TKTrafficLightColors.CRITICAL
+        : false;
+      this.isOther =
+        !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;
 
-    this.handleLocale();
+      this.handleLocale();
+    } else if (this.entry instanceof TKSubmissionEntryChart) {
+      console.log("[ITEM VIEW] doesn't display chart yet");
+    }
   }
 
   @Watch("$root.$i18n.locale", { immediate: true })

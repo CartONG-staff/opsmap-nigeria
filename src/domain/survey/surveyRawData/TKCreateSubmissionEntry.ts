@@ -5,7 +5,7 @@ import {
   TKTrafficLightGrouped,
   TrafficLightTypes
 } from "@/domain/core/TKTrafficLight";
-import { TKSubmissionEntry } from "@/domain/core/TKSubmissionEntry";
+import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
 
 import {
   LanguageCode,
@@ -31,12 +31,15 @@ export function TKCreateSubmissionEntry(
   field: string,
   surveyConfiguration: TKSurveyConfiguration,
   languages: TKLanguageDescription[]
-): TKSubmissionEntry {
+): TKSubmissionEntryText {
+
+  // if(surveyConfiguration.submissionsRules[field].chart_id){
+  //   console.log(surveyConfiguration.submissionsRules[field].chart_id);
+  // }
   const languagesList = [...new Set(languages.map(x => x.code))];
-  return new TKSubmissionEntry(
+  return new TKSubmissionEntryText(
     field,
     surveyConfiguration.fieldsLabels[field].field_label_en,
-    // (languagesList.includes(LanguageCode.PT) ? surveyConfiguration.fieldsLabels[field].field_label_pt : ""),
     languagesList.includes(LanguageCode.PT)
       ? surveyConfiguration.fieldsLabels[field]?.field_label_pt || value
       : "",
