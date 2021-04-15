@@ -84,8 +84,6 @@ export default class TKSubmissionThematicView extends Vue {
       this.thematicData = [];
     }
   }
-
-  shouldShow() {}
 }
 </script>
 

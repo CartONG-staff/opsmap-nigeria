@@ -1,9 +1,4 @@
 import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
-import {
-  TKSubmissionThematic,
-  TK_SUBMISSION_THEMATIC_DEFAULT
-} from "@/domain/core/TKSubmissionThematic";
-
 import { TKSubmission } from "@/domain/core/TKSubmission";
 
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
@@ -14,8 +9,6 @@ import { TKCreateSubmissionEntry } from "./TKCreateSubmissionEntry";
 function TKIsSubmissionIsRelevant(): boolean {
   return true;
 }
-// TO DEVELOP
-// const thematics: TKSubmissionThematic = TK_SUBMISSION_THEMATIC_DEFAULT; //{ [index: string]: any } = {};
 
 function TKIsSubmissionInThematic(
   submission: string,
@@ -34,7 +27,6 @@ export function TKCreateSubmission(
   surveyConfiguration: TKSurveyConfiguration,
   languages: TKLanguageDescription[]
 ) {
-  // const thematics: { [index: string]: any } = {};
   const submission: TKSubmission = {};
   for (const thematic in surveyConfiguration.thematics) {
     submission[thematic] = {
