@@ -1,6 +1,9 @@
 <template lang="html">
   <div class="tk-submission-entry-container">
-    <div v-if="entry.trafficLight" class="tk-layout-w-trafficlight">
+    <div
+      v-if="entry.trafficLight && entry.isAnswered()"
+      class="tk-layout-w-trafficlight"
+    >
       <div class="tk-entry-content">
         <div class="tk-entry-field-name">
           {{ question }}
@@ -18,7 +21,7 @@
       </div>
     </div>
 
-    <div v-if="!entry.trafficLight" class="tk-layout-wo-trafficLight">
+    <div v-else class="tk-layout-wo-trafficLight">
       <div class="tk-entry-content">
         <div class="tk-entry-field-name">
           {{ question }}
