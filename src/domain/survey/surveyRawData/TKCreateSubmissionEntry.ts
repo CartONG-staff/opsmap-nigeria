@@ -18,8 +18,8 @@ function getTrafficLightColor(
 ): TKTrafficLightColors {
   if (trafficLight.type === TrafficLightTypes.STRING) {
     const match = trafficLight.values
-      .filter((x) => x.value.toLowerCase() === value.toLowerCase())
-      .map((x) => x.color)
+      .filter(x => x.value.toLowerCase() === value.toLowerCase())
+      .map(x => x.color)
       .pop();
     return match === undefined ? TKTrafficLightColors.UNDEFINED : match;
   }
@@ -32,7 +32,7 @@ export function TKCreateSubmissionEntry(
   surveyConfiguration: TKSurveyConfiguration,
   languages: TKLanguageDescription[]
 ): TKSubmissionEntry {
-  const languagesList = [...new Set(languages.map((x) => x.code))];
+  const languagesList = [...new Set(languages.map(x => x.code))];
   return new TKSubmissionEntry(
     field,
     surveyConfiguration.fieldsLabels[field].field_label_en,
