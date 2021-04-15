@@ -46,8 +46,7 @@ export const indicatorsDescription: TKIndicatorsDescription = {
   {
     iconOchaName: "Camp-Coordination-and-Camp-Management",
     name: "Shelter Max Capacity",
-    entryCode: "cccm_shelter_max_capacity",
-    computationType: TKIndicatorComputationType.MEAN
+    entryCode: "cccm_shelter_max_capacity"
   }],
   site: [{
     iconOchaName: "Camp-Coordination-and-Camp-Management",
