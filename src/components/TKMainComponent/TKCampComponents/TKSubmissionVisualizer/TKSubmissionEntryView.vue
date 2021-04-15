@@ -34,11 +34,11 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
-import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
+import { TKSubmissionEntry } from "@/domain/core/TKSubmissionEntry";
 @Component
 export default class TKSubmissionItemView extends Vue {
   @Prop()
-  readonly item!: TKSubmissionItem;
+  readonly item!: TKSubmissionEntry;
 
   question = "";
   answer = "";

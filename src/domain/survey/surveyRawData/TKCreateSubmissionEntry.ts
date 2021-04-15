@@ -5,7 +5,7 @@ import {
   TKTrafficLightGrouped,
   TrafficLightTypes
 } from "@/domain/core/TKTrafficLight";
-import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
+import { TKSubmissionEntry } from "@/domain/core/TKSubmissionEntry";
 
 import {
   LanguageCode,
@@ -26,14 +26,14 @@ function getTrafficLightColor(
   return TKTrafficLightColors.UNDEFINED;
 }
 
-export function TKCreateSubmissionItem(
+export function TKCreateSubmissionEntry(
   value: string,
   field: string,
   surveyConfiguration: TKSurveyConfiguration,
   languages: TKLanguageDescription[]
-): TKSubmissionItem {
+): TKSubmissionEntry {
   const languagesList = [...new Set(languages.map((x) => x.code))];
-  return new TKSubmissionItem(
+  return new TKSubmissionEntry(
     field,
     surveyConfiguration.fieldsLabels[field].field_label_en,
     // (languagesList.includes(LanguageCode.PT) ? surveyConfiguration.fieldsLabels[field].field_label_pt : ""),

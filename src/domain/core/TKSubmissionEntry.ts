@@ -1,5 +1,5 @@
 import { TKTrafficLightColors } from "./TKTrafficLight";
-export class TKSubmissionItem {
+export class TKSubmissionEntry {
   field = "";
   fieldLabelEn = "";
   fieldLabelPt? = "";

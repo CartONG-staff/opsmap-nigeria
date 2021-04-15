@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKSubmissionItem } from "./TKSubmissionItem";
+import { TKSubmissionEntry } from "./TKSubmissionEntry";
 
 export interface TKSubmissionThematic {
-  data: Array<TKSubmissionItem>;
+  data: Array<TKSubmissionEntry>;
   formatted_name: string;
   icon_file_name: string;
   thematic_label_en: string;
@@ -19,7 +19,7 @@ export const TK_SUBMISSION_THEMATIC_DEFAULT: TKSubmissionThematic = {
 };
 
 export function filterThematicUnanswered(thematic: TKSubmissionThematic) {
-  thematic.data = thematic.data.filter((item: TKSubmissionItem) =>
+  thematic.data = thematic.data.filter((item: TKSubmissionEntry) =>
     item.isAnswered()
   );
 }

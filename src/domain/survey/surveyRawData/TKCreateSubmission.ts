@@ -8,7 +8,7 @@ import { TKSubmission } from "@/domain/core/TKSubmission";
 
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 import { TKSubmissionsRulesCollection } from "../surveyConfiguration/TKSubmissionsRulesBuilder";
-import { TKCreateSubmissionItem } from "./TKCreateSubmissionItem";
+import { TKCreateSubmissionEntry } from "./TKCreateSubmissionEntry";
 
 // TO DEVELOP
 function TKIsSubmissionIsRelevant(): boolean {
@@ -52,7 +52,7 @@ export function TKCreateSubmission(
       ) {
         if (TKIsSubmissionIsRelevant()) {
           submission[thematic].data.push(
-            TKCreateSubmissionItem(
+            TKCreateSubmissionEntry(
               submissionItem[field],
               field,
               surveyConfiguration,

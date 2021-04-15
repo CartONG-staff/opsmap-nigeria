@@ -16,7 +16,7 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import TKSubmissionItemView from "./TKSubmissionItemView.vue";
+import TKSubmissionItemView from "./TKSubmissionEntryView.vue";
 import {
   TKSubmissionThematic,
   filterThematicUnanswered
