@@ -4,70 +4,62 @@
       class="tk-autocomplete"
       color="discrete"
       dense
-      :placeholder="$t('camp.comboSurveyPlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
       color="discrete"
       dense
-      :placeholder="$t('camp.comboStatePlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
       color="discrete"
       dense
-      :placeholder="$t('camp.comboLGAPlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
       color="discrete"
       dense
       clearable
-      v-model="campListModel"
+      v-model="campModel"
       :items="campList"
       item-text="name"
       item-value="id"
       @change="campSelected"
-      :placeholder="$t('camp.comboCampPlaceholder')"
+      :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
     ></v-autocomplete>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator";
-import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
 
 @Component
 export default class TKCampSelector extends Vue {
   @Prop({ default: () => [] })
-  readonly campList!: CampDescription[];
+  readonly campList!: TKCampDescription[];
 
   // Hold the app current camp property
   @Prop()
-  readonly currentCampId!: string;
-  campListModel = this.currentCampId;
-  @Watch("currentCampId")
-  currentCampIdChanged() {
-    this.campListModel = this.currentCampId;
+  readonly currentCamp!: TKCampDescription;
+  campModel = "";
+
+  @Watch("currentCamp", { immediate: true })
+  onChange() {
+    this.campModel = this.currentCamp ? this.currentCamp.id : "";
   }
 
   // Hold the current camp at an app level
   // BEHAVIOR
   campSelected(campId: string) {
-    if (campId != null) {
-      this.campSelectionChanged(campId);
+    if (campId) {
+      this.$emit("camp-selection-changed", campId);
     } else {
-      this.campSelectionCleared();
+      this.$emit("camp-selection-cleared");
     }
-  }
-
-  @Emit("camp-selection-changed")
-  campSelectionChanged(id: string): void {
-    console.log("campSelected: " + id);
-  }
-  @Emit("camp-selection-cleared")
-  campSelectionCleared() {
-    console.log("Camp Selectio cleared");
   }
 }
 </script>

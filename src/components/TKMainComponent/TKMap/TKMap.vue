@@ -22,12 +22,12 @@ import mapboxgl, {
   SymbolLayer,
 } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
 import { mask } from "@/secondary/map/mask";
-import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { campDescriptiontoGeoJSON } from "@/domain/map/mapUtils";
 import { layers } from "@/domain/map/mapStyles";
 const devEnv = process.env.NODE_ENV === "development";
@@ -45,21 +45,21 @@ export default class TKMap extends Vue {
   readonly appConfig!: TKGeneralConfiguration;
 
   @Prop({ default: () => [] })
-  readonly campList!: CampDescription[];
+  readonly campList!: TKCampDescription[];
 
   // Hold the app current camp property
   @Prop()
-  currentCampId!: string;
+  currentCamp!: TKCampDescription;
   // campListModel = this.currentCampId;
-  localCurrentCamppId = this.currentCampId;
+  localCurrentCamp = this.currentCamp;
   mapMarkersList = ["planned_site", "spontaneous_site"];
   markersLoadedCount = 0;
   filteredCamps = {
     selectedCamp: campDescriptiontoGeoJSON(
-      this.campList.filter((x) => x.id == this.currentCampId)
+      this.campList.filter((x) => x.id == this.currentCamp.id)
     ),
     otherCamps: campDescriptiontoGeoJSON(
-      this.campList.filter((x) => x.id != this.currentCampId)
+      this.campList.filter((x) => x.id != this.currentCamp.id)
     ),
   };
 
@@ -77,22 +77,22 @@ export default class TKMap extends Vue {
   changeOnCampList() {
     this.filteredCamps = {
       selectedCamp: campDescriptiontoGeoJSON(
-        this.campList.filter((x) => x.id == this.currentCampId)
+        this.campList.filter((x) => x.id == this.currentCamp.id)
       ),
       otherCamps: campDescriptiontoGeoJSON(
-        this.campList.filter((x) => x.id != this.currentCampId)
+        this.campList.filter((x) => x.id != this.currentCamp.id)
       ),
     };
   }
-  @Watch("currentCampId")
-  currentCampIdChanged() {
+  @Watch("currentCamp")
+  currentCampChanged() {
     console.log("change on current");
     this.filteredCamps = {
       selectedCamp: campDescriptiontoGeoJSON(
-        this.campList.filter((x) => x.id == this.currentCampId)
+        this.campList.filter((x) => x.id == this.currentCamp.id)
       ),
       otherCamps: campDescriptiontoGeoJSON(
-        this.campList.filter((x) => x.id != this.currentCampId)
+        this.campList.filter((x) => x.id != this.currentCamp.id)
       ),
     };
     if (this.filteredCamps.otherCamps.features.length > 0) {
@@ -108,14 +108,14 @@ export default class TKMap extends Vue {
     }
   }
 
-  @Watch("localCurrentCamppId")
-  localCurrentCamp() {
-    this.campSelectionChanged(this.localCurrentCamppId);
+  @Watch("localCurrentCamp")
+  localCurrentCampChanged() {
+    this.campSelectionChanged(this.localCurrentCamp);
   }
 
   @Emit("camp-selection-changed")
-  campSelectionChanged(id: string): void {
-    console.log("campSelected: " + id);
+  campSelectionChanged(camp: TKCampDescription): void {
+    console.log("campSelected: " + camp.id);
   }
   @Emit("camp-selection-cleared")
   campSelectionCleared() {

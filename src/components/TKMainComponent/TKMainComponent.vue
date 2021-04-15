@@ -10,7 +10,7 @@
         <div v-if="!isHomePage" class="tk-camp-header">
           <TKCampSelector
             :campList="campsList"
-            :currentCampId="currentCampId"
+            :currentCamp="currentCamp"
             @camp-selection-cleared="campSelectionCleared"
             @camp-selection-changed="campSelectionChanged"
           />
@@ -25,18 +25,19 @@
               class="tk-home-combos"
               :appConfig="appConfig"
               :campList="campsList"
-              :currentCampId="currentCampId"
+              :currentCamp="currentCamp"
               @camp-selection-cleared="campSelectionCleared"
               @camp-selection-changed="campSelectionChanged"
             />
           </div>
           <div v-if="!isHomePage" class="tk-camp-left">
-            <TKCampSubtitle class="tk-camp-title" :name="currentCampName" />
+            <TKCampSubtitle class="tk-camp-title" :camp="currentCamp" />
             <TKCampToolbar
               class="tk-camp-toolbar"
-              :campList="campsList"
-              :survey="currentSubmissions"
-              :currentCampId="currentCampId"
+              :submissionsDates="
+                currentSubmissions ? Object.keys(currentSubmissions) : ['']
+              "
+              @date-selection-changed="dateSelected"
             />
             <TKCampInfos class="tk-camp-infos" :camp="currentCamp" />
           </div>
@@ -45,7 +46,7 @@
           class="tk-main-map"
           :appConfig="appConfig"
           :campList="campsList"
-          :currentCampId="currentCampId"
+          :currentCamp="currentCamp"
           @camp-selection-cleared="campSelectionCleared"
           @camp-selection-changed="campSelectionChanged"
         />
@@ -58,7 +59,7 @@
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
           <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
-          <TKSurveyVisualizer :survey="currentSubmissions" />
+          <TKSubmissionVisualizer :submission="currentSubmission" />
         </div>
       </div>
     </div>
@@ -67,12 +68,15 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
-import { TKDatasetBuild } from "@/domain/data/survey/TKDatasetBuilder";
+import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
+import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
+
 import TKTitle from "./TKTitle.vue";
-import TKMap from "@/components/TKMainComponent/TKMap";
-import { CampDescription } from "@/domain/data/survey/merged_dataset/TKSubmissionsByCampsGrouper";
-import { Dataset } from "@/domain/data/survey/TKDatasetBuilder";
+import TKMap from "./TKMap";
+
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
+import { TKSurvey } from "@/domain/core/TKSurvey";
+import { TKSubmission } from "@/domain/core/TKSubmission";
 
 import {
   TKHomeCombos,
@@ -87,7 +91,7 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSurveyVisualizer
+  TKSubmissionVisualizer
 } from "./TKCampComponents";
 
 @Component({
@@ -97,7 +101,7 @@ import {
     TKCampSelector,
     TKCampSubtitle,
     TKCampToolbar,
-    TKSurveyVisualizer,
+    TKSubmissionVisualizer,
     TKHomeCombos,
     TKHomeIndicators,
     TKHomeMoreInfos,
@@ -110,42 +114,58 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
-  dataset!: Dataset;
-  campsList: CampDescription[] = [];
+  survey!: TKSurvey;
+  campsList: TKCampDescription[] = [];
 
-  currentCamp!: CampDescription;
-  currentCampId = "";
-  currentCampName = "";
-  currentSubmissions: object = {};
+  currentCamp: TKCampDescription | null = null;
+  currentSubmission: TKSubmission | null = null;
+  currentSubmissions: { [date: string]: TKSubmission } | null = null;
+
   isHomePage = true;
 
   campSelectionCleared() {
-    this.currentCampId = "";
-    this.currentCampName = "";
-    this.currentSubmissions = {};
+    this.currentCamp = null;
+    this.currentSubmission = null;
     this.isHomePage = true;
   }
+
   campSelectionChanged(campId: string) {
     this.isHomePage = false;
-    this.currentCampId = campId;
-    const found = this.campsList.find(element => element.id === campId);
+    const found = this.campsList.find((element) => element.id === campId);
     if (found) {
       this.currentCamp = found;
-      this.currentCampName = found.name;
-      this.currentSubmissions = this.dataset.submissionsByCamps[campId];
+      this.currentSubmissions = this.survey.submissionsByCamps[campId];
+      const keys = Object.keys(this.currentSubmissions);
+      this.currentSubmission = this.currentSubmissions[keys[0]];
+    } else {
+      this.currentSubmissions = null;
+      this.currentSubmission = null;
+      this.currentCamp = null;
+    }
+  }
+
+  dateSelected(date: string) {
+    if (
+      this.currentSubmissions &&
+      Object.keys(this.currentSubmissions).includes(date)
+    ) {
+      this.currentSubmission = this.currentSubmissions[date];
     }
   }
 
   async mounted() {
-    const datasets = await TKDatasetBuild(
+    const surveys = await TKCreateSurveyCollection(
       this.appConfig.surveyDescription,
       this.appConfig.surveyFormat,
-      this.appConfig.spatialDescription
+      this.appConfig.spatialDescription,
+      this.appConfig.language
     );
 
+    console.log(surveys);
+
     // TODO : make this nice. This isn't
-    this.dataset = datasets["2021"];
-    this.campsList = this.dataset.campsList;
+    this.survey = surveys["2021"];
+    this.campsList = this.survey.campsList;
   }
 }
 </script>

@@ -5,12 +5,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
 
 @Component
 export default class TKCampSubtitle extends Vue {
   @Prop()
-  readonly name!: string;
+  readonly camp!: TKCampDescription;
+
+  name = "";
+
+  @Watch("camp", { immediate: true })
+  onChange() {
+    this.name = this.camp ? this.camp.name : "";
+  }
 }
 </script>
 

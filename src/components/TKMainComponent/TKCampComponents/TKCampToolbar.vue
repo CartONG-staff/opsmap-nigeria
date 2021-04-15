@@ -1,17 +1,18 @@
 <template>
   <div class="tk-camp-toolbar">
-    <v-autocomplete
+    <v-select
       background-color="#418fde"
       color="#ffffff"
-      :items="surveysDate"
-      v-model="surveysDateModel"
+      :items="submissionsDates"
+      v-model="model"
       flat
       filled
       solo
       dense
-      class="tk-camp-toolbar-survey"
+      class="tk-camp-toolbar-date"
       height="44"
-    ></v-autocomplete>
+      @change="dateSelected"
+    ></v-select>
     <v-btn
       depressed
       color="#000"
@@ -19,7 +20,7 @@
       class="tk-camp-toolbar-export"
       height="44"
     >
-      Export as CSV
+      {{ $t("site.exportAsCSV") }}
     </v-btn>
   </div>
 </template>
@@ -29,16 +30,22 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKCampToolbar extends Vue {
-  @Prop({ default: {} })
-  readonly survey!: object;
+  @Prop()
+  readonly submissionsDates!: [""];
+  model = "";
 
-  surveysDate = [""];
-  surveysDateModel = "";
+  @Watch("submissionsDates", { immediate: true })
+  onChange() {
+    this.model =
+      this.submissionsDates && this.submissionsDates.length
+        ? this.submissionsDates[0]
+        : "";
+  }
 
-  @Watch("survey", { immediate: true })
-  surveyChanged() {
-    this.surveysDate = Object.keys(this.survey);
-    this.surveysDateModel = this.surveysDate[0];
+  dateSelected(date: string) {
+    if (date) {
+      this.$emit("date-selection-changed", date);
+    }
   }
 }
 </script>
@@ -52,7 +59,7 @@ export default class TKCampToolbar extends Vue {
   column-gap: 5%;
 }
 
-.tk-camp-toolbar-survey {
+.tk-camp-toolbar-date {
   width: 55%;
 }
 .tk-camp-toolbar-export {
@@ -67,7 +74,7 @@ export default class TKCampToolbar extends Vue {
   letter-spacing: 0.86px !important;
 }
 
-.tk-camp-toolbar-survey input {
+.tk-camp-toolbar-date .v-select__selection {
   color: #fff !important;
   font-family: "Arial";
   font-weight: bold !important;
@@ -75,15 +82,7 @@ export default class TKCampToolbar extends Vue {
   letter-spacing: 0.86px !important;
 }
 
-.tk-camp-toolbar-survey input::placeholder {
-  color: #fff !important;
-  font-family: "Arial";
-  font-weight: bold !important;
-  font-size: 12px !important;
-  letter-spacing: 0.86px !important;
-}
-
-.tk-camp-toolbar-survey .v-icon.v-icon {
+.tk-camp-toolbar-date .v-icon.v-icon {
   color: #fff !important;
 }
 </style>

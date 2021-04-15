@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import { APPCONFIG } from "@/app-demo/config";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an alias to /src
 

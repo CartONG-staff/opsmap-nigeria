@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/config/TKGeneralConfiguration";
+import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
 import { TKIndicator } from "@/domain/ui/TKIndicator";
 @Component({
