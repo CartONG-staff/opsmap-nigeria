@@ -45,12 +45,22 @@ export default class TKSubmissionVisualizer extends Vue {
     this.columns[0] = [];
     this.columns[1] = [];
     this.columns[2] = [];
+
+    const itemsCount = [0, 0, 0];
+
     if (this.submission) {
-      let count = 0;
       for (const them in this.submission.thematics) {
-        this.columns[count].push(this.submission.thematics[them]);
-        count++;
-        count = count % 3;
+        let index = 0;
+        if (itemsCount[1] < itemsCount[0] && itemsCount[1] <= itemsCount[2]) {
+          index = 1;
+        } else if (
+          itemsCount[2] < itemsCount[1] &&
+          itemsCount[2] < itemsCount[0]
+        ) {
+          index = 2;
+        }
+        this.columns[index].push(this.submission.thematics[them]);
+        itemsCount[index] += this.submission.thematics[them].data.length;
       }
     }
   }
