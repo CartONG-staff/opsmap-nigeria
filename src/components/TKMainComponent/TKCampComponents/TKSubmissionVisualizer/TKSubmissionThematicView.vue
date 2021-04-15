@@ -80,12 +80,6 @@ export default class TKSubmissionThematicView extends Vue {
       this.thematicData = this.options.hideUnanswered
         ? this.submissionThematic.data
         : this.submissionThematic.data;
-      console.log(
-        "this.thematicData has changed : " +
-          this.options.hideUnanswered +
-          " # " +
-          this.thematicData.length
-      );
     } else {
       this.thematicData = [];
     }
