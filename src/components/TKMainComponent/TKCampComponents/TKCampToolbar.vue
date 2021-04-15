@@ -68,13 +68,7 @@ export default class TKCampToolbar extends Vue {
 
   @Prop()
   readonly options!: TKSubmissionVisualizerOptions;
-
   model = "";
-
-  @Watch("options", { deep: true })
-  onOptionsChange() {
-    console.log("new value: " + this.options.hideUnanswered);
-  }
 
   @Watch("submissionsDates", { immediate: true })
   onChange() {
