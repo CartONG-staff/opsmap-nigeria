@@ -1,28 +1,63 @@
 <template lang="html">
   <div class="tk-submission-visualizer">
     <div class="tk-submission-visualizer-col">
-      <TKSubmissionThematicView :submissionThematic="submissionCccm" />
-      <TKSubmissionThematicView :submissionThematic="submissionCom" />
+      <TKSubmissionThematicView
+        :options="options"
+        :submissionThematic="submissionCccm"
+      />
+      <TKSubmissionThematicView
+        :options="options"
+        :submissionThematic="submissionCom"
+      />
       <!-- <TKSurveyThematic :submissionThematic="submissionDemo" /> -->
-      <TKSubmissionThematicView :submissionThematic="submissionEducation" />
-      <TKSubmissionThematicView :submissionThematic="submissionSports" />
+      <TKSubmissionThematicView
+        :options="options"
+        :submissionThematic="submissionEducation"
+      />
+      <TKSubmissionThematicView
+        :options="options"
+        :submissionThematic="submissionSports"
+      />
     </div>
     <div class="tk-submission-visualizer-col">
-      <TKSubmissionThematicView :submissionThematic="submissionEnvironment" />
-      <TKSubmissionThematicView :submissionThematic="submissionGeneralInfo" />
-      <TKSubmissionThematicView :submissionThematic="submissionHealth" />
       <TKSubmissionThematicView
+        :options="options"
+        :submissionThematic="submissionEnvironment"
+      />
+      <TKSubmissionThematicView
+        :options="options"
+        :submissionThematic="submissionGeneralInfo"
+      />
+      <TKSubmissionThematicView
+        :options="options"
+        :submissionThematic="submissionHealth"
+      />
+      <TKSubmissionThematicView
+        :options="options"
         :submissionThematic="submissionInfrastructure"
       />
-      <TKSubmissionThematicView :submissionThematic="submissionWash" />
+      <TKSubmissionThematicView
+        :options="options"
+        :submissionThematic="submissionWash"
+      />
     </div>
     <div class="tk-submission-visualizer-col">
       <TKSubmissionThematicView
+        :options="options"
         :submissionThematic="submissionInteriorisation"
       />
-      <TKSubmissionThematicView :submissionThematic="submissionNonfood" />
-      <TKSubmissionThematicView :submissionThematic="submissionProtection" />
-      <TKSubmissionThematicView :submissionThematic="submissionSecurity" />
+      <TKSubmissionThematicView
+        :options="options"
+        :submissionThematic="submissionNonfood"
+      />
+      <TKSubmissionThematicView
+        :options="options"
+        :submissionThematic="submissionProtection"
+      />
+      <TKSubmissionThematicView
+        :options="options"
+        :submissionThematic="submissionSecurity"
+      />
     </div>
   </div>
 </template>
@@ -31,6 +66,7 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
 import { TKSubmission } from "@/domain/core/TKSubmission";
+import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
 
 @Component({
   components: {
@@ -40,6 +76,9 @@ import { TKSubmission } from "@/domain/core/TKSubmission";
 export default class TKSubmissionVisualizer extends Vue {
   @Prop()
   readonly submission!: TKSubmission;
+
+  @Prop()
+  readonly options!: TKSubmissionVisualizerOptions;
 
   submissionCccm: object = {};
   submissionCom: object = {};

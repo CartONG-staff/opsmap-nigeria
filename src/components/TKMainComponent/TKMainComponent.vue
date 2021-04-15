@@ -37,6 +37,7 @@
               :submissionsDates="
                 currentSubmissions ? Object.keys(currentSubmissions) : ['']
               "
+              :options="visualizerOptions"
               @date-selection-changed="dateSelected"
             />
             <TKCampInfos class="tk-camp-infos" :camp="currentCamp" />
@@ -59,7 +60,10 @@
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
           <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
-          <TKSubmissionVisualizer :submission="currentSubmission" />
+          <TKSubmissionVisualizer
+            :options="visualizerOptions"
+            :submission="currentSubmission"
+          />
         </div>
       </div>
     </div>
@@ -91,8 +95,13 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSubmissionVisualizer
+  TKSubmissionVisualizer,
+  TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
+
+const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
+  hideUnanswered: false
+};
 
 @Component({
   components: {
@@ -123,15 +132,24 @@ export default class TKMainComponent extends Vue {
 
   isHomePage = true;
 
+  visualizerOptions: TKSubmissionVisualizerOptions = {
+    hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
+  };
+
   campSelectionCleared() {
     this.currentCamp = null;
     this.currentSubmission = null;
     this.isHomePage = true;
+    this.visualizerOptions.hideUnanswered =
+      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
   }
 
   campSelectionChanged(campId: string) {
     this.isHomePage = false;
-    const found = this.campsList.find((element) => element.id === campId);
+    const found = this.campsList.find(element => element.id === campId);
+    this.visualizerOptions.hideUnanswered =
+      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
+
     if (found) {
       this.currentCamp = found;
       this.currentSubmissions = this.survey.submissionsByCamps[campId];

@@ -1,13 +1,21 @@
 import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
+import {
+  TKSubmissionThematic,
+  TK_SUBMISSION_THEMATIC_DEFAULT
+} from "@/domain/core/TKSubmissionThematic";
+
+import { TKSubmission } from "@/domain/core/TKSubmission";
+
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 import { TKSubmissionsRulesCollection } from "../surveyConfiguration/TKSubmissionsRulesBuilder";
-import { TKCreateSubmissionItem } from "./TKCreateSubmissionItem";
+import { TKCreateSubmissionEntry } from "./TKCreateSubmissionEntry";
 
 // TO DEVELOP
 function TKIsSubmissionIsRelevant(): boolean {
   return true;
 }
 // TO DEVELOP
+// const thematics: TKSubmissionThematic = TK_SUBMISSION_THEMATIC_DEFAULT; //{ [index: string]: any } = {};
 
 function TKIsSubmissionInThematic(
   submission: string,
@@ -21,15 +29,15 @@ function TKIsSubmissionInThematic(
     : false;
 }
 
-export function TKCreateSubmissionThematics(
+export function TKCreateSubmission(
   submissionItem: any,
   surveyConfiguration: TKSurveyConfiguration,
   languages: TKLanguageDescription[]
 ) {
-  const thematics: { [index: string]: any } = {};
-
+  // const thematics: { [index: string]: any } = {};
+  const submission: TKSubmission = {};
   for (const thematic in surveyConfiguration.thematics) {
-    thematics[thematic] = {
+    submission[thematic] = {
       ...surveyConfiguration.thematics[thematic],
       data: []
     };
@@ -42,8 +50,8 @@ export function TKCreateSubmissionThematics(
         )
       ) {
         if (TKIsSubmissionIsRelevant()) {
-          thematics[thematic].data.push(
-            TKCreateSubmissionItem(
+          submission[thematic].data.push(
+            TKCreateSubmissionEntry(
               submissionItem[field],
               field,
               surveyConfiguration,
@@ -54,5 +62,5 @@ export function TKCreateSubmissionThematics(
       }
     }
   }
-  return thematics;
+  return submission;
 }

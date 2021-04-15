@@ -22,16 +22,52 @@
     >
       {{ $t("site.exportAsCSV") }}
     </v-btn>
+
+    <v-menu
+      :offset-y="true"
+      :close-on-content-click="false"
+      class="tk-camp-toolbar-kebab"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          icon
+          small
+          color="accent"
+          v-bind="attrs"
+          v-on="on"
+          height="44"
+          width="44"
+        >
+          <v-icon dark>
+            mdi-dots-vertical
+          </v-icon>
+        </v-btn>
+      </template>
+
+      <v-list>
+        <v-list-item>
+          <v-switch
+            :label="$t('site.hideUnanswered')"
+            color="accent"
+            hide-details
+            v-model="options.hideUnanswered"
+          ></v-switch>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-
+import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 @Component
 export default class TKCampToolbar extends Vue {
   @Prop()
   readonly submissionsDates!: [""];
+
+  @Prop()
+  readonly options!: TKSubmissionVisualizerOptions;
   model = "";
 
   @Watch("submissionsDates", { immediate: true })
@@ -54,18 +90,17 @@ export default class TKCampToolbar extends Vue {
 .tk-camp-toolbar {
   display: flex;
   width: 100%;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   align-items: top;
-  column-gap: 5%;
+  column-gap: 5px;
 }
 
 .tk-camp-toolbar-date {
-  width: 55%;
+  flex-grow: 2;
 }
 .tk-camp-toolbar-export {
-  width: 40%;
+  flex-grow: 1;
 }
-
 .tk-camp-toolbar-export .v-btn__content {
   color: #fff !important;
   font-family: "Arial";
