@@ -18,10 +18,10 @@
 
     <div class="tk-indicator-value">
       <div class="tk-indicator-value-number">
-        {{ indicator.entryCode }}
+        {{ value }}
       </div>
       <div class="tk-indicator-value-decription">
-        {{ indicator.name }}
+        {{ name }}
       </div>
     </div>
     <div class="tk-indicator-icon-container">
@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 import { TKIndicator } from "@/domain/core/TKIndicator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
@@ -46,6 +46,33 @@ export default class TKIndicatorComponent extends Vue {
   @Prop()
   readonly indicator!: TKIndicator;
   readonly iconUrl = TKIconUrl(this.indicator.iconOchaName);
+  value = "";
+  name = "";
+
+  @Watch("indicator", { immediate: true })
+  handleIndicatorChange() {
+    this.handleLocale();
+  }
+
+  @Watch("$root.$i18n.locale", { immediate: true })
+  handleLocale() {
+    if (this.indicator) {
+      if (this.$root.$i18n.locale === "pt") {
+        this.name = this.indicator.namePt
+          ? this.indicator.namePt
+          : this.indicator.nameEn;
+        this.value = this.indicator.valuePt
+          ? this.indicator.valuePt
+          : this.indicator.valueEn;
+      } else {
+        this.value = this.indicator.valueEn;
+        this.name = this.indicator.nameEn;
+      }
+    } else {
+      this.value = "";
+      this.name = "";
+    }
+  }
 }
 </script>
 
@@ -56,7 +83,7 @@ export default class TKIndicatorComponent extends Vue {
   background-color: white;
   border-color: transparent;
   border-radius: 5px;
-  height: 100px;
+  min-height: 100px;
   overflow: hidden;
 }
 
@@ -76,7 +103,7 @@ export default class TKIndicatorComponent extends Vue {
   display: flex;
   flex-flow: column nowrap;
   align-items: left;
-  height: 60px;
+  min-height: 60px;
   top: 20px;
   left: 30px;
 }
@@ -84,7 +111,7 @@ export default class TKIndicatorComponent extends Vue {
 .tk-indicator-value-number {
   color: var(--v-accent-base);
   font-size: 40px;
-  height: 43px;
+  min-height: 43px;
   line-height: 43px;
 }
 

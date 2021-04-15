@@ -59,7 +59,11 @@
           <TKHomeMoreInfos />
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
-          <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
+          <TKCampIndicators
+            class="tk-camp-indicators"
+            :appConfig="appConfig"
+            :submission="currentSubmission"
+          />
           <TKSubmissionVisualizer
             :options="visualizerOptions"
             :submission="currentSubmission"
@@ -176,6 +180,7 @@ export default class TKMainComponent extends Vue {
       this.appConfig.surveyDescription,
       this.appConfig.surveyFormat,
       this.appConfig.spatialDescription,
+      this.appConfig.indicatorsDescription,
       this.appConfig.language
     );
 

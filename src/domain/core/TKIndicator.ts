@@ -1,5 +1,7 @@
 export interface TKIndicator {
-  readonly name: string;
-  readonly value: string;
+  readonly nameEn: string;
+  readonly namePt: string;
+  readonly valueEn: string;
+  readonly valuePt: string;
   readonly iconOchaName: string;
 }

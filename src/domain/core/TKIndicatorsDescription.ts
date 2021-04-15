@@ -1,4 +1,4 @@
-interface TKIndicatorDescription {
+export interface TKIndicatorDescription {
     readonly name: string;
     readonly entryCode: string;
     readonly iconOchaName: string;

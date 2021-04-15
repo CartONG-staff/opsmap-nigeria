@@ -66,6 +66,7 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
 import { TKSubmission } from "@/domain/core/TKSubmission";
+import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
 
 @Component({
@@ -80,38 +81,38 @@ export default class TKSubmissionVisualizer extends Vue {
   @Prop()
   readonly options!: TKSubmissionVisualizerOptions;
 
-  submissionCccm: object = {};
-  submissionCom: object = {};
-  submissionDemo: object = {};
-  submissionEducation: object = {};
-  submissionEnvironment: object = {};
-  submissionGeneralInfo: object = {};
-  submissionHealth: object = {};
-  submissionInfrastructure: object = {};
-  submissionInteriorisation: object = {};
-  submissionNonfood: object = {};
-  submissionProtection: object = {};
-  submissionSecurity: object = {};
-  submissionSports: object = {};
-  submissionWash: object = {};
+  submissionCccm!: TKSubmissionThematic;
+  submissionCom!: TKSubmissionThematic;
+  submissionDemo!: TKSubmissionThematic;
+  submissionEducation!: TKSubmissionThematic;
+  submissionEnvironment!: TKSubmissionThematic;
+  submissionGeneralInfo!: TKSubmissionThematic;
+  submissionHealth!: TKSubmissionThematic;
+  submissionInfrastructure!: TKSubmissionThematic;
+  submissionInteriorisation!: TKSubmissionThematic;
+  submissionNonfood!: TKSubmissionThematic;
+  submissionProtection!: TKSubmissionThematic;
+  submissionSecurity!: TKSubmissionThematic;
+  submissionSports!: TKSubmissionThematic;
+  submissionWash!: TKSubmissionThematic;
 
   @Watch("submission", { immediate: true })
   onSurveyChanged() {
     if (this.submission) {
-      this.submissionCccm = this.submission["group_cccm"];
-      this.submissionCom = this.submission["group_com"];
-      this.submissionDemo = this.submission["group_demo"];
-      this.submissionEducation = this.submission["group_education"];
-      this.submissionEnvironment = this.submission["group_environment"];
-      this.submissionGeneralInfo = this.submission["group_general_info"];
-      this.submissionHealth = this.submission["group_health"];
-      this.submissionInfrastructure = this.submission["group_infrastructure"];
-      this.submissionInteriorisation = this.submission["group_interiorisation"];
-      this.submissionNonfood = this.submission["group_nonfood"];
-      this.submissionProtection = this.submission["group_protection"];
-      this.submissionSecurity = this.submission["group_security"];
-      this.submissionSports = this.submission["group_sports"];
-      this.submissionWash = this.submission["group_wash"];
+      this.submissionCccm = this.submission.thematics["group_cccm"];
+      this.submissionCom = this.submission.thematics["group_com"];
+      this.submissionDemo = this.submission.thematics["group_demo"];
+      this.submissionEducation = this.submission.thematics["group_education"];
+      this.submissionEnvironment = this.submission.thematics["group_environment"];
+      this.submissionGeneralInfo = this.submission.thematics["group_general_info"];
+      this.submissionHealth = this.submission.thematics["group_health"];
+      this.submissionInfrastructure = this.submission.thematics["group_infrastructure"];
+      this.submissionInteriorisation = this.submission.thematics["group_interiorisation"];
+      this.submissionNonfood = this.submission.thematics["group_nonfood"];
+      this.submissionProtection = this.submission.thematics["group_protection"];
+      this.submissionSecurity = this.submission.thematics["group_security"];
+      this.submissionSports = this.submission.thematics["group_sports"];
+      this.submissionWash = this.submission.thematics["group_wash"];
     }
   }
 }

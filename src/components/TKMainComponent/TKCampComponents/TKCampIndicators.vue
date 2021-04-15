@@ -7,9 +7,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
+import { TKSubmission } from "@/domain/core/TKSubmission";
 @Component({
   components: {
     TKIndicatorComponent
@@ -19,9 +20,21 @@ export default class TKCampIndicators extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
-  readonly indicator1 = this.appConfig.indicatorsDescription.home[0];
-  readonly indicator2 = this.appConfig.indicatorsDescription.home[1];
-  readonly indicator3 = this.appConfig.indicatorsDescription.home[2];
+  @Prop()
+  readonly submission!: TKSubmission;
+
+  indicator1 = this.submission.indicators[0];
+  indicator2 = this.submission.indicators[1];
+  indicator3 = this.submission.indicators[2];
+
+  @Watch("submission", { immediate: true })
+  onSurveyChanged() {
+    if (this.submission) {
+      this.indicator1 = this.submission.indicators[0];
+      this.indicator2 = this.submission.indicators[1];
+      this.indicator3 = this.submission.indicators[2];
+    }
+  }
 }
 </script>
 
