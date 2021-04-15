@@ -34,19 +34,19 @@ function computeSubmissionIndicator(descr: TKIndicatorDescription, data: Record<
     if(entry){
       return {
         iconOchaName: descr.iconOchaName,
-        nameEn: entry.fieldLabelEn,
-        namePt: entry.fieldLabelPt ? entry.fieldLabelPt : "",
+        nameEn: descr.name,
+        namePt: descr.name,
         valueEn: entry.answerLabelEn,
-        valuePt: entry.answerLabelPt ? entry.answerLabelPt : ""
+        valuePt: entry.answerLabelPt ? entry.answerLabelPt : "",
       }
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameEn: "NptFound",
-    namePt: "NptFound",
-    valueEn: "NptFound",
-    valuePt: "NptFound"
+    nameEn: descr.name,
+    namePt: descr.name,
+    valueEn: "NotFound",
+    valuePt: "NotFound",
   }
 }
 

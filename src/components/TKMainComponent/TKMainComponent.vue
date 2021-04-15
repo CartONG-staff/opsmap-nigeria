@@ -55,7 +55,11 @@
 
       <div class="tk-main-content">
         <div v-if="isHomePage" class="tk-home-content">
-          <TKHomeIndicators class="tk-home-indicators" :appConfig="appConfig" />
+          <TKHomeIndicators
+            class="tk-home-indicators"
+            :appConfig="appConfig"
+            :survey="survey"
+          />
           <TKHomeMoreInfos />
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
@@ -127,7 +131,7 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
-  survey!: TKSurvey;
+  survey: TKSurvey | null = null;
   campsList: TKCampDescription[] = [];
 
   currentCamp: TKCampDescription | null = null;
@@ -154,7 +158,7 @@ export default class TKMainComponent extends Vue {
     this.visualizerOptions.hideUnanswered =
       DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
 
-    if (found) {
+    if (found && this.survey) {
       this.currentCamp = found;
       this.currentSubmissions = this.survey.submissionsByCamps[campId];
       const keys = Object.keys(this.currentSubmissions);

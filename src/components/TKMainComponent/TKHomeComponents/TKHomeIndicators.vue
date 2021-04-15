@@ -7,9 +7,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
+import { TKSurvey } from "@/domain/core/TKSurvey";
+import { TKIndicator } from "@/domain/core/TKIndicator";
 @Component({
   components: {
     TKIndicatorComponent
@@ -19,9 +21,27 @@ export default class TKHomeIndicators extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
-  readonly indicator1 = this.appConfig.indicatorsDescription.site[0];
-  readonly indicator2 = this.appConfig.indicatorsDescription.site[1];
-  readonly indicator3 = this.appConfig.indicatorsDescription.site[2];
+  @Prop()
+  readonly survey!: TKSurvey;
+
+  indicator1: TKIndicator | null = this.survey
+    ? this.survey.indicators[0]
+    : null;
+  indicator2: TKIndicator | null = this.survey
+    ? this.survey.indicators[1]
+    : null;
+  indicator3: TKIndicator | null = this.survey
+    ? this.survey.indicators[2]
+    : null;
+
+  @Watch("survey", { immediate: true })
+  onSurveyChanged() {
+    if (this.survey) {
+      this.indicator1 = this.survey.indicators[0];
+      this.indicator2 = this.survey.indicators[1];
+      this.indicator3 = this.survey.indicators[2];
+    }
+  }
 }
 </script>
 

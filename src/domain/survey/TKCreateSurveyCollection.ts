@@ -32,7 +32,6 @@ export async function TKCreateSurveyCollection(
 
     // Retrieve config
     const surveyConfig = await TKCreateSurveyConfiguration(info);
-
     // Create survey
     surveyCollection[info.name] = TKCreateSurvey(
       rawData,

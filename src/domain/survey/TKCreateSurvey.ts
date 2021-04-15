@@ -7,7 +7,10 @@ import { TKSurvey } from "@/domain/core/TKSurvey";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 import { TKSubmission } from "@/domain/core/TKSubmission";
-import { TKIndicatorsDescription } from "../core/TKIndicatorsDescription";
+import { TKIndicator } from "@/domain/core/TKIndicator";
+import { TKIndicatorsDescription, TKIndicatorDescription } from "@/domain/core/TKIndicatorsDescription";
+import { isNumber } from "@turf/helpers";
+
 // import { spatialDescription } from "@/app-demo/appConfiguration";
 // const siteIDField: string = spatialDescription.siteIDField;
 // const siteNameField = spatialDescription.siteNameField;
@@ -26,6 +29,61 @@ import { TKIndicatorsDescription } from "../core/TKIndicatorsDescription";
 //   [propName: string]: string | number;
 // }
 
+function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: string]: { [date: string]: TKSubmission }}) : TKIndicator{
+
+  if(descr.entryCode === "mp_site_id"){
+    return {
+      iconOchaName: descr.iconOchaName,
+      nameEn: descr.name,
+      namePt: descr.name,
+      valueEn: String(Object.keys(data).length),
+      valuePt: String(Object.keys(data).length)
+    }
+  }
+
+  const splitted = descr.entryCode.split("_")
+  if(splitted){
+    const thematic = "group_"+splitted[0];
+    let sum = 0;
+    for (const camp in data) {
+      const last = Object.keys(data[camp])[0];
+      const submission = data[camp][last];
+      if(submission){
+        const them = submission.thematics[thematic];
+        if(them){
+          const item = them.data.find(item => item.field === descr.entryCode);
+          if(item && isNumber(item.answerLabelEn)){
+            sum +=  Number(item.answerLabelEn)
+          }
+
+        }
+      }
+    }
+    return {
+      iconOchaName: descr.iconOchaName,
+      nameEn: descr.name,
+      namePt: descr.name,
+      valueEn: String(sum),
+      valuePt: String(sum)
+    }
+  }
+  return {
+    iconOchaName: descr.iconOchaName,
+    nameEn: "NptFound",
+    namePt: "NptFound",
+    valueEn: descr.name,
+    valuePt: descr.name
+  }
+}
+
+
+function computeSurveyIndicators(descr: TKIndicatorsDescription, data: {[campId: string]: { [date: string]: TKSubmission }}) : [TKIndicator, TKIndicator, TKIndicator] {
+  return [
+    computeSurveyIndicator(descr.home[0], data),
+    computeSurveyIndicator(descr.home[1], data),
+    computeSurveyIndicator(descr.home[2], data)
+  ];
+}
 export function TKCreateSurvey(
   sumbmissions: any[],
   surveyConfig: TKSurveyConfiguration,
@@ -108,9 +166,11 @@ export function TKCreateSurvey(
       };
     }
   }
+
   return {
     submissionsByCamps: submissionsByCamps,
     campsList: campsList,
-    boundariesList: boundariesList
+    boundariesList: boundariesList,
+    indicators: computeSurveyIndicators(indicatorsDescription, submissionsByCamps)
   };
 }

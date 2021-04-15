@@ -45,12 +45,13 @@ export default class TKIndicatorComponent extends Vue {
 
   @Prop()
   readonly indicator!: TKIndicator;
-  readonly iconUrl = TKIconUrl(this.indicator.iconOchaName);
+  iconUrl = "";
   value = "";
   name = "";
 
   @Watch("indicator", { immediate: true })
   handleIndicatorChange() {
+    this.iconUrl = this.indicator ? TKIconUrl(this.indicator.iconOchaName) : "";
     this.handleLocale();
   }
 
