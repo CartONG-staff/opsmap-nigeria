@@ -1,4 +1,4 @@
-import { TKCreateSubmissionThematics } from "./surveyRawData/TKCreateSubmissionThematics";
+import { TKCreateSubmission } from "./surveyRawData/TKCreateSubmission";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 
@@ -6,7 +6,7 @@ import { TKBoundariesCollection } from "@/domain/core/TKBoundariesCollection";
 import { TKSurvey } from "@/domain/core/TKSurvey";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
-
+import { TKSubmission } from "@/domain/core/TKSubmission";
 // import { spatialDescription } from "@/app-demo/appConfiguration";
 // const siteIDField: string = spatialDescription.siteIDField;
 // const siteNameField = spatialDescription.siteNameField;
@@ -31,7 +31,9 @@ export function TKCreateSurvey(
   spatialDescription: TKSpatialDescription,
   languages: TKLanguageDescription[]
 ): TKSurvey {
-  const submissionsByCamps: { [index: string]: any } = {};
+  const submissionsByCamps: {
+    [campId: string]: { [date: string]: TKSubmission };
+  } = {};
   const campsList: TKCampDescription[] = [];
   const boundariesList: TKBoundariesCollection = {
     admin1: [],
@@ -48,7 +50,7 @@ export function TKCreateSurvey(
       });
       submissionsByCamps[submission[spatialDescription.siteIDField]][
         submission[spatialDescription.siteLastUpdateField]
-      ] = TKCreateSubmissionThematics(submission, surveyConfig, languages);
+      ] = TKCreateSubmission(submission, surveyConfig, languages);
     } else {
       campsList.push({
         id: submission[spatialDescription.siteIDField],
@@ -100,7 +102,7 @@ export function TKCreateSurvey(
       submissionsByCamps[submission[spatialDescription.siteIDField]] = {
         [submission[
           spatialDescription.siteLastUpdateField
-        ]]: TKCreateSubmissionThematics(submission, surveyConfig, languages)
+        ]]: TKCreateSubmission(submission, surveyConfig, languages)
       };
     }
   }
