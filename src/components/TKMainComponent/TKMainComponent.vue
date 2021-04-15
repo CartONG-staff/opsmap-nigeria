@@ -152,15 +152,14 @@ export default class TKMainComponent extends Vue {
       DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
   }
 
-  campSelectionChanged(campId: string) {
+  campSelectionChanged(campDescr: TKCampDescription) {
     this.isHomePage = false;
-    const found = this.campsList.find(element => element.id === campId);
     this.visualizerOptions.hideUnanswered =
       DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
 
-    if (found && this.survey) {
-      this.currentCamp = found;
-      this.currentSubmissions = this.survey.submissionsByCamps[campId];
+    if (campDescr && this.survey) {
+      this.currentCamp = campDescr;
+      this.currentSubmissions = this.survey.submissionsByCamps[campDescr.id];
       const keys = Object.keys(this.currentSubmissions);
       this.currentSubmission = this.currentSubmissions[keys[0]];
     } else {
