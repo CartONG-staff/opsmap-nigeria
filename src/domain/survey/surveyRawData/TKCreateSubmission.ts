@@ -37,7 +37,6 @@ export function TKCreateSubmission(
   // const thematics: { [index: string]: any } = {};
   const submission: TKSubmission = {};
   for (const thematic in surveyConfiguration.thematics) {
-    console.log("-- thematic: " + surveyConfiguration.thematics[thematic]);
     submission[thematic] = {
       ...surveyConfiguration.thematics[thematic],
       data: []
