@@ -11,4 +11,4 @@ export { TKCampSelector };
 export { TKCampSubtitle };
 export { TKCampToolbar };
 export { TKSubmissionVisualizer };
-export { TKSubmissionVisualizerOptions }
+export { TKSubmissionVisualizerOptions };
