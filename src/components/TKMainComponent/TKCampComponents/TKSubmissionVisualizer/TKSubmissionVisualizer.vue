@@ -1,62 +1,15 @@
 <template lang="html">
   <div class="tk-submission-visualizer">
-    <div class="tk-submission-visualizer-col">
+    <div
+      v-for="(col, indexcol) in columns"
+      :key="indexcol"
+      class="tk-submission-visualizer-col"
+    >
       <TKSubmissionThematicView
+        v-for="(them, indexthem) in col"
+        :key="indexthem"
         :options="options"
-        :submissionThematic="submissionCccm"
-      />
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionCom"
-      />
-      <!-- <TKSurveyThematic :submissionThematic="submissionDemo" /> -->
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionEducation"
-      />
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionSports"
-      />
-    </div>
-    <div class="tk-submission-visualizer-col">
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionEnvironment"
-      />
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionGeneralInfo"
-      />
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionHealth"
-      />
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionInfrastructure"
-      />
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionWash"
-      />
-    </div>
-    <div class="tk-submission-visualizer-col">
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionInteriorisation"
-      />
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionNonfood"
-      />
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionProtection"
-      />
-      <TKSubmissionThematicView
-        :options="options"
-        :submissionThematic="submissionSecurity"
+        :submissionThematic="them"
       />
     </div>
   </div>
@@ -81,38 +34,24 @@ export default class TKSubmissionVisualizer extends Vue {
   @Prop()
   readonly options!: TKSubmissionVisualizerOptions;
 
-  submissionCccm!: TKSubmissionThematic;
-  submissionCom!: TKSubmissionThematic;
-  submissionDemo!: TKSubmissionThematic;
-  submissionEducation!: TKSubmissionThematic;
-  submissionEnvironment!: TKSubmissionThematic;
-  submissionGeneralInfo!: TKSubmissionThematic;
-  submissionHealth!: TKSubmissionThematic;
-  submissionInfrastructure!: TKSubmissionThematic;
-  submissionInteriorisation!: TKSubmissionThematic;
-  submissionNonfood!: TKSubmissionThematic;
-  submissionProtection!: TKSubmissionThematic;
-  submissionSecurity!: TKSubmissionThematic;
-  submissionSports!: TKSubmissionThematic;
-  submissionWash!: TKSubmissionThematic;
+  columns: [
+    Array<TKSubmissionThematic>,
+    Array<TKSubmissionThematic>,
+    Array<TKSubmissionThematic>
+  ] = [[], [], []];
 
   @Watch("submission", { immediate: true })
   onSurveyChanged() {
+    this.columns[0] = [];
+    this.columns[1] = [];
+    this.columns[2] = [];
     if (this.submission) {
-      this.submissionCccm = this.submission.thematics["group_cccm"];
-      this.submissionCom = this.submission.thematics["group_com"];
-      this.submissionDemo = this.submission.thematics["group_demo"];
-      this.submissionEducation = this.submission.thematics["group_education"];
-      this.submissionEnvironment = this.submission.thematics["group_environment"];
-      this.submissionGeneralInfo = this.submission.thematics["group_general_info"];
-      this.submissionHealth = this.submission.thematics["group_health"];
-      this.submissionInfrastructure = this.submission.thematics["group_infrastructure"];
-      this.submissionInteriorisation = this.submission.thematics["group_interiorisation"];
-      this.submissionNonfood = this.submission.thematics["group_nonfood"];
-      this.submissionProtection = this.submission.thematics["group_protection"];
-      this.submissionSecurity = this.submission.thematics["group_security"];
-      this.submissionSports = this.submission.thematics["group_sports"];
-      this.submissionWash = this.submission.thematics["group_wash"];
+      let count = 0;
+      for (const them in this.submission.thematics) {
+        this.columns[count].push(this.submission.thematics[them]);
+        count++;
+        count = count % 3;
+      }
     }
   }
 }
