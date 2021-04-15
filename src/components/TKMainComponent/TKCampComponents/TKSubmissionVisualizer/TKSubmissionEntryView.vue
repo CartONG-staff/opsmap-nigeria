@@ -1,99 +1,31 @@
 <template lang="html">
   <div class="tk-submission-entry-container">
-    <div
-      v-if="entry.trafficLight && entry.isAnswered()"
-      class="tk-layout-w-trafficlight"
-    >
-      <div class="tk-entry-content">
-        <div class="tk-entry-field-name">
-          {{ question }}
-        </div>
-        <div class="tk-entry-field-value">
-          {{ answer }}
-        </div>
-        <div class="tk-trafficlight">
-          <div v-if="isOK" class="tk-trafficlight-ok"></div>
-          <div v-if="isWarning" class="tk-trafficlight-warning"></div>
-          <div v-if="isDanger" class="tk-trafficlight-danger"></div>
-          <div v-if="isCritical" class="tk-trafficlight-critical"></div>
-          <div v-if="isOther" class="tk-trafficlight-other"></div>
-        </div>
-      </div>
-    </div>
-
-    <div v-else class="tk-layout-wo-trafficLight">
-      <div class="tk-entry-content">
-        <div class="tk-entry-field-name">
-          {{ question }}
-        </div>
-        <div class="tk-entry-field-value">
-          {{ answer }}
-        </div>
-      </div>
-    </div>
+    <TKSubmissionEntryTextView v-if="entryText" :entry="entryText" />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
 import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
-@Component
+import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
+@Component({
+  components: {
+    TKSubmissionEntryTextView
+  }
+})
 export default class TKSubmissionentryView extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryText | TKSubmissionEntryChart;
-
-  question = "";
-  answer = "";
-
-  isOK = false;
-  isWarning = false;
-  isDanger = false;
-  isCritical = false;
-  isOther = false;
+  entryText: TKSubmissionEntryText | null = null;
 
   @Watch("entry", { immediate: true })
   onentryChanged() {
+    this.entryText = null;
     if (this.entry instanceof TKSubmissionEntryText) {
-      this.isOK = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightColors.OK
-        : false;
-      this.isWarning = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightColors.WARNING
-        : false;
-      this.isDanger = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightColors.DANGER
-        : false;
-      this.isCritical = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightColors.CRITICAL
-        : false;
-      this.isOther =
-        !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;
-
-      this.handleLocale();
+      this.entryText = this.entry;
     } else if (this.entry instanceof TKSubmissionEntryChart) {
       console.log("[ITEM VIEW] doesn't display chart yet");
-    }
-  }
-
-  @Watch("$root.$i18n.locale", { immediate: true })
-  handleLocale() {
-    if (this.entry instanceof TKSubmissionEntryText) {
-      if (this.$root.$i18n.locale === "pt") {
-        this.question = this.entry.fieldLabelPt
-          ? this.entry.fieldLabelPt
-          : this.entry.fieldLabelEn;
-        this.answer = this.entry.answerLabelPt
-          ? this.entry.answerLabelPt
-          : this.entry.answerLabelEn;
-      } else {
-        this.question = this.entry.fieldLabelEn;
-        this.answer = this.entry.answerLabelEn;
-      }
-    } else {
-      this.question = "";
-      this.answer = "";
     }
   }
 }
