@@ -4,6 +4,7 @@ import {
   koboSurveyInfo,
   csvSurveyInfo,
   spatialDescription,
+  indicatorsDescription,
   headerLogo,
   footerLogos
 } from "@/app-demo/appConfiguration";
@@ -25,6 +26,7 @@ export const APPCONFIG: TKGeneralConfiguration = {
   surveyFormat: TKSurveyFormat.CSV,
   surveyDescription: csvSurveyInfo,
   spatialDescription: spatialDescription,
+  indicatorsDescription: indicatorsDescription,
   headerLogo: headerLogo,
   footerLogos: footerLogos,
   mapConfig: mapConfig
