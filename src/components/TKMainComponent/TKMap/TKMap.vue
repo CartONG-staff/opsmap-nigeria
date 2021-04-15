@@ -91,12 +91,12 @@ export default class TKMap extends Vue {
   @Watch("newSelectedCamp")
   newCampSelected() {
     this.newSelectedCamp !== null
-      ? this.campSelectionChanged(this.newSelectedCamp)
+      ? this.campSelectionChanged(this.newSelectedCamp.id)
       : this.campSelectionCleared();
   }
 
   @Emit("camp-selection-changed")
-  campSelectionChanged(camp: TKCampDescription | null): void {
+  campSelectionChanged(camp: string) {
     console.log("campSelected: " + camp!.id);
   }
   @Emit("camp-selection-cleared")
