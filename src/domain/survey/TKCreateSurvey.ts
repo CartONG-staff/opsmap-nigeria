@@ -8,7 +8,7 @@ import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 import { TKSubmission } from "@/domain/core/TKSubmission";
 import { TKIndicator } from "@/domain/core/TKIndicator";
-import { TKIndicatorsDescription, TKIndicatorDescription } from "@/domain/core/TKIndicatorsDescription";
+import { TKIndicatorsDescription, TKIndicatorDescription, TKIndicatorComputationType } from "@/domain/core/TKIndicatorsDescription";
 import { isNumber } from "@turf/helpers";
 
 // import { spatialDescription } from "@/app-demo/appConfiguration";
@@ -59,12 +59,31 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
         }
       }
     }
-    return {
-      iconOchaName: descr.iconOchaName,
-      nameEn: descr.name,
-      namePt: descr.name,
-      valueEn: String(sum),
-      valuePt: String(sum)
+    if(!descr.computationType){
+      return {
+        iconOchaName: descr.iconOchaName,
+        nameEn: descr.name,
+        namePt: descr.name,
+        valueEn: String(sum),
+        valuePt: String(sum)
+      }
+    }
+    if(descr.computationType === TKIndicatorComputationType.MEAN){
+      return {
+        iconOchaName: descr.iconOchaName,
+        nameEn: descr.name,
+        namePt: descr.name,
+        valueEn: String( (sum / Object.keys(data).length).toFixed(2) ),
+        valuePt: String( (sum / Object.keys(data).length).toFixed(2) )
+      }
+    } else if (descr.computationType === TKIndicatorComputationType.SUM) {
+      return {
+        iconOchaName: descr.iconOchaName,
+        nameEn: descr.name,
+        namePt: descr.name,
+        valueEn: String(sum),
+        valuePt: String(sum)
+      }
     }
   }
   return {

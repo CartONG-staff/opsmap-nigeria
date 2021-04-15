@@ -1,7 +1,7 @@
 import { TKKoboSurveyInfo } from "@/domain/survey/surveyRawData/kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
 import { TKCSVSurveyInfo } from "@/domain/survey/surveyRawData/csv/TKCSVTypes";
-import { TKIndicatorsDescription } from "@/domain/core/TKIndicatorsDescription";
+import { TKIndicatorComputationType, TKIndicatorsDescription } from "@/domain/core/TKIndicatorsDescription";
 import {
   LanguageCode,
   TKLanguageDescription
@@ -40,12 +40,14 @@ export const indicatorsDescription: TKIndicatorsDescription = {
   {
     iconOchaName: "People-in-need",
     name: "People",
-    entryCode: "demo_num_indv"
+    entryCode: "demo_num_indv",
+    computationType: TKIndicatorComputationType.SUM
   },
   {
     iconOchaName: "Camp-Coordination-and-Camp-Management",
     name: "Shelter Max Capacity",
-    entryCode: "cccm_shelter_max_capacity"
+    entryCode: "cccm_shelter_max_capacity",
+    computationType: TKIndicatorComputationType.MEAN
   }],
   site: [{
     iconOchaName: "Camp-Coordination-and-Camp-Management",
