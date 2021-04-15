@@ -26,6 +26,7 @@
   },
   "site": {
     "exportAsCSV": "Exportar (CSV)",
-    "infosCoordinates": "coordenadas GPS"
+    "infosCoordinates": "coordenadas GPS",
+    "hideUnanswered": "Ocultar entradas não respondidas"
   }
 }

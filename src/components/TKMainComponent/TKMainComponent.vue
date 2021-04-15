@@ -37,6 +37,7 @@
               :submissionsDates="
                 currentSubmissions ? Object.keys(currentSubmissions) : ['']
               "
+              :options="visualizerOptions"
               @date-selection-changed="dateSelected"
             />
             <TKCampInfos class="tk-camp-infos" :camp="currentCamp" />
@@ -59,7 +60,10 @@
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
           <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
-          <TKSubmissionVisualizer :submission="currentSubmission" />
+          <TKSubmissionVisualizer
+            :options="visualizerOptions"
+            :submission="currentSubmission"
+          />
         </div>
       </div>
     </div>
@@ -67,7 +71,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
 
@@ -91,7 +95,8 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSubmissionVisualizer
+  TKSubmissionVisualizer,
+  TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
 
 @Component({
@@ -123,6 +128,10 @@ export default class TKMainComponent extends Vue {
 
   isHomePage = true;
 
+  visualizerOptions: TKSubmissionVisualizerOptions = {
+    hideUnanswered: false
+  };
+
   campSelectionCleared() {
     this.currentCamp = null;
     this.currentSubmission = null;
@@ -131,7 +140,7 @@ export default class TKMainComponent extends Vue {
 
   campSelectionChanged(campId: string) {
     this.isHomePage = false;
-    const found = this.campsList.find((element) => element.id === campId);
+    const found = this.campsList.find(element => element.id === campId);
     if (found) {
       this.currentCamp = found;
       this.currentSubmissions = this.survey.submissionsByCamps[campId];
