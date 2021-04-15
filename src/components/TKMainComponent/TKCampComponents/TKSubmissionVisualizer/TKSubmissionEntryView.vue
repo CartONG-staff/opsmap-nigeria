@@ -79,7 +79,7 @@ export default class TKSubmissionentryView extends Vue {
 
   @Watch("$root.$i18n.locale", { immediate: true })
   handleLocale() {
-    if (this.entry) {
+    if (this.entry instanceof TKSubmissionEntryText) {
       if (this.$root.$i18n.locale === "pt") {
         this.question = this.entry.fieldLabelPt
           ? this.entry.fieldLabelPt

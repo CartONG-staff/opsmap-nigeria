@@ -11,6 +11,7 @@ import {
   LanguageCode,
   TKLanguageDescription
 } from "@/domain/core/TKLanguageDescription";
+import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
 
 function getTrafficLightColor(
   value: string,
@@ -31,30 +32,53 @@ export function TKCreateSubmissionEntry(
   field: string,
   surveyConfiguration: TKSurveyConfiguration,
   languages: TKLanguageDescription[]
-): TKSubmissionEntryText {
+): TKSubmissionEntryText | TKSubmissionEntryChart {
 
-  // if(surveyConfiguration.submissionsRules[field].chart_id){
-  //   console.log(surveyConfiguration.submissionsRules[field].chart_id);
-  // }
   const languagesList = [...new Set(languages.map(x => x.code))];
-  return new TKSubmissionEntryText(
-    field,
-    surveyConfiguration.fieldsLabels[field].field_label_en,
-    languagesList.includes(LanguageCode.PT)
-      ? surveyConfiguration.fieldsLabels[field]?.field_label_pt || value
-      : "",
-    surveyConfiguration.answersLabels[field]?.choice_name_en || value,
-    languagesList.includes(LanguageCode.PT)
-      ? surveyConfiguration.answersLabels[field]?.choice_name_pt || value
-      : "",
-    surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
-    surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
-      ? getTrafficLightColor(
-          value,
-          surveyConfiguration.trafficLights[
-            surveyConfiguration.submissionsRules[field].traffic_light_name
-          ]
-        )
-      : TKTrafficLightColors.UNDEFINED
-  );
+
+  if(surveyConfiguration.submissionsRules[field].chart_id){
+    console.log(surveyConfiguration.submissionsRules[field].chart_id)
+    return new TKSubmissionEntryChart(
+      field,
+      surveyConfiguration.fieldsLabels[field].field_label_en,
+      languagesList.includes(LanguageCode.PT)
+        ? surveyConfiguration.fieldsLabels[field]?.field_label_pt || value
+        : "",
+      surveyConfiguration.answersLabels[field]?.choice_name_en || value,
+      languagesList.includes(LanguageCode.PT)
+        ? surveyConfiguration.answersLabels[field]?.choice_name_pt || value
+        : "",
+      surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
+      surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
+        ? getTrafficLightColor(
+            value,
+            surveyConfiguration.trafficLights[
+              surveyConfiguration.submissionsRules[field].traffic_light_name
+            ]
+          )
+        : TKTrafficLightColors.UNDEFINED
+    );
+  }
+  else {
+    return new TKSubmissionEntryText(
+      field,
+      surveyConfiguration.fieldsLabels[field].field_label_en,
+      languagesList.includes(LanguageCode.PT)
+        ? surveyConfiguration.fieldsLabels[field]?.field_label_pt || value
+        : "",
+      surveyConfiguration.answersLabels[field]?.choice_name_en || value,
+      languagesList.includes(LanguageCode.PT)
+        ? surveyConfiguration.answersLabels[field]?.choice_name_pt || value
+        : "",
+      surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
+      surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
+        ? getTrafficLightColor(
+            value,
+            surveyConfiguration.trafficLights[
+              surveyConfiguration.submissionsRules[field].traffic_light_name
+            ]
+          )
+        : TKTrafficLightColors.UNDEFINED
+    );
+  }
 }
