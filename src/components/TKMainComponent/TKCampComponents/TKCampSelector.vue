@@ -55,8 +55,9 @@ export default class TKCampSelector extends Vue {
   // Hold the current camp at an app level
   // BEHAVIOR
   campSelected(campId: string) {
-    if (campId) {
-      this.$emit("camp-selection-changed", campId);
+    if (campId && this.campList) {
+      const camp = this.campList.find(c => c.id === campId);
+      this.$emit("camp-selection-changed", camp);
     } else {
       this.$emit("camp-selection-cleared");
     }
