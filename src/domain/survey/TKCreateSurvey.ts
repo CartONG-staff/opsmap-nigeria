@@ -35,7 +35,7 @@ export function TKCreateSurvey(
   const campsList: TKCampDescription[] = [];
   const boundariesList: TKBoundariesCollection = {
     admin1: [],
-    admin2: []
+    admin2: [],
   };
   for (const submission of sumbmissions) {
     if (submissionsByCamps[submission[spatialDescription.siteIDField]]) {
@@ -55,26 +55,24 @@ export function TKCreateSurvey(
         name: submission[spatialDescription.siteNameField],
         type: submission[spatialDescription.siteTypeField],
         submissionsDates: [submission[spatialDescription.siteLastUpdateField]],
-        coordinates: [
-          Number(
-            submission[spatialDescription.siteLatitudeField].replace(",", ".")
-          ),
-          Number(
-            submission[spatialDescription.siteLongitudeField].replace(",", ".")
-          )
-        ],
+        lat: Number(
+          submission[spatialDescription.siteLatitudeField].replace(",", ".")
+        ),
+        lng: Number(
+          submission[spatialDescription.siteLongitudeField].replace(",", ".")
+        ),
         admin1: {
           pcode: submission[spatialDescription.adm1Pcode],
-          name: submission[spatialDescription.adm1Name]
+          name: submission[spatialDescription.adm1Name],
         },
         admin2: {
           pcode: submission[spatialDescription.adm2Pcode],
-          name: submission[spatialDescription.adm2Name]
+          name: submission[spatialDescription.adm2Name],
         },
         admin3: {
           pcode: submission[spatialDescription.adm3Pcode],
-          name: submission[spatialDescription.adm3Name]
-        }
+          name: submission[spatialDescription.adm3Name],
+        },
       });
       if (
         !boundariesList.admin2
@@ -83,7 +81,7 @@ export function TKCreateSurvey(
       ) {
         boundariesList.admin2.push({
           pcode: submission[spatialDescription.adm2Pcode],
-          name: submission[spatialDescription.adm2Name]
+          name: submission[spatialDescription.adm2Name],
         });
         if (
           !boundariesList.admin1
@@ -92,7 +90,7 @@ export function TKCreateSurvey(
         ) {
           boundariesList.admin1.push({
             pcode: submission[spatialDescription.adm1Pcode],
-            name: submission[spatialDescription.adm1Name]
+            name: submission[spatialDescription.adm1Name],
           });
         }
       }
@@ -100,13 +98,13 @@ export function TKCreateSurvey(
       submissionsByCamps[submission[spatialDescription.siteIDField]] = {
         [submission[
           spatialDescription.siteLastUpdateField
-        ]]: TKCreateSubmissionThematics(submission, surveyConfig, languages)
+        ]]: TKCreateSubmissionThematics(submission, surveyConfig, languages),
       };
     }
   }
   return {
     submissionsByCamps: submissionsByCamps,
     campsList: campsList,
-    boundariesList: boundariesList
+    boundariesList: boundariesList,
   };
 }

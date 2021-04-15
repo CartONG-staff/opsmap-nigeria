@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 <template lang="html">
   <div id="tk-map">
     <TKMapZoom
@@ -15,12 +16,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Emit, Watch } from "vue-property-decorator";
-import mapboxgl, {
-  GeoJSONSource,
-  LngLatBounds,
-  MapEventType,
-  SymbolLayer,
-} from "mapbox-gl";
+import mapboxgl, { GeoJSONSource, LngLatBounds, LngLatLike } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import TKMapFilters from "./TKMapFilters.vue";
@@ -28,8 +24,10 @@ import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
 import { mask } from "@/secondary/map/mask";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
-import { campDescriptiontoGeoJSON } from "@/domain/map/mapUtils";
-import { layers } from "@/domain/map/mapStyles";
+import { TKMapCamps } from "@/domain/map/TKMapCamps";
+// import { campDescriptiontoGeoJSON } from "@/domain/map/mapUtils";
+// import { layers } from "@/domain/map/mapStyles";
+import { Point } from "geojson";
 const devEnv = process.env.NODE_ENV === "development";
 const imgURL = devEnv ? "/markers/" : `./markers/`;
 
@@ -43,25 +41,20 @@ const imgURL = devEnv ? "/markers/" : `./markers/`;
 export default class TKMap extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
-
   @Prop({ default: () => [] })
   readonly campList!: TKCampDescription[];
-
-  // Hold the app current camp property
   @Prop()
-  currentCamp!: TKCampDescription;
-  // campListModel = this.currentCampId;
-  localCurrentCamp = this.currentCamp;
+  readonly currentCamp!: TKCampDescription | null;
+
+  mapCamps: TKMapCamps | null = null;
+  newSelectedCamp: TKCampDescription | null = null;
   mapMarkersList = ["planned_site", "spontaneous_site"];
   markersLoadedCount = 0;
-  filteredCamps = {
-    selectedCamp: campDescriptiontoGeoJSON(
-      this.campList.filter((x) => x.id == this.currentCamp.id)
-    ),
-    otherCamps: campDescriptiontoGeoJSON(
-      this.campList.filter((x) => x.id != this.currentCamp.id)
-    ),
-  };
+
+  mounted(): void {
+    this.mapCamps = new TKMapCamps(this.campList, this.currentCamp);
+    this.initMap();
+  }
 
   @Watch("markersLoadedCount")
   mapMarkersLoaded() {
@@ -75,50 +68,39 @@ export default class TKMap extends Vue {
 
   @Watch("campList")
   changeOnCampList() {
-    this.filteredCamps = {
-      selectedCamp: campDescriptiontoGeoJSON(
-        this.campList.filter((x) => x.id == this.currentCamp.id)
-      ),
-      otherCamps: campDescriptiontoGeoJSON(
-        this.campList.filter((x) => x.id != this.currentCamp.id)
-      ),
-    };
-  }
-  @Watch("currentCamp")
-  currentCampChanged() {
-    console.log("change on current");
-    this.filteredCamps = {
-      selectedCamp: campDescriptiontoGeoJSON(
-        this.campList.filter((x) => x.id == this.currentCamp.id)
-      ),
-      otherCamps: campDescriptiontoGeoJSON(
-        this.campList.filter((x) => x.id != this.currentCamp.id)
-      ),
-    };
-    if (this.filteredCamps.otherCamps.features.length > 0) {
-      const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(
-        "otherCamps"
-      ) as mapboxgl.GeoJSONSource;
-      otherCampsSource.setData(this.filteredCamps.otherCamps);
-
-      const selectedCampSource: mapboxgl.GeoJSONSource = this.map.getSource(
-        "selectedCamp"
-      ) as mapboxgl.GeoJSONSource;
-      selectedCampSource.setData(this.filteredCamps.selectedCamp);
+    this.mapCamps = new TKMapCamps(this.campList, this.currentCamp);
+    if (this.markersLoadedCount === this.mapMarkersList.length) {
+      this.addCampsSources();
     }
   }
 
-  @Watch("localCurrentCamp")
-  localCurrentCampChanged() {
-    this.campSelectionChanged(this.localCurrentCamp);
+  @Watch("currentCamp")
+  currentCampChanged() {
+    this.mapCamps = new TKMapCamps(this.campList, this.currentCamp);
+
+    const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(
+      "otherCamps"
+    ) as mapboxgl.GeoJSONSource;
+    otherCampsSource.setData(this.mapCamps.filteredCamps.otherCamps);
+    const selectedCampSource: mapboxgl.GeoJSONSource = this.map.getSource(
+      "selectedCamp"
+    ) as mapboxgl.GeoJSONSource;
+    selectedCampSource.setData(this.mapCamps.filteredCamps.selectedCamp);
+  }
+
+  @Watch("newSelectedCamp")
+  newCampSelected() {
+    this.newSelectedCamp !== null
+      ? this.campSelectionChanged(this.newSelectedCamp)
+      : this.campSelectionCleared();
   }
 
   @Emit("camp-selection-changed")
-  campSelectionChanged(camp: TKCampDescription): void {
-    console.log("campSelected: " + camp.id);
+  campSelectionChanged(camp: TKCampDescription | null): void {
+    console.log("campSelected: " + camp!.id);
   }
   @Emit("camp-selection-cleared")
-  campSelectionCleared() {
+  campSelectionCleared(): void {
     console.log("Camp Selectio cleared");
   }
   map!: mapboxgl.Map;
@@ -181,10 +163,10 @@ export default class TKMap extends Vue {
   // ////////////////////////////////////////////////////////////////////////////////////////////////
 
   addCampsSources() {
-    console.log(this.filteredCamps);
+    console.log(this.mapCamps?.filteredCamps);
     this.map.addSource("otherCamps", {
       type: "geojson",
-      data: this.filteredCamps.otherCamps,
+      data: this.mapCamps!.filteredCamps.otherCamps,
       cluster: true,
       clusterMaxZoom: 14, // Max zoom to cluster points on
       clusterRadius: 50,
@@ -192,7 +174,7 @@ export default class TKMap extends Vue {
 
     this.map.addSource("selectedCamp", {
       type: "geojson",
-      data: this.filteredCamps.selectedCamp,
+      data: this.mapCamps!.filteredCamps.selectedCamp,
     });
     this.addCampsLayer();
   }
@@ -206,15 +188,7 @@ export default class TKMap extends Vue {
       source: "otherCamps",
       filter: ["has", "point_count"],
       paint: {
-        "circle-color": [
-          "step",
-          ["get", "point_count"],
-          "#78b4ff",
-          10,
-          "#337fdd",
-          30,
-          "#286090",
-        ],
+        "circle-color": "#000000",
         "circle-radius": ["step", ["get", "point_count"], 10, 10, 15, 30, 20],
       },
     });
@@ -258,7 +232,7 @@ export default class TKMap extends Vue {
       const features = this.map.queryRenderedFeatures(e.point, {
         layers: ["clusters"],
       });
-      const clusterId = features[0].properties.cluster_id;
+      const clusterId = features[0].properties!.cluster_id;
 
       const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(
         "otherCamps"
@@ -266,7 +240,7 @@ export default class TKMap extends Vue {
       otherCampsSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
         if (err) return;
         this.map.easeTo({
-          center: features[0].geometry.coordinates,
+          center: (features[0].geometry as Point).coordinates as LngLatLike,
           zoom: zoom,
         });
       });
@@ -274,7 +248,11 @@ export default class TKMap extends Vue {
 
     // CAMPS BEHAVIOR
     this.map.on("click", "camps", (e) => {
-      this.localCurrentCamppId = e.features[0].properties.id;
+      if (e !== undefined && e.features && e.features?.length > 0) {
+        this.newSelectedCamp = this.mapCamps!.toTKCampDescription(
+          e.features[0]
+        );
+      }
     });
     this.map.on("mouseenter", "camps", (e) => {
       this.map.getCanvas().style.cursor = "pointer";
@@ -366,10 +344,6 @@ export default class TKMap extends Vue {
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   // Component lifecycle methods
   // ////////////////////////////////////////////////////////////////////////////////////////////////
-
-  mounted(): void {
-    this.initMap();
-  }
 }
 </script>
 <style scoped>

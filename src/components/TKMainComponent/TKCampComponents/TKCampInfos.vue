@@ -64,9 +64,7 @@ export default class TKCampInfos extends Vue {
     this.admin2 = this.camp ? this.camp.admin2.name : "";
     this.admin3 = this.camp ? this.camp.admin3.name : "";
     this.name = this.camp ? this.camp.name : "";
-    this.coordinates = this.camp
-      ? this.camp.coordinates[0] + "," + this.camp.coordinates[1]
-      : "";
+    this.coordinates = this.camp ? this.camp.lat + "," + this.camp.lng : "";
   }
 }
 </script>

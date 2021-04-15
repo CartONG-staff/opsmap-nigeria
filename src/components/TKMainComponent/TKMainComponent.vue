@@ -82,7 +82,7 @@ import {
   TKHomeCombos,
   TKHomeIndicators,
   TKHomeMoreInfos,
-  TKHomeSubtitle
+  TKHomeSubtitle,
 } from "./TKHomeComponents";
 
 import {
@@ -91,7 +91,7 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSubmissionVisualizer
+  TKSubmissionVisualizer,
 } from "./TKCampComponents";
 
 @Component({
@@ -107,8 +107,8 @@ import {
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
-    TKTitle
-  }
+    TKTitle,
+  },
 })
 export default class TKMainComponent extends Vue {
   @Prop()

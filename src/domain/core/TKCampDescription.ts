@@ -3,7 +3,8 @@ export interface TKCampDescription {
   name: string;
   type: string;
   submissionsDates: string[];
-  coordinates: [number, number];
+  lat: number;
+  lng: number;
   admin1: {
     pcode: string;
     name: string;
