@@ -71,7 +71,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
 
@@ -98,6 +98,10 @@ import {
   TKSubmissionVisualizer,
   TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
+
+const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
+  hideUnanswered: false
+};
 
 @Component({
   components: {
@@ -129,18 +133,23 @@ export default class TKMainComponent extends Vue {
   isHomePage = true;
 
   visualizerOptions: TKSubmissionVisualizerOptions = {
-    hideUnanswered: false
+    hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
   };
 
   campSelectionCleared() {
     this.currentCamp = null;
     this.currentSubmission = null;
     this.isHomePage = true;
+    this.visualizerOptions.hideUnanswered =
+      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
   }
 
   campSelectionChanged(campId: string) {
     this.isHomePage = false;
     const found = this.campsList.find(element => element.id === campId);
+    this.visualizerOptions.hideUnanswered =
+      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
+
     if (found) {
       this.currentCamp = found;
       this.currentSubmissions = this.survey.submissionsByCamps[campId];
