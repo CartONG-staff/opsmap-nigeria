@@ -10,33 +10,18 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
-import { TKIndicator } from "@/domain/ui/TKIndicator";
 @Component({
   components: {
-    TKIndicatorComponent,
-  },
+    TKIndicatorComponent
+  }
 })
 export default class TKCampIndicators extends Vue {
-  indicator1: TKIndicator = {
-    value: 20,
-    name: "Sites",
-    iconOchaName: "IDP-refugee-camp",
-  };
-
-  indicator2: TKIndicator = {
-    value: 100,
-    name: "People",
-    iconOchaName: "People-in-need",
-  };
-
-  indicator3: TKIndicator = {
-    value: 0,
-    name: "Overcrowded",
-    iconOchaName: "Permanent-camp",
-  };
-
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
+
+  readonly indicator1 = this.appConfig.indicatorsDescription.home[0];
+  readonly indicator2 = this.appConfig.indicatorsDescription.home[1];
+  readonly indicator3 = this.appConfig.indicatorsDescription.home[2];
 }
 </script>
 

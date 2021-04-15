@@ -18,7 +18,7 @@
 
     <div class="tk-indicator-value">
       <div class="tk-indicator-value-number">
-        {{ indicator.value }}
+        {{ indicator.entryCode }}
       </div>
       <div class="tk-indicator-value-decription">
         {{ indicator.name }}
@@ -33,7 +33,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import { TKIndicator } from "@/domain/ui/TKIndicator";
+import { TKIndicator } from "@/domain/core/TKIndicator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 
 @Component

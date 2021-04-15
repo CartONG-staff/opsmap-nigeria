@@ -6,6 +6,7 @@ import { TKCSVSurveyInfo } from "@/domain/survey/surveyRawData/csv/TKCSVTypes";
 import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKSurveyFormat } from "@/domain/core/TKSurveyFormat";
+import { TKIndicatorsDescription } from "@/domain/core/TKIndicatorsDescription";
 export interface TKGeneralConfiguration {
   readonly name: string;
   readonly iso3: string;
@@ -16,4 +17,5 @@ export interface TKGeneralConfiguration {
   readonly footerLogos: TKFooterLogos;
   readonly mapConfig: TKMapboxConfiguration;
   readonly spatialDescription: TKSpatialDescription;
+  readonly indicatorsDescription: TKIndicatorsDescription;
 }

@@ -1,6 +1,7 @@
 import { TKKoboSurveyInfo } from "@/domain/survey/surveyRawData/kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
 import { TKCSVSurveyInfo } from "@/domain/survey/surveyRawData/csv/TKCSVTypes";
+import { TKIndicatorsDescription } from "@/domain/core/TKIndicatorsDescription";
 import {
   LanguageCode,
   TKLanguageDescription
@@ -29,6 +30,40 @@ export const spatialDescription: TKSpatialDescription = {
   adm3Pcode: "",
   adm3Name: "ggi_address"
 };
+
+export const indicatorsDescription: TKIndicatorsDescription = {
+  home: [{
+    iconOchaName: "IDP-refugee-camp",
+    name: "Site",
+    entryCode: "mp_site_id"
+  },
+  {
+    iconOchaName: "People-in-need",
+    name: "People",
+    entryCode: "demo_num_indv"
+  },
+  {
+    iconOchaName: "Camp-Coordination-and-Camp-Management",
+    name: "Shelter Max Capacity",
+    entryCode: "cccm_shelter_max_capacity"
+  }],
+  site: [{
+    iconOchaName: "Camp-Coordination-and-Camp-Management",
+    name: "Site at Full Capacity",
+    entryCode: "cccm_site_at_full_capacity"
+  },
+  {
+    iconOchaName: "Camp-Coordination-and-Camp-Management",
+    name: "Shelter Type",
+    entryCode: "cccm_shelter_type"
+  },
+  {
+    iconOchaName: "People-in-need",
+    name: "No. of Individuals",
+    entryCode: "demo_num_indv"
+  }]
+};
+
 export const koboSurveyInfo: TKKoboSurveyInfo[] = [
   {
     name: "survey1",
