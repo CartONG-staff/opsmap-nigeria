@@ -37,7 +37,7 @@ export default class TKSubmissionThematicView extends Vue {
   @Prop()
   readonly submissionThematic!: TKSubmissionThematic;
 
-  thematicData!: Array<TKSubmissionEntry>;
+  thematicData: Array<TKSubmissionEntry> = [];
 
   @Prop()
   readonly options!: TKSubmissionVisualizerOptions;
