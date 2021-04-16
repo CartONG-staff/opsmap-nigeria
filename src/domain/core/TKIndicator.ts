@@ -1,7 +1,7 @@
+import { TKFieldLabel } from "./TKFieldLabel";
+
 export interface TKIndicator {
-  readonly nameEn: string;
-  readonly namePt: string;
-  readonly valueEn: string;
-  readonly valuePt: string;
+  readonly nameLabel: TKFieldLabel;
+  readonly valueLabel: TKFieldLabel;
   readonly iconOchaName: string;
 }

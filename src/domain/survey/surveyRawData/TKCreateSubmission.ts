@@ -47,19 +47,15 @@ function computeSubmissionIndicator(descr: TKIndicatorDescription, data: Record<
     if(entry instanceof TKSubmissionEntryText){
       return {
         iconOchaName: descr.iconOchaName,
-        nameEn: descr.name,
-        namePt: descr.name,
-        valueEn: entry.answerLabel.field_label_en,
-        valuePt: entry.answerLabel.field_label_pt ? entry.answerLabel.field_label_pt : "",
+        nameLabel: entry.fieldLabel,
+        valueLabel: entry.answerLabel
       }
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameEn: descr.name,
-    namePt: descr.name,
-    valueEn: "NotFound",
-    valuePt: "NotFound",
+    nameLabel: {field_name: "", field_label_en: ""},
+    valueLabel: {field_name: "", field_label_en: ""}
   }
 }
 

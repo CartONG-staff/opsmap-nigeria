@@ -59,15 +59,15 @@ export default class TKIndicatorComponent extends Vue {
   handleLocale() {
     if (this.indicator) {
       if (this.$root.$i18n.locale === "pt") {
-        this.name = this.indicator.namePt
-          ? this.indicator.namePt
-          : this.indicator.nameEn;
-        this.value = this.indicator.valuePt
-          ? this.indicator.valuePt
-          : this.indicator.valueEn;
+        this.name = this.indicator.nameLabel.field_label_pt
+          ? this.indicator.nameLabel.field_label_pt
+          : this.indicator.nameLabel.field_label_en;
+        this.value = this.indicator.valueLabel.field_label_pt
+          ? this.indicator.valueLabel.field_label_pt
+          : this.indicator.valueLabel.field_label_en;
       } else {
-        this.value = this.indicator.valueEn;
-        this.name = this.indicator.nameEn;
+        this.value = this.indicator.valueLabel.field_label_en;
+        this.name = this.indicator.nameLabel.field_label_en;
       }
     } else {
       this.value = "";

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 import { TKCreateSubmission } from "./surveyRawData/TKCreateSubmission";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
@@ -16,10 +18,8 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
   if(descr.entryCode === "mp_site_id"){
     return {
       iconOchaName: descr.iconOchaName,
-      nameEn: descr.name,
-      namePt: descr.name,
-      valueEn: String(Object.keys(data).length),
-      valuePt: String(Object.keys(data).length)
+      nameLabel: {field_name: descr.name, field_label_en: descr.name},
+      valueLabel: {field_name: String(Object.keys(data).length), field_label_en: String(Object.keys(data).length)}
     }
   }
 
@@ -43,36 +43,28 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
     if(!descr.computationType){
       return {
         iconOchaName: descr.iconOchaName,
-        nameEn: descr.name,
-        namePt: descr.name,
-        valueEn: String(sum),
-        valuePt: String(sum)
+        nameLabel: {field_name: descr.name, field_label_en: descr.name},
+        valueLabel: {field_name: String(sum), field_label_en: String(sum)}
       }
     }
     if(descr.computationType === TKIndicatorComputationType.MEAN){
       return {
         iconOchaName: descr.iconOchaName,
-        nameEn: descr.name,
-        namePt: descr.name,
-        valueEn: String( (sum / Object.keys(data).length).toFixed(2) ),
-        valuePt: String( (sum / Object.keys(data).length).toFixed(2) )
+        nameLabel: {field_name: descr.name, field_label_en: descr.name},
+        valueLabel: {field_name: String( (sum / Object.keys(data).length).toFixed(2) ), field_label_en: String( (sum / Object.keys(data).length).toFixed(2) )}
       }
     } else if (descr.computationType === TKIndicatorComputationType.SUM) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameEn: descr.name,
-        namePt: descr.name,
-        valueEn: String(sum),
-        valuePt: String(sum)
+        nameLabel: {field_name: descr.name, field_label_en: descr.name},
+        valueLabel: {field_name: String(sum), field_label_en: String(sum)}
       }
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameEn: "NptFound",
-    namePt: "NptFound",
-    valueEn: descr.name,
-    valuePt: descr.name
+    nameLabel: {field_name: descr.name, field_label_en: descr.name},
+    valueLabel: {field_name: "NotFound", field_label_en: "NotFound"}
   }
 }
 
