@@ -1,6 +1,10 @@
 <template lang="html">
   <div class="tk-submission-entry-container">
     <TKSubmissionEntryTextView v-if="entryText" :entry="entryText" />
+    <TKSubmissionEntryAgePyramidChart
+      v-if="entryAgePyramid"
+      :entry="entryAgePyramid"
+    />
   </div>
 </template>
 
@@ -11,24 +15,32 @@ import {
   TKSubmissionEntryText,
   TKSubmissionEntryAgePyramid
 } from "@/domain/core/TKSubmissionEntry";
+
+import TKSubmissionEntryAgePyramidChart from "./TKSubmissionEntryAgePyramidChart.vue";
 import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
+
 @Component({
   components: {
+    TKSubmissionEntryAgePyramidChart,
     TKSubmissionEntryTextView
   }
 })
 export default class TKSubmissionentryView extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntry;
+
   entryText: TKSubmissionEntryText | null = null;
+  entryAgePyramid: TKSubmissionEntryAgePyramid | null = null;
 
   @Watch("entry", { immediate: true })
   onentryChanged() {
     this.entryText = null;
+    this.entryAgePyramid = null;
+
     if (this.entry instanceof TKSubmissionEntryText) {
       this.entryText = this.entry;
     } else if (this.entry instanceof TKSubmissionEntryAgePyramid) {
-      console.log("[ITEM VIEW] doesn't display agepyramid yet");
+      this.entryAgePyramid = this.entry;
     }
   }
 }

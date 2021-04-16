@@ -41,7 +41,16 @@ export function TKCreateSubmissionEntryAgePyramid(
   const malesEntries = chartdata.filter(item => item.type === 'm');
   const femalesEntries = chartdata.filter(item => item.type === 'f');
 
-  return new TKSubmissionEntryAgePyramid("", "", "", "", "", true, TKTrafficLightColors.OK);
+  const malesDataset = malesEntries.map(item => Number(item.value));
+  const femalesDataset = femalesEntries.map(item => Number(item.value));
+
+  const malesLabel = malesEntries.map(item => surveyConfiguration.fieldsLabels[item.field]);
+  const femalesLabel = femalesEntries.map(item => surveyConfiguration.fieldsLabels[item.field]);
+
+  console.log(malesLabel);
+  console.log(femalesLabel);
+
+  return new TKSubmissionEntryAgePyramid("agepyramid", "agepyramiden", "agepyramidpt", malesDataset, femalesDataset);
   // return new TKSubmissionEntryText(
   //   field,
   //   surveyConfiguration.fieldsLabels[field].field_label_en,

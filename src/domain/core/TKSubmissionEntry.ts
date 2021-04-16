@@ -44,29 +44,25 @@ export class TKSubmissionEntryText extends TKSubmissionEntry {
 }
 
 export class TKSubmissionEntryAgePyramid extends TKSubmissionEntry {
-  answerLabelEn = "";
-  answerLabelPt? = "";
-  trafficLight = false;
-  trafficLightColor: TKTrafficLightColors = TKTrafficLightColors.UNDEFINED;
+
+  malesEntries: Array<number>;
+  femalesEntries: Array<number>;
+  // malesLabels: Array<string>;
+  // femalesLabels: Array<string>;
 
   constructor(
     field: string,
     fieldLabelEn: string,
     fieldLabelPt: string,
-    answerLabelEn: string,
-    answerLabelPt: string,
-    trafficLight: boolean,
-    trafficLightColor: TKTrafficLightColors
+    malesEntries: Array<number>,
+    femalesEntries: Array<number>,
+    // malesLabels: Array<string>,
+    // femalesLabels: Array<string>,
+
   ) {
     super(field, fieldLabelEn, fieldLabelPt);
-    this.answerLabelEn = answerLabelEn;
-    this.answerLabelPt = answerLabelPt;
-    this.trafficLight = trafficLight;
-    this.trafficLightColor = trafficLightColor;
-  }
-
-  public isAnswered() {
-    return this.answerLabelEn !== "";
+    this.malesEntries = malesEntries;
+    this.femalesEntries = femalesEntries;
   }
 }
 
