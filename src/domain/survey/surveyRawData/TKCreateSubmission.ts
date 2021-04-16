@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 import { TKSubmission } from "@/domain/core/TKSubmission";
-import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
+import { TKSubmissionThematic, TKSUbmissionThematicfromThematic } from "@/domain/core/TKSubmissionThematic";
 
 import { TKIndicator } from "@/domain/core/TKIndicator";
 import { TKIndicatorsDescription, TKIndicatorDescription } from "@/domain/core/TKIndicatorsDescription";
@@ -78,11 +80,7 @@ export function TKCreateSubmission(
 ) : TKSubmission {
   const submission: Record<string, TKSubmissionThematic> = {};
   for (const thematic in surveyConfiguration.thematics) {
-    submission[thematic] = {
-      ...surveyConfiguration.thematics[thematic],
-      data: []
-    };
-
+    submission[thematic] = TKSUbmissionThematicfromThematic(surveyConfiguration.thematics[thematic]);
     let agePyramidId = "";
     let agePyramidData : Array<TKSubmissionEntryAgePyramidItem> = [];
     for (const field in submissionItem) {

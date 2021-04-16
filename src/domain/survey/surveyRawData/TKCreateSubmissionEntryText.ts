@@ -7,6 +7,7 @@ import {
 } from "@/domain/core/TKTrafficLight";
 
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
+import { TKAnswerLabelToFieldLabel } from "@/domain/core/TKFieldLabel";
 
 function getTrafficLightColor(
   value: string,
@@ -30,12 +31,7 @@ export function TKCreateSubmissionEntryText(
   return new TKSubmissionEntryText(
     field,
     surveyConfiguration.fieldsLabels[field],
-    surveyConfiguration.answersLabels[value] ?
-      { field_name: surveyConfiguration.answersLabels[value].choice_name,
-        field_label_en: surveyConfiguration.answersLabels[value].choice_label_en,
-        field_label_pt: surveyConfiguration.answersLabels[value].choice_label_pt
-      }
-        : { field_name: value, field_label_en: value},
+    surveyConfiguration.answersLabels[value] ? TKAnswerLabelToFieldLabel(surveyConfiguration.answersLabels[value]) : { field_name: value, field_label_en: value},
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
       ? getTrafficLightColor(

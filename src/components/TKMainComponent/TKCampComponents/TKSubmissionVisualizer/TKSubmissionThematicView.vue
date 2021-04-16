@@ -26,6 +26,7 @@ import TKSubmissionEntryView from "./TKSubmissionEntryView.vue";
 import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
 import { TKSubmissionEntry } from "@/domain/core/TKSubmissionEntry";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
+import { TKGetLocalValue } from "@/domain/core/TKFieldLabel";
 
 @Component({
   components: {
@@ -59,14 +60,10 @@ export default class TKSubmissionThematicView extends Vue {
   @Watch("$root.$i18n.locale")
   handleLocaleOnTitle() {
     if (this.submissionThematic) {
-      if (
-        this.$root.$i18n.locale === "pt" &&
-        this.submissionThematic.thematic_label_pt
-      ) {
-        this.title = this.submissionThematic.thematic_label_pt;
-      } else {
-        this.title = this.submissionThematic.thematic_label_en;
-      }
+      this.title = TKGetLocalValue(
+        this.submissionThematic.nameLabel,
+        this.$root.$i18n.locale
+      );
     } else {
       this.title = "";
     }
