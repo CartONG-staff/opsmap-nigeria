@@ -57,7 +57,7 @@ export default class TKSubmissionThematicView extends Vue {
     this.applyOptions();
   }
 
-  @Watch("$root.$i18n.locale", { immediate: true })
+  @Watch("$root.$i18n.locale")
   handleLocaleOnTitle() {
     if (this.submissionThematic) {
       if (

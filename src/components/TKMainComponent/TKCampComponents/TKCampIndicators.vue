@@ -27,7 +27,7 @@ export default class TKCampIndicators extends Vue {
   indicator2 = this.submission.indicators[1];
   indicator3 = this.submission.indicators[2];
 
-  @Watch("submission", { immediate: true })
+  @Watch("submission")
   onSubmissionChanged() {
     if (this.submission) {
       this.indicator1 = this.submission.indicators[0];

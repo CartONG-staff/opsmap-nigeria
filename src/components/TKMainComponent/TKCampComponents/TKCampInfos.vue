@@ -52,13 +52,13 @@ export default class TKCampInfos extends Vue {
   @Prop()
   readonly camp!: TKCampDescription;
 
-  admin1 = "";
-  admin2 = "";
-  admin3 = "";
-  name = "";
-  coordinates = "";
+  admin1 = this.camp.admin1.name;
+  admin2 = this.camp.admin2.name;
+  admin3 = this.camp.admin3.name;
+  name = this.camp.name;
+  coordinates = this.camp.coordinates[0] + "," + this.camp.coordinates[1];
 
-  @Watch("camp", { immediate: true })
+  @Watch("camp")
   onChange() {
     this.admin1 = this.camp ? this.camp.admin1.name : "";
     this.admin2 = this.camp ? this.camp.admin2.name : "";
