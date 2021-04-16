@@ -73,7 +73,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
       this.chart.destroy();
     }
     if (this.config) {
-      this.chart = new Chart("myChart", this.config);
+      this.chart = new Chart(this.ctx, this.config);
     }
   }
 
@@ -83,7 +83,13 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
       this.config = {
         type: "bar",
         data: {
-          labels: ["1", "2", "3", "4", "5"],
+          labels: this.entry.femalesLabels.map(
+            item =>
+              item.field_label_en
+                .replace("Females ", "")
+                .replace("(", "")
+                .replace(")", "") + " years old"
+          ),
           datasets: [
             {
               label: "Female",
@@ -104,7 +110,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
         options: {
           indexAxis: "y", // Make bar horizontal !
           responsive: true,
-          maintainAspectRatio: true,
+          maintainAspectRatio: false,
           font: {
             size: 11
           },
@@ -177,12 +183,11 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           }
         }
       };
-
       if (this.chart) {
         this.chart.destroy();
       }
       if (this.config) {
-        this.chart = new Chart("myChart", this.config);
+        this.chart = new Chart(this.ctx, this.config);
       }
     }
   }

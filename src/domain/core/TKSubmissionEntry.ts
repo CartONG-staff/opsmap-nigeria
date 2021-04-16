@@ -1,3 +1,4 @@
+import { TKFieldLabel } from "../survey/surveyConfiguration/TKLabelsCollectionBuilder";
 import { TKTrafficLightColors } from "./TKTrafficLight";
 
 export class TKSubmissionEntry {
@@ -47,8 +48,8 @@ export class TKSubmissionEntryAgePyramid extends TKSubmissionEntry {
 
   malesEntries: Array<number>;
   femalesEntries: Array<number>;
-  // malesLabels: Array<string>;
-  // femalesLabels: Array<string>;
+  malesLabels: Array<TKFieldLabel>;
+  femalesLabels: Array<TKFieldLabel>;
 
   constructor(
     field: string,
@@ -56,13 +57,15 @@ export class TKSubmissionEntryAgePyramid extends TKSubmissionEntry {
     fieldLabelPt: string,
     malesEntries: Array<number>,
     femalesEntries: Array<number>,
-    // malesLabels: Array<string>,
-    // femalesLabels: Array<string>,
+    malesLabels: Array<TKFieldLabel>,
+    femalesLabels: Array<TKFieldLabel>
 
   ) {
     super(field, fieldLabelEn, fieldLabelPt);
     this.malesEntries = malesEntries;
     this.femalesEntries = femalesEntries;
+    this.malesLabels = malesLabels;
+    this.femalesLabels = femalesLabels;
   }
 }
 

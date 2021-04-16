@@ -47,10 +47,7 @@ export function TKCreateSubmissionEntryAgePyramid(
   const malesLabel = malesEntries.map(item => surveyConfiguration.fieldsLabels[item.field]);
   const femalesLabel = femalesEntries.map(item => surveyConfiguration.fieldsLabels[item.field]);
 
-  console.log(malesLabel);
-  console.log(femalesLabel);
-
-  return new TKSubmissionEntryAgePyramid("agepyramid", "agepyramiden", "agepyramidpt", malesDataset, femalesDataset);
+  return new TKSubmissionEntryAgePyramid("agepyramid", "agepyramiden", "agepyramidpt", malesDataset, femalesDataset, malesLabel, femalesLabel);
   // return new TKSubmissionEntryText(
   //   field,
   //   surveyConfiguration.fieldsLabels[field].field_label_en,
