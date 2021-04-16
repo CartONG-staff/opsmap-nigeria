@@ -10,12 +10,17 @@ import { TKCreateSubmissionEntry } from "./TKCreateSubmissionEntry";
 import { findPoint } from "@turf/meta";
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
 
+
+// ////////////////////////////////////////////////////////////////////////////
+// checks
+// ////////////////////////////////////////////////////////////////////////////
+
 // TO DEVELOP
-function TKIsSubmissionIsRelevant(): boolean {
+function isSubmissionRelevant(): boolean {
   return true;
 }
 
-function TKIsSubmissionInThematic(
+function isSubmissionInThematic(
   submission: string,
   thematic: string,
   submissionsRules: TKSubmissionsRulesCollection
@@ -26,6 +31,10 @@ function TKIsSubmissionInThematic(
       : false
     : false;
 }
+
+// ////////////////////////////////////////////////////////////////////////////
+// indicators management
+// ////////////////////////////////////////////////////////////////////////////
 
 function computeSubmissionIndicator(descr: TKIndicatorDescription, data: Record<string, TKSubmissionThematic>) : TKIndicator{
   const splitted = descr.entryCode.split("_")
@@ -51,7 +60,7 @@ function computeSubmissionIndicator(descr: TKIndicatorDescription, data: Record<
   }
 }
 
-function TKComputeSubmissionIndicators(descr: TKIndicatorsDescription, data: Record<string, TKSubmissionThematic>) : [TKIndicator, TKIndicator, TKIndicator] {
+function computeSubmissionIndicators(descr: TKIndicatorsDescription, data: Record<string, TKSubmissionThematic>) : [TKIndicator, TKIndicator, TKIndicator] {
   return [
     computeSubmissionIndicator(descr.site[0], data),
     computeSubmissionIndicator(descr.site[1], data),
@@ -59,6 +68,9 @@ function TKComputeSubmissionIndicators(descr: TKIndicatorsDescription, data: Rec
   ];
 }
 
+// ////////////////////////////////////////////////////////////////////////////
+// Create the submission
+// ////////////////////////////////////////////////////////////////////////////
 
 export function TKCreateSubmission(
   submissionItem: any,
@@ -74,13 +86,13 @@ export function TKCreateSubmission(
     };
     for (const field in submissionItem) {
       if (
-        TKIsSubmissionInThematic(
+        isSubmissionInThematic(
           field,
           thematic,
           surveyConfiguration.submissionsRules
         )
       ) {
-        if (TKIsSubmissionIsRelevant()) {
+        if (isSubmissionRelevant()) {
           submission[thematic].data.push(
             TKCreateSubmissionEntry(
               submissionItem[field],
@@ -96,7 +108,7 @@ export function TKCreateSubmission(
 
   const result: TKSubmission = {
     thematics: submission,
-    indicators: TKComputeSubmissionIndicators(indicatorsDescription, submission)
+    indicators: computeSubmissionIndicators(indicatorsDescription, submission)
   }
 
   return result;
