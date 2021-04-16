@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 import { TKCreateSubmission } from "./surveyRawData/TKCreateSubmission";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
@@ -5,39 +7,19 @@ import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 import { TKBoundariesCollection } from "@/domain/core/TKBoundariesCollection";
 import { TKSurvey } from "@/domain/core/TKSurvey";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
-import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 import { TKSubmission } from "@/domain/core/TKSubmission";
 import { TKIndicator } from "@/domain/core/TKIndicator";
 import { TKIndicatorsDescription, TKIndicatorDescription, TKIndicatorComputationType } from "@/domain/core/TKIndicatorsDescription";
 import { isNumber } from "@turf/helpers";
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
-// import { spatialDescription } from "@/app-demo/appConfiguration";
-// const siteIDField: string = spatialDescription.siteIDField;
-// const siteNameField = spatialDescription.siteNameField;
-// const siteTypeField = spatialDescription.siteTypeField;
-// const siteLastUpdateField = spatialDescription.siteLastUpdateField;
-// const siteLatitudeField = spatialDescription.siteLatitudeField;
-// const siteLongitudeField = spatialDescription.siteLongitudeField;
-
-// type Submission {
-//   [siteIDField]: string;
-//   [siteNameField]: string;
-//   [siteTypeField]: string;
-//   [siteLastUpdateField]: string;
-//   [siteLatitudeField]: string;
-//   [siteLongitudeField]: string;
-//   [propName: string]: string | number;
-// }
 
 function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: string]: { [date: string]: TKSubmission }}) : TKIndicator{
 
   if(descr.entryCode === "mp_site_id"){
     return {
       iconOchaName: descr.iconOchaName,
-      nameEn: descr.name,
-      namePt: descr.name,
-      valueEn: String(Object.keys(data).length),
-      valuePt: String(Object.keys(data).length)
+      nameLabel: {field_name: descr.name, field_label_en: descr.name},
+      valueLabel: {field_name: String(Object.keys(data).length), field_label_en: String(Object.keys(data).length)}
     }
   }
 
@@ -52,8 +34,8 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
         const them = submission.thematics[thematic];
         if(them){
           const item = them.data.find(item => item.field === descr.entryCode);
-          if(item && item instanceof TKSubmissionEntryText && isNumber(item.answerLabelEn)){
-            sum +=  Number(item.answerLabelEn)
+          if(item && item instanceof TKSubmissionEntryText && item.answerLabel && isNumber(item.answerLabel.field_label_en)){
+            sum +=  Number(item.answerLabel.field_label_en)
           }
         }
       }
@@ -61,36 +43,28 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
     if(!descr.computationType){
       return {
         iconOchaName: descr.iconOchaName,
-        nameEn: descr.name,
-        namePt: descr.name,
-        valueEn: String(sum),
-        valuePt: String(sum)
+        nameLabel: {field_name: descr.name, field_label_en: descr.name},
+        valueLabel: {field_name: String(sum), field_label_en: String(sum)}
       }
     }
     if(descr.computationType === TKIndicatorComputationType.MEAN){
       return {
         iconOchaName: descr.iconOchaName,
-        nameEn: descr.name,
-        namePt: descr.name,
-        valueEn: String( (sum / Object.keys(data).length).toFixed(2) ),
-        valuePt: String( (sum / Object.keys(data).length).toFixed(2) )
+        nameLabel: {field_name: descr.name, field_label_en: descr.name},
+        valueLabel: {field_name: String( (sum / Object.keys(data).length).toFixed(2) ), field_label_en: String( (sum / Object.keys(data).length).toFixed(2) )}
       }
     } else if (descr.computationType === TKIndicatorComputationType.SUM) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameEn: descr.name,
-        namePt: descr.name,
-        valueEn: String(sum),
-        valuePt: String(sum)
+        nameLabel: {field_name: descr.name, field_label_en: descr.name},
+        valueLabel: {field_name: String(sum), field_label_en: String(sum)}
       }
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameEn: "NptFound",
-    namePt: "NptFound",
-    valueEn: descr.name,
-    valuePt: descr.name
+    nameLabel: {field_name: descr.name, field_label_en: descr.name},
+    valueLabel: {field_name: "NotFound", field_label_en: "NotFound"}
   }
 }
 
@@ -106,8 +80,7 @@ export function TKCreateSurvey(
   sumbmissions: any[],
   surveyConfig: TKSurveyConfiguration,
   spatialDescription: TKSpatialDescription,
-  indicatorsDescription: TKIndicatorsDescription,
-  languages: TKLanguageDescription[]
+  indicatorsDescription: TKIndicatorsDescription
 ): TKSurvey {
   const submissionsByCamps: {
     [campId: string]: { [date: string]: TKSubmission };
@@ -128,7 +101,7 @@ export function TKCreateSurvey(
       });
       submissionsByCamps[submission[spatialDescription.siteIDField]][
         submission[spatialDescription.siteLastUpdateField]
-      ] = TKCreateSubmission(submission, surveyConfig, indicatorsDescription, languages);
+      ] = TKCreateSubmission(submission, surveyConfig, indicatorsDescription);
     } else {
       campsList.push({
         id: submission[spatialDescription.siteIDField],
@@ -180,7 +153,7 @@ export function TKCreateSurvey(
       submissionsByCamps[submission[spatialDescription.siteIDField]] = {
         [submission[
           spatialDescription.siteLastUpdateField
-        ]]: TKCreateSubmission(submission, surveyConfig, indicatorsDescription, languages)
+        ]]: TKCreateSubmission(submission, surveyConfig, indicatorsDescription)
       };
     }
   }

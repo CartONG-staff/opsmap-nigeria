@@ -14,9 +14,8 @@ export async function TKCreateSurveyCollection(
   surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[],
   surveyFormat: TKSurveyFormat,
   spatialDescription: TKSpatialDescription,
-  indicatorsDescription: TKIndicatorsDescription,
-  languages: TKLanguageDescription[]
-): Promise<TKSurveyCollection> {
+  indicatorsDescription: TKIndicatorsDescription
+  ): Promise<TKSurveyCollection> {
   // prepare output
   const surveyCollection: TKSurveyCollection = {};
 
@@ -37,8 +36,7 @@ export async function TKCreateSurveyCollection(
       rawData,
       surveyConfig,
       spatialDescription,
-      indicatorsDescription,
-      languages
+      indicatorsDescription
     );
   }
   return surveyCollection;

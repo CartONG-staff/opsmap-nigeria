@@ -1,6 +1,7 @@
-import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
+/* eslint-disable @typescript-eslint/camelcase */
+
 import { TKSubmission } from "@/domain/core/TKSubmission";
-import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
+import { TKSubmissionThematic, TKSUbmissionThematicfromThematic } from "@/domain/core/TKSubmissionThematic";
 
 import { TKIndicator } from "@/domain/core/TKIndicator";
 import { TKIndicatorsDescription, TKIndicatorDescription } from "@/domain/core/TKIndicatorsDescription";
@@ -48,19 +49,15 @@ function computeSubmissionIndicator(descr: TKIndicatorDescription, data: Record<
     if(entry instanceof TKSubmissionEntryText){
       return {
         iconOchaName: descr.iconOchaName,
-        nameEn: descr.name,
-        namePt: descr.name,
-        valueEn: entry.answerLabelEn,
-        valuePt: entry.answerLabelPt ? entry.answerLabelPt : "",
+        nameLabel: entry.fieldLabel,
+        valueLabel: entry.answerLabel
       }
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameEn: descr.name,
-    namePt: descr.name,
-    valueEn: "NotFound",
-    valuePt: "NotFound",
+    nameLabel: {field_name: "", field_label_en: ""},
+    valueLabel: {field_name: "", field_label_en: ""}
   }
 }
 
@@ -79,16 +76,11 @@ function computeSubmissionIndicators(descr: TKIndicatorsDescription, data: Recor
 export function TKCreateSubmission(
   submissionItem: any,
   surveyConfiguration: TKSurveyConfiguration,
-  indicatorsDescription: TKIndicatorsDescription,
-  languages: TKLanguageDescription[]
+  indicatorsDescription: TKIndicatorsDescription
 ) : TKSubmission {
   const submission: Record<string, TKSubmissionThematic> = {};
   for (const thematic in surveyConfiguration.thematics) {
-    submission[thematic] = {
-      ...surveyConfiguration.thematics[thematic],
-      data: []
-    };
-
+    submission[thematic] = TKSUbmissionThematicfromThematic(surveyConfiguration.thematics[thematic]);
     let agePyramidId = "";
     let agePyramidData : Array<TKSubmissionEntryAgePyramidItem> = [];
     for (const field in submissionItem) {
@@ -109,8 +101,7 @@ export function TKCreateSubmission(
               submission[thematic].data.push(
                 TKCreateSubmissionEntryAgePyramid(
                   agePyramidData,
-                  surveyConfiguration,
-                  languages
+                  surveyConfiguration
                 )
               );
               agePyramidId = "";
@@ -132,8 +123,7 @@ export function TKCreateSubmission(
               submission[thematic].data.push(
                 TKCreateSubmissionEntryAgePyramid(
                   agePyramidData,
-                  surveyConfiguration,
-                  languages
+                  surveyConfiguration
                 )
               );
               agePyramidId = "";
@@ -143,8 +133,7 @@ export function TKCreateSubmission(
               TKCreateSubmissionEntryText(
                 submissionItem[field],
                 field,
-                surveyConfiguration,
-                languages
+                surveyConfiguration
               )
             );
           }

@@ -1,50 +1,46 @@
-import { TKFieldLabel } from "../survey/surveyConfiguration/TKLabelsCollectionBuilder";
+import { TKAnswerLabel } from "./TKAnswerLabel";
+import { TKFieldLabel } from "./TKFieldLabel";
 import { TKTrafficLightColors } from "./TKTrafficLight";
 
 export class TKSubmissionEntry {
   field = "";
+  fieldLabel: TKFieldLabel;
   fieldLabelEn = "";
   fieldLabelPt? = "";
 
   constructor(
     field: string,
-    fieldLabelEn: string,
-    fieldLabelPt: string,
+    fieldLabel: TKFieldLabel
   ){
     this.field = field;
-    this.fieldLabelEn = fieldLabelEn;
-    this.fieldLabelPt = fieldLabelPt;
+    this.fieldLabel = fieldLabel;
   }
 
-  public isAnswered() {
+  public isAnswered() : boolean {
     return true;
   }
 }
 
 export class TKSubmissionEntryText extends TKSubmissionEntry {
-  answerLabelEn = "";
-  answerLabelPt? = "";
+  answerLabel: TKFieldLabel;
   trafficLight = false;
   trafficLightColor: TKTrafficLightColors = TKTrafficLightColors.UNDEFINED;
 
   constructor(
     field: string,
-    fieldLabelEn: string,
-    fieldLabelPt: string,
-    answerLabelEn: string,
-    answerLabelPt: string,
+    fieldLabel: TKFieldLabel,
+    answerLabel: TKFieldLabel,
     trafficLight: boolean,
     trafficLightColor: TKTrafficLightColors
   ) {
-    super(field, fieldLabelEn, fieldLabelPt);
-    this.answerLabelEn = answerLabelEn;
-    this.answerLabelPt = answerLabelPt;
+    super(field, fieldLabel);
+    this.answerLabel = answerLabel;
     this.trafficLight = trafficLight;
     this.trafficLightColor = trafficLightColor;
   }
 
-  public isAnswered() {
-    return this.answerLabelEn !== "";
+  public isAnswered() : boolean{
+    return this.answerLabel ? this.answerLabel.field_label_en !== "" : false;
   }
 }
 
@@ -57,15 +53,14 @@ export class TKSubmissionEntryAgePyramid extends TKSubmissionEntry {
 
   constructor(
     field: string,
-    fieldLabelEn: string,
-    fieldLabelPt: string,
+    fieldLabel: TKFieldLabel,
     malesEntries: Array<number>,
     femalesEntries: Array<number>,
     malesLabels: Array<TKFieldLabel>,
     femalesLabels: Array<TKFieldLabel>
 
   ) {
-    super(field, fieldLabelEn, fieldLabelPt);
+    super(field, fieldLabel);
     this.malesEntries = malesEntries;
     this.femalesEntries = femalesEntries;
     this.malesLabels = malesLabels;

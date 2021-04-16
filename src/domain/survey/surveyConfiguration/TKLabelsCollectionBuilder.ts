@@ -1,16 +1,5 @@
-export interface TKFieldLabel {
-  field_name: string;
-  field_label_en: string;
-  field_label_fr?: string;
-  field_label_pt?: string;
-}
-
-export interface TKAnswerLabel {
-  choice_name: string;
-  choice_name_en: string;
-  choice_name_fr?: string;
-  choice_name_pt?: string;
-}
+import { TKAnswerLabel } from "@/domain/core/TKAnswerLabel";
+import { TKFieldLabel } from "@/domain/core/TKFieldLabel";
 
 export interface TKFieldLabelsCollection {
   [propName: string]: TKFieldLabel;
