@@ -16,7 +16,14 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Emit, Watch } from "vue-property-decorator";
-import mapboxgl, { GeoJSONSource, LngLatBounds, LngLatLike } from "mapbox-gl";
+import mapboxgl, {
+  CircleLayer,
+  FillLayer,
+  GeoJSONSource,
+  LngLatBounds,
+  LngLatLike,
+  SymbolLayer,
+} from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import TKMapFilters from "./TKMapFilters.vue";
@@ -25,8 +32,7 @@ import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
 import { mask } from "@/secondary/map/mask";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKMapCamps } from "@/domain/map/TKMapCamps";
-// import { campDescriptiontoGeoJSON } from "@/domain/map/mapUtils";
-// import { layers } from "@/domain/map/mapStyles";
+import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { Point } from "geojson";
 const devEnv = process.env.NODE_ENV === "development";
 const imgURL = devEnv ? "/markers/" : `./markers/`;
@@ -84,17 +90,13 @@ export default class TKMap extends Vue {
 
   @Watch("currentCamp")
   currentCampChanged() {
-    console.log("current Camp Change");
-
     this.mapCamps = new TKMapCamps(this.campList, this.currentCamp);
-    console.log(this.mapCamps);
-
     const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(
-      "otherCamps"
+      TKMapLayers.NOTSELECTEDCAMPSSOURCE
     ) as mapboxgl.GeoJSONSource;
     otherCampsSource.setData(this.mapCamps.filteredCamps.otherCamps);
     const selectedCampSource: mapboxgl.GeoJSONSource = this.map.getSource(
-      "selectedCamp"
+      TKMapLayers.SELECTEDCAMPSOURCE
     ) as mapboxgl.GeoJSONSource;
     selectedCampSource.setData(this.mapCamps.filteredCamps.selectedCamp);
   }
@@ -145,20 +147,13 @@ export default class TKMap extends Vue {
             if (error) throw error;
           });
         });
-        this.map.addSource("mask", {
+        this.map.addSource(TKMapLayers.COUNTRYMASKSOURCE, {
           type: "geojson",
           data: mask,
         });
-        this.map.addLayer({
-          id: "mask",
-          type: "fill",
-          source: "mask",
-          layout: {},
-          paint: {
-            "fill-color": "#585858",
-            "fill-opacity": 0.7,
-          },
-        });
+        this.map.addLayer(
+          TKMapLayersStyle[TKMapLayers.COUNTRYMASKLAYER] as FillLayer
+        );
         if (
           this.markersLoadedCount === this.mapMarkersList.length &&
           this.campList.length > 0
@@ -174,10 +169,7 @@ export default class TKMap extends Vue {
   // ////////////////////////////////////////////////////////////////////////////////////////////////
 
   addCampsSources() {
-    // console.log(this.mapCamps?.filteredCamps);
-    console.log(this.mapCamps!.filteredCamps.selectedCamp);
-
-    this.map.addSource("otherCamps", {
+    this.map.addSource(TKMapLayers.NOTSELECTEDCAMPSSOURCE, {
       type: "geojson",
       data: this.mapCamps!.filteredCamps.otherCamps,
       cluster: true,
@@ -185,69 +177,37 @@ export default class TKMap extends Vue {
       clusterRadius: 50,
     });
 
-    this.map.addSource("selectedCamp", {
+    this.map.addSource(TKMapLayers.SELECTEDCAMPSOURCE, {
       type: "geojson",
       data: this.mapCamps!.filteredCamps.selectedCamp,
     });
     this.addCampsLayer();
   }
   addCampsLayer() {
-    console.log("Adding Layers");
     // ADD CLUSTERS
-    this.map.addLayer({
-      id: "clusters",
-      type: "circle",
-      source: "otherCamps",
-      filter: ["has", "point_count"],
-      paint: {
-        "circle-color": "#000000",
-        "circle-radius": ["step", ["get", "point_count"], 10, 10, 15, 30, 20],
-      },
-    });
-    this.map.addLayer({
-      id: "cluster-count",
-      type: "symbol",
-      source: "otherCamps",
-      filter: ["has", "point_count"],
-      layout: {
-        "text-field": "{point_count_abbreviated}",
-        "text-font": ["Arial Unicode MS Bold"],
-        "text-size": 12,
-      },
-      paint: {
-        "text-color": "#ffffff",
-      },
-    });
-    this.map.addLayer({
-      id: "camps",
-      type: "symbol",
-      source: "otherCamps",
-      filter: ["!", ["has", "point_count"]],
-      layout: {
-        "icon-image": "planned_site",
-        "icon-size": 0.25,
-      },
-    });
+    this.map.addLayer(
+      TKMapLayersStyle[TKMapLayers.CLUSTERSCIRCLELAYER] as CircleLayer
+    );
+    this.map.addLayer(
+      TKMapLayersStyle[TKMapLayers.CLUSTERSCOUNTLAYER] as SymbolLayer
+    );
+    this.map.addLayer(
+      TKMapLayersStyle[TKMapLayers.NOTSELECTEDCAMPSLAYER] as SymbolLayer
+    );
 
-    this.map.addLayer({
-      id: "camp",
-      type: "symbol",
-      source: "selectedCamp",
-      layout: {
-        "icon-image": "spontaneous_site",
-        "icon-size": 0.35,
-      },
-    });
+    this.map.addLayer(
+      TKMapLayersStyle[TKMapLayers.SELECTEDCAMPLAYER] as SymbolLayer
+    );
 
     // // CLUSTERS BEHAVIOR
-    this.map.on("click", "clusters", (e) => {
+    this.map.on("click", TKMapLayers.CLUSTERSCOUNTLAYER, (e) => {
       const features = this.map.queryRenderedFeatures(e.point, {
-        layers: ["clusters"],
+        layers: [TKMapLayers.CLUSTERSCOUNTLAYER],
       });
       const clusterId = features[0].properties!.cluster_id;
 
       const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(
-        "otherCamps"
+        TKMapLayers.NOTSELECTEDCAMPSSOURCE
       ) as mapboxgl.GeoJSONSource;
       otherCampsSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
         if (err) return;
@@ -259,17 +219,17 @@ export default class TKMap extends Vue {
     });
 
     // CAMPS BEHAVIOR
-    this.map.on("click", "camps", (e) => {
+    this.map.on("click", TKMapLayers.NOTSELECTEDCAMPSLAYER, (e) => {
       if (e !== undefined && e.features && e.features?.length > 0) {
         this.newSelectedCamp = this.mapCamps!.toTKCampDescription(
           e.features[0].properties!.id as string
         );
       }
     });
-    this.map.on("mouseenter", "camps", (e) => {
+    this.map.on("mouseenter", TKMapLayers.NOTSELECTEDCAMPSLAYER, (e) => {
       this.map.getCanvas().style.cursor = "pointer";
     });
-    this.map.on("mouseleave", "camps", () => {
+    this.map.on("mouseleave", TKMapLayers.NOTSELECTEDCAMPSLAYER, () => {
       this.map.getCanvas().style.cursor = "";
     });
   }
