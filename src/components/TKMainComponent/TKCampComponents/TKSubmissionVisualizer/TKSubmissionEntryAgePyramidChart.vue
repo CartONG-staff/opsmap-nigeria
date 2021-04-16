@@ -98,7 +98,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
             size: 11
           },
           layout: {
-            padding: 20
+            padding: 0
           },
           scales: {
             x: {
