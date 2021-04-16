@@ -15,6 +15,10 @@ export class TKSubmissionEntry {
     this.fieldLabelEn = fieldLabelEn;
     this.fieldLabelPt = fieldLabelPt;
   }
+
+  public isAnswered() {
+    return true;
+  }
 }
 
 export class TKSubmissionEntryText extends TKSubmissionEntry {
