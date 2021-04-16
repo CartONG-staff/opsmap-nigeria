@@ -37,8 +37,7 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
-import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
-import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
+import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
 @Component
 export default class TKSubmissionentryView extends Vue {
   @Prop()
@@ -94,6 +93,7 @@ export default class TKSubmissionentryView extends Vue {
       this.question = "";
       this.answer = "";
     }
+  }
 }
 </script>
 

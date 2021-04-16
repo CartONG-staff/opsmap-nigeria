@@ -10,7 +10,7 @@ import { TKSubmission } from "@/domain/core/TKSubmission";
 import { TKIndicator } from "@/domain/core/TKIndicator";
 import { TKIndicatorsDescription, TKIndicatorDescription, TKIndicatorComputationType } from "@/domain/core/TKIndicatorsDescription";
 import { isNumber } from "@turf/helpers";
-
+import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
 // import { spatialDescription } from "@/app-demo/appConfiguration";
 // const siteIDField: string = spatialDescription.siteIDField;
 // const siteNameField = spatialDescription.siteNameField;
@@ -52,10 +52,9 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
         const them = submission.thematics[thematic];
         if(them){
           const item = them.data.find(item => item.field === descr.entryCode);
-          if(item && isNumber(item.answerLabelEn)){
+          if(item && item instanceof TKSubmissionEntryText && isNumber(item.answerLabelEn)){
             sum +=  Number(item.answerLabelEn)
           }
-
         }
       }
     }

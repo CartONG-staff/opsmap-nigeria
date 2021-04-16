@@ -8,6 +8,7 @@ import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 import { TKSubmissionsRulesCollection } from "../surveyConfiguration/TKSubmissionsRulesBuilder";
 import { TKCreateSubmissionEntry } from "./TKCreateSubmissionEntry";
 import { findPoint } from "@turf/meta";
+import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
 
 // TO DEVELOP
 function TKIsSubmissionIsRelevant(): boolean {
@@ -31,7 +32,7 @@ function computeSubmissionIndicator(descr: TKIndicatorDescription, data: Record<
   if(splitted){
     const thematic = "group_"+splitted[0];
     const entry = data[thematic].data.find(item => item.field === descr.entryCode);
-    if(entry){
+    if(entry instanceof TKSubmissionEntryText){
       return {
         iconOchaName: descr.iconOchaName,
         nameEn: descr.name,

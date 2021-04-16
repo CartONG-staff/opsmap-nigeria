@@ -23,11 +23,10 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import TKSubmissionEntryView from "./TKSubmissionEntryTextView.vue";
+import TKSubmissionEntryView from "./TKSubmissionEntryView.vue";
 import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
-import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
+import { TKSubmissionEntry } from "@/domain/core/TKSubmissionEntry";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
-import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
 
 @Component({
   components: {
@@ -38,7 +37,7 @@ export default class TKSubmissionThematicView extends Vue {
   @Prop()
   readonly submissionThematic!: TKSubmissionThematic;
 
-  thematicData!: Array<TKSubmissionEntryText | TKSubmissionEntryChart>;
+  thematicData!: Array<TKSubmissionEntry>;
 
   @Prop()
   readonly options!: TKSubmissionVisualizerOptions;

@@ -5,13 +5,12 @@ import {
   TKTrafficLightGrouped,
   TrafficLightTypes
 } from "@/domain/core/TKTrafficLight";
-import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
 
 import {
   LanguageCode,
   TKLanguageDescription
 } from "@/domain/core/TKLanguageDescription";
-import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
+import { TKSubmissionEntry, TKSubmissionEntryText, TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntry";
 
 function getTrafficLightColor(
   value: string,
@@ -32,7 +31,7 @@ export function TKCreateSubmissionEntry(
   field: string,
   surveyConfiguration: TKSurveyConfiguration,
   languages: TKLanguageDescription[]
-): TKSubmissionEntryText | TKSubmissionEntryChart {
+): TKSubmissionEntry {
 
   const languagesList = [...new Set(languages.map(x => x.code))];
 

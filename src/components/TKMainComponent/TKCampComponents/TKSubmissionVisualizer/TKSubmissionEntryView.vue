@@ -6,8 +6,11 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
-import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
+import {
+  TKSubmissionEntry,
+  TKSubmissionEntryText,
+  TKSubmissionEntryChart
+} from "@/domain/core/TKSubmissionEntry";
 import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
 @Component({
   components: {
@@ -16,7 +19,7 @@ import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
 })
 export default class TKSubmissionentryView extends Vue {
   @Prop()
-  readonly entry!: TKSubmissionEntryText | TKSubmissionEntryChart;
+  readonly entry!: TKSubmissionEntry;
   entryText: TKSubmissionEntryText | null = null;
 
   @Watch("entry", { immediate: true })
