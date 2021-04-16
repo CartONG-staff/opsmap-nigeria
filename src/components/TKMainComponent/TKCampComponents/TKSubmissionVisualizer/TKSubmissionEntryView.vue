@@ -9,7 +9,7 @@ import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import {
   TKSubmissionEntry,
   TKSubmissionEntryText,
-  TKSubmissionEntryChart
+  TKSubmissionEntryAgePyramid
 } from "@/domain/core/TKSubmissionEntry";
 import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
 @Component({
@@ -27,8 +27,8 @@ export default class TKSubmissionentryView extends Vue {
     this.entryText = null;
     if (this.entry instanceof TKSubmissionEntryText) {
       this.entryText = this.entry;
-    } else if (this.entry instanceof TKSubmissionEntryChart) {
-      console.log("[ITEM VIEW] doesn't display chart yet");
+    } else if (this.entry instanceof TKSubmissionEntryAgePyramid) {
+      console.log("[ITEM VIEW] doesn't display agepyramid yet");
     }
   }
 }

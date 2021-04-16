@@ -43,7 +43,7 @@ export class TKSubmissionEntryText extends TKSubmissionEntry {
   }
 }
 
-export class TKSubmissionEntryChart extends TKSubmissionEntry {
+export class TKSubmissionEntryAgePyramid extends TKSubmissionEntry {
   answerLabelEn = "";
   answerLabelPt? = "";
   trafficLight = false;
