@@ -55,7 +55,7 @@ export default class TKIndicatorComponent extends Vue {
     this.handleLocale();
   }
 
-  @Watch("$root.$i18n.locale", { immediate: true })
+  @Watch("$root.$i18n.locale")
   handleLocale() {
     if (this.indicator) {
       if (this.$root.$i18n.locale === "pt") {
