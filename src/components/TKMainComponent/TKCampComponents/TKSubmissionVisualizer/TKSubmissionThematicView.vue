@@ -6,14 +6,13 @@
     </div>
     <div class="tk-submission-thematic-content">
       <div
-        v-for="(entry, key) in thematicData"
+        v-for="entry in thematicData"
         :key="entry.id"
         v-show="
           !options.hideUnanswered ||
             (options.hideUnanswered && entry.isAnswered())
         "
       >
-        <div v-if="key !== 0" class="tk-hseparator"></div>
         <TKSubmissionEntryView :entry="entry" />
       </div>
     </div>
@@ -128,11 +127,6 @@ export default class TKSubmissionThematicView extends Vue {
 .tk-submission-thematic-content {
   padding: 0px 20px;
   width: 100%;
-}
-
-.tk-hseparator {
-  background-color: #d8d8d8;
-  height: 1px;
-  width: 100%;
+  margin-bottom: -1px;
 }
 </style>
