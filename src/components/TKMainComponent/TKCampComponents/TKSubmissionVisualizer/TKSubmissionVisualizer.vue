@@ -63,6 +63,7 @@ export default class TKSubmissionVisualizer extends Vue {
         itemsCount[index] += this.submission.thematics[them].data.length;
       }
     }
+    this.$forceUpdate();
   }
 }
 </script>
