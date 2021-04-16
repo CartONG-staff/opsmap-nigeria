@@ -22,14 +22,14 @@ export class TKSubmissionEntry {
 }
 
 export class TKSubmissionEntryText extends TKSubmissionEntry {
-  answerLabel: TKAnswerLabel;
+  answerLabel: TKFieldLabel;
   trafficLight = false;
   trafficLightColor: TKTrafficLightColors = TKTrafficLightColors.UNDEFINED;
 
   constructor(
     field: string,
     fieldLabel: TKFieldLabel,
-    answerLabel: TKAnswerLabel,
+    answerLabel: TKFieldLabel,
     trafficLight: boolean,
     trafficLightColor: TKTrafficLightColors
   ) {
@@ -40,7 +40,7 @@ export class TKSubmissionEntryText extends TKSubmissionEntry {
   }
 
   public isAnswered() {
-    return this.answerLabel ? this.answerLabel.choice_label_en !== "" : false;
+    return this.answerLabel ? this.answerLabel.field_label_en !== "" : false;
   }
 }
 

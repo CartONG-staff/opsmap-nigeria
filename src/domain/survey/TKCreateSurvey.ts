@@ -34,8 +34,8 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
         const them = submission.thematics[thematic];
         if(them){
           const item = them.data.find(item => item.field === descr.entryCode);
-          if(item && item instanceof TKSubmissionEntryText && item.answerLabel && isNumber(item.answerLabel.choice_label_en)){
-            sum +=  Number(item.answerLabel.choice_label_en)
+          if(item && item instanceof TKSubmissionEntryText && item.answerLabel && isNumber(item.answerLabel.field_label_en)){
+            sum +=  Number(item.answerLabel.field_label_en)
           }
         }
       }
