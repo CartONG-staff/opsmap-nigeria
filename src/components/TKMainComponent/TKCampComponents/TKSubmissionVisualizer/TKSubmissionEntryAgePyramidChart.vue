@@ -67,6 +67,8 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   chart!: Chart;
   readonly ctx = Date.now().toString();
 
+  // TODO : make this nice. translate, style customizable, etc.
+
   mounted() {
     if (this.entry) {
       const config: ChartConfiguration = {
