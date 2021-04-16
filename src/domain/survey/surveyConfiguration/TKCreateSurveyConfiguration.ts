@@ -9,8 +9,6 @@ import {
 } from "./TKThematicsCollectionBuilder";
 import { TKTrafficLightsCollectionBuild } from "./TKTrafficLightsCollectionBuilder";
 import {
-  TKFieldLabel,
-  TKAnswerLabel,
   TKFieldLabelsCollectionBuild,
   TKAnswerLabelsCollectionBuild
 } from "./TKLabelsCollectionBuilder";
@@ -19,6 +17,9 @@ import {
   TKSubmissionRule,
   TKSubmissionsRulesCollectionBuild
 } from "./TKSubmissionsRulesBuilder";
+
+import { TKFieldLabel }  from "@/domain/core/TKFieldLabel";
+import { TKAnswerLabel }  from "@/domain/core/TKAnswerLabel";
 
 export async function TKCreateSurveyConfiguration(
   survey: TKKoboSurveyInfo | TKCSVSurveyInfo
