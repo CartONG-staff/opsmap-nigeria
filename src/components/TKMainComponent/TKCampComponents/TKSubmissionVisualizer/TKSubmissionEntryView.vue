@@ -56,7 +56,6 @@ export default class TKSubmissionentryView extends Vue {
 }
 
 .tk-chart {
-  margin-top: -2px;
+  margin-top: -1px;
 }
-
 </style>
