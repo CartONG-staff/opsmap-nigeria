@@ -75,19 +75,22 @@ export default class TKSubmissionentryView extends Vue {
 
   @Watch("$root.$i18n.locale")
   handleLocale() {
-    if (this.entry) {
+    if (this.entry && this.entry.fieldLabel && this.entry.answerLabel) {
+      console.log(this.entry.fieldLabel);
       if (this.$root.$i18n.locale === "pt") {
-        this.question = this.entry.fieldLabelPt
-          ? this.entry.fieldLabelPt
-          : this.entry.fieldLabelEn;
-        this.answer = this.entry.answerLabelPt
-          ? this.entry.answerLabelPt
-          : this.entry.answerLabelEn;
+        this.question = this.entry.fieldLabel.field_label_pt
+          ? this.entry.fieldLabel.field_label_pt
+          : this.entry.fieldLabel.field_label_en;
+
+        this.answer = this.entry.answerLabel.choice_name_pt
+          ? this.entry.answerLabel.choice_name_pt
+          : this.entry.answerLabel.choice_name_en;
       } else {
-        this.question = this.entry.fieldLabelEn;
-        this.answer = this.entry.answerLabelEn;
+        this.question = this.entry.fieldLabel.field_label_en;
+        this.answer = this.entry.answerLabel.choice_name_en;
       }
     } else {
+      console.log("didn't pass te test");
       this.question = "";
       this.answer = "";
     }

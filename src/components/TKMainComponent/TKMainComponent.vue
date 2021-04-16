@@ -183,8 +183,7 @@ export default class TKMainComponent extends Vue {
       this.appConfig.surveyDescription,
       this.appConfig.surveyFormat,
       this.appConfig.spatialDescription,
-      this.appConfig.indicatorsDescription,
-      this.appConfig.language
+      this.appConfig.indicatorsDescription
     );
 
     console.log(surveys);

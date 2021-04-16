@@ -5,29 +5,11 @@ import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 import { TKBoundariesCollection } from "@/domain/core/TKBoundariesCollection";
 import { TKSurvey } from "@/domain/core/TKSurvey";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
-import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 import { TKSubmission } from "@/domain/core/TKSubmission";
 import { TKIndicator } from "@/domain/core/TKIndicator";
 import { TKIndicatorsDescription, TKIndicatorDescription, TKIndicatorComputationType } from "@/domain/core/TKIndicatorsDescription";
 import { isNumber } from "@turf/helpers";
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
-// import { spatialDescription } from "@/app-demo/appConfiguration";
-// const siteIDField: string = spatialDescription.siteIDField;
-// const siteNameField = spatialDescription.siteNameField;
-// const siteTypeField = spatialDescription.siteTypeField;
-// const siteLastUpdateField = spatialDescription.siteLastUpdateField;
-// const siteLatitudeField = spatialDescription.siteLatitudeField;
-// const siteLongitudeField = spatialDescription.siteLongitudeField;
-
-// type Submission {
-//   [siteIDField]: string;
-//   [siteNameField]: string;
-//   [siteTypeField]: string;
-//   [siteLastUpdateField]: string;
-//   [siteLatitudeField]: string;
-//   [siteLongitudeField]: string;
-//   [propName: string]: string | number;
-// }
 
 function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: string]: { [date: string]: TKSubmission }}) : TKIndicator{
 
@@ -52,8 +34,8 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
         const them = submission.thematics[thematic];
         if(them){
           const item = them.data.find(item => item.field === descr.entryCode);
-          if(item && item instanceof TKSubmissionEntryText && isNumber(item.answerLabelEn)){
-            sum +=  Number(item.answerLabelEn)
+          if(item && item instanceof TKSubmissionEntryText && item.answerLabel && isNumber(item.answerLabel.choice_name_en)){
+            sum +=  Number(item.answerLabel.choice_name_en)
           }
         }
       }
@@ -106,8 +88,7 @@ export function TKCreateSurvey(
   sumbmissions: any[],
   surveyConfig: TKSurveyConfiguration,
   spatialDescription: TKSpatialDescription,
-  indicatorsDescription: TKIndicatorsDescription,
-  languages: TKLanguageDescription[]
+  indicatorsDescription: TKIndicatorsDescription
 ): TKSurvey {
   const submissionsByCamps: {
     [campId: string]: { [date: string]: TKSubmission };
@@ -128,7 +109,7 @@ export function TKCreateSurvey(
       });
       submissionsByCamps[submission[spatialDescription.siteIDField]][
         submission[spatialDescription.siteLastUpdateField]
-      ] = TKCreateSubmission(submission, surveyConfig, indicatorsDescription, languages);
+      ] = TKCreateSubmission(submission, surveyConfig, indicatorsDescription);
     } else {
       campsList.push({
         id: submission[spatialDescription.siteIDField],
@@ -180,7 +161,7 @@ export function TKCreateSurvey(
       submissionsByCamps[submission[spatialDescription.siteIDField]] = {
         [submission[
           spatialDescription.siteLastUpdateField
-        ]]: TKCreateSubmission(submission, surveyConfig, indicatorsDescription, languages)
+        ]]: TKCreateSubmission(submission, surveyConfig, indicatorsDescription)
       };
     }
   }

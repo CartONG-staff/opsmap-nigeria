@@ -6,10 +6,6 @@ import {
   TrafficLightTypes
 } from "@/domain/core/TKTrafficLight";
 
-import {
-  LanguageCode,
-  TKLanguageDescription
-} from "@/domain/core/TKLanguageDescription";
 import { TKSubmissionEntryAgePyramid } from "@/domain/core/TKSubmissionEntry";
 
 function getTrafficLightColor(
@@ -33,11 +29,8 @@ export interface TKSubmissionEntryAgePyramidItem{
 
 export function TKCreateSubmissionEntryAgePyramid(
   chartdata: Array<TKSubmissionEntryAgePyramidItem>,
-  surveyConfiguration: TKSurveyConfiguration,
-  languages: TKLanguageDescription[]
+  surveyConfiguration: TKSurveyConfiguration
 ): TKSubmissionEntryAgePyramid {
-  const languagesList = [...new Set(languages.map(x => x.code))];
-
   const malesEntries = chartdata.filter(item => item.type === 'm');
   const femalesEntries = chartdata.filter(item => item.type === 'f');
 
@@ -47,25 +40,5 @@ export function TKCreateSubmissionEntryAgePyramid(
   const malesLabel = malesEntries.map(item => surveyConfiguration.fieldsLabels[item.field]);
   const femalesLabel = femalesEntries.map(item => surveyConfiguration.fieldsLabels[item.field]);
 
-  return new TKSubmissionEntryAgePyramid("agepyramid", "agepyramiden", "agepyramidpt", malesDataset, femalesDataset, malesLabel, femalesLabel);
-  // return new TKSubmissionEntryText(
-  //   field,
-  //   surveyConfiguration.fieldsLabels[field].field_label_en,
-  //   languagesList.includes(LanguageCode.PT)
-  //     ? surveyConfiguration.fieldsLabels[field]?.field_label_pt || value
-  //     : "",
-  //   surveyConfiguration.answersLabels[field]?.choice_name_en || value,
-  //   languagesList.includes(LanguageCode.PT)
-  //     ? surveyConfiguration.answersLabels[field]?.choice_name_pt || value
-  //     : "",
-  //   surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
-  //   surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
-  //     ? getTrafficLightColor(
-  //         value,
-  //         surveyConfiguration.trafficLights[
-  //           surveyConfiguration.submissionsRules[field].traffic_light_name
-  //         ]
-  //       )
-  //     : TKTrafficLightColors.UNDEFINED
-  // );
+  return new TKSubmissionEntryAgePyramid("agepyramid", malesLabel[0], malesDataset, femalesDataset, malesLabel, femalesLabel);
 }

@@ -1,4 +1,3 @@
-import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 import { TKSubmission } from "@/domain/core/TKSubmission";
 import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
 
@@ -50,8 +49,8 @@ function computeSubmissionIndicator(descr: TKIndicatorDescription, data: Record<
         iconOchaName: descr.iconOchaName,
         nameEn: descr.name,
         namePt: descr.name,
-        valueEn: entry.answerLabelEn,
-        valuePt: entry.answerLabelPt ? entry.answerLabelPt : "",
+        valueEn: entry.answerLabel.choice_name_en,
+        valuePt: entry.answerLabel.choice_name_pt ? entry.answerLabel.choice_name_pt : "",
       }
     }
   }
@@ -79,8 +78,7 @@ function computeSubmissionIndicators(descr: TKIndicatorsDescription, data: Recor
 export function TKCreateSubmission(
   submissionItem: any,
   surveyConfiguration: TKSurveyConfiguration,
-  indicatorsDescription: TKIndicatorsDescription,
-  languages: TKLanguageDescription[]
+  indicatorsDescription: TKIndicatorsDescription
 ) : TKSubmission {
   const submission: Record<string, TKSubmissionThematic> = {};
   for (const thematic in surveyConfiguration.thematics) {
@@ -109,8 +107,7 @@ export function TKCreateSubmission(
               submission[thematic].data.push(
                 TKCreateSubmissionEntryAgePyramid(
                   agePyramidData,
-                  surveyConfiguration,
-                  languages
+                  surveyConfiguration
                 )
               );
               agePyramidId = "";
@@ -132,8 +129,7 @@ export function TKCreateSubmission(
               submission[thematic].data.push(
                 TKCreateSubmissionEntryAgePyramid(
                   agePyramidData,
-                  surveyConfiguration,
-                  languages
+                  surveyConfiguration
                 )
               );
               agePyramidId = "";
@@ -143,8 +139,7 @@ export function TKCreateSubmission(
               TKCreateSubmissionEntryText(
                 submissionItem[field],
                 field,
-                surveyConfiguration,
-                languages
+                surveyConfiguration
               )
             );
           }

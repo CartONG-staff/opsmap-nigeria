@@ -6,10 +6,6 @@ import {
   TrafficLightTypes
 } from "@/domain/core/TKTrafficLight";
 
-import {
-  LanguageCode,
-  TKLanguageDescription
-} from "@/domain/core/TKLanguageDescription";
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
 
 function getTrafficLightColor(
@@ -29,20 +25,13 @@ function getTrafficLightColor(
 export function TKCreateSubmissionEntryText(
   value: string,
   field: string,
-  surveyConfiguration: TKSurveyConfiguration,
-  languages: TKLanguageDescription[]
+  surveyConfiguration: TKSurveyConfiguration
 ): TKSubmissionEntryText {
-  const languagesList = [...new Set(languages.map(x => x.code))];
   return new TKSubmissionEntryText(
     field,
-    surveyConfiguration.fieldsLabels[field].field_label_en,
-    languagesList.includes(LanguageCode.PT)
-      ? surveyConfiguration.fieldsLabels[field]?.field_label_pt || value
-      : "",
-    surveyConfiguration.answersLabels[field]?.choice_name_en || value,
-    languagesList.includes(LanguageCode.PT)
-      ? surveyConfiguration.answersLabels[field]?.choice_name_pt || value
-      : "",
+    surveyConfiguration.fieldsLabels[field],
+    { choice_name: value, choice_name_en: value, choice_name_pt: value, choice_name_fr: value},
+    // TODO: surveyConfiguration.answersLabels[field],
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
       ? getTrafficLightColor(
