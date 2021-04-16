@@ -1,10 +1,10 @@
 <template lang="html">
   <div class="tk-submission-entry-container">
     <TKSubmissionEntryTextView v-if="entryText" :entry="entryText" />
-    <!-- <TKSubmissionEntryAgePyramidChart
+    <TKSubmissionEntryAgePyramidChart
       v-if="entryAgePyramid"
       :entry="entryAgePyramid"
-    /> -->
+    />
   </div>
 </template>
 

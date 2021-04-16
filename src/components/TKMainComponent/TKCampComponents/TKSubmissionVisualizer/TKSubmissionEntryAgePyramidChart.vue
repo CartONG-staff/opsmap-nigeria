@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="tk-submission-item-pyramid-chart">
-    <canvas :id="ctx" height="260"> </canvas>
+    <canvas :id="ctx" height="260"></canvas>
   </div>
 </template>
 
@@ -65,42 +65,25 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 
   // charts
   chart!: Chart;
-  readonly ctx = "myChart";
-  config!: ChartConfiguration;
+  readonly ctx = Date.now().toString();
 
   mounted() {
-    if (this.chart) {
-      this.chart.destroy();
-    }
-    if (this.config) {
-      this.chart = new Chart(this.ctx, this.config);
-    }
-  }
-
-  @Watch("entry", { immediate: true })
-  onentryChanged() {
     if (this.entry) {
-      this.config = {
+      const config: ChartConfiguration = {
         type: "bar",
         data: {
-          labels: this.entry.femalesLabels.map(
-            item =>
-              item.field_label_en
-                .replace("Females ", "")
-                .replace("(", "")
-                .replace(")", "") + " years old"
-          ),
+          labels: this.generateLabels(),
           datasets: [
             {
               label: "Female",
-              data: this.entry.femalesEntries,
+              data: this.generateFemalesDataset(),
               backgroundColor: "#f37788",
               barThickness: 15,
               minBarLength: 1
             },
             {
               label: "Male",
-              data: this.entry.malesEntries.map(item => -1 * item),
+              data: this.generateMalesDataset(),
               backgroundColor: "#4095cd",
               barThickness: 15,
               minBarLength: 1
@@ -183,12 +166,52 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           }
         }
       };
+
       if (this.chart) {
         this.chart.destroy();
       }
-      if (this.config) {
-        this.chart = new Chart(this.ctx, this.config);
-      }
+
+      this.chart = new Chart(this.ctx, config);
+    }
+  }
+
+  @Watch("entry")
+  onEntryChanged() {
+    // Update labels and data Labels
+    this.chart.data.labels = this.generateLabels();
+    this.chart.data.datasets[0].data = this.generateFemalesDataset();
+    this.chart.data.datasets[1].data = this.generateMalesDataset();
+
+    this.chart.update();
+  }
+
+  generateLabels(): Array<string> {
+    if (this.entry) {
+      return this.entry.femalesLabels.map(
+        item =>
+          item.field_label_en
+            .replace("Females ", "")
+            .replace("(", "")
+            .replace(")", "") + " years old"
+      );
+    } else {
+      return [];
+    }
+  }
+
+  generateMalesDataset(): Array<number> {
+    if (this.entry) {
+      return this.entry.malesEntries.map(item => -1 * item);
+    } else {
+      return [];
+    }
+  }
+
+  generateFemalesDataset(): Array<number> {
+    if (this.entry) {
+      return this.entry.femalesEntries;
+    } else {
+      return [];
     }
   }
 }
