@@ -9,11 +9,3 @@ export interface TKSubmissionThematic {
   thematic_label_en: string;
   thematic_label_pt?: string;
 }
-
-export const TK_SUBMISSION_THEMATIC_DEFAULT: TKSubmissionThematic = {
-  data: [],
-  formatted_name: "",
-  icon_file_name: "",
-  thematic_label_en: "",
-  thematic_label_pt: ""
-};
