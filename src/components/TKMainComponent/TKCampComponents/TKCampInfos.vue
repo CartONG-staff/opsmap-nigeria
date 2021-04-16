@@ -52,21 +52,33 @@ export default class TKCampInfos extends Vue {
   @Prop()
   readonly camp!: TKCampDescription;
 
-  admin1 = this.camp.admin1.name;
-  admin2 = this.camp.admin2.name;
-  admin3 = this.camp.admin3.name;
-  name = this.camp.name;
-  coordinates = this.camp.coordinates[0] + "," + this.camp.coordinates[1];
+  admin1 = "";
+  admin2 = "";
+  admin3 = "";
+  name = "";
+  coordinates = "";
 
-  @Watch("camp")
+  @Watch("camp", { immediate: true })
   onChange() {
-    this.admin1 = this.camp ? this.camp.admin1.name : "";
-    this.admin2 = this.camp ? this.camp.admin2.name : "";
-    this.admin3 = this.camp ? this.camp.admin3.name : "";
-    this.name = this.camp ? this.camp.name : "";
+    this.admin1 = this.camp
+      ? this.camp.admin1.name
+        ? this.camp.admin1.name
+        : "-"
+      : "-";
+    this.admin2 = this.camp
+      ? this.camp.admin2.name
+        ? this.camp.admin2.name
+        : "-"
+      : "-";
+    this.admin3 = this.camp
+      ? this.camp.admin3.name
+        ? this.camp.admin3.name
+        : "-"
+      : "-";
+    this.name = this.camp ? this.camp.name : "-";
     this.coordinates = this.camp
       ? this.camp.coordinates[0] + "," + this.camp.coordinates[1]
-      : "";
+      : "-";
   }
 }
 </script>
