@@ -37,6 +37,7 @@
               :submissionsDates="
                 currentSubmissions ? Object.keys(currentSubmissions) : ['']
               "
+              :options="visualizerOptions"
               @date-selection-changed="dateSelected"
             />
             <TKCampInfos class="tk-camp-infos" :camp="currentCamp" />
@@ -54,12 +55,23 @@
 
       <div class="tk-main-content">
         <div v-if="isHomePage" class="tk-home-content">
-          <TKHomeIndicators class="tk-home-indicators" :appConfig="appConfig" />
+          <TKHomeIndicators
+            class="tk-home-indicators"
+            :appConfig="appConfig"
+            :survey="survey"
+          />
           <TKHomeMoreInfos />
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
-          <TKCampIndicators class="tk-camp-indicators" :appConfig="appConfig" />
-          <TKSubmissionVisualizer :submission="currentSubmission" />
+          <TKCampIndicators
+            class="tk-camp-indicators"
+            :appConfig="appConfig"
+            :submission="currentSubmission"
+          />
+          <TKSubmissionVisualizer
+            :options="visualizerOptions"
+            :submission="currentSubmission"
+          />
         </div>
       </div>
     </div>
@@ -92,7 +104,12 @@ import {
   TKCampToolbar,
   TKCampSubtitle,
   TKSubmissionVisualizer,
+  TKSubmissionVisualizerOptions,
 } from "./TKCampComponents";
+
+const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
+  hideUnanswered: false,
+};
 
 @Component({
   components: {
@@ -114,7 +131,7 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
 
-  survey!: TKSurvey;
+  survey: TKSurvey | null = null;
   campsList: TKCampDescription[] = [];
 
   currentCamp: TKCampDescription | null = null;
@@ -123,18 +140,26 @@ export default class TKMainComponent extends Vue {
 
   isHomePage = true;
 
+  visualizerOptions: TKSubmissionVisualizerOptions = {
+    hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered,
+  };
+
   campSelectionCleared() {
     this.currentCamp = null;
     this.currentSubmission = null;
     this.isHomePage = true;
+    this.visualizerOptions.hideUnanswered =
+      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
   }
 
-  campSelectionChanged(campId: string) {
+  campSelectionChanged(campDescr: TKCampDescription) {
     this.isHomePage = false;
-    const found = this.campsList.find((element) => element.id === campId);
-    if (found) {
-      this.currentCamp = found;
-      this.currentSubmissions = this.survey.submissionsByCamps[campId];
+    this.visualizerOptions.hideUnanswered =
+      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
+
+    if (campDescr && this.survey) {
+      this.currentCamp = campDescr;
+      this.currentSubmissions = this.survey.submissionsByCamps[campDescr.id];
       const keys = Object.keys(this.currentSubmissions);
       this.currentSubmission = this.currentSubmissions[keys[0]];
     } else {
@@ -158,6 +183,7 @@ export default class TKMainComponent extends Vue {
       this.appConfig.surveyDescription,
       this.appConfig.surveyFormat,
       this.appConfig.spatialDescription,
+      this.appConfig.indicatorsDescription,
       this.appConfig.language
     );
 

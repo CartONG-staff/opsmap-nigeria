@@ -1,11 +1,14 @@
 <template lang="html">
-  <div class="tk-submission-item-container">
-    <div v-if="item.trafficLight" class="tk-layout-w-trafficlight">
-      <div class="tk-item-content">
-        <div class="tk-item-field-name">
+  <div class="tk-submission-entry-container">
+    <div
+      v-if="displayTrafficLight"
+      class="tk-layout-w-trafficlight"
+    >
+      <div class="tk-entry-content">
+        <div class="tk-entry-field-name">
           {{ question }}
         </div>
-        <div class="tk-item-field-value">
+        <div class="tk-entry-field-value">
           {{ answer }}
         </div>
         <div class="tk-trafficlight">
@@ -18,12 +21,12 @@
       </div>
     </div>
 
-    <div v-if="!item.trafficLight" class="tk-layout-wo-trafficLight">
-      <div class="tk-item-content">
-        <div class="tk-item-field-name">
+    <div v-else class="tk-layout-wo-trafficLight">
+      <div class="tk-entry-content">
+        <div class="tk-entry-field-name">
           {{ question }}
         </div>
-        <div class="tk-item-field-value">
+        <div class="tk-entry-field-value">
           {{ answer }}
         </div>
       </div>
@@ -34,14 +37,16 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
-import { TKSubmissionItem } from "@/domain/core/TKSubmissionItem";
+import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
+import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
 @Component
-export default class TKSubmissionItemView extends Vue {
+export default class TKSubmissionentryView extends Vue {
   @Prop()
-  readonly item!: TKSubmissionItem;
+  readonly entry!: TKSubmissionEntryText;
 
   question = "";
   answer = "";
+  displayTrafficLight = true;
 
   isOK = false;
   isWarning = false;
@@ -49,50 +54,51 @@ export default class TKSubmissionItemView extends Vue {
   isCritical = false;
   isOther = false;
 
-  @Watch("item", { immediate: true })
-  onItemChanged() {
-    this.isOK = this.item
-      ? this.item.trafficLightColor === TKTrafficLightColors.OK
-      : false;
-    this.isWarning = this.item
-      ? this.item.trafficLightColor === TKTrafficLightColors.WARNING
-      : false;
-    this.isDanger = this.item
-      ? this.item.trafficLightColor === TKTrafficLightColors.DANGER
-      : false;
-    this.isCritical = this.item
-      ? this.item.trafficLightColor === TKTrafficLightColors.CRITICAL
-      : false;
-    this.isOther =
-      !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;
-
-    this.handleLocale();
+  @Watch("entry", { immediate: true })
+  onentryChanged() {
+      if(this.entry){
+      this.isOK = this.entry
+        ? this.entry.trafficLightColor === TKTrafficLightColors.OK
+        : false;
+      this.isWarning = this.entry
+        ? this.entry.trafficLightColor === TKTrafficLightColors.WARNING
+        : false;
+      this.isDanger = this.entry
+        ? this.entry.trafficLightColor === TKTrafficLightColors.DANGER
+        : false;
+      this.isCritical = this.entry
+        ? this.entry.trafficLightColor === TKTrafficLightColors.CRITICAL
+        : false;
+      this.isOther =
+        !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;
+      this.displayTrafficLight = this.entry.trafficLight && this.entry.isAnswered();
+      this.handleLocale();
+    }
   }
 
   @Watch("$root.$i18n.locale", { immediate: true })
   handleLocale() {
-    if (this.item) {
+    if (this.entry) {
       if (this.$root.$i18n.locale === "pt") {
-        this.question = this.item.fieldLabelPt
-          ? this.item.fieldLabelPt
-          : this.item.fieldLabelEn;
-        this.answer = this.item.answerLabelPt
-          ? this.item.answerLabelPt
-          : this.item.answerLabelEn;
+        this.question = this.entry.fieldLabelPt
+          ? this.entry.fieldLabelPt
+          : this.entry.fieldLabelEn;
+        this.answer = this.entry.answerLabelPt
+          ? this.entry.answerLabelPt
+          : this.entry.answerLabelEn;
       } else {
-        this.question = this.item.fieldLabelEn;
-        this.answer = this.item.answerLabelEn;
+        this.question = this.entry.fieldLabelEn;
+        this.answer = this.entry.answerLabelEn;
       }
     } else {
       this.question = "";
       this.answer = "";
     }
-  }
 }
 </script>
 
 <style scoped>
-.tk-item-content {
+.tk-entry-content {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
@@ -102,7 +108,7 @@ export default class TKSubmissionItemView extends Vue {
   padding: 5px;
 }
 
-.tk-item-field-name {
+.tk-entry-field-name {
   font-weight: bold;
   font-size: 11px;
   color: #999;
@@ -112,7 +118,7 @@ export default class TKSubmissionItemView extends Vue {
   text-justify: inter-word;
 }
 
-.tk-item-field-value {
+.tk-entry-field-value {
   font-weight: bold;
   font-size: 11px;
   color: #333;

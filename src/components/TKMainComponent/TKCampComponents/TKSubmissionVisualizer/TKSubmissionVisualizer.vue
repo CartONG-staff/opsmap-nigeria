@@ -1,28 +1,16 @@
 <template lang="html">
   <div class="tk-submission-visualizer">
-    <div class="tk-submission-visualizer-col">
-      <TKSubmissionThematicView :submissionThematic="submissionCccm" />
-      <TKSubmissionThematicView :submissionThematic="submissionCom" />
-      <!-- <TKSurveyThematic :submissionThematic="submissionDemo" /> -->
-      <TKSubmissionThematicView :submissionThematic="submissionEducation" />
-      <TKSubmissionThematicView :submissionThematic="submissionSports" />
-    </div>
-    <div class="tk-submission-visualizer-col">
-      <TKSubmissionThematicView :submissionThematic="submissionEnvironment" />
-      <TKSubmissionThematicView :submissionThematic="submissionGeneralInfo" />
-      <TKSubmissionThematicView :submissionThematic="submissionHealth" />
+    <div
+      v-for="(col, indexcol) in columns"
+      :key="indexcol"
+      class="tk-submission-visualizer-col"
+    >
       <TKSubmissionThematicView
-        :submissionThematic="submissionInfrastructure"
+        v-for="(them, indexthem) in col"
+        :key="indexthem"
+        :options="options"
+        :submissionThematic="them"
       />
-      <TKSubmissionThematicView :submissionThematic="submissionWash" />
-    </div>
-    <div class="tk-submission-visualizer-col">
-      <TKSubmissionThematicView
-        :submissionThematic="submissionInteriorisation"
-      />
-      <TKSubmissionThematicView :submissionThematic="submissionNonfood" />
-      <TKSubmissionThematicView :submissionThematic="submissionProtection" />
-      <TKSubmissionThematicView :submissionThematic="submissionSecurity" />
     </div>
   </div>
 </template>
@@ -31,6 +19,8 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
 import { TKSubmission } from "@/domain/core/TKSubmission";
+import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
+import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
 
 @Component({
   components: {
@@ -41,38 +31,37 @@ export default class TKSubmissionVisualizer extends Vue {
   @Prop()
   readonly submission!: TKSubmission;
 
-  submissionCccm: object = {};
-  submissionCom: object = {};
-  submissionDemo: object = {};
-  submissionEducation: object = {};
-  submissionEnvironment: object = {};
-  submissionGeneralInfo: object = {};
-  submissionHealth: object = {};
-  submissionInfrastructure: object = {};
-  submissionInteriorisation: object = {};
-  submissionNonfood: object = {};
-  submissionProtection: object = {};
-  submissionSecurity: object = {};
-  submissionSports: object = {};
-  submissionWash: object = {};
+  @Prop()
+  readonly options!: TKSubmissionVisualizerOptions;
+
+  columns: [
+    Array<TKSubmissionThematic>,
+    Array<TKSubmissionThematic>,
+    Array<TKSubmissionThematic>
+  ] = [[], [], []];
 
   @Watch("submission", { immediate: true })
   onSurveyChanged() {
+    this.columns[0] = [];
+    this.columns[1] = [];
+    this.columns[2] = [];
+
+    const itemsCount = [0, 0, 0];
+
     if (this.submission) {
-      this.submissionCccm = this.submission["group_cccm"];
-      this.submissionCom = this.submission["group_com"];
-      this.submissionDemo = this.submission["group_demo"];
-      this.submissionEducation = this.submission["group_education"];
-      this.submissionEnvironment = this.submission["group_environment"];
-      this.submissionGeneralInfo = this.submission["group_general_info"];
-      this.submissionHealth = this.submission["group_health"];
-      this.submissionInfrastructure = this.submission["group_infrastructure"];
-      this.submissionInteriorisation = this.submission["group_interiorisation"];
-      this.submissionNonfood = this.submission["group_nonfood"];
-      this.submissionProtection = this.submission["group_protection"];
-      this.submissionSecurity = this.submission["group_security"];
-      this.submissionSports = this.submission["group_sports"];
-      this.submissionWash = this.submission["group_wash"];
+      for (const them in this.submission.thematics) {
+        let index = 0;
+        if (itemsCount[1] < itemsCount[0] && itemsCount[1] <= itemsCount[2]) {
+          index = 1;
+        } else if (
+          itemsCount[2] < itemsCount[1] &&
+          itemsCount[2] < itemsCount[0]
+        ) {
+          index = 2;
+        }
+        this.columns[index].push(this.submission.thematics[them]);
+        itemsCount[index] += this.submission.thematics[them].data.length;
+      }
     }
   }
 }

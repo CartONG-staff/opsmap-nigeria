@@ -7,36 +7,41 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
-import { TKIndicator } from "@/domain/ui/TKIndicator";
+import { TKSurvey } from "@/domain/core/TKSurvey";
+import { TKIndicator } from "@/domain/core/TKIndicator";
 @Component({
   components: {
-    TKIndicatorComponent,
-  },
+    TKIndicatorComponent
+  }
 })
 export default class TKHomeIndicators extends Vue {
-  indicator1: TKIndicator = {
-    value: 57,
-    name: "Sites",
-    iconOchaName: "IDP-refugee-camp",
-  };
-
-  indicator2: TKIndicator = {
-    value: 520,
-    name: "People",
-    iconOchaName: "People-in-need",
-  };
-
-  indicator3: TKIndicator = {
-    value: 20,
-    name: "Sites overcrowded",
-    iconOchaName: "Permanent-camp",
-  };
-
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
+
+  @Prop()
+  readonly survey!: TKSurvey;
+
+  indicator1: TKIndicator | null = this.survey
+    ? this.survey.indicators[0]
+    : null;
+  indicator2: TKIndicator | null = this.survey
+    ? this.survey.indicators[1]
+    : null;
+  indicator3: TKIndicator | null = this.survey
+    ? this.survey.indicators[2]
+    : null;
+
+  @Watch("survey", { immediate: true })
+  onSurveyChanged() {
+    if (this.survey) {
+      this.indicator1 = this.survey.indicators[0];
+      this.indicator2 = this.survey.indicators[1];
+      this.indicator3 = this.survey.indicators[2];
+    }
+  }
 }
 </script>
 

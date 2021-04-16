@@ -5,9 +5,16 @@
       <img class="tk-submission-icon" :src="iconurl" />
     </div>
     <div class="tk-submission-thematic-content">
-      <div v-for="(item, key) in submissionThematic.data" :key="item.id">
+      <div
+        v-for="(entry, key) in thematicData"
+        :key="entry.id"
+        v-show="
+          !options.hideUnanswered ||
+            (options.hideUnanswered && entry.isAnswered())
+        "
+      >
         <div v-if="key !== 0" class="tk-hseparator"></div>
-        <TKSubmissionItemView :item="item" />
+        <TKSubmissionEntryView :entry="entry" />
       </div>
     </div>
   </div>
@@ -16,20 +23,25 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import TKSubmissionItemView from "./TKSubmissionItemView.vue";
-import {
-  TKSubmissionThematic,
-  filterThematicUnanswered
-} from "@/domain/core/TKSubmissionThematic";
+import TKSubmissionEntryView from "./TKSubmissionEntryTextView.vue";
+import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
+import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
+import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
+import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
 
 @Component({
   components: {
-    TKSubmissionItemView
+    TKSubmissionEntryView
   }
 })
 export default class TKSubmissionThematicView extends Vue {
   @Prop()
   readonly submissionThematic!: TKSubmissionThematic;
+
+  thematicData!: Array<TKSubmissionEntryText | TKSubmissionEntryChart>;
+
+  @Prop()
+  readonly options!: TKSubmissionVisualizerOptions;
 
   title = "";
   iconurl = "";
@@ -40,8 +52,10 @@ export default class TKSubmissionThematicView extends Vue {
       this.iconurl = TKIconUrl(
         this.submissionThematic.icon_file_name as string
       );
-      filterThematicUnanswered(this.submissionThematic);
+    } else {
+      this.iconurl = "";
     }
+    this.applyOptions();
   }
 
   @Watch("$root.$i18n.locale", { immediate: true })
@@ -57,6 +71,18 @@ export default class TKSubmissionThematicView extends Vue {
       }
     } else {
       this.title = "";
+    }
+  }
+
+  @Watch("options", { immediate: true, deep: true })
+  applyOptions() {
+    // Filter if needed
+    if (this.submissionThematic) {
+      this.thematicData = this.options.hideUnanswered
+        ? this.submissionThematic.data
+        : this.submissionThematic.data;
+    } else {
+      this.thematicData = [];
     }
   }
 }

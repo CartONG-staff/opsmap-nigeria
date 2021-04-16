@@ -1,3 +1,6 @@
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
-
-export interface TKSubmission extends Record<string, TKSubmissionThematic> {}
+import { TKIndicator } from "@/domain/core/TKIndicator";
+export interface TKSubmission {
+    thematics: Record<string, TKSubmissionThematic>;
+    indicators: [TKIndicator, TKIndicator, TKIndicator];
+}

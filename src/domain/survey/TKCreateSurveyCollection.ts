@@ -8,11 +8,13 @@ import { TKCreateSurvey } from "./TKCreateSurvey";
 import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
 import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 import { TKSurveyFormat } from "@/domain/core/TKSurveyFormat";
+import { TKIndicatorsDescription } from "../core/TKIndicatorsDescription";
 
 export async function TKCreateSurveyCollection(
   surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[],
   surveyFormat: TKSurveyFormat,
   spatialDescription: TKSpatialDescription,
+  indicatorsDescription: TKIndicatorsDescription,
   languages: TKLanguageDescription[]
 ): Promise<TKSurveyCollection> {
   // prepare output
@@ -30,12 +32,12 @@ export async function TKCreateSurveyCollection(
 
     // Retrieve config
     const surveyConfig = await TKCreateSurveyConfiguration(info);
-
     // Create survey
     surveyCollection[info.name] = TKCreateSurvey(
       rawData,
       surveyConfig,
       spatialDescription,
+      indicatorsDescription,
       languages
     );
   }

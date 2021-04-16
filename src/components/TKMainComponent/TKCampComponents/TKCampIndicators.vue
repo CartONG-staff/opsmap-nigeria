@@ -7,36 +7,34 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
-import { TKIndicator } from "@/domain/ui/TKIndicator";
+import { TKSubmission } from "@/domain/core/TKSubmission";
 @Component({
   components: {
-    TKIndicatorComponent,
-  },
+    TKIndicatorComponent
+  }
 })
 export default class TKCampIndicators extends Vue {
-  indicator1: TKIndicator = {
-    value: 20,
-    name: "Sites",
-    iconOchaName: "IDP-refugee-camp",
-  };
-
-  indicator2: TKIndicator = {
-    value: 100,
-    name: "People",
-    iconOchaName: "People-in-need",
-  };
-
-  indicator3: TKIndicator = {
-    value: 0,
-    name: "Overcrowded",
-    iconOchaName: "Permanent-camp",
-  };
-
   @Prop()
   readonly appConfig!: TKGeneralConfiguration;
+
+  @Prop()
+  readonly submission!: TKSubmission;
+
+  indicator1 = this.submission.indicators[0];
+  indicator2 = this.submission.indicators[1];
+  indicator3 = this.submission.indicators[2];
+
+  @Watch("submission", { immediate: true })
+  onSurveyChanged() {
+    if (this.submission) {
+      this.indicator1 = this.submission.indicators[0];
+      this.indicator2 = this.submission.indicators[1];
+      this.indicator3 = this.submission.indicators[2];
+    }
+  }
 }
 </script>
 
