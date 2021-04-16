@@ -81,12 +81,12 @@ export default class TKSubmissionentryView extends Vue {
           ? this.entry.fieldLabel.field_label_pt
           : this.entry.fieldLabel.field_label_en;
 
-        this.answer = this.entry.answerLabel.choice_name_pt
-          ? this.entry.answerLabel.choice_name_pt
-          : this.entry.answerLabel.choice_name_en;
+        this.answer = this.entry.answerLabel.choice_label_pt
+          ? this.entry.answerLabel.choice_label_pt
+          : this.entry.answerLabel.choice_label_en;
       } else {
         this.question = this.entry.fieldLabel.field_label_en;
-        this.answer = this.entry.answerLabel.choice_name_en;
+        this.answer = this.entry.answerLabel.choice_label_en;
       }
     } else {
       this.question = "";

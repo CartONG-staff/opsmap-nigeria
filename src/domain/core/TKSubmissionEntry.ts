@@ -40,7 +40,7 @@ export class TKSubmissionEntryText extends TKSubmissionEntry {
   }
 
   public isAnswered() {
-    return this.answerLabel ? this.answerLabel.choice_name_en !== "" : false;
+    return this.answerLabel ? this.answerLabel.choice_label_en !== "" : false;
   }
 }
 

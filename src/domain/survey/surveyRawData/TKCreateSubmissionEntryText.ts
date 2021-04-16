@@ -27,11 +27,19 @@ export function TKCreateSubmissionEntryText(
   field: string,
   surveyConfiguration: TKSurveyConfiguration
 ): TKSubmissionEntryText {
+
+  if(surveyConfiguration.answersLabels[value]){
+    console.log(surveyConfiguration.answersLabels[value]);
+  }
+  else {
+    console.log({ choice_name: value, choice_label_en: value})
+  }
+
+
   return new TKSubmissionEntryText(
     field,
     surveyConfiguration.fieldsLabels[field],
-    { choice_name: value, choice_name_en: value, choice_name_pt: value, choice_name_fr: value},
-    // TODO: surveyConfiguration.answersLabels[field],
+    surveyConfiguration.answersLabels[value] ? surveyConfiguration.answersLabels[value] : { choice_name: value, choice_label_en: value},
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
       ? getTrafficLightColor(

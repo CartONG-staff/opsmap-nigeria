@@ -49,8 +49,8 @@ function computeSubmissionIndicator(descr: TKIndicatorDescription, data: Record<
         iconOchaName: descr.iconOchaName,
         nameEn: descr.name,
         namePt: descr.name,
-        valueEn: entry.answerLabel.choice_name_en,
-        valuePt: entry.answerLabel.choice_name_pt ? entry.answerLabel.choice_name_pt : "",
+        valueEn: entry.answerLabel.choice_label_en,
+        valuePt: entry.answerLabel.choice_label_pt ? entry.answerLabel.choice_label_pt : "",
       }
     }
   }
