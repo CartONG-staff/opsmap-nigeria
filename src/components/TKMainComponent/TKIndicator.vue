@@ -35,6 +35,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 import { TKIndicator } from "@/domain/core/TKIndicator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
+import { TKGetLocalValue } from "@/domain/core/TKFieldLabel";
 
 @Component
 export default class TKIndicatorComponent extends Vue {
@@ -58,17 +59,14 @@ export default class TKIndicatorComponent extends Vue {
   @Watch("$root.$i18n.locale")
   handleLocale() {
     if (this.indicator) {
-      if (this.$root.$i18n.locale === "pt") {
-        this.name = this.indicator.nameLabel.field_label_pt
-          ? this.indicator.nameLabel.field_label_pt
-          : this.indicator.nameLabel.field_label_en;
-        this.value = this.indicator.valueLabel.field_label_pt
-          ? this.indicator.valueLabel.field_label_pt
-          : this.indicator.valueLabel.field_label_en;
-      } else {
-        this.value = this.indicator.valueLabel.field_label_en;
-        this.name = this.indicator.nameLabel.field_label_en;
-      }
+      this.name = TKGetLocalValue(
+        this.indicator.nameLabel,
+        this.$root.$i18n.locale
+      );
+      this.value = TKGetLocalValue(
+        this.indicator.valueLabel,
+        this.$root.$i18n.locale
+      );
     } else {
       this.value = "";
       this.name = "";

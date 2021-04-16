@@ -16,7 +16,7 @@ export class TKSubmissionEntry {
     this.fieldLabel = fieldLabel;
   }
 
-  public isAnswered() {
+  public isAnswered() : boolean {
     return true;
   }
 }
@@ -39,7 +39,7 @@ export class TKSubmissionEntryText extends TKSubmissionEntry {
     this.trafficLightColor = trafficLightColor;
   }
 
-  public isAnswered() {
+  public isAnswered() : boolean{
     return this.answerLabel ? this.answerLabel.field_label_en !== "" : false;
   }
 }
