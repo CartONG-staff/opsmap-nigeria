@@ -60,6 +60,8 @@ export default class TKCampInfos extends Vue {
 
   @Watch("camp", { immediate: true })
   onChange() {
+    console.log(this.camp);
+
     this.admin1 = this.camp ? this.camp.admin1.name : "";
     this.admin2 = this.camp ? this.camp.admin2.name : "";
     this.admin3 = this.camp ? this.camp.admin3.name : "";

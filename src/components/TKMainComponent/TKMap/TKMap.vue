@@ -48,11 +48,19 @@ export default class TKMap extends Vue {
 
   mapCamps: TKMapCamps | null = null;
   newSelectedCamp: TKCampDescription | null = null;
-  mapMarkersList = ["planned_site", "spontaneous_site"];
+  mapMarkersList = [
+    "planned_site",
+    "planned_site_selected",
+    "spontaneous_site",
+    "spontaneous_site_selected",
+  ];
   markersLoadedCount = 0;
 
   mounted(): void {
-    this.mapCamps = new TKMapCamps(this.campList, this.currentCamp);
+    if (this.campList !== null) {
+      this.mapCamps = new TKMapCamps(this.campList, this.currentCamp);
+    }
+
     this.initMap();
   }
 
@@ -76,7 +84,10 @@ export default class TKMap extends Vue {
 
   @Watch("currentCamp")
   currentCampChanged() {
+    console.log("current Camp Change");
+
     this.mapCamps = new TKMapCamps(this.campList, this.currentCamp);
+    console.log(this.mapCamps);
 
     const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(
       "otherCamps"
@@ -91,12 +102,12 @@ export default class TKMap extends Vue {
   @Watch("newSelectedCamp")
   newCampSelected() {
     this.newSelectedCamp !== null
-      ? this.campSelectionChanged(this.newSelectedCamp.id)
+      ? this.campSelectionChanged(this.newSelectedCamp)
       : this.campSelectionCleared();
   }
 
   @Emit("camp-selection-changed")
-  campSelectionChanged(camp: string) {
+  campSelectionChanged(camp: TKCampDescription) {
     console.log("campSelected: " + camp!.id);
   }
   @Emit("camp-selection-cleared")
@@ -163,7 +174,9 @@ export default class TKMap extends Vue {
   // ////////////////////////////////////////////////////////////////////////////////////////////////
 
   addCampsSources() {
-    console.log(this.mapCamps?.filteredCamps);
+    // console.log(this.mapCamps?.filteredCamps);
+    console.log(this.mapCamps!.filteredCamps.selectedCamp);
+
     this.map.addSource("otherCamps", {
       type: "geojson",
       data: this.mapCamps!.filteredCamps.otherCamps,
@@ -181,7 +194,6 @@ export default class TKMap extends Vue {
   addCampsLayer() {
     console.log("Adding Layers");
     // ADD CLUSTERS
-    console.log(this.map.getSource("otherCamps"));
     this.map.addLayer({
       id: "clusters",
       type: "circle",
@@ -250,7 +262,7 @@ export default class TKMap extends Vue {
     this.map.on("click", "camps", (e) => {
       if (e !== undefined && e.features && e.features?.length > 0) {
         this.newSelectedCamp = this.mapCamps!.toTKCampDescription(
-          e.features[0]
+          e.features[0].properties!.id as string
         );
       }
     });

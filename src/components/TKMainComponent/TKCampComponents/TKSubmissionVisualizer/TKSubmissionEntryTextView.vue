@@ -1,9 +1,6 @@
 <template lang="html">
   <div class="tk-submission-entry-container">
-    <div
-      v-if="displayTrafficLight"
-      class="tk-layout-w-trafficlight"
-    >
+    <div v-if="displayTrafficLight" class="tk-layout-w-trafficlight">
       <div class="tk-entry-content">
         <div class="tk-entry-field-name">
           {{ question }}
@@ -56,7 +53,7 @@ export default class TKSubmissionentryView extends Vue {
 
   @Watch("entry", { immediate: true })
   onentryChanged() {
-      if(this.entry){
+    if (this.entry) {
       this.isOK = this.entry
         ? this.entry.trafficLightColor === TKTrafficLightColors.OK
         : false;
@@ -71,7 +68,8 @@ export default class TKSubmissionentryView extends Vue {
         : false;
       this.isOther =
         !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;
-      this.displayTrafficLight = this.entry.trafficLight && this.entry.isAnswered();
+      this.displayTrafficLight =
+        this.entry.trafficLight && this.entry.isAnswered();
       this.handleLocale();
     }
   }
@@ -94,6 +92,7 @@ export default class TKSubmissionentryView extends Vue {
       this.question = "";
       this.answer = "";
     }
+  }
 }
 </script>
 

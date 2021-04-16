@@ -36,18 +36,18 @@ export class TKMapCamps {
     };
   }
 
-  toTKCampDescription(feature: MapboxGeoJSONFeature): TKCampDescription {
-    return { ...(feature.properties as TKCampDescription) };
+  toTKCampDescription(featureID: string): TKCampDescription {
+    console.log(featureID);
+    console.log(this.camps.find((x) => x.id === featureID));
+
+    return this.camps.find((x) => x.id === featureID) as TKCampDescription;
   }
 
   filterCamps(): TKFilteredCamps {
     return {
-      selectedCamp:
-        this.currentCamp === null
-          ? ""
-          : this.toGeoJSON(
-              this.camps.filter((x) => x.id === this.currentCamp!.id)
-            ),
+      selectedCamp: this.toGeoJSON(
+        this.camps.filter((x) => x.id === this.currentCamp?.id)
+      ),
       otherCamps: this.toGeoJSON(
         this.currentCamp === null
           ? this.camps
