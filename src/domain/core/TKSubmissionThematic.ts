@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKSubmissionEntryChart } from "./TKSubmissionEntryChart";
-import { TKSubmissionEntryText } from "./TKSubmissionEntryText";
+import { TKSubmissionEntry } from "./TKSubmissionEntry";
 
 export interface TKSubmissionThematic {
-  data: Array<TKSubmissionEntryText | TKSubmissionEntryChart>;
+  data: Array<TKSubmissionEntry>;
   formatted_name: string;
   icon_file_name: string;
   thematic_label_en: string;

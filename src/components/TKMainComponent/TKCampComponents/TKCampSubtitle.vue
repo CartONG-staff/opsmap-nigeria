@@ -13,9 +13,9 @@ export default class TKCampSubtitle extends Vue {
   @Prop()
   readonly camp!: TKCampDescription;
 
-  name = "";
+  name = this.camp.name;
 
-  @Watch("camp", { immediate: true })
+  @Watch("camp")
   onChange() {
     this.name = this.camp ? this.camp.name : "";
   }

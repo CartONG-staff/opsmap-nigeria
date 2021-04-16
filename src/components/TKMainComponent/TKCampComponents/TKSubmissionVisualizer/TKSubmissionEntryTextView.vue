@@ -1,9 +1,6 @@
 <template lang="html">
   <div class="tk-submission-entry-container">
-    <div
-      v-if="displayTrafficLight"
-      class="tk-layout-w-trafficlight"
-    >
+    <div v-if="displayTrafficLight" class="tk-layout-w-trafficlight">
       <div class="tk-entry-content">
         <div class="tk-entry-field-name">
           {{ question }}
@@ -37,8 +34,7 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
-import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
-import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
+import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
 @Component
 export default class TKSubmissionentryView extends Vue {
   @Prop()
@@ -56,7 +52,7 @@ export default class TKSubmissionentryView extends Vue {
 
   @Watch("entry", { immediate: true })
   onentryChanged() {
-      if(this.entry){
+    if (this.entry) {
       this.isOK = this.entry
         ? this.entry.trafficLightColor === TKTrafficLightColors.OK
         : false;
@@ -71,12 +67,13 @@ export default class TKSubmissionentryView extends Vue {
         : false;
       this.isOther =
         !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;
-      this.displayTrafficLight = this.entry.trafficLight && this.entry.isAnswered();
+      this.displayTrafficLight =
+        this.entry.trafficLight && this.entry.isAnswered();
       this.handleLocale();
     }
   }
 
-  @Watch("$root.$i18n.locale", { immediate: true })
+  @Watch("$root.$i18n.locale")
   handleLocale() {
     if (this.entry) {
       if (this.$root.$i18n.locale === "pt") {
@@ -94,6 +91,7 @@ export default class TKSubmissionentryView extends Vue {
       this.question = "";
       this.answer = "";
     }
+  }
 }
 </script>
 
