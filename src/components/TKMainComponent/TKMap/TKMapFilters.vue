@@ -19,8 +19,8 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class TKMapFilter extends Vue {
-  plannedImgUrl = TKIconUrl("Permanent-camp");
-  spontaneousImgUrl = TKIconUrl("Spontaneous-site");
+  plannedImgUrl = TKIconUrl("planned_site");
+  spontaneousImgUrl = TKIconUrl("spontaneous_site");
 }
 </script>
 <style scoped>

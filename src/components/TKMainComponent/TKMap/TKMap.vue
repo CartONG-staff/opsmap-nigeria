@@ -26,6 +26,7 @@ import mapboxgl, {
 } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
+import { TKIconUrl } from "@/domain/ui/TKIcons";
 import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
@@ -34,8 +35,6 @@ import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { Point } from "geojson";
-const devEnv = process.env.NODE_ENV === "development";
-const imgURL = devEnv ? "/markers/" : `./markers/`;
 
 @Component({
   components: {
@@ -141,7 +140,7 @@ export default class TKMap extends Vue {
 
       this.map.on("load", () => {
         this.mapMarkersList.map((img) => {
-          this.map.loadImage(`${imgURL}${img}.png`, (error, image) => {
+          this.map.loadImage(TKIconUrl(img), (error, image) => {
             this.markersLoadedCount++;
             this.map.addImage(img, image as ImageBitmap);
             if (error) throw error;
