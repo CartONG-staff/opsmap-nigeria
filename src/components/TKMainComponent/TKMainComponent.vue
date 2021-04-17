@@ -51,6 +51,11 @@
           @camp-selection-cleared="campSelectionCleared"
           @camp-selection-changed="campSelectionChanged"
         />
+
+        <TKMapFilters
+          class="tk-map-filters"
+          @camps-filters-changed="campsFiltersChanged"
+        />
       </div>
 
       <div class="tk-main-content">
@@ -85,6 +90,7 @@ import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollecti
 
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
+import TKMapFilters from "./TKMap/TKMapFilters.vue";
 
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKSurvey } from "@/domain/core/TKSurvey";
@@ -106,6 +112,7 @@ import {
   TKSubmissionVisualizer,
   TKSubmissionVisualizerOptions,
 } from "./TKCampComponents";
+import { TKFiltersTypes } from "@/domain/core/TKFilters";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false,
@@ -124,6 +131,7 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
+    TKMapFilters,
     TKTitle,
   },
 })
@@ -143,6 +151,10 @@ export default class TKMainComponent extends Vue {
   visualizerOptions: TKSubmissionVisualizerOptions = {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered,
   };
+
+  campsFiltersChanged(filter: string, value: TKFiltersTypes) {
+    console.log("Change on main component: " + filter, value);
+  }
 
   campSelectionCleared() {
     this.currentCamp = null;
@@ -247,6 +259,7 @@ export default class TKMainComponent extends Vue {
   flex-flow: row nowrap;
   align-items: top;
   width: 100%;
+  max-height: 450px;
   justify-content: space-between;
 }
 
@@ -281,6 +294,13 @@ export default class TKMainComponent extends Vue {
 .tk-main-map {
   width: 65%;
   height: 450px;
+}
+
+.tk-map-filters {
+  position: absolute;
+  right: calc(20px + var(--side-padding));
+  top: 525px;
+  z-index: 2500;
 }
 
 .tk-main-content {

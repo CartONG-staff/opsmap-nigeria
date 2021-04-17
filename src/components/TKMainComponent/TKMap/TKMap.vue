@@ -8,8 +8,6 @@
       v-on:zoomreset="zoomReset"
     />
 
-    <TKMapFilters class="tk-map-filters" />
-
     <!-- <TKMapBasemapPicker class="tk-basemap-picker" v-on:change="updateBasemap" /> -->
   </div>
 </template>
@@ -27,7 +25,6 @@ import mapboxgl, {
 import "mapbox-gl/dist/mapbox-gl.css";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import TKMapFilters from "./TKMapFilters.vue";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
 import { mask } from "@/secondary/map/mask";
@@ -39,7 +36,7 @@ import { Point } from "geojson";
 @Component({
   components: {
     TKMapBasemapPicker,
-    TKMapFilters,
+    // TKMapFilters,
     TKMapZoom,
   },
 })
@@ -329,13 +326,6 @@ export default class TKMap extends Vue {
   right: 8px;
   z-index: 2500;
   background-color: #fff;
-}
-
-.tk-map-filters {
-  position: absolute;
-  bottom: 26px;
-  right: 8px;
-  z-index: 2500;
 }
 
 .tk-basemap-picker {

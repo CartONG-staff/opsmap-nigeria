@@ -1,12 +1,22 @@
 <template lang="html">
   <div class="tk-map-filters">
     <div class="tk-map-filter">
-      <v-checkbox class="tk-map-filter-checkbox" hide-details></v-checkbox>
+      <v-checkbox
+        v-model="checkboxs.planned"
+        class="tk-map-filter-checkbox"
+        @change="checkboxChange('planned')"
+        hide-details
+      ></v-checkbox>
       <img class="tk-indicator-icon" :src="plannedImgUrl" />
       <div classs="tk-map-filter-text">Planned site</div>
     </div>
     <div class="tk-map-filter">
-      <v-checkbox class="tk-map-filter-checkbox" hide-details></v-checkbox>
+      <v-checkbox
+        v-model="checkboxs.spontaneous"
+        @change="checkboxChange('spontaneous')"
+        class="tk-map-filter-checkbox"
+        hide-details
+      ></v-checkbox>
       <img class="tk-indicator-icon" :src="spontaneousImgUrl" />
       <div class="tk-map-filter-text">Spontaneous site</div>
     </div>
@@ -15,12 +25,31 @@
 
 <script lang="ts">
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Emit, Vue } from "vue-property-decorator";
+import { TKFilters, TKFiltersTypes } from "@/domain/core/TKFilters";
 
 @Component
 export default class TKMapFilter extends Vue {
   plannedImgUrl = TKIconUrl("planned_site");
   spontaneousImgUrl = TKIconUrl("spontaneous_site");
+  checkboxs = {
+    planned: true,
+    spontaneous: true,
+  };
+
+  @Emit("camps-filters-changed")
+  campsFiltersChanged(filter: string, value: TKFiltersTypes) {
+    console.log("Change on filter component: " + filter);
+  }
+
+  checkboxChange(checkbox: string): void {
+    checkbox === "planned"
+      ? this.campsFiltersChanged(TKFilters.PLANNED_SITE, this.checkboxs.planned)
+      : this.campsFiltersChanged(
+          TKFilters.SPONTANEOUS_SITE,
+          this.checkboxs.spontaneous
+        );
+  }
 }
 </script>
 <style scoped>
