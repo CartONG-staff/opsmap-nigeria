@@ -1,3 +1,5 @@
+import { campTypesValues } from "@/app-demo/appConfiguration";
+
 export enum TKMapLayers {
   COUNTRYMASKSOURCE = "countryMask",
   COUNTRYMASKLAYER = "countryMaskLayer",
@@ -53,9 +55,9 @@ export const TKMapLayersStyle = {
       "icon-image": [
         "match",
         ["get", "type"],
-        "Planned Camps",
+        campTypesValues.PLANNED,
         "planned_site",
-        "Informal",
+        campTypesValues.SPONTANEOUS,
         "spontaneous_site",
         "planned_site", // everything else
       ],
@@ -70,9 +72,9 @@ export const TKMapLayersStyle = {
       "icon-image": [
         "match",
         ["get", "type"],
-        "Planned Camps",
+        campTypesValues.PLANNED,
         "planned_site_selected",
-        "Informal",
+        campTypesValues.SPONTANEOUS,
         "spontaneous_site_selected",
         "planned_site_selected", // everything else
       ],

@@ -1,7 +1,9 @@
+import { campTypesValues } from "@/app-demo/appConfiguration";
+
 export interface TKCampDescription {
   id: string;
   name: string;
-  type: string;
+  type: campTypesValues.PLANNED | campTypesValues.SPONTANEOUS;
   submissionsDates: string[];
   lat: number;
   lng: number;

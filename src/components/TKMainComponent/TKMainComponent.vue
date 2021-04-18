@@ -9,7 +9,7 @@
         <div v-if="isHomePage" class="tk-home-header"></div>
         <div v-if="!isHomePage" class="tk-camp-header">
           <TKCampSelector
-            :campList="campsList"
+            :campList="filteredDataset.filteredCampsList || null"
             :currentCamp="currentCamp"
             @camp-selection-cleared="campSelectionCleared"
             @camp-selection-changed="campSelectionChanged"
@@ -24,7 +24,7 @@
             <TKHomeCombos
               class="tk-home-combos"
               :appConfig="appConfig"
-              :campList="campsList"
+              :campList="filteredDataset.filteredCampsList || null"
               :currentCamp="currentCamp"
               @camp-selection-cleared="campSelectionCleared"
               @camp-selection-changed="campSelectionChanged"
@@ -46,7 +46,7 @@
         <TKMap
           class="tk-main-map"
           :appConfig="appConfig"
-          :campList="campsList"
+          :campList="filteredDataset.filteredCampsList || null"
           :currentCamp="currentCamp"
           @camp-selection-cleared="campSelectionCleared"
           @camp-selection-changed="campSelectionChanged"
@@ -112,7 +112,11 @@ import {
   TKSubmissionVisualizer,
   TKSubmissionVisualizerOptions,
 } from "./TKCampComponents";
-import { TKFiltersTypes } from "@/domain/core/TKFilters";
+import {
+  TKFiltersTypes,
+  TKDatasetFilterer,
+  TKFilters,
+} from "@/domain/core/TKFilters";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false,
@@ -140,7 +144,7 @@ export default class TKMainComponent extends Vue {
   readonly appConfig!: TKGeneralConfiguration;
 
   survey: TKSurvey | null = null;
-  campsList: TKCampDescription[] = [];
+  filteredDataset: TKDatasetFilterer | null = null;
 
   currentCamp: TKCampDescription | null = null;
   currentSubmission: TKSubmission | null = null;
@@ -152,8 +156,10 @@ export default class TKMainComponent extends Vue {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered,
   };
 
-  campsFiltersChanged(filter: string, value: TKFiltersTypes) {
+  campsFiltersChanged(filter: TKFilters, value: TKFiltersTypes) {
+    this.filteredDataset?.setFiltersValue(filter, value);
     console.log("Change on main component: " + filter, value);
+    console.log(this.filteredDataset);
   }
 
   campSelectionCleared() {
@@ -203,7 +209,9 @@ export default class TKMainComponent extends Vue {
 
     // TODO : make this nice. This isn't
     this.survey = surveys["2021"];
-    this.campsList = this.survey.campsList;
+    this.filteredDataset = new TKDatasetFilterer(this.survey);
+    // this.campsList = .filteredCampsList;
+    // this.campsList = this.survey.campsList;
   }
 }
 </script>
