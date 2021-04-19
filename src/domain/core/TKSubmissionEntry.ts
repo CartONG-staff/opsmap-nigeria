@@ -1,16 +1,16 @@
 import { TKAnswerLabel } from "./TKAnswerLabel";
-import { TKFieldLabel } from "./TKFieldLabel";
+import { TKLabel } from "./TKLabel";
 import { TKTrafficLightColors } from "./TKTrafficLight";
 
 export class TKSubmissionEntry {
   field = "";
-  fieldLabel: TKFieldLabel;
+  fieldLabel: TKLabel;
   fieldLabelEn = "";
   fieldLabelPt? = "";
 
   constructor(
     field: string,
-    fieldLabel: TKFieldLabel
+    fieldLabel: TKLabel
   ){
     this.field = field;
     this.fieldLabel = fieldLabel;
@@ -22,14 +22,14 @@ export class TKSubmissionEntry {
 }
 
 export class TKSubmissionEntryText extends TKSubmissionEntry {
-  answerLabel: TKFieldLabel;
+  answerLabel: TKLabel;
   trafficLight = false;
   trafficLightColor: TKTrafficLightColors = TKTrafficLightColors.UNDEFINED;
 
   constructor(
     field: string,
-    fieldLabel: TKFieldLabel,
-    answerLabel: TKFieldLabel,
+    fieldLabel: TKLabel,
+    answerLabel: TKLabel,
     trafficLight: boolean,
     trafficLightColor: TKTrafficLightColors
   ) {
@@ -40,7 +40,7 @@ export class TKSubmissionEntryText extends TKSubmissionEntry {
   }
 
   public isAnswered() : boolean{
-    return this.answerLabel ? this.answerLabel.field_label_en !== "" : false;
+    return this.answerLabel ? this.answerLabel.label_en !== "" : false;
   }
 }
 
@@ -48,16 +48,16 @@ export class TKSubmissionEntryAgePyramid extends TKSubmissionEntry {
 
   malesEntries: Array<number>;
   femalesEntries: Array<number>;
-  malesLabels: Array<TKFieldLabel>;
-  femalesLabels: Array<TKFieldLabel>;
+  malesLabels: Array<TKLabel>;
+  femalesLabels: Array<TKLabel>;
 
   constructor(
     field: string,
-    fieldLabel: TKFieldLabel,
+    fieldLabel: TKLabel,
     malesEntries: Array<number>,
     femalesEntries: Array<number>,
-    malesLabels: Array<TKFieldLabel>,
-    femalesLabels: Array<TKFieldLabel>
+    malesLabels: Array<TKLabel>,
+    femalesLabels: Array<TKLabel>
 
   ) {
     super(field, fieldLabel);

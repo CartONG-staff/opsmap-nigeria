@@ -57,8 +57,8 @@ function computeSubmissionIndicator(descr: TKIndicatorDescription, data: Record<
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameLabel: {field_name: "", field_label_en: ""},
-    valueLabel: {field_name: "", field_label_en: ""}
+    nameLabel: {name: "", label_en: ""},
+    valueLabel: {name: "", label_en: ""}
   }
 }
 

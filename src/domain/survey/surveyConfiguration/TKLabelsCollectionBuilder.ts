@@ -1,20 +1,23 @@
-import { TKAnswerLabel } from "@/domain/core/TKAnswerLabel";
-import { TKFieldLabel } from "@/domain/core/TKFieldLabel";
+/* eslint-disable @typescript-eslint/camelcase */
 
-export interface TKFieldLabelsCollection {
-  [propName: string]: TKFieldLabel;
+import { TKAnswerLabel } from "@/domain/core/TKAnswerLabel";
+import { TKLabel } from "@/domain/core/TKLabel";
+import { TKFieldLabelCSV, TKToLabel } from "./TKFieldLabelCSV";
+
+export interface TKLabelsCollection {
+  [propName: string]: TKLabel;
 }
 
 export interface TKAnswerLabelsCollection {
   [propName: string]: TKAnswerLabel;
 }
 
-export function TKFieldLabelsCollectionBuild(
-  labels: TKFieldLabel[]
-): TKFieldLabelsCollection {
-  const labelsCollection: TKFieldLabelsCollection = {};
-  labels.map((item: TKFieldLabel) => {
-    labelsCollection[item.field_name] = { ...item };
+export function TKLabelsCollectionBuild(
+  labels: TKFieldLabelCSV[]
+): TKLabelsCollection {
+  const labelsCollection: TKLabelsCollection = {};
+  labels.map((item: TKFieldLabelCSV) => {
+    labelsCollection[ item.field_name] = TKToLabel(item);
   });
   return labelsCollection;
 }

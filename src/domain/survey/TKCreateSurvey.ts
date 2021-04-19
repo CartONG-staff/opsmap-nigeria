@@ -18,8 +18,8 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
   if(descr.entryCode === "mp_site_id"){
     return {
       iconOchaName: descr.iconOchaName,
-      nameLabel: {field_name: descr.name, field_label_en: descr.name},
-      valueLabel: {field_name: String(Object.keys(data).length), field_label_en: String(Object.keys(data).length)}
+      nameLabel: {name: descr.name, label_en: descr.name},
+      valueLabel: {name: String(Object.keys(data).length), label_en: String(Object.keys(data).length)}
     }
   }
 
@@ -34,8 +34,8 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
         const them = submission.thematics[thematic];
         if(them){
           const item = them.data.find(item => item.field === descr.entryCode);
-          if(item && item instanceof TKSubmissionEntryText && item.answerLabel && isNumber(item.answerLabel.field_label_en)){
-            sum +=  Number(item.answerLabel.field_label_en)
+          if(item && item instanceof TKSubmissionEntryText && item.answerLabel && isNumber(item.answerLabel.label_en)){
+            sum +=  Number(item.answerLabel.label_en)
           }
         }
       }
@@ -43,28 +43,28 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
     if(!descr.computationType){
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: {field_name: descr.name, field_label_en: descr.name},
-        valueLabel: {field_name: String(sum), field_label_en: String(sum)}
+        nameLabel: {name: descr.name, label_en: descr.name},
+        valueLabel: {name: String(sum), label_en: String(sum)}
       }
     }
     if(descr.computationType === TKIndicatorComputationType.MEAN){
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: {field_name: descr.name, field_label_en: descr.name},
-        valueLabel: {field_name: String( (sum / Object.keys(data).length).toFixed(2) ), field_label_en: String( (sum / Object.keys(data).length).toFixed(2) )}
+        nameLabel: {name: descr.name, label_en: descr.name},
+        valueLabel: {name: String( (sum / Object.keys(data).length).toFixed(2) ), label_en: String( (sum / Object.keys(data).length).toFixed(2) )}
       }
     } else if (descr.computationType === TKIndicatorComputationType.SUM) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: {field_name: descr.name, field_label_en: descr.name},
-        valueLabel: {field_name: String(sum), field_label_en: String(sum)}
+        nameLabel: {name: descr.name, label_en: descr.name},
+        valueLabel: {name: String(sum), label_en: String(sum)}
       }
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameLabel: {field_name: descr.name, field_label_en: descr.name},
-    valueLabel: {field_name: "NotFound", field_label_en: "NotFound"}
+    nameLabel: {name: descr.name, label_en: descr.name},
+    valueLabel: {name: "NotFound", label_en: "NotFound"}
   }
 }
 

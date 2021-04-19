@@ -26,7 +26,7 @@ import TKSubmissionEntryView from "./TKSubmissionEntryView.vue";
 import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
 import { TKSubmissionEntry } from "@/domain/core/TKSubmissionEntry";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
-import { TKGetLocalValue } from "@/domain/core/TKFieldLabel";
+import { TKGetLocalValue } from "@/domain/core/TKLabel";
 
 @Component({
   components: {

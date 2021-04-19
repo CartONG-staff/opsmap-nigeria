@@ -1,7 +1,7 @@
 import { TKThematicsCollection } from "@/domain/survey/surveyConfiguration/TKThematicsCollectionBuilder";
 import { TKTrafficLightsCollection } from "@/domain/survey/surveyConfiguration/TKTrafficLightsCollectionBuilder";
 import {
-  TKFieldLabelsCollection,
+  TKLabelsCollection,
   TKAnswerLabelsCollection
 } from "@/domain/survey/surveyConfiguration/TKLabelsCollectionBuilder";
 
@@ -10,7 +10,7 @@ import { TKSubmissionsRulesCollection } from "@/domain/survey/surveyConfiguratio
 export interface TKSurveyConfiguration {
   thematics: TKThematicsCollection;
   trafficLights: TKTrafficLightsCollection;
-  fieldsLabels: TKFieldLabelsCollection;
+  fieldsLabels: TKLabelsCollection;
   answersLabels: TKAnswerLabelsCollection;
   submissionsRules: TKSubmissionsRulesCollection;
 }

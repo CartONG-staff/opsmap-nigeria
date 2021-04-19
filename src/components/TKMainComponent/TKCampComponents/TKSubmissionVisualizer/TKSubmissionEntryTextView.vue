@@ -35,7 +35,7 @@
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
-import { TKGetLocalValue } from "@/domain/core/TKFieldLabel";
+import { TKGetLocalValue } from "@/domain/core/TKLabel";
 @Component
 export default class TKSubmissionentryView extends Vue {
   @Prop()
