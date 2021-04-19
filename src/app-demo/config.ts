@@ -1,6 +1,5 @@
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import {
-  languages,
   koboSurveyInfo,
   csvSurveyInfo,
   spatialDescription,
@@ -22,7 +21,6 @@ const mapConfig: TKMapboxConfiguration = {
 export const APPCONFIG: TKGeneralConfiguration = {
   name: "brazil",
   iso3: "BRA",
-  language: languages,
   surveyFormat: TKSurveyFormat.CSV,
   surveyDescription: csvSurveyInfo,
   spatialDescription: spatialDescription,

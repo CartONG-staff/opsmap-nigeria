@@ -3,14 +3,12 @@ import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKKoboSurveyInfo } from "@/domain/survey/surveyRawData/kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
 import { TKCSVSurveyInfo } from "@/domain/survey/surveyRawData/csv/TKCSVTypes";
-import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKSurveyFormat } from "@/domain/core/TKSurveyFormat";
 import { TKIndicatorsDescription } from "@/domain/core/TKIndicatorsDescription";
 export interface TKGeneralConfiguration {
   readonly name: string;
   readonly iso3: string;
-  readonly language: TKLanguageDescription[];
   readonly surveyFormat: TKSurveyFormat;
   readonly surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[];
   readonly headerLogo: TKLogo[];

@@ -6,7 +6,6 @@ import { TKGetKoboRawData } from "./surveyRawData/kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKCreateSurvey } from "./TKCreateSurvey";
 import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
-import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 import { TKSurveyFormat } from "@/domain/core/TKSurveyFormat";
 import { TKIndicatorsDescription } from "../core/TKIndicatorsDescription";
 

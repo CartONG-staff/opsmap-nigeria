@@ -2,10 +2,6 @@ import { TKKoboSurveyInfo } from "@/domain/survey/surveyRawData/kobo/TKKoboSurve
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
 import { TKCSVSurveyInfo } from "@/domain/survey/surveyRawData/csv/TKCSVTypes";
 import { TKIndicatorComputationType, TKIndicatorsDescription } from "@/domain/core/TKIndicatorsDescription";
-import {
-  LanguageCode,
-  TKLanguageDescription
-} from "@/domain/core/TKLanguageDescription";
 import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 
@@ -86,19 +82,6 @@ export const csvSurveyInfo: TKCSVSurveyInfo[] = [
   {
     name: "2021",
     folder: "demo1"
-  }
-];
-
-export const languages: TKLanguageDescription[] = [
-  {
-    name: "English",
-    code: LanguageCode.EN,
-    flag: "https://www.countryflags.io/gb/flat/64.png"
-  },
-  {
-    name: "Português",
-    code: LanguageCode.PT,
-    flag: "https://www.countryflags.io/br/flat/64.png"
   }
 ];
 
