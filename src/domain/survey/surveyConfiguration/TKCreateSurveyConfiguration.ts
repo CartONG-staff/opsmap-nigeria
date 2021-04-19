@@ -18,7 +18,7 @@ import {
   TKSubmissionsRulesCollectionBuild
 } from "./TKSubmissionsRulesBuilder";
 
-import { TKAnswerLabel }  from "@/domain/core/TKAnswerLabel";
+import { TKAnswerLabelCSV }  from "@/domain/survey/surveyConfiguration/TKAnswerLabelCSV";
 import { TKFieldLabelCSV } from "./TKFieldLabelCSV";
 
 export async function TKCreateSurveyConfiguration(
@@ -40,7 +40,7 @@ export async function TKCreateSurveyConfiguration(
     true
   );
 
-  const rawAnswerLabels: TKAnswerLabel[] = await TKCSVRead(
+  const rawAnswerLabels: TKAnswerLabelCSV[] = await TKCSVRead(
     "answer_labels",
     survey.folder,
     true

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKAnswerLabel } from "./TKAnswerLabel";
+import { TKAnswerLabelCSV } from "../survey/surveyConfiguration/TKAnswerLabelCSV";
 
 export interface TKLabel {
     name: string;
@@ -16,7 +16,7 @@ export function TKGetLocalValue(label: TKLabel, locale: string) : string {
 }
 
 
-export function TKAnswerLabelToFieldLabel(answer: TKAnswerLabel) : TKLabel {
+export function TKAnswerLabelToFieldLabel(answer: TKAnswerLabelCSV) : TKLabel {
     return {
         name: answer.choice_name,
         label_en: answer.choice_label_en,

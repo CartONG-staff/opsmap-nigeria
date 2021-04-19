@@ -1,4 +1,4 @@
-import { TKAnswerLabel } from "./TKAnswerLabel";
+import { TKAnswerLabelCSV } from "../survey/surveyConfiguration/TKAnswerLabelCSV";
 import { TKLabel } from "./TKLabel";
 import { TKTrafficLightColors } from "./TKTrafficLight";
 

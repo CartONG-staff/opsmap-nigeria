@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKAnswerLabel } from "@/domain/core/TKAnswerLabel";
+import { TKAnswerLabelCSV } from "@/domain/survey/surveyConfiguration/TKAnswerLabelCSV";
 import { TKLabel } from "@/domain/core/TKLabel";
 import { TKFieldLabelCSV, TKToLabel } from "./TKFieldLabelCSV";
 
@@ -9,7 +9,7 @@ export interface TKLabelsCollection {
 }
 
 export interface TKAnswerLabelsCollection {
-  [propName: string]: TKAnswerLabel;
+  [propName: string]: TKAnswerLabelCSV;
 }
 
 export function TKLabelsCollectionBuild(
@@ -23,10 +23,10 @@ export function TKLabelsCollectionBuild(
 }
 
 export function TKAnswerLabelsCollectionBuild(
-  labels: TKAnswerLabel[]
+  labels: TKAnswerLabelCSV[]
 ): TKAnswerLabelsCollection {
   const labelsCollection: TKAnswerLabelsCollection = {};
-  labels.map((item: TKAnswerLabel) => {
+  labels.map((item: TKAnswerLabelCSV) => {
     labelsCollection[item.choice_name] = { ...item };
   });
   return labelsCollection;
