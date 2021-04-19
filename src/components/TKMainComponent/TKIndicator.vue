@@ -16,14 +16,19 @@
       src="@/assets/bg-indicator-3.png"
     />
 
-    <div class="tk-indicator-value">
-      <div class="tk-indicator-value-number">
-        {{ value }}
-      </div>
-      <div class="tk-indicator-value-decription">
-        {{ name }}
-      </div>
-    </div>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
+        <div class="tk-indicator-value" v-bind="attrs" v-on="on">
+          <div class="tk-indicator-value-number">
+            {{ value }}
+          </div>
+          <div class="tk-indicator-value-decription">
+            {{ name }}
+          </div>
+        </div>
+      </template>
+      <span>{{ name }} : {{ value }}</span>
+    </v-tooltip>
     <div class="tk-indicator-icon-container">
       <img class="tk-indicator-icon" :src="iconUrl" />
     </div>
@@ -84,42 +89,53 @@ export default class TKIndicatorComponent extends Vue {
   border-radius: 5px;
   min-height: 100px;
   overflow: hidden;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .tk-indicator-icon-container {
-  position: absolute;
-  height: 36px;
-  right: 30px;
-  bottom: 55px;
+  padding-right: 36px;
+  padding-bottom: 55px;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
 }
 
 .tk-indicator-icon {
-  height: 100%;
+  height: 36px;
+  width: auto;
 }
-
 .tk-indicator-value {
-  position: absolute;
   display: flex;
   flex-flow: column nowrap;
   align-items: left;
-  min-height: 60px;
-  top: 20px;
-  left: 30px;
+  padding-left: 30px;
+
+  width: 80%;
 }
 
 .tk-indicator-value-number {
+  width: 100%;
   color: var(--v-accent-base);
   font-size: 40px;
-  min-height: 43px;
-  line-height: 43px;
+  line-height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tk-indicator-value-decription {
   color: var(--v-quaternary-base);
   font-weight: bolder;
   font-size: 16px;
-  height: 17px;
   line-height: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tk-indicator-bg {
