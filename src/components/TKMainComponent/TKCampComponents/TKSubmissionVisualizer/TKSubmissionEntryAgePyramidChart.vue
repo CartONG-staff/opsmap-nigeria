@@ -77,14 +77,14 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           labels: this.generateLabels(),
           datasets: [
             {
-              label: "Female",
+              label: this.$root.$i18n.t("charts.female").toString(),
               data: this.generateFemalesDataset(),
               backgroundColor: "#f37788",
               barThickness: 15,
               minBarLength: 1
             },
             {
-              label: "Male",
+              label: this.$root.$i18n.t("charts.male").toString(),
               data: this.generateMalesDataset(),
               backgroundColor: "#4095cd",
               barThickness: 15,
@@ -125,7 +125,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           plugins: {
             title: {
               display: true,
-              text: "AgePyramid",
+              text: this.$root.$i18n.t("charts.agePyramidTitle").toString(),
               font: {
                 size: 12
               }
@@ -187,6 +187,27 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
     this.chart.update();
   }
 
+  @Watch("$root.$i18n.locale")
+  onLocalChanged() {
+    if (this.chart.options.plugins && this.chart.options.plugins.title) {
+      this.chart.options.plugins.title.text = this.$root.$i18n
+        .t("charts.agePyramidTitle")
+        .toString();
+    }
+
+    this.chart.data.datasets[0].label = this.$root.$i18n
+      .t("charts.female")
+      .toString();
+
+    this.chart.data.datasets[1].label = this.$root.$i18n
+      .t("charts.male")
+      .toString();
+
+    this.chart.data.labels = this.generateLabels();
+
+    this.chart.update();
+  }
+
   generateLabels(): Array<string> {
     if (this.entry) {
       return this.entry.femalesLabels.map(
@@ -194,7 +215,9 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           item.field_label_en
             .replace("Females ", "")
             .replace("(", "")
-            .replace(")", "") + " years old"
+            .replace(")", "") +
+          " " +
+          this.$root.$i18n.t("charts.yearsOld").toString()
       );
     } else {
       return [];
