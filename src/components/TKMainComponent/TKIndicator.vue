@@ -18,7 +18,12 @@
 
     <v-tooltip bottom>
       <template v-slot:activator="{ on, attrs }">
-        <div class="tk-indicator-value" v-bind="attrs" v-on="on">
+        <div
+          class="tk-indicator-value"
+          v-bind="attrs"
+          v-on="on"
+          :style="{ fontSize: fontSize + 'px' }"
+        >
           <div class="tk-indicator-value-number">
             {{ value }}
           </div>
@@ -55,6 +60,8 @@ export default class TKIndicatorComponent extends Vue {
   value = "";
   name = "";
 
+  fontSize = 20;
+
   @Watch("indicator", { immediate: true })
   handleIndicatorChange() {
     this.iconUrl = this.indicator ? TKIconUrl(this.indicator.iconOchaName) : "";
@@ -72,10 +79,18 @@ export default class TKIndicatorComponent extends Vue {
         this.indicator.valueLabel,
         this.$root.$i18n.locale
       );
+
+      this.computeFont();
     } else {
       this.value = "";
       this.name = "";
     }
+  }
+
+  computeFont(): void {
+    // FontSize: 35px ok --> 18 charactères pour 330px;
+    // FontSize: 28px ok --> 23 charactères pour 330px;
+    this.fontSize = 40;
   }
 }
 </script>
@@ -114,15 +129,16 @@ export default class TKIndicatorComponent extends Vue {
   flex-flow: column nowrap;
   align-items: left;
   padding-left: 30px;
-
+  padding-bottom: 20px;
+  line-height: 1;
+  justify-content: flex-end;
+  height: 100%;
   width: 80%;
 }
 
 .tk-indicator-value-number {
   width: 100%;
   color: var(--v-accent-base);
-  font-size: 40px;
-  line-height: 40px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
