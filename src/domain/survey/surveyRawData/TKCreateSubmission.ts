@@ -11,6 +11,7 @@ import { TKCreateSubmissionEntryAgePyramid, TKSubmissionEntryAgePyramidItem } fr
 import { TKCreateSubmissionEntryText } from "./TKCreateSubmissionEntryText";
 import { findPoint } from "@turf/meta";
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
+import { VAlert } from "vuetify/lib";
 
 // ////////////////////////////////////////////////////////////////////////////
 // checks
@@ -142,8 +143,26 @@ export function TKCreateSubmission(
     }
   }
 
+  //  Solution to filter thematics if nothing has been answered. ////////////////////////
+  // Object.entries(submission).filter(item => item.length > 0)
+  // const submissionFiltered: Record<string, TKSubmissionThematic> = {};
+  // for(const key of Object.keys(submission)){
+  //   if(submission[key].data.filter(item => item.isAnswered()).length > 0){
+  //     submissionFiltered[key] = submission[key];
+  //   }
+  // }
+
+//  Solution to filter thematics if nothing has been answered. ////////////////////////
+  Object.entries(submission).filter(item => item.length > 0)
+  const submissionFiltered: Record<string, TKSubmissionThematic> = {};
+  for(const key of Object.keys(submission)){
+    if(submission[key].data.length > 0){
+      submissionFiltered[key] = submission[key];
+    }
+  }
+
   const result: TKSubmission = {
-    thematics: submission,
+    thematics: submissionFiltered,
     indicators: computeSubmissionIndicators(indicatorsDescription, submission)
   }
 
