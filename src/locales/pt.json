@@ -31,7 +31,8 @@
   },
   "charts": {
     "agePyramidTitle": "Pirâmide de Idade",
-    "yearsOld": "anos de idade",
+    "titleY": "Faixa Etária",
+    "titleX": "Contar",
     "female": "Fêmea",
     "male": "Macho"
   }

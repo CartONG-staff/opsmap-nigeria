@@ -102,26 +102,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           layout: {
             padding: 0
           },
-          scales: {
-            x: {
-              ticks: {
-                callback: (value, _index, _values): string => {
-                  let mynumber = 0;
-                  if (typeof value === "string") {
-                    mynumber = parseInt(value);
-                  } else if (typeof value === "number") {
-                    mynumber = value;
-                  }
-                  mynumber = mynumber < 0 ? 0 - mynumber : mynumber;
-                  return mynumber.toString();
-                }
-              }
-            },
-            y: {
-              beginAtZero: true,
-              stacked: true
-            }
-          },
+          scales: this.generateScales(),
           plugins: {
             title: {
               display: true,
@@ -203,21 +184,20 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
       .t("charts.male")
       .toString();
 
-    this.chart.data.labels = this.generateLabels();
+    if (this.chart.config.options) {
+      this.chart.config.options.scales = this.generateScales();
+    }
 
     this.chart.update();
   }
 
   generateLabels(): Array<string> {
     if (this.entry) {
-      return this.entry.femalesLabels.map(
-        item =>
-          item.field_label_en
-            .replace("Females ", "")
-            .replace("(", "")
-            .replace(")", "") +
-          " " +
-          this.$root.$i18n.t("charts.yearsOld").toString()
+      return this.entry.femalesLabels.map(item =>
+        item.field_label_en
+          .replace("Females ", "")
+          .replace("(", "")
+          .replace(")", "")
       );
     } else {
       return [];
@@ -238,6 +218,39 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
     } else {
       return [];
     }
+  }
+
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+
+  generateScales(): any {
+    return {
+      x: {
+        ticks: {
+          callback: (value: string, _index: any, _values: any): string => {
+            let mynumber = 0;
+            if (typeof value === "string") {
+              mynumber = parseInt(value);
+            } else if (typeof value === "number") {
+              mynumber = value;
+            }
+            mynumber = mynumber < 0 ? 0 - mynumber : mynumber;
+            return mynumber.toString();
+          }
+        },
+        title: {
+          display: true,
+          text: this.$root.$i18n.t("charts.titleX").toString()
+        }
+      },
+      y: {
+        beginAtZero: true,
+        stacked: true,
+        title: {
+          display: true,
+          text: this.$root.$i18n.t("charts.titleY").toString()
+        }
+      }
+    };
   }
 }
 </script>

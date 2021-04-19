@@ -31,7 +31,8 @@
   },
   "charts": {
     "agePyramidTitle": "Age Pyramid",
-    "yearsOld": "years old",
+    "titleY": "Age Range",
+    "titleX": "Count",
     "female": "Female",
     "male": "Male"
   }
