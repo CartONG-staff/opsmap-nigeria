@@ -33,14 +33,14 @@
       class="tk-header-buttons"
       color="accent"
     >
-      <v-btn
-        v-for="locale in locales"
-        :key="locale"
-        plain
-        text
-        :value="locale"
-        >{{ locale.toUpperCase() }}</v-btn
-      >
+      <div v-for="(locale, key) in locales" :key="locale">
+        <img
+          v-if="key > 0"
+          src="@/assets/vertical-separator.png"
+          class="tk-header-buttons-sep"
+        />
+        <v-btn plain text :value="locale">{{ locale.toUpperCase() }}</v-btn>
+      </div>
     </v-btn-toggle>
   </div>
 </template>
@@ -56,7 +56,7 @@ export default class TKHeader extends Vue {
 
   locales = this.$root.$i18n.availableLocales;
 
-  language = "en";
+  language = this.$root.$i18n.locale;
   @Watch("language")
   // whenever question changes, this function will run
   onLanguageChanged(val: string) {
@@ -64,6 +64,12 @@ export default class TKHeader extends Vue {
   }
 }
 </script>
+
+<style>
+.tk-header-buttons .v-btn--active > .v-btn__content {
+  color: var(--v-accent-base) !important;
+}
+</style>
 
 <style scoped>
 .tk-header {
