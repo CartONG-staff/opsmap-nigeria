@@ -1,34 +1,50 @@
 <template lang="html">
   <div class="tk-camp-selector">
-    <v-autocomplete
+    <v-select
       class="tk-autocomplete"
-      color="discrete"
+      flat
       dense
       :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
-    ></v-autocomplete>
+      v-model="dataset.currentSurvey"
+      :items="dataset.surveyList"
+      @change="surveySelected"
+      single-line
+    ></v-select>
     <v-autocomplete
       class="tk-autocomplete"
-      color="discrete"
+      flat
       dense
       :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
+      v-model="dataset.currentAdmin1"
+      :items="dataset.filteredAdmin1List"
+      item-text="name"
+      item-value="pcode"
+      @change="admin1Selected"
+      clearable
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
-      color="discrete"
+      flat
       dense
       :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
+      v-model="dataset.currentAdmin2"
+      :items="dataset.filteredAdmin2List"
+      item-text="name"
+      item-value="pcode"
+      @change="admin2Selected"
+      clearable
     ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
-      color="discrete"
+      flat
       dense
       clearable
-      v-model="campModel"
-      :items="campList"
+      :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
+      v-model="dataset.currentCamp"
+      :items="dataset.filteredCampsList"
       item-text="name"
       item-value="id"
       @change="campSelected"
-      :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
     ></v-autocomplete>
   </div>
 </template>
@@ -36,31 +52,41 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
+import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 
 @Component
 export default class TKCampSelector extends Vue {
   @Prop({ default: () => [] })
-  readonly campList!: TKCampDescription[];
+  dataset!: TKDatasetFilterer;
 
-  // Hold the app current camp property
-  @Prop()
-  readonly currentCamp!: TKCampDescription;
-  campModel = "";
-
-  @Watch("currentCamp", { immediate: true })
-  onChange() {
-    this.campModel = this.currentCamp ? this.currentCamp.id : "";
+  surveySelected(year: string) {
+    this.dataset.currentSurvey = year;
+    console.log(this.dataset);
   }
 
-  // Hold the current camp at an app level
-  // BEHAVIOR
+  admin1Selected(pcode: string) {
+    this.dataset.currentAdmin1 = pcode
+      ? (this.dataset.admin1List.find(
+          (a) => a.pcode === pcode
+        ) as TKBoundarieDescription)
+      : null;
+    console.log(this.dataset);
+  }
+
+  admin2Selected(pcode: string) {
+    this.dataset.currentAdmin2 = pcode
+      ? (this.dataset.admin2List.find(
+          (a) => a.pcode === pcode
+        ) as TKBoundarieDescription)
+      : null;
+  }
   campSelected(campId: string) {
-    if (campId && this.campList) {
-      const camp = this.campList.find(c => c.id === campId);
-      this.$emit("camp-selection-changed", camp);
-    } else {
-      this.$emit("camp-selection-cleared");
-    }
+    this.dataset.currentCamp = campId
+      ? (this.dataset.campsList.find(
+          (c) => c.id === campId
+        ) as TKCampDescription)
+      : null;
+    console.log(this.dataset);
   }
 }
 </script>

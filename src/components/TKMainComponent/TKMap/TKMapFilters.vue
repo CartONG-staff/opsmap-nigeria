@@ -25,11 +25,17 @@
 
 <script lang="ts">
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import { Component, Emit, Vue } from "vue-property-decorator";
-import { TKFilters, TKFiltersTypes } from "@/domain/core/TKFilters";
+import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+import {
+  TKDatasetFilterer,
+  TKFilters,
+  TKFiltersTypes,
+} from "@/domain/core/TKFilters";
 
 @Component
 export default class TKMapFilter extends Vue {
+  @Prop()
+  dataset!: TKDatasetFilterer;
   plannedImgUrl = TKIconUrl("planned_site");
   spontaneousImgUrl = TKIconUrl("spontaneous_site");
   checkboxs = {
@@ -37,15 +43,18 @@ export default class TKMapFilter extends Vue {
     spontaneous: true,
   };
 
-  @Emit("camps-filters-changed")
-  campsFiltersChanged(filter: string, value: TKFiltersTypes) {
-    console.log("Change on filter component: " + filter);
-  }
+  // @Emit("camps-filters-changed")
+  // campsFiltersChanged(filter: string, value: TKFiltersTypes) {
+  //   console.log("Change on filter component: " + filter);
+  // }
 
   checkboxChange(checkbox: string): void {
     checkbox === "planned"
-      ? this.campsFiltersChanged(TKFilters.PLANNED_SITE, this.checkboxs.planned)
-      : this.campsFiltersChanged(
+      ? this.dataset.setFiltersValue(
+          TKFilters.PLANNED_SITE,
+          this.checkboxs.planned
+        )
+      : this.dataset.setFiltersValue(
           TKFilters.SPONTANEOUS_SITE,
           this.checkboxs.spontaneous
         );

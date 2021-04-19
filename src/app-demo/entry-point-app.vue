@@ -1,9 +1,12 @@
 <template>
   <v-app>
     <v-main>
-      <div class="tk-main">
+      <div class="tk-loader" v-if="!dataLoaded">
+        <h2 color="primary">...Loading data, please wait...</h2>
+      </div>
+      <div class="tk-main" v-if="dataLoaded">
         <TKHeader :appConfig="appConfig" />
-        <TKMainComponent class="tk-main-dashboard" :appConfig="appConfig" />
+        <TKMainComponent class="tk-main-dashboard" :dataset="dataset" />
         <TKFooter :appConfig="appConfig" />
       </div>
     </v-main>
@@ -15,16 +18,32 @@ import { Component, Vue } from "vue-property-decorator";
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import { APPCONFIG } from "@/app-demo/config";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an alias to /src
+import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
+import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 
 @Component({
   components: {
     TKHeader,
     TKFooter,
-    TKMainComponent
-  }
+    TKMainComponent,
+  },
 })
 export default class App extends Vue {
   private appConfig: TKGeneralConfiguration = APPCONFIG;
+  dataLoaded = false;
+  dataset: TKDatasetFilterer | null = null;
+
+  async mounted() {
+    const surveys = await TKCreateSurveyCollection(
+      this.appConfig.surveyDescription,
+      this.appConfig.surveyFormat,
+      this.appConfig.spatialDescription,
+      this.appConfig.indicatorsDescription,
+      this.appConfig.language
+    );
+    this.dataset = new TKDatasetFilterer(surveys);
+    this.dataLoaded = true;
+  }
 }
 </script>
 
@@ -44,6 +63,14 @@ h3 {
   font-family: "Arial";
   font-size: 18px;
   letter-spacing: 1.5px;
+}
+
+.tk-loader {
+  display: flex;
+  min-height: 100%;
+  min-width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .tk-main {

@@ -8,12 +8,7 @@
       <div class="tk-main-header">
         <div v-if="isHomePage" class="tk-home-header"></div>
         <div v-if="!isHomePage" class="tk-camp-header">
-          <TKCampSelector
-            :campList="filteredDataset.filteredCampsList || null"
-            :currentCamp="currentCamp"
-            @camp-selection-cleared="campSelectionCleared"
-            @camp-selection-changed="campSelectionChanged"
-          />
+          <TKCampSelector :dataset="dataset" />
         </div>
       </div>
       <div class="tk-main-top">
@@ -21,17 +16,10 @@
           <TKTitle class="tk-home-title" :appConfig="appConfig" />
           <div v-if="isHomePage" class="tk-home-left">
             <TKHomeSubtitle />
-            <TKHomeCombos
-              class="tk-home-combos"
-              :appConfig="appConfig"
-              :campList="filteredDataset.filteredCampsList || null"
-              :currentCamp="currentCamp"
-              @camp-selection-cleared="campSelectionCleared"
-              @camp-selection-changed="campSelectionChanged"
-            />
+            <TKHomeCombos class="tk-home-combos" :dataset="dataset" />
           </div>
           <div v-if="!isHomePage" class="tk-camp-left">
-            <TKCampSubtitle class="tk-camp-title" :camp="currentCamp" />
+            <TKCampSubtitle class="tk-camp-title" :camp="dataset" />
             <TKCampToolbar
               class="tk-camp-toolbar"
               :submissionsDates="
@@ -40,31 +28,17 @@
               :options="visualizerOptions"
               @date-selection-changed="dateSelected"
             />
-            <TKCampInfos class="tk-camp-infos" :camp="currentCamp" />
+            <TKCampInfos class="tk-camp-infos" :dataset="dataset" />
           </div>
         </div>
-        <TKMap
-          class="tk-main-map"
-          :appConfig="appConfig"
-          :campList="filteredDataset.filteredCampsList || null"
-          :currentCamp="currentCamp"
-          @camp-selection-cleared="campSelectionCleared"
-          @camp-selection-changed="campSelectionChanged"
-        />
+        <TKMap class="tk-main-map" :appConfig="appConfig" :dataset="dataset" />
 
-        <TKMapFilters
-          class="tk-map-filters"
-          @camps-filters-changed="campsFiltersChanged"
-        />
+        <TKMapFilters class="tk-map-filters" :dataset="dataset" />
       </div>
 
       <div class="tk-main-content">
         <div v-if="isHomePage" class="tk-home-content">
-          <TKHomeIndicators
-            class="tk-home-indicators"
-            :appConfig="appConfig"
-            :survey="survey"
-          />
+          <TKHomeIndicators class="tk-home-indicators" :dataset="dataset" />
           <TKHomeMoreInfos />
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
@@ -84,17 +58,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
-import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { APPCONFIG } from "@/app-demo/config";
 
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
 import TKMapFilters from "./TKMap/TKMapFilters.vue";
-
-import { TKCampDescription } from "@/domain/core/TKCampDescription";
-import { TKSurvey } from "@/domain/core/TKSurvey";
-import { TKSubmission } from "@/domain/core/TKSubmission";
 
 import {
   TKHomeCombos,
@@ -112,11 +81,9 @@ import {
   TKSubmissionVisualizer,
   TKSubmissionVisualizerOptions,
 } from "./TKCampComponents";
-import {
-  TKFiltersTypes,
-  TKDatasetFilterer,
-  TKFilters,
-} from "@/domain/core/TKFilters";
+import { TKGeneralConfiguration } from "@/domain";
+import { TKSubmission } from "@/domain/core/TKSubmission";
+import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false,
@@ -141,51 +108,15 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
 })
 export default class TKMainComponent extends Vue {
   @Prop()
-  readonly appConfig!: TKGeneralConfiguration;
+  dataset!: TKDatasetFilterer;
+  private appConfig: TKGeneralConfiguration = APPCONFIG;
 
-  survey: TKSurvey | null = null;
-  filteredDataset: TKDatasetFilterer | null = null;
-
-  currentCamp: TKCampDescription | null = null;
   currentSubmission: TKSubmission | null = null;
   currentSubmissions: { [date: string]: TKSubmission } | null = null;
-
   isHomePage = true;
-
   visualizerOptions: TKSubmissionVisualizerOptions = {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered,
   };
-
-  campsFiltersChanged(filter: TKFilters, value: TKFiltersTypes) {
-    this.filteredDataset?.setFiltersValue(filter, value);
-    console.log("Change on main component: " + filter, value);
-    console.log(this.filteredDataset);
-  }
-
-  campSelectionCleared() {
-    this.currentCamp = null;
-    this.currentSubmission = null;
-    this.isHomePage = true;
-    this.visualizerOptions.hideUnanswered =
-      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
-  }
-
-  campSelectionChanged(campDescr: TKCampDescription) {
-    this.isHomePage = false;
-    this.visualizerOptions.hideUnanswered =
-      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
-
-    if (campDescr && this.survey) {
-      this.currentCamp = campDescr;
-      this.currentSubmissions = this.survey.submissionsByCamps[campDescr.id];
-      const keys = Object.keys(this.currentSubmissions);
-      this.currentSubmission = this.currentSubmissions[keys[0]];
-    } else {
-      this.currentSubmissions = null;
-      this.currentSubmission = null;
-      this.currentCamp = null;
-    }
-  }
 
   dateSelected(date: string) {
     if (
@@ -196,22 +127,23 @@ export default class TKMainComponent extends Vue {
     }
   }
 
-  async mounted() {
-    const surveys = await TKCreateSurveyCollection(
-      this.appConfig.surveyDescription,
-      this.appConfig.surveyFormat,
-      this.appConfig.spatialDescription,
-      this.appConfig.indicatorsDescription,
-      this.appConfig.language
-    );
-
-    console.log(surveys);
-
-    // TODO : make this nice. This isn't
-    this.survey = surveys["2021"];
-    this.filteredDataset = new TKDatasetFilterer(this.survey);
-    // this.campsList = .filteredCampsList;
-    // this.campsList = this.survey.campsList;
+  @Watch("dataset", { deep: true })
+  onChange() {
+    if (this.dataset.currentCamp) {
+      this.isHomePage = false;
+      this.visualizerOptions.hideUnanswered =
+        DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
+      this.currentSubmissions = this.dataset.surveys[
+        this.dataset.currentSurvey
+      ].submissionsByCamps[this.dataset.currentCamp.id];
+      const keys = Object.keys(this.currentSubmissions);
+      this.currentSubmission = this.currentSubmissions[keys[0]];
+    } else {
+      this.currentSubmission = null;
+      this.isHomePage = true;
+      this.visualizerOptions.hideUnanswered =
+        DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
+    }
   }
 }
 </script>
