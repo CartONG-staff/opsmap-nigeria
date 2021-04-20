@@ -2,10 +2,10 @@ import Vue from "vue";
 import App from "./entry-point-app.vue";
 import vuetify from "@/plugins/vuetify";
 import i18n from "@/i18n";
-import { TKGeneralConfigurationBuild } from "@/domain/survey/surveyConfiguration/TKGeneralConfigurationBuild";
+import { TKReadGeneralConfiguration, TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 
-TKGeneralConfigurationBuild().then(
-  config => {
+TKReadGeneralConfiguration().then(
+  (config:TKGeneralConfiguration) => {
     Vue.config.productionTip = false;
     new Vue({
       data: Object.freeze({appRootConfig: config}),
