@@ -69,7 +69,6 @@ export default class TKCampSelector extends Vue {
   }
   campSelected(campId: string) {
     this.dataset.setFiltersValue(TKFilters.CAMP, campId ? campId : null);
-    console.log(this.dataset);
   }
 }
 </script>
