@@ -9,9 +9,7 @@ import {
 } from "./TKThematicsCollectionBuilder";
 import { TKTrafficLightsCollectionBuild } from "./TKTrafficLightsCollectionBuilder";
 import {
-  TKFieldLabel,
-  TKAnswerLabel,
-  TKFieldLabelsCollectionBuild,
+  TKLabelsCollectionBuild,
   TKAnswerLabelsCollectionBuild
 } from "./TKLabelsCollectionBuilder";
 
@@ -19,6 +17,9 @@ import {
   TKSubmissionRule,
   TKSubmissionsRulesCollectionBuild
 } from "./TKSubmissionsRulesBuilder";
+
+import { TKAnswerLabelCSV }  from "@/domain/survey/surveyConfiguration/TKAnswerLabelCSV";
+import { TKFieldLabelCSV } from "./TKFieldLabelCSV";
 
 export async function TKCreateSurveyConfiguration(
   survey: TKKoboSurveyInfo | TKCSVSurveyInfo
@@ -33,13 +34,13 @@ export async function TKCreateSurveyConfiguration(
     TKTrafficLightItem[]
   >("traffic_light_config", survey.folder, true);
 
-  const rawFieldsLabels: TKFieldLabel[] = await TKCSVRead(
+  const rawFieldsLabels: TKFieldLabelCSV[] = await TKCSVRead(
     "field_labels",
     survey.folder,
     true
   );
 
-  const rawAnswerLabels: TKAnswerLabel[] = await TKCSVRead(
+  const rawAnswerLabels: TKAnswerLabelCSV[] = await TKCSVRead(
     "answer_labels",
     survey.folder,
     true
@@ -52,7 +53,7 @@ export async function TKCreateSurveyConfiguration(
   return {
     thematics: TKThematicsCollectionBuild(rawThematics),
     trafficLights: TKTrafficLightsCollectionBuild(rawTrafficLights),
-    fieldsLabels: TKFieldLabelsCollectionBuild(rawFieldsLabels),
+    fieldsLabels: TKLabelsCollectionBuild(rawFieldsLabels),
     answersLabels: TKAnswerLabelsCollectionBuild(rawAnswerLabels),
     submissionsRules: TKSubmissionsRulesCollectionBuild(rawSubmissionsRules)
   };

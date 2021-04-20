@@ -1,40 +1,32 @@
-export interface TKFieldLabel {
-  field_name: string;
-  field_label_en: string;
-  field_label_fr?: string;
-  field_label_pt?: string;
-}
+/* eslint-disable @typescript-eslint/camelcase */
 
-export interface TKAnswerLabel {
-  choice_name: string;
-  choice_name_en: string;
-  choice_name_fr?: string;
-  choice_name_pt?: string;
-}
+import { TKAnswerLabelCSV } from "@/domain/survey/surveyConfiguration/TKAnswerLabelCSV";
+import { TKLabel } from "@/domain/core/TKLabel";
+import { TKFieldLabelCSV, TKToLabel } from "./TKFieldLabelCSV";
 
-export interface TKFieldLabelsCollection {
-  [propName: string]: TKFieldLabel;
+export interface TKLabelsCollection {
+  [propName: string]: TKLabel;
 }
 
 export interface TKAnswerLabelsCollection {
-  [propName: string]: TKAnswerLabel;
+  [propName: string]: TKAnswerLabelCSV;
 }
 
-export function TKFieldLabelsCollectionBuild(
-  labels: TKFieldLabel[]
-): TKFieldLabelsCollection {
-  const labelsCollection: TKFieldLabelsCollection = {};
-  labels.map((item: TKFieldLabel) => {
-    labelsCollection[item.field_name] = { ...item };
+export function TKLabelsCollectionBuild(
+  labels: TKFieldLabelCSV[]
+): TKLabelsCollection {
+  const labelsCollection: TKLabelsCollection = {};
+  labels.map((item: TKFieldLabelCSV) => {
+    labelsCollection[ item.field_name] = TKToLabel(item);
   });
   return labelsCollection;
 }
 
 export function TKAnswerLabelsCollectionBuild(
-  labels: TKAnswerLabel[]
+  labels: TKAnswerLabelCSV[]
 ): TKAnswerLabelsCollection {
   const labelsCollection: TKAnswerLabelsCollection = {};
-  labels.map((item: TKAnswerLabel) => {
+  labels.map((item: TKAnswerLabelCSV) => {
     labelsCollection[item.choice_name] = { ...item };
   });
   return labelsCollection;

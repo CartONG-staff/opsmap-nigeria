@@ -34,8 +34,8 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
-import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
-import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
+import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
+import { TKGetLocalValue } from "@/domain/core/TKLabel";
 @Component
 export default class TKSubmissionentryView extends Vue {
   @Prop()
@@ -74,20 +74,19 @@ export default class TKSubmissionentryView extends Vue {
     }
   }
 
-  @Watch("$root.$i18n.locale", { immediate: true })
+  @Watch("$root.$i18n.locale")
   handleLocale() {
-    if (this.entry) {
-      if (this.$root.$i18n.locale === "pt") {
-        this.question = this.entry.fieldLabelPt
-          ? this.entry.fieldLabelPt
-          : this.entry.fieldLabelEn;
-        this.answer = this.entry.answerLabelPt
-          ? this.entry.answerLabelPt
-          : this.entry.answerLabelEn;
-      } else {
-        this.question = this.entry.fieldLabelEn;
-        this.answer = this.entry.answerLabelEn;
-      }
+    if (this.entry && this.entry.fieldLabel && this.entry.answerLabel) {
+      // this.question = this.entry.fieldLabel.getValue(this.$root.$i18n.locale);
+      // this.answer = this.entry.answerLabel.getValue(this.$root.$i18n.locale);
+      this.question = TKGetLocalValue(
+        this.entry.fieldLabel,
+        this.$root.$i18n.locale
+      );
+      this.answer = TKGetLocalValue(
+        this.entry.answerLabel,
+        this.$root.$i18n.locale
+      );
     } else {
       this.question = "";
       this.answer = "";

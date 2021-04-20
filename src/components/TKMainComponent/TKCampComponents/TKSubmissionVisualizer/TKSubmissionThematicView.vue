@@ -6,14 +6,13 @@
     </div>
     <div class="tk-submission-thematic-content">
       <div
-        v-for="(entry, key) in thematicData"
+        v-for="entry in thematicData"
         :key="entry.id"
         v-show="
           !options.hideUnanswered ||
             (options.hideUnanswered && entry.isAnswered())
         "
       >
-        <div v-if="key !== 0" class="tk-hseparator"></div>
         <TKSubmissionEntryView :entry="entry" />
       </div>
     </div>
@@ -23,11 +22,11 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import TKSubmissionEntryView from "./TKSubmissionEntryTextView.vue";
+import TKSubmissionEntryView from "./TKSubmissionEntryView.vue";
 import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
-import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntryText";
+import { TKSubmissionEntry } from "@/domain/core/TKSubmissionEntry";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
-import { TKSubmissionEntryChart } from "@/domain/core/TKSubmissionEntryChart";
+import { TKGetLocalValue } from "@/domain/core/TKLabel";
 
 @Component({
   components: {
@@ -38,7 +37,7 @@ export default class TKSubmissionThematicView extends Vue {
   @Prop()
   readonly submissionThematic!: TKSubmissionThematic;
 
-  thematicData!: Array<TKSubmissionEntryText | TKSubmissionEntryChart>;
+  thematicData: Array<TKSubmissionEntry> = [];
 
   @Prop()
   readonly options!: TKSubmissionVisualizerOptions;
@@ -58,17 +57,13 @@ export default class TKSubmissionThematicView extends Vue {
     this.applyOptions();
   }
 
-  @Watch("$root.$i18n.locale", { immediate: true })
+  @Watch("$root.$i18n.locale")
   handleLocaleOnTitle() {
     if (this.submissionThematic) {
-      if (
-        this.$root.$i18n.locale === "pt" &&
-        this.submissionThematic.thematic_label_pt
-      ) {
-        this.title = this.submissionThematic.thematic_label_pt;
-      } else {
-        this.title = this.submissionThematic.thematic_label_en;
-      }
+      this.title = TKGetLocalValue(
+        this.submissionThematic.nameLabel,
+        this.$root.$i18n.locale
+      );
     } else {
       this.title = "";
     }
@@ -129,11 +124,6 @@ export default class TKSubmissionThematicView extends Vue {
 .tk-submission-thematic-content {
   padding: 0px 20px;
   width: 100%;
-}
-
-.tk-hseparator {
-  background-color: #d8d8d8;
-  height: 1px;
-  width: 100%;
+  margin-bottom: -1px;
 }
 </style>

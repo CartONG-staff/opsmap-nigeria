@@ -8,13 +8,14 @@
         </h2>
       </div>
       <div class="tk-main" v-if="dataLoaded">
-        <TKHeader :appConfig="appConfig" />
+        <TKHeader :appConfig="$root.$data.appRootConfig" />
         <TKMainComponent
           class="tk-main-dashboard"
           :dataset="dataset"
           :geoData="geoDataset"
+          :appConfig="$root.$data.appRootConfig"
         />
-        <TKFooter :appConfig="appConfig" />
+        <TKFooter :appConfig="$root.$data.appRootConfig" />
       </div>
     </v-main>
   </v-app>
@@ -22,43 +23,58 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
-import { APPCONFIG } from "@/app-demo/config";
-import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an alias to /src
-import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
+import { TKFooter, TKMainComponent, TKHeader } from "@/components";
 import { TKDatasetFilterer } from "@/domain/core/TKFilters";
-import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
-
+import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
+import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 @Component({
   components: {
     TKHeader,
     TKFooter,
-    TKMainComponent,
+    TKMainComponent
   },
 })
 export default class App extends Vue {
-  private appConfig: TKGeneralConfiguration = APPCONFIG;
+  // private appConfig: TKGeneralConfiguration = APPCONFIG;
   dataLoaded = false;
   dataset: TKDatasetFilterer | null = null;
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
+
+    const begin = Date.now();
+
+    console.log("Mounted starts..");
+
     const surveys = await TKCreateSurveyCollection(
-      this.appConfig.surveyDescription,
-      this.appConfig.surveyFormat,
-      this.appConfig.spatialDescription,
-      this.appConfig.indicatorsDescription,
-      this.appConfig.language
+      this.$root.$data.appRootConfig.surveyDescription,
+      this.$root.$data.appRootConfig.surveyFormat,
+      this.$root.$data.appRootConfig.spatialDescription,
+      this.$root.$data.appRootConfig.indicatorsDescription
     );
+
+    const time2 = Date.now();
+    const duration2 = time2 - begin;
+
+    console.log("Survey retrieved: " + duration2 + " ms");
 
     const geoBoundaries = await TKGetGeoBoundaries(
       surveys,
-      this.appConfig.iso3
+      this.$root.$data.appRootConfig.iso3
     );
+
+    const time3 = Date.now();
+    const duration3 = time3 - time2;
+    console.log("geoboundaries retrieved: " + duration3 + " ms");
 
     this.geoDataset = geoBoundaries;
     this.dataset = new TKDatasetFilterer(surveys);
+
+    const time4 = Date.now();
+    const duration4 = time3 - time2;
+    console.log("fitlered retrieved: " + duration4 + " ms");
+
     this.dataLoaded = true;
   }
 }

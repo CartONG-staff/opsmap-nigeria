@@ -43,8 +43,12 @@
 
       <div class="tk-main-content">
         <div v-if="isHomePage" class="tk-home-content">
-          <TKHomeIndicators class="tk-home-indicators" :dataset="dataset" />
-          <TKHomeMoreInfos />
+          <TKHomeIndicators
+            class="tk-home-indicators"
+            :appConfig="appConfig"
+            :dataset="dataset"
+          />
+          <TKHomeMoreInfos :appConfig="appConfig" />
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
           <TKCampIndicators
@@ -64,7 +68,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { APPCONFIG } from "@/app-demo/config";
+// import { APPCONFIG } from "@/app-demo/config";
 
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
@@ -74,7 +78,7 @@ import {
   TKHomeCombos,
   TKHomeIndicators,
   TKHomeMoreInfos,
-  TKHomeSubtitle,
+  TKHomeSubtitle
 } from "./TKHomeComponents";
 
 import {
@@ -84,7 +88,7 @@ import {
   TKCampToolbar,
   TKCampSubtitle,
   TKSubmissionVisualizer,
-  TKSubmissionVisualizerOptions,
+  TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
 import { TKGeneralConfiguration } from "@/domain";
 import { TKSubmission } from "@/domain/core/TKSubmission";
@@ -92,7 +96,7 @@ import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
-  hideUnanswered: false,
+  hideUnanswered: false
 };
 
 @Component({
@@ -109,21 +113,23 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
     TKHomeSubtitle,
     TKMap,
     TKMapFilters,
-    TKTitle,
-  },
+    TKTitle
+  }
 })
 export default class TKMainComponent extends Vue {
   @Prop()
   dataset!: TKDatasetFilterer;
   @Prop()
   geoData!: TKGeoDataset;
-  private appConfig: TKGeneralConfiguration = APPCONFIG;
+
+  @Prop()
+  readonly appConfig!: TKGeneralConfiguration;
 
   currentSubmission: TKSubmission | null = null;
   currentSubmissions: { [date: string]: TKSubmission } | null = null;
   isHomePage = true;
   visualizerOptions: TKSubmissionVisualizerOptions = {
-    hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered,
+    hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
   };
 
   dateSelected(date: string) {

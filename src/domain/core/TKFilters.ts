@@ -1,5 +1,5 @@
 import { TKCampDescription } from "./TKCampDescription";
-import { campTypesValues } from "@/app-demo/appConfiguration";
+import { TKCampTypesValues } from "@/domain/core/TKCampTypesValues";
 import { TKBoundarieDescription } from "./TKBoundarieDescription";
 import { TKSurveyCollection } from "./TKSurveyCollection";
 
@@ -113,12 +113,12 @@ export class TKDatasetFilterer {
 
     if (!this.filters.planned) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.type !== campTypesValues.PLANNED
+        (x) => x.type !== TKCampTypesValues.PLANNED
       );
     }
     if (!this.filters.spontaneous) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.type !== campTypesValues.SPONTANEOUS
+        (x) => x.type !== TKCampTypesValues.SPONTANEOUS
       );
     }
   }

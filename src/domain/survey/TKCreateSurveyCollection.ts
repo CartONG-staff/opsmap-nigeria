@@ -6,7 +6,6 @@ import { TKGetKoboRawData } from "./surveyRawData/kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKCreateSurvey } from "./TKCreateSurvey";
 import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
-import { TKLanguageDescription } from "@/domain/core/TKLanguageDescription";
 import { TKSurveyFormat } from "@/domain/core/TKSurveyFormat";
 import { TKIndicatorsDescription } from "../core/TKIndicatorsDescription";
 
@@ -14,9 +13,8 @@ export async function TKCreateSurveyCollection(
   surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[],
   surveyFormat: TKSurveyFormat,
   spatialDescription: TKSpatialDescription,
-  indicatorsDescription: TKIndicatorsDescription,
-  languages: TKLanguageDescription[]
-): Promise<TKSurveyCollection> {
+  indicatorsDescription: TKIndicatorsDescription
+  ): Promise<TKSurveyCollection> {
   // prepare output
   const surveyCollection: TKSurveyCollection = {};
 
@@ -37,8 +35,7 @@ export async function TKCreateSurveyCollection(
       rawData,
       surveyConfig,
       spatialDescription,
-      indicatorsDescription,
-      languages
+      indicatorsDescription
     );
   }
   return surveyCollection;

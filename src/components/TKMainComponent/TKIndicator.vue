@@ -16,14 +16,24 @@
       src="@/assets/bg-indicator-3.png"
     />
 
-    <div class="tk-indicator-value">
-      <div class="tk-indicator-value-number">
-        {{ value }}
-      </div>
-      <div class="tk-indicator-value-decription">
-        {{ name }}
-      </div>
-    </div>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
+        <div
+          class="tk-indicator-value"
+          v-bind="attrs"
+          v-on="on"
+          :style="{ fontSize: fontSize + 'px' }"
+        >
+          <div class="tk-indicator-value-number">
+            {{ value }}
+          </div>
+          <div class="tk-indicator-value-decription">
+            {{ name }}
+          </div>
+        </div>
+      </template>
+      <span>{{ name }} : {{ value }}</span>
+    </v-tooltip>
     <div class="tk-indicator-icon-container">
       <img class="tk-indicator-icon" :src="iconUrl" />
     </div>
@@ -35,6 +45,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 import { TKIndicator } from "@/domain/core/TKIndicator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
+import { TKGetLocalValue } from "@/domain/core/TKLabel";
 
 @Component
 export default class TKIndicatorComponent extends Vue {
@@ -49,30 +60,37 @@ export default class TKIndicatorComponent extends Vue {
   value = "";
   name = "";
 
+  fontSize = 20;
+
   @Watch("indicator", { immediate: true })
   handleIndicatorChange() {
     this.iconUrl = this.indicator ? TKIconUrl(this.indicator.iconOchaName) : "";
     this.handleLocale();
   }
 
-  @Watch("$root.$i18n.locale", { immediate: true })
+  @Watch("$root.$i18n.locale")
   handleLocale() {
     if (this.indicator) {
-      if (this.$root.$i18n.locale === "pt") {
-        this.name = this.indicator.namePt
-          ? this.indicator.namePt
-          : this.indicator.nameEn;
-        this.value = this.indicator.valuePt
-          ? this.indicator.valuePt
-          : this.indicator.valueEn;
-      } else {
-        this.value = this.indicator.valueEn;
-        this.name = this.indicator.nameEn;
-      }
+      this.name = TKGetLocalValue(
+        this.indicator.nameLabel,
+        this.$root.$i18n.locale
+      );
+      this.value = TKGetLocalValue(
+        this.indicator.valueLabel,
+        this.$root.$i18n.locale
+      );
+
+      this.computeFont();
     } else {
       this.value = "";
       this.name = "";
     }
+  }
+
+  computeFont(): void {
+    // FontSize: 35px ok --> 18 charactères pour 330px;
+    // FontSize: 28px ok --> 23 charactères pour 330px;
+    this.fontSize = 40;
   }
 }
 </script>
@@ -86,42 +104,54 @@ export default class TKIndicatorComponent extends Vue {
   border-radius: 5px;
   min-height: 100px;
   overflow: hidden;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .tk-indicator-icon-container {
-  position: absolute;
-  height: 36px;
-  right: 30px;
-  bottom: 55px;
+  padding-right: 36px;
+  padding-bottom: 55px;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
 }
 
 .tk-indicator-icon {
-  height: 100%;
+  height: 36px;
+  width: auto;
 }
-
 .tk-indicator-value {
-  position: absolute;
   display: flex;
   flex-flow: column nowrap;
   align-items: left;
-  min-height: 60px;
-  top: 20px;
-  left: 30px;
+  padding-left: 30px;
+  padding-bottom: 20px;
+  line-height: 1;
+  justify-content: flex-end;
+  height: 100%;
+  width: 80%;
 }
 
 .tk-indicator-value-number {
+  width: 100%;
   color: var(--v-accent-base);
-  font-size: 40px;
-  min-height: 43px;
-  line-height: 43px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tk-indicator-value-decription {
   color: var(--v-quaternary-base);
   font-weight: bolder;
   font-size: 16px;
-  height: 17px;
   line-height: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tk-indicator-bg {
