@@ -52,8 +52,9 @@ export default class App extends Vue {
         surveys,
         this.$root.$data.appRootConfig.iso3
       );
+    } else {
+      this.geoDataset = null;
     }
-    this.geoDataset = null;
     this.dataset = new TKDatasetFilterer(surveys);
 
     this.dataLoaded = true;
