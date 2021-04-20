@@ -83,11 +83,13 @@ export class TKDatasetFilterer {
         this.currentCamp = null;
         break;
       case TKFilters.CAMP:
+        this.filters[TKFilters.ADMIN1] = null;
         this.levelOfChange = TKFilters.CAMP;
         this.currentCamp = value
           ? (this.campsList.find((c) => c.id === value) as TKCampDescription)
           : null;
         if(this.currentCamp){
+          this.filters[TKFilters.ADMIN2] = this.currentCamp.admin2.pcode;
           this.currentAdmin1 = this.currentCamp.admin1;
           this.currentAdmin2 = this.currentCamp.admin2;
         }
