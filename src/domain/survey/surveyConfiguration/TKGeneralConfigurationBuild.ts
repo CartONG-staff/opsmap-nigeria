@@ -59,7 +59,8 @@ export async function  TKGeneralConfigurationBuild(): Promise<TKGeneralConfigura
             adm2Pcode: dict["adm2_unhcr"] ?? "adm2pcode",
             adm2Name: dict["adm2Name"] ?? "ggi_city",
             adm3Pcode: dict["adm3Pcode"] ?? "",
-            adm3Name: dict["adm3Name"] ?? "ggi_address"
+            adm3Name: dict["adm3Name"] ?? "ggi_address",
+            useBoundariesMasks: false
         },
         indicatorsDescription:{
             home:[{
