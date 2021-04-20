@@ -8,7 +8,7 @@
       flat
       dense
       :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
-      :v-model="dataset.currentSurvey"
+      v-model="dataset.currentSurvey"
       :items="dataset.surveyList"
       @change="surveySelected"
       single-line
@@ -18,7 +18,7 @@
       flat
       dense
       :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
-      :v-model="dataset.currentAdmin1"
+      v-model="dataset.currentAdmin1"
       :items="dataset.filteredAdmin1List"
       item-text="name"
       item-value="pcode"
@@ -30,7 +30,7 @@
       flat
       dense
       :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
-      :v-model="dataset.currentAdmin2"
+      v-model="dataset.currentAdmin2"
       :items="dataset.filteredAdmin2List"
       item-text="name"
       item-value="pcode"
