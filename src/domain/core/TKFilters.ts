@@ -34,6 +34,7 @@ export class TKDatasetFilterer {
     planned: true,
     spontaneous: true,
   };
+  levelOfChange: TKFilters;
 
   constructor(surveys: TKSurveyCollection) {
     this.surveys = surveys;
@@ -46,12 +47,14 @@ export class TKDatasetFilterer {
     this.filteredAdmin2List = surveys[this.currentSurvey].boundariesList.admin2;
     this.campsList = surveys[this.currentSurvey].campsList;
     this.filteredCampsList = surveys[this.currentSurvey].campsList;
+    this.levelOfChange = TKFilters.SURVEY;
   }
 
   setFiltersValue(filter: TKFilters, value: TKFiltersTypes) {
     this.filters[filter] = value;
     switch (filter) {
       case TKFilters.SURVEY:
+        this.levelOfChange = TKFilters.SURVEY;
         this.currentSurvey = value as string;
         this.filters[TKFilters.ADMIN1] = null;
         this.currentAdmin1 = null;
@@ -60,6 +63,7 @@ export class TKDatasetFilterer {
         this.currentCamp = null;
         break;
       case TKFilters.ADMIN1:
+        this.levelOfChange = TKFilters.ADMIN1;
         this.currentAdmin1 = value
           ? (this.admin1List.find(
               (a) => a.pcode === value
@@ -70,6 +74,7 @@ export class TKDatasetFilterer {
         this.currentCamp = null;
         break;
       case TKFilters.ADMIN2:
+        this.levelOfChange = TKFilters.ADMIN2;
         this.currentAdmin2 = value
           ? (this.admin2List.find(
               (a) => a.pcode === value
@@ -78,6 +83,7 @@ export class TKDatasetFilterer {
         this.currentCamp = null;
         break;
       case TKFilters.CAMP:
+        this.levelOfChange = TKFilters.CAMP;
         this.currentCamp = value
           ? (this.campsList.find((c) => c.id === value) as TKCampDescription)
           : null;

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { FeatureCollection } from "geojson";
-import mapboxgl, { MapboxGeoJSONFeature } from "mapbox-gl";
 
 interface TKFilteredCamps {
   selectedCamp: FeatureCollection | string;

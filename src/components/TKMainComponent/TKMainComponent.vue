@@ -31,7 +31,12 @@
             <TKCampInfos class="tk-camp-infos" :dataset="dataset" />
           </div>
         </div>
-        <TKMap class="tk-main-map" :appConfig="appConfig" :dataset="dataset" />
+        <TKMap
+          class="tk-main-map"
+          :appConfig="appConfig"
+          :dataset="dataset"
+          :geoDataset="geoData"
+        />
 
         <TKMapFilters class="tk-map-filters" :dataset="dataset" />
       </div>
@@ -84,6 +89,7 @@ import {
 import { TKGeneralConfiguration } from "@/domain";
 import { TKSubmission } from "@/domain/core/TKSubmission";
 import { TKDatasetFilterer } from "@/domain/core/TKFilters";
+import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false,
@@ -109,6 +115,8 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
 export default class TKMainComponent extends Vue {
   @Prop()
   dataset!: TKDatasetFilterer;
+  @Prop()
+  geoData!: TKGeoDataset;
   private appConfig: TKGeneralConfiguration = APPCONFIG;
 
   currentSubmission: TKSubmission | null = null;

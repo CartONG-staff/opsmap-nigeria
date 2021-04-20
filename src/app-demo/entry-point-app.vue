@@ -2,11 +2,18 @@
   <v-app>
     <v-main>
       <div class="tk-loader" v-if="!dataLoaded">
-        <h2 color="primary">...Loading data, please wait...</h2>
+        <h2 color="primary">
+          ...Je mouline, je vais chercher les 40 Go de données sur le serveur du
+          HCR, patience...
+        </h2>
       </div>
       <div class="tk-main" v-if="dataLoaded">
         <TKHeader :appConfig="appConfig" />
-        <TKMainComponent class="tk-main-dashboard" :dataset="dataset" />
+        <TKMainComponent
+          class="tk-main-dashboard"
+          :dataset="dataset"
+          :geoData="geoDataset"
+        />
         <TKFooter :appConfig="appConfig" />
       </div>
     </v-main>
@@ -21,6 +28,7 @@ import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an a
 import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
 import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
+import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
 
 @Component({
   components: {
@@ -33,6 +41,7 @@ export default class App extends Vue {
   private appConfig: TKGeneralConfiguration = APPCONFIG;
   dataLoaded = false;
   dataset: TKDatasetFilterer | null = null;
+  geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
     const surveys = await TKCreateSurveyCollection(
@@ -43,12 +52,12 @@ export default class App extends Vue {
       this.appConfig.language
     );
 
-    // const geoBoundaries = await TKGetGeoBoundaries(
-    //   surveys,
-    //   this.appConfig.iso3
-    // );
-    // console.log(geoBoundaries);
+    const geoBoundaries = await TKGetGeoBoundaries(
+      surveys,
+      this.appConfig.iso3
+    );
 
+    this.geoDataset = geoBoundaries;
     this.dataset = new TKDatasetFilterer(surveys);
     this.dataLoaded = true;
   }

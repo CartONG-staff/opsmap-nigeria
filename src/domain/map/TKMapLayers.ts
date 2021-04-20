@@ -26,6 +26,42 @@ export const TKMapLayersStyle = {
       "fill-opacity": 0.7,
     },
   },
+  [TKMapLayers.ADMIN1LAYER]: {
+    id: TKMapLayers.ADMIN1LAYER,
+    type: "fill",
+    source: TKMapLayers.ADMIN1SOURCE,
+    layout: {},
+    paint: {
+      "fill-color": "#585858",
+      "fill-opacity": [
+        "match",
+        ["get", "transparent"],
+        "yes",
+        0.0,
+        "no",
+        0.7,
+        0.0,
+      ],
+    },
+  },
+  [TKMapLayers.ADMIN2LAYER]: {
+    id: TKMapLayers.ADMIN2LAYER,
+    type: "fill",
+    source: TKMapLayers.ADMIN2SOURCE,
+    layout: {},
+    paint: {
+      "fill-color": "#585858",
+      "fill-opacity": [
+        "match",
+        ["get", "transparent"],
+        "yes",
+        0.0,
+        "no",
+        0.7,
+        0.0,
+      ],
+    },
+  },
   [TKMapLayers.CLUSTERSCIRCLELAYER]: {
     id: TKMapLayers.CLUSTERSCIRCLELAYER,
     type: "circle",
