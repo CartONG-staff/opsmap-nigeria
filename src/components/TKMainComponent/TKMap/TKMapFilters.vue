@@ -1,25 +1,31 @@
 <template lang="html">
   <div class="tk-map-filters">
-    <div class="tk-map-filter">
-      <img class="tk-indicator-icon" :src="plannedImgUrl" />
-      <div class="tk-map-filter-text">{{ $t("map.legendPlanned") }}</div>
-      <v-checkbox
-        v-model="checkboxs.planned"
-        class="tk-map-filter-checkbox"
-        @change="checkboxChange('planned')"
-        hide-details
-      ></v-checkbox>
+    <div class="tk-map-filters-item" id="myDiv">
+      <div class="tk-map-filter">
+        <img class="tk-indicator-icon" :src="plannedImgUrl" />
+        <div class="tk-map-filter-text">{{ $t("map.legendPlanned") }}</div>
+        <v-checkbox
+          v-model="checkboxs.planned"
+          class="tk-map-filter-checkbox"
+          @change="checkboxChange('planned')"
+          hide-details
+        ></v-checkbox>
+      </div>
+      <div class="tk-map-filter">
+        <img class="tk-indicator-icon" :src="spontaneousImgUrl" />
+        <div class="tk-map-filter-text">{{ $t("map.legendSpontaneous") }}</div>
+        <v-checkbox
+          v-model="checkboxs.spontaneous"
+          @change="checkboxChange('spontaneous')"
+          class="tk-map-filter-checkbox"
+          hide-details
+        ></v-checkbox>
+      </div>
     </div>
-    <div class="tk-map-filter">
-      <img class="tk-indicator-icon" :src="spontaneousImgUrl" />
-      <div class="tk-map-filter-text">{{ $t("map.legendSpontaneous") }}</div>
-      <v-checkbox
-        v-model="checkboxs.spontaneous"
-        @change="checkboxChange('spontaneous')"
-        class="tk-map-filter-checkbox"
-        hide-details
-      ></v-checkbox>
-    </div>
+    <div class="tk-vseparator" />
+    <v-btn icon color="primary" @click="toggleChanged">
+      <v-icon>mdi-map-legend</v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -43,6 +49,21 @@ export default class TKMapFilter extends Vue {
     spontaneous: true
   };
 
+  isVisible = true;
+  toggleChanged(): void {
+    const x = document.getElementById("myDiv");
+    if (x) {
+      if (this.isVisible) {
+        x.style.display = "none";
+      } else {
+        x.style.display = "flex";
+      }
+    } else {
+      console.log("x is not found");
+    }
+    this.isVisible = !this.isVisible;
+  }
+
   checkboxChange(checkbox: string): void {
     checkbox === "planned"
       ? this.dataset.setFiltersValue(
@@ -61,13 +82,23 @@ export default class TKMapFilter extends Vue {
   border-radius: 8px;
   overflow: hidden;
   border: 2px solid #00000011;
+  background-color: #fff;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: 10px;
+  height: 75px;
+}
+
+.tk-map-filters-item {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: left;
   padding: 5px;
   row-gap: 10px;
-  background-color: #fff;
+  flex-grow: 1;
 }
 .tk-map-filter {
   display: flex;
@@ -91,5 +122,12 @@ export default class TKMapFilter extends Vue {
   display: block;
   width: 20px;
   height: 20px;
+}
+
+.tk-vseparator {
+  background-color: #00000011;
+  width: 1px;
+  height: 100%;
+  margin-left: -1px;
 }
 </style>
