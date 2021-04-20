@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 
 import { TKSurveyFormat } from "@/domain/core/TKSurveyFormat";
