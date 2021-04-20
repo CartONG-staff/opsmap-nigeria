@@ -1,24 +1,24 @@
 <template lang="html">
   <div class="tk-map-filters">
     <div class="tk-map-filter">
+      <img class="tk-indicator-icon" :src="plannedImgUrl" />
+      <div class="tk-map-filter-text">{{ $t("map.legendPlanned") }}</div>
       <v-checkbox
         v-model="checkboxs.planned"
         class="tk-map-filter-checkbox"
         @change="checkboxChange('planned')"
         hide-details
       ></v-checkbox>
-      <img class="tk-indicator-icon" :src="plannedImgUrl" />
-      <div classs="tk-map-filter-text">Planned site</div>
     </div>
     <div class="tk-map-filter">
+      <img class="tk-indicator-icon" :src="spontaneousImgUrl" />
+      <div class="tk-map-filter-text">{{ $t("map.legendSpontaneous") }}</div>
       <v-checkbox
         v-model="checkboxs.spontaneous"
         @change="checkboxChange('spontaneous')"
         class="tk-map-filter-checkbox"
         hide-details
       ></v-checkbox>
-      <img class="tk-indicator-icon" :src="spontaneousImgUrl" />
-      <div class="tk-map-filter-text">Spontaneous site</div>
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@ import { Component, Emit, Prop, Vue } from "vue-property-decorator";
 import {
   TKDatasetFilterer,
   TKFilters,
-  TKFiltersTypes,
+  TKFiltersTypes
 } from "@/domain/core/TKFilters";
 
 @Component
@@ -40,7 +40,7 @@ export default class TKMapFilter extends Vue {
   spontaneousImgUrl = TKIconUrl("spontaneous_site");
   checkboxs = {
     planned: true,
-    spontaneous: true,
+    spontaneous: true
   };
 
   checkboxChange(checkbox: string): void {
@@ -77,30 +77,19 @@ export default class TKMapFilter extends Vue {
   column-gap: 10px;
 }
 
+.tk-map-filter-text {
+  flex-grow: 1;
+  font-size: 13px;
+}
+
 .tk-map-filter-checkbox {
   padding: 0px;
-  margin: 0px;
-  width: 20px;
-  height: 20px;
+  margin: auto;
 }
 
 .tk-indicator-icon {
   display: block;
   width: 20px;
   height: 20px;
-}
-
-.tk-icon-container {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.tk-hseparator {
-  height: 1px;
-  width: 100%;
-  background-color: #dddddd;
 }
 </style>
