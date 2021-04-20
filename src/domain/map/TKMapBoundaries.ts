@@ -15,6 +15,7 @@ export class TKMapBoundaries {
   }
 
   changeStyle(dataset: TKDatasetFilterer, map: mapboxgl.Map): void {
+    let ifAdmin1NotDefined = null;
     switch (dataset.levelOfChange) {
       case TKFilters.SURVEY:
         for (const item of this.admin1.features) {
@@ -31,36 +32,44 @@ export class TKMapBoundaries {
               ? "yes"
               : "no"
             : "yes";
-          // if (item.properties!.pcode === dataset.currentAdmin1?.pcode) {
-          //   map.fitBounds(
-          //     this.getBoundingBoxFromCoordinatesArray(item.geometry.coordinates)
-          //   );
-          // }
         }
         for (const item of this.admin2.features) {
           item.properties!.transparent = "yes";
         }
         break;
       case TKFilters.ADMIN2:
-        for (const item of this.admin1.features) {
-          item.properties!.transparent = dataset.currentAdmin1
-            ? item.properties!.pcode === dataset.currentAdmin1?.pcode
-              ? "yes"
-              : "no"
-            : "yes";
-        }
         for (const item of this.admin2.features) {
-          item.properties!.transparent = dataset.currentAdmin2
-            ? item.properties!.pcode === dataset.currentAdmin2?.pcode
-              ? "yes"
-              : "no"
-            : "yes";
-          // if (item.properties!.pcode === dataset.currentAdmin2?.pcode) {
-          //   map.fitBounds(
-          //     this.getBoundingBoxFromCoordinatesArray(item.geometry.coordinates)
-          //   );
-          // }
+          if (dataset.currentAdmin2) {
+            if (item.properties!.pcode === dataset.currentAdmin2?.pcode) {
+              item.properties!.transparent = "yes";
+              ifAdmin1NotDefined = item.properties!.adm1pcode;
+            } else {
+              item.properties!.transparent = "no";
+            }
+          } else {
+            item.properties!.transparent = "yes";
+          }
         }
+        for (const item of this.admin1.features) {
+          if (ifAdmin1NotDefined) {
+            item.properties!.transparent = dataset.currentAdmin1
+              ? item.properties!.pcode === dataset.currentAdmin1?.pcode
+                ? "yes"
+                : "no"
+              : item.properties!.pcode === ifAdmin1NotDefined
+              ? "yes"
+              : "no";
+          } else {
+            for (const item of this.admin1.features) {
+              item.properties!.transparent = dataset.currentAdmin1
+                ? item.properties!.pcode === dataset.currentAdmin1?.pcode
+                  ? "yes"
+                  : "no"
+                : "yes";
+            }
+          }
+        }
+
         break;
       case TKFilters.CAMP:
         console.log("on Change de camps fréro");
