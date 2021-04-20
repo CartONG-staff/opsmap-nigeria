@@ -55,7 +55,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
-import { TKDatasetFilterer } from "@/domain/core/TKFilters";
+import { TKFilters, TKDatasetFilterer } from "@/domain/core/TKFilters";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKBoundarieDescription } from "@/domain/core/TKBoundarieDescription";
 
@@ -66,6 +66,7 @@ export default class TKHomeCombos extends Vue {
 
   surveySelected(year: string) {
     this.dataset.currentSurvey = year;
+    this.dataset.setFiltersValue(TKFilters.SURVEY, year ? year : null);
     console.log(this.dataset);
   }
 
@@ -75,6 +76,7 @@ export default class TKHomeCombos extends Vue {
           (a) => a.pcode === pcode
         ) as TKBoundarieDescription)
       : null;
+    this.dataset.setFiltersValue(TKFilters.ADMIN1, pcode ? pcode : null);
     console.log(this.dataset);
   }
 
@@ -84,6 +86,7 @@ export default class TKHomeCombos extends Vue {
           (a) => a.pcode === pcode
         ) as TKBoundarieDescription)
       : null;
+    this.dataset.setFiltersValue(TKFilters.ADMIN2, pcode ? pcode : null);
   }
   campSelected(campId: string) {
     this.dataset.currentCamp = campId

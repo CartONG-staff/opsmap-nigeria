@@ -27,18 +27,18 @@ export class TKDatasetFilterer {
   filteredAdmin2List: TKBoundarieDescription[];
   filteredCampsList: TKCampDescription[];
   filters: { [key: string]: TKFiltersTypes } = {
-    survey: "",
-    admin1: "",
-    admin2: "",
+    survey: null,
+    admin1: null,
+    admin2: null,
     planned: true,
     spontaneous: true,
   };
 
   constructor(surveys: TKSurveyCollection) {
-    console.log(surveys);
     this.surveys = surveys;
     this.surveyList = Object.keys(surveys);
     this.currentSurvey = this.surveyList[0];
+    this.filters.survey = this.currentSurvey;
     this.admin1List = surveys[this.currentSurvey].boundariesList.admin1;
     this.filteredAdmin1List = surveys[this.currentSurvey].boundariesList.admin1;
     this.admin2List = surveys[this.currentSurvey].boundariesList.admin2;
@@ -53,15 +53,30 @@ export class TKDatasetFilterer {
   }
 
   refreshLists() {
-    console.log("refreshmagueule");
+    if (this.filters.survey) {
+      this.filteredCampsList = this.surveys[this.currentSurvey].campsList;
+    }
+    if (this.filters.admin1) {
+      this.filteredCampsList = this.filteredCampsList.filter(
+        (x) => x.admin1.pcode === this.filters.admin1
+      );
+    }
+    if (this.filters.admin2) {
+      this.filteredCampsList = this.filteredCampsList.filter(
+        (x) => x.admin2.pcode === this.filters.admin2
+      );
+    }
 
-    !this.filters.planned
-      ? (this.filteredCampsList = this.campsList.filter(
-          (x) => x.type !== campTypesValues.PLANNED
-        ))
-      : (this.filteredCampsList = this.campsList.filter(
-          (x) => x.type === campTypesValues.PLANNED
-        ));
+    if (!this.filters.planned) {
+      this.filteredCampsList = this.filteredCampsList.filter(
+        (x) => x.type !== campTypesValues.PLANNED
+      );
+    }
+    if (!this.filters.spontaneous) {
+      this.filteredCampsList = this.filteredCampsList.filter(
+        (x) => x.type !== campTypesValues.SPONTANEOUS
+      );
+    }
   }
 
   getFilteredCampsList() {

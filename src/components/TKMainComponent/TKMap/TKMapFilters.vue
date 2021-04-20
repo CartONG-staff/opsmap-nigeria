@@ -43,11 +43,6 @@ export default class TKMapFilter extends Vue {
     spontaneous: true,
   };
 
-  // @Emit("camps-filters-changed")
-  // campsFiltersChanged(filter: string, value: TKFiltersTypes) {
-  //   console.log("Change on filter component: " + filter);
-  // }
-
   checkboxChange(checkbox: string): void {
     checkbox === "planned"
       ? this.dataset.setFiltersValue(

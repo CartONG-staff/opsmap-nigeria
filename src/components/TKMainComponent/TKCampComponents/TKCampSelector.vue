@@ -50,9 +50,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKDatasetFilterer } from "@/domain/core/TKFilters";
+import { TKBoundarieDescription } from "@/domain/core/TKBoundarieDescription";
 
 @Component
 export default class TKCampSelector extends Vue {

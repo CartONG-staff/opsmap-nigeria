@@ -48,7 +48,7 @@ export default class TKMap extends Vue {
   currentCamp: TKCampDescription | null = null;
   @Watch("dataset", { immediate: true })
   datasetLoaded() {
-    this.campList = this.dataset.surveys[this.dataset.currentSurvey].campsList;
+    this.campList = this.dataset.filteredCampsList;
     this.currentCamp = this.dataset.currentCamp;
   }
   mapCamps: TKMapCamps | null = null;
