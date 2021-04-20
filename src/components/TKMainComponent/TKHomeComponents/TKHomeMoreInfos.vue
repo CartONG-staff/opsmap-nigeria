@@ -4,16 +4,32 @@
       {{ $t("home.moreInfosTitle").toUpperCase() }}
     </div>
     <div class="tk-home-moreinfos-content">
-      {{ $t("home.moreInfosContent") }}
+      {{ content }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { TKGeneralConfiguration } from "@/domain";
+import { TKGetLocalValue } from "@/domain/core/TKLabel";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
-export default class TKHomeIndicators extends Vue {}
+export default class TKHomeIndicators extends Vue {
+  @Prop()
+  readonly appConfig!: TKGeneralConfiguration;
+
+  content = this.appConfig.opsmapDescr.label_en;
+
+  @Watch("$root.$i18n.locale", {immediate: true})
+  handleLocale() {
+    if(this.appConfig){
+      this.content = TKGetLocalValue(
+        this.appConfig.opsmapDescr,
+        this.$root.$i18n.locale
+    }
+  );
+}
 </script>
 
 <style scoped>

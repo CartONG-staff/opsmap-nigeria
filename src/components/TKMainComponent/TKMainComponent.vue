@@ -60,7 +60,7 @@
             :appConfig="appConfig"
             :survey="survey"
           />
-          <TKHomeMoreInfos />
+          <TKHomeMoreInfos :appConfig="appConfig" />
         </div>
         <div v-if="!isHomePage" class="tk-camp-content">
           <TKCampIndicators

@@ -4,7 +4,6 @@ import vuetify from "@/plugins/vuetify";
 import i18n from "@/i18n";
 import { TKGeneralConfigurationBuild } from "@/domain/survey/surveyConfiguration/TKGeneralConfigurationBuild";
 
-
 TKGeneralConfigurationBuild().then(
   config => {
     Vue.config.productionTip = false;

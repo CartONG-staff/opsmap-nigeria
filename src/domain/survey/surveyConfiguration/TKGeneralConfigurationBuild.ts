@@ -40,6 +40,11 @@ export async function  TKGeneralConfigurationBuild(): Promise<TKGeneralConfigura
         name: "brazil",
         iso3: dict["iso3"] ?? "BRA",
         surveyFormat: surveyFormat,
+        opsmapDescr:{
+            name:"opsmap description",
+            label_en: dict["project_overview_en"] ?? "",
+            label_pt: dict["project_overview_pt"] ?? undefined,
+        },
         spatialDescription: {
             siteIDField: dict["mp_site_id"] ?? "mp_site_id",
             siteNameField: dict["mp_site_name"] ?? "mp_site_name",
