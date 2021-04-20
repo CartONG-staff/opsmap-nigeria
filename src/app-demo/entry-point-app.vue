@@ -2,9 +2,12 @@
   <v-app>
     <v-main>
       <div class="tk-main">
-        <TKHeader :appConfig="appConfig" />
-        <TKMainComponent class="tk-main-dashboard" :appConfig="appConfig" />
-        <TKFooter :appConfig="appConfig" />
+        <TKHeader :appConfig="$root.$data.appRootConfig" />
+        <TKMainComponent
+          class="tk-main-dashboard"
+          :appConfig="$root.$data.appRootConfig"
+        />
+        <TKFooter :appConfig="$root.$data.appRootConfig" />
       </div>
     </v-main>
   </v-app>
@@ -12,10 +15,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
-import { APPCONFIG } from "@/app-demo/config";
-import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an alias to /src
-
+import { TKFooter, TKMainComponent, TKHeader } from "@/components";
 @Component({
   components: {
     TKHeader,
@@ -23,9 +23,7 @@ import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an a
     TKMainComponent
   }
 })
-export default class App extends Vue {
-  private appConfig: TKGeneralConfiguration = APPCONFIG;
-}
+export default class App extends Vue {}
 </script>
 
 <style>
