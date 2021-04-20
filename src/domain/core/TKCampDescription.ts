@@ -1,4 +1,5 @@
 import { TKCampTypesValues } from "@/domain/core/TKCampTypesValues";
+import { TKBoundarieDescription } from "./TKBoundarieDescription";
 
 export interface TKCampDescription {
   id: string;
@@ -7,16 +8,7 @@ export interface TKCampDescription {
   submissionsDates: string[];
   lat: number;
   lng: number;
-  admin1: {
-    pcode: string;
-    name: string;
-  };
-  admin2: {
-    pcode: string;
-    name: string;
-  };
-  admin3: {
-    pcode: string;
-    name: string;
-  };
+  admin1: TKBoundarieDescription;
+  admin2: TKBoundarieDescription;
+  admin3: TKBoundarieDescription;
 }
