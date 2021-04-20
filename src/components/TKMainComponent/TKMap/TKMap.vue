@@ -8,6 +8,7 @@
       v-on:zoomreset="zoomReset"
     />
 
+    <TKMapFilters class="tk-map-filters" :dataset="dataset" />
     <!-- <TKMapBasemapPicker class="tk-basemap-picker" v-on:change="updateBasemap" /> -->
   </div>
 </template>
@@ -25,6 +26,7 @@ import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
+import TKMapFilters from "./TKMapFilters.vue";
 import { mask } from "@/secondary/map/mask";
 import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
@@ -36,6 +38,7 @@ import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
 @Component({
   components: {
     TKMapBasemapPicker,
+    TKMapFilters,
     TKMapZoom
   }
 })
@@ -300,6 +303,13 @@ export default class TKMap extends Vue {
   position: absolute;
   top: 8px;
   left: 8px;
+  z-index: 2500;
+}
+
+.tk-map-filters {
+  position: absolute;
+  bottom: 28px;
+  right: 8px;
   z-index: 2500;
 }
 </style>

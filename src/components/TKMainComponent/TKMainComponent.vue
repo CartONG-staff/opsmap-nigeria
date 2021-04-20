@@ -37,8 +37,6 @@
           :dataset="dataset"
           :geoDataset="geoData"
         />
-
-        <TKMapFilters class="tk-map-filters" :dataset="dataset" />
       </div>
 
       <div class="tk-main-content">
@@ -72,7 +70,6 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
-import TKMapFilters from "./TKMap/TKMapFilters.vue";
 
 import {
   TKHomeCombos,
@@ -112,7 +109,6 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
-    TKMapFilters,
     TKTitle
   }
 })
@@ -248,13 +244,6 @@ export default class TKMainComponent extends Vue {
 .tk-main-map {
   width: 65%;
   height: 450px;
-}
-
-.tk-map-filters {
-  position: absolute;
-  right: calc(20px + var(--side-padding));
-  top: 525px;
-  z-index: 2500;
 }
 
 .tk-main-content {
