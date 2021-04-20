@@ -1,19 +1,14 @@
+import { TKCampTypesValues } from "@/domain/core/TKCampTypesValues";
+import { TKBoundarieDescription } from "./TKBoundarieDescription";
+
 export interface TKCampDescription {
   id: string;
   name: string;
-  type: string;
+  type: TKCampTypesValues.PLANNED | TKCampTypesValues.SPONTANEOUS;
   submissionsDates: string[];
-  coordinates: [number, number];
-  admin1: {
-    pcode: string;
-    name: string;
-  };
-  admin2: {
-    pcode: string;
-    name: string;
-  };
-  admin3: {
-    pcode: string;
-    name: string;
-  };
+  lat: number;
+  lng: number;
+  admin1: TKBoundarieDescription;
+  admin2: TKBoundarieDescription;
+  admin3: TKBoundarieDescription;
 }

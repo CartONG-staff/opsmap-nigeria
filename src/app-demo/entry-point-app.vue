@@ -1,10 +1,18 @@
 <template>
   <v-app>
     <v-main>
-      <div class="tk-main">
+      <div class="tk-loader" v-if="!dataLoaded">
+        <h2 color="primary">
+          ...Je mouline, je vais chercher les 40 Go de données sur le serveur du
+          HCR, patience...
+        </h2>
+      </div>
+      <div class="tk-main" v-if="dataLoaded">
         <TKHeader :appConfig="$root.$data.appRootConfig" />
         <TKMainComponent
           class="tk-main-dashboard"
+          :dataset="dataset"
+          :geoData="geoDataset"
           :appConfig="$root.$data.appRootConfig"
         />
         <TKFooter :appConfig="$root.$data.appRootConfig" />
@@ -16,6 +24,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components";
+import { TKDatasetFilterer } from "@/domain/core/TKFilters";
+import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
+import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
+import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 @Component({
   components: {
     TKHeader,
@@ -23,7 +35,31 @@ import { TKFooter, TKMainComponent, TKHeader } from "@/components";
     TKMainComponent
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  dataLoaded = false;
+  dataset: TKDatasetFilterer | null = null;
+  geoDataset: TKGeoDataset | null = null;
+
+  async mounted() {
+    const surveys = await TKCreateSurveyCollection(
+      this.$root.$data.appRootConfig.surveyDescription,
+      this.$root.$data.appRootConfig.surveyFormat,
+      this.$root.$data.appRootConfig.spatialDescription,
+      this.$root.$data.appRootConfig.indicatorsDescription
+    );
+    if (this.$root.$data.appRootConfig.spatialDescription.useBoundariesMasks) {
+      this.geoDataset = await TKGetGeoBoundaries(
+        surveys,
+        this.$root.$data.appRootConfig.iso3
+      );
+    } else {
+      this.geoDataset = null;
+    }
+    this.dataset = new TKDatasetFilterer(surveys);
+
+    this.dataLoaded = true;
+  }
+}
 </script>
 
 <style>
@@ -42,6 +78,14 @@ h3 {
   font-family: "Arial";
   font-size: 18px;
   letter-spacing: 1.5px;
+}
+
+.tk-loader {
+  display: flex;
+  min-height: 100%;
+  min-width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .tk-main {

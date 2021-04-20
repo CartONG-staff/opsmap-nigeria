@@ -35,5 +35,9 @@
     "titleX": "Count",
     "female": "Female",
     "male": "Male"
+  },
+  "map": {
+    "legendPlanned": "Planned site",
+    "legendSpontaneous": "Spontaneous site"
   }
 }

@@ -8,21 +8,19 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
 import { TKSurvey } from "@/domain/core/TKSurvey";
 import { TKIndicator } from "@/domain/core/TKIndicator";
+import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 @Component({
   components: {
-    TKIndicatorComponent
-  }
+    TKIndicatorComponent,
+  },
 })
 export default class TKHomeIndicators extends Vue {
   @Prop()
-  readonly appConfig!: TKGeneralConfiguration;
-
-  @Prop()
-  readonly survey!: TKSurvey;
+  readonly dataset!: TKDatasetFilterer;
+  survey: TKSurvey | null = null;
 
   indicator1: TKIndicator | null = this.survey
     ? this.survey.indicators[0]
@@ -36,7 +34,8 @@ export default class TKHomeIndicators extends Vue {
 
   @Watch("survey", { immediate: true })
   onSurveyChanged() {
-    if (this.survey) {
+    if (this.dataset) {
+      this.survey = this.dataset.surveys[this.dataset.currentSurvey];
       this.indicator1 = this.survey.indicators[0];
       this.indicator2 = this.survey.indicators[1];
       this.indicator3 = this.survey.indicators[2];

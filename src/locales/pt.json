@@ -35,5 +35,9 @@
     "titleX": "Contar",
     "female": "Fêmea",
     "male": "Macho"
+  },
+  "map": {
+    "legendPlanned": "Site planejado",
+    "legendSpontaneous": "Site espontâneo"
   }
 }

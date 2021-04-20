@@ -44,13 +44,13 @@
 </template>
 
 <script lang="ts">
-import { TKCampDescription } from "@/domain/core/TKCampDescription";
+import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKCampInfos extends Vue {
   @Prop()
-  readonly camp!: TKCampDescription;
+  readonly dataset!: TKDatasetFilterer;
 
   admin1 = "";
   admin2 = "";
@@ -58,27 +58,23 @@ export default class TKCampInfos extends Vue {
   name = "";
   coordinates = "";
 
-  @Watch("camp", { immediate: true })
+  @Watch("dataset", { immediate: true, deep: true })
   onChange() {
-    this.admin1 = this.camp
-      ? this.camp.admin1.name
-        ? this.camp.admin1.name
-        : "-"
-      : "-";
-    this.admin2 = this.camp
-      ? this.camp.admin2.name
-        ? this.camp.admin2.name
-        : "-"
-      : "-";
-    this.admin3 = this.camp
-      ? this.camp.admin3.name
-        ? this.camp.admin3.name
-        : "-"
-      : "-";
-    this.name = this.camp ? this.camp.name : "-";
-    this.coordinates = this.camp
-      ? this.camp.coordinates[0] + "," + this.camp.coordinates[1]
-      : "-";
+    if (this.dataset) {
+      this.admin1 = this.dataset.currentCamp
+        ? this.dataset.currentCamp.admin1.name
+        : "";
+      this.admin2 = this.dataset.currentCamp
+        ? this.dataset.currentCamp.admin2.name
+        : "";
+      this.admin3 = this.dataset.currentCamp
+        ? this.dataset.currentCamp.admin3.name
+        : "";
+      this.name = this.dataset.currentCamp ? this.dataset.currentCamp.name : "";
+      this.coordinates = this.dataset.currentCamp
+        ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
+        : "";
+    }
   }
 }
 </script>

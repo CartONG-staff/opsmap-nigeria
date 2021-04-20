@@ -9,13 +9,19 @@ import { TKSurvey } from "@/domain/core/TKSurvey";
 import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKSubmission } from "@/domain/core/TKSubmission";
 import { TKIndicator } from "@/domain/core/TKIndicator";
-import { TKIndicatorsDescription, TKIndicatorDescription, TKIndicatorComputationType } from "@/domain/core/TKIndicatorsDescription";
+import {
+  TKIndicatorsDescription,
+  TKIndicatorDescription,
+  TKIndicatorComputationType,
+} from "@/domain/core/TKIndicatorsDescription";
 import { isNumber } from "@turf/helpers";
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
 
-function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: string]: { [date: string]: TKSubmission }}) : TKIndicator{
-
-  if(descr.entryCode === "mp_site_id"){
+function computeSurveyIndicator(
+  descr: TKIndicatorDescription,
+  data: { [campId: string]: { [date: string]: TKSubmission } }
+): TKIndicator {
+  if (descr.entryCode === "mp_site_id") {
     return {
       iconOchaName: descr.iconOchaName,
       nameLabel: {name: descr.name, label_en: descr.name},
@@ -23,14 +29,14 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
     }
   }
 
-  const splitted = descr.entryCode.split("_")
-  if(splitted){
-    const thematic = "group_"+splitted[0];
+  const splitted = descr.entryCode.split("_");
+  if (splitted) {
+    const thematic = "group_" + splitted[0];
     let sum = 0;
     for (const camp in data) {
       const last = Object.keys(data[camp])[0];
       const submission = data[camp][last];
-      if(submission){
+      if (submission) {
         const them = submission.thematics[thematic];
         if(them){
           const item = them.data.find(item => item.field === descr.entryCode);
@@ -40,14 +46,14 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
         }
       }
     }
-    if(!descr.computationType){
+    if (!descr.computationType) {
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: {name: descr.name, label_en: descr.name},
         valueLabel: {name: String(sum), label_en: String(sum)}
       }
     }
-    if(descr.computationType === TKIndicatorComputationType.MEAN){
+    if (descr.computationType === TKIndicatorComputationType.MEAN) {
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: {name: descr.name, label_en: descr.name},
@@ -68,12 +74,14 @@ function computeSurveyIndicator(descr: TKIndicatorDescription, data: {[campId: s
   }
 }
 
-
-function computeSurveyIndicators(descr: TKIndicatorsDescription, data: {[campId: string]: { [date: string]: TKSubmission }}) : [TKIndicator, TKIndicator, TKIndicator] {
+function computeSurveyIndicators(
+  descr: TKIndicatorsDescription,
+  data: { [campId: string]: { [date: string]: TKSubmission } }
+): [TKIndicator, TKIndicator, TKIndicator] {
   return [
     computeSurveyIndicator(descr.home[0], data),
     computeSurveyIndicator(descr.home[1], data),
-    computeSurveyIndicator(descr.home[2], data)
+    computeSurveyIndicator(descr.home[2], data),
   ];
 }
 export function TKCreateSurvey(
@@ -88,7 +96,7 @@ export function TKCreateSurvey(
   const campsList: TKCampDescription[] = [];
   const boundariesList: TKBoundariesCollection = {
     admin1: [],
-    admin2: []
+    admin2: [],
   };
   for (const submission of sumbmissions) {
     if (submissionsByCamps[submission[spatialDescription.siteIDField]]) {
@@ -108,26 +116,24 @@ export function TKCreateSurvey(
         name: submission[spatialDescription.siteNameField],
         type: submission[spatialDescription.siteTypeField],
         submissionsDates: [submission[spatialDescription.siteLastUpdateField]],
-        coordinates: [
-          Number(
-            submission[spatialDescription.siteLatitudeField].replace(",", ".")
-          ),
-          Number(
-            submission[spatialDescription.siteLongitudeField].replace(",", ".")
-          )
-        ],
+        lat: Number(
+          submission[spatialDescription.siteLatitudeField].replace(",", ".")
+        ),
+        lng: Number(
+          submission[spatialDescription.siteLongitudeField].replace(",", ".")
+        ),
         admin1: {
           pcode: submission[spatialDescription.adm1Pcode],
-          name: submission[spatialDescription.adm1Name]
+          name: submission[spatialDescription.adm1Name],
         },
         admin2: {
           pcode: submission[spatialDescription.adm2Pcode],
-          name: submission[spatialDescription.adm2Name]
+          name: submission[spatialDescription.adm2Name],
         },
         admin3: {
           pcode: submission[spatialDescription.adm3Pcode],
-          name: submission[spatialDescription.adm3Name]
-        }
+          name: submission[spatialDescription.adm3Name],
+        },
       });
       if (
         !boundariesList.admin2
@@ -136,7 +142,7 @@ export function TKCreateSurvey(
       ) {
         boundariesList.admin2.push({
           pcode: submission[spatialDescription.adm2Pcode],
-          name: submission[spatialDescription.adm2Name]
+          name: submission[spatialDescription.adm2Name],
         });
         if (
           !boundariesList.admin1
@@ -145,7 +151,7 @@ export function TKCreateSurvey(
         ) {
           boundariesList.admin1.push({
             pcode: submission[spatialDescription.adm1Pcode],
-            name: submission[spatialDescription.adm1Name]
+            name: submission[spatialDescription.adm1Name],
           });
         }
       }
@@ -162,6 +168,9 @@ export function TKCreateSurvey(
     submissionsByCamps: submissionsByCamps,
     campsList: campsList,
     boundariesList: boundariesList,
-    indicators: computeSurveyIndicators(indicatorsDescription, submissionsByCamps)
+    indicators: computeSurveyIndicators(
+      indicatorsDescription,
+      submissionsByCamps
+    ),
   };
 }

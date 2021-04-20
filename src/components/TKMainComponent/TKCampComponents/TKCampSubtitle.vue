@@ -6,18 +6,17 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { TKCampDescription } from "@/domain/core/TKCampDescription";
+import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 
 @Component
 export default class TKCampSubtitle extends Vue {
   @Prop()
-  readonly camp!: TKCampDescription;
+  readonly dataset!: TKDatasetFilterer;
 
-  name = this.camp.name;
-
-  @Watch("camp")
+  name = "";
+  @Watch("dataset", { deep: true })
   onChange() {
-    this.name = this.camp ? this.camp.name : "";
+    this.name = this.dataset.currentCamp ? this.dataset.currentCamp.name : "";
   }
 }
 </script>

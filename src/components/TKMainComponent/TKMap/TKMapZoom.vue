@@ -1,22 +1,23 @@
 <template lang="html">
   <div class="tk-map-zoom">
     <div class="tk-icon-container">
-      <v-icon @click="$emit('zoomin')">
-        mdi-plus
-      </v-icon>
+      <v-btn icon small color="primary" @click="$emit('zoomin')">
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
     </div>
     <div class="tk-hseparator" />
     <div class="tk-icon-container">
-      <v-icon @click="$emit('zoomout')">
-        mdi-minus
-      </v-icon>
+      <v-btn icon small color="primary" @click="$emit('zoomout')">
+        <v-icon>mdi-minus</v-icon>
+      </v-btn>
     </div>
     <div class="tk-hseparator" />
     <div class="tk-icon-container">
-      <v-icon @click="$emit('zoomreset')">
-        mdi-stretch-to-page-outline
-      </v-icon>
+      <v-btn icon small color="primary" @click="$emit('zoomreset')">
+        <v-icon>mdi-stretch-to-page-outline</v-icon>
+      </v-btn>
     </div>
+    <div class="tk-hseparator" />
   </div>
 </template>
 

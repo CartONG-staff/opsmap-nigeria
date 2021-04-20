@@ -21,14 +21,15 @@ export default class TKHomeIndicators extends Vue {
 
   content = this.appConfig.opsmapDescr.label_en;
 
-  @Watch("$root.$i18n.locale", {immediate: true})
+  @Watch("$root.$i18n.locale", { immediate: true })
   handleLocale() {
-    if(this.appConfig){
+    if (this.appConfig) {
       this.content = TKGetLocalValue(
         this.appConfig.opsmapDescr,
         this.$root.$i18n.locale
+      );
     }
-  );
+  }
 }
 </script>
 

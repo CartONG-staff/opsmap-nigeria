@@ -11,4 +11,5 @@ export interface TKSpatialDescription {
   adm2Name: string;
   adm3Pcode: string;
   adm3Name: string;
+  useBoundariesMasks: boolean;
 }

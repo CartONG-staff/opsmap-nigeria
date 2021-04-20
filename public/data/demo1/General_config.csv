@@ -2,7 +2,7 @@
 fdf_id;BR_FDF_s1_080421
 csv_data_id;BR_DATA_080421_FDF_s1
 adm1_unhcr;adm1pcode
-adm2_unhcr;pcode
+adm2_unhcr;adm2pcode
 ikey1_homepage;mp_site_id
 ikey2_homepage;demo_num_indv
 ikey3_homepage;cccm_shelter_max_capacity
