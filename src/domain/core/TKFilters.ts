@@ -111,6 +111,11 @@ export class TKDatasetFilterer {
       );
     }
 
+    if(this.currentCamp){
+      this.currentAdmin1 = this.currentCamp.admin1;
+      this.currentAdmin2 = this.currentCamp.admin2;
+    }
+
     if (!this.filters.planned) {
       this.filteredCampsList = this.filteredCampsList.filter(
         (x) => x.type !== TKCampTypesValues.PLANNED
