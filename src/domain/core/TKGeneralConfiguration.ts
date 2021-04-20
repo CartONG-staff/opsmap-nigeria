@@ -1,4 +1,4 @@
-import { TKMapboxConfiguration } from "@/domain/map/TKMapboxConfiguration";
+import { TKMapboxConfiguration } from "@/domain/core/TKMapboxConfiguration";
 import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKKoboSurveyInfo } from "@/domain/survey/surveyRawData/kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";

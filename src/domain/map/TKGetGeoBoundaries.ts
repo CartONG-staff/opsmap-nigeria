@@ -4,7 +4,7 @@ import { TKGeoDataset } from "../core/TKGeoDataset";
 export async function TKGetGeoBoundaries(
   surveys: TKSurveyCollection,
   iso3: string
-): TKGeoDataset {
+): Promise<TKGeoDataset> {
   let admin1List: string[] = [];
   for (const key in surveys) {
     surveys[key].boundariesList.admin1.map((x) => admin1List.push(x.pcode));
