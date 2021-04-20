@@ -87,6 +87,10 @@ export class TKDatasetFilterer {
         this.currentCamp = value
           ? (this.campsList.find((c) => c.id === value) as TKCampDescription)
           : null;
+        if(this.currentCamp){
+          this.currentAdmin1 = this.currentCamp.admin1;
+          this.currentAdmin2 = this.currentCamp.admin2;
+        }
         break;
       default:
         console.log("error on selector");
@@ -111,20 +115,10 @@ export class TKDatasetFilterer {
       );
     }
 
-    switch(this.levelOfChange){
-      case TKFilters.CAMP:
-        if(this.currentCamp){
-          this.currentAdmin1 = this.currentCamp.admin1;
-          this.currentAdmin2 = this.currentCamp.admin2;
-        }
-        break;
-      case TKFilters.ADMIN2:
-        if(this.filteredCampsList.length){
-          this.currentAdmin1 = this.filteredCampsList[0].admin1;
-        }
-        break;
-      default:
-        break;
+    if(this.levelOfChange === TKFilters.ADMIN2){
+      if(this.filteredCampsList.length){
+        this.currentAdmin1 = this.filteredCampsList[0].admin1;
+      }
     }
 
     if (!this.filters.planned) {
