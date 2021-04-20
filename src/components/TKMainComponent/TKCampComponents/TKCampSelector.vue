@@ -4,6 +4,7 @@
       class="tk-autocomplete"
       flat
       dense
+      readonly
       :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
       v-model="dataset.currentSurvey"
       :items="dataset.surveyList"
