@@ -43,11 +43,11 @@ export default class App extends Vue {
       this.appConfig.language
     );
 
-    const geoBoundaries = await TKGetGeoBoundaries(
-      surveys,
-      this.appConfig.iso3
-    );
-    console.log(geoBoundaries);
+    // const geoBoundaries = await TKGetGeoBoundaries(
+    //   surveys,
+    //   this.appConfig.iso3
+    // );
+    // console.log(geoBoundaries);
 
     this.dataset = new TKDatasetFilterer(surveys);
     this.dataLoaded = true;

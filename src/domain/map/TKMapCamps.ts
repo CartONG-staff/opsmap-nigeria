@@ -37,9 +37,6 @@ export class TKMapCamps {
   }
 
   toTKCampDescription(featureID: string): TKCampDescription {
-    console.log(featureID);
-    console.log(this.camps.find((x) => x.id === featureID));
-
     return this.camps.find((x) => x.id === featureID) as TKCampDescription;
   }
 

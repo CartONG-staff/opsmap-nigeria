@@ -1,6 +1,10 @@
 import { campTypesValues } from "@/app-demo/appConfiguration";
 
 export enum TKMapLayers {
+  ADMIN1SOURCE = "admin1Source",
+  ADMIN1LAYER = "admin1Layer",
+  ADMIN2SOURCE = "admin2Source",
+  ADMIN2LAYER = "admin2Layer",
   COUNTRYMASKSOURCE = "countryMask",
   COUNTRYMASKLAYER = "countryMaskLayer",
   SELECTEDCAMPSOURCE = "selectedCamp",

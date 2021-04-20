@@ -35,7 +35,6 @@ import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 @Component({
   components: {
     TKMapBasemapPicker,
-    // TKMapFilters,
     TKMapZoom,
   },
 })
@@ -44,15 +43,9 @@ export default class TKMap extends Vue {
   readonly appConfig!: TKGeneralConfiguration;
   @Prop({ default: () => [] })
   dataset!: TKDatasetFilterer;
-  campList: TKCampDescription[] | null = null;
-  currentCamp: TKCampDescription | null = null;
-  @Watch("dataset", { immediate: true })
-  datasetLoaded() {
-    this.campList = this.dataset.filteredCampsList;
-    this.currentCamp = this.dataset.currentCamp;
-  }
+  map!: mapboxgl.Map;
+  bound!: mapboxgl.LngLatBounds;
   mapCamps: TKMapCamps | null = null;
-  newSelectedCamp: TKCampDescription | null = null;
   mapMarkersList = [
     "planned_site",
     "planned_site_selected",
@@ -61,35 +54,15 @@ export default class TKMap extends Vue {
   ];
   markersLoadedCount = 0;
 
-  mounted(): void {
-    if (this.campList !== null) {
-      this.mapCamps = new TKMapCamps(this.campList, this.currentCamp);
-    }
-
-    this.initMap();
-  }
-
-  @Watch("markersLoadedCount")
-  mapMarkersLoaded() {
-    if (
-      this.markersLoadedCount === this.mapMarkersList.length &&
-      this.campList!.length > 0
-    ) {
-      this.addCampsSources();
-    }
-  }
-
-  @Watch("campList")
-  changeOnCampList() {
+  // Initialisation of component
+  @Watch("dataset", { immediate: true })
+  datasetLoaded() {
     this.mapCamps = new TKMapCamps(
       this.dataset.filteredCampsList,
       this.dataset.currentCamp
     );
-    if (this.markersLoadedCount === this.mapMarkersList.length) {
-      this.addCampsSources();
-    }
   }
-
+  // Change on injected dataset
   @Watch("dataset", { deep: true })
   currentCampChanged() {
     this.mapCamps = new TKMapCamps(
@@ -106,8 +79,19 @@ export default class TKMap extends Vue {
     selectedCampSource.setData(this.mapCamps.filteredCamps.selectedCamp);
   }
 
-  map!: mapboxgl.Map;
-  bound!: mapboxgl.LngLatBounds;
+  mounted(): void {
+    this.initMap();
+  }
+
+  @Watch("markersLoadedCount")
+  mapMarkersLoaded() {
+    if (
+      this.markersLoadedCount === this.mapMarkersList.length &&
+      this.mapCamps
+    ) {
+      this.addCampsSources();
+    }
+  }
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   // map object management method
@@ -137,6 +121,8 @@ export default class TKMap extends Vue {
             if (error) throw error;
           });
         });
+
+        // Add Geographical boundaries sources and layers
         this.map.addSource(TKMapLayers.COUNTRYMASKSOURCE, {
           type: "geojson",
           data: mask,
@@ -146,7 +132,7 @@ export default class TKMap extends Vue {
         );
         if (
           this.markersLoadedCount === this.mapMarkersList.length &&
-          this.campList!.length > 0
+          this.mapCamps
         ) {
           this.addCampsSources();
         }
