@@ -49,19 +49,11 @@ export default class TKMapFilter extends Vue {
     spontaneous: true
   };
 
-  isVisible = true;
   toggleChanged(): void {
     const x = document.getElementById("myDiv");
     if (x) {
-      if (this.isVisible) {
-        x.style.display = "none";
-      } else {
-        x.style.display = "flex";
-      }
-    } else {
-      console.log("x is not found");
+      x.classList.toggle("transform-active");
     }
-    this.isVisible = !this.isVisible;
   }
 
   checkboxChange(checkbox: string): void {
@@ -96,10 +88,17 @@ export default class TKMapFilter extends Vue {
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: left;
-  padding: 5px;
   row-gap: 10px;
   flex-grow: 1;
+  max-width: 300px;
+  transition: all 0.5s ease;
+  overflow: hidden;
 }
+
+.transform-active {
+  max-width: 0px;
+}
+
 .tk-map-filter {
   display: flex;
   flex-flow: row nowrap;
@@ -122,6 +121,7 @@ export default class TKMapFilter extends Vue {
   display: block;
   width: 20px;
   height: 20px;
+  margin-left: 5px;
 }
 
 .tk-vseparator {
