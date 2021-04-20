@@ -20,6 +20,7 @@ import { APPCONFIG } from "@/app-demo/config";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components"; // @ is an alias to /src
 import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
 import { TKDatasetFilterer } from "@/domain/core/TKFilters";
+import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 
 @Component({
   components: {
@@ -41,6 +42,13 @@ export default class App extends Vue {
       this.appConfig.indicatorsDescription,
       this.appConfig.language
     );
+
+    const geoBoundaries = await TKGetGeoBoundaries(
+      surveys,
+      this.appConfig.iso3
+    );
+    console.log(geoBoundaries);
+
     this.dataset = new TKDatasetFilterer(surveys);
     this.dataLoaded = true;
   }
