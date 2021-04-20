@@ -7,6 +7,7 @@ export enum TKFilters {
   SURVEY = "survey",
   ADMIN1 = "admin1",
   ADMIN2 = "admin2",
+  CAMP = "currentCamp",
   PLANNED_SITE = "planned",
   SPONTANEOUS_SITE = "spontaneous",
 }
@@ -49,14 +50,51 @@ export class TKDatasetFilterer {
 
   setFiltersValue(filter: TKFilters, value: TKFiltersTypes) {
     this.filters[filter] = value;
+    switch (filter) {
+      case TKFilters.SURVEY:
+        this.currentSurvey = value as string;
+        this.filters[TKFilters.ADMIN1] = null;
+        this.currentAdmin1 = null;
+        this.filters[TKFilters.ADMIN2] = null;
+        this.currentAdmin2 = null;
+        this.currentCamp = null;
+        break;
+      case TKFilters.ADMIN1:
+        this.currentAdmin1 = value
+          ? (this.admin1List.find(
+              (a) => a.pcode === value
+            ) as TKBoundarieDescription)
+          : null;
+        this.filters[TKFilters.ADMIN2] = null;
+        this.currentAdmin2 = null;
+        this.currentCamp = null;
+        break;
+      case TKFilters.ADMIN2:
+        this.currentAdmin2 = value
+          ? (this.admin2List.find(
+              (a) => a.pcode === value
+            ) as TKBoundarieDescription)
+          : null;
+        this.currentCamp = null;
+        break;
+      case TKFilters.CAMP:
+        this.currentCamp = value
+          ? (this.campsList.find((c) => c.id === value) as TKCampDescription)
+          : null;
+        break;
+      default:
+        console.log("error on selector");
+    }
     this.refreshLists();
   }
 
   refreshLists() {
     if (this.filters.survey) {
       this.filteredCampsList = this.surveys[this.currentSurvey].campsList;
+      this.admin1List = this.surveys[this.currentSurvey].boundariesList.admin1;
     }
     if (this.filters.admin1) {
+      this.admin2List = this.surveys[this.currentSurvey].boundariesList.admin2;
       this.filteredCampsList = this.filteredCampsList.filter(
         (x) => x.admin1.pcode === this.filters.admin1
       );

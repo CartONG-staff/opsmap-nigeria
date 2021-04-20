@@ -53,11 +53,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-
+import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKFilters, TKDatasetFilterer } from "@/domain/core/TKFilters";
-import { TKCampDescription } from "@/domain/core/TKCampDescription";
-import { TKBoundarieDescription } from "@/domain/core/TKBoundarieDescription";
 
 @Component({})
 export default class TKHomeCombos extends Vue {
@@ -65,35 +62,16 @@ export default class TKHomeCombos extends Vue {
   dataset!: TKDatasetFilterer;
 
   surveySelected(year: string) {
-    this.dataset.currentSurvey = year;
     this.dataset.setFiltersValue(TKFilters.SURVEY, year ? year : null);
-    console.log(this.dataset);
   }
-
   admin1Selected(pcode: string) {
-    this.dataset.currentAdmin1 = pcode
-      ? (this.dataset.admin1List.find(
-          (a) => a.pcode === pcode
-        ) as TKBoundarieDescription)
-      : null;
     this.dataset.setFiltersValue(TKFilters.ADMIN1, pcode ? pcode : null);
-    console.log(this.dataset);
   }
-
   admin2Selected(pcode: string) {
-    this.dataset.currentAdmin2 = pcode
-      ? (this.dataset.admin2List.find(
-          (a) => a.pcode === pcode
-        ) as TKBoundarieDescription)
-      : null;
     this.dataset.setFiltersValue(TKFilters.ADMIN2, pcode ? pcode : null);
   }
   campSelected(campId: string) {
-    this.dataset.currentCamp = campId
-      ? (this.dataset.campsList.find(
-          (c) => c.id === campId
-        ) as TKCampDescription)
-      : null;
+    this.dataset.setFiltersValue(TKFilters.CAMP, campId ? campId : null);
     console.log(this.dataset);
   }
 }
