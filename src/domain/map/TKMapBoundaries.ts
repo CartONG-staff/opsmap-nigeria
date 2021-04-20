@@ -37,6 +37,8 @@ export class TKMapBoundaries {
           item.properties!.transparent = "yes";
         }
         break;
+
+      case TKFilters.CAMP:
       case TKFilters.ADMIN2:
         for (const item of this.admin2.features) {
           if (dataset.currentAdmin2) {
@@ -71,8 +73,8 @@ export class TKMapBoundaries {
         }
 
         break;
-      case TKFilters.CAMP:
-        console.log("on Change de camps fréro");
+      default:
+
         break;
     }
     (map.getSource(TKMapLayers.ADMIN1SOURCE) as mapboxgl.GeoJSONSource).setData(
