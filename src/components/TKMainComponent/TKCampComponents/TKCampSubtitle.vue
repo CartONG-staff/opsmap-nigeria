@@ -16,8 +16,6 @@ export default class TKCampSubtitle extends Vue {
   name = "";
   @Watch("dataset", { deep: true })
   onChange() {
-    console.log("change somewhere");
-
     this.name = this.dataset.currentCamp ? this.dataset.currentCamp.name : "";
   }
 }

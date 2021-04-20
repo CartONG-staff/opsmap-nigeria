@@ -72,7 +72,6 @@ export default class TKHomeCombos extends Vue {
   }
   campSelected(campId: string) {
     this.dataset.setFiltersValue(TKFilters.CAMP, campId ? campId : null);
-    console.log(this.dataset);
   }
 }
 </script>

@@ -74,13 +74,7 @@ export default class TKCampInfos extends Vue {
       this.coordinates = this.dataset.currentCamp
         ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
         : "";
-    } else {
-      console.log("nich");
     }
-  }
-
-  mounted() {
-    console.log(this.dataset);
   }
 }
 </script>
