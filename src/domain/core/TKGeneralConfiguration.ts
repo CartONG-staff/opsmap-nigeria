@@ -31,8 +31,8 @@ interface TKGeneralConfigurationLabelCSV{
 export async function  TKReadGeneralConfiguration(): Promise<TKGeneralConfiguration> {
 
     const labels: TKGeneralConfigurationLabelCSV[] = await TKCSVRead(
-        "General_config",
-        "demo1",
+        "general_config",
+        "brazil",
         true
       );
     const dict : {[key: string] : string} = labels.reduce( (dictionnary, item) => ({...dictionnary, [item.config_type]: item.info}), {});
@@ -150,7 +150,9 @@ export async function  TKReadGeneralConfiguration(): Promise<TKGeneralConfigurat
         },
         surveyDescription: [{
             name: "2021",
-            folder: "brazil/BR_FDF_s1_080421"
+            fdfFolder: "brazil/BR_FDF_s1_080421",
+            submissionsFolder: "brazil",
+            submissionsFile: "BR_DATA_080421_FDF_s1"
         }],
         headerLogo: [{
             name: "CCCM",
