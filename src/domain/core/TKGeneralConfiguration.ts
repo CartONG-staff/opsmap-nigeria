@@ -7,7 +7,7 @@ import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKSurveyFormat } from "@/domain/core/TKSurveyFormat";
 import { TKIndicatorsDescription } from "@/domain/core/TKIndicatorsDescription";
 import { TKLabel } from "./TKLabel";
-import { TKCSVRead } from "../csv/TKCSVReader";
+import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 
 export interface TKGeneralConfiguration {
   readonly name: string;

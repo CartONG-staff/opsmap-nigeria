@@ -1,6 +1,6 @@
-import { TKSurveyCollection } from "../core/TKSurveyCollection";
+import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
 import { ArcgisServerDataGetter } from "@/domain/map/TKArcgisServerDataGetter";
-import { TKGeoDataset } from "../core/TKGeoDataset";
+import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
 export async function TKGetGeoBoundaries(
   surveys: TKSurveyCollection,
   iso3: string

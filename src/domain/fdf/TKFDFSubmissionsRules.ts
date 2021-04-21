@@ -1,4 +1,4 @@
-import { TKCSVRead } from "../csv/TKCSVReader";
+import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKFDFInfos } from "./TKFDF";
 
 export enum TKFDFSubmissionItemType {

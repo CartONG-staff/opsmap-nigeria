@@ -1,6 +1,6 @@
 import { TKFDFInfos } from "@/domain/fdf/TKFDF";
 import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
-import { TKCSVRead } from "../csv/TKCSVReader";
+import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 
 export enum TKFDFTrafficLightTypes {
   STRING = "string",

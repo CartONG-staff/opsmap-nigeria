@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKFDFAnswerLabel } from "../fdf/TKFDFAnswerLabel";
+import { TKFDFAnswerLabel } from "@/domain/fdf/TKFDFAnswerLabel";
 
 export interface TKLabel {
     name: string;
