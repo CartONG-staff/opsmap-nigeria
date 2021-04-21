@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
+import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
 import { TKSubmission } from "@/domain/core/TKSubmission";
 @Component({
@@ -18,7 +18,7 @@ import { TKSubmission } from "@/domain/core/TKSubmission";
 })
 export default class TKCampIndicators extends Vue {
   @Prop()
-  readonly appConfig!: TKGeneralConfiguration;
+  readonly appConfig!: TKOpsmapConfiguration;
 
   @Prop()
   readonly submission!: TKSubmission;

@@ -15,12 +15,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
+import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 
 @Component
 export default class TKTitle extends Vue {
   @Prop()
-  readonly appConfig!: TKGeneralConfiguration;
+  readonly appConfig!: TKOpsmapConfiguration;
 }
 </script>
 

@@ -4,7 +4,7 @@ import { TKSubmission } from "@/domain/core/TKSubmission";
 import { TKSubmissionThematic, TKSUbmissionThematicfromThematic } from "@/domain/core/TKSubmissionThematic";
 
 import { TKIndicator } from "@/domain/core/TKIndicator";
-import { TKIndicatorsDescription, TKIndicatorDescription } from "@/domain/core/TKIndicatorsDescription";
+import { TKIndicatorsDescription, TKIndicatorDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKFDFSubmissionsRulesCollection } from "@/domain/fdf/TKFDFSubmissionsRules";
 import { TKCreateSubmissionEntryAgePyramid, TKSubmissionEntryAgePyramidItem } from "./TKCreateSubmissionEntryAgePyramid";

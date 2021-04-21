@@ -28,8 +28,8 @@ import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
 import { TKCreateSurveyCollection } from "@/domain/TKCreateSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
-import { TKGeneralConfiguration } from "@/domain";
-import { TKReadGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
+import { TKOpsmapConfiguration } from "@/domain";
+import { TKReadGeneralConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 @Component({
   components: {
     TKHeader,
@@ -38,7 +38,7 @@ import { TKReadGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration
   }
 })
 export default class App extends Vue {
-  appRootConfig!: TKGeneralConfiguration;
+  appRootConfig!: TKOpsmapConfiguration;
   dataLoaded = false;
   dataset: TKDatasetFilterer | null = null;
   geoDataset: TKGeoDataset | null = null;

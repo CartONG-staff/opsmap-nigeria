@@ -22,7 +22,7 @@ import mapboxgl, {
   SymbolLayer
 } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
+import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
@@ -44,7 +44,8 @@ import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
 })
 export default class TKMap extends Vue {
   @Prop()
-  readonly appConfig!: TKGeneralConfiguration;
+  readonly appConfig!: TKOpsmapConfiguration;
+
   @Prop({ default: () => [] })
   dataset!: TKDatasetFilterer;
   @Prop()

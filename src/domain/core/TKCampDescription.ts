@@ -1,5 +1,5 @@
 import { TKCampTypesValues } from "@/domain/core/TKCampTypesValues";
-import { TKBoundarieDescription } from "./TKBoundarieDescription";
+import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 
 export interface TKCampDescription {
   id: string;

@@ -1,6 +1,6 @@
-import { TKLogo } from "./TKLogo";
+import { TKLogo } from "../ui/TKLogo";
 
-export interface TKFooterLogos {
+export interface TKFooterLogosDescription {
   clusterLed: TKLogo[];
   coordinationAndIMSupport: TKLogo[];
   Fieldwork: TKLogo[];

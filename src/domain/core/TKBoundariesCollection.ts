@@ -1,4 +1,4 @@
-import { TKBoundarieDescription } from "./TKBoundarieDescription";
+import { TKBoundarieDescription } from "../opsmapConfig/TKBoundarieDescription";
 
 export interface TKBoundariesCollection {
   admin1: TKBoundarieDescription[];

@@ -47,12 +47,12 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
+import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 
 @Component
 export default class TKHeader extends Vue {
   @Prop()
-  readonly appConfig!: TKGeneralConfiguration;
+  readonly appConfig!: TKOpsmapConfiguration;
 
   locales = this.$root.$i18n.availableLocales;
 

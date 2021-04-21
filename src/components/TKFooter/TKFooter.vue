@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
-import { TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
+import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 import TKFooterLogoItem from "./TKFooterLogoItem.vue";
 
 @Component({
@@ -43,7 +43,7 @@ import TKFooterLogoItem from "./TKFooterLogoItem.vue";
 })
 export default class TKFooter extends Vue {
   @Prop()
-  readonly appConfig!: TKGeneralConfiguration;
+  readonly appConfig!: TKOpsmapConfiguration;
 }
 </script>
 

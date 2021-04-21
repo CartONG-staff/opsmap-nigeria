@@ -2,10 +2,10 @@ import { TKSurveyInfosCSV } from "./csv/TKSurveyInfosCSV";
 import { TKCreateFDF } from "@/domain/fdf/TKFDF";
 import { TKGetCSVRawData } from "@/domain/csv/TKGetCSVRawData";
 import { TKGetKoboRawData } from "./kobo/TKGetKoboRawData";
-import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
+import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKCreateSurvey } from "./survey/TKCreateSurvey";
 import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
-import { TKIndicatorsDescription } from "./core/TKIndicatorsDescription";
+import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKSurveyInfos } from "./core/TKSurveyInfos";
 import { TKSurveyInfosKobo } from "./kobo/TKSurveyInfosKobo";
 

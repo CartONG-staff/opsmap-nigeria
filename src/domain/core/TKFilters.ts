@@ -1,6 +1,6 @@
-import { TKCampDescription } from "./TKCampDescription";
+import { TKCampDescription } from "@/domain/core/TKCampDescription";
 import { TKCampTypesValues } from "@/domain/core/TKCampTypesValues";
-import { TKBoundarieDescription } from "./TKBoundarieDescription";
+import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSurveyCollection } from "./TKSurveyCollection";
 
 export enum TKFilters {

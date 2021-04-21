@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
 import { TKCreateSubmission } from "./TKCreateSubmission";
-import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
+import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 
 import { TKBoundariesCollection } from "@/domain/core/TKBoundariesCollection";
@@ -13,7 +13,7 @@ import {
   TKIndicatorsDescription,
   TKIndicatorDescription,
   TKIndicatorComputationType,
-} from "@/domain/core/TKIndicatorsDescription";
+} from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { isNumber } from "@turf/helpers";
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
 

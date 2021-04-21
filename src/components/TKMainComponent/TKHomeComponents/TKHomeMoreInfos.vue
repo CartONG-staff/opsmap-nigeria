@@ -10,14 +10,14 @@
 </template>
 
 <script lang="ts">
-import { TKGeneralConfiguration } from "@/domain";
+import { TKOpsmapConfiguration } from "@/domain";
 import { TKGetLocalValue } from "@/domain/core/TKLabel";
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKHomeIndicators extends Vue {
   @Prop()
-  readonly appConfig!: TKGeneralConfiguration;
+  readonly appConfig!: TKOpsmapConfiguration;
 
   content = this.appConfig.opsmapDescr.label_en;
 

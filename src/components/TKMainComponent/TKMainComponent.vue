@@ -87,7 +87,7 @@ import {
   TKSubmissionVisualizer,
   TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
-import { TKGeneralConfiguration } from "@/domain";
+import { TKOpsmapConfiguration } from "@/domain";
 import { TKSubmission } from "@/domain/core/TKSubmission";
 import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
@@ -119,7 +119,7 @@ export default class TKMainComponent extends Vue {
   geoData!: TKGeoDataset;
 
   @Prop()
-  readonly appConfig!: TKGeneralConfiguration;
+  readonly appConfig!: TKOpsmapConfiguration;
 
   currentSubmission: TKSubmission | null = null;
   currentSubmissions: { [date: string]: TKSubmission } | null = null;

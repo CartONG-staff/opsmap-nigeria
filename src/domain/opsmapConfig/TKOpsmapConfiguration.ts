@@ -1,34 +1,34 @@
 import { TKMapboxConfiguration } from "@/domain/core/TKMapboxConfiguration";
 import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKSurveyInfos } from "@/domain/core/TKSurveyInfos";
-import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
-import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
-import { TKIndicatorsDescription } from "@/domain/core/TKIndicatorsDescription";
-import { TKLabel } from "./TKLabel";
+import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogos";
+import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
+import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
+import { TKLabel } from "../core/TKLabel";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKSurveyInfosCSV } from "../csv/TKSurveyInfosCSV";
 
-export interface TKGeneralConfiguration {
+export interface TKOpsmapConfiguration {
   readonly name: string;
   readonly iso3: string;
   readonly surveyDescription: TKSurveyInfos[];
   readonly headerLogo: TKLogo[];
   readonly opsmapDescr: TKLabel;
-  readonly footerLogos: TKFooterLogos;
+  readonly footerLogos: TKFooterLogosDescription;
   readonly mapConfig: TKMapboxConfiguration;
   readonly spatialDescription: TKSpatialDescription;
   readonly indicatorsDescription: TKIndicatorsDescription;
 }
 
 /* eslint-disable @typescript-eslint/camelcase */
-interface TKGeneralConfigurationLabelCSV{
+interface TKOpsmapConfigurationLabelCSV{
     config_type:string;
     info: string;
 }
 
-export async function  TKReadGeneralConfiguration(configFileName: string, configFileFolder: string): Promise<TKGeneralConfiguration> {
+export async function  TKReadGeneralConfiguration(configFileName: string, configFileFolder: string): Promise<TKOpsmapConfiguration> {
 
-    const labels: TKGeneralConfigurationLabelCSV[] = await TKCSVRead(
+    const labels: TKOpsmapConfigurationLabelCSV[] = await TKCSVRead(
         configFileName,
         configFileFolder,
         true
@@ -47,7 +47,7 @@ export async function  TKReadGeneralConfiguration(configFileName: string, config
     // - iso3
     // - csv
     // - useBoundariesMasks
-    const config: TKGeneralConfiguration = {
+    const config: TKOpsmapConfiguration = {
         name: "brazil",
         iso3: dict["iso3"] ?? "BRA",
         opsmapDescr:{
