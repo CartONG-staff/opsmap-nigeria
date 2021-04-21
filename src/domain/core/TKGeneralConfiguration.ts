@@ -1,19 +1,17 @@
 import { TKMapboxConfiguration } from "@/domain/core/TKMapboxConfiguration";
 import { TKLogo } from "@/domain/ui/TKLogo";
-import { TKKoboSurveyInfo } from "@/domain/kobo/TKKoboSurveyInfo";
+import { TKSurveyInfos } from "@/domain/core/TKSurveyInfos";
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
-import { TKCSVSurveyInfo } from "@/domain/csv/TKCSVSurveyInfo";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
-import { TKSurveyFormat } from "@/domain/core/TKSurveyFormat";
 import { TKIndicatorsDescription } from "@/domain/core/TKIndicatorsDescription";
 import { TKLabel } from "./TKLabel";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
+import { TKSurveyInfosCSV } from "../csv/TKSurveyInfosCSV";
 
 export interface TKGeneralConfiguration {
   readonly name: string;
   readonly iso3: string;
-  readonly surveyFormat: TKSurveyFormat;
-  readonly surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[];
+  readonly surveyDescription: TKSurveyInfos[];
   readonly headerLogo: TKLogo[];
   readonly opsmapDescr: TKLabel;
   readonly footerLogos: TKFooterLogos;
@@ -39,12 +37,6 @@ export async function  TKReadGeneralConfiguration(configFileName: string, config
 
     // SurveyFormat
     // TODO : improve this.
-    let surveyFormat: TKSurveyFormat = TKSurveyFormat.CSV;
-    if(dict["survey_format"]){
-        if(dict["survey_format"] === "kobo"){
-            surveyFormat = TKSurveyFormat.KOBO
-        }
-    }
 
     // Ignore:
     //  {config_type: "fdf_id", info: "BR_FDF_s1_080421"}
@@ -58,7 +50,6 @@ export async function  TKReadGeneralConfiguration(configFileName: string, config
     const config: TKGeneralConfiguration = {
         name: "brazil",
         iso3: dict["iso3"] ?? "BRA",
-        surveyFormat: surveyFormat,
         opsmapDescr:{
             name:"opsmap description",
             label_en: dict["project_overview_en"] ?? "",
@@ -148,12 +139,9 @@ export async function  TKReadGeneralConfiguration(configFileName: string, config
                 urlRedirection: dict["webdev_link_1"] ?? "https://www.cartong.org/"
             }]
         },
-        surveyDescription: [{
-            name: "2021",
-            fdf: {folder: "brazil/BR_FDF_s1_080421"},
-            submissionsFolder: "brazil",
-            submissionsFile: "BR_DATA_080421_FDF_s1"
-        }],
+        surveyDescription: [
+            new TKSurveyInfosCSV("2021", {folder: "brazil/BR_FDF_s1_080421"}, "brazil", "BR_DATA_080421_FDF_s1")
+        ],
         headerLogo: [{
             name: "CCCM",
             urlLogo:

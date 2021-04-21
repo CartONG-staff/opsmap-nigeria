@@ -50,7 +50,6 @@ export default class App extends Vue {
     );
     const surveys = await TKCreateSurveyCollection(
       this.appRootConfig.surveyDescription,
-      this.appRootConfig.surveyFormat,
       this.appRootConfig.spatialDescription,
       this.appRootConfig.indicatorsDescription
     );
