@@ -8,14 +8,14 @@
         </h2>
       </div>
       <div class="tk-main" v-if="dataLoaded">
-        <TKHeader :appConfig="$root.$data.appRootConfig" />
+        <TKHeader :appConfig="appRootConfig" />
         <TKMainComponent
           class="tk-main-dashboard"
           :dataset="dataset"
           :geoData="geoDataset"
-          :appConfig="$root.$data.appRootConfig"
+          :appConfig="appRootConfig"
         />
-        <TKFooter :appConfig="$root.$data.appRootConfig" />
+        <TKFooter :appConfig="appRootConfig" />
       </div>
     </v-main>
   </v-app>
@@ -28,6 +28,8 @@ import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
 import { TKCreateSurveyCollection } from "@/domain/TKCreateSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
+import { TKGeneralConfiguration } from "@/domain";
+import { TKReadGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 @Component({
   components: {
     TKHeader,
@@ -36,24 +38,27 @@ import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
   }
 })
 export default class App extends Vue {
+  appRootConfig!: TKGeneralConfiguration;
   dataLoaded = false;
   dataset: TKDatasetFilterer | null = null;
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
+    this.appRootConfig = await TKReadGeneralConfiguration(
+      "general_config",
+      "brazil"
+    );
     const surveys = await TKCreateSurveyCollection(
-      this.$root.$data.appRootConfig.surveyDescription,
-      this.$root.$data.appRootConfig.surveyFormat,
-      this.$root.$data.appRootConfig.spatialDescription,
-      this.$root.$data.appRootConfig.indicatorsDescription
+      this.appRootConfig.surveyDescription,
+      this.appRootConfig.surveyFormat,
+      this.appRootConfig.spatialDescription,
+      this.appRootConfig.indicatorsDescription
     );
     this.geoDataset = null;
-    if (this.$root.$data.appRootConfig.spatialDescription.useBoundariesMasks) {
-      TKGetGeoBoundaries(surveys, this.$root.$data.appRootConfig.iso3).then(
-        geoDataset => {
-          this.geoDataset = geoDataset;
-        }
-      );
+    if (this.appRootConfig.spatialDescription.useBoundariesMasks) {
+      TKGetGeoBoundaries(surveys, this.appRootConfig.iso3).then(geoDataset => {
+        this.geoDataset = geoDataset;
+      });
     }
     this.dataset = new TKDatasetFilterer(surveys);
 
