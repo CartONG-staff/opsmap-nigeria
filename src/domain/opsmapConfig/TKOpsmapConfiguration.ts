@@ -1,8 +1,6 @@
 import { TKMapboxConfiguration } from "@/domain/opsmapConfig/TKMapboxConfiguration";
-
 import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKLabel } from "@/domain/ui/TKLabel";
-
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogos";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
@@ -10,6 +8,9 @@ import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescr
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKSurveyInfosCSV } from "@/domain/csv/TKSurveyInfosCSV";
 
+// ////////////////////////////////////////////////////////////////////////////
+// Global Opsmap configuration
+// ////////////////////////////////////////////////////////////////////////////
 export interface TKOpsmapConfiguration {
   readonly name: string;
   readonly iso3: string;
@@ -21,6 +22,13 @@ export interface TKOpsmapConfiguration {
   readonly spatialDescription: TKSpatialDescription;
   readonly indicatorsDescription: TKIndicatorsDescription;
 }
+
+// ////////////////////////////////////////////////////////////////////////////
+// Read configuration from CSV file
+//
+// Watch for default values here.
+//
+// ////////////////////////////////////////////////////////////////////////////
 
 /* eslint-disable @typescript-eslint/camelcase */
 interface TKOpsmapConfigurationLabelCSV{
@@ -36,9 +44,6 @@ export async function  TKReadGeneralConfiguration(configFileName: string, config
         true
       );
     const dict : {[key: string] : string} = labels.reduce( (dictionnary, item) => ({...dictionnary, [item.config_type]: item.info}), {});
-
-    // SurveyFormat
-    // TODO : improve this.
 
     // Ignore:
     //  {config_type: "fdf_id", info: "BR_FDF_s1_080421"}
@@ -157,14 +162,6 @@ export async function  TKReadGeneralConfiguration(configFileName: string, config
             padding: 100,
             zoomspeed: 2
           }
-        // iso3: string;
-        // surveyFormat: TKSurveyFormat;
-        // surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[];
-        // headerLogo: TKLogo[];
-        // footerLogos: TKFooterLogos;
-        // mapConfig: TKMapboxConfiguration;
-        // spatialDescription: TKSpatialDescription;
-        // indicatorsDescription: TKIndicatorsDescription;
     }
     return config;
 }

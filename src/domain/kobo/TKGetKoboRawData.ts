@@ -2,6 +2,10 @@
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKSurveyInfosKobo } from "./TKSurveyInfosKobo";
 
+// ////////////////////////////////////////////////////////////////////////////
+// Retrieve raw data from kobo
+// ////////////////////////////////////////////////////////////////////////////
+
 export async function TKGetKoboRawData(config: TKSurveyInfos) {
   if(config instanceof TKSurveyInfosKobo){
     try {

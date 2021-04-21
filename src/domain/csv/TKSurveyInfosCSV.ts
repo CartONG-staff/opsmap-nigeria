@@ -1,6 +1,10 @@
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFDFInfos } from "../fdf/TKFDFInfos";
 
+// ////////////////////////////////////////////////////////////////////////////
+// Specialization of TKSurveyInfo for CSV Inputs
+// ////////////////////////////////////////////////////////////////////////////
+
 export class TKSurveyInfosCSV extends TKSurveyInfos {
   submissionsFolder: string;
   submissionsFile: string;
