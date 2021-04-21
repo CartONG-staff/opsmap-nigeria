@@ -1,6 +1,6 @@
 import { TKCSVSurveyInfo } from "../csv/TKCSVTypes";
 import { TKKoboSurveyInfo } from "../kobo/TKKoboSurveyInfo";
-import { TKCreateSurveyConfiguration } from "@/domain/fdf/TKCreateSurveyConfiguration";
+import { TKCreateSurveyConfiguration } from "@/domain/fdf/TKFDF";
 import { TKGetCSVRawData } from "@/domain/csv/TKGetCSVRawData";
 import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
