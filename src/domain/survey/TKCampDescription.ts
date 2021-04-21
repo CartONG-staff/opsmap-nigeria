@@ -1,6 +1,9 @@
 import { TKCampTypesValues } from "@/domain/survey/TKCampTypesValues";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 
+// ////////////////////////////////////////////////////////////////////////////
+// Camp desription
+// ////////////////////////////////////////////////////////////////////////////
 export interface TKCampDescription {
   id: string;
   name: string;

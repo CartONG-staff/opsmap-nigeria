@@ -6,7 +6,7 @@ import { TKFDFSubmissionsRulesCollection } from "@/domain/fdf/TKFDFSubmissionsRu
 import { TKCreateSubmissionEntryAgePyramid, TKSubmissionEntryAgePyramidItem } from "./TKSubmissionEntryAgePyramid";
 import { TKCreateSubmissionEntryText } from "./TKSubmissionEntryText";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
-import { TKSubmissionThematic, TKSubmissionThematicfromThematic } from "./TKSubmissionThematic";
+import { TKSubmissionThematic, TKCreateSubmissionThematic } from "./TKSubmissionThematic";
 import { TKIndicator } from "@/domain/ui/TKIndicator";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -86,7 +86,7 @@ export function TKCreateSubmission(
 ) : TKSubmission {
   const submission: Record<string, TKSubmissionThematic> = {};
   for (const thematic in surveyConfiguration.thematics) {
-    submission[thematic] = TKSubmissionThematicfromThematic(surveyConfiguration.thematics[thematic]);
+    submission[thematic] = TKCreateSubmissionThematic(surveyConfiguration.thematics[thematic]);
     let agePyramidId = "";
     let agePyramidData : Array<TKSubmissionEntryAgePyramidItem> = [];
     for (const field in submissionItem) {

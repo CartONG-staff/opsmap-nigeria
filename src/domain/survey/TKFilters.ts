@@ -3,6 +3,11 @@ import { TKCampTypesValues } from "@/domain/survey/TKCampTypesValues";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSurveyCollection } from "./TKSurveyCollection";
 
+// ////////////////////////////////////////////////////////////////////////////
+// Filtesr Concept description. Requires Comments !
+// TODO : work on this : clarity, comments, etc.
+// ////////////////////////////////////////////////////////////////////////////
+
 export enum TKFilters {
   SURVEY = "survey",
   ADMIN1 = "admin1",
