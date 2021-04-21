@@ -6,7 +6,7 @@ import { TKSubmissionThematic, TKSUbmissionThematicfromThematic } from "@/domain
 import { TKIndicator } from "@/domain/core/TKIndicator";
 import { TKIndicatorsDescription, TKIndicatorDescription } from "@/domain/core/TKIndicatorsDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import { TKSubmissionsRulesCollection } from "@/domain/fdf/TKSubmissionsRulesBuilder";
+import { TKFDFSubmissionsRulesCollection } from "@/domain/fdf/TKFDFSubmissionsRules";
 import { TKCreateSubmissionEntryAgePyramid, TKSubmissionEntryAgePyramidItem } from "./TKCreateSubmissionEntryAgePyramid";
 import { TKCreateSubmissionEntryText } from "./TKCreateSubmissionEntryText";
 import { findPoint } from "@turf/meta";
@@ -25,7 +25,7 @@ function isSubmissionRelevant(): boolean {
 function isSubmissionInThematic(
   submission: string,
   thematic: string,
-  submissionsRules: TKSubmissionsRulesCollection
+  submissionsRules: TKFDFSubmissionsRulesCollection
 ): boolean {
   return submissionsRules[submission]
     ? submissionsRules[submission].thematic_group === thematic

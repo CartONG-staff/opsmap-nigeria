@@ -1,22 +1,22 @@
 import { TKFDFInfos } from "@/domain/fdf/TKFDF";
-import { TKKoboSurveyInfo } from "@/domain/kobo/TKKoboSurveyInfo";
 import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
 import { TKCSVRead } from "../csv/TKCSVReader";
-export enum TrafficLightTypes {
+
+export enum TKFDFTrafficLightTypes {
   STRING = "string",
   MATH = "math",
   LIST = "list"
 }
 
-export interface TKTrafficLightItem {
+interface TKFDFTrafficLightItem {
   traffic_light_name: string;
-  type: TrafficLightTypes;
+  type: TKFDFTrafficLightTypes;
   value: string;
   color: TKTrafficLightValues;
 }
 
-export interface TKTrafficLightGrouped {
-  type: TrafficLightTypes;
+export interface TKFDFTrafficLightGrouped {
+  type: TKFDFTrafficLightTypes;
   values: [
     {
       value: string;
@@ -25,17 +25,17 @@ export interface TKTrafficLightGrouped {
   ];
 }
 
-export interface TKTrafficLightsCollection {
-  [propName: string]: TKTrafficLightGrouped;
+export interface TKFDFTrafficLightsCollection {
+  [propName: string]: TKFDFTrafficLightGrouped;
 }
 
-export async function TKReadFDFTrafficLightsCollection(infos: TKFDFInfos) : Promise<TKTrafficLightsCollection> {
+export async function TKReadFDFTrafficLightsCollection(infos: TKFDFInfos) : Promise<TKFDFTrafficLightsCollection> {
 
-  const rawTrafficLights: TKTrafficLightItem[] = await TKCSVRead<
-    TKTrafficLightItem[]
+  const rawTrafficLights: TKFDFTrafficLightItem[] = await TKCSVRead<
+    TKFDFTrafficLightItem[]
   >("traffic_light_config", infos.folder, true);
 
-  const trafficLights: TKTrafficLightsCollection = {};
+  const trafficLights: TKFDFTrafficLightsCollection = {};
   for (const item of rawTrafficLights) {
     if (trafficLights[item.traffic_light_name]) {
       trafficLights[item.traffic_light_name].values.push({

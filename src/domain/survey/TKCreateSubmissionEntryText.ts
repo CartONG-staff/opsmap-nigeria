@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
-  TKTrafficLightGrouped,
-  TrafficLightTypes
+  TKFDFTrafficLightGrouped,
+  TKFDFTrafficLightTypes
 } from "@/domain/fdf/TKFDFTrafficLight";
 
 
@@ -12,9 +12,9 @@ import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
 
 function getTrafficLightColor(
   value: string,
-  trafficLight: TKTrafficLightGrouped
+  trafficLight: TKFDFTrafficLightGrouped
 ): TKTrafficLightValues {
-  if (trafficLight.type === TrafficLightTypes.STRING) {
+  if (trafficLight.type === TKFDFTrafficLightTypes.STRING) {
     const match = trafficLight.values
       .filter(x => x.value.toLowerCase() === value.toLowerCase())
       .map(x => x.color)

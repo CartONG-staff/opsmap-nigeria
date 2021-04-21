@@ -1,31 +1,16 @@
-import { TKThematicsCollection } from "@/domain/fdf/TKThematicsCollectionBuilder";
-import { TKTrafficLightsCollection } from "@/domain/fdf/TKFDFTrafficLight";
-import { TKFDFAnswerLabelCollection } from "@/domain/fdf/TKFDFAnswerLabel";
-import { TKSubmissionsRulesCollection } from "@/domain/fdf/TKSubmissionsRulesBuilder";
-import { TKLabelsCollection } from "@/domain/fdf/TKLabelsCollectionBuilder";
-import { TKReadFDFTrafficLightsCollection } from "@/domain/fdf/TKFDFTrafficLight";
-import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import {
-  TKThematic,
-  TKThematicsCollectionBuild
-} from "./TKThematicsCollectionBuilder";
-import { TKLabelsCollectionBuild } from "./TKLabelsCollectionBuilder";
-
-import {
-  TKSubmissionRule,
-  TKSubmissionsRulesCollectionBuild
-} from "./TKSubmissionsRulesBuilder";
-
-import { TKReadFDFAnswerLabelCollection }  from "@/domain/fdf/TKFDFAnswerLabel";
-import { TKFieldLabelCSV } from "./TKFieldLabelCSV";
+import { TKReadFDFThematicsCollection, TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
+import { TKFDFTrafficLightsCollection, TKReadFDFTrafficLightsCollection } from "@/domain/fdf/TKFDFTrafficLight";
+import { TKFDFAnswerLabelCollection, TKReadFDFAnswerLabelCollection } from "@/domain/fdf/TKFDFAnswerLabel";
+import { TKFDFSubmissionsRulesCollection, TKReadSubmissionsRulesCollection } from "@/domain/fdf/TKFDFSubmissionsRules";
+import { TKFDFFieldLabelCollection, TKReadFDFLabelsCollection } from "./TKFDFFieldLabel";
 
 
 export interface TKFDF {
-  thematics: TKThematicsCollection;
-  trafficLights: TKTrafficLightsCollection;
-  fieldsLabels: TKLabelsCollection;
+  thematics: TKTFDFhematicsCollection;
+  trafficLights: TKFDFTrafficLightsCollection;
+  fieldsLabels: TKFDFFieldLabelCollection;
   answersLabels: TKFDFAnswerLabelCollection;
-  submissionsRules: TKSubmissionsRulesCollection;
+  submissionsRules: TKFDFSubmissionsRulesCollection;
 }
 
 export interface TKFDFInfos {
@@ -35,31 +20,18 @@ export interface TKFDFInfos {
 export async function TKCreateFDF(
   infos: TKFDFInfos
 ): Promise<TKFDF> {
-  const rawThematics: TKThematic[] = await TKCSVRead<TKThematic[]>(
-    "thematic_config",
-    infos.folder,
-    true
-  );
 
-  const trafficLights = await TKReadFDFTrafficLightsCollection(infos);
-
-  const rawFieldsLabels: TKFieldLabelCSV[] = await TKCSVRead(
-    "field_labels",
-    infos.folder,
-    true
-  );
-
-  const answerLabels = await TKReadFDFAnswerLabelCollection(infos);
-
-  const rawSubmissionsRules: TKSubmissionRule[] = await TKCSVRead<
-    TKSubmissionRule[]
-  >("submissions_rules", infos.folder, true);
+  const thematics = TKReadFDFThematicsCollection(infos);
+  const trafficLights = TKReadFDFTrafficLightsCollection(infos);
+  const fieldsLabels = TKReadFDFLabelsCollection(infos);
+  const answerLabels = TKReadFDFAnswerLabelCollection(infos);
+  const submissionsRules = TKReadSubmissionsRulesCollection(infos);
 
   return {
-    thematics: TKThematicsCollectionBuild(rawThematics),
-    trafficLights: trafficLights,
-    fieldsLabels: TKLabelsCollectionBuild(rawFieldsLabels),
-    answersLabels: answerLabels,
-    submissionsRules: TKSubmissionsRulesCollectionBuild(rawSubmissionsRules)
+    thematics: await thematics,
+    trafficLights: await trafficLights,
+    fieldsLabels: await fieldsLabels,
+    answersLabels: await answerLabels,
+    submissionsRules: await submissionsRules
   };
 }

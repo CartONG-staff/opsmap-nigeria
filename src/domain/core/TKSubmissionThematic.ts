@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKThematic } from "@/domain/fdf/TKThematicsCollectionBuilder";
+import { TKFDFThematic } from "@/domain/fdf/TKFDFThematics";
 import { TKLabel } from "./TKLabel";
 import { TKSubmissionEntry } from "./TKSubmissionEntry";
 
@@ -11,7 +11,7 @@ export interface TKSubmissionThematic {
   nameLabel: TKLabel;
 }
 
-export function TKSUbmissionThematicfromThematic(theam: TKThematic) : TKSubmissionThematic {
+export function TKSUbmissionThematicfromThematic(theam: TKFDFThematic) : TKSubmissionThematic {
   return {
     data: [],
     formatted_name: theam.formatted_name,
