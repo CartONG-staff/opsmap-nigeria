@@ -1,6 +1,6 @@
 import { TKFDFAnswerLabel } from "@/domain/fdf/TKFDFAnswerLabel";
 import { TKLabel } from "./TKLabel";
-import { TKTrafficLightColors } from "./TKTrafficLight";
+import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
 
 export class TKSubmissionEntry {
   field = "";
@@ -24,14 +24,14 @@ export class TKSubmissionEntry {
 export class TKSubmissionEntryText extends TKSubmissionEntry {
   answerLabel: TKLabel;
   trafficLight = false;
-  trafficLightColor: TKTrafficLightColors = TKTrafficLightColors.UNDEFINED;
+  trafficLightColor: TKTrafficLightValues = TKTrafficLightValues.UNDEFINED;
 
   constructor(
     field: string,
     fieldLabel: TKLabel,
     answerLabel: TKLabel,
     trafficLight: boolean,
-    trafficLightColor: TKTrafficLightColors
+    trafficLightColor: TKTrafficLightValues
   ) {
     super(field, fieldLabel);
     this.answerLabel = answerLabel;

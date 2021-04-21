@@ -1,26 +1,27 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
-  TKTrafficLightColors,
   TKTrafficLightGrouped,
   TrafficLightTypes
-} from "@/domain/core/TKTrafficLight";
+} from "@/domain/fdf/TKFDFTrafficLight";
+
 
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
 import { TKAnswerLabelToFieldLabel } from "@/domain/core/TKLabel";
+import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
 
 function getTrafficLightColor(
   value: string,
   trafficLight: TKTrafficLightGrouped
-): TKTrafficLightColors {
+): TKTrafficLightValues {
   if (trafficLight.type === TrafficLightTypes.STRING) {
     const match = trafficLight.values
       .filter(x => x.value.toLowerCase() === value.toLowerCase())
       .map(x => x.color)
       .pop();
-    return match === undefined ? TKTrafficLightColors.UNDEFINED : match;
+    return match === undefined ? TKTrafficLightValues.UNDEFINED : match;
   }
-  return TKTrafficLightColors.UNDEFINED;
+  return TKTrafficLightValues.UNDEFINED;
 }
 
 export function TKCreateSubmissionEntryText(
@@ -40,6 +41,6 @@ export function TKCreateSubmissionEntryText(
             surveyConfiguration.submissionsRules[field].traffic_light_name
           ]
         )
-      : TKTrafficLightColors.UNDEFINED
+      : TKTrafficLightValues.UNDEFINED
   );
 }

@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKTrafficLightColors } from "@/domain/core/TKTrafficLight";
+import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
 import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/core/TKLabel";
 @Component
@@ -55,16 +55,16 @@ export default class TKSubmissionentryView extends Vue {
   onentryChanged() {
     if (this.entry) {
       this.isOK = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightColors.OK
+        ? this.entry.trafficLightColor === TKTrafficLightValues.OK
         : false;
       this.isWarning = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightColors.WARNING
+        ? this.entry.trafficLightColor === TKTrafficLightValues.WARNING
         : false;
       this.isDanger = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightColors.DANGER
+        ? this.entry.trafficLightColor === TKTrafficLightValues.DANGER
         : false;
       this.isCritical = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightColors.CRITICAL
+        ? this.entry.trafficLightColor === TKTrafficLightValues.CRITICAL
         : false;
       this.isOther =
         !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;

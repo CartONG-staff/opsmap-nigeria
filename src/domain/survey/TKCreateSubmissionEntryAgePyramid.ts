@@ -1,26 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import {
-  TKTrafficLightColors,
-  TKTrafficLightGrouped,
-  TrafficLightTypes
-} from "@/domain/core/TKTrafficLight";
-
 import { TKSubmissionEntryAgePyramid } from "@/domain/core/TKSubmissionEntry";
 
-function getTrafficLightColor(
-  value: string,
-  trafficLight: TKTrafficLightGrouped
-): TKTrafficLightColors {
-  if (trafficLight.type === TrafficLightTypes.STRING) {
-    const match = trafficLight.values
-      .filter(x => x.value.toLowerCase() === value.toLowerCase())
-      .map(x => x.color)
-      .pop();
-    return match === undefined ? TKTrafficLightColors.UNDEFINED : match;
-  }
-  return TKTrafficLightColors.UNDEFINED;
-}
 export interface TKSubmissionEntryAgePyramidItem{
   field: string;
   value: string;
