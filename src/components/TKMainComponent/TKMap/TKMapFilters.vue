@@ -4,6 +4,7 @@
       <div class="tk-map-filter">
         <img class="tk-indicator-icon" :src="plannedImgUrl" />
         <div class="tk-map-filter-text">{{ $t("map.legendPlanned") }}</div>
+        <div class="tk-map-filter-value">{{ countCampPlanned }}</div>
         <v-checkbox
           v-model="checkboxs.planned"
           class="tk-map-filter-checkbox"
@@ -14,6 +15,7 @@
       <div class="tk-map-filter">
         <img class="tk-indicator-icon" :src="spontaneousImgUrl" />
         <div class="tk-map-filter-text">{{ $t("map.legendSpontaneous") }}</div>
+        <div class="tk-map-filter-value">{{ countCampSpontaneous }}</div>
         <v-checkbox
           v-model="checkboxs.spontaneous"
           @change="checkboxChange('spontaneous')"
@@ -31,12 +33,9 @@
 
 <script lang="ts">
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import { Component, Emit, Prop, Vue } from "vue-property-decorator";
-import {
-  TKDatasetFilterer,
-  TKFilters,
-  TKFiltersTypes
-} from "@/domain/survey/TKFilters";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
+import { TKCampTypesValues } from "@/domain/survey/TKCampTypesValues";
 
 @Component
 export default class TKMapFilter extends Vue {
@@ -48,6 +47,8 @@ export default class TKMapFilter extends Vue {
     planned: true,
     spontaneous: true
   };
+  countCampPlanned = 0;
+  countCampSpontaneous = 0;
 
   toggleChanged(): void {
     const x = document.getElementById("myDiv");
@@ -66,6 +67,17 @@ export default class TKMapFilter extends Vue {
           TKFilters.SPONTANEOUS_SITE,
           this.checkboxs.spontaneous
         );
+  }
+
+  @Watch("dataset.filteredCampsList", { immediate: true })
+  datasetChanged() {
+    this.countCampPlanned = this.dataset.filteredCampsList.filter(
+      camp => camp.type === TKCampTypesValues.PLANNED
+    ).length;
+
+    this.countCampSpontaneous = this.dataset.filteredCampsList.filter(
+      camp => camp.type === TKCampTypesValues.SPONTANEOUS
+    ).length;
   }
 }
 </script>
