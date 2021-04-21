@@ -1,16 +1,14 @@
 import { TKThematicsCollection } from "@/domain/fdf/TKThematicsCollectionBuilder";
 import { TKTrafficLightsCollection } from "@/domain/fdf/TKTrafficLightsCollectionBuilder";
-import {
-  TKLabelsCollection,
-  TKAnswerLabelsCollection
-} from "@/domain/fdf/TKLabelsCollectionBuilder";
+import { TKFDFAnswerLabelCollection } from "@/domain/fdf/TKFDFAnswerLabel";
 
 import { TKSubmissionsRulesCollection } from "@/domain/fdf/TKSubmissionsRulesBuilder";
+import { TKLabelsCollection } from "@/domain/fdf/TKLabelsCollectionBuilder";
 
 export interface TKSurveyConfiguration {
   thematics: TKThematicsCollection;
   trafficLights: TKTrafficLightsCollection;
   fieldsLabels: TKLabelsCollection;
-  answersLabels: TKAnswerLabelsCollection;
+  answersLabels: TKFDFAnswerLabelCollection;
   submissionsRules: TKSubmissionsRulesCollection;
 }

@@ -10,7 +10,7 @@ import {
 import { TKTrafficLightsCollectionBuild } from "./TKTrafficLightsCollectionBuilder";
 import {
   TKLabelsCollectionBuild,
-  TKAnswerLabelsCollectionBuild
+
 } from "./TKLabelsCollectionBuilder";
 
 import {
@@ -18,7 +18,7 @@ import {
   TKSubmissionsRulesCollectionBuild
 } from "./TKSubmissionsRulesBuilder";
 
-import { TKAnswerLabelCSV }  from "@/domain/fdf/TKAnswerLabelCSV";
+import { TKReadFDFAnswerLabelCollection }  from "@/domain/fdf/TKFDFAnswerLabel";
 import { TKFieldLabelCSV } from "./TKFieldLabelCSV";
 
 export async function TKCreateSurveyConfiguration(
@@ -40,11 +40,7 @@ export async function TKCreateSurveyConfiguration(
     true
   );
 
-  const rawAnswerLabels: TKAnswerLabelCSV[] = await TKCSVRead(
-    "answer_labels",
-    survey.fdfFolder,
-    true
-  );
+  const labels = await TKReadFDFAnswerLabelCollection(survey);
 
   const rawSubmissionsRules: TKSubmissionRule[] = await TKCSVRead<
     TKSubmissionRule[]
@@ -54,7 +50,7 @@ export async function TKCreateSurveyConfiguration(
     thematics: TKThematicsCollectionBuild(rawThematics),
     trafficLights: TKTrafficLightsCollectionBuild(rawTrafficLights),
     fieldsLabels: TKLabelsCollectionBuild(rawFieldsLabels),
-    answersLabels: TKAnswerLabelsCollectionBuild(rawAnswerLabels),
+    answersLabels: labels,
     submissionsRules: TKSubmissionsRulesCollectionBuild(rawSubmissionsRules)
   };
 }

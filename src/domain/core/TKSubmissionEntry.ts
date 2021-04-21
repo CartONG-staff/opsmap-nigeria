@@ -1,4 +1,4 @@
-import { TKAnswerLabelCSV } from "../fdf/TKAnswerLabelCSV";
+import { TKFDFAnswerLabel } from "@/domain/fdf/TKFDFAnswerLabel";
 import { TKLabel } from "./TKLabel";
 import { TKTrafficLightColors } from "./TKTrafficLight";
 
