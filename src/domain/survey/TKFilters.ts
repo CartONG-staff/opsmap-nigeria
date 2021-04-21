@@ -99,8 +99,16 @@ export class TKDatasetFilterer {
           this.currentAdmin2 = this.currentCamp.admin2;
         }
         break;
-      default:
-        console.log("error on selector");
+      case TKFilters.PLANNED_SITE:
+        if(this.currentCamp && value === false && this.currentCamp.type === TKCampTypesValues.PLANNED){
+            this.currentCamp = null;
+          }
+        break;
+      case TKFilters.SPONTANEOUS_SITE:
+        if(this.currentCamp && value === false && this.currentCamp.type === TKCampTypesValues.SPONTANEOUS){
+            this.currentCamp = null;
+        }
+        break;
     }
     this.refreshLists();
   }
