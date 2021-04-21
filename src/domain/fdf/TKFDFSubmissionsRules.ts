@@ -1,5 +1,5 @@
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKFDFInfos } from "./TKFDF";
+import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 export enum TKFDFSubmissionItemType {
   STRING = "string",
@@ -29,7 +29,10 @@ export interface TKFDFSubmissionsRulesCollection {
 // ////////////////////////////////////////////////////////////////////////////
 
 export async function TKReadSubmissionsRulesCollection(infos: TKFDFInfos): Promise<TKFDFSubmissionsRulesCollection> {
-  const rawSubmissionsRules: TKFDFSubmissionRule[] = await TKCSVRead<TKFDFSubmissionRule[]>("submissions_rules", infos.folder, true);
+  const rawSubmissionsRules: TKFDFSubmissionRule[] = await TKCSVRead<TKFDFSubmissionRule[]>(
+    TKFDFFiles.SUBMISSION_RULES,
+    infos.folder,
+    true);
   const submissionsRules: TKFDFSubmissionsRulesCollection = {};
   rawSubmissionsRules.map((item) => {
     submissionsRules[item.field_name] = { ...item };

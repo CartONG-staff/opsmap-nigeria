@@ -1,4 +1,4 @@
-import { TKFDFInfos } from "@/domain/fdf/TKFDF";
+import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 
@@ -33,7 +33,7 @@ export async function TKReadFDFTrafficLightsCollection(infos: TKFDFInfos) : Prom
 
   const rawTrafficLights: TKFDFTrafficLightItem[] = await TKCSVRead<
     TKFDFTrafficLightItem[]
-  >("traffic_light_config", infos.folder, true);
+  >(TKFDFFiles.TRAFFIC_LIGHTS, infos.folder, true);
 
   const trafficLights: TKFDFTrafficLightsCollection = {};
   for (const item of rawTrafficLights) {

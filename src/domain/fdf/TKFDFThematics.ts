@@ -14,13 +14,13 @@ export interface TKTFDFhematicsCollection {
 // ////////////////////////////////////////////////////////////////////////////
 
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKFDFInfos } from "@/domain/fdf/TKFDF";
+import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 
 export async function TKReadFDFThematicsCollection(infos: TKFDFInfos) : Promise<TKTFDFhematicsCollection>{
 
   const rawThematics: TKFDFThematic[] = await TKCSVRead<TKFDFThematic[]>(
-    "thematic_config",
+    TKFDFFiles.THEMATICS,
     infos.folder,
     true
   );

@@ -1,5 +1,4 @@
-import { TKFDFInfos } from "@/domain/fdf/TKFDF";
-
+import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
 export interface TKKoboSurveyInfo {
   name: string;
   fdf: TKFDFInfos;
