@@ -28,11 +28,11 @@ interface TKGeneralConfigurationLabelCSV{
     info: string;
 }
 
-export async function  TKReadGeneralConfiguration(): Promise<TKGeneralConfiguration> {
+export async function  TKReadGeneralConfiguration(configFileName: string, configFileFolder: string): Promise<TKGeneralConfiguration> {
 
     const labels: TKGeneralConfigurationLabelCSV[] = await TKCSVRead(
-        "general_config",
-        "brazil",
+        configFileName,
+        configFileFolder,
         true
       );
     const dict : {[key: string] : string} = labels.reduce( (dictionnary, item) => ({...dictionnary, [item.config_type]: item.info}), {});
