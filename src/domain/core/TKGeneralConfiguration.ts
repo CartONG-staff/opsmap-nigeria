@@ -49,13 +49,12 @@ export async function  TKReadGeneralConfiguration(): Promise<TKGeneralConfigurat
     // Ignore:
     //  {config_type: "fdf_id", info: "BR_FDF_s1_080421"}
     //  {config_type: "csv_data_id", info: "BR_DATA_080421_FDF_s1"}
-    //  {config_type: "project_overview_en", info: "More than 260,000 refugees and migrants have trave…itizenship, in partnership with the Armed Forces."}
     //  {config_type: "project_overview_fr", info: "Plus de 260 000 réfugiés et migrants se sont rendu…toyenneté, en partenariat avec les Forces Armées."}
-    //  {config_type: "project_overview_pt", info: "Mais de 260 mil refugiados e migrantes deslocaram-…a Cidadania, em parceria com as Forças Armadas.
 
     // Lack:
     // - iso3
     // - csv
+    // - useBoundariesMasks
     const config: TKGeneralConfiguration = {
         name: "brazil",
         iso3: dict["iso3"] ?? "BRA",
@@ -78,7 +77,7 @@ export async function  TKReadGeneralConfiguration(): Promise<TKGeneralConfigurat
             adm2Name: dict["adm2Name"] ?? "ggi_city",
             adm3Pcode: dict["adm3Pcode"] ?? "",
             adm3Name: dict["adm3Name"] ?? "ggi_address",
-            useBoundariesMasks: true
+            useBoundariesMasks: false
         },
         indicatorsDescription:{
             home:[{
@@ -151,7 +150,7 @@ export async function  TKReadGeneralConfiguration(): Promise<TKGeneralConfigurat
         },
         surveyDescription: [{
             name: "2021",
-            folder: "demo1"
+            folder: "brazil/BR_FDF_s1_080421"
         }],
         headerLogo: [{
             name: "CCCM",
