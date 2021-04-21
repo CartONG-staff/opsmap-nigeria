@@ -10,16 +10,12 @@ export class TKSubmissionEntry {
   fieldLabelEn = "";
   fieldLabelPt? = "";
 
-  constructor(
-    field: string,
-    fieldLabel: TKLabel
-  ){
+  constructor(field: string, fieldLabel: TKLabel) {
     this.field = field;
     this.fieldLabel = fieldLabel;
   }
 
-  public isAnswered() : boolean {
+  public isAnswered(): boolean {
     return true;
   }
 }
-

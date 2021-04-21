@@ -8,7 +8,7 @@ export async function TKGetGeoBoundaries(
 ): Promise<TKGeoDataset> {
   let admin1List: string[] = [];
   for (const key in surveys) {
-    surveys[key].boundariesList.admin1.map((x) => admin1List.push(x.pcode));
+    surveys[key].boundariesList.admin1.map(x => admin1List.push(x.pcode));
   }
   admin1List = [...new Set(admin1List)];
   // const admin1GeoData = await new ArcgisServerDataGetter(
@@ -19,7 +19,7 @@ export async function TKGetGeoBoundaries(
   // ).getData();
 
   let admin2WhereClause = "";
-  admin1List.map((x) => (admin2WhereClause += `adm1pcode = '${x}' OR `));
+  admin1List.map(x => (admin2WhereClause += `adm1pcode = '${x}' OR `));
   admin2WhereClause = admin2WhereClause.substring(
     0,
     admin2WhereClause.length - 3
@@ -33,6 +33,6 @@ export async function TKGetGeoBoundaries(
 
   return {
     admin1: admin1,
-    admin2: admin2GeoData,
+    admin2: admin2GeoData
   };
 }

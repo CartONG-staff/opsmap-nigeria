@@ -14,8 +14,8 @@ import { TKIndicator } from "@/domain/ui/TKIndicator";
 import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 @Component({
   components: {
-    TKIndicatorComponent,
-  },
+    TKIndicatorComponent
+  }
 })
 export default class TKHomeIndicators extends Vue {
   @Prop()

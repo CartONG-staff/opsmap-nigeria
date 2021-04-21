@@ -7,4 +7,4 @@
 
 import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 
-export { TKOpsmapConfiguration as TKOpsmapConfiguration };
+export { TKOpsmapConfiguration };

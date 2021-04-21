@@ -72,9 +72,9 @@ export const admin1: FeatureCollection = {
             [-36.70361088057441, -5.079671864672452],
             [-36.96100984185077, -4.920538130802667],
             [-37.16409209581097, -4.934155563112413],
-            [-37.2532913809428, -4.83155557330317],
-          ],
-        ],
+            [-37.2532913809428, -4.83155557330317]
+          ]
+        ]
       },
       properties: {
         objectid: 8846,
@@ -93,9 +93,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{23CB8EAF-2E88-419F-A2D6-7232450DF42B}",
+        globalid: "{23CB8EAF-2E88-419F-A2D6-7232450DF42B}"
       },
-      id: 8846,
+      id: 8846
     },
     {
       type: "Feature",
@@ -145,9 +145,9 @@ export const admin1: FeatureCollection = {
             [-35.65026820478232, -9.567933089920551],
             [-35.497654163171696, -9.419712088882362],
             [-35.304316235135644, -9.190553226580832],
-            [-35.152526501104425, -8.913837168793233],
-          ],
-        ],
+            [-35.152526501104425, -8.913837168793233]
+          ]
+        ]
       },
       properties: {
         objectid: 9161,
@@ -166,9 +166,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{8BDA89D7-833C-4421-A2BC-1CBC8208A698}",
+        globalid: "{8BDA89D7-833C-4421-A2BC-1CBC8208A698}"
       },
-      id: 9161,
+      id: 9161
     },
     {
       type: "Feature",
@@ -400,9 +400,9 @@ export const admin1: FeatureCollection = {
             [-40.70368342786015, -18.023727033618034],
             [-40.51682186613572, -17.894423307925173],
             [-40.345521800315154, -17.92378202786793],
-            [-40.22235060897847, -17.980417385348535],
-          ],
-        ],
+            [-40.22235060897847, -17.980417385348535]
+          ]
+        ]
       },
       properties: {
         objectid: 9176,
@@ -421,9 +421,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{96A8B4FF-F340-4DC1-94B1-95CE9AF88F5D}",
+        globalid: "{96A8B4FF-F340-4DC1-94B1-95CE9AF88F5D}"
       },
-      id: 9176,
+      id: 9176
     },
     {
       type: "Feature",
@@ -513,9 +513,9 @@ export const admin1: FeatureCollection = {
             [-48.6727525277846, -26.60248459814407],
             [-48.50607918273259, -26.239128180718005],
             [-48.582219764580394, -26.162432601119008],
-            [-48.59459170762635, -25.976787748817763],
-          ],
-        ],
+            [-48.59459170762635, -25.976787748817763]
+          ]
+        ]
       },
       properties: {
         objectid: 9432,
@@ -534,9 +534,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{9984F83D-DF46-479E-B0CD-8FE0A47D16C6}",
+        globalid: "{9984F83D-DF46-479E-B0CD-8FE0A47D16C6}"
       },
-      id: 9432,
+      id: 9432
     },
     {
       type: "Feature",
@@ -577,9 +577,9 @@ export const admin1: FeatureCollection = {
             [-36.93749672405488, -10.831540420043805],
             [-36.80031551893818, -10.697214121006159],
             [-36.62043517222346, -10.589444632652114],
-            [-36.393876846091366, -10.500343568298117],
-          ],
-        ],
+            [-36.393876846091366, -10.500343568298117]
+          ]
+        ]
       },
       properties: {
         objectid: 9245,
@@ -598,9 +598,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{DC63C2BB-98E4-4861-8BCC-6C0E5B7EB6F5}",
+        globalid: "{DC63C2BB-98E4-4861-8BCC-6C0E5B7EB6F5}"
       },
-      id: 9245,
+      id: 9245
     },
     {
       type: "Feature",
@@ -620,9 +620,9 @@ export const admin1: FeatureCollection = {
             [-48.25154676529082, -15.955264316862722],
             [-48.278606012315166, -16.050261165715966],
             [-47.30838698660501, -16.050264260641182],
-            [-47.31000618912485, -16.036273509246985],
-          ],
-        ],
+            [-47.31000618912485, -16.036273509246985]
+          ]
+        ]
       },
       properties: {
         objectid: 9272,
@@ -641,9 +641,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{D0450570-D395-45A1-9CA8-6F2374A1C0B6}",
+        globalid: "{D0450570-D395-45A1-9CA8-6F2374A1C0B6}"
       },
-      id: 9272,
+      id: 9272
     },
     {
       type: "Feature",
@@ -876,9 +876,9 @@ export const admin1: FeatureCollection = {
             [-38.00328989876791, -9.51502990756528],
             [-38.077759656408055, -9.441106676009424],
             [-38.20256852232176, -9.419827997923205],
-            [-38.23758980361059, -9.329794345950388],
-          ],
-        ],
+            [-38.23758980361059, -9.329794345950388]
+          ]
+        ]
       },
       properties: {
         objectid: 9518,
@@ -897,9 +897,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{7CB54914-94E0-4E96-BB0B-0F5897246DA9}",
+        globalid: "{7CB54914-94E0-4E96-BB0B-0F5897246DA9}"
       },
-      id: 9518,
+      id: 9518
     },
     {
       type: "Feature",
@@ -1041,9 +1041,9 @@ export const admin1: FeatureCollection = {
             [-52.81425896942076, -18.311297802259837],
             [-53.09965570968252, -18.313619138721357],
             [-53.14315260016859, -18.084077648711144],
-            [-53.07227751491823, -18.033975304415154],
-          ],
-        ],
+            [-53.07227751491823, -18.033975304415154]
+          ]
+        ]
       },
       properties: {
         objectid: 8908,
@@ -1062,9 +1062,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{55ECA97D-0AB5-4B82-9597-838E218FF33C}",
+        globalid: "{55ECA97D-0AB5-4B82-9597-838E218FF33C}"
       },
-      id: 8908,
+      id: 8908
     },
     {
       type: "Feature",
@@ -1158,9 +1158,9 @@ export const admin1: FeatureCollection = {
             [-37.90224571396393, -5.500661805663807],
             [-37.72508935204144, -5.070624276878851],
             [-37.64033838136443, -4.926404606205342],
-            [-37.2532913809428, -4.83155557330317],
-          ],
-        ],
+            [-37.2532913809428, -4.83155557330317]
+          ]
+        ]
       },
       properties: {
         objectid: 8657,
@@ -1179,9 +1179,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{7E3C5195-6D98-4866-89C0-DEE2723C95D3}",
+        globalid: "{7E3C5195-6D98-4866-89C0-DEE2723C95D3}"
       },
-      id: 8657,
+      id: 8657
     },
     {
       type: "Feature",
@@ -1288,9 +1288,9 @@ export const admin1: FeatureCollection = {
             [-50.55295259525245, 0.3124954820028068],
             [-50.43654689659485, 0.6001070242260728],
             [-50.27175892398304, 0.6882317158439032],
-            [-50.093914341161835, 0.7020927028875057],
-          ],
-        ],
+            [-50.093914341161835, 0.7020927028875057]
+          ]
+        ]
       },
       properties: {
         objectid: 9571,
@@ -1309,9 +1309,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{59DF7CF5-91FB-4AE1-ABB6-B2422ED84FD7}",
+        globalid: "{59DF7CF5-91FB-4AE1-ABB6-B2422ED84FD7}"
       },
-      id: 9571,
+      id: 9571
     },
     {
       type: "Feature",
@@ -1477,8 +1477,8 @@ export const admin1: FeatureCollection = {
               [-44.40582575768207, -22.59909833326725],
               [-44.64363892778687, -22.599606353229145],
               [-44.75533366526182, -22.415269200883962],
-              [-44.80943624565527, -22.40557081861547],
-            ],
+              [-44.80943624565527, -22.40557081861547]
+            ]
           ],
           [
             [
@@ -1486,10 +1486,10 @@ export const admin1: FeatureCollection = {
               [-45.43178000061058, -23.93946199973409],
               [-45.238569298273276, -23.908545021212046],
               [-45.230750000019235, -23.779067998850625],
-              [-45.32889999982735, -23.722293999709272],
-            ],
-          ],
-        ],
+              [-45.32889999982735, -23.722293999709272]
+            ]
+          ]
+        ]
       },
       properties: {
         objectid: 8649,
@@ -1508,9 +1508,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{083B6591-B00D-468E-9FC2-5250979BB2DB}",
+        globalid: "{083B6591-B00D-468E-9FC2-5250979BB2DB}"
       },
-      id: 8649,
+      id: 8649
     },
     {
       type: "Feature",
@@ -1569,9 +1569,9 @@ export const admin1: FeatureCollection = {
             [-39.742978141320485, -18.931091688297638],
             [-39.72856116197067, -18.50038540505234],
             [-39.667818741646826, -18.337185072670795],
-            [-40.22235060897847, -17.980417385348535],
-          ],
-        ],
+            [-40.22235060897847, -17.980417385348535]
+          ]
+        ]
       },
       properties: {
         objectid: 8677,
@@ -1590,9 +1590,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{09472F60-DEE3-4FBB-9D88-B5A21F68B630}",
+        globalid: "{09472F60-DEE3-4FBB-9D88-B5A21F68B630}"
       },
-      id: 8677,
+      id: 8677
     },
     {
       type: "Feature",
@@ -1845,9 +1845,9 @@ export const admin1: FeatureCollection = {
             [-54.744779072132054, 1.7758007782467693],
             [-54.80380488830473, 2.0258227796291735],
             [-54.76311087625242, 2.2023190660179717],
-            [-54.872250929925144, 2.4337465858830614],
-          ],
-        ],
+            [-54.872250929925144, 2.4337465858830614]
+          ]
+        ]
       },
       properties: {
         objectid: 9602,
@@ -1866,9 +1866,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{10B55881-369B-4B3B-9F36-F382FA46B830}",
+        globalid: "{10B55881-369B-4B3B-9F36-F382FA46B830}"
       },
-      id: 9602,
+      id: 9602
     },
     {
       type: "Feature",
@@ -2035,9 +2035,9 @@ export const admin1: FeatureCollection = {
             [-45.69926630411242, -10.264711664872769],
             [-45.723997549111665, -10.155695866165091],
             [-45.79374331011607, -10.267672800850365],
-            [-45.946265325614064, -10.25854990658972],
-          ],
-        ],
+            [-45.946265325614064, -10.25854990658972]
+          ]
+        ]
       },
       properties: {
         objectid: 8745,
@@ -2056,9 +2056,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{79A15322-FEE3-4727-AC03-22375B6FD3F1}",
+        globalid: "{79A15322-FEE3-4727-AC03-22375B6FD3F1}"
       },
-      id: 8745,
+      id: 8745
     },
     {
       type: "Feature",
@@ -2137,9 +2137,9 @@ export const admin1: FeatureCollection = {
             [-67.01484483659505, -10.256907687315227],
             [-66.98019893341569, -10.19431558432726],
             [-66.62671969164414, -9.898098880788343],
-            [-66.81025311292022, -9.818045875221035],
-          ],
-        ],
+            [-66.81025311292022, -9.818045875221035]
+          ]
+        ]
       },
       properties: {
         objectid: 8836,
@@ -2158,9 +2158,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{33E55286-9019-4A0E-8761-B0AFD433650F}",
+        globalid: "{33E55286-9019-4A0E-8761-B0AFD433650F}"
       },
-      id: 8836,
+      id: 8836
     },
     {
       type: "Feature",
@@ -2314,9 +2314,9 @@ export const admin1: FeatureCollection = {
             [-41.32404927581615, -3.3859240774274055],
             [-41.41231773832868, -3.3406973023267255],
             [-41.25665146213112, -3.0880149313936665],
-            [-41.322681309623405, -2.921319574371646],
-          ],
-        ],
+            [-41.322681309623405, -2.921319574371646]
+          ]
+        ]
       },
       properties: {
         objectid: 8889,
@@ -2335,9 +2335,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{D471CF06-2A8C-4E22-8CF1-420460AFE2D8}",
+        globalid: "{D471CF06-2A8C-4E22-8CF1-420460AFE2D8}"
       },
-      id: 8889,
+      id: 8889
     },
     {
       type: "Feature",
@@ -2451,9 +2451,9 @@ export const admin1: FeatureCollection = {
             [-48.500477700049224, -25.75207071002114],
             [-48.410586693283996, -25.619505114208057],
             [-48.31993235927576, -25.586566078154696],
-            [-48.09769512639134, -25.310092597320622],
-          ],
-        ],
+            [-48.09769512639134, -25.310092597320622]
+          ]
+        ]
       },
       properties: {
         objectid: 8903,
@@ -2472,9 +2472,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{82ECC868-5824-4B21-9F50-C99E229E7EF7}",
+        globalid: "{82ECC868-5824-4B21-9F50-C99E229E7EF7}"
       },
-      id: 8903,
+      id: 8903
     },
     {
       type: "Feature",
@@ -2602,9 +2602,9 @@ export const admin1: FeatureCollection = {
             [-34.94437372538764, -8.260300244656559],
             [-34.819301000020474, -7.923861001413531],
             [-34.844640472739016, -7.837063881224197],
-            [-34.8338806319289, -7.548634372400366],
-          ],
-        ],
+            [-34.8338806319289, -7.548634372400366]
+          ]
+        ]
       },
       properties: {
         objectid: 8921,
@@ -2623,9 +2623,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{EC27B012-14E0-4FED-81F3-0264E553C44E}",
+        globalid: "{EC27B012-14E0-4FED-81F3-0264E553C44E}"
       },
-      id: 8921,
+      id: 8921
     },
     {
       type: "Feature",
@@ -2874,9 +2874,9 @@ export const admin1: FeatureCollection = {
             [-50.38195272304363, -10.212114993263171],
             [-50.39825808688483, -10.15546974540056],
             [-50.30264550436083, -10.03541131832272],
-            [-50.224806382583935, -9.841153478114595],
-          ],
-        ],
+            [-50.224806382583935, -9.841153478114595]
+          ]
+        ]
       },
       properties: {
         objectid: 9020,
@@ -2895,9 +2895,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{007546AC-C8D8-49F9-AA2C-6E861149ACD5}",
+        globalid: "{007546AC-C8D8-49F9-AA2C-6E861149ACD5}"
       },
-      id: 9020,
+      id: 9020
     },
     {
       type: "Feature",
@@ -3109,9 +3109,9 @@ export const admin1: FeatureCollection = {
             [-62.72461751075412, -8.069198020370694],
             [-62.727639431691806, -8.062483007218972],
             [-62.738031595649396, -8.050066266036861],
-            [-62.743972495983094, -8.04528370097407],
-          ],
-        ],
+            [-62.743972495983094, -8.04528370097407]
+          ]
+        ]
       },
       properties: {
         objectid: 9040,
@@ -3130,9 +3130,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{E395D70C-8FDB-4C32-859A-626B3E74F376}",
+        globalid: "{E395D70C-8FDB-4C32-859A-626B3E74F376}"
       },
-      id: 9040,
+      id: 9040
     },
     {
       type: "Feature",
@@ -3286,9 +3286,9 @@ export const admin1: FeatureCollection = {
             [-60.05908292031088, 0.16299689386119665],
             [-60.037968645683385, 0.26354551694175443],
             [-58.89546482003991, 0.26351027460930265],
-            [-58.89549794272107, 1.2276938379342548],
-          ],
-        ],
+            [-58.89549794272107, 1.2276938379342548]
+          ]
+        ]
       },
       properties: {
         objectid: 9075,
@@ -3307,9 +3307,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{572CFC30-F476-443B-A698-E7CC2DB6DE5F}",
+        globalid: "{572CFC30-F476-443B-A698-E7CC2DB6DE5F}"
       },
-      id: 9075,
+      id: 9075
     },
     {
       type: "Feature",
@@ -3487,9 +3487,9 @@ export const admin1: FeatureCollection = {
             [-50.30885079056074, -30.455912184249414],
             [-50.1338740631144, -30.011078374112774],
             [-49.91021982680249, -29.587267910769693],
-            [-49.712565922322625, -29.325572026682416],
-          ],
-        ],
+            [-49.712565922322625, -29.325572026682416]
+          ]
+        ]
       },
       properties: {
         objectid: 8857,
@@ -3508,9 +3508,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{84BCF157-2A1E-444E-A33C-A3E27E269FB6}",
+        globalid: "{84BCF157-2A1E-444E-A33C-A3E27E269FB6}"
       },
-      id: 8857,
+      id: 8857
     },
     {
       type: "Feature",
@@ -3796,9 +3796,9 @@ export const admin1: FeatureCollection = {
             [-63.02377615011445, 2.014679362927158],
             [-63.146339441616895, 2.1732585560457895],
             [-63.276351428707976, 2.1543896906292637],
-            [-63.372089104330215, 2.2118616498530774],
-          ],
-        ],
+            [-63.372089104330215, 2.2118616498530774]
+          ]
+        ]
       },
       properties: {
         objectid: 9301,
@@ -3817,9 +3817,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{FD6E1817-84BD-428E-A788-FBACEB32A55B}",
+        globalid: "{FD6E1817-84BD-428E-A788-FBACEB32A55B}"
       },
-      id: 9301,
+      id: 9301
     },
     {
       type: "Feature",
@@ -3920,9 +3920,9 @@ export const admin1: FeatureCollection = {
             [-34.8095473747365, -7.509061856928953],
             [-34.821056956669274, -7.130939176981965],
             [-34.96226652372695, -6.640183747413091],
-            [-34.96853802115319, -6.487260754712099],
-          ],
-        ],
+            [-34.96853802115319, -6.487260754712099]
+          ]
+        ]
       },
       properties: {
         objectid: 9349,
@@ -3941,9 +3941,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{33E434C1-C716-42F6-AA29-9E076E66BE10}",
+        globalid: "{33E434C1-C716-42F6-AA29-9E076E66BE10}"
       },
-      id: 9349,
+      id: 9349
     },
     {
       type: "Feature",
@@ -4018,9 +4018,9 @@ export const admin1: FeatureCollection = {
             [-41.01021245936073, -21.608824545743715],
             [-41.06526501984523, -21.49146399458396],
             [-40.96043675467045, -21.36047162089478],
-            [-40.96016236965679, -21.301594558850585],
-          ],
-        ],
+            [-40.96016236965679, -21.301594558850585]
+          ]
+        ]
       },
       properties: {
         objectid: 9142,
@@ -4039,9 +4039,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{69838F56-7249-41AB-8693-8E12449B39C0}",
+        globalid: "{69838F56-7249-41AB-8693-8E12449B39C0}"
       },
-      id: 9142,
+      id: 9142
     },
     {
       type: "Feature",
@@ -4220,9 +4220,9 @@ export const admin1: FeatureCollection = {
             [-41.91843545319165, -3.1025187574430344],
             [-41.7958843805737, -2.9655704601800252],
             [-41.86496314068302, -2.8780057079014227],
-            [-41.814107634071746, -2.739308919726093],
-          ],
-        ],
+            [-41.814107634071746, -2.739308919726093]
+          ]
+        ]
       },
       properties: {
         objectid: 9642,
@@ -4241,9 +4241,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{0C600334-AA57-4573-A5A2-C018C51C9A02}",
+        globalid: "{0C600334-AA57-4573-A5A2-C018C51C9A02}"
       },
-      id: 9642,
+      id: 9642
     },
     {
       type: "Feature",
@@ -4414,9 +4414,9 @@ export const admin1: FeatureCollection = {
             [-46.279388943371764, -13.347898305063277],
             [-46.330168262965465, -13.252811397643516],
             [-46.27337900481355, -13.01495349286478],
-            [-46.11427457957959, -12.917905522413571],
-          ],
-        ],
+            [-46.11427457957959, -12.917905522413571]
+          ]
+        ]
       },
       properties: {
         objectid: 9576,
@@ -4435,9 +4435,9 @@ export const admin1: FeatureCollection = {
         focusID: " ",
         progresID: " ",
         status: "1",
-        globalid: "{D0BD1123-70EC-4F5E-85BE-18BC01F0B099}",
+        globalid: "{D0BD1123-70EC-4F5E-85BE-18BC01F0B099}"
       },
-      id: 9576,
-    },
-  ],
+      id: 9576
+    }
+  ]
 };

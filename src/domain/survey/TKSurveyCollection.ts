@@ -1,4 +1,4 @@
-import { TKSurvey } from "./TKSurvey"
+import { TKSurvey } from "./TKSurvey";
 import { TKSurveyInfosCSV } from "../csv/TKSurveyInfosCSV";
 import { TKCreateFDF } from "@/domain/fdf/TKFDF";
 import { TKGetCSVRawData } from "@/domain/csv/TKGetCSVRawData";
@@ -13,7 +13,7 @@ import { TKSurveyInfosKobo } from "../kobo/TKSurveyInfosKobo";
 // SurveyCollection concept definition
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKSurveyCollection {
-    [fdf: string]: TKSurvey;
+  [fdf: string]: TKSurvey;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -24,7 +24,7 @@ export async function TKCreateSurveyCollection(
   surveyDescription: TKSurveyInfos[],
   spatialDescription: TKSpatialDescription,
   indicatorsDescription: TKIndicatorsDescription
-  ): Promise<TKSurveyCollection> {
+): Promise<TKSurveyCollection> {
   // prepare output
   const surveyCollection: TKSurveyCollection = {};
 
@@ -32,7 +32,7 @@ export async function TKCreateSurveyCollection(
   for (const info of surveyDescription) {
     // Retrieve raw data
     let rawData;
-    if(info instanceof TKSurveyInfosCSV){
+    if (info instanceof TKSurveyInfosCSV) {
       rawData = await TKGetCSVRawData(info);
     } else if (info instanceof TKSurveyInfosKobo) {
       rawData = await TKGetKoboRawData(info);

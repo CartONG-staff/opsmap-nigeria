@@ -1,8 +1,23 @@
-import { TKReadFDFThematicsCollection, TKTFDFhematicsCollection } from "./TKFDFThematics";
-import { TKFDFTrafficLightsCollection, TKReadFDFTrafficLightsCollection } from "./TKFDFTrafficLight";
-import { TKFDFAnswerLabelCollection, TKReadFDFAnswerLabelCollection } from "./TKFDFAnswerLabel";
-import { TKFDFSubmissionsRulesCollection, TKReadSubmissionsRulesCollection } from "./TKFDFSubmissionsRules";
-import { TKFDFFieldLabelCollection, TKReadFDFLabelsCollection } from "./TKFDFFieldLabel";
+import {
+  TKReadFDFThematicsCollection,
+  TKTFDFhematicsCollection
+} from "./TKFDFThematics";
+import {
+  TKFDFTrafficLightsCollection,
+  TKReadFDFTrafficLightsCollection
+} from "./TKFDFTrafficLight";
+import {
+  TKFDFAnswerLabelCollection,
+  TKReadFDFAnswerLabelCollection
+} from "./TKFDFAnswerLabel";
+import {
+  TKFDFSubmissionsRulesCollection,
+  TKReadSubmissionsRulesCollection
+} from "./TKFDFSubmissionsRules";
+import {
+  TKFDFFieldLabelCollection,
+  TKReadFDFLabelsCollection
+} from "./TKFDFFieldLabel";
 
 import { TKFDFInfos } from "./TKFDFInfos";
 
@@ -23,14 +38,12 @@ export interface TKFDF {
 // Method that creates the FDF object from the fdf folder
 // ////////////////////////////////////////////////////////////////////////////
 
-export async function TKCreateFDF(
-  infos: TKFDFInfos
-): Promise<TKFDF> {
+export async function TKCreateFDF(infos: TKFDFInfos): Promise<TKFDF> {
   return {
     thematics: await TKReadFDFThematicsCollection(infos),
     trafficLights: await TKReadFDFTrafficLightsCollection(infos),
-    fieldsLabels: await  TKReadFDFLabelsCollection(infos),
+    fieldsLabels: await TKReadFDFLabelsCollection(infos),
     answersLabels: await TKReadFDFAnswerLabelCollection(infos),
-    submissionsRules: await  TKReadSubmissionsRulesCollection(infos)
+    submissionsRules: await TKReadSubmissionsRulesCollection(infos)
   };
 }

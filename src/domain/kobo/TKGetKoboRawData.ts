@@ -1,4 +1,3 @@
-
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKSurveyInfosKobo } from "./TKSurveyInfosKobo";
 
@@ -7,7 +6,7 @@ import { TKSurveyInfosKobo } from "./TKSurveyInfosKobo";
 // ////////////////////////////////////////////////////////////////////////////
 
 export async function TKGetKoboRawData(config: TKSurveyInfos) {
-  if(config instanceof TKSurveyInfosKobo){
+  if (config instanceof TKSurveyInfosKobo) {
     try {
       const response = await fetch(config.url, {
         method: "get",
@@ -20,5 +19,5 @@ export async function TKGetKoboRawData(config: TKSurveyInfos) {
     } catch (error) {
       console.log(error);
     }
-    }
+  }
 }

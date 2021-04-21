@@ -31,13 +31,14 @@ export interface TKFDFSubmissionsRulesCollection {
 // Submission rules collection reading
 // ////////////////////////////////////////////////////////////////////////////
 
-export async function TKReadSubmissionsRulesCollection(infos: TKFDFInfos): Promise<TKFDFSubmissionsRulesCollection> {
-  const rawSubmissionsRules: TKFDFSubmissionRule[] = await TKCSVRead<TKFDFSubmissionRule[]>(
-    TKFDFFiles.SUBMISSION_RULES,
-    infos.folder,
-    true);
+export async function TKReadSubmissionsRulesCollection(
+  infos: TKFDFInfos
+): Promise<TKFDFSubmissionsRulesCollection> {
+  const rawSubmissionsRules: TKFDFSubmissionRule[] = await TKCSVRead<
+    TKFDFSubmissionRule[]
+  >(TKFDFFiles.SUBMISSION_RULES, infos.folder, true);
   const submissionsRules: TKFDFSubmissionsRulesCollection = {};
-  rawSubmissionsRules.map((item) => {
+  rawSubmissionsRules.map(item => {
     submissionsRules[item.field_name] = { ...item };
   });
   return submissionsRules;

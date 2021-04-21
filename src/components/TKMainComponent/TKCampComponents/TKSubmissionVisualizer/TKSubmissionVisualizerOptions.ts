@@ -1,3 +1,3 @@
-export interface TKSubmissionVisualizerOptions{
-    hideUnanswered: boolean;
+export interface TKSubmissionVisualizerOptions {
+  hideUnanswered: boolean;
 }

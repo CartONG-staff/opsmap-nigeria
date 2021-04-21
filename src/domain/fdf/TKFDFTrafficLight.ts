@@ -36,8 +36,9 @@ export interface TKFDFTrafficLightsCollection {
 // Method that creates the TrafficLightscollection object from the fdf folder
 // ////////////////////////////////////////////////////////////////////////////
 
-export async function TKReadFDFTrafficLightsCollection(infos: TKFDFInfos) : Promise<TKFDFTrafficLightsCollection> {
-
+export async function TKReadFDFTrafficLightsCollection(
+  infos: TKFDFInfos
+): Promise<TKFDFTrafficLightsCollection> {
   const rawTrafficLights: TKFDFTrafficLightItem[] = await TKCSVRead<
     TKFDFTrafficLightItem[]
   >(TKFDFFiles.TRAFFIC_LIGHTS, infos.folder, true);

@@ -74,7 +74,6 @@ export class TKMapBoundaries {
 
         break;
       default:
-
         break;
     }
     (map.getSource(TKMapLayers.ADMIN1SOURCE) as mapboxgl.GeoJSONSource).setData(

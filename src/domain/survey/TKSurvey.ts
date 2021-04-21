@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKCampDescription } from "./TKCampDescription"
-import { TKBoundariesCollection } from "./TKBoundariesCollection"
+import { TKCampDescription } from "./TKCampDescription";
+import { TKBoundariesCollection } from "./TKBoundariesCollection";
 import { TKSubmission, TKCreateSubmission } from "./TKSubmission";
 import { TKIndicator } from "../ui/TKIndicator";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
@@ -9,7 +9,7 @@ import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKIndicatorsDescription,
   TKIndicatorDescription,
-  TKIndicatorComputationType,
+  TKIndicatorComputationType
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { isNumber } from "@turf/helpers";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
@@ -18,10 +18,10 @@ import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 // Survey concept definition
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKSurvey {
-    submissionsByCamps: {[campId: string]: {[date: string]: TKSubmission};};
-    campsList: TKCampDescription[];
-    boundariesList: TKBoundariesCollection;
-    indicators: [TKIndicator, TKIndicator, TKIndicator];
+  submissionsByCamps: { [campId: string]: { [date: string]: TKSubmission } };
+  campsList: TKCampDescription[];
+  boundariesList: TKBoundariesCollection;
+  indicators: [TKIndicator, TKIndicator, TKIndicator];
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -35,9 +35,12 @@ function computeSurveyIndicator(
   if (descr.entryCode === "mp_site_id") {
     return {
       iconOchaName: descr.iconOchaName,
-      nameLabel: {name: descr.name, label_en: descr.name},
-      valueLabel: {name: String(Object.keys(data).length), label_en: String(Object.keys(data).length)}
-    }
+      nameLabel: { name: descr.name, label_en: descr.name },
+      valueLabel: {
+        name: String(Object.keys(data).length),
+        label_en: String(Object.keys(data).length)
+      }
+    };
   }
 
   const splitted = descr.entryCode.split("_");
@@ -49,10 +52,15 @@ function computeSurveyIndicator(
       const submission = data[camp][last];
       if (submission) {
         const them = submission.thematics[thematic];
-        if(them){
+        if (them) {
           const item = them.data.find(item => item.field === descr.entryCode);
-          if(item && item instanceof TKSubmissionEntryText && item.answerLabel && isNumber(item.answerLabel.label_en)){
-            sum +=  Number(item.answerLabel.label_en)
+          if (
+            item &&
+            item instanceof TKSubmissionEntryText &&
+            item.answerLabel &&
+            isNumber(item.answerLabel.label_en)
+          ) {
+            sum += Number(item.answerLabel.label_en);
           }
         }
       }
@@ -60,29 +68,32 @@ function computeSurveyIndicator(
     if (!descr.computationType) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: {name: descr.name, label_en: descr.name},
-        valueLabel: {name: String(sum), label_en: String(sum)}
-      }
+        nameLabel: { name: descr.name, label_en: descr.name },
+        valueLabel: { name: String(sum), label_en: String(sum) }
+      };
     }
     if (descr.computationType === TKIndicatorComputationType.MEAN) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: {name: descr.name, label_en: descr.name},
-        valueLabel: {name: String( (sum / Object.keys(data).length).toFixed(2) ), label_en: String( (sum / Object.keys(data).length).toFixed(2) )}
-      }
+        nameLabel: { name: descr.name, label_en: descr.name },
+        valueLabel: {
+          name: String((sum / Object.keys(data).length).toFixed(2)),
+          label_en: String((sum / Object.keys(data).length).toFixed(2))
+        }
+      };
     } else if (descr.computationType === TKIndicatorComputationType.SUM) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: {name: descr.name, label_en: descr.name},
-        valueLabel: {name: String(sum), label_en: String(sum)}
-      }
+        nameLabel: { name: descr.name, label_en: descr.name },
+        valueLabel: { name: String(sum), label_en: String(sum) }
+      };
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameLabel: {name: descr.name, label_en: descr.name},
-    valueLabel: {name: "NotFound", label_en: "NotFound"}
-  }
+    nameLabel: { name: descr.name, label_en: descr.name },
+    valueLabel: { name: "NotFound", label_en: "NotFound" }
+  };
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -101,11 +112,11 @@ export function TKCreateSurvey(
   const campsList: TKCampDescription[] = [];
   const boundariesList: TKBoundariesCollection = {
     admin1: [],
-    admin2: [],
+    admin2: []
   };
   for (const submission of sumbmissions) {
     if (submissionsByCamps[submission[spatialDescription.siteIDField]]) {
-      campsList.map((x) => {
+      campsList.map(x => {
         if (x.id === submission[spatialDescription.siteIDField]) {
           x.submissionsDates.push(
             submission[spatialDescription.siteLastUpdateField]
@@ -129,34 +140,34 @@ export function TKCreateSurvey(
         ),
         admin1: {
           pcode: submission[spatialDescription.adm1Pcode],
-          name: submission[spatialDescription.adm1Name],
+          name: submission[spatialDescription.adm1Name]
         },
         admin2: {
           pcode: submission[spatialDescription.adm2Pcode],
-          name: submission[spatialDescription.adm2Name],
+          name: submission[spatialDescription.adm2Name]
         },
         admin3: {
           pcode: submission[spatialDescription.adm3Pcode],
-          name: submission[spatialDescription.adm3Name],
-        },
+          name: submission[spatialDescription.adm3Name]
+        }
       });
       if (
         !boundariesList.admin2
-          .map((x) => x.pcode)
+          .map(x => x.pcode)
           .includes(submission[spatialDescription.adm2Pcode])
       ) {
         boundariesList.admin2.push({
           pcode: submission[spatialDescription.adm2Pcode],
-          name: submission[spatialDescription.adm2Name],
+          name: submission[spatialDescription.adm2Name]
         });
         if (
           !boundariesList.admin1
-            .map((x) => x.pcode)
+            .map(x => x.pcode)
             .includes(submission[spatialDescription.adm1Pcode])
         ) {
           boundariesList.admin1.push({
             pcode: submission[spatialDescription.adm1Pcode],
-            name: submission[spatialDescription.adm1Name],
+            name: submission[spatialDescription.adm1Name]
           });
         }
       }
@@ -173,8 +184,10 @@ export function TKCreateSurvey(
     submissionsByCamps: submissionsByCamps,
     campsList: campsList,
     boundariesList: boundariesList,
-    indicators: [computeSurveyIndicator(indicatorsDescription.home[0], submissionsByCamps),
-                 computeSurveyIndicator(indicatorsDescription.home[1], submissionsByCamps),
-                 computeSurveyIndicator(indicatorsDescription.home[2], submissionsByCamps)]
+    indicators: [
+      computeSurveyIndicator(indicatorsDescription.home[0], submissionsByCamps),
+      computeSurveyIndicator(indicatorsDescription.home[1], submissionsByCamps),
+      computeSurveyIndicator(indicatorsDescription.home[2], submissionsByCamps)
+    ]
   };
 }

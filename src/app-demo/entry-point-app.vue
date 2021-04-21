@@ -33,8 +33,8 @@ import { TKReadGeneralConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfig
   components: {
     TKHeader,
     TKFooter,
-    TKMainComponent,
-  },
+    TKMainComponent
+  }
 })
 export default class App extends Vue {
   appRootConfig!: TKOpsmapConfiguration;

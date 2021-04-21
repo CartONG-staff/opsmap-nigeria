@@ -19,7 +19,9 @@ export interface TKSubmissionThematic {
 // TKSubmissionThematic Creation
 // ////////////////////////////////////////////////////////////////////////////
 
-export function TKCreateSubmissionThematic(thematic: TKFDFThematic) : TKSubmissionThematic {
+export function TKCreateSubmissionThematic(
+  thematic: TKFDFThematic
+): TKSubmissionThematic {
   return {
     data: [],
     formatted_name: thematic.formatted_name,
@@ -27,7 +29,7 @@ export function TKCreateSubmissionThematic(thematic: TKFDFThematic) : TKSubmissi
     nameLabel: {
       name: thematic.thematic_label_en,
       label_en: thematic.thematic_label_en,
-      label_pt: thematic.thematic_label_pt,
+      label_pt: thematic.thematic_label_pt
     }
-  }
+  };
 }

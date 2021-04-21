@@ -12,7 +12,7 @@ export enum TKMapLayers {
   NOTSELECTEDCAMPSSOURCE = "notSelectedCamps",
   NOTSELECTEDCAMPSLAYER = "notSelectedCampsLayer",
   CLUSTERSCIRCLELAYER = "clustersCircle",
-  CLUSTERSCOUNTLAYER = "clustersCount",
+  CLUSTERSCOUNTLAYER = "clustersCount"
 }
 
 export const TKMapLayersStyle = {
@@ -23,8 +23,8 @@ export const TKMapLayersStyle = {
     layout: {},
     paint: {
       "fill-color": "#585858",
-      "fill-opacity": 0.7,
-    },
+      "fill-opacity": 0.7
+    }
   },
   [TKMapLayers.ADMIN1LAYER]: {
     id: TKMapLayers.ADMIN1LAYER,
@@ -40,9 +40,9 @@ export const TKMapLayersStyle = {
         0.0,
         "no",
         0.7,
-        0.0,
-      ],
-    },
+        0.0
+      ]
+    }
   },
   [TKMapLayers.ADMIN2LAYER]: {
     id: TKMapLayers.ADMIN2LAYER,
@@ -58,9 +58,9 @@ export const TKMapLayersStyle = {
         0.0,
         "no",
         0.7,
-        0.0,
-      ],
-    },
+        0.0
+      ]
+    }
   },
   [TKMapLayers.CLUSTERSCIRCLELAYER]: {
     id: TKMapLayers.CLUSTERSCIRCLELAYER,
@@ -69,8 +69,8 @@ export const TKMapLayersStyle = {
     filter: ["has", "point_count"],
     paint: {
       "circle-color": "#000000",
-      "circle-radius": ["step", ["get", "point_count"], 10, 10, 15, 30, 20],
-    },
+      "circle-radius": ["step", ["get", "point_count"], 10, 10, 15, 30, 20]
+    }
   },
   [TKMapLayers.CLUSTERSCOUNTLAYER]: {
     id: TKMapLayers.CLUSTERSCOUNTLAYER,
@@ -80,11 +80,11 @@ export const TKMapLayersStyle = {
     layout: {
       "text-field": "{point_count_abbreviated}",
       "text-font": ["Arial Unicode MS Bold"],
-      "text-size": 12,
+      "text-size": 12
     },
     paint: {
-      "text-color": "#ffffff",
-    },
+      "text-color": "#ffffff"
+    }
   },
   [TKMapLayers.NOTSELECTEDCAMPSLAYER]: {
     id: TKMapLayers.NOTSELECTEDCAMPSLAYER,
@@ -99,10 +99,10 @@ export const TKMapLayersStyle = {
         "planned_site",
         TKCampTypesValues.SPONTANEOUS,
         "spontaneous_site",
-        "planned_site", // everything else
+        "planned_site" // everything else
       ],
-      "icon-size": 0.25,
-    },
+      "icon-size": 0.25
+    }
   },
   [TKMapLayers.SELECTEDCAMPLAYER]: {
     id: TKMapLayers.SELECTEDCAMPLAYER,
@@ -116,9 +116,9 @@ export const TKMapLayersStyle = {
         "planned_site_selected",
         TKCampTypesValues.SPONTANEOUS,
         "spontaneous_site_selected",
-        "planned_site_selected", // everything else
+        "planned_site_selected" // everything else
       ],
-      "icon-size": 0.25,
-    },
-  },
+      "icon-size": 0.25
+    }
+  }
 };

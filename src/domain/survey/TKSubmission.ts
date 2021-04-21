@@ -1,12 +1,21 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKIndicatorsDescription, TKIndicatorDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
+import {
+  TKIndicatorsDescription,
+  TKIndicatorDescription
+} from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKFDFSubmissionsRulesCollection } from "@/domain/fdf/TKFDFSubmissionsRules";
-import { TKCreateSubmissionEntryAgePyramid, TKSubmissionEntryAgePyramidItem } from "./TKSubmissionEntryAgePyramid";
+import {
+  TKCreateSubmissionEntryAgePyramid,
+  TKSubmissionEntryAgePyramidItem
+} from "./TKSubmissionEntryAgePyramid";
 import { TKCreateSubmissionEntryText } from "./TKSubmissionEntryText";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
-import { TKSubmissionThematic, TKCreateSubmissionThematic } from "./TKSubmissionThematic";
+import {
+  TKSubmissionThematic,
+  TKCreateSubmissionThematic
+} from "./TKSubmissionThematic";
 import { TKIndicator } from "@/domain/ui/TKIndicator";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -14,8 +23,8 @@ import { TKIndicator } from "@/domain/ui/TKIndicator";
 // ////////////////////////////////////////////////////////////////////////////
 
 export interface TKSubmission {
-    thematics: Record<string, TKSubmissionThematic>;
-    indicators: [TKIndicator, TKIndicator, TKIndicator];
+  thematics: Record<string, TKSubmissionThematic>;
+  indicators: [TKIndicator, TKIndicator, TKIndicator];
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -39,35 +48,46 @@ function isSubmissionInThematic(
     : false;
 }
 
-function isSubmissionAnAgePyramid(surveyConfiguration: TKFDF,field: string){
-  return surveyConfiguration.submissionsRules[field].chart_id && surveyConfiguration.submissionsRules[field].chart_id.includes("age_pyramid");
+function isSubmissionAnAgePyramid(surveyConfiguration: TKFDF, field: string) {
+  return (
+    surveyConfiguration.submissionsRules[field].chart_id &&
+    surveyConfiguration.submissionsRules[field].chart_id.includes("age_pyramid")
+  );
 }
 
 // ////////////////////////////////////////////////////////////////////////////
 // indicators management
 // ////////////////////////////////////////////////////////////////////////////
 
-function computeSubmissionIndicator(descr: TKIndicatorDescription, data: Record<string, TKSubmissionThematic>) : TKIndicator{
-  const splitted = descr.entryCode.split("_")
-  if(splitted){
-    const thematic = "group_"+splitted[0];
-    const entry = data[thematic].data.find(item => item.field === descr.entryCode);
-    if(entry instanceof TKSubmissionEntryText){
+function computeSubmissionIndicator(
+  descr: TKIndicatorDescription,
+  data: Record<string, TKSubmissionThematic>
+): TKIndicator {
+  const splitted = descr.entryCode.split("_");
+  if (splitted) {
+    const thematic = "group_" + splitted[0];
+    const entry = data[thematic].data.find(
+      item => item.field === descr.entryCode
+    );
+    if (entry instanceof TKSubmissionEntryText) {
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: entry.fieldLabel,
         valueLabel: entry.answerLabel
-      }
+      };
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameLabel: {name: "", label_en: ""},
-    valueLabel: {name: "", label_en: ""}
-  }
+    nameLabel: { name: "", label_en: "" },
+    valueLabel: { name: "", label_en: "" }
+  };
 }
 
-function computeSubmissionIndicators(descr: TKIndicatorsDescription, data: Record<string, TKSubmissionThematic>) : [TKIndicator, TKIndicator, TKIndicator] {
+function computeSubmissionIndicators(
+  descr: TKIndicatorsDescription,
+  data: Record<string, TKSubmissionThematic>
+): [TKIndicator, TKIndicator, TKIndicator] {
   return [
     computeSubmissionIndicator(descr.site[0], data),
     computeSubmissionIndicator(descr.site[1], data),
@@ -83,12 +103,14 @@ export function TKCreateSubmission(
   submissionItem: any,
   surveyConfiguration: TKFDF,
   indicatorsDescription: TKIndicatorsDescription
-) : TKSubmission {
+): TKSubmission {
   const submission: Record<string, TKSubmissionThematic> = {};
   for (const thematic in surveyConfiguration.thematics) {
-    submission[thematic] = TKCreateSubmissionThematic(surveyConfiguration.thematics[thematic]);
+    submission[thematic] = TKCreateSubmissionThematic(
+      surveyConfiguration.thematics[thematic]
+    );
     let agePyramidId = "";
-    let agePyramidData : Array<TKSubmissionEntryAgePyramidItem> = [];
+    let agePyramidData: Array<TKSubmissionEntryAgePyramidItem> = [];
     for (const field in submissionItem) {
       if (
         isSubmissionInThematic(
@@ -98,12 +120,14 @@ export function TKCreateSubmission(
         )
       ) {
         if (isSubmissionRelevant()) {
-
           // If age pyramid -- accumulate process
-          if(isSubmissionAnAgePyramid(surveyConfiguration, field)){
-
+          if (isSubmissionAnAgePyramid(surveyConfiguration, field)) {
             // If it's a new chart - create current chart, then cleanup
-            if(agePyramidId && agePyramidId !== surveyConfiguration.submissionsRules[field].chart_id){
+            if (
+              agePyramidId &&
+              agePyramidId !==
+                surveyConfiguration.submissionsRules[field].chart_id
+            ) {
               submission[thematic].data.push(
                 TKCreateSubmissionEntryAgePyramid(
                   agePyramidData,
@@ -115,17 +139,21 @@ export function TKCreateSubmission(
             }
 
             // If no previous chart, init
-            if(!agePyramidId){
-              agePyramidId = surveyConfiguration.submissionsRules[field].chart_id;
+            if (!agePyramidId) {
+              agePyramidId =
+                surveyConfiguration.submissionsRules[field].chart_id;
               agePyramidData = [];
             }
 
             // accumulate
-            agePyramidData.push( {field: field, value: submissionItem[field], type: surveyConfiguration.submissionsRules[field].chart_data } );
-          }
-          else {
+            agePyramidData.push({
+              field: field,
+              value: submissionItem[field],
+              type: surveyConfiguration.submissionsRules[field].chart_data
+            });
+          } else {
             // if a current pyramid is ongoing - push it before switching to text item
-            if(agePyramidId){
+            if (agePyramidId) {
               submission[thematic].data.push(
                 TKCreateSubmissionEntryAgePyramid(
                   agePyramidData,
@@ -149,10 +177,10 @@ export function TKCreateSubmission(
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
-  Object.entries(submission).filter(item => item.length > 0)
+  Object.entries(submission).filter(item => item.length > 0);
   const submissionFiltered: Record<string, TKSubmissionThematic> = {};
-  for(const key of Object.keys(submission)){
-    if(submission[key].data.length > 0){
+  for (const key of Object.keys(submission)) {
+    if (submission[key].data.length > 0) {
       submissionFiltered[key] = submission[key];
     }
   }
@@ -160,5 +188,5 @@ export function TKCreateSubmission(
   return {
     thematics: submissionFiltered,
     indicators: computeSubmissionIndicators(indicatorsDescription, submission)
-  }
+  };
 }

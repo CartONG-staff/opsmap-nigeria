@@ -3,7 +3,7 @@
  *
  * @module
  */
- import TKSubmissionVisualizer from "./TKSubmissionVisualizer.vue";
+import TKSubmissionVisualizer from "./TKSubmissionVisualizer.vue";
 export { TKSubmissionVisualizer };
 
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";

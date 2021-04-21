@@ -20,8 +20,9 @@ export interface TKTFDFhematicsCollection {
 // Method that creates the Thematic collection object from the fdf folder
 // ////////////////////////////////////////////////////////////////////////////
 
-export async function TKReadFDFThematicsCollection(infos: TKFDFInfos) : Promise<TKTFDFhematicsCollection>{
-
+export async function TKReadFDFThematicsCollection(
+  infos: TKFDFInfos
+): Promise<TKTFDFhematicsCollection> {
   const rawThematics: TKFDFThematic[] = await TKCSVRead<TKFDFThematic[]>(
     TKFDFFiles.THEMATICS,
     infos.folder,

@@ -9,7 +9,6 @@ import { TKFDF } from "@/domain/fdf/TKFDF";
 // ////////////////////////////////////////////////////////////////////////////
 
 export class TKSubmissionEntryAgePyramid extends TKSubmissionEntry {
-
   malesEntries: Array<number>;
   femalesEntries: Array<number>;
   malesLabels: Array<TKLabel>;
@@ -22,7 +21,6 @@ export class TKSubmissionEntryAgePyramid extends TKSubmissionEntry {
     femalesEntries: Array<number>,
     malesLabels: Array<TKLabel>,
     femalesLabels: Array<TKLabel>
-
   ) {
     super(field, fieldLabel);
     this.malesEntries = malesEntries;
@@ -32,7 +30,7 @@ export class TKSubmissionEntryAgePyramid extends TKSubmissionEntry {
   }
 }
 
-export interface TKSubmissionEntryAgePyramidItem{
+export interface TKSubmissionEntryAgePyramidItem {
   field: string;
   value: string;
   type: string;
@@ -46,14 +44,25 @@ export function TKCreateSubmissionEntryAgePyramid(
   chartdata: Array<TKSubmissionEntryAgePyramidItem>,
   surveyConfiguration: TKFDF
 ): TKSubmissionEntryAgePyramid {
-  const malesEntries = chartdata.filter(item => item.type === 'm');
-  const femalesEntries = chartdata.filter(item => item.type === 'f');
+  const malesEntries = chartdata.filter(item => item.type === "m");
+  const femalesEntries = chartdata.filter(item => item.type === "f");
 
   const malesDataset = malesEntries.map(item => Number(item.value));
   const femalesDataset = femalesEntries.map(item => Number(item.value));
 
-  const malesLabel = malesEntries.map(item => surveyConfiguration.fieldsLabels[item.field]);
-  const femalesLabel = femalesEntries.map(item => surveyConfiguration.fieldsLabels[item.field]);
+  const malesLabel = malesEntries.map(
+    item => surveyConfiguration.fieldsLabels[item.field]
+  );
+  const femalesLabel = femalesEntries.map(
+    item => surveyConfiguration.fieldsLabels[item.field]
+  );
 
-  return new TKSubmissionEntryAgePyramid("agepyramid", malesLabel[0], malesDataset, femalesDataset, malesLabel, femalesLabel);
+  return new TKSubmissionEntryAgePyramid(
+    "agepyramid",
+    malesLabel[0],
+    malesDataset,
+    femalesDataset,
+    malesLabel,
+    femalesLabel
+  );
 }

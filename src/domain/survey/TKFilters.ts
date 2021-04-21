@@ -14,7 +14,7 @@ export enum TKFilters {
   ADMIN2 = "admin2",
   CAMP = "currentCamp",
   PLANNED_SITE = "planned",
-  SPONTANEOUS_SITE = "spontaneous",
+  SPONTANEOUS_SITE = "spontaneous"
 }
 
 export type TKFiltersTypes = string | boolean | null;
@@ -37,7 +37,7 @@ export class TKDatasetFilterer {
     admin1: null,
     admin2: null,
     planned: true,
-    spontaneous: true,
+    spontaneous: true
   };
   levelOfChange: TKFilters;
 
@@ -71,7 +71,7 @@ export class TKDatasetFilterer {
         this.levelOfChange = TKFilters.ADMIN1;
         this.currentAdmin1 = value
           ? (this.admin1List.find(
-              (a) => a.pcode === value
+              a => a.pcode === value
             ) as TKBoundarieDescription)
           : null;
         this.filters[TKFilters.ADMIN2] = null;
@@ -82,7 +82,7 @@ export class TKDatasetFilterer {
         this.levelOfChange = TKFilters.ADMIN2;
         this.currentAdmin2 = value
           ? (this.admin2List.find(
-              (a) => a.pcode === value
+              a => a.pcode === value
             ) as TKBoundarieDescription)
           : null;
         this.currentCamp = null;
@@ -91,22 +91,30 @@ export class TKDatasetFilterer {
         this.filters[TKFilters.ADMIN1] = null;
         this.levelOfChange = TKFilters.CAMP;
         this.currentCamp = value
-          ? (this.campsList.find((c) => c.id === value) as TKCampDescription)
+          ? (this.campsList.find(c => c.id === value) as TKCampDescription)
           : null;
-        if(this.currentCamp){
+        if (this.currentCamp) {
           this.filters[TKFilters.ADMIN2] = this.currentCamp.admin2.pcode;
           this.currentAdmin1 = this.currentCamp.admin1;
           this.currentAdmin2 = this.currentCamp.admin2;
         }
         break;
       case TKFilters.PLANNED_SITE:
-        if(this.currentCamp && value === false && this.currentCamp.type === TKCampTypesValues.PLANNED){
-            this.currentCamp = null;
-          }
+        if (
+          this.currentCamp &&
+          value === false &&
+          this.currentCamp.type === TKCampTypesValues.PLANNED
+        ) {
+          this.currentCamp = null;
+        }
         break;
       case TKFilters.SPONTANEOUS_SITE:
-        if(this.currentCamp && value === false && this.currentCamp.type === TKCampTypesValues.SPONTANEOUS){
-            this.currentCamp = null;
+        if (
+          this.currentCamp &&
+          value === false &&
+          this.currentCamp.type === TKCampTypesValues.SPONTANEOUS
+        ) {
+          this.currentCamp = null;
         }
         break;
     }
@@ -121,29 +129,29 @@ export class TKDatasetFilterer {
     if (this.filters.admin1) {
       this.admin2List = this.surveys[this.currentSurvey].boundariesList.admin2;
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.admin1.pcode === this.filters.admin1
+        x => x.admin1.pcode === this.filters.admin1
       );
     }
     if (this.filters.admin2) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.admin2.pcode === this.filters.admin2
+        x => x.admin2.pcode === this.filters.admin2
       );
     }
 
-    if(this.levelOfChange === TKFilters.ADMIN2){
-      if(this.filteredCampsList.length){
+    if (this.levelOfChange === TKFilters.ADMIN2) {
+      if (this.filteredCampsList.length) {
         this.currentAdmin1 = this.filteredCampsList[0].admin1;
       }
     }
 
     if (!this.filters.planned) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.type !== TKCampTypesValues.PLANNED
+        x => x.type !== TKCampTypesValues.PLANNED
       );
     }
     if (!this.filters.spontaneous) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.type !== TKCampTypesValues.SPONTANEOUS
+        x => x.type !== TKCampTypesValues.SPONTANEOUS
       );
     }
   }
