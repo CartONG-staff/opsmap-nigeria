@@ -14,7 +14,7 @@ export async function TKCSVRead<T>(
       header: header,
       download: true,
       skipEmptyLines: true,
-      complete(results: any) {
+      complete(results: any) {  // ? ParseResult<T> ?
         resolve(results.data);
       },
       error(err) {

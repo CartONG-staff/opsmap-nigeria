@@ -54,10 +54,7 @@ export default class App extends Vue {
     );
     this.geoDataset = null;
     if (this.appRootConfig.spatialDescription.useBoundariesMasks) {
-      this.geoDataset = await TKGetGeoBoundaries(
-        surveys,
-        this.appRootConfig.iso3
-      );
+      this.geoDataset = await TKGetGeoBoundaries(surveys);
     }
     this.dataset = new TKDatasetFilterer(surveys);
 

@@ -226,7 +226,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
     return {
       x: {
         ticks: {
-          callback: (value: string, _index: any, _values: any): string => {
+          callback: (value: string): string => {
             let mynumber = 0;
             if (typeof value === "string") {
               mynumber = parseInt(value);

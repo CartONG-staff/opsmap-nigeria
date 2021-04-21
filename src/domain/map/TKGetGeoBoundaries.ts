@@ -3,8 +3,7 @@ import { ArcgisServerDataGetter } from "@/domain/map/TKArcgisServerDataGetter";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { admin1 } from "@/secondary/map/admin";
 export async function TKGetGeoBoundaries(
-  surveys: TKSurveyCollection,
-  iso3: string
+  surveys: TKSurveyCollection
 ): Promise<TKGeoDataset> {
   let admin1List: string[] = [];
   for (const key in surveys) {

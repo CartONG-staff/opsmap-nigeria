@@ -218,7 +218,7 @@ export default class TKMap extends Vue {
       const features = this.map.queryRenderedFeatures(e.point, {
         layers: [TKMapLayers.CLUSTERSCOUNTLAYER]
       });
-      const clusterId = features[0].properties!.cluster_id;
+      const clusterId = features[0].properties?.cluster_id;
 
       const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(
         TKMapLayers.NOTSELECTEDCAMPSSOURCE
@@ -235,12 +235,16 @@ export default class TKMap extends Vue {
     // CAMPS BEHAVIOR
     this.map.on("click", TKMapLayers.NOTSELECTEDCAMPSLAYER, e => {
       if (e !== undefined && e.features && e.features?.length > 0) {
-        this.dataset.currentCamp = this.mapCamps!.toTKCampDescription(
-          e.features[0].properties!.id as string
-        );
+        if (this.mapCamps) {
+          this.dataset.currentCamp = this.mapCamps.toTKCampDescription(
+            e.features[0].properties?.id as string
+          );
+        } else {
+          this.mapCamps = null;
+        }
       }
     });
-    this.map.on("mouseenter", TKMapLayers.NOTSELECTEDCAMPSLAYER, e => {
+    this.map.on("mouseenter", TKMapLayers.NOTSELECTEDCAMPSLAYER, () => {
       this.map.getCanvas().style.cursor = "pointer";
     });
     this.map.on("mouseleave", TKMapLayers.NOTSELECTEDCAMPSLAYER, () => {
