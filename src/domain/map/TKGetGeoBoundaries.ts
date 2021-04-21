@@ -1,6 +1,7 @@
 import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
 import { ArcgisServerDataGetter } from "@/domain/map/TKArcgisServerDataGetter";
 import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
+import { admin1 } from "@/secondary/map/admin";
 export async function TKGetGeoBoundaries(
   surveys: TKSurveyCollection,
   iso3: string
@@ -10,12 +11,12 @@ export async function TKGetGeoBoundaries(
     surveys[key].boundariesList.admin1.map((x) => admin1List.push(x.pcode));
   }
   admin1List = [...new Set(admin1List)];
-  const admin1GeoData = await new ArcgisServerDataGetter(
-    encodeURI("core/wrl_adm1_polbnd_unhcr/FeatureServer/0"),
-    `iso3 = '${iso3}'`,
-    true,
-    "geojson"
-  ).getData();
+  // const admin1GeoData = await new ArcgisServerDataGetter(
+  //   encodeURI("core/wrl_adm1_polbnd_unhcr/FeatureServer/0"),
+  //   `iso3 = '${iso3}'`,
+  //   true,
+  //   "geojson"
+  // ).getData();
 
   let admin2WhereClause = "";
   admin1List.map((x) => (admin2WhereClause += `adm1pcode = '${x}' OR `));
@@ -31,7 +32,7 @@ export async function TKGetGeoBoundaries(
   ).getData();
 
   return {
-    admin1: admin1GeoData,
+    admin1: admin1,
     admin2: admin2GeoData,
   };
 }

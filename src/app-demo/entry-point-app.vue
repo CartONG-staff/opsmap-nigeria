@@ -3,8 +3,7 @@
     <v-main>
       <div class="tk-loader" v-if="!dataLoaded">
         <h2 color="primary">
-          ...Je mouline, je vais chercher les 40 Go de données sur le serveur du
-          HCR, patience...
+          ...Loading Application...
         </h2>
       </div>
       <div class="tk-main" v-if="dataLoaded">
@@ -34,8 +33,8 @@ import { TKReadGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration
   components: {
     TKHeader,
     TKFooter,
-    TKMainComponent
-  }
+    TKMainComponent,
+  },
 })
 export default class App extends Vue {
   appRootConfig!: TKGeneralConfiguration;
@@ -55,9 +54,10 @@ export default class App extends Vue {
     );
     this.geoDataset = null;
     if (this.appRootConfig.spatialDescription.useBoundariesMasks) {
-      TKGetGeoBoundaries(surveys, this.appRootConfig.iso3).then(geoDataset => {
-        this.geoDataset = geoDataset;
-      });
+      this.geoDataset = await TKGetGeoBoundaries(
+        surveys,
+        this.appRootConfig.iso3
+      );
     }
     this.dataset = new TKDatasetFilterer(surveys);
 
