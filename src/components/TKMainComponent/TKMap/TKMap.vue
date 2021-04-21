@@ -76,12 +76,16 @@ export default class TKMap extends Vue {
   geoDatasetLoaded() {
     if (this.geoDataset) {
       this.mapBoundaries = new TKMapBoundaries(this.geoDataset);
+      this.loadMapBoundaries();
+      this.currentCampChanged();
     }
   }
   // Change on injected dataset
   @Watch("dataset", { deep: true })
   currentCampChanged() {
-    this.mapBoundaries?.changeStyle(this.dataset, this.map);
+    if (this.mapBoundaries) {
+      this.mapBoundaries.changeStyle(this.dataset, this.map);
+    }
     this.mapCamps = new TKMapCamps(
       this.dataset.filteredCampsList,
       this.dataset.currentCamp
@@ -89,11 +93,11 @@ export default class TKMap extends Vue {
     const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(
       TKMapLayers.NOTSELECTEDCAMPSSOURCE
     ) as mapboxgl.GeoJSONSource;
-    otherCampsSource.setData(this.mapCamps.filteredCamps.otherCamps);
+    otherCampsSource?.setData(this.mapCamps.filteredCamps.otherCamps);
     const selectedCampSource: mapboxgl.GeoJSONSource = this.map.getSource(
       TKMapLayers.SELECTEDCAMPSOURCE
     ) as mapboxgl.GeoJSONSource;
-    selectedCampSource.setData(this.mapCamps.filteredCamps.selectedCamp);
+    selectedCampSource?.setData(this.mapCamps.filteredCamps.selectedCamp);
   }
 
   mounted(): void {
@@ -147,22 +151,7 @@ export default class TKMap extends Vue {
         this.map.addLayer(
           TKMapLayersStyle[TKMapLayers.COUNTRYMASKLAYER] as FillLayer
         );
-        if (this.mapBoundaries) {
-          this.map.addSource(TKMapLayers.ADMIN1SOURCE, {
-            type: "geojson",
-            data: this.mapBoundaries?.admin1 as FeatureCollection
-          });
-          this.map.addLayer(
-            TKMapLayersStyle[TKMapLayers.ADMIN1LAYER] as FillLayer
-          );
-          this.map.addSource(TKMapLayers.ADMIN2SOURCE, {
-            type: "geojson",
-            data: this.mapBoundaries?.admin2 as FeatureCollection
-          });
-          this.map.addLayer(
-            TKMapLayersStyle[TKMapLayers.ADMIN2LAYER] as FillLayer
-          );
-        }
+        this.loadMapBoundaries();
 
         if (
           this.markersLoadedCount === this.mapMarkersList.length &&
@@ -171,6 +160,21 @@ export default class TKMap extends Vue {
           this.addCampsSources();
         }
       });
+    }
+  }
+
+  loadMapBoundaries() {
+    if (this.mapBoundaries) {
+      this.map.addSource(TKMapLayers.ADMIN1SOURCE, {
+        type: "geojson",
+        data: this.mapBoundaries?.admin1 as FeatureCollection
+      });
+      this.map.addLayer(TKMapLayersStyle[TKMapLayers.ADMIN1LAYER] as FillLayer);
+      this.map.addSource(TKMapLayers.ADMIN2SOURCE, {
+        type: "geojson",
+        data: this.mapBoundaries?.admin2 as FeatureCollection
+      });
+      this.map.addLayer(TKMapLayersStyle[TKMapLayers.ADMIN2LAYER] as FillLayer);
     }
   }
 

@@ -77,7 +77,7 @@ export async function  TKReadGeneralConfiguration(configFileName: string, config
             adm2Name: dict["adm2Name"] ?? "ggi_city",
             adm3Pcode: dict["adm3Pcode"] ?? "",
             adm3Name: dict["adm3Name"] ?? "ggi_address",
-            useBoundariesMasks: false
+            useBoundariesMasks: true
         },
         indicatorsDescription:{
             home:[{
