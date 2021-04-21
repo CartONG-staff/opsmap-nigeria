@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { TKCampDescription } from "@/domain/core/TKCampDescription";
+import { TKCampDescription } from "@/domain/survey/TKCampDescription";
 import { FeatureCollection } from "geojson";
 
 interface TKFilteredCamps {

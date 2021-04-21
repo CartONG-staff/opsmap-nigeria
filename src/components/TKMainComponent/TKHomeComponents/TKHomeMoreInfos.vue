@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { TKOpsmapConfiguration } from "@/domain";
-import { TKGetLocalValue } from "@/domain/core/TKLabel";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component

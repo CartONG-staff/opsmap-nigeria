@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import { TKSubmissionEntryAgePyramid } from "@/domain/core/TKSubmissionEntry";
+import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
 
 export interface TKSubmissionEntryAgePyramidItem{
   field: string;

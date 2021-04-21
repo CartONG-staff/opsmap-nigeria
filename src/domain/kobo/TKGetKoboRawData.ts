@@ -1,5 +1,5 @@
 
-import { TKSurveyInfos } from "@/domain/core/TKSurveyInfos";
+import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKSurveyInfosKobo } from "./TKSurveyInfosKobo";
 
 export async function TKGetKoboRawData(config: TKSurveyInfos) {

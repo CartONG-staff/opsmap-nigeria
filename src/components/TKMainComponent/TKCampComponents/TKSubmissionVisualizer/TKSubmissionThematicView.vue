@@ -23,10 +23,10 @@
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import TKSubmissionEntryView from "./TKSubmissionEntryView.vue";
-import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
-import { TKSubmissionEntry } from "@/domain/core/TKSubmissionEntry";
+import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
+import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
-import { TKGetLocalValue } from "@/domain/core/TKLabel";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 
 @Component({
   components: {

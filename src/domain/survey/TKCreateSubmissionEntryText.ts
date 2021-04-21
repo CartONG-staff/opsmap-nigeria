@@ -6,9 +6,9 @@ import {
 } from "@/domain/fdf/TKFDFTrafficLight";
 
 
-import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
-import { TKAnswerLabelToFieldLabel } from "@/domain/core/TKLabel";
-import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
+import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
+import { TKAnswerLabelToFieldLabel } from "@/domain/ui/TKLabel";
+import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
 
 function getTrafficLightColor(
   value: string,

@@ -32,7 +32,7 @@ import {
   Tooltip,
   ChartConfiguration
 } from "chart.js";
-import { TKSubmissionEntryAgePyramid } from "@/domain/core/TKSubmissionEntry";
+import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
 Chart.register(
   ArcElement,
   LineElement,

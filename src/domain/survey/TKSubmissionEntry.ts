@@ -1,6 +1,6 @@
 import { TKFDFAnswerLabel } from "@/domain/fdf/TKFDFAnswerLabel";
-import { TKLabel } from "./TKLabel";
-import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
+import { TKLabel } from "../ui/TKLabel";
+import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
 
 export class TKSubmissionEntry {
   field = "";

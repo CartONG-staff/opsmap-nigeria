@@ -4,18 +4,18 @@ import { TKCreateSubmission } from "./TKCreateSubmission";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 
-import { TKBoundariesCollection } from "@/domain/core/TKBoundariesCollection";
-import { TKSurvey } from "@/domain/core/TKSurvey";
-import { TKCampDescription } from "@/domain/core/TKCampDescription";
-import { TKSubmission } from "@/domain/core/TKSubmission";
-import { TKIndicator } from "@/domain/core/TKIndicator";
+import { TKBoundariesCollection } from "@/domain/survey/TKBoundariesCollection";
+import { TKSurvey } from "@/domain/survey/TKSurvey";
+import { TKCampDescription } from "@/domain/survey/TKCampDescription";
+import { TKSubmission } from "@/domain/survey/TKSubmission";
+import { TKIndicator } from "@/domain/ui/TKIndicator";
 import {
   TKIndicatorsDescription,
   TKIndicatorDescription,
   TKIndicatorComputationType,
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { isNumber } from "@turf/helpers";
-import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
+import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 
 function computeSurveyIndicator(
   descr: TKIndicatorDescription,

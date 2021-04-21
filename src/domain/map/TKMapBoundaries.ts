@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { FeatureCollection } from "geojson";
 import mapboxgl from "mapbox-gl";
-import { TKDatasetFilterer, TKFilters } from "@/domain/core/TKFilters";
-import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
+import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
+import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKMapLayers } from "./TKMapLayers";
 
 export class TKMapBoundaries {

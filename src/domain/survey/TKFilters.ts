@@ -1,5 +1,5 @@
-import { TKCampDescription } from "@/domain/core/TKCampDescription";
-import { TKCampTypesValues } from "@/domain/core/TKCampTypesValues";
+import { TKCampDescription } from "@/domain/survey/TKCampDescription";
+import { TKCampTypesValues } from "@/domain/survey/TKCampTypesValues";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSurveyCollection } from "./TKSurveyCollection";
 

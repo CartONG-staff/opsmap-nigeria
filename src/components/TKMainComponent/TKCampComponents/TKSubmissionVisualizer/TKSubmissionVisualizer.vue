@@ -18,8 +18,8 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
-import { TKSubmission } from "@/domain/core/TKSubmission";
-import { TKSubmissionThematic } from "@/domain/core/TKSubmissionThematic";
+import { TKSubmission } from "@/domain/survey/TKSubmission";
+import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
 
 @Component({

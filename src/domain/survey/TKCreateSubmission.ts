@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKSubmission } from "@/domain/core/TKSubmission";
-import { TKSubmissionThematic, TKSUbmissionThematicfromThematic } from "@/domain/core/TKSubmissionThematic";
+import { TKSubmission } from "@/domain/survey/TKSubmission";
+import { TKSubmissionThematic, TKSUbmissionThematicfromThematic } from "@/domain/survey/TKSubmissionThematic";
 
-import { TKIndicator } from "@/domain/core/TKIndicator";
+import { TKIndicator } from "@/domain/ui/TKIndicator";
 import { TKIndicatorsDescription, TKIndicatorDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKFDFSubmissionsRulesCollection } from "@/domain/fdf/TKFDFSubmissionsRules";
 import { TKCreateSubmissionEntryAgePyramid, TKSubmissionEntryAgePyramidItem } from "./TKCreateSubmissionEntryAgePyramid";
 import { TKCreateSubmissionEntryText } from "./TKCreateSubmissionEntryText";
 import { findPoint } from "@turf/meta";
-import { TKSubmissionEntryText } from "@/domain/core/TKSubmissionEntry";
+import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 import { VAlert } from "vuetify/lib";
 
 // ////////////////////////////////////////////////////////////////////////////

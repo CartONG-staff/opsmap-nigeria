@@ -1,4 +1,4 @@
-import { TKCampTypesValues } from "@/domain/core/TKCampTypesValues";
+import { TKCampTypesValues } from "@/domain/survey/TKCampTypesValues";
 
 export enum TKMapLayers {
   ADMIN1SOURCE = "admin1Source",

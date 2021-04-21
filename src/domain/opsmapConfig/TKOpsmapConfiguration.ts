@@ -1,12 +1,14 @@
-import { TKMapboxConfiguration } from "@/domain/core/TKMapboxConfiguration";
+import { TKMapboxConfiguration } from "@/domain/opsmapConfig/TKMapboxConfiguration";
+
 import { TKLogo } from "@/domain/ui/TKLogo";
-import { TKSurveyInfos } from "@/domain/core/TKSurveyInfos";
+import { TKLabel } from "@/domain/ui/TKLabel";
+
+import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogos";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
-import { TKLabel } from "../core/TKLabel";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKSurveyInfosCSV } from "../csv/TKSurveyInfosCSV";
+import { TKSurveyInfosCSV } from "@/domain/csv/TKSurveyInfosCSV";
 
 export interface TKOpsmapConfiguration {
   readonly name: string;

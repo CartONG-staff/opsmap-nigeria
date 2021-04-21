@@ -16,7 +16,7 @@ import {
   TKSubmissionEntry,
   TKSubmissionEntryText,
   TKSubmissionEntryAgePyramid
-} from "@/domain/core/TKSubmissionEntry";
+} from "@/domain/survey/TKSubmissionEntry";
 
 import TKSubmissionEntryAgePyramidChart from "./TKSubmissionEntryAgePyramidChart.vue";
 import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";

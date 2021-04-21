@@ -88,9 +88,9 @@ import {
   TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
 import { TKOpsmapConfiguration } from "@/domain";
-import { TKSubmission } from "@/domain/core/TKSubmission";
-import { TKDatasetFilterer } from "@/domain/core/TKFilters";
-import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
+import { TKSubmission } from "@/domain/survey/TKSubmission";
+import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false

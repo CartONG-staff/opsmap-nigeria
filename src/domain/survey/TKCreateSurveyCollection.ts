@@ -1,13 +1,13 @@
-import { TKSurveyInfosCSV } from "./csv/TKSurveyInfosCSV";
+import { TKSurveyInfosCSV } from "../csv/TKSurveyInfosCSV";
 import { TKCreateFDF } from "@/domain/fdf/TKFDF";
 import { TKGetCSVRawData } from "@/domain/csv/TKGetCSVRawData";
-import { TKGetKoboRawData } from "./kobo/TKGetKoboRawData";
+import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
-import { TKCreateSurvey } from "./survey/TKCreateSurvey";
-import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
+import { TKCreateSurvey } from "./TKCreateSurvey";
+import { TKSurveyCollection } from "@/domain/survey/TKSurveyCollection";
 import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
-import { TKSurveyInfos } from "./core/TKSurveyInfos";
-import { TKSurveyInfosKobo } from "./kobo/TKSurveyInfosKobo";
+import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
+import { TKSurveyInfosKobo } from "../kobo/TKSurveyInfosKobo";
 
 export async function TKCreateSurveyCollection(
   surveyDescription: TKSurveyInfos[],

@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { TKDatasetFilterer } from "@/domain/core/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 
 @Component
 export default class TKCampSubtitle extends Vue {

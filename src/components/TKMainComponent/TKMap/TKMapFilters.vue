@@ -36,7 +36,7 @@ import {
   TKDatasetFilterer,
   TKFilters,
   TKFiltersTypes
-} from "@/domain/core/TKFilters";
+} from "@/domain/survey/TKFilters";
 
 @Component
 export default class TKMapFilter extends Vue {

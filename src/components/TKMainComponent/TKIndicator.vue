@@ -43,9 +43,9 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
-import { TKIndicator } from "@/domain/core/TKIndicator";
+import { TKIndicator } from "@/domain/ui/TKIndicator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import { TKGetLocalValue } from "@/domain/core/TKLabel";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 
 @Component
 export default class TKIndicatorComponent extends Vue {

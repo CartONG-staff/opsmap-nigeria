@@ -1,4 +1,4 @@
-import { TKSurveyInfos } from "@/domain/core/TKSurveyInfos";
+import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFDFInfos } from "../fdf/TKFDFInfos";
 
 export class TKSurveyInfosCSV extends TKSurveyInfos {

@@ -1,5 +1,5 @@
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
-import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
+import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 
 // ////////////////////////////////////////////////////////////////////////////

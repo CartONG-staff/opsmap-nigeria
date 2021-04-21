@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
 import { TKFDFThematic } from "@/domain/fdf/TKFDFThematics";
-import { TKLabel } from "./TKLabel";
+import { TKLabel } from "../ui/TKLabel";
 import { TKSubmissionEntry } from "./TKSubmissionEntry";
 
 export interface TKSubmissionThematic {

@@ -24,9 +24,9 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components";
-import { TKDatasetFilterer } from "@/domain/core/TKFilters";
-import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
-import { TKCreateSurveyCollection } from "@/domain/TKCreateSurveyCollection";
+import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
+import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKOpsmapConfiguration } from "@/domain";
 import { TKReadGeneralConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";

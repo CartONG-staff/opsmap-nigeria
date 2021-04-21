@@ -32,8 +32,8 @@ import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { FeatureCollection, Point } from "geojson";
-import { TKDatasetFilterer } from "@/domain/core/TKFilters";
-import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
+import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 
 @Component({
   components: {

@@ -55,7 +55,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKFilters, TKDatasetFilterer } from "@/domain/core/TKFilters";
+import { TKFilters, TKDatasetFilterer } from "@/domain/survey/TKFilters";
 
 @Component({})
 export default class TKHomeCombos extends Vue {

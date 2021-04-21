@@ -52,7 +52,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { TKDatasetFilterer, TKFilters } from "@/domain/core/TKFilters";
+import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
 
 @Component
 export default class TKCampSelector extends Vue {

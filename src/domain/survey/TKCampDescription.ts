@@ -1,4 +1,4 @@
-import { TKCampTypesValues } from "@/domain/core/TKCampTypesValues";
+import { TKCampTypesValues } from "@/domain/survey/TKCampTypesValues";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 
 export interface TKCampDescription {

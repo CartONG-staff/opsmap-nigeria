@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { TKDatasetFilterer } from "@/domain/core/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component

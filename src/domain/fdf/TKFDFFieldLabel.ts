@@ -2,7 +2,7 @@
 
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
-import { TKLabel } from "@/domain/core/TKLabel";
+import { TKLabel } from "@/domain/ui/TKLabel";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the Field label object
