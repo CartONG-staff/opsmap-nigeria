@@ -2,6 +2,6 @@ import { TKCSVSurveyInfo } from "./TKCSVTypes";
 import { TKCSVRead } from "./TKCSVReader";
 
 export async function TKGetCSVRawData(survey: TKCSVSurveyInfo) {
-  const csvData = await TKCSVRead("submissions", survey.folder, true);
+  const csvData = await TKCSVRead(survey.submissionsFile, survey.submissionsFolder, true);
   return csvData;
 }

@@ -26,29 +26,29 @@ export async function TKCreateSurveyConfiguration(
 ): Promise<TKSurveyConfiguration> {
   const rawThematics: TKThematic[] = await TKCSVRead<TKThematic[]>(
     "thematic_config",
-    survey.folder,
+    survey.fdfFolder,
     true
   );
 
   const rawTrafficLights: TKTrafficLightItem[] = await TKCSVRead<
     TKTrafficLightItem[]
-  >("traffic_light_config", survey.folder, true);
+  >("traffic_light_config", survey.fdfFolder, true);
 
   const rawFieldsLabels: TKFieldLabelCSV[] = await TKCSVRead(
     "field_labels",
-    survey.folder,
+    survey.fdfFolder,
     true
   );
 
   const rawAnswerLabels: TKAnswerLabelCSV[] = await TKCSVRead(
     "answer_labels",
-    survey.folder,
+    survey.fdfFolder,
     true
   );
 
   const rawSubmissionsRules: TKSubmissionRule[] = await TKCSVRead<
     TKSubmissionRule[]
-  >("submissions_rules", survey.folder, true);
+  >("submissions_rules", survey.fdfFolder, true);
 
   return {
     thematics: TKThematicsCollectionBuild(rawThematics),

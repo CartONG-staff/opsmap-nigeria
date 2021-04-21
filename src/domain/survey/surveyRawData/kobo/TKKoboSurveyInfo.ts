@@ -1,6 +1,6 @@
 export interface TKKoboSurveyInfo {
   name: string;
-  folder: string;
+  fdfFolder: string;
   url: string;
   token: string;
 }

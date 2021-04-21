@@ -1,4 +1,6 @@
 export interface TKCSVSurveyInfo {
   name: string;
-  folder: string;
+  fdfFolder: string;
+  submissionsFolder: string;
+  submissionsFile: string;
 }

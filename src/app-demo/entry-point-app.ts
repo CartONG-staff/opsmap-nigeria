@@ -4,7 +4,7 @@ import vuetify from "@/plugins/vuetify";
 import i18n from "@/i18n";
 import { TKReadGeneralConfiguration, TKGeneralConfiguration } from "@/domain/core/TKGeneralConfiguration";
 
-TKReadGeneralConfiguration().then(
+TKReadGeneralConfiguration("general_config", "brazil").then(
   (config:TKGeneralConfiguration) => {
     Vue.config.productionTip = false;
     new Vue({
