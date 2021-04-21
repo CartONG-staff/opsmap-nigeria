@@ -1,6 +1,10 @@
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
+// ////////////////////////////////////////////////////////////////////////////
+// Submission rules datatype
+// ////////////////////////////////////////////////////////////////////////////
+
 export enum TKFDFSubmissionItemType {
   STRING = "string",
   INTEGER = "integer",
@@ -8,7 +12,6 @@ export enum TKFDFSubmissionItemType {
   DATE = "date",
   CALCUL = "calcul"
 }
-
 export interface TKFDFSubmissionRule {
   field_name: string;
   type: TKFDFSubmissionItemType;
@@ -25,7 +28,7 @@ export interface TKFDFSubmissionsRulesCollection {
 }
 
 // ////////////////////////////////////////////////////////////////////////////
-// Submission rules
+// Submission rules collection reading
 // ////////////////////////////////////////////////////////////////////////////
 
 export async function TKReadSubmissionsRulesCollection(infos: TKFDFInfos): Promise<TKFDFSubmissionsRulesCollection> {

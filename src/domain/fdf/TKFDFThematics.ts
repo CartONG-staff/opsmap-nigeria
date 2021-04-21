@@ -1,3 +1,10 @@
+import { TKCSVRead } from "@/domain/csv/TKCSVReader";
+import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
+
+// ////////////////////////////////////////////////////////////////////////////
+// Thematic datatype
+// ////////////////////////////////////////////////////////////////////////////
+
 export interface TKFDFThematic {
   formatted_name: string;
   icon_file_name: string;
@@ -10,12 +17,8 @@ export interface TKTFDFhematicsCollection {
 }
 
 // ////////////////////////////////////////////////////////////////////////////
-// Read from infos
+// Method that creates the Thematic collection object from the fdf folder
 // ////////////////////////////////////////////////////////////////////////////
-
-import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
-
 
 export async function TKReadFDFThematicsCollection(infos: TKFDFInfos) : Promise<TKTFDFhematicsCollection>{
 

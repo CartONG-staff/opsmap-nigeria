@@ -2,12 +2,15 @@ import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 
+// ////////////////////////////////////////////////////////////////////////////
+// TrafficLights collection datatype
+// ////////////////////////////////////////////////////////////////////////////
+
 export enum TKFDFTrafficLightTypes {
   STRING = "string",
   MATH = "math",
   LIST = "list"
 }
-
 interface TKFDFTrafficLightItem {
   traffic_light_name: string;
   type: TKFDFTrafficLightTypes;
@@ -28,6 +31,10 @@ export interface TKFDFTrafficLightGrouped {
 export interface TKFDFTrafficLightsCollection {
   [propName: string]: TKFDFTrafficLightGrouped;
 }
+
+// ////////////////////////////////////////////////////////////////////////////
+// Method that creates the TrafficLightscollection object from the fdf folder
+// ////////////////////////////////////////////////////////////////////////////
 
 export async function TKReadFDFTrafficLightsCollection(infos: TKFDFInfos) : Promise<TKFDFTrafficLightsCollection> {
 
