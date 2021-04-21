@@ -46,9 +46,9 @@ coord_link_1;https://www.acnur.org.br
 fieldwork_link_1;https://www.fraternidadesemfronteiras.org.br/
 fieldwork_link_2;http://www.avsibrasil.org.br/
 fieldwork_link_3;https://www.fraterinternacional.org/
-led_logo_1;UNHCR_PT
-led_logo_2;Ministrerio_da_CIDADANIA
-coord_logo_1;UNHCR_PT
-fieldwork_logo_1;FSF
-fieldwork_logo_2;AVSI_BRASIL
-fieldwork_logo_3;Fraternidade
+led_logo_1;data/brazil/BR_Logo/UNHCR_PT.jpg
+led_logo_2;data/brazil/BR_Logo/Ministrerio_da_CIDADANIA.png
+coord_logo_1;data/brazil/BR_Logo/UNHCR_PT.jpg
+fieldwork_logo_1;data/brazil/BR_Logo/FSF.png
+fieldwork_logo_2;data/brazil/BR_Logo/AVSI_BRASIL.png
+fieldwork_logo_3;data/brazil/BR_Logo/Fraternidade.png
