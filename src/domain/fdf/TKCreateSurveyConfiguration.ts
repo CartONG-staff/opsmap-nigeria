@@ -1,4 +1,4 @@
-import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
+import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKTrafficLightItem } from "@/domain/core/TKTrafficLight";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKCSVSurveyInfo } from "@/domain/csv/TKCSVTypes";
@@ -23,7 +23,7 @@ import { TKFieldLabelCSV } from "./TKFieldLabelCSV";
 
 export async function TKCreateSurveyConfiguration(
   survey: TKKoboSurveyInfo | TKCSVSurveyInfo
-): Promise<TKSurveyConfiguration> {
+): Promise<TKFDF> {
   const rawThematics: TKThematic[] = await TKCSVRead<TKThematic[]>(
     "thematic_config",
     survey.fdfFolder,

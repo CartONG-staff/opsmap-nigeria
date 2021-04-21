@@ -2,7 +2,7 @@
 
 import { TKCreateSubmission } from "./TKCreateSubmission";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
-import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
+import { TKFDF } from "@/domain/fdf/TKFDF";
 
 import { TKBoundariesCollection } from "@/domain/core/TKBoundariesCollection";
 import { TKSurvey } from "@/domain/core/TKSurvey";
@@ -86,7 +86,7 @@ function computeSurveyIndicators(
 }
 export function TKCreateSurvey(
   sumbmissions: any[],
-  surveyConfig: TKSurveyConfiguration,
+  surveyConfig: TKFDF,
   spatialDescription: TKSpatialDescription,
   indicatorsDescription: TKIndicatorsDescription
 ): TKSurvey {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
+import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKTrafficLightColors,
   TKTrafficLightGrouped,
@@ -29,7 +29,7 @@ export interface TKSubmissionEntryAgePyramidItem{
 
 export function TKCreateSubmissionEntryAgePyramid(
   chartdata: Array<TKSubmissionEntryAgePyramidItem>,
-  surveyConfiguration: TKSurveyConfiguration
+  surveyConfiguration: TKFDF
 ): TKSubmissionEntryAgePyramid {
   const malesEntries = chartdata.filter(item => item.type === 'm');
   const femalesEntries = chartdata.filter(item => item.type === 'f');

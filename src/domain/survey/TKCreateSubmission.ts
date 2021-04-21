@@ -5,7 +5,7 @@ import { TKSubmissionThematic, TKSUbmissionThematicfromThematic } from "@/domain
 
 import { TKIndicator } from "@/domain/core/TKIndicator";
 import { TKIndicatorsDescription, TKIndicatorDescription } from "@/domain/core/TKIndicatorsDescription";
-import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
+import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKSubmissionsRulesCollection } from "@/domain/fdf/TKSubmissionsRulesBuilder";
 import { TKCreateSubmissionEntryAgePyramid, TKSubmissionEntryAgePyramidItem } from "./TKCreateSubmissionEntryAgePyramid";
 import { TKCreateSubmissionEntryText } from "./TKCreateSubmissionEntryText";
@@ -34,7 +34,7 @@ function isSubmissionInThematic(
     : false;
 }
 
-function isSubmissionAnAgePyramid(surveyConfiguration: TKSurveyConfiguration,field: string){
+function isSubmissionAnAgePyramid(surveyConfiguration: TKFDF,field: string){
   return surveyConfiguration.submissionsRules[field].chart_id && surveyConfiguration.submissionsRules[field].chart_id.includes("age_pyramid");
 }
 
@@ -76,7 +76,7 @@ function computeSubmissionIndicators(descr: TKIndicatorsDescription, data: Recor
 
 export function TKCreateSubmission(
   submissionItem: any,
-  surveyConfiguration: TKSurveyConfiguration,
+  surveyConfiguration: TKFDF,
   indicatorsDescription: TKIndicatorsDescription
 ) : TKSubmission {
   const submission: Record<string, TKSubmissionThematic> = {};

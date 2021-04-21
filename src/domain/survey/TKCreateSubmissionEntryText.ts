@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
+import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKTrafficLightColors,
   TKTrafficLightGrouped,
@@ -26,7 +26,7 @@ function getTrafficLightColor(
 export function TKCreateSubmissionEntryText(
   value: string,
   field: string,
-  surveyConfiguration: TKSurveyConfiguration
+  surveyConfiguration: TKFDF
 ): TKSubmissionEntryText {
   return new TKSubmissionEntryText(
     field,
