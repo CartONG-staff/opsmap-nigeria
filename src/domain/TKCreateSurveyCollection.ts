@@ -1,13 +1,13 @@
-import { TKCSVSurveyInfo } from "../csv/TKCSVSurveyInfo";
-import { TKKoboSurveyInfo } from "../kobo/TKKoboSurveyInfo";
-import { TKCreateSurveyConfiguration } from "@/domain/fdf/TKFDF";
+import { TKCSVSurveyInfo } from "./csv/TKCSVSurveyInfo";
+import { TKKoboSurveyInfo } from "./kobo/TKKoboSurveyInfo";
+import { TKCreateFDF } from "@/domain/fdf/TKFDF";
 import { TKGetCSVRawData } from "@/domain/csv/TKGetCSVRawData";
-import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
+import { TKGetKoboRawData } from "./kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
-import { TKCreateSurvey } from "./TKCreateSurvey";
+import { TKCreateSurvey } from "./survey/TKCreateSurvey";
 import { TKSurveyCollection } from "@/domain/core/TKSurveyCollection";
 import { TKSurveyFormat } from "@/domain/core/TKSurveyFormat";
-import { TKIndicatorsDescription } from "../core/TKIndicatorsDescription";
+import { TKIndicatorsDescription } from "./core/TKIndicatorsDescription";
 
 export async function TKCreateSurveyCollection(
   surveyDescription: TKKoboSurveyInfo[] | TKCSVSurveyInfo[],
@@ -29,7 +29,7 @@ export async function TKCreateSurveyCollection(
     }
 
     // Retrieve config
-    const surveyConfig = await TKCreateSurveyConfiguration(info.fdf);
+    const surveyConfig = await TKCreateFDF(info.fdf);
     // Create survey
     surveyCollection[info.name] = TKCreateSurvey(
       rawData,

@@ -26,7 +26,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components";
 import { TKDatasetFilterer } from "@/domain/core/TKFilters";
 import { TKGeoDataset } from "@/domain/core/TKGeoDataset";
-import { TKCreateSurveyCollection } from "@/domain/survey/TKCreateSurveyCollection";
+import { TKCreateSurveyCollection } from "@/domain/TKCreateSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 @Component({
   components: {

@@ -32,7 +32,7 @@ export interface TKFDFInfos {
   folder: string;
 }
 
-export async function TKCreateSurveyConfiguration(
+export async function TKCreateFDF(
   infos: TKFDFInfos
 ): Promise<TKFDF> {
   const rawThematics: TKThematic[] = await TKCSVRead<TKThematic[]>(
