@@ -11,7 +11,7 @@ export interface TKSubmissionThematic {
   nameLabel: TKLabel;
 }
 
-export function TKSUbmissionThematicfromThematic(theam: TKFDFThematic) : TKSubmissionThematic {
+export function TKSubmissionThematicfromThematic(theam: TKFDFThematic) : TKSubmissionThematic {
   return {
     data: [],
     formatted_name: theam.formatted_name,

@@ -12,11 +12,9 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import {
-  TKSubmissionEntry,
-  TKSubmissionEntryText,
-  TKSubmissionEntryAgePyramid
-} from "@/domain/survey/TKSubmissionEntry";
+import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
+import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntryAgePyramid";
+import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 
 import TKSubmissionEntryAgePyramidChart from "./TKSubmissionEntryAgePyramidChart.vue";
 import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";

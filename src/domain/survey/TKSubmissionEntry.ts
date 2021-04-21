@@ -1,6 +1,8 @@
-import { TKFDFAnswerLabel } from "@/domain/fdf/TKFDFAnswerLabel";
 import { TKLabel } from "../ui/TKLabel";
-import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
+
+// ////////////////////////////////////////////////////////////////////////////
+// Entry abstract concept definition
+// ////////////////////////////////////////////////////////////////////////////
 
 export class TKSubmissionEntry {
   field = "";
@@ -18,53 +20,6 @@ export class TKSubmissionEntry {
 
   public isAnswered() : boolean {
     return true;
-  }
-}
-
-export class TKSubmissionEntryText extends TKSubmissionEntry {
-  answerLabel: TKLabel;
-  trafficLight = false;
-  trafficLightColor: TKTrafficLightValues = TKTrafficLightValues.UNDEFINED;
-
-  constructor(
-    field: string,
-    fieldLabel: TKLabel,
-    answerLabel: TKLabel,
-    trafficLight: boolean,
-    trafficLightColor: TKTrafficLightValues
-  ) {
-    super(field, fieldLabel);
-    this.answerLabel = answerLabel;
-    this.trafficLight = trafficLight;
-    this.trafficLightColor = trafficLightColor;
-  }
-
-  public isAnswered() : boolean{
-    return this.answerLabel ? this.answerLabel.label_en !== "" : false;
-  }
-}
-
-export class TKSubmissionEntryAgePyramid extends TKSubmissionEntry {
-
-  malesEntries: Array<number>;
-  femalesEntries: Array<number>;
-  malesLabels: Array<TKLabel>;
-  femalesLabels: Array<TKLabel>;
-
-  constructor(
-    field: string,
-    fieldLabel: TKLabel,
-    malesEntries: Array<number>,
-    femalesEntries: Array<number>,
-    malesLabels: Array<TKLabel>,
-    femalesLabels: Array<TKLabel>
-
-  ) {
-    super(field, fieldLabel);
-    this.malesEntries = malesEntries;
-    this.femalesEntries = femalesEntries;
-    this.malesLabels = malesLabels;
-    this.femalesLabels = femalesLabels;
   }
 }
 
