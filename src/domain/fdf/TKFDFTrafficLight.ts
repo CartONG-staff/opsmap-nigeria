@@ -1,7 +1,7 @@
-import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKCSVSurveyInfo } from "@/domain/csv/TKCSVTypes";
+import { TKFDFInfos } from "@/domain/fdf/TKFDF";
 import { TKKoboSurveyInfo } from "@/domain/kobo/TKKoboSurveyInfo";
 import { TKTrafficLightValues } from "@/domain/core/TKTrafficLightValues";
+import { TKCSVRead } from "../csv/TKCSVReader";
 export enum TrafficLightTypes {
   STRING = "string",
   MATH = "math",
@@ -29,11 +29,11 @@ export interface TKTrafficLightsCollection {
   [propName: string]: TKTrafficLightGrouped;
 }
 
-export async function TKReadFDFTrafficLightsCollection(survey: TKKoboSurveyInfo | TKCSVSurveyInfo): Promise<TKTrafficLightsCollection> {
+export async function TKReadFDFTrafficLightsCollection(infos: TKFDFInfos) : Promise<TKTrafficLightsCollection> {
 
   const rawTrafficLights: TKTrafficLightItem[] = await TKCSVRead<
     TKTrafficLightItem[]
-  >("traffic_light_config", survey.fdfFolder, true);
+  >("traffic_light_config", infos.folder, true);
 
   const trafficLights: TKTrafficLightsCollection = {};
   for (const item of rawTrafficLights) {

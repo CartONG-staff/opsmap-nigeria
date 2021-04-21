@@ -2,7 +2,7 @@ import { TKMapboxConfiguration } from "@/domain/core/TKMapboxConfiguration";
 import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKKoboSurveyInfo } from "@/domain/kobo/TKKoboSurveyInfo";
 import { TKFooterLogos } from "@/domain/ui/TKFooterLogos";
-import { TKCSVSurveyInfo } from "@/domain/csv/TKCSVTypes";
+import { TKCSVSurveyInfo } from "@/domain/csv/TKCSVSurveyInfo";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKSurveyFormat } from "@/domain/core/TKSurveyFormat";
 import { TKIndicatorsDescription } from "@/domain/core/TKIndicatorsDescription";
@@ -150,7 +150,7 @@ export async function  TKReadGeneralConfiguration(configFileName: string, config
         },
         surveyDescription: [{
             name: "2021",
-            fdfFolder: "brazil/BR_FDF_s1_080421",
+            fdf: {folder: "brazil/BR_FDF_s1_080421"},
             submissionsFolder: "brazil",
             submissionsFile: "BR_DATA_080421_FDF_s1"
         }],

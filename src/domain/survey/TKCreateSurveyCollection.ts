@@ -1,4 +1,4 @@
-import { TKCSVSurveyInfo } from "../csv/TKCSVTypes";
+import { TKCSVSurveyInfo } from "../csv/TKCSVSurveyInfo";
 import { TKKoboSurveyInfo } from "../kobo/TKKoboSurveyInfo";
 import { TKCreateSurveyConfiguration } from "@/domain/fdf/TKFDF";
 import { TKGetCSVRawData } from "@/domain/csv/TKGetCSVRawData";
@@ -29,7 +29,7 @@ export async function TKCreateSurveyCollection(
     }
 
     // Retrieve config
-    const surveyConfig = await TKCreateSurveyConfiguration(info);
+    const surveyConfig = await TKCreateSurveyConfiguration(info.fdf);
     // Create survey
     surveyCollection[info.name] = TKCreateSurvey(
       rawData,

@@ -1,4 +1,4 @@
-import { TKCSVSurveyInfo } from "./TKCSVTypes";
+import { TKCSVSurveyInfo } from "./TKCSVSurveyInfo";
 import { TKCSVRead } from "./TKCSVReader";
 
 export async function TKGetCSVRawData(survey: TKCSVSurveyInfo) {

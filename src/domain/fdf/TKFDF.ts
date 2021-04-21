@@ -3,19 +3,8 @@ import { TKTrafficLightsCollection } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKFDFAnswerLabelCollection } from "@/domain/fdf/TKFDFAnswerLabel";
 import { TKSubmissionsRulesCollection } from "@/domain/fdf/TKSubmissionsRulesBuilder";
 import { TKLabelsCollection } from "@/domain/fdf/TKLabelsCollectionBuilder";
-
-export interface TKFDF {
-  thematics: TKThematicsCollection;
-  trafficLights: TKTrafficLightsCollection;
-  fieldsLabels: TKLabelsCollection;
-  answersLabels: TKFDFAnswerLabelCollection;
-  submissionsRules: TKSubmissionsRulesCollection;
-}
-
 import { TKReadFDFTrafficLightsCollection } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKCSVSurveyInfo } from "@/domain/csv/TKCSVTypes";
-import { TKKoboSurveyInfo } from "@/domain/kobo/TKKoboSurveyInfo";
 import {
   TKThematic,
   TKThematicsCollectionBuild
@@ -30,28 +19,41 @@ import {
 import { TKReadFDFAnswerLabelCollection }  from "@/domain/fdf/TKFDFAnswerLabel";
 import { TKFieldLabelCSV } from "./TKFieldLabelCSV";
 
+
+export interface TKFDF {
+  thematics: TKThematicsCollection;
+  trafficLights: TKTrafficLightsCollection;
+  fieldsLabels: TKLabelsCollection;
+  answersLabels: TKFDFAnswerLabelCollection;
+  submissionsRules: TKSubmissionsRulesCollection;
+}
+
+export interface TKFDFInfos {
+  folder: string;
+}
+
 export async function TKCreateSurveyConfiguration(
-  survey: TKKoboSurveyInfo | TKCSVSurveyInfo
+  infos: TKFDFInfos
 ): Promise<TKFDF> {
   const rawThematics: TKThematic[] = await TKCSVRead<TKThematic[]>(
     "thematic_config",
-    survey.fdfFolder,
+    infos.folder,
     true
   );
 
-  const trafficLights = await TKReadFDFTrafficLightsCollection(survey);
+  const trafficLights = await TKReadFDFTrafficLightsCollection(infos);
 
   const rawFieldsLabels: TKFieldLabelCSV[] = await TKCSVRead(
     "field_labels",
-    survey.fdfFolder,
+    infos.folder,
     true
   );
 
-  const answerLabels = await TKReadFDFAnswerLabelCollection(survey);
+  const answerLabels = await TKReadFDFAnswerLabelCollection(infos);
 
   const rawSubmissionsRules: TKSubmissionRule[] = await TKCSVRead<
     TKSubmissionRule[]
-  >("submissions_rules", survey.fdfFolder, true);
+  >("submissions_rules", infos.folder, true);
 
   return {
     thematics: TKThematicsCollectionBuild(rawThematics),

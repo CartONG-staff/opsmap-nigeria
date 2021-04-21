@@ -1,6 +1,5 @@
-import { TKCSVRead } from "../csv/TKCSVReader";
-import { TKCSVSurveyInfo } from "../csv/TKCSVTypes";
-import { TKKoboSurveyInfo } from "../kobo/TKKoboSurveyInfo";
+import { TKCSVRead } from "@/domain/csv/TKCSVReader";
+import { TKFDFInfos } from "@/domain/fdf/TKFDF";
 
 /* eslint-disable @typescript-eslint/camelcase */
 export interface TKFDFAnswerLabel {
@@ -14,12 +13,12 @@ export interface TKFDFAnswerLabelCollection {
 }
 
 export async function TKReadFDFAnswerLabelCollection(
-  survey: TKKoboSurveyInfo | TKCSVSurveyInfo
+  infos: TKFDFInfos
 ): Promise<TKFDFAnswerLabelCollection> {
 
   const rawAnswerLabels: TKFDFAnswerLabel[] = await TKCSVRead(
     "answer_labels",
-    survey.fdfFolder,
+    infos.folder,
     true
   );
 
