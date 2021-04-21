@@ -76,8 +76,6 @@ export default class TKMap extends Vue {
   geoDatasetLoaded() {
     if (this.geoDataset) {
       this.mapBoundaries = new TKMapBoundaries(this.geoDataset);
-      this.loadMapBoundaries();
-      this.currentCampChanged();
     }
   }
   // Change on injected dataset
