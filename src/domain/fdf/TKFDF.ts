@@ -20,18 +20,11 @@ export interface TKFDFInfos {
 export async function TKCreateFDF(
   infos: TKFDFInfos
 ): Promise<TKFDF> {
-
-  const thematics = TKReadFDFThematicsCollection(infos);
-  const trafficLights = TKReadFDFTrafficLightsCollection(infos);
-  const fieldsLabels = TKReadFDFLabelsCollection(infos);
-  const answerLabels = TKReadFDFAnswerLabelCollection(infos);
-  const submissionsRules = TKReadSubmissionsRulesCollection(infos);
-
   return {
-    thematics: await thematics,
-    trafficLights: await trafficLights,
-    fieldsLabels: await fieldsLabels,
-    answersLabels: await answerLabels,
-    submissionsRules: await submissionsRules
+    thematics: await TKReadFDFThematicsCollection(infos),
+    trafficLights: await TKReadFDFTrafficLightsCollection(infos),
+    fieldsLabels: await  TKReadFDFLabelsCollection(infos),
+    answersLabels: await TKReadFDFAnswerLabelCollection(infos),
+    submissionsRules: await  TKReadSubmissionsRulesCollection(infos)
   };
 }
