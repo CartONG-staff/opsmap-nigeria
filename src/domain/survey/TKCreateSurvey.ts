@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKCreateSubmission } from "./surveyRawData/TKCreateSubmission";
+import { TKCreateSubmission } from "./TKCreateSubmission";
 import { TKSpatialDescription } from "@/domain/core/TKSpatialDescription";
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 

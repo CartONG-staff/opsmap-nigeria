@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKThematic } from "../survey/surveyConfiguration/TKThematicsCollectionBuilder";
+import { TKThematic } from "@/domain/fdf/TKThematicsCollectionBuilder";
 import { TKLabel } from "./TKLabel";
 import { TKSubmissionEntry } from "./TKSubmissionEntry";
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { TKAnswerLabelCSV } from "../survey/surveyConfiguration/TKAnswerLabelCSV";
+import { TKAnswerLabelCSV } from "../fdf/TKAnswerLabelCSV";
 
 export interface TKLabel {
     name: string;

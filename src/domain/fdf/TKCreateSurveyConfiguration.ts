@@ -1,8 +1,8 @@
 import { TKSurveyConfiguration } from "@/domain/core/TKSurveyConfiguration";
 import { TKTrafficLightItem } from "@/domain/core/TKTrafficLight";
-import { TKCSVRead } from "../surveyRawData/csv/TKCSVReader";
-import { TKCSVSurveyInfo } from "../surveyRawData/csv/TKCSVTypes";
-import { TKKoboSurveyInfo } from "../surveyRawData/kobo/TKKoboSurveyInfo";
+import { TKCSVRead } from "@/domain/csv/TKCSVReader";
+import { TKCSVSurveyInfo } from "@/domain/csv/TKCSVTypes";
+import { TKKoboSurveyInfo } from "@/domain/kobo/TKKoboSurveyInfo";
 import {
   TKThematic,
   TKThematicsCollectionBuild
@@ -18,7 +18,7 @@ import {
   TKSubmissionsRulesCollectionBuild
 } from "./TKSubmissionsRulesBuilder";
 
-import { TKAnswerLabelCSV }  from "@/domain/survey/surveyConfiguration/TKAnswerLabelCSV";
+import { TKAnswerLabelCSV }  from "@/domain/fdf/TKAnswerLabelCSV";
 import { TKFieldLabelCSV } from "./TKFieldLabelCSV";
 
 export async function TKCreateSurveyConfiguration(
