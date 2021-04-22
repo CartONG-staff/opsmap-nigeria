@@ -13,6 +13,7 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable@typescript-eslint/no-non-null-assertion */
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import mapboxgl, {
   CircleLayer,
@@ -31,7 +32,7 @@ import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { FeatureCollection, Point } from "geojson";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 
 @Component({
@@ -234,20 +235,33 @@ export default class TKMap extends Vue {
     // CAMPS BEHAVIOR
     this.map.on("click", TKMapLayers.NOTSELECTEDCAMPSLAYER, e => {
       if (e !== undefined && e.features && e.features?.length > 0) {
-        if (this.mapCamps) {
-          this.dataset.currentCamp = this.mapCamps.toTKCampDescription(
-            e.features[0].properties?.id as string
-          );
-        } else {
-          this.mapCamps = null;
-        }
+        this.dataset.setFiltersValue(
+          TKFilters.CAMP,
+          e.features[0].properties?.id as string
+        );
       }
     });
-    this.map.on("mouseenter", TKMapLayers.NOTSELECTEDCAMPSLAYER, () => {
+    const popup = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false
+    });
+    this.map.on("mouseenter", TKMapLayers.NOTSELECTEDCAMPSLAYER, e => {
       this.map.getCanvas().style.cursor = "pointer";
+      if (e.features) {
+        const coordinates: [number, number] = [
+          e.features[0].properties?.lng,
+          e.features[0].properties?.lat
+        ];
+        const description = `<h4 class="primary--text">${e.features[0].properties?.name}</h4>`;
+        popup
+          .setLngLat(coordinates)
+          .setHTML(description)
+          .addTo(this.map);
+      }
     });
     this.map.on("mouseleave", TKMapLayers.NOTSELECTEDCAMPSLAYER, () => {
       this.map.getCanvas().style.cursor = "";
+      popup.remove();
     });
   }
 
