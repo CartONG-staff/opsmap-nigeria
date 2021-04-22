@@ -27,7 +27,7 @@ export const HEADER_CCCM_LOGO: TKLogo = {
   urlLogo:
     "https://raw.githubusercontent.com/cccmiraq/RASP/master/img/CCCMClusterLogo.bmp",
   urlRedirection: "https://cccmcluster.org"
-}
+};
 
 // ////////////////////////////////////////////////////////////////////////////
 // Read configuration from CSV file
@@ -91,34 +91,52 @@ export async function TKReadGeneralConfiguration(
     indicatorsDescription: {
       home: [
         {
-          name: dict["ikey1_homepage_label"] ?? "",
+          name: {
+            name: dict["ikey1_homepage_label"] ?? "",
+            label_en: dict["ikey1_homepage_label"] ?? ""
+          },
           entryCode: dict["ikey1_homepage"] ?? "",
           iconOchaName: dict["ikey1_homepage_picto"] ?? ""
         },
         {
-          name: dict["ikey2_homepage_label"] ?? "",
+          name: {
+            name: dict["ikey2_homepage_label"] ?? "",
+            label_en: dict["ikey2_homepage_label"] ?? ""
+          },
           entryCode: dict["ikey2_homepage"] ?? "",
           iconOchaName: dict["ikey2_homepage_picto"] ?? ""
         },
         {
-          name: dict["ikey3_homepage_label"] ?? "",
+          name: {
+            name: dict["ikey3_homepage_label"] ?? "",
+            label_en: dict["ikey3_homepage_label"] ?? ""
+          },
           entryCode: dict["ikey3_homepage"] ?? "",
           iconOchaName: dict["ikey3_homepage_picto"] ?? ""
         }
       ],
       site: [
         {
-          name: dict["ikey4_sitepage_label"] ?? "",
+          name: {
+            name: dict["ikey4_sitepage_label"] ?? "",
+            label_en: dict["ikey4_sitepage_label"] ?? ""
+          },
           entryCode: dict["ikey4_sitepage"] ?? "",
           iconOchaName: dict["ikey4_sitepage_picto"] ?? ""
         },
         {
-          name: dict["ikey5_sitepage_label"] ?? "",
+          name: {
+            name: dict["ikey5_sitepage_label"] ?? "",
+            label_en: dict["ikey5_sitepage_label"] ?? ""
+          },
           entryCode: dict["ikey5_sitepage"] ?? "",
           iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
         },
         {
-          name: dict["ikey6_sitepage_label"] ?? "",
+          name: {
+            name: dict["ikey6_sitepage_label"] ?? "",
+            label_en: dict["ikey6_sitepage_label"] ?? ""
+          },
           entryCode: dict["ikey6_sitepage"] ?? "",
           iconOchaName: dict["ikey6_sitepage_picto"] ?? ""
         }

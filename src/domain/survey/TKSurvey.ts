@@ -35,7 +35,7 @@ function computeSurveyIndicator(
   if (descr.entryCode === "mp_site_id") {
     return {
       iconOchaName: descr.iconOchaName,
-      nameLabel: { name: descr.name, label_en: descr.name },
+      nameLabel: descr.name,
       valueLabel: {
         name: String(Object.keys(data).length),
         label_en: String(Object.keys(data).length)
@@ -68,14 +68,14 @@ function computeSurveyIndicator(
     if (!descr.computationType) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: { name: descr.name, label_en: descr.name },
+        nameLabel: descr.name,
         valueLabel: { name: String(sum), label_en: String(sum) }
       };
     }
     if (descr.computationType === TKIndicatorComputationType.MEAN) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: { name: descr.name, label_en: descr.name },
+        nameLabel: descr.name,
         valueLabel: {
           name: String((sum / Object.keys(data).length).toFixed(2)),
           label_en: String((sum / Object.keys(data).length).toFixed(2))
@@ -84,14 +84,14 @@ function computeSurveyIndicator(
     } else if (descr.computationType === TKIndicatorComputationType.SUM) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: { name: descr.name, label_en: descr.name },
+        nameLabel: descr.name,
         valueLabel: { name: String(sum), label_en: String(sum) }
       };
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameLabel: { name: descr.name, label_en: descr.name },
+    nameLabel: descr.name,
     valueLabel: { name: "NotFound", label_en: "NotFound" }
   };
 }

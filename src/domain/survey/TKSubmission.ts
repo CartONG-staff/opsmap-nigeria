@@ -74,14 +74,14 @@ function computeSubmissionIndicator(
         iconOchaName: descr.iconOchaName,
         // TODO use answer label isntead of current label -> trad is not in indicator description
         // nameLabel: entry.fieldLabel,
-        nameLabel: { name: descr.name, label_en: descr.name },
+        nameLabel: descr.name,
         valueLabel: entry.answerLabel
       };
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameLabel: { name: descr.name, label_en: descr.name },
+    nameLabel: descr.name,
     valueLabel: { name: "", label_en: "" }
   };
 }
