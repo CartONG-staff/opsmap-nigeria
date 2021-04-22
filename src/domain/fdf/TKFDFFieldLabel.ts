@@ -13,7 +13,7 @@ export interface TKFDFFieldLabel {
   field_label_en: string;
   field_label_pt?: string;
 }
-export interface TKFDFLabelCollection {
+export interface TKFDFFieldLabelCollection {
   [propName: string]: TKLabel;
 }
 
@@ -23,14 +23,14 @@ export interface TKFDFLabelCollection {
 
 export async function TKReadFDFLabelsCollection(
   infos: TKFDFInfos
-): Promise<TKFDFLabelCollection> {
+): Promise<TKFDFFieldLabelCollection> {
   const rawFieldsLabels: TKFDFFieldLabel[] = await TKCSVRead(
     TKFDFFiles.FIELDS,
     infos.folder,
     true
   );
 
-  const labelsCollection: TKFDFLabelCollection = {};
+  const labelsCollection: TKFDFFieldLabelCollection = {};
   rawFieldsLabels.map((item: TKFDFFieldLabel) => {
     labelsCollection[item.field_name] = {
       name: item.field_name,

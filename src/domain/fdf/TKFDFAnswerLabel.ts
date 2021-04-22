@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
+import { TKLabel } from "../ui/TKLabel";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -15,7 +16,7 @@ export interface TKFDFAnswerLabel {
 }
 
 export interface TKFDFAnswerLabelCollection {
-  [propName: string]: TKFDFAnswerLabel;
+  [propName: string]: TKLabel;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -34,7 +35,10 @@ export async function TKReadFDFAnswerLabelCollection(
   const labelsCollection: TKFDFAnswerLabelCollection = {};
 
   rawAnswerLabels.map((item: TKFDFAnswerLabel) => {
-    labelsCollection[item.choice_name] = { ...item };
+    labelsCollection[item.choice_name] = {
+      name: item.choice_name,
+      label_en: item.choice_label_en,
+      label_pt: item.choice_label_pt};
   });
 
   return labelsCollection;

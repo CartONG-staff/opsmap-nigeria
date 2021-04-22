@@ -3,7 +3,6 @@
 import { TKLabel } from "../ui/TKLabel";
 import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
 import { TKSubmissionEntry } from "./TKSubmissionEntry";
-import { TKAnswerLabelToFieldLabel } from "@/domain/ui/TKLabel";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKFDFTrafficLightGrouped,
@@ -68,7 +67,7 @@ export function TKCreateSubmissionEntryText(
     field,
     surveyConfiguration.fieldsLabels[field],
     surveyConfiguration.answersLabels[value]
-      ? TKAnswerLabelToFieldLabel(surveyConfiguration.answersLabels[value])
+      ? surveyConfiguration.answersLabels[value]
       : { name: value, label_en: value },
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0

@@ -15,14 +15,6 @@ export function TKGetLocalValue(label: TKLabel, locale: string): string {
   return label.label_en;
 }
 
-export function TKAnswerLabelToFieldLabel(answer: TKFDFAnswerLabel): TKLabel {
-  return {
-    name: answer.choice_name,
-    label_en: answer.choice_label_en,
-    label_pt: answer.choice_label_pt
-  };
-}
-
 // field_name: string;
 // field_label_en: string;
 // field_label_pt?: string;
