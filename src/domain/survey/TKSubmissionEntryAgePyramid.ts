@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
-import { TKLabel } from "../ui/TKLabel";
+import { TKLabel } from "@/domain/ui/TKLabel";
 import { TKSubmissionEntry } from "./TKSubmissionEntry";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 

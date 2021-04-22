@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKLabel } from "../ui/TKLabel";
+import { TKLabel } from "@/domain//ui/TKLabel";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -9,7 +7,7 @@ import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 // The fields are the one described in the fdf file
 // ////////////////////////////////////////////////////////////////////////////
 
-export interface TKFDFAnswerLabel {
+interface TKFDFAnswerLabelRaw {
   choice_name: string;
   choice_label_en: string;
   choice_label_pt?: string;
@@ -26,7 +24,7 @@ export interface TKFDFAnswerLabelCollection {
 export async function TKReadFDFAnswerLabelCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFAnswerLabelCollection> {
-  const rawAnswerLabels: TKFDFAnswerLabel[] = await TKCSVRead(
+  const rawAnswerLabels: TKFDFAnswerLabelRaw[] = await TKCSVRead(
     TKFDFFiles.ANSWERS,
     infos.folder,
     true
@@ -34,7 +32,7 @@ export async function TKReadFDFAnswerLabelCollection(
 
   const labelsCollection: TKFDFAnswerLabelCollection = {};
 
-  rawAnswerLabels.map((item: TKFDFAnswerLabel) => {
+  rawAnswerLabels.map((item: TKFDFAnswerLabelRaw) => {
     labelsCollection[item.choice_name] = {
       name: item.choice_name,
       labelEn: item.choice_label_en,

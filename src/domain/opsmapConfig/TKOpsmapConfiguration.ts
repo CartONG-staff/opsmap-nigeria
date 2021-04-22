@@ -36,7 +36,6 @@ export const HEADER_CCCM_LOGO: TKLogo = {
 //
 // ////////////////////////////////////////////////////////////////////////////
 
-/* eslint-disable @typescript-eslint/camelcase */
 interface TKOpsmapConfigurationLabelCSV {
   config_type: string;
   info: string;

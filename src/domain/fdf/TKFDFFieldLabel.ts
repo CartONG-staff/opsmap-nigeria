@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 import { TKLabel } from "@/domain/ui/TKLabel";
@@ -8,7 +6,7 @@ import { TKLabel } from "@/domain/ui/TKLabel";
 // Definition of the Field label object
 // The fields are the one described in the fdf file
 // ////////////////////////////////////////////////////////////////////////////
-export interface TKFDFFieldLabel {
+interface TKFDFFieldLabelRaw {
   field_name: string;
   field_label_en: string;
   field_label_pt?: string;
@@ -24,14 +22,14 @@ export interface TKFDFFieldLabelCollection {
 export async function TKReadFDFLabelsCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFFieldLabelCollection> {
-  const rawFieldsLabels: TKFDFFieldLabel[] = await TKCSVRead(
+  const rawFieldsLabels: TKFDFFieldLabelRaw[] = await TKCSVRead(
     TKFDFFiles.FIELDS,
     infos.folder,
     true
   );
 
   const labelsCollection: TKFDFFieldLabelCollection = {};
-  rawFieldsLabels.map((item: TKFDFFieldLabel) => {
+  rawFieldsLabels.map((item: TKFDFFieldLabelRaw) => {
     labelsCollection[item.field_name] = {
       name: item.field_name,
       labelEn: item.field_label_en,
