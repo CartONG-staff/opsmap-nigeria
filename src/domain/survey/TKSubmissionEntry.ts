@@ -7,8 +7,6 @@ import { TKLabel } from "../ui/TKLabel";
 export class TKSubmissionEntry {
   field = "";
   fieldLabel: TKLabel;
-  fieldLabelEn = "";
-  fieldLabelPt? = "";
 
   constructor(field: string, fieldLabel: TKLabel) {
     this.field = field;
