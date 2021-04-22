@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import {
   TKIndicatorsDescription,
   TKIndicatorDescription
@@ -42,7 +40,7 @@ function isSubmissionInThematic(
   submissionsRules: TKFDFSubmissionsRulesCollection
 ): boolean {
   return submissionsRules[submission]
-    ? submissionsRules[submission].thematic_group === thematic
+    ? submissionsRules[submission].thematicGroup === thematic
       ? true
       : false
     : false;
@@ -50,8 +48,8 @@ function isSubmissionInThematic(
 
 function isSubmissionAnAgePyramid(surveyConfiguration: TKFDF, field: string) {
   return (
-    surveyConfiguration.submissionsRules[field].chart_id &&
-    surveyConfiguration.submissionsRules[field].chart_id.includes("age_pyramid")
+    surveyConfiguration.submissionsRules[field].chartId &&
+    surveyConfiguration.submissionsRules[field].chartId.includes("age_pyramid")
   );
 }
 
@@ -128,7 +126,7 @@ export function TKCreateSubmission(
             if (
               agePyramidId &&
               agePyramidId !==
-                surveyConfiguration.submissionsRules[field].chart_id
+                surveyConfiguration.submissionsRules[field].chartId
             ) {
               submission[thematic].data.push(
                 TKCreateSubmissionEntryAgePyramid(
@@ -143,7 +141,7 @@ export function TKCreateSubmission(
             // If no previous chart, init
             if (!agePyramidId) {
               agePyramidId =
-                surveyConfiguration.submissionsRules[field].chart_id;
+                surveyConfiguration.submissionsRules[field].chartId;
               agePyramidData = [];
             }
 
@@ -151,7 +149,7 @@ export function TKCreateSubmission(
             agePyramidData.push({
               field: field,
               value: submissionItem[field],
-              type: surveyConfiguration.submissionsRules[field].chart_data
+              type: surveyConfiguration.submissionsRules[field].chartData
             });
           } else {
             // if a current pyramid is ongoing - push it before switching to text item

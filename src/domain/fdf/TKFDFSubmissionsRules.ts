@@ -12,7 +12,7 @@ export enum TKFDFSubmissionItemType {
   DATE = "date",
   CALCUL = "calcul"
 }
-export interface TKFDFSubmissionRule {
+interface TKFDFSubmissionRuleRaw {
   field_name: string;
   type: TKFDFSubmissionItemType;
   thematic_group: string;
@@ -21,6 +21,17 @@ export interface TKFDFSubmissionRule {
   chart_data: string;
   display_condition: string;
   indicator_operation: string;
+}
+
+export interface TKFDFSubmissionRule {
+  fieldName: string;
+  type: TKFDFSubmissionItemType;
+  thematicGroup: string;
+  trafficLightName: string;
+  chartId: string;
+  chartData: string;
+  displayCondition: string;
+  indicatorOperation: string;
 }
 
 export interface TKFDFSubmissionsRulesCollection {
@@ -34,12 +45,21 @@ export interface TKFDFSubmissionsRulesCollection {
 export async function TKReadSubmissionsRulesCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFSubmissionsRulesCollection> {
-  const rawSubmissionsRules: TKFDFSubmissionRule[] = await TKCSVRead<
-    TKFDFSubmissionRule[]
+  const rawSubmissionsRules: TKFDFSubmissionRuleRaw[] = await TKCSVRead<
+  TKFDFSubmissionRuleRaw[]
   >(TKFDFFiles.SUBMISSION_RULES, infos.folder, true);
   const submissionsRules: TKFDFSubmissionsRulesCollection = {};
   rawSubmissionsRules.map(item => {
-    submissionsRules[item.field_name] = { ...item };
+    submissionsRules[item.field_name] = {
+      fieldName: item.field_name,
+      type: item.type,
+      thematicGroup: item.thematic_group,
+      trafficLightName: item.traffic_light_name,
+      chartId: item.chart_id,
+      chartData: item.chart_data,
+      displayCondition: item.display_condition,
+      indicatorOperation: item.indicator_operation
+    };
   });
   return submissionsRules;
 }

@@ -69,7 +69,6 @@ export default class TKSubmissionVisualizer extends Vue {
         itemsCount[index] += this.submission.thematics[them].data.length;
       }
     } else if (this.thematics) {
-      /* eslint-disable @typescript-eslint/camelcase */
       let index = 0;
       for (const i in this.thematics) {
         const thematicsDescr = this.thematics[i];
