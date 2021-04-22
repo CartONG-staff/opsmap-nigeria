@@ -6,30 +6,34 @@
     </div>
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
-        <div v-if="isHomePage" class="tk-home-header"></div>
-        <div v-if="!isHomePage" class="tk-camp-header">
-          <TKCampSelector :dataset="dataset" />
-        </div>
+        <transition name="fade">
+          <div key="1" v-if="isHomePage" class="tk-home-header"></div>
+          <div key="2" v-else class="tk-camp-header">
+            <TKCampSelector :dataset="dataset" />
+          </div>
+        </transition>
       </div>
       <div class="tk-main-top">
         <div class="tk-main-left">
           <TKTitle class="tk-home-title" :appConfig="appConfig" />
-          <div v-if="isHomePage" class="tk-home-left">
-            <TKHomeSubtitle />
-            <TKHomeCombos class="tk-home-combos" :dataset="dataset" />
-          </div>
-          <div v-if="!isHomePage" class="tk-camp-left">
-            <TKCampSubtitle class="tk-camp-title" :dataset="dataset" />
-            <TKCampToolbar
-              class="tk-camp-toolbar"
-              :submissionsDates="
-                currentSubmissions ? Object.keys(currentSubmissions) : ['']
-              "
-              :options="visualizerOptions"
-              @date-selection-changed="dateSelected"
-            />
-            <TKCampInfos class="tk-camp-infos" :dataset="dataset" />
-          </div>
+          <transition mode="out-in" name="fade">
+            <div key="3" v-if="isHomePage" class="tk-home-left">
+              <TKHomeSubtitle />
+              <TKHomeCombos class="tk-home-combos" :dataset="dataset" />
+            </div>
+            <div key="4" v-else class="tk-camp-left">
+              <TKCampSubtitle class="tk-camp-title" :dataset="dataset" />
+              <TKCampToolbar
+                class="tk-camp-toolbar"
+                :submissionsDates="
+                  currentSubmissions ? Object.keys(currentSubmissions) : ['']
+                "
+                :options="visualizerOptions"
+                @date-selection-changed="dateSelected"
+              />
+              <TKCampInfos class="tk-camp-infos" :dataset="dataset" />
+            </div>
+          </transition>
         </div>
         <TKMap
           class="tk-main-map"
@@ -40,26 +44,34 @@
       </div>
 
       <div class="tk-main-content">
-        <div v-if="isHomePage" class="tk-home-content">
-          <TKHomeIndicators
-            class="tk-home-indicators"
-            :appConfig="appConfig"
-            :dataset="dataset"
-          />
-          <TKHomeMoreInfos :appConfig="appConfig" />
-        </div>
-        <div v-if="!isHomePage" class="tk-camp-content">
-          <TKCampIndicators
-            class="tk-camp-indicators"
-            :appConfig="appConfig"
-            :submission="currentSubmission"
-          />
-          <TKSubmissionVisualizer
-            :options="visualizerOptions"
-            :submission="currentSubmission"
-            :dataset="dataset"
-          />
-        </div>
+        <transition mode="out-in" name="fade" appear>
+          <div key="5" v-if="isHomePage" class="tk-home-content">
+            <TKHomeIndicators
+              class="tk-home-indicators"
+              :appConfig="appConfig"
+              :dataset="dataset"
+            />
+          </div>
+          <div key="6" v-else class="tk-camp-content">
+            <TKCampIndicators
+              class="tk-camp-indicators"
+              :appConfig="appConfig"
+              :submission="currentSubmission"
+            />
+          </div>
+        </transition>
+        <transition mode="out-in" name="fade" appear>
+          <div key="7" v-if="isHomePage" class="tk-home-content">
+            <TKHomeMoreInfos :appConfig="appConfig" />
+          </div>
+          <div key="8" v-else class="tk-camp-content">
+            <TKSubmissionVisualizer
+              :options="visualizerOptions"
+              :submission="currentSubmission"
+              :dataset="dataset"
+            />
+          </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -257,23 +269,19 @@ export default class TKMainComponent extends Vue {
 
 .tk-main-content {
   width: 100%;
-}
-
-.tk-home-content {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   row-gap: 25px;
 }
 
-.tk-camp-infos {
-  flex-grow: 1;
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
 }
 
-.tk-camp-content {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  row-gap: 25px;
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
