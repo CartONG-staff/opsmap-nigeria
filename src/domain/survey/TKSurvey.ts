@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { TKCampDescription } from "./TKCampDescription";
 import { TKBoundariesCollection } from "./TKBoundariesCollection";
 import { TKSubmission, TKCreateSubmission } from "./TKSubmission";

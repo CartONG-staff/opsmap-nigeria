@@ -46,7 +46,7 @@ export async function TKReadFDFThematicsCollection(
         labelEn: item.thematic_label_en,
         labelPt: item.thematic_label_pt
       }
-     };
+    };
   });
   return thematicsCollection;
 }

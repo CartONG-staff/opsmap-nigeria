@@ -36,7 +36,8 @@ export async function TKReadFDFAnswerLabelCollection(
     labelsCollection[item.choice_name] = {
       name: item.choice_name,
       labelEn: item.choice_label_en,
-      labelPt: item.choice_label_pt};
+      labelPt: item.choice_label_pt
+    };
   });
 
   return labelsCollection;

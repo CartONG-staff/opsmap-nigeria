@@ -46,7 +46,7 @@ export async function TKReadSubmissionsRulesCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFSubmissionsRulesCollection> {
   const rawSubmissionsRules: TKFDFSubmissionRuleRaw[] = await TKCSVRead<
-  TKFDFSubmissionRuleRaw[]
+    TKFDFSubmissionRuleRaw[]
   >(TKFDFFiles.SUBMISSION_RULES, infos.folder, true);
   const submissionsRules: TKFDFSubmissionsRulesCollection = {};
   rawSubmissionsRules.map(item => {

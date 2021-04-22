@@ -1,5 +1,3 @@
-/* eslint-disable no-case-declarations */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Feature, FeatureCollection } from "geojson";
 import mapboxgl, { LngLat, LngLatBounds, LngLatLike } from "mapbox-gl";
 import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
@@ -25,10 +23,14 @@ export class TKMapBoundaries {
       case TKFilters.SURVEY:
         this.mapFitBounds(bound, map);
         for (const item of this.admin1.features) {
-          item.properties!.transparent = "yes";
+          if (item.properties) {
+            item.properties.transparent = "yes";
+          }
         }
         for (const item of this.admin2.features) {
-          item.properties!.transparent = "yes";
+          if (item.properties) {
+            item.properties.transparent = "yes";
+          }
         }
         break;
       case TKFilters.ADMIN1:
@@ -37,7 +39,9 @@ export class TKMapBoundaries {
           this.mapFitBounds(setZoom, map);
         }
         for (const item of this.admin2.features) {
-          item.properties!.transparent = "yes";
+          if (item.properties) {
+            item.properties.transparent = "yes";
+          }
         }
         break;
       case TKFilters.CAMP:
@@ -72,15 +76,21 @@ export class TKMapBoundaries {
     for (const item of this.admin1.features) {
       if (dataset.currentAdmin1) {
         if (item.properties?.pcode === dataset.currentAdmin1?.pcode) {
-          item.properties!.transparent = "yes";
+          if (item.properties) {
+            item.properties.transparent = "yes";
+          }
           if (dataset.levelToZoom === TKFilters.ADMIN1) {
             shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
           }
         } else {
-          item.properties!.transparent = "no";
+          if (item.properties) {
+            item.properties.transparent = "no";
+          }
         }
       } else {
-        item.properties!.transparent = "yes";
+        if (item.properties) {
+          item.properties.transparent = "yes";
+        }
       }
     }
     return shouldMapZoom;
@@ -91,15 +101,21 @@ export class TKMapBoundaries {
     for (const item of this.admin2.features) {
       if (dataset.currentAdmin2) {
         if (item.properties?.pcode === dataset.currentAdmin2?.pcode) {
-          item.properties!.transparent = "yes";
+          if (item.properties) {
+            item.properties.transparent = "yes";
+          }
           if (dataset.levelToZoom === TKFilters.ADMIN2) {
             shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
           }
         } else {
-          item.properties!.transparent = "no";
+          if (item.properties) {
+            item.properties.transparent = "no";
+          }
         }
       } else {
-        item.properties!.transparent = "yes";
+        if (item.properties) {
+          item.properties.transparent = "yes";
+        }
       }
     }
     return shouldMapZoom;

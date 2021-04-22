@@ -38,5 +38,4 @@ export default class TKCampSubtitle extends Vue {
   font-size: 30px;
   line-height: 1.467;
 }
-
 </style>
