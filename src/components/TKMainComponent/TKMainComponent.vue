@@ -92,6 +92,7 @@ import { TKOpsmapConfiguration } from "@/domain";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
+import { headerLogoBus } from "@/components/TKHeaderLogoBus";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false
@@ -129,6 +130,12 @@ export default class TKMainComponent extends Vue {
   visualizerOptions: TKSubmissionVisualizerOptions = {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
   };
+
+  created() {
+    headerLogoBus.$on("switchToHomePage", () => {
+      this.isHomePage = true;
+    });
+  }
 
   dateSelected(date: string) {
     if (

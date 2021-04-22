@@ -1,11 +1,7 @@
 <template lang="html">
   <div class="tk-header">
     <div>
-      <a
-        class="tk-header-logo-opsmap-container"
-        href="https://cccmcluster.org"
-        target="_blank"
-      >
+      <button class="tk-header-logo-opsmap-container" v-on:click="logoClicked">
         <img
           src="@/assets/LogoOpsmap.png"
           alt="Opsmap"
@@ -16,7 +12,7 @@
             appConfig.name.toUpperCase()
           }}</span>
         </h3>
-      </a>
+      </button>
     </div>
     <div class="tk-header-right">
       <div class="tk-header-logo-cccm-container">
@@ -53,6 +49,7 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import { headerLogoBus } from "@/components/TKHeaderLogoBus";
 
 @Component
 export default class TKHeader extends Vue {
@@ -65,6 +62,10 @@ export default class TKHeader extends Vue {
   // whenever question changes, this function will run
   onLanguageChanged(val: string) {
     this.$root.$i18n.locale = val;
+  }
+
+  logoClicked() {
+    headerLogoBus.$emit("switchToHomePage");
   }
 }
 </script>
@@ -144,5 +145,13 @@ export default class TKHeader extends Vue {
   height: 10px;
   width: 2px;
   background-color: #7d7d7d;
+}
+
+button:active {
+  outline: 0;
+}
+
+button:focus {
+  outline: 0;
 }
 </style>
