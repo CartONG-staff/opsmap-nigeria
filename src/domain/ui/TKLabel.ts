@@ -4,15 +4,15 @@ import { TKFDFAnswerLabel } from "@/domain/fdf/TKFDFAnswerLabel";
 
 export interface TKLabel {
   name: string;
-  label_en: string;
-  label_pt?: string;
+  labelEn: string;
+  labelPt?: string;
 }
 
 export function TKGetLocalValue(label: TKLabel, locale: string): string {
   if (locale === "pt") {
-    return label.label_pt ? label.label_pt : label.label_en;
+    return label.labelPt ? label.labelPt : label.labelEn;
   }
-  return label.label_en;
+  return label.labelEn;
 }
 
 // field_name: string;

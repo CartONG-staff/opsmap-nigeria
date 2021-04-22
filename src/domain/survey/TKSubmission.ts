@@ -82,7 +82,7 @@ function computeSubmissionIndicator(
   return {
     iconOchaName: descr.iconOchaName,
     nameLabel: descr.name,
-    valueLabel: { name: "", label_en: "" }
+    valueLabel: { name: "", labelEn: "" }
   };
 }
 

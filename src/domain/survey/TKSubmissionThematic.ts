@@ -28,8 +28,8 @@ export function TKCreateSubmissionThematic(
     icon_file_name: thematic.icon_file_name,
     nameLabel: {
       name: thematic.thematic_label_en,
-      label_en: thematic.thematic_label_en,
-      label_pt: thematic.thematic_label_pt
+      labelEn: thematic.thematic_label_en,
+      labelPt: thematic.thematic_label_pt
     }
   };
 }

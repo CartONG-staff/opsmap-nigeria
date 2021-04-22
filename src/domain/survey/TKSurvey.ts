@@ -39,7 +39,7 @@ function computeSurveyIndicator(
       nameLabel: descr.name,
       valueLabel: {
         name: String(Object.keys(data).length),
-        label_en: String(Object.keys(data).length)
+        labelEn: String(Object.keys(data).length)
       }
     };
   }
@@ -59,9 +59,9 @@ function computeSurveyIndicator(
             item &&
             item instanceof TKSubmissionEntryText &&
             item.answerLabel &&
-            isNumber(item.answerLabel.label_en)
+            isNumber(item.answerLabel.labelEn)
           ) {
-            sum += Number(item.answerLabel.label_en);
+            sum += Number(item.answerLabel.labelEn);
           }
         }
       }
@@ -70,7 +70,7 @@ function computeSurveyIndicator(
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { name: String(sum), label_en: String(sum) }
+        valueLabel: { name: String(sum), labelEn: String(sum) }
       };
     }
     if (descr.computationType === TKIndicatorComputationType.MEAN) {
@@ -79,21 +79,21 @@ function computeSurveyIndicator(
         nameLabel: descr.name,
         valueLabel: {
           name: String((sum / Object.keys(data).length).toFixed(2)),
-          label_en: String((sum / Object.keys(data).length).toFixed(2))
+          labelEn: String((sum / Object.keys(data).length).toFixed(2))
         }
       };
     } else if (descr.computationType === TKIndicatorComputationType.SUM) {
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { name: String(sum), label_en: String(sum) }
+        valueLabel: { name: String(sum), labelEn: String(sum) }
       };
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
     nameLabel: descr.name,
-    valueLabel: { name: "NotFound", label_en: "NotFound" }
+    valueLabel: { name: "NotFound", labelEn: "NotFound" }
   };
 }
 

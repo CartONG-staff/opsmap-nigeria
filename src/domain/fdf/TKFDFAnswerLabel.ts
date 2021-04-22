@@ -37,8 +37,8 @@ export async function TKReadFDFAnswerLabelCollection(
   rawAnswerLabels.map((item: TKFDFAnswerLabel) => {
     labelsCollection[item.choice_name] = {
       name: item.choice_name,
-      label_en: item.choice_label_en,
-      label_pt: item.choice_label_pt};
+      labelEn: item.choice_label_en,
+      labelPt: item.choice_label_pt};
   });
 
   return labelsCollection;

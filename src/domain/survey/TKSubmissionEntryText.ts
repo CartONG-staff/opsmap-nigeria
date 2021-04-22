@@ -32,7 +32,7 @@ export class TKSubmissionEntryText extends TKSubmissionEntry {
   }
 
   public isAnswered(): boolean {
-    return this.answerLabel ? this.answerLabel.label_en !== "" : false;
+    return this.answerLabel ? this.answerLabel.labelEn !== "" : false;
   }
 }
 
@@ -68,7 +68,7 @@ export function TKCreateSubmissionEntryText(
     surveyConfiguration.fieldsLabels[field],
     surveyConfiguration.answersLabels[value]
       ? surveyConfiguration.answersLabels[value]
-      : { name: value, label_en: value },
+      : { name: value, labelEn: value },
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
     surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
       ? getTrafficLightColor(

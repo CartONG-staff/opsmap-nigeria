@@ -70,8 +70,8 @@ export async function TKReadGeneralConfiguration(
     iso3: dict["iso3"] ?? "BRA",
     opsmapDescr: {
       name: "opsmap description",
-      label_en: dict["project_overview_en"] ?? "",
-      label_pt: dict["project_overview_pt"] ?? undefined
+      labelEn: dict["project_overview_en"] ?? "",
+      labelPt: dict["project_overview_pt"] ?? undefined
     },
     spatialDescription: {
       siteIDField: dict["mp_site_id"] ?? "mp_site_id",
@@ -93,7 +93,7 @@ export async function TKReadGeneralConfiguration(
         {
           name: {
             name: dict["ikey1_homepage_label"] ?? "",
-            label_en: dict["ikey1_homepage_label"] ?? ""
+            labelEn: dict["ikey1_homepage_label"] ?? ""
           },
           entryCode: dict["ikey1_homepage"] ?? "",
           iconOchaName: dict["ikey1_homepage_picto"] ?? ""
@@ -101,7 +101,7 @@ export async function TKReadGeneralConfiguration(
         {
           name: {
             name: dict["ikey2_homepage_label"] ?? "",
-            label_en: dict["ikey2_homepage_label"] ?? ""
+            labelEn: dict["ikey2_homepage_label"] ?? ""
           },
           entryCode: dict["ikey2_homepage"] ?? "",
           iconOchaName: dict["ikey2_homepage_picto"] ?? ""
@@ -109,7 +109,7 @@ export async function TKReadGeneralConfiguration(
         {
           name: {
             name: dict["ikey3_homepage_label"] ?? "",
-            label_en: dict["ikey3_homepage_label"] ?? ""
+            labelEn: dict["ikey3_homepage_label"] ?? ""
           },
           entryCode: dict["ikey3_homepage"] ?? "",
           iconOchaName: dict["ikey3_homepage_picto"] ?? ""
@@ -119,7 +119,7 @@ export async function TKReadGeneralConfiguration(
         {
           name: {
             name: dict["ikey4_sitepage_label"] ?? "",
-            label_en: dict["ikey4_sitepage_label"] ?? ""
+            labelEn: dict["ikey4_sitepage_label"] ?? ""
           },
           entryCode: dict["ikey4_sitepage"] ?? "",
           iconOchaName: dict["ikey4_sitepage_picto"] ?? ""
@@ -127,7 +127,7 @@ export async function TKReadGeneralConfiguration(
         {
           name: {
             name: dict["ikey5_sitepage_label"] ?? "",
-            label_en: dict["ikey5_sitepage_label"] ?? ""
+            labelEn: dict["ikey5_sitepage_label"] ?? ""
           },
           entryCode: dict["ikey5_sitepage"] ?? "",
           iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
@@ -135,7 +135,7 @@ export async function TKReadGeneralConfiguration(
         {
           name: {
             name: dict["ikey6_sitepage_label"] ?? "",
-            label_en: dict["ikey6_sitepage_label"] ?? ""
+            labelEn: dict["ikey6_sitepage_label"] ?? ""
           },
           entryCode: dict["ikey6_sitepage"] ?? "",
           iconOchaName: dict["ikey6_sitepage_picto"] ?? ""

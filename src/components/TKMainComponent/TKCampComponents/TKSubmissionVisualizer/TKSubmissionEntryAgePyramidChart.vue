@@ -194,7 +194,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   generateLabels(): Array<string> {
     if (this.entry) {
       return this.entry.femalesLabels.map(item =>
-        item.label_en
+        item.labelEn
           .replace("Females ", "")
           .replace("(", "")
           .replace(")", "")
