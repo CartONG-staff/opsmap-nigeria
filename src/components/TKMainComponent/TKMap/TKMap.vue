@@ -32,7 +32,7 @@ import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { FeatureCollection, Point } from "geojson";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 
 @Component({
@@ -235,13 +235,10 @@ export default class TKMap extends Vue {
     // CAMPS BEHAVIOR
     this.map.on("click", TKMapLayers.NOTSELECTEDCAMPSLAYER, (e) => {
       if (e !== undefined && e.features && e.features?.length > 0) {
-        if (this.mapCamps) {
-          this.dataset.currentCamp = this.mapCamps.toTKCampDescription(
-            e.features[0].properties?.id as string
-          );
-        } else {
-          this.mapCamps = null;
-        }
+        this.dataset.setFiltersValue(
+          TKFilters.CAMP,
+          e.features[0].properties?.id as string
+        );
       }
     });
     this.map.on("mouseenter", TKMapLayers.NOTSELECTEDCAMPSLAYER, () => {
