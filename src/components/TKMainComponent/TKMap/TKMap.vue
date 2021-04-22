@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */ /* eslint-disable
+@typescript-eslint/no-non-null-assertion */
 <template lang="html">
   <div id="tk-map">
     <TKMapZoom
@@ -19,6 +20,7 @@ import mapboxgl, {
   CircleLayer,
   FillLayer,
   LngLatLike,
+  MapboxGeoJSONFeature,
   SymbolLayer,
 } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -241,11 +243,29 @@ export default class TKMap extends Vue {
         );
       }
     });
-    this.map.on("mouseenter", TKMapLayers.NOTSELECTEDCAMPSLAYER, () => {
+    const popup = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false,
+    });
+    this.map.on("mouseenter", TKMapLayers.NOTSELECTEDCAMPSLAYER, (e) => {
       this.map.getCanvas().style.cursor = "pointer";
+      if (e.features) {
+        const coordinates = [
+          e.features[0].properties!.lng,
+          e.features[0].properties!.lat,
+        ];
+        const description = `<h4 class="primary--text">${
+          e.features[0].properties!.name
+        }</h4>`;
+        popup
+          .setLngLat(coordinates)
+          .setHTML(description)
+          .addTo(this.map);
+      }
     });
     this.map.on("mouseleave", TKMapLayers.NOTSELECTEDCAMPSLAYER, () => {
       this.map.getCanvas().style.cursor = "";
+      popup.remove();
     });
   }
 
