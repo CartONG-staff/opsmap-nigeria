@@ -22,13 +22,6 @@ export interface TKOpsmapConfiguration {
   readonly indicatorsDescription: TKIndicatorsDescription;
 }
 
-export const HEADER_CCCM_LOGO: TKLogo = {
-  name: "CCCM",
-  urlLogo:
-    "https://raw.githubusercontent.com/cccmiraq/RASP/master/img/CCCMClusterLogo.bmp",
-  urlRedirection: "https://cccmcluster.org"
-};
-
 // ////////////////////////////////////////////////////////////////////////////
 // Read configuration from CSV file
 //

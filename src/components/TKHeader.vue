@@ -1,17 +1,25 @@
 <template lang="html">
   <div class="tk-header">
-    <h3>
-      <span class="tk-header-title-base">{{ $t("title").toUpperCase() }} </span>
-      <span class="tk-header-title-opsmap">{{
-        appConfig.name.toUpperCase()
-      }}</span>
-    </h3>
+    <div>
+      <button class="tk-header-logo-opsmap-container" v-on:click="logoClicked">
+        <img
+          src="@/assets/LogoOpsmap.png"
+          alt="Opsmap"
+          class="tk-header-logo-cccm"
+        />
+        <h3>
+          <span class="tk-header-title-opsmap">{{
+            appConfig.name.toUpperCase()
+          }}</span>
+        </h3>
+      </button>
+    </div>
     <div class="tk-header-right">
       <div class="tk-header-logo-cccm-container">
-        <a :href="cccmLogo.urlRedirection" target="_blank">
+        <a href="https://cccmcluster.org" target="_blank">
           <img
-            :src="cccmLogo.urlLogo"
-            :alt="cccmLogo.name"
+            src="@/assets/LogoCluster.png"
+            alt="CCCM"
             class="tk-header-logo-cccm"
           />
         </a>
@@ -40,18 +48,13 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import {
-  TKOpsmapConfiguration,
-  HEADER_CCCM_LOGO
-} from "@/domain/opsmapConfig/TKOpsmapConfiguration";
-import { TKLogo } from "@/domain/ui/TKLogo";
+import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import { headerLogoBus } from "@/components/TKHeaderLogoBus";
 
 @Component
 export default class TKHeader extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
-
-  cccmLogo: TKLogo = HEADER_CCCM_LOGO;
   locales = this.$root.$i18n.availableLocales;
 
   language = this.$root.$i18n.locale;
@@ -59,6 +62,10 @@ export default class TKHeader extends Vue {
   // whenever question changes, this function will run
   onLanguageChanged(val: string) {
     this.$root.$i18n.locale = val;
+  }
+
+  logoClicked() {
+    headerLogoBus.$emit("switchToHomePage");
   }
 }
 </script>
@@ -81,21 +88,31 @@ export default class TKHeader extends Vue {
   padding-right: var(--side-padding);
 }
 
-.tk-header-logo-cccm-container {
+.tk-header-logo-opsmap-container {
   display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
   align-items: center;
+  text-decoration: none;
+}
 
+.tk-header-title-opsmap {
+  color: var(--v-accent-base);
+  letter-spacing: 1.5;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.tk-header-logo-cccm-container {
+  display: block;
   height: 52px;
   width: 172px;
   border-radius: 8px;
-  background-color: #f1f3f3;
+  outline: hidden;
 }
 
 .tk-header-logo-cccm {
-  display: block;
-  height: 37px;
+  height: 52px;
 }
 
 .tk-header-right {
@@ -104,18 +121,6 @@ export default class TKHeader extends Vue {
   justify-content: flex-end;
   align-items: center;
   column-gap: 10px;
-}
-
-.tk-header-title > h3 {
-  text-align: center;
-}
-
-h3 .tk-header-title-base {
-  color: var(--v-primary-base);
-}
-
-.tk-header-title-opsmap {
-  color: var(--v-accent-base);
 }
 
 .tk-buttons-container {
@@ -140,5 +145,13 @@ h3 .tk-header-title-base {
   height: 10px;
   width: 2px;
   background-color: #7d7d7d;
+}
+
+button:active {
+  outline: 0;
+}
+
+button:focus {
+  outline: 0;
 }
 </style>
