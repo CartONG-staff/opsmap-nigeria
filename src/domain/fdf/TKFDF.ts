@@ -15,7 +15,7 @@ import {
   TKReadSubmissionsRulesCollection
 } from "./TKFDFSubmissionsRules";
 import {
-  TKFDFFieldLabelCollection,
+  TKFDFLabelCollection,
   TKReadFDFLabelsCollection
 } from "./TKFDFFieldLabel";
 
@@ -29,7 +29,7 @@ import { TKFDFInfos } from "./TKFDFInfos";
 export interface TKFDF {
   thematics: TKTFDFhematicsCollection;
   trafficLights: TKFDFTrafficLightsCollection;
-  fieldsLabels: TKFDFFieldLabelCollection;
+  fieldsLabels: TKFDFLabelCollection;
   answersLabels: TKFDFAnswerLabelCollection;
   submissionsRules: TKFDFSubmissionsRulesCollection;
 }
