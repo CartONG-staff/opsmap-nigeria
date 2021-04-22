@@ -1,6 +1,6 @@
 import { TKMapboxConfiguration } from "@/domain/opsmapConfig/TKMapboxConfiguration";
-import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKLabel } from "@/domain/ui/TKLabel";
+import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogos";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
@@ -15,12 +15,18 @@ export interface TKOpsmapConfiguration {
   readonly name: string;
   readonly iso3: string;
   readonly surveyDescription: TKSurveyInfos[];
-  readonly headerLogo: TKLogo[];
   readonly opsmapDescr: TKLabel;
   readonly footerLogos: TKFooterLogosDescription;
   readonly mapConfig: TKMapboxConfiguration;
   readonly spatialDescription: TKSpatialDescription;
   readonly indicatorsDescription: TKIndicatorsDescription;
+}
+
+export const HEADER_CCCM_LOGO: TKLogo = {
+  name: "CCCM",
+  urlLogo:
+    "https://raw.githubusercontent.com/cccmiraq/RASP/master/img/CCCMClusterLogo.bmp",
+  urlRedirection: "https://cccmcluster.org"
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -172,14 +178,6 @@ export async function TKReadGeneralConfiguration(
         "brazil",
         "BR_DATA_080421_FDF_s1"
       )
-    ],
-    headerLogo: [
-      {
-        name: "CCCM",
-        urlLogo:
-          "https://raw.githubusercontent.com/cccmiraq/RASP/master/img/CCCMClusterLogo.bmp",
-        urlRedirection: "https://cccmcluster.org"
-      }
     ],
     mapConfig: {
       token:

@@ -1,19 +1,13 @@
 <template lang="html">
   <div class="tk-header">
     <div class="tk-header-logos">
-      <div
-        v-for="items in appConfig.headerLogo"
-        :key="items.urlLogo"
-        class="tk-header-logos-item"
-      >
-        <a :href="items.urlRedirection" target="_blank">
-          <img
-            :src="items.urlLogo"
-            :alt="items.name"
-            class="tk-header-logos-item-logo"
-          />
-        </a>
-      </div>
+      <a :href="cccmLogo.urlRedirection" target="_blank">
+        <img
+          :src="cccmLogo.urlLogo"
+          :alt="cccmLogo.name"
+          class="tk-header-logos-item-logo"
+        />
+      </a>
     </div>
     <div class="tk-header-title">
       <h3>
@@ -47,13 +41,18 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import {
+  TKOpsmapConfiguration,
+  HEADER_CCCM_LOGO
+} from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import { TKLogo } from "@/domain/ui/TKLogo";
 
 @Component
 export default class TKHeader extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
 
+  cccmLogo: TKLogo = HEADER_CCCM_LOGO;
   locales = this.$root.$i18n.availableLocales;
 
   language = this.$root.$i18n.locale;
