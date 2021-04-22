@@ -1,11 +1,10 @@
 <template>
   <div class="tk-camp-subtitle">
-    <div v-show="name !== ''" class="tk-camp-subtitle">
-      {{ name }}
-    </div>
-    <div v-show="name === ''" class="tk-camp-subtitle-placeholder">
-      {{ $t("site.subtitlePlaceholder") }}
-    </div>
+    <transition mode="out-in" name="fade-in">
+      <div :key="name" class="tk-camp-subtitle">
+        {{ name }}
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -21,7 +20,9 @@ export default class TKCampSubtitle extends Vue {
   name = "";
   @Watch("dataset", { immediate: true, deep: true })
   onChange() {
-    this.name = this.dataset.currentCamp ? this.dataset.currentCamp.name : "";
+    this.name = this.dataset.currentCamp
+      ? this.dataset.currentCamp.name
+      : this.$root.$i18n.t("site.subtitlePlaceholder").toString();
   }
 }
 </script>

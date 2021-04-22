@@ -137,4 +137,21 @@ h3 {
   border-color: #d8d8d8 !important;
   transition: none !important;
 }
+
+.fade-enter-active,
+.fade-in-enter-active {
+  transition: opacity 300ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.fade-leave-active,
+.fade-in-leave-active {
+  transition: opacity 225ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-enter,
+.fade-leave-to,
+.fade-in-enter,
+.fade-in-leave-to {
+  opacity: 0;
+}
 </style>

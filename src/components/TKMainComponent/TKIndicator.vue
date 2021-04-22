@@ -24,9 +24,11 @@
           v-on="on"
           :style="{ fontSize: fontSize + 'px' }"
         >
-          <div class="tk-indicator-value-number">
-            {{ value }}
-          </div>
+          <transition mode="out-in" name="fade-in">
+            <div :key="value" class="tk-indicator-value-number">
+              {{ value }}
+            </div>
+          </transition>
           <div class="tk-indicator-value-decription">
             {{ name }}
           </div>

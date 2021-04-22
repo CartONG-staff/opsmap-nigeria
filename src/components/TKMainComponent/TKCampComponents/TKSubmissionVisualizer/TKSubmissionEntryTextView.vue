@@ -2,12 +2,16 @@
   <div class="tk-submission-entry-container">
     <div v-if="displayTrafficLight" class="tk-layout-w-trafficlight">
       <div class="tk-entry-content">
-        <div class="tk-entry-field-name">
-          {{ question }}
-        </div>
-        <div class="tk-entry-field-value">
-          {{ answer }}
-        </div>
+        <transition mode="out-in" name="fade-in">
+          <div :key="question" class="tk-entry-field-name">
+            {{ question }}
+          </div>
+        </transition>
+        <transition mode="out-in" name="fade-in">
+          <div :key="answer" class="tk-entry-field-value">
+            {{ answer }}
+          </div>
+        </transition>
         <div class="tk-trafficlight">
           <div v-if="isOK" class="tk-trafficlight-ok"></div>
           <div v-if="isWarning" class="tk-trafficlight-warning"></div>
@@ -20,12 +24,16 @@
 
     <div v-else class="tk-layout-wo-trafficLight">
       <div class="tk-entry-content">
-        <div class="tk-entry-field-name">
-          {{ question }}
-        </div>
-        <div class="tk-entry-field-value">
-          {{ answer }}
-        </div>
+        <transition mode="out-in" name="fade-in">
+          <div :key="question" class="tk-entry-field-name">
+            {{ question }}
+          </div>
+        </transition>
+        <transition mode="out-in" name="fade-in">
+          <div :key="answer" class="tk-entry-field-value">
+            {{ answer }}
+          </div>
+        </transition>
       </div>
     </div>
   </div>

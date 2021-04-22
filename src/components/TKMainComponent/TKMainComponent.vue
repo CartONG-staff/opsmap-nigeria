@@ -274,14 +274,4 @@ export default class TKMainComponent extends Vue {
   justify-content: flex-start;
   row-gap: 25px;
 }
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s ease;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
 </style>
