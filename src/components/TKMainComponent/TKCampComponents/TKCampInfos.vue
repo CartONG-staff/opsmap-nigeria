@@ -52,28 +52,26 @@ export default class TKCampInfos extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
 
-  admin1 = "";
-  admin2 = "";
-  admin3 = "";
-  name = "";
-  coordinates = "";
+  admin1 = "-";
+  admin2 = "-";
+  admin3 = "-";
+  coordinates = "-";
 
   @Watch("dataset", { immediate: true, deep: true })
   onChange() {
     if (this.dataset) {
       this.admin1 = this.dataset.currentCamp
         ? this.dataset.currentCamp.admin1.name
-        : "";
+        : "-";
       this.admin2 = this.dataset.currentCamp
         ? this.dataset.currentCamp.admin2.name
-        : "";
+        : "-";
       this.admin3 = this.dataset.currentCamp
         ? this.dataset.currentCamp.admin3.name
-        : "";
-      this.name = this.dataset.currentCamp ? this.dataset.currentCamp.name : "";
+        : "-";
       this.coordinates = this.dataset.currentCamp
         ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
-        : "";
+        : "-";
     }
   }
 }
