@@ -5,6 +5,7 @@
       color="#ffffff"
       :items="submissionsDates"
       v-model="model"
+      :disabled="model == ''"
       flat
       filled
       solo
@@ -19,6 +20,7 @@
       elevation="0"
       class="tk-camp-toolbar-export"
       height="44"
+      :disabled="model == ''"
     >
       {{ $t("site.exportAsCSV") }}
     </v-btn>
@@ -27,6 +29,7 @@
       :offset-y="true"
       :close-on-content-click="false"
       class="tk-camp-toolbar-kebab"
+      :disabled="model == ''"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn

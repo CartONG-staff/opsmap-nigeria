@@ -149,6 +149,7 @@ export default class TKMainComponent extends Vue {
       const keys = Object.keys(this.currentSubmissions);
       this.currentSubmission = this.currentSubmissions[keys[0]];
     } else {
+      this.currentSubmissions = null;
       this.currentSubmission = null;
       this.visualizerOptions.hideUnanswered =
         DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
