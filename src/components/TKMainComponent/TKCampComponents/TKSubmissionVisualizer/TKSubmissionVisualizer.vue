@@ -18,9 +18,11 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
+import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
+import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 
 @Component({
   components: {
@@ -32,6 +34,10 @@ export default class TKSubmissionVisualizer extends Vue {
   readonly submission!: TKSubmission;
 
   @Prop()
+  readonly dataset!: TKDatasetFilterer;
+  thematics!: TKTFDFhematicsCollection;
+
+  @Prop()
   readonly options!: TKSubmissionVisualizerOptions;
 
   columns: [
@@ -41,7 +47,7 @@ export default class TKSubmissionVisualizer extends Vue {
   ] = [[], [], []];
 
   @Watch("submission", { immediate: true })
-  onSurveyChanged() {
+  onSubmissionChanged() {
     this.columns[0] = [];
     this.columns[1] = [];
     this.columns[2] = [];
@@ -62,8 +68,34 @@ export default class TKSubmissionVisualizer extends Vue {
         this.columns[index].push(this.submission.thematics[them]);
         itemsCount[index] += this.submission.thematics[them].data.length;
       }
+    } else if (this.thematics) {
+      let index = 0;
+      for (const i in this.thematics) {
+        const thematicsDescr = this.thematics[i];
+        this.columns[index].push({
+          data: [],
+          nameLabel: thematicsDescr.thematicLabel,
+          formattedName: thematicsDescr.formattedName,
+          iconFileName: thematicsDescr.iconFileName
+        });
+
+        index++;
+        if (index > 2) {
+          index = 0;
+        }
+      }
     }
+
     this.$forceUpdate();
+  }
+
+  @Watch("dataset.currentSurvey", { immediate: true })
+  onDatasetChange() {
+    if (this.dataset.currentSurvey) {
+      this.thematics = this.dataset.surveys[
+        this.dataset.currentSurvey
+      ].fdf.thematics;
+    }
   }
 }
 </script>

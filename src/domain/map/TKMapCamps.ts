@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { TKCampDescription } from "@/domain/survey/TKCampDescription";
 import { FeatureCollection } from "geojson";
 
@@ -45,9 +44,9 @@ export class TKMapCamps {
         this.camps.filter(x => x.id === this.currentCamp?.id)
       ),
       otherCamps: this.toGeoJSON(
-        this.currentCamp === null
-          ? this.camps
-          : this.camps.filter(x => x.id !== this.currentCamp!.id)
+        this.currentCamp
+          ? this.camps.filter(x => x.id !== this.currentCamp?.id)
+          : this.camps
       )
     };
   }

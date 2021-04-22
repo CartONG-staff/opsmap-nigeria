@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import { TKFDFThematic } from "@/domain/fdf/TKFDFThematics";
 import { TKLabel } from "../ui/TKLabel";
 import { TKSubmissionEntry } from "./TKSubmissionEntry";
@@ -10,8 +8,8 @@ import { TKSubmissionEntry } from "./TKSubmissionEntry";
 
 export interface TKSubmissionThematic {
   data: Array<TKSubmissionEntry>;
-  formatted_name: string;
-  icon_file_name: string;
+  formattedName: string;
+  iconFileName: string;
   nameLabel: TKLabel;
 }
 
@@ -24,12 +22,8 @@ export function TKCreateSubmissionThematic(
 ): TKSubmissionThematic {
   return {
     data: [],
-    formatted_name: thematic.formatted_name,
-    icon_file_name: thematic.icon_file_name,
-    nameLabel: {
-      name: thematic.thematic_label_en,
-      label_en: thematic.thematic_label_en,
-      label_pt: thematic.thematic_label_pt
-    }
+    formattedName: thematic.formattedName,
+    iconFileName: thematic.iconFileName,
+    nameLabel: thematic.thematicLabel
   };
 }

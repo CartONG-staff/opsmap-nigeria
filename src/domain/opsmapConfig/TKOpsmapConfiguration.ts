@@ -1,6 +1,6 @@
 import { TKMapboxConfiguration } from "@/domain/opsmapConfig/TKMapboxConfiguration";
-import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKLabel } from "@/domain/ui/TKLabel";
+import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogos";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
@@ -15,13 +15,19 @@ export interface TKOpsmapConfiguration {
   readonly name: string;
   readonly iso3: string;
   readonly surveyDescription: TKSurveyInfos[];
-  readonly headerLogo: TKLogo[];
   readonly opsmapDescr: TKLabel;
   readonly footerLogos: TKFooterLogosDescription;
   readonly mapConfig: TKMapboxConfiguration;
   readonly spatialDescription: TKSpatialDescription;
   readonly indicatorsDescription: TKIndicatorsDescription;
 }
+
+export const HEADER_CCCM_LOGO: TKLogo = {
+  name: "CCCM",
+  urlLogo:
+    "https://raw.githubusercontent.com/cccmiraq/RASP/master/img/CCCMClusterLogo.bmp",
+  urlRedirection: "https://cccmcluster.org"
+};
 
 // ////////////////////////////////////////////////////////////////////////////
 // Read configuration from CSV file
@@ -30,7 +36,6 @@ export interface TKOpsmapConfiguration {
 //
 // ////////////////////////////////////////////////////////////////////////////
 
-/* eslint-disable @typescript-eslint/camelcase */
 interface TKOpsmapConfigurationLabelCSV {
   config_type: string;
   info: string;
@@ -64,8 +69,8 @@ export async function TKReadGeneralConfiguration(
     iso3: dict["iso3"] ?? "BRA",
     opsmapDescr: {
       name: "opsmap description",
-      label_en: dict["project_overview_en"] ?? "",
-      label_pt: dict["project_overview_pt"] ?? undefined
+      labelEn: dict["project_overview_en"] ?? "",
+      labelPt: dict["project_overview_pt"] ?? undefined
     },
     spatialDescription: {
       siteIDField: dict["mp_site_id"] ?? "mp_site_id",
@@ -85,34 +90,52 @@ export async function TKReadGeneralConfiguration(
     indicatorsDescription: {
       home: [
         {
-          name: dict["ikey1_homepage_label"] ?? "",
+          name: {
+            name: dict["ikey1_homepage_label"] ?? "",
+            labelEn: dict["ikey1_homepage_label"] ?? ""
+          },
           entryCode: dict["ikey1_homepage"] ?? "",
           iconOchaName: dict["ikey1_homepage_picto"] ?? ""
         },
         {
-          name: dict["ikey2_homepage_label"] ?? "",
+          name: {
+            name: dict["ikey2_homepage_label"] ?? "",
+            labelEn: dict["ikey2_homepage_label"] ?? ""
+          },
           entryCode: dict["ikey2_homepage"] ?? "",
           iconOchaName: dict["ikey2_homepage_picto"] ?? ""
         },
         {
-          name: dict["ikey3_homepage_label"] ?? "",
+          name: {
+            name: dict["ikey3_homepage_label"] ?? "",
+            labelEn: dict["ikey3_homepage_label"] ?? ""
+          },
           entryCode: dict["ikey3_homepage"] ?? "",
           iconOchaName: dict["ikey3_homepage_picto"] ?? ""
         }
       ],
       site: [
         {
-          name: dict["ikey4_sitepage_label"] ?? "",
+          name: {
+            name: dict["ikey4_sitepage_label"] ?? "",
+            labelEn: dict["ikey4_sitepage_label"] ?? ""
+          },
           entryCode: dict["ikey4_sitepage"] ?? "",
           iconOchaName: dict["ikey4_sitepage_picto"] ?? ""
         },
         {
-          name: dict["ikey5_sitepage_label"] ?? "",
+          name: {
+            name: dict["ikey5_sitepage_label"] ?? "",
+            labelEn: dict["ikey5_sitepage_label"] ?? ""
+          },
           entryCode: dict["ikey5_sitepage"] ?? "",
           iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
         },
         {
-          name: dict["ikey6_sitepage_label"] ?? "",
+          name: {
+            name: dict["ikey6_sitepage_label"] ?? "",
+            labelEn: dict["ikey6_sitepage_label"] ?? ""
+          },
           entryCode: dict["ikey6_sitepage"] ?? "",
           iconOchaName: dict["ikey6_sitepage_picto"] ?? ""
         }
@@ -172,14 +195,6 @@ export async function TKReadGeneralConfiguration(
         "brazil",
         "BR_DATA_080421_FDF_s1"
       )
-    ],
-    headerLogo: [
-      {
-        name: "CCCM",
-        urlLogo:
-          "https://raw.githubusercontent.com/cccmiraq/RASP/master/img/CCCMClusterLogo.bmp",
-        urlRedirection: "https://cccmcluster.org"
-      }
     ],
     mapConfig: {
       token:

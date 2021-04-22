@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import {
   TKIndicatorsDescription,
@@ -42,7 +42,7 @@ function isSubmissionInThematic(
   submissionsRules: TKFDFSubmissionsRulesCollection
 ): boolean {
   return submissionsRules[submission]
-    ? submissionsRules[submission].thematic_group === thematic
+    ? submissionsRules[submission].thematicGroup === thematic
       ? true
       : false
     : false;
@@ -50,8 +50,8 @@ function isSubmissionInThematic(
 
 function isSubmissionAnAgePyramid(surveyConfiguration: TKFDF, field: string) {
   return (
-    surveyConfiguration.submissionsRules[field].chart_id &&
-    surveyConfiguration.submissionsRules[field].chart_id.includes("age_pyramid")
+    surveyConfiguration.submissionsRules[field].chartId &&
+    surveyConfiguration.submissionsRules[field].chartId.includes("age_pyramid")
   );
 }
 
@@ -72,15 +72,17 @@ function computeSubmissionIndicator(
     if (entry instanceof TKSubmissionEntryText) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: entry.fieldLabel,
+        // TODO use answer label isntead of current label -> trad is not in indicator description
+        // nameLabel: entry.fieldLabel,
+        nameLabel: descr.name,
         valueLabel: entry.answerLabel
       };
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameLabel: { name: "", label_en: "" },
-    valueLabel: { name: "", label_en: "" }
+    nameLabel: descr.name,
+    valueLabel: { name: "", labelEn: "" }
   };
 }
 
@@ -126,7 +128,7 @@ export function TKCreateSubmission(
             if (
               agePyramidId &&
               agePyramidId !==
-                surveyConfiguration.submissionsRules[field].chart_id
+                surveyConfiguration.submissionsRules[field].chartId
             ) {
               submission[thematic].data.push(
                 TKCreateSubmissionEntryAgePyramid(
@@ -141,7 +143,7 @@ export function TKCreateSubmission(
             // If no previous chart, init
             if (!agePyramidId) {
               agePyramidId =
-                surveyConfiguration.submissionsRules[field].chart_id;
+                surveyConfiguration.submissionsRules[field].chartId;
               agePyramidData = [];
             }
 
@@ -149,7 +151,7 @@ export function TKCreateSubmission(
             agePyramidData.push({
               field: field,
               value: submissionItem[field],
-              type: surveyConfiguration.submissionsRules[field].chart_data
+              type: surveyConfiguration.submissionsRules[field].chartData
             });
           } else {
             // if a current pyramid is ongoing - push it before switching to text item

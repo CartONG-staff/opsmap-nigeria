@@ -19,7 +19,7 @@
             <TKHomeCombos class="tk-home-combos" :dataset="dataset" />
           </div>
           <div v-if="!isHomePage" class="tk-camp-left">
-            <TKCampSubtitle class="tk-camp-title" :camp="dataset" />
+            <TKCampSubtitle class="tk-camp-title" :dataset="dataset" />
             <TKCampToolbar
               class="tk-camp-toolbar"
               :submissionsDates="
@@ -57,6 +57,7 @@
           <TKSubmissionVisualizer
             :options="visualizerOptions"
             :submission="currentSubmission"
+            :dataset="dataset"
           />
         </div>
       </div>
@@ -115,6 +116,7 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
 export default class TKMainComponent extends Vue {
   @Prop()
   dataset!: TKDatasetFilterer;
+
   @Prop()
   geoData!: TKGeoDataset;
 
@@ -149,8 +151,8 @@ export default class TKMainComponent extends Vue {
       const keys = Object.keys(this.currentSubmissions);
       this.currentSubmission = this.currentSubmissions[keys[0]];
     } else {
+      this.currentSubmissions = null;
       this.currentSubmission = null;
-      this.isHomePage = true;
       this.visualizerOptions.hideUnanswered =
         DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
     }

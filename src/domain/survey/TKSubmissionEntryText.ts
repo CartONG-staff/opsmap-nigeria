@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import { TKLabel } from "../ui/TKLabel";
 import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
 import { TKSubmissionEntry } from "./TKSubmissionEntry";
-import { TKAnswerLabelToFieldLabel } from "@/domain/ui/TKLabel";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKFDFTrafficLightGrouped,
@@ -33,7 +30,7 @@ export class TKSubmissionEntryText extends TKSubmissionEntry {
   }
 
   public isAnswered(): boolean {
-    return this.answerLabel ? this.answerLabel.label_en !== "" : false;
+    return this.answerLabel ? this.answerLabel.labelEn !== "" : false;
   }
 }
 
@@ -68,14 +65,14 @@ export function TKCreateSubmissionEntryText(
     field,
     surveyConfiguration.fieldsLabels[field],
     surveyConfiguration.answersLabels[value]
-      ? TKAnswerLabelToFieldLabel(surveyConfiguration.answersLabels[value])
-      : { name: value, label_en: value },
-    surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0,
-    surveyConfiguration.submissionsRules[field].traffic_light_name.length > 0
+      ? surveyConfiguration.answersLabels[value]
+      : { name: value, labelEn: value },
+    surveyConfiguration.submissionsRules[field].trafficLightName.length > 0,
+    surveyConfiguration.submissionsRules[field].trafficLightName.length > 0
       ? getTrafficLightColor(
           value,
           surveyConfiguration.trafficLights[
-            surveyConfiguration.submissionsRules[field].traffic_light_name
+            surveyConfiguration.submissionsRules[field].trafficLightName
           ]
         )
       : TKTrafficLightValues.UNDEFINED

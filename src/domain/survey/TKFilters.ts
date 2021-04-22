@@ -14,7 +14,7 @@ export enum TKFilters {
   ADMIN2 = "admin2",
   CAMP = "currentCamp",
   PLANNED_SITE = "planned",
-  SPONTANEOUS_SITE = "spontaneous",
+  SPONTANEOUS_SITE = "spontaneous"
 }
 
 export type TKFiltersTypes = string | boolean | null;
@@ -37,7 +37,7 @@ export class TKDatasetFilterer {
     admin1: null,
     admin2: null,
     planned: true,
-    spontaneous: true,
+    spontaneous: true
   };
   levelToZoom: TKFilters;
 
@@ -71,7 +71,7 @@ export class TKDatasetFilterer {
         if (value) {
           this.levelToZoom = TKFilters.ADMIN1;
           this.currentAdmin1 = this.admin1List.find(
-            (a) => a.pcode === value
+            a => a.pcode === value
           ) as TKBoundarieDescription;
         } else {
           this.levelToZoom = TKFilters.SURVEY;
@@ -85,7 +85,7 @@ export class TKDatasetFilterer {
         if (value) {
           this.levelToZoom = TKFilters.ADMIN2;
           this.currentAdmin2 = this.admin2List.find(
-            (a) => a.pcode === value
+            a => a.pcode === value
           ) as TKBoundarieDescription;
         } else {
           this.levelToZoom = TKFilters.ADMIN1;
@@ -97,7 +97,7 @@ export class TKDatasetFilterer {
         if (value) {
           this.levelToZoom = TKFilters.CAMP;
           this.currentCamp = this.campsList.find(
-            (c) => c.id === value
+            c => c.id === value
           ) as TKCampDescription;
         } else {
           this.levelToZoom = TKFilters.ADMIN2;
@@ -139,12 +139,12 @@ export class TKDatasetFilterer {
     if (this.filters.admin1) {
       this.admin2List = this.surveys[this.currentSurvey].boundariesList.admin2;
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.admin1.pcode === this.filters.admin1
+        x => x.admin1.pcode === this.filters.admin1
       );
     }
     if (this.filters.admin2) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.admin2.pcode === this.filters.admin2
+        x => x.admin2.pcode === this.filters.admin2
       );
     }
 
@@ -156,12 +156,12 @@ export class TKDatasetFilterer {
 
     if (!this.filters.planned) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.type !== TKCampTypesValues.PLANNED
+        x => x.type !== TKCampTypesValues.PLANNED
       );
     }
     if (!this.filters.spontaneous) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.type !== TKCampTypesValues.SPONTANEOUS
+        x => x.type !== TKCampTypesValues.SPONTANEOUS
       );
     }
   }

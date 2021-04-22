@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { TKCampDescription } from "./TKCampDescription";
 import { TKBoundariesCollection } from "./TKBoundariesCollection";
@@ -22,6 +22,7 @@ export interface TKSurvey {
   campsList: TKCampDescription[];
   boundariesList: TKBoundariesCollection;
   indicators: [TKIndicator, TKIndicator, TKIndicator];
+  fdf: TKFDF;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -35,10 +36,10 @@ function computeSurveyIndicator(
   if (descr.entryCode === "mp_site_id") {
     return {
       iconOchaName: descr.iconOchaName,
-      nameLabel: { name: descr.name, label_en: descr.name },
+      nameLabel: descr.name,
       valueLabel: {
         name: String(Object.keys(data).length),
-        label_en: String(Object.keys(data).length)
+        labelEn: String(Object.keys(data).length)
       }
     };
   }
@@ -58,9 +59,9 @@ function computeSurveyIndicator(
             item &&
             item instanceof TKSubmissionEntryText &&
             item.answerLabel &&
-            isNumber(item.answerLabel.label_en)
+            isNumber(item.answerLabel.labelEn)
           ) {
-            sum += Number(item.answerLabel.label_en);
+            sum += Number(item.answerLabel.labelEn);
           }
         }
       }
@@ -68,31 +69,31 @@ function computeSurveyIndicator(
     if (!descr.computationType) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: { name: descr.name, label_en: descr.name },
-        valueLabel: { name: String(sum), label_en: String(sum) }
+        nameLabel: descr.name,
+        valueLabel: { name: String(sum), labelEn: String(sum) }
       };
     }
     if (descr.computationType === TKIndicatorComputationType.MEAN) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: { name: descr.name, label_en: descr.name },
+        nameLabel: descr.name,
         valueLabel: {
           name: String((sum / Object.keys(data).length).toFixed(2)),
-          label_en: String((sum / Object.keys(data).length).toFixed(2))
+          labelEn: String((sum / Object.keys(data).length).toFixed(2))
         }
       };
     } else if (descr.computationType === TKIndicatorComputationType.SUM) {
       return {
         iconOchaName: descr.iconOchaName,
-        nameLabel: { name: descr.name, label_en: descr.name },
-        valueLabel: { name: String(sum), label_en: String(sum) }
+        nameLabel: descr.name,
+        valueLabel: { name: String(sum), labelEn: String(sum) }
       };
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
-    nameLabel: { name: descr.name, label_en: descr.name },
-    valueLabel: { name: "NotFound", label_en: "NotFound" }
+    nameLabel: descr.name,
+    valueLabel: { name: "NotFound", labelEn: "NotFound" }
   };
 }
 
@@ -188,6 +189,7 @@ export function TKCreateSurvey(
       computeSurveyIndicator(indicatorsDescription.home[0], submissionsByCamps),
       computeSurveyIndicator(indicatorsDescription.home[1], submissionsByCamps),
       computeSurveyIndicator(indicatorsDescription.home[2], submissionsByCamps)
-    ]
+    ],
+    fdf: surveyConfig
   };
 }

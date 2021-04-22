@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { parse } from "papaparse";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -14,7 +16,8 @@ export async function TKCSVRead<T>(
       header: header,
       download: true,
       skipEmptyLines: true,
-      complete(results: any) {  // ? ParseResult<T> ?
+      complete(results: any) {
+        // ? ParseResult<T> ?
         resolve(results.data);
       },
       error(err) {

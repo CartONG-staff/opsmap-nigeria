@@ -1,59 +1,57 @@
 <template lang="html">
   <div class="tk-header">
-    <div class="tk-header-logos">
-      <div
-        v-for="items in appConfig.headerLogo"
-        :key="items.urlLogo"
-        class="tk-header-logos-item"
-      >
-        <a :href="items.urlRedirection" target="_blank">
+    <h3>
+      <span class="tk-header-title-base">{{ $t("title").toUpperCase() }} </span>
+      <span class="tk-header-title-opsmap">{{
+        appConfig.name.toUpperCase()
+      }}</span>
+    </h3>
+    <div class="tk-header-right">
+      <div class="tk-header-logo-cccm-container">
+        <a :href="cccmLogo.urlRedirection" target="_blank">
           <img
-            :src="items.urlLogo"
-            :alt="items.name"
-            class="tk-header-logos-item-logo"
+            :src="cccmLogo.urlLogo"
+            :alt="cccmLogo.name"
+            class="tk-header-logo-cccm"
           />
         </a>
       </div>
-    </div>
-    <div class="tk-header-title">
-      <h3>
-        <span class="tk-header-title-base"
-          >{{ $t("title").toUpperCase() }}
-        </span>
-        <span class="tk-header-title-opsmap">{{
-          appConfig.name.toUpperCase()
-        }}</span>
-      </h3>
-    </div>
-    <v-btn-toggle
-      v-model="language"
-      mandatory
-      group
-      dense
-      class="tk-header-buttons"
-      color="accent"
-    >
-      <div
-        v-for="(locale, key) in locales"
-        :key="locale"
-        class="tk-buttons-container"
+
+      <v-btn-toggle
+        v-model="language"
+        mandatory
+        group
+        dense
+        class="tk-header-buttons"
+        color="accent"
       >
-        <div v-if="key > 0" class="tk-header-buttons-sep"></div>
-        <v-btn plain text :value="locale">{{ locale.toUpperCase() }}</v-btn>
-      </div>
-    </v-btn-toggle>
+        <div
+          v-for="(locale, key) in locales"
+          :key="locale"
+          class="tk-buttons-container"
+        >
+          <div v-if="key > 0" class="tk-header-buttons-sep"></div>
+          <v-btn plain text :value="locale">{{ locale.toUpperCase() }}</v-btn>
+        </div>
+      </v-btn-toggle>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import {
+  TKOpsmapConfiguration,
+  HEADER_CCCM_LOGO
+} from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import { TKLogo } from "@/domain/ui/TKLogo";
 
 @Component
 export default class TKHeader extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
 
+  cccmLogo: TKLogo = HEADER_CCCM_LOGO;
   locales = this.$root.$i18n.availableLocales;
 
   language = this.$root.$i18n.locale;
@@ -77,31 +75,37 @@ export default class TKHeader extends Vue {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  vertical-align: middle;
+  align-items: center;
   height: 70px;
   padding-left: var(--side-padding);
   padding-right: var(--side-padding);
 }
 
-.tk-header-logos {
+.tk-header-logo-cccm-container {
   display: flex;
-  flex-flow: row wrap;
-  column-gap: 5px;
-  flex-basis: 30%;
-  justify-content: left;
+  flex-flow: column wrap;
+  justify-content: center;
   align-items: center;
+
+  height: 52px;
+  width: 172px;
+  border-radius: 8px;
+  background-color: #f1f3f3;
 }
 
-.tk-header-logos-item-logo {
-  height: 47px;
+.tk-header-logo-cccm {
+  display: block;
+  height: 37px;
 }
 
-.tk-header-title {
-  margin-top: auto;
-  margin-bottom: auto;
-  flex-basis: 40%;
-  letter-spacing: 1.5px;
+.tk-header-right {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 10px;
 }
+
 .tk-header-title > h3 {
   text-align: center;
 }
