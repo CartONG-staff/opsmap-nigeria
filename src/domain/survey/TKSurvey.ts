@@ -22,6 +22,7 @@ export interface TKSurvey {
   campsList: TKCampDescription[];
   boundariesList: TKBoundariesCollection;
   indicators: [TKIndicator, TKIndicator, TKIndicator];
+  fdf: TKFDF;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -188,6 +189,7 @@ export function TKCreateSurvey(
       computeSurveyIndicator(indicatorsDescription.home[0], submissionsByCamps),
       computeSurveyIndicator(indicatorsDescription.home[1], submissionsByCamps),
       computeSurveyIndicator(indicatorsDescription.home[2], submissionsByCamps)
-    ]
+    ],
+    fdf: surveyConfig
   };
 }
