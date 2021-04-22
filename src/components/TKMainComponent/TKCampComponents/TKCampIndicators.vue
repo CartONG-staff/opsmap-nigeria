@@ -11,6 +11,8 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
+import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
+
 @Component({
   components: {
     TKIndicatorComponent
@@ -36,17 +38,26 @@ export default class TKCampIndicators extends Vue {
     } else {
       /* eslint-disable @typescript-eslint/camelcase */
       this.indicator1 = {
-        nameLabel: this.indicator1.nameLabel,
+        nameLabel: {
+          name: this.appConfig.indicatorsDescription.site[0].name,
+          label_en: this.appConfig.indicatorsDescription.site[0].name
+        },
         valueLabel: { name: "", label_en: "-" },
         iconOchaName: this.indicator1.iconOchaName
       };
       this.indicator2 = {
-        nameLabel: this.indicator2.nameLabel,
+        nameLabel: {
+          name: this.appConfig.indicatorsDescription.site[1].name,
+          label_en: this.appConfig.indicatorsDescription.site[1].name
+        },
         valueLabel: { name: "", label_en: "-" },
         iconOchaName: this.indicator2.iconOchaName
       };
       this.indicator3 = {
-        nameLabel: this.indicator3.nameLabel,
+        nameLabel: {
+          name: this.appConfig.indicatorsDescription.site[2].name,
+          label_en: this.appConfig.indicatorsDescription.site[2].name
+        },
         valueLabel: { name: "", label_en: "-" },
         iconOchaName: this.indicator3.iconOchaName
       };
