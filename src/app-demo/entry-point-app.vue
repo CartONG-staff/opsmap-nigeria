@@ -33,8 +33,8 @@ import { TKReadGeneralConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfig
   components: {
     TKHeader,
     TKFooter,
-    TKMainComponent
-  }
+    TKMainComponent,
+  },
 })
 export default class App extends Vue {
   appRootConfig!: TKOpsmapConfiguration;
@@ -57,8 +57,6 @@ export default class App extends Vue {
       this.geoDataset = await TKGetGeoBoundaries(surveys);
     }
     this.dataset = new TKDatasetFilterer(surveys);
-
-    console.log(this.dataset);
 
     this.dataLoaded = true;
   }

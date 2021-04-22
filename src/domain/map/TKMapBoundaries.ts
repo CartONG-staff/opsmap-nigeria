@@ -1,6 +1,7 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { FeatureCollection } from "geojson";
-import mapboxgl from "mapbox-gl";
+import { Feature, FeatureCollection } from "geojson";
+import mapboxgl, { LngLat, LngLatBounds, LngLatLike } from "mapbox-gl";
 import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKMapLayers } from "./TKMapLayers";
@@ -14,10 +15,15 @@ export class TKMapBoundaries {
     this.admin2 = geodataset.admin2;
   }
 
-  changeStyle(dataset: TKDatasetFilterer, map: mapboxgl.Map): void {
-    let ifAdmin1NotDefined = null;
-    switch (dataset.levelOfChange) {
+  changeStyle(
+    dataset: TKDatasetFilterer,
+    map: mapboxgl.Map,
+    bound: LngLatBounds
+  ): void {
+    let setZoom;
+    switch (dataset.levelToZoom) {
       case TKFilters.SURVEY:
+        this.mapFitBounds(bound, map);
         for (const item of this.admin1.features) {
           item.properties!.transparent = "yes";
         }
@@ -26,55 +32,32 @@ export class TKMapBoundaries {
         }
         break;
       case TKFilters.ADMIN1:
-        for (const item of this.admin1.features) {
-          item.properties!.transparent = dataset.currentAdmin1
-            ? item.properties!.pcode === dataset.currentAdmin1?.pcode
-              ? "yes"
-              : "no"
-            : "yes";
+        setZoom = this.setAdmin1Style(dataset);
+        if (setZoom) {
+          this.mapFitBounds(setZoom, map);
         }
         for (const item of this.admin2.features) {
           item.properties!.transparent = "yes";
         }
         break;
-
       case TKFilters.CAMP:
       case TKFilters.ADMIN2:
-        for (const item of this.admin2.features) {
-          if (dataset.currentAdmin2) {
-            if (item.properties!.pcode === dataset.currentAdmin2?.pcode) {
-              item.properties!.transparent = "yes";
-              ifAdmin1NotDefined = item.properties!.adm1pcode;
-            } else {
-              item.properties!.transparent = "no";
-            }
-          } else {
-            item.properties!.transparent = "yes";
-          }
+        setZoom = this.setAdmin1Style(dataset);
+        setZoom = this.setAdmin2Style(dataset);
+        if (setZoom) {
+          this.mapFitBounds(setZoom, map);
         }
-        for (const item of this.admin1.features) {
-          if (ifAdmin1NotDefined) {
-            item.properties!.transparent = dataset.currentAdmin1
-              ? item.properties!.pcode === dataset.currentAdmin1?.pcode
-                ? "yes"
-                : "no"
-              : item.properties!.pcode === ifAdmin1NotDefined
-              ? "yes"
-              : "no";
-          } else {
-            for (const item of this.admin1.features) {
-              item.properties!.transparent = dataset.currentAdmin1
-                ? item.properties!.pcode === dataset.currentAdmin1?.pcode
-                  ? "yes"
-                  : "no"
-                : "yes";
-            }
-          }
-        }
-
         break;
       default:
         break;
+    }
+    if (dataset.currentCamp) {
+      this.mapFitBounds(
+        new LngLat(dataset.currentCamp.lng, dataset.currentCamp.lat).toBounds(
+          100
+        ),
+        map
+      );
     }
     (map.getSource(TKMapLayers.ADMIN1SOURCE) as mapboxgl.GeoJSONSource).setData(
       this.admin1
@@ -84,43 +67,78 @@ export class TKMapBoundaries {
     );
   }
 
-  // getBoundingBoxFromCoordinatesArray(coordinates) {
-  //   const bounds = { xMin: 0, xMax: 0, yMin: 0, yMax: 0 };
-  //   let latitude, longitude;
+  setAdmin1Style(dataset: TKDatasetFilterer) {
+    let shouldMapZoom = null;
+    for (const item of this.admin1.features) {
+      if (dataset.currentAdmin1) {
+        if (item.properties?.pcode === dataset.currentAdmin1?.pcode) {
+          item.properties!.transparent = "yes";
+          if (dataset.levelToZoom === TKFilters.ADMIN1) {
+            shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
+          }
+        } else {
+          item.properties!.transparent = "no";
+        }
+      } else {
+        item.properties!.transparent = "yes";
+      }
+    }
+    return shouldMapZoom;
+  }
 
-  //   if (coordinates.length === 1) {
-  //     // It's only a single Polygon
-  //     for (const c of coordinates[0]) {
-  //       latitude = c[0];
-  //       longitude = c[1];
+  setAdmin2Style(dataset: TKDatasetFilterer) {
+    let shouldMapZoom = null;
+    for (const item of this.admin2.features) {
+      if (dataset.currentAdmin2) {
+        if (item.properties?.pcode === dataset.currentAdmin2?.pcode) {
+          item.properties!.transparent = "yes";
+          if (dataset.levelToZoom === TKFilters.ADMIN2) {
+            shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
+          }
+        } else {
+          item.properties!.transparent = "no";
+        }
+      } else {
+        item.properties!.transparent = "yes";
+      }
+    }
+    return shouldMapZoom;
+  }
 
-  //       bounds.xMin = bounds.xMin < longitude ? bounds.xMin : longitude;
-  //       bounds.xMax = bounds.xMax > longitude ? bounds.xMax : longitude;
-  //       bounds.yMin = bounds.yMin < latitude ? bounds.yMin : latitude;
-  //       bounds.yMax = bounds.yMax > latitude ? bounds.yMax : latitude;
-  //     }
-  //   } else {
-  //     // It's a MultiPolygon
-  //     // Loop through each coordinate set
-  //     for (const coord of coordinates) {
-  //       for (const c of coord) {
-  //         latitude = c[0];
-  //         longitude = c[1];
+  mapFitBounds(bounds: LngLatBounds, map: mapboxgl.Map) {
+    map.fitBounds(bounds);
+  }
 
-  //         // Update the bounds recursively by comparing the current xMin/xMax and yMin/yMax with the current coordinate
-  //         bounds.xMin = bounds.xMin < longitude ? bounds.xMin : longitude;
-  //         bounds.xMax = bounds.xMax > longitude ? bounds.xMax : longitude;
-  //         bounds.yMin = bounds.yMin < latitude ? bounds.yMin : latitude;
-  //         bounds.yMax = bounds.yMax > latitude ? bounds.yMax : latitude;
-  //       }
-  //     }
-  //   }
+  getBoundingBoxFromCoordinatesArray(item: Feature): LngLatBounds {
+    const bounds = { xMin: 180, xMax: -180, yMin: 180, yMax: -180 };
+    let latitude, longitude;
+    if (item.geometry.type === "Polygon") {
+      for (const c of item.geometry.coordinates[0]) {
+        latitude = c[1];
+        longitude = c[0];
 
-  //   // Returns an object that contains the bounds of this GeoJSON data.
-  //   // The keys describe a box formed by the northwest (xMin, yMin) and southeast (xMax, yMax) coordinates.
-  //   return [
-  //     [bounds.xMin, bounds.yMin],
-  //     [bounds.xMax, bounds.yMax],
-  //   ];
-  // }
+        bounds.xMin = bounds.xMin < longitude ? bounds.xMin : longitude;
+        bounds.xMax = bounds.xMax > longitude ? bounds.xMax : longitude;
+        bounds.yMin = bounds.yMin < latitude ? bounds.yMin : latitude;
+        bounds.yMax = bounds.yMax > latitude ? bounds.yMax : latitude;
+      }
+    } else if (item.geometry.type === "MultiPolygon") {
+      for (const coord of item.geometry.coordinates) {
+        for (const c of coord) {
+          latitude = (c[1] as unknown) as number;
+          longitude = (c[0] as unknown) as number;
+
+          bounds.xMin = bounds.xMin < longitude ? bounds.xMin : longitude;
+          bounds.xMax = bounds.xMax > longitude ? bounds.xMax : longitude;
+          bounds.yMin = bounds.yMin < latitude ? bounds.yMin : latitude;
+          bounds.yMax = bounds.yMax > latitude ? bounds.yMax : latitude;
+        }
+      }
+    }
+
+    return new LngLatBounds(
+      [bounds.xMin, bounds.yMin] as LngLatLike,
+      [bounds.xMax, bounds.yMax] as LngLatLike
+    );
+  }
 }
