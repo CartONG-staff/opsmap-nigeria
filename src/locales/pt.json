@@ -27,7 +27,8 @@
   "site": {
     "exportAsCSV": "Exportar (CSV)",
     "infosCoordinates": "coordenadas GPS",
-    "hideUnanswered": "Ocultar entradas não respondidas"
+    "hideUnanswered": "Ocultar entradas não respondidas",
+    "subtitlePlaceholder": "Nenhum local selecionado"
   },
   "charts": {
     "agePyramidTitle": "Pirâmide de Idade",

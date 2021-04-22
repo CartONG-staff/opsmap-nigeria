@@ -19,7 +19,7 @@
             <TKHomeCombos class="tk-home-combos" :dataset="dataset" />
           </div>
           <div v-if="!isHomePage" class="tk-camp-left">
-            <TKCampSubtitle class="tk-camp-title" :camp="dataset" />
+            <TKCampSubtitle class="tk-camp-title" :dataset="dataset" />
             <TKCampToolbar
               class="tk-camp-toolbar"
               :submissionsDates="

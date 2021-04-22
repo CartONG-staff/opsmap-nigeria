@@ -1,6 +1,11 @@
 <template>
   <div class="tk-camp-subtitle">
-    {{ name }}
+    <div v-show="name !== ''" class="tk-camp-subtitle">
+      {{ name }}
+    </div>
+    <div v-show="name === ''" class="tk-camp-subtitle-placeholder">
+      {{ $t("site.subtitlePlaceholder") }}
+    </div>
   </div>
 </template>
 
@@ -14,7 +19,7 @@ export default class TKCampSubtitle extends Vue {
   readonly dataset!: TKDatasetFilterer;
 
   name = "";
-  @Watch("dataset", { deep: true })
+  @Watch("dataset", { immediate: true, deep: true })
   onChange() {
     this.name = this.dataset.currentCamp ? this.dataset.currentCamp.name : "";
   }
@@ -27,4 +32,11 @@ export default class TKCampSubtitle extends Vue {
   font-size: 30px;
   line-height: 1.467;
 }
+
+.tk-camp-subtitle-placeholder {
+  color: var(--v-campTitle-base);
+  font-size: 30px;
+  line-height: 1.467;
+}
+
 </style>
