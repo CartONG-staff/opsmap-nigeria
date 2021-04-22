@@ -33,6 +33,23 @@ export default class TKCampIndicators extends Vue {
       this.indicator1 = this.submission.indicators[0];
       this.indicator2 = this.submission.indicators[1];
       this.indicator3 = this.submission.indicators[2];
+    } else {
+      /* eslint-disable @typescript-eslint/camelcase */
+      this.indicator1 = {
+        nameLabel: this.indicator1.nameLabel,
+        valueLabel: { name: "", label_en: "-" },
+        iconOchaName: this.indicator1.iconOchaName
+      };
+      this.indicator2 = {
+        nameLabel: this.indicator2.nameLabel,
+        valueLabel: { name: "", label_en: "-" },
+        iconOchaName: this.indicator2.iconOchaName
+      };
+      this.indicator3 = {
+        nameLabel: this.indicator3.nameLabel,
+        valueLabel: { name: "", label_en: "-" },
+        iconOchaName: this.indicator3.iconOchaName
+      };
     }
   }
 }
