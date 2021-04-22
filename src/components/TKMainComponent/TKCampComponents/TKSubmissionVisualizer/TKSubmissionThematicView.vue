@@ -48,9 +48,7 @@ export default class TKSubmissionThematicView extends Vue {
   onSubmissionThematicchanged() {
     if (this.submissionThematic) {
       this.handleLocaleOnTitle();
-      this.iconurl = TKIconUrl(
-        this.submissionThematic.icon_file_name as string
-      );
+      this.iconurl = TKIconUrl(this.submissionThematic.iconFileName);
     } else {
       this.iconurl = "";
     }

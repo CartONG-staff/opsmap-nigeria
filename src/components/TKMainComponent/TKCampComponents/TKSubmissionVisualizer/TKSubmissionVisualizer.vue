@@ -75,13 +75,9 @@ export default class TKSubmissionVisualizer extends Vue {
         const thematicsDescr = this.thematics[i];
         this.columns[index].push({
           data: [],
-          nameLabel: {
-            name: thematicsDescr.thematic_label_en,
-            labelEn: thematicsDescr.thematic_label_en,
-            labelPt: thematicsDescr.thematic_label_pt
-          },
-          formatted_name: thematicsDescr.formatted_name,
-          icon_file_name: thematicsDescr.icon_file_name
+          nameLabel: thematicsDescr.thematicLabel,
+          formattedName: thematicsDescr.formattedName,
+          iconFileName: thematicsDescr.iconFileName
         });
 
         index++;
