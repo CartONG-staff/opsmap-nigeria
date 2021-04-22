@@ -57,6 +57,7 @@
           <TKSubmissionVisualizer
             :options="visualizerOptions"
             :submission="currentSubmission"
+            :dataset="dataset"
           />
         </div>
       </div>
@@ -115,6 +116,7 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
 export default class TKMainComponent extends Vue {
   @Prop()
   dataset!: TKDatasetFilterer;
+
   @Prop()
   geoData!: TKGeoDataset;
 
