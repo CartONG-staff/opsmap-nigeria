@@ -150,7 +150,6 @@ export default class TKMainComponent extends Vue {
       this.currentSubmission = this.currentSubmissions[keys[0]];
     } else {
       this.currentSubmission = null;
-      this.isHomePage = true;
       this.visualizerOptions.hideUnanswered =
         DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
     }
