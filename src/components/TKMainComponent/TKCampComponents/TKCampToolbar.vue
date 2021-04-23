@@ -32,7 +32,6 @@
       :offset-y="true"
       :close-on-content-click="false"
       class="tk-camp-toolbar-kebab"
-      :disabled="model == ''"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -43,6 +42,7 @@
           v-on="on"
           height="44"
           width="44"
+          :disabled="model == ''"
         >
           <v-icon dark>
             mdi-dots-vertical
@@ -129,5 +129,9 @@ export default class TKCampToolbar extends Vue {
 
 .tk-camp-toolbar-date .v-icon.v-icon {
   color: #fff !important;
+}
+
+.tk-camp-toolbar .v-input--is-disabled .v-input__slot {
+  background-color: rgba(0, 0, 0, 0.12) !important;
 }
 </style>
