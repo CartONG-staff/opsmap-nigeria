@@ -2,9 +2,11 @@
   <div class="tk-camp-infos">
     <!-- ADMIN1 -->
     <div class="tk-camp-infos-field">
-      <div class="tk-camp-infos-field-key">
-        {{ $t("infosAdmin1").toUpperCase() }}
-      </div>
+      <transition mode="out-in" name="fade-in">
+        <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
+          {{ $t("infosAdmin1").toUpperCase() }}
+        </div>
+      </transition>
       <transition mode="out-in" name="fade-in">
         <div :key="admin1" class="tk-camp-infos-field-value">
           {{ admin1.toUpperCase() }}
@@ -14,9 +16,11 @@
     <div class="tk-hseparator" />
     <!-- ADMIN2 -->
     <div class="tk-camp-infos-field">
-      <div class="tk-camp-infos-field-key">
-        {{ $t("infosAdmin2").toUpperCase() }}
-      </div>
+      <transition mode="out-in" name="fade-in">
+        <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
+          {{ $t("infosAdmin2").toUpperCase() }}
+        </div>
+      </transition>
       <transition mode="out-in" name="fade-in">
         <div :key="admin2" class="tk-camp-infos-field-value">
           {{ admin2.toUpperCase() }}
@@ -26,9 +30,12 @@
     <div class="tk-hseparator" />
     <!-- ADMIN3 -->
     <div class="tk-camp-infos-field">
-      <div class="tk-camp-infos-field-key">
-        {{ $t("infosAdmin3").toUpperCase() }}
-      </div>
+      <transition mode="out-in" name="fade-in">
+        <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
+          {{ $t("infosAdmin3").toUpperCase() }}
+        </div>
+      </transition>
+
       <transition mode="out-in" name="fade-in">
         <div :key="admin3" class="tk-camp-infos-field-value">
           {{ admin3.toUpperCase() }}
@@ -38,9 +45,11 @@
     <div class="tk-hseparator" />
     <!-- GPS COORDINATES -->
     <div class="tk-camp-infos-field">
-      <div class="tk-camp-infos-field-key">
-        {{ $t("site.infosCoordinates").toUpperCase() }}
-      </div>
+      <transition mode="out-in" name="fade-in">
+        <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
+          {{ $t("site.infosCoordinates").toUpperCase() }}
+        </div>
+      </transition>
       <transition mode="out-in" name="fade-in">
         <div :key="coordinates" class="tk-camp-infos-field-value">
           {{ coordinates.toUpperCase() }}

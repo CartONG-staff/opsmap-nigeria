@@ -1,15 +1,17 @@
 <template lang="html">
   <div class="tk-footer flex">
-    <div class="tk-footer-disclaimer">
-      <div class="tk-footer-disclaimer-title">
-        <p>{{ $t("footer.moreInfos").toUpperCase() }}</p>
+    <transition mode="out-in" name="fade-in">
+      <div :key="$root.$i18n.locale" class="tk-footer-disclaimer">
+        <div class="tk-footer-disclaimer-title">
+          <p>{{ $t("footer.moreInfos").toUpperCase() }}</p>
+        </div>
+        <div class="tk-footer-disclaimer-text">
+          <p>
+            {{ $t("footer.moreInfosText") }}
+          </p>
+        </div>
       </div>
-      <div class="tk-footer-disclaimer-text">
-        <p>
-          {{ $t("footer.moreInfosText") }}
-        </p>
-      </div>
-    </div>
+    </transition>
     <div class="tk-footer-logos">
       <TKFooterLogoItem
         :title="$t('footer.partnerLed')"

@@ -1,7 +1,9 @@
 <template lang="html">
   <div class="tk-submission-thematic-container">
     <div class="tk-submission-thematic-header">
-      <div class="tk-submission-thematic-title">{{ title }}</div>
+      <transition mode="out-in" name="fade-in">
+        <div :key="title" class="tk-submission-thematic-title">{{ title }}</div>
+      </transition>
       <img class="tk-submission-icon" :src="iconurl" />
     </div>
     <div class="tk-submission-thematic-content">

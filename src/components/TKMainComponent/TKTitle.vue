@@ -1,8 +1,10 @@
 <template>
   <div class="tk-title">
-    <span class="tk-title-base">
-      {{ $t("main.title") }}
-    </span>
+    <transition mode="out-in" name="fade-in">
+      <span :key="$root.$i18n.locale" class="tk-title-base">
+        {{ $t("main.title") }}
+      </span>
+    </transition>
     <br />
     <span class="tk-title-country">
       {{

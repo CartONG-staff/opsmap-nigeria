@@ -3,8 +3,17 @@
     <div class="tk-map-filters-item" id="myDiv">
       <div class="tk-map-filter">
         <img class="tk-indicator-icon" :src="plannedImgUrl" />
-        <div class="tk-map-filter-text">{{ $t("map.legendPlanned") }}</div>
-        <div class="tk-map-filter-value">{{ countCampPlanned }}</div>
+
+        <transition mode="out-in" name="fade-in">
+          <div :key="$root.$i18n.locale" class="tk-map-filter-text">
+            {{ $t("map.legendPlanned") }}
+          </div>
+        </transition>
+        <transition mode="out-in" name="fade-in">
+          <div :key="countCampPlanned" class="tk-map-filter-value">
+            {{ countCampPlanned }}
+          </div>
+        </transition>
         <v-checkbox
           v-model="checkboxs.planned"
           class="tk-map-filter-checkbox"
@@ -14,8 +23,16 @@
       </div>
       <div class="tk-map-filter">
         <img class="tk-indicator-icon" :src="spontaneousImgUrl" />
-        <div class="tk-map-filter-text">{{ $t("map.legendSpontaneous") }}</div>
-        <div class="tk-map-filter-value">{{ countCampSpontaneous }}</div>
+        <transition mode="out-in" name="fade-in">
+          <div :key="$root.$i18n.locale" class="tk-map-filter-text">
+            {{ $t("map.legendSpontaneous") }}
+          </div>
+        </transition>
+        <transition mode="out-in" name="fade-in">
+          <div :key="countCampSpontaneous" class="tk-map-filter-value">
+            {{ countCampSpontaneous }}
+          </div>
+        </transition>
         <v-checkbox
           v-model="checkboxs.spontaneous"
           @change="checkboxChange('spontaneous')"

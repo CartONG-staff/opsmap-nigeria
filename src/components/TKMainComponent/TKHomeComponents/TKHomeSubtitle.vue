@@ -1,5 +1,9 @@
 <template>
-  <div class="tk-home-subtitle">{{ $t("home.lastUpdate") }}: 14/02/2002</div>
+  <transition mode="out-in" name="fade-in">
+    <div :key="$root.$i18n.locale" class="tk-home-subtitle">
+      {{ $t("home.lastUpdate") }}: 14/02/2002
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">

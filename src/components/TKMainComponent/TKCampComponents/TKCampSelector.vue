@@ -1,28 +1,34 @@
 <template lang="html">
   <div class="tk-camp-selector">
-    <v-select
-      class="tk-autocomplete"
-      flat
-      dense
-      readonly
-      :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
-      v-model="dataset.currentSurvey"
-      :items="dataset.surveyList"
-      @change="surveySelected"
-      single-line
-    ></v-select>
-    <v-autocomplete
-      class="tk-autocomplete"
-      flat
-      dense
-      :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
-      v-model="dataset.currentAdmin1"
-      :items="dataset.filteredAdmin1List"
-      item-text="name"
-      item-value="pcode"
-      @change="admin1Selected"
-      clearable
-    ></v-autocomplete>
+    <transition mode="out-in" name="fade-in">
+      <v-select
+        class="tk-autocomplete"
+        flat
+        dense
+        readonly
+        :key="$root.$i18n.locale"
+        :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
+        v-model="dataset.currentSurvey"
+        :items="dataset.surveyList"
+        @change="surveySelected"
+        single-line
+      ></v-select>
+    </transition>
+    <transition mode="out-in" name="fade-in">
+      <v-autocomplete
+        class="tk-autocomplete"
+        flat
+        dense
+        :key="$root.$i18n.locale"
+        :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
+        v-model="dataset.currentAdmin1"
+        :items="dataset.filteredAdmin1List"
+        item-text="name"
+        item-value="pcode"
+        @change="admin1Selected"
+        clearable
+      ></v-autocomplete>
+    </transition>
     <v-autocomplete
       class="tk-autocomplete"
       flat

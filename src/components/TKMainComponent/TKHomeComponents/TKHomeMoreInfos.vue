@@ -1,11 +1,15 @@
 <template>
   <div class="tk-home-moreinfos">
-    <div class="tk-home-moreinfos-title">
-      {{ $t("home.moreInfosTitle").toUpperCase() }}
-    </div>
-    <div class="tk-home-moreinfos-content">
-      {{ content }}
-    </div>
+    <transition mode="out-in" name="fade-in">
+      <div :key="$root.$i18n.locale" class="tk-home-moreinfos-title">
+        {{ $t("home.moreInfosTitle").toUpperCase() }}
+      </div>
+    </transition>
+    <transition mode="out-in" name="fade-in">
+      <div :key="$root.$i18n.locale" class="tk-home-moreinfos-content">
+        {{ content }}
+      </div>
+    </transition>
   </div>
 </template>
 

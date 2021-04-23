@@ -14,16 +14,19 @@
       height="44"
       @change="dateSelected"
     ></v-select>
-    <v-btn
-      depressed
-      color="#000"
-      elevation="0"
-      class="tk-camp-toolbar-export"
-      height="44"
-      :disabled="model == ''"
-    >
-      {{ $t("site.exportAsCSV") }}
-    </v-btn>
+    <transition mode="out-in" name="fade-in">
+      <v-btn
+        :key="$root.$i18n.locale"
+        depressed
+        color="#000"
+        elevation="0"
+        class="tk-camp-toolbar-export"
+        height="44"
+        :disabled="model == ''"
+      >
+        {{ $t("site.exportAsCSV") }}
+      </v-btn>
+    </transition>
 
     <v-menu
       :offset-y="true"
@@ -103,10 +106,10 @@ export default class TKCampToolbar extends Vue {
 }
 
 .tk-camp-toolbar-date {
-  flex-grow: 2;
+  width: 40%;
 }
 .tk-camp-toolbar-export {
-  flex-grow: 1;
+  width: 40%;
 }
 .tk-camp-toolbar-export .v-btn__content {
   color: #fff !important;

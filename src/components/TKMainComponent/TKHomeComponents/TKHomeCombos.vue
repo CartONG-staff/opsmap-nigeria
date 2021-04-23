@@ -1,55 +1,70 @@
 <template>
   <div class="tk-home-combos">
-    <p class="tk-home-combos-title">
-      {{ $t("home.combosTitle").toUpperCase() }}
-    </p>
-    <v-select
-      class="tk-autocomplete"
-      flat
-      dense
-      readonly
-      :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
-      v-model="dataset.currentSurvey"
-      :items="dataset.surveyList"
-      @change="surveySelected"
-      single-line
-    ></v-select>
-    <v-autocomplete
-      class="tk-autocomplete"
-      flat
-      dense
-      :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
-      v-model="dataset.currentAdmin1"
-      :items="dataset.filteredAdmin1List"
-      item-text="name"
-      item-value="pcode"
-      @change="admin1Selected"
-      clearable
-    ></v-autocomplete>
-    <v-autocomplete
-      class="tk-autocomplete"
-      flat
-      dense
-      :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
-      v-model="dataset.currentAdmin2"
-      :items="dataset.filteredAdmin2List"
-      item-text="name"
-      item-value="pcode"
-      @change="admin2Selected"
-      clearable
-    ></v-autocomplete>
-    <v-autocomplete
-      class="tk-autocomplete"
-      flat
-      dense
-      clearable
-      :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
-      :v-model="dataset.currentCamp"
-      :items="dataset.filteredCampsList"
-      item-text="name"
-      item-value="id"
-      @change="campSelected"
-    ></v-autocomplete>
+    <transition mode="out-in" name="fade-in">
+      <p :key="$root.$i18n.locale" class="tk-home-combos-title">
+        {{ $t("home.combosTitle").toUpperCase() }}
+      </p>
+    </transition>
+
+    <transition mode="out-in" name="fade-in">
+      <v-select
+        class="tk-autocomplete"
+        flat
+        dense
+        readonly
+        :key="$root.$i18n.locale"
+        :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
+        v-model="dataset.currentSurvey"
+        :items="dataset.surveyList"
+        @change="surveySelected"
+        single-line
+      ></v-select>
+    </transition>
+    <transition mode="out-in" name="fade-in">
+      <v-autocomplete
+        class="tk-autocomplete"
+        flat
+        dense
+        :key="$root.$i18n.locale"
+        :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
+        v-model="dataset.currentAdmin1"
+        :items="dataset.filteredAdmin1List"
+        item-text="name"
+        item-value="pcode"
+        @change="admin1Selected"
+        clearable
+      ></v-autocomplete>
+    </transition>
+    <transition mode="out-in" name="fade-in">
+      <v-autocomplete
+        class="tk-autocomplete"
+        flat
+        dense
+        :key="$root.$i18n.locale"
+        :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
+        v-model="dataset.currentAdmin2"
+        :items="dataset.filteredAdmin2List"
+        item-text="name"
+        item-value="pcode"
+        @change="admin2Selected"
+        clearable
+      ></v-autocomplete>
+    </transition>
+    <transition mode="out-in" name="fade-in">
+      <v-autocomplete
+        class="tk-autocomplete"
+        flat
+        dense
+        :key="$root.$i18n.locale"
+        clearable
+        :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
+        :v-model="dataset.currentCamp"
+        :items="dataset.filteredCampsList"
+        item-text="name"
+        item-value="id"
+        @change="campSelected"
+      ></v-autocomplete>
+    </transition>
   </div>
 </template>
 

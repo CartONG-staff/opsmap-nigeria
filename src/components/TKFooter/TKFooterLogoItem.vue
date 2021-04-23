@@ -1,6 +1,10 @@
 <template lang="html">
   <div class="tk-footer-logos-item-container">
-    <div class="tk-footer-logos-item-title">{{ title }}</div>
+    <transition mode="out-in" name="fade-in">
+      <div :key="$root.$i18n.locale" class="tk-footer-logos-item-title">
+        {{ title }}
+      </div>
+    </transition>
     <div class="tk-footer-logos-item-logos">
       <div v-for="item in logos" :key="item.name">
         <a :href="item.urlRedirection" target="_blank">
