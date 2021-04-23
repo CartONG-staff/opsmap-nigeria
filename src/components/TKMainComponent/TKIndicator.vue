@@ -99,7 +99,6 @@ export default class TKIndicatorComponent extends Vue {
 
 <style scoped>
 .tk-indicator {
-  position: relative;
   box-shadow: 0 0 20px 2px rgba(18, 63, 98, 0.15);
   background-color: white;
   border-color: transparent;
