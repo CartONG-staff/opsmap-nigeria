@@ -1,38 +1,35 @@
 <template lang="html">
   <div class="tk-camp-selector">
-    <transition mode="out-in" name="fade-in">
-      <v-select
-        class="tk-autocomplete"
-        flat
-        dense
-        readonly
-        :key="$root.$i18n.locale"
-        :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
-        v-model="dataset.currentSurvey"
-        :items="dataset.surveyList"
-        @change="surveySelected"
-        single-line
-      ></v-select>
-    </transition>
-    <transition mode="out-in" name="fade-in">
-      <v-autocomplete
-        class="tk-autocomplete"
-        flat
-        dense
-        :key="$root.$i18n.locale"
-        :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
-        v-model="dataset.currentAdmin1"
-        :items="dataset.filteredAdmin1List"
-        item-text="name"
-        item-value="pcode"
-        @change="admin1Selected"
-        clearable
-      ></v-autocomplete>
-    </transition>
+    <v-select
+      class="tk-autocomplete"
+      flat
+      dense
+      readonly
+      :key="dataset.currentSurvey"
+      :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
+      v-model="dataset.currentSurvey"
+      :items="dataset.surveyList"
+      @change="surveySelected"
+      single-line
+    ></v-select>
     <v-autocomplete
       class="tk-autocomplete"
       flat
       dense
+      :key="dataset.currentAdmin1"
+      :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
+      v-model="dataset.currentAdmin1"
+      :items="dataset.filteredAdmin1List"
+      item-text="name"
+      item-value="pcode"
+      @change="admin1Selected"
+      clearable
+    ></v-autocomplete>
+    <v-autocomplete
+      class="tk-autocomplete"
+      flat
+      dense
+      :key="dataset.currentAdmin2"
       :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
       v-model="dataset.currentAdmin2"
       :items="dataset.filteredAdmin2List"
@@ -46,6 +43,7 @@
       flat
       dense
       clearable
+      :key="dataset.currentCamp"
       :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
       v-model="dataset.currentCamp"
       :items="dataset.filteredCampsList"
