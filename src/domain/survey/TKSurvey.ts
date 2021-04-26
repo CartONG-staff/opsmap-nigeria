@@ -44,7 +44,9 @@ function computeSurveyIndicator(
     };
   }
 
+
   const splitted = descr.entryCode.split("_");
+  let foundAtLeastOnce = false;
   if (splitted) {
     const thematic = "group_" + splitted[0];
     let sum = 0;
@@ -61,11 +63,20 @@ function computeSurveyIndicator(
             item.answerLabel &&
             isNumber(item.answerLabel.labelEn)
           ) {
+            foundAtLeastOnce = true;
             sum += Number(item.answerLabel.labelEn);
           }
         }
       }
     }
+    if(!foundAtLeastOnce){
+      return {
+        iconOchaName: descr.iconOchaName,
+        nameLabel: descr.name,
+        valueLabel: { name: "-", labelEn: "-" }
+      }
+    }
+
     if (!descr.computationType) {
       return {
         iconOchaName: descr.iconOchaName,
@@ -93,7 +104,7 @@ function computeSurveyIndicator(
   return {
     iconOchaName: descr.iconOchaName,
     nameLabel: descr.name,
-    valueLabel: { name: "NotFound", labelEn: "NotFound" }
+    valueLabel: { name: "-", labelEn: "-" }
   };
 }
 
