@@ -16,7 +16,7 @@
         v-model="dataset.currentSurvey"
         :items="dataset.surveyList"
         @change="surveySelected"
-        single-line
+        clearable
       ></v-select>
     </transition>
     <transition mode="out-in" name="fade-in">
@@ -27,7 +27,7 @@
         :key="$root.$i18n.locale"
         :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
         v-model="dataset.currentAdmin1"
-        :items="dataset.filteredAdmin1List"
+        :items="dataset.admin1List"
         item-text="name"
         item-value="pcode"
         @change="admin1Selected"
@@ -42,7 +42,7 @@
         :key="$root.$i18n.locale"
         :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
         v-model="dataset.currentAdmin2"
-        :items="dataset.filteredAdmin2List"
+        :items="dataset.admin2List"
         item-text="name"
         item-value="pcode"
         @change="admin2Selected"

@@ -16,7 +16,7 @@
       dense
       :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
       v-model="dataset.currentAdmin1"
-      :items="dataset.filteredAdmin1List"
+      :items="dataset.admin1List"
       item-text="name"
       item-value="pcode"
       @change="admin1Selected"
@@ -28,7 +28,7 @@
       dense
       :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
       v-model="dataset.currentAdmin2"
-      :items="dataset.filteredAdmin2List"
+      :items="dataset.admin2List"
       item-text="name"
       item-value="pcode"
       @change="admin2Selected"
