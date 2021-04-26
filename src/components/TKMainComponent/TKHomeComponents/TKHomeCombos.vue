@@ -11,7 +11,6 @@
         class="tk-autocomplete"
         flat
         dense
-        readonly
         :key="$root.$i18n.locale"
         :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
         v-model="dataset.currentSurvey"
