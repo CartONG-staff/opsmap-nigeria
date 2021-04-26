@@ -2,6 +2,7 @@ import { TKCampDescription } from "@/domain/survey/TKCampDescription";
 import { TKCampTypesValues } from "@/domain/survey/TKCampTypesValues";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSurveyCollection } from "./TKSurveyCollection";
+import { VTabItem } from "vuetify/lib";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Filtesr Concept description. Requires Comments !
@@ -29,8 +30,8 @@ export class TKDatasetFilterer {
   currentAdmin2: TKBoundarieDescription | null = null;
   campsList: TKCampDescription[] = [];
   currentCamp: TKCampDescription | null = null;
-  // filteredAdmin1List: TKBoundarieDescription[] = [];
-  // filteredAdmin2List: TKBoundarieDescription[] = [];
+  filteredAdmin1List: TKBoundarieDescription[] = [];
+  filteredAdmin2List: TKBoundarieDescription[] = [];
   filteredCampsList: TKCampDescription[] = [];
   filters: { [key: string]: TKFiltersTypes } = {
     survey: null,
@@ -62,13 +63,13 @@ export class TKDatasetFilterer {
       this.currentSurvey = survey;
       this.filters.survey = this.currentSurvey;
       this.admin1List = this.surveys[this.currentSurvey].boundariesList.admin1;
-      // this.filteredAdmin1List = this.surveys[
-      //   this.currentSurvey
-      // ].boundariesList.admin1;
+      this.filteredAdmin1List = this.surveys[
+        this.currentSurvey
+      ].boundariesList.admin1;
       this.admin2List = this.surveys[this.currentSurvey].boundariesList.admin2;
-      // this.filteredAdmin2List = this.surveys[
-      //   this.currentSurvey
-      // ].boundariesList.admin2;
+      this.filteredAdmin2List = this.surveys[
+        this.currentSurvey
+      ].boundariesList.admin2;
       this.campsList = this.surveys[this.currentSurvey].campsList;
       this.filteredCampsList = this.surveys[this.currentSurvey].campsList;
       this.currentAdmin1 = null;
@@ -79,9 +80,9 @@ export class TKDatasetFilterer {
       this.currentSurvey = "";
       this.filters.survey = this.currentSurvey;
       this.admin1List = [];
-      // this.filteredAdmin1List = [];
+      this.filteredAdmin1List = [];
       this.admin2List = [];
-      // this.filteredAdmin2List = [];
+      this.filteredAdmin2List = [];
       this.campsList = [];
       this.filteredCampsList = [];
       this.currentAdmin1 = null;
@@ -207,11 +208,26 @@ export class TKDatasetFilterer {
       );
     }
 
+
+    this.filteredAdmin1List = this.admin1List;
+    this.filteredAdmin2List = this.admin2List;
+
     // Remove planned if needed ///////////////////////////////////////////////
     if (!this.filters.planned) {
       this.filteredCampsList = this.filteredCampsList.filter(
         (x) => x.type !== TKCampTypesValues.PLANNED
       );
+      const validAdmin1 = new Set(this.filteredCampsList.map(item => item.admin1.pcode))
+      this.filteredAdmin1List = this.filteredAdmin1List.filter(item => validAdmin1.has(item.pcode));
+      const validAdmin2 = new Set(this.filteredCampsList.map(item => item.admin2.pcode))
+      this.filteredAdmin2List = this.filteredAdmin2List.filter(item => validAdmin2.has(item.pcode));
+
+      if(this.currentAdmin1 && !validAdmin1.has(this.currentAdmin1.pcode)){
+        this.currentAdmin1 = null;
+      }
+      if(this.currentAdmin2 && !validAdmin2.has(this.currentAdmin2.pcode)){
+        this.currentAdmin2 = null;
+      }
     }
 
     // Remove spontaneous if needed ///////////////////////////////////////////
@@ -219,6 +235,16 @@ export class TKDatasetFilterer {
       this.filteredCampsList = this.filteredCampsList.filter(
         (x) => x.type !== TKCampTypesValues.SPONTANEOUS
       );
+      const validAdmin1 = new Set(this.filteredCampsList.map(item => item.admin1.pcode))
+      this.filteredAdmin1List = this.filteredAdmin1List.filter(item => validAdmin1.has(item.pcode));
+      const validAdmin2 = new Set(this.filteredCampsList.map(item => item.admin2.pcode))
+      this.filteredAdmin2List = this.filteredAdmin2List.filter(item => validAdmin2.has(item.pcode));
+      if(this.currentAdmin1 && !validAdmin1.has(this.currentAdmin1.pcode)){
+        this.currentAdmin1 = null;
+      }
+      if(this.currentAdmin2 && !validAdmin2.has(this.currentAdmin2.pcode)){
+        this.currentAdmin2 = null;
+      }
     }
   }
 }

@@ -25,7 +25,7 @@
         dense
         :key="$root.$i18n.locale"
         :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
-        :items="dataset.admin1List"
+        :items="dataset.filteredAdmin1List"
         item-text="name"
         item-value="pcode"
         v-model="currentAdmin1"
@@ -41,7 +41,7 @@
         :key="$root.$i18n.locale"
         :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
         v-model="currentAdmin2"
-        :items="dataset.admin2List"
+        :items="dataset.filteredAdmin2List"
         item-text="name"
         item-value="pcode"
         @change="admin2Selected"
