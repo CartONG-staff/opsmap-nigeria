@@ -133,7 +133,7 @@ export class TKDatasetFilterer {
           ) as TKBoundarieDescription;
 
           const campAdmin2 = this.campsList.find(
-            (a) => a.admin2 === this.currentAdmin2
+            (a) => a.admin2.pcode === this.currentAdmin2?.pcode
           );
           if (campAdmin2) {
             this.currentAdmin1 = campAdmin2.admin1;
@@ -157,13 +157,6 @@ export class TKDatasetFilterer {
           ) as TKCampDescription;
           this.currentAdmin1 = this.currentCamp.admin1;
           this.currentAdmin2 = this.currentCamp.admin2;
-
-          // TODO: filteredadmin1 et filteredadmin2 never used
-          // What's the use ?
-          //
-          // this.filters.admin1 = this.currentCamp.admin1.pcode;
-          // this.filters.admin2 = this.currentCamp.admin2.pcode;
-          //
         }
         // Clear camp
         else {
