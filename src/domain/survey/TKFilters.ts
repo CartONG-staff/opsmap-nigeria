@@ -111,7 +111,7 @@ export class TKDatasetFilterer {
         if (value) {
           this.levelToZoom = TKFilters.ADMIN1;
           this.currentAdmin1 = this.admin1List.find(
-            (a) => a.pcode === value
+            a => a.pcode === value
           ) as TKBoundarieDescription;
         }
         // Clear admin1
@@ -130,11 +130,11 @@ export class TKDatasetFilterer {
         if (value) {
           this.levelToZoom = TKFilters.ADMIN2;
           this.currentAdmin2 = this.admin2List.find(
-            (a) => a.pcode === value
+            a => a.pcode === value
           ) as TKBoundarieDescription;
 
           const campAdmin2 = this.campsList.find(
-            (a) => a.admin2.pcode === this.currentAdmin2?.pcode
+            a => a.admin2.pcode === this.currentAdmin2?.pcode
           );
           if (campAdmin2) {
             this.currentAdmin1 = campAdmin2.admin1;
@@ -154,7 +154,7 @@ export class TKDatasetFilterer {
         if (value) {
           this.levelToZoom = TKFilters.CAMP;
           this.currentCamp = this.campsList.find(
-            (c) => c.id === value
+            c => c.id === value
           ) as TKCampDescription;
           this.currentAdmin1 = this.currentCamp.admin1;
           this.currentAdmin2 = this.currentCamp.admin2;
@@ -197,17 +197,16 @@ export class TKDatasetFilterer {
     if (this.filters.admin1) {
       this.admin2List = this.surveys[this.currentSurvey].boundariesList.admin2;
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.admin1.pcode === this.filters.admin1
+        x => x.admin1.pcode === this.filters.admin1
       );
     }
 
     // Admin2 filtering ///////////////////////////////////////////////////////
     if (this.filters.admin2) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.admin2.pcode === this.filters.admin2
+        x => x.admin2.pcode === this.filters.admin2
       );
     }
-
 
     this.filteredAdmin1List = this.admin1List;
     this.filteredAdmin2List = this.admin2List;
@@ -215,17 +214,25 @@ export class TKDatasetFilterer {
     // Remove planned if needed ///////////////////////////////////////////////
     if (!this.filters.planned) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.type !== TKCampTypesValues.PLANNED
+        x => x.type !== TKCampTypesValues.PLANNED
       );
-      const validAdmin1 = new Set(this.filteredCampsList.map(item => item.admin1.pcode))
-      this.filteredAdmin1List = this.filteredAdmin1List.filter(item => validAdmin1.has(item.pcode));
-      const validAdmin2 = new Set(this.filteredCampsList.map(item => item.admin2.pcode))
-      this.filteredAdmin2List = this.filteredAdmin2List.filter(item => validAdmin2.has(item.pcode));
+      const validAdmin1 = new Set(
+        this.filteredCampsList.map(item => item.admin1.pcode)
+      );
+      this.filteredAdmin1List = this.filteredAdmin1List.filter(item =>
+        validAdmin1.has(item.pcode)
+      );
+      const validAdmin2 = new Set(
+        this.filteredCampsList.map(item => item.admin2.pcode)
+      );
+      this.filteredAdmin2List = this.filteredAdmin2List.filter(item =>
+        validAdmin2.has(item.pcode)
+      );
 
-      if(this.currentAdmin1 && !validAdmin1.has(this.currentAdmin1.pcode)){
+      if (this.currentAdmin1 && !validAdmin1.has(this.currentAdmin1.pcode)) {
         this.currentAdmin1 = null;
       }
-      if(this.currentAdmin2 && !validAdmin2.has(this.currentAdmin2.pcode)){
+      if (this.currentAdmin2 && !validAdmin2.has(this.currentAdmin2.pcode)) {
         this.currentAdmin2 = null;
       }
     }
@@ -233,16 +240,24 @@ export class TKDatasetFilterer {
     // Remove spontaneous if needed ///////////////////////////////////////////
     if (!this.filters.spontaneous) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        (x) => x.type !== TKCampTypesValues.SPONTANEOUS
+        x => x.type !== TKCampTypesValues.SPONTANEOUS
       );
-      const validAdmin1 = new Set(this.filteredCampsList.map(item => item.admin1.pcode))
-      this.filteredAdmin1List = this.filteredAdmin1List.filter(item => validAdmin1.has(item.pcode));
-      const validAdmin2 = new Set(this.filteredCampsList.map(item => item.admin2.pcode))
-      this.filteredAdmin2List = this.filteredAdmin2List.filter(item => validAdmin2.has(item.pcode));
-      if(this.currentAdmin1 && !validAdmin1.has(this.currentAdmin1.pcode)){
+      const validAdmin1 = new Set(
+        this.filteredCampsList.map(item => item.admin1.pcode)
+      );
+      this.filteredAdmin1List = this.filteredAdmin1List.filter(item =>
+        validAdmin1.has(item.pcode)
+      );
+      const validAdmin2 = new Set(
+        this.filteredCampsList.map(item => item.admin2.pcode)
+      );
+      this.filteredAdmin2List = this.filteredAdmin2List.filter(item =>
+        validAdmin2.has(item.pcode)
+      );
+      if (this.currentAdmin1 && !validAdmin1.has(this.currentAdmin1.pcode)) {
         this.currentAdmin1 = null;
       }
-      if(this.currentAdmin2 && !validAdmin2.has(this.currentAdmin2.pcode)){
+      if (this.currentAdmin2 && !validAdmin2.has(this.currentAdmin2.pcode)) {
         this.currentAdmin2 = null;
       }
     }

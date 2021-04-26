@@ -80,7 +80,7 @@ function computeCSVContent(submission: TKSubmission, locale: string): string {
     }
 
     return (
-      "data:text/csv;charset=utf-8," + rows.map((e) => e.join(";")).join("\n")
+      "data:text/csv;charset=utf-8," + rows.map(e => e.join(";")).join("\n")
     );
   }
 

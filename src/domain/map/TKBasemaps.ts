@@ -18,14 +18,14 @@ export const TKBasemapsLayer: TKBaseMapsCollection = {
       name: "Opsmap Basemap",
       img:
         "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/basemap_opsmap.png",
-      style: "mapbox://styles/opsmapper/ckmnq4jfb12r217o7yon9r383",
+      style: "mapbox://styles/opsmapper/ckmnq4jfb12r217o7yon9r383"
     },
     {
       id: 2,
       name: "Satellite Imagery",
       img:
         "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/basemap_satellite.png",
-      style: "mapbox://styles/mapbox/satellite-v9",
+      style: "mapbox://styles/mapbox/satellite-v9"
     },
     {
       id: 3,
@@ -40,8 +40,8 @@ export const TKBasemapsLayer: TKBaseMapsCollection = {
             tiles: ["https://tile-c.openstreetmap.fr/hot/{z}/{x}/{y}.png"],
             tileSize: 256,
             attribution:
-              "Humanitarian OpenStreetMap, © © OpenStreetMap contributors, CC-BY-SA, Tiles courtesy of Humanitarian OpenStreetMap Team",
-          },
+              "Humanitarian OpenStreetMap, © © OpenStreetMap contributors, CC-BY-SA, Tiles courtesy of Humanitarian OpenStreetMap Team"
+          }
         },
         layers: [
           {
@@ -49,11 +49,11 @@ export const TKBasemapsLayer: TKBaseMapsCollection = {
             type: "raster",
             source: "osm-raster-tiles",
             minzoom: 0,
-            maxzoom: 22,
-          },
+            maxzoom: 22
+          }
         ],
-        glyphs: "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
-      },
-    },
-  ],
+        glyphs: "mapbox://fonts/mapbox/{fontstack}/{range}.pbf"
+      }
+    }
+  ]
 };

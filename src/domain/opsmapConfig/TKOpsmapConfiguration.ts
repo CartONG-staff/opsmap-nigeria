@@ -38,11 +38,12 @@ export async function TKReadGeneralConfiguration(
   configFileName: string,
   configFileFolder: string
 ): Promise<TKOpsmapConfiguration> {
-  const labels: TKOpsmapConfigurationLabelCSV[] = await TKCSVRead(
-    configFileName,
-    configFileFolder,
-    true
-  );
+  const labels: TKOpsmapConfigurationLabelCSV[] = await TKCSVRead<
+    TKOpsmapConfigurationLabelCSV[]
+  >(configFileName, configFileFolder, true);
+
+  console.log(labels);
+
   const dict: { [key: string]: string } = labels.reduce(
     (dictionnary, item) => ({ ...dictionnary, [item.config_type]: item.info }),
     {}
@@ -137,31 +138,31 @@ export async function TKReadGeneralConfiguration(
     footerLogos: {
       Fieldwork: [
         {
-          name: dict["fieldwork_name_1"] ?? "",
-          urlLogo: dict["fieldwork_logo_1"] ?? "",
-          urlRedirection: dict["fieldwork_link_1"] ?? ""
+          name: dict["fieldwork_name_1"] ?? "1",
+          urlLogo: dict["fieldwork_logo_1"] ?? "1",
+          urlRedirection: dict["fieldwork_link_1"] ?? "1"
         },
         {
-          name: dict["fieldwork_name_2"] ?? "",
-          urlLogo: dict["fieldwork_logo_2"] ?? "",
-          urlRedirection: dict["fieldwork_link_2"] ?? ""
+          name: dict["fieldwork_name_2"] ?? "2",
+          urlLogo: dict["fieldwork_logo_2"] ?? "2",
+          urlRedirection: dict["fieldwork_link_2"] ?? "2"
         },
         {
-          name: dict["fieldwork_name_3"] ?? "",
-          urlLogo: dict["fieldwork_logo_3"] ?? "",
-          urlRedirection: dict["fieldwork_link_3"] ?? ""
+          name: dict["fieldwork_name_3"] ?? "3",
+          urlLogo: dict["fieldwork_logo_3"] ?? "3",
+          urlRedirection: dict["fieldwork_link_3"] ?? "3"
         }
       ],
       clusterLed: [
         {
-          name: dict["led_name_1"] ?? "",
-          urlLogo: dict["led_logo_1"] ?? "",
-          urlRedirection: dict["led_link_1"] ?? ""
+          name: dict["led_name_1"] ?? "1",
+          urlLogo: dict["led_logo_1"] ?? "1",
+          urlRedirection: dict["led_link_1"] ?? "1"
         },
         {
-          name: dict["led_name_2"] ?? "",
-          urlLogo: dict["led_logo_2"] ?? "",
-          urlRedirection: dict["led_link_2"] ?? ""
+          name: dict["led_name_2"] ?? "2",
+          urlLogo: dict["led_logo_2"] ?? "2",
+          urlRedirection: dict["led_link_2"] ?? "2"
         }
       ],
       coordinationAndIMSupport: [
@@ -203,5 +204,9 @@ export async function TKReadGeneralConfiguration(
       zoomspeed: 2
     }
   };
+
+  console.log(config.indicatorsDescription);
+  console.log(config.surveyDescription);
+  console.log(config.footerLogos);
   return config;
 }

@@ -109,7 +109,7 @@ export default class TKHomeCombos extends Vue {
   }
 
   surveySelected(year: string) {
-    if (this.dataset.currentSurvey !== year ){
+    if (this.dataset.currentSurvey !== year) {
       this.dataset.setFiltersValue(TKFilters.SURVEY, year ? year : null);
     }
   }

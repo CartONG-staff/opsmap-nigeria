@@ -44,7 +44,6 @@ function computeSurveyIndicator(
     };
   }
 
-
   const splitted = descr.entryCode.split("_");
   let foundAtLeastOnce = false;
   if (splitted) {
@@ -69,12 +68,12 @@ function computeSurveyIndicator(
         }
       }
     }
-    if(!foundAtLeastOnce){
+    if (!foundAtLeastOnce) {
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
         valueLabel: { name: "-", labelEn: "-" }
-      }
+      };
     }
 
     if (!descr.computationType) {

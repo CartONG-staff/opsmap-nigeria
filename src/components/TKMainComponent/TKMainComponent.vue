@@ -161,7 +161,7 @@ export default class TKMainComponent extends Vue {
   }
 
   @Watch("dataset.currentSurvey")
-  onSurveyChange(){
+  onSurveyChange() {
     this.isHomePage = true;
   }
 
