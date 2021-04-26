@@ -5,7 +5,6 @@
       flat
       dense
       readonly
-      :key="dataset.currentSurvey"
       :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
       v-model="dataset.currentSurvey"
       :items="dataset.surveyList"
@@ -16,7 +15,6 @@
       class="tk-autocomplete"
       flat
       dense
-      :key="dataset.currentAdmin1"
       :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
       v-model="dataset.currentAdmin1"
       :items="dataset.filteredAdmin1List"
@@ -29,7 +27,6 @@
       class="tk-autocomplete"
       flat
       dense
-      :key="dataset.currentAdmin2"
       :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
       v-model="dataset.currentAdmin2"
       :items="dataset.filteredAdmin2List"
@@ -43,7 +40,6 @@
       flat
       dense
       clearable
-      :key="dataset.currentCamp"
       :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
       v-model="dataset.currentCamp"
       :items="dataset.filteredCampsList"
