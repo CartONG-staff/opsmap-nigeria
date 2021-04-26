@@ -28,6 +28,8 @@
                 :submissionsDates="
                   currentSubmissions ? Object.keys(currentSubmissions) : ['']
                 "
+                :currentSubmission="currentSubmission"
+                :dataset="dataset"
                 :options="visualizerOptions"
                 @date-selection-changed="dateSelected"
               />

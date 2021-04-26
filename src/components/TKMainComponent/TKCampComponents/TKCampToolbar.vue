@@ -22,6 +22,7 @@
         elevation="0"
         class="tk-camp-toolbar-export"
         height="44"
+        v-on:click="onExportTriggered"
         :disabled="model == ''"
       >
         {{ $t("site.exportAsCSV") }}
@@ -65,6 +66,9 @@
 </template>
 
 <script lang="ts">
+import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
+import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 @Component
@@ -74,6 +78,12 @@ export default class TKCampToolbar extends Vue {
 
   @Prop()
   readonly options!: TKSubmissionVisualizerOptions;
+
+  @Prop()
+  readonly currentSubmission!: TKSubmission;
+
+  @Prop()
+  readonly dataset!: TKDatasetFilterer;
 
   model =
     this.submissionsDates && this.submissionsDates.length
@@ -91,6 +101,17 @@ export default class TKCampToolbar extends Vue {
   dateSelected(date: string) {
     if (date) {
       this.$emit("date-selection-changed", date);
+    }
+  }
+
+  onExportTriggered() {
+    if (this.dataset && this.currentSubmission) {
+      TKCSVWrite(
+        this.dataset,
+        this.currentSubmission,
+        this.model,
+        this.$root.$i18n.locale
+      );
     }
   }
 }
