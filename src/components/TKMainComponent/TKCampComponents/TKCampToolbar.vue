@@ -107,9 +107,12 @@ export default class TKCampToolbar extends Vue {
 
 .tk-camp-toolbar-date {
   width: 40%;
+  min-width: 50px;
 }
 .tk-camp-toolbar-export {
   width: 40%;
+  min-width: 50px;
+  overflow: hidden;
 }
 .tk-camp-toolbar-export .v-btn__content {
   color: #fff !important;
