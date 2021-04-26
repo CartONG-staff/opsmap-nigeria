@@ -47,6 +47,12 @@ export default class App extends Vue {
       "general_config",
       "brazil"
     );
+
+    document.title =
+      "Opsmap " +
+      this.appRootConfig.name.charAt(0).toUpperCase() +
+      this.appRootConfig.name.slice(1).toLowerCase();
+
     const surveys = await TKCreateSurveyCollection(
       this.appRootConfig.surveyDescription,
       this.appRootConfig.spatialDescription,
