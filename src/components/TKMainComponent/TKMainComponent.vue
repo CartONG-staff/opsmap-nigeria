@@ -160,8 +160,13 @@ export default class TKMainComponent extends Vue {
     }
   }
 
-  @Watch("dataset", { deep: true })
-  onChange() {
+  @Watch("dataset.currentSurvey")
+  onSurveyChange(){
+    this.isHomePage = true;
+  }
+
+  @Watch("dataset.currentCamp")
+  onCampChange() {
     if (this.dataset.currentCamp) {
       this.isHomePage = false;
       this.visualizerOptions.hideUnanswered =
