@@ -34,7 +34,7 @@ export default class TKHomeIndicators extends Vue {
 
   @Watch("survey", { immediate: true })
   onSurveyChanged() {
-    if (this.dataset) {
+    if (this.dataset && this.dataset.hasActiveSurvey()) {
       this.survey = this.dataset.surveys[this.dataset.currentSurvey];
       this.indicator1 = this.survey.indicators[0];
       this.indicator2 = this.survey.indicators[1];
