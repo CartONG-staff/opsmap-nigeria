@@ -1,48 +1,49 @@
 <template lang="html">
   <div class="tk-map-filters">
-    <div class="tk-map-filters-item" id="myDiv">
-      <div class="tk-map-filter">
-        <img class="tk-indicator-icon" :src="plannedImgUrl" />
-
-        <transition mode="out-in" name="fade-in">
-          <div :key="$root.$i18n.locale" class="tk-map-filter-text">
-            {{ $t("map.legendPlanned") }}
-          </div>
-        </transition>
-        <transition mode="out-in" name="fade-in">
-          <div :key="countCampPlanned" class="tk-map-filter-value">
-            {{ countCampPlanned }}
-          </div>
-        </transition>
-        <v-checkbox
-          v-model="checkboxs.planned"
-          class="tk-map-filter-checkbox"
-          @change="checkboxChange('planned')"
-          hide-details
-        ></v-checkbox>
+    <transition name="hide-filters">
+      <div v-if="show" class="tk-map-filters-item">
+        <div class="tk-map-filter">
+          <img class="tk-indicator-icon" :src="plannedImgUrl" />
+          <transition mode="out-in" name="fade-in">
+            <div :key="$root.$i18n.locale" class="tk-map-filter-text">
+              {{ $t("map.legendPlanned") }}
+            </div>
+          </transition>
+          <transition mode="out-in" name="fade-in">
+            <div :key="countCampPlanned" class="tk-map-filter-value">
+              {{ countCampPlanned }}
+            </div>
+          </transition>
+          <v-checkbox
+            v-model="checkboxs.planned"
+            class="tk-map-filter-checkbox"
+            @change="checkboxChange('planned')"
+            hide-details
+          ></v-checkbox>
+        </div>
+        <div class="tk-map-filter">
+          <img class="tk-indicator-icon" :src="spontaneousImgUrl" />
+          <transition mode="out-in" name="fade-in">
+            <div :key="$root.$i18n.locale" class="tk-map-filter-text">
+              {{ $t("map.legendSpontaneous") }}
+            </div>
+          </transition>
+          <transition mode="out-in" name="fade-in">
+            <div :key="countCampSpontaneous" class="tk-map-filter-value">
+              {{ countCampSpontaneous }}
+            </div>
+          </transition>
+          <v-checkbox
+            v-model="checkboxs.spontaneous"
+            @change="checkboxChange('spontaneous')"
+            class="tk-map-filter-checkbox"
+            hide-details
+          ></v-checkbox>
+        </div>
       </div>
-      <div class="tk-map-filter">
-        <img class="tk-indicator-icon" :src="spontaneousImgUrl" />
-        <transition mode="out-in" name="fade-in">
-          <div :key="$root.$i18n.locale" class="tk-map-filter-text">
-            {{ $t("map.legendSpontaneous") }}
-          </div>
-        </transition>
-        <transition mode="out-in" name="fade-in">
-          <div :key="countCampSpontaneous" class="tk-map-filter-value">
-            {{ countCampSpontaneous }}
-          </div>
-        </transition>
-        <v-checkbox
-          v-model="checkboxs.spontaneous"
-          @change="checkboxChange('spontaneous')"
-          class="tk-map-filter-checkbox"
-          hide-details
-        ></v-checkbox>
-      </div>
-    </div>
+    </transition>
     <div class="tk-vseparator" />
-    <v-btn icon color="primary" @click="toggleChanged">
+    <v-btn icon color="primary" @click="show = !show">
       <v-icon>mdi-map-legend</v-icon>
     </v-btn>
   </div>
@@ -60,6 +61,7 @@ export default class TKMapFilter extends Vue {
   dataset!: TKDatasetFilterer;
   plannedImgUrl = TKIconUrl("planned_site");
   spontaneousImgUrl = TKIconUrl("spontaneous_site");
+  show = true;
   checkboxs = {
     planned: true,
     spontaneous: true
@@ -120,12 +122,18 @@ export default class TKMapFilter extends Vue {
   row-gap: 10px;
   flex-grow: 1;
   max-width: 300px;
-  transition: all 0.5s ease;
+  opacity: 1;
   overflow: hidden;
 }
 
-.transform-active {
+.hide-filters-enter-active,
+.hide-filters-leave-active {
+  transition: all 0.5s ease;
+}
+.hide-filters-enter,
+.hide-filters-leave-to {
   max-width: 0px;
+  opacity: 0;
 }
 
 .tk-map-filter {
