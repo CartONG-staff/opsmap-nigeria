@@ -24,6 +24,13 @@ export default class TKCampSubtitle extends Vue {
       ? this.dataset.currentCamp.name
       : this.$root.$i18n.t("site.subtitlePlaceholder").toString();
   }
+
+  @Watch("$root.$i18n.locale")
+  onLocaleChange(){
+    this.name = this.dataset.currentCamp
+      ? this.dataset.currentCamp.name
+      : this.$root.$i18n.t("site.subtitlePlaceholder").toString();
+  }
 }
 </script>
 
