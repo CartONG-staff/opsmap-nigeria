@@ -1,21 +1,57 @@
 <template lang="html">
   <div class="tk-map-zoom">
     <div class="tk-icon-container">
-      <v-btn icon small color="primary" @click="$emit('zoomin')">
-        <v-icon>mdi-plus</v-icon>
-      </v-btn>
+      <v-tooltip left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            small
+            color="primary"
+            @click="$emit('zoomin')"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </template>
+        <span>{{ $t("map.legendZoomIn") }}</span>
+      </v-tooltip>
     </div>
     <div class="tk-hseparator" />
     <div class="tk-icon-container">
-      <v-btn icon small color="primary" @click="$emit('zoomout')">
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
+      <v-tooltip left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            small
+            color="primary"
+            @click="$emit('zoomout')"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-minus</v-icon>
+          </v-btn>
+        </template>
+        <span>{{ $t("map.legendZoomOut") }}</span>
+      </v-tooltip>
     </div>
     <div class="tk-hseparator" />
     <div class="tk-icon-container">
-      <v-btn icon small color="primary" @click="$emit('zoomreset')">
-        <v-icon>mdi-stretch-to-page-outline</v-icon>
-      </v-btn>
+      <v-tooltip left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            small
+            color="primary"
+            @click="$emit('zoomreset')"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-stretch-to-page-outline</v-icon>
+          </v-btn>
+        </template>
+        <span>{{ $t("map.legendBbox") }}</span>
+      </v-tooltip>
     </div>
     <div class="tk-hseparator" />
   </div>
