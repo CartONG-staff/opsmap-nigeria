@@ -1,19 +1,38 @@
 <template>
   <div class="tk-camp-toolbar">
-    <v-select
-      background-color="#418fde"
-      color="#ffffff"
-      :items="submissionsDates"
-      v-model="model"
-      :disabled="model == ''"
-      flat
-      filled
-      solo
-      dense
-      class="tk-camp-toolbar-date"
-      height="44"
-      @change="dateSelected"
-    ></v-select>
+    <div class="tk-camp-toolbar-container">
+      <v-select
+        v-if="submissionsDates.length > 1 || model == ''"
+        class="tk-camp-toolbar-date"
+        background-color="#418fde"
+        color="#ffffff"
+        :disabled="model == ''"
+        flat
+        filled
+        solo
+        dense
+        height="44"
+        :items="submissionsDates"
+        v-model="model"
+        @change="dateSelected"
+      ></v-select>
+      <v-text-field
+        v-else
+        background-color="#418fde"
+        color="#ffffff"
+        :placeholder="model"
+        flat
+        filled
+        solo
+        dense
+        height="44"
+        disabled
+        readonly
+      >
+        {{ model }}
+      </v-text-field>
+    </div>
+
     <transition mode="out-in" name="fade-in">
       <v-btn
         :key="$root.$i18n.locale"
@@ -125,11 +144,19 @@ export default class TKCampToolbar extends Vue {
   align-items: top;
   column-gap: 5px;
 }
-
-.tk-camp-toolbar-date {
+.tk-camp-toolbar-date-container {
   width: 40%;
   min-width: 50px;
 }
+
+.tk-camp-toolbar-date-single {
+  color: #fff !important;
+  font-family: "Arial";
+  font-weight: bold !important;
+  font-size: 12px !important;
+  letter-spacing: 0.86px !important;
+}
+
 .tk-camp-toolbar-export {
   width: 40%;
   min-width: 50px;
@@ -154,8 +181,15 @@ export default class TKCampToolbar extends Vue {
 .tk-camp-toolbar-date .v-icon.v-icon {
   color: #fff !important;
 }
-
-.tk-camp-toolbar .v-input--is-disabled .v-input__slot {
+.tk-camp-toolbar-date.v-input--is-disabled .v-input__slot {
   background-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.tk-camp-toolbar input::placeholder {
+  color: #fff !important;
+  font-family: "Arial";
+  font-weight: bold !important;
+  font-size: 12px !important;
+  letter-spacing: 0.86px !important;
 }
 </style>
