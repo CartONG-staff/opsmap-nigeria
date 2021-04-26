@@ -8,7 +8,7 @@
     />
 
     <TKMapFilters class="tk-map-filters" :dataset="dataset" />
-    <!-- <TKMapBasemapPicker class="tk-basemap-picker" v-on:change="updateBasemap" /> -->
+    <TKMapBasemapPicker class="tk-basemap-picker" :basemaps="basemaps" />
   </div>
 </template>
 
@@ -19,7 +19,8 @@ import mapboxgl, {
   CircleLayer,
   FillLayer,
   LngLatLike,
-  SymbolLayer
+  Style,
+  SymbolLayer,
 } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
@@ -31,6 +32,7 @@ import { mask } from "@/secondary/map/mask";
 import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
+import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
 import { FeatureCollection, Point } from "geojson";
 import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
@@ -39,8 +41,8 @@ import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
   components: {
     TKMapBasemapPicker,
     TKMapFilters,
-    TKMapZoom
-  }
+    TKMapZoom,
+  },
 })
 export default class TKMap extends Vue {
   @Prop()
@@ -59,9 +61,10 @@ export default class TKMap extends Vue {
     "planned_site",
     "planned_site_selected",
     "spontaneous_site",
-    "spontaneous_site_selected"
+    "spontaneous_site_selected",
   ];
   markersLoadedCount = 0;
+  basemaps = TKBasemapsLayer;
 
   // Initialisation of component
   @Watch("dataset", { immediate: true })
@@ -99,6 +102,18 @@ export default class TKMap extends Vue {
     selectedCampSource?.setData(this.mapCamps.filteredCamps.selectedCamp);
   }
 
+  @Watch("basemaps", { deep: true })
+  updateBasemap(): void {
+    this.basemaps.basemapsList.map((x) => {
+      if (x.id === this.basemaps.selected) {
+        this.map.setStyle(x.style as Style);
+        this.map.on("style.load", () => {
+          this.addImages();
+        });
+      }
+    });
+  }
+
   mounted(): void {
     this.initMap();
   }
@@ -109,7 +124,7 @@ export default class TKMap extends Vue {
       this.markersLoadedCount === this.mapMarkersList.length &&
       this.mapCamps
     ) {
-      this.addCampsSources();
+      this.addSources();
     }
   }
 
@@ -128,77 +143,92 @@ export default class TKMap extends Vue {
     if (!this.map) {
       this.map = new mapboxgl.Map({
         container: "tk-map",
-        style: this.appConfig.mapConfig.style,
+        style: this.basemaps.basemapsList[0].style,
         accessToken: this.appConfig.mapConfig.token,
-        bounds: this.bound
+        bounds: this.bound,
       });
 
       this.map.on("load", () => {
-        this.mapMarkersList.map(img => {
-          this.map.loadImage(TKIconUrl(img), (error, image) => {
-            this.markersLoadedCount++;
-            this.map.addImage(img, image as ImageBitmap);
-            if (error) throw error;
-          });
-        });
-
-        // Add Geographical boundaries sources and layers
-        this.map.addSource(TKMapLayers.COUNTRYMASKSOURCE, {
-          type: "geojson",
-          data: mask
-        });
-        this.map.addLayer(
-          TKMapLayersStyle[TKMapLayers.COUNTRYMASKLAYER] as FillLayer
-        );
-        this.loadMapBoundaries();
-
-        if (
-          this.markersLoadedCount === this.mapMarkersList.length &&
-          this.mapCamps
-        ) {
-          this.addCampsSources();
-        }
+        this.addImages();
       });
-    }
-  }
-
-  loadMapBoundaries() {
-    if (this.mapBoundaries) {
-      this.map.addSource(TKMapLayers.ADMIN1SOURCE, {
-        type: "geojson",
-        data: this.mapBoundaries?.admin1 as FeatureCollection
-      });
-      this.map.addLayer(TKMapLayersStyle[TKMapLayers.ADMIN1LAYER] as FillLayer);
-      this.map.addSource(TKMapLayers.ADMIN2SOURCE, {
-        type: "geojson",
-        data: this.mapBoundaries?.admin2 as FeatureCollection
-      });
-      this.map.addLayer(TKMapLayersStyle[TKMapLayers.ADMIN2LAYER] as FillLayer);
     }
   }
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   // layers management
   // ////////////////////////////////////////////////////////////////////////////////////////////////
-
-  addCampsSources() {
-    if (this.mapCamps) {
-      this.map.addSource(TKMapLayers.NOTSELECTEDCAMPSSOURCE, {
-        type: "geojson",
-        data: this.mapCamps.filteredCamps.otherCamps,
-        cluster: true,
-        clusterMaxZoom: 14, // Max zoom to cluster points on
-        clusterRadius: 50
+  addImages() {
+    if (!this.map.hasImage(this.mapMarkersList[0])) {
+      this.markersLoadedCount = 0;
+    }
+    this.mapMarkersList.map((img) => {
+      this.map.loadImage(TKIconUrl(img), (error, image) => {
+        if (!this.map.hasImage(img)) {
+          this.markersLoadedCount++;
+          this.map.addImage(img, image as ImageBitmap);
+          if (error) throw error;
+        }
       });
-
-      this.map.addSource(TKMapLayers.SELECTEDCAMPSOURCE, {
+    });
+    if (
+      this.markersLoadedCount === this.mapMarkersList.length &&
+      this.mapCamps
+    ) {
+      this.addSources();
+    }
+  }
+  addSources() {
+    // Add Geographical boundaries sources
+    if (!this.map.getSource(TKMapLayers.COUNTRYMASKSOURCE)) {
+      this.map.addSource(TKMapLayers.COUNTRYMASKSOURCE, {
         type: "geojson",
-        data: this.mapCamps.filteredCamps.selectedCamp
+        data: mask,
       });
     }
-    this.addCampsLayer();
+
+    if (this.mapBoundaries) {
+      if (!this.map.getSource(TKMapLayers.ADMIN1SOURCE)) {
+        this.map.addSource(TKMapLayers.ADMIN1SOURCE, {
+          type: "geojson",
+          data: this.mapBoundaries?.admin1 as FeatureCollection,
+        });
+      }
+      if (!this.map.getSource(TKMapLayers.ADMIN2SOURCE)) {
+        this.map.addSource(TKMapLayers.ADMIN2SOURCE, {
+          type: "geojson",
+          data: this.mapBoundaries?.admin2 as FeatureCollection,
+        });
+      }
+    }
+    // Add Camps
+    if (this.mapCamps) {
+      if (!this.map.getSource(TKMapLayers.NOTSELECTEDCAMPSSOURCE)) {
+        this.map.addSource(TKMapLayers.NOTSELECTEDCAMPSSOURCE, {
+          type: "geojson",
+          data: this.mapCamps.filteredCamps.otherCamps,
+          cluster: true,
+          clusterMaxZoom: 14, // Max zoom to cluster points on
+          clusterRadius: 50,
+        });
+      }
+      if (!this.map.getSource(TKMapLayers.SELECTEDCAMPSOURCE)) {
+        this.map.addSource(TKMapLayers.SELECTEDCAMPSOURCE, {
+          type: "geojson",
+          data: this.mapCamps.filteredCamps.selectedCamp,
+        });
+      }
+    }
+    this.addLayers();
   }
-  addCampsLayer() {
+  addLayers() {
+    // ADD ADMIN BOUNDARIES
+    if (!this.map.getLayer(TKMapLayers.COUNTRYMASKLAYER)) {
+      this.map.addLayer(
+        TKMapLayersStyle[TKMapLayers.COUNTRYMASKLAYER] as FillLayer
+      );
+    }
+    this.map.addLayer(TKMapLayersStyle[TKMapLayers.ADMIN1LAYER] as FillLayer);
+    this.map.addLayer(TKMapLayersStyle[TKMapLayers.ADMIN2LAYER] as FillLayer);
     // ADD CLUSTERS
     this.map.addLayer(
       TKMapLayersStyle[TKMapLayers.CLUSTERSCIRCLELAYER] as CircleLayer
@@ -214,9 +244,9 @@ export default class TKMap extends Vue {
     );
 
     // // CLUSTERS BEHAVIOR
-    this.map.on("click", TKMapLayers.CLUSTERSCOUNTLAYER, e => {
+    this.map.on("click", TKMapLayers.CLUSTERSCOUNTLAYER, (e) => {
       const features = this.map.queryRenderedFeatures(e.point, {
-        layers: [TKMapLayers.CLUSTERSCOUNTLAYER]
+        layers: [TKMapLayers.CLUSTERSCOUNTLAYER],
       });
       const clusterId = features[0].properties?.cluster_id;
 
@@ -227,13 +257,13 @@ export default class TKMap extends Vue {
         if (err) return;
         this.map.easeTo({
           center: (features[0].geometry as Point).coordinates as LngLatLike,
-          zoom: zoom
+          zoom: zoom,
         });
       });
     });
 
     // CAMPS BEHAVIOR
-    this.map.on("click", TKMapLayers.NOTSELECTEDCAMPSLAYER, e => {
+    this.map.on("click", TKMapLayers.NOTSELECTEDCAMPSLAYER, (e) => {
       if (e !== undefined && e.features && e.features?.length > 0) {
         this.dataset.setFiltersValue(
           TKFilters.CAMP,
@@ -243,14 +273,14 @@ export default class TKMap extends Vue {
     });
     const popup = new mapboxgl.Popup({
       closeButton: false,
-      closeOnClick: false
+      closeOnClick: false,
     });
-    this.map.on("mouseenter", TKMapLayers.NOTSELECTEDCAMPSLAYER, e => {
+    this.map.on("mouseenter", TKMapLayers.NOTSELECTEDCAMPSLAYER, (e) => {
       this.map.getCanvas().style.cursor = "pointer";
       if (e.features) {
         const coordinates: [number, number] = [
           e.features[0].properties?.lng,
-          e.features[0].properties?.lat
+          e.features[0].properties?.lat,
         ];
         const description = `<h4 class="primary--text">${e.features[0].properties?.name}</h4>`;
         popup
@@ -278,7 +308,7 @@ export default class TKMap extends Vue {
       // Avoid multiple zoom variation when on fly
       const scale = new mapboxgl.ScaleControl({
         maxWidth: 100,
-        unit: "metric"
+        unit: "metric",
       });
       this.map.addControl(scale);
     });
@@ -298,7 +328,7 @@ export default class TKMap extends Vue {
       if (this.bound) {
         this.map.fitBounds(this.bound, {
           padding: this.appConfig.mapConfig.padding,
-          speed: this.appConfig.mapConfig.zoomspeed
+          speed: this.appConfig.mapConfig.zoomspeed,
         });
       }
     }
