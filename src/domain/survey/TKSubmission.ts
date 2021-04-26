@@ -66,6 +66,13 @@ function computeSubmissionIndicator(
   const splitted = descr.entryCode.split("_");
   if (splitted) {
     const thematic = "group_" + splitted[0];
+    if(!data[thematic]){
+      return {
+        iconOchaName: descr.iconOchaName,
+        nameLabel: descr.name,
+        valueLabel: { name: "-", labelEn: "-" }
+      };
+    }
     const entry = data[thematic].data.find(
       item => item.field === descr.entryCode
     );
