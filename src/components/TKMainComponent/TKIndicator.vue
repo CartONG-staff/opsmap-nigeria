@@ -16,7 +16,7 @@
       src="@/assets/bg-indicator-3.png"
     />
 
-    <v-tooltip bottom>
+    <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
         <div
           class="tk-indicator-value"
