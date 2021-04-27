@@ -7,7 +7,7 @@
     </transition>
     <transition mode="out-in" name="fade-in">
       <div :key="$root.$i18n.locale" class="tk-home-moreinfos-content">
-        {{ content }}
+        <span v-html="content"></span>
       </div>
     </transition>
   </div>
