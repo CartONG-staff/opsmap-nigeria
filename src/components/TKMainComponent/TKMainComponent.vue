@@ -65,6 +65,7 @@
         <transition mode="out-in" name="fade" appear>
           <div key="7" v-if="isHomePage" class="tk-home-content">
             <TKHomeMoreInfos :appConfig="appConfig" />
+            <TKPowerBI />
           </div>
           <div key="8" v-else class="tk-camp-content">
             <TKSubmissionVisualizer
@@ -108,6 +109,8 @@ import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { headerLogoBus } from "@/components/TKHeaderLogoBus";
 
+import TKPowerBI from "@/components/TKExtras/TKPowerBI";
+
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false
 };
@@ -125,6 +128,7 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
+    TKPowerBI,
     TKTitle
   }
 })
