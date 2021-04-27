@@ -86,6 +86,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
+import TKPowerBI from "@/components/TKExtras/TKPowerBI.vue";
 
 import {
   TKHomeCombos,
@@ -109,7 +110,6 @@ import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { headerLogoBus } from "@/components/TKHeaderLogoBus";
 
-import TKPowerBI from "@/components/TKExtras/TKPowerBI";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false
