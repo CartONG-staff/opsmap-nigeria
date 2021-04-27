@@ -1,18 +1,19 @@
 <template>
   <v-app>
     <v-main>
-      <div class="tk-loader" v-if="!dataLoaded">
+      <!-- <div class="tk-loader" v-if="!dataLoaded">
         <h2 color="primary">
           ...Loading Application...
         </h2>
-      </div>
-      <div class="tk-main" v-if="dataLoaded">
+      </div> -->
+      <div class="tk-main" v-if="appRootConfig">
         <TKHeader :appConfig="appRootConfig" />
         <TKMainComponent
           class="tk-main-dashboard"
           :dataset="dataset"
           :geoData="geoDataset"
           :appConfig="appRootConfig"
+          :dataLoaded="dataLoaded"
         />
         <TKFooter :appConfig="appRootConfig" />
       </div>
@@ -37,7 +38,7 @@ import { TKReadGeneralConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfig
   }
 })
 export default class App extends Vue {
-  appRootConfig!: TKOpsmapConfiguration;
+  appRootConfig!: TKOpsmapConfiguration | null = null;
   dataLoaded = false;
   dataset: TKDatasetFilterer | null = null;
   geoDataset: TKGeoDataset | null = null;
@@ -53,18 +54,26 @@ export default class App extends Vue {
       this.appRootConfig.name.charAt(0).toUpperCase() +
       this.appRootConfig.name.slice(1).toLowerCase();
 
-    const surveys = await TKCreateSurveyCollection(
+    await new Promise(r => setTimeout(r, 5000));
+
+    TKCreateSurveyCollection(
       this.appRootConfig.surveyDescription,
       this.appRootConfig.spatialDescription,
       this.appRootConfig.indicatorsDescription
-    );
-    this.geoDataset = null;
-    if (this.appRootConfig.spatialDescription.useBoundariesMasks) {
-      this.geoDataset = await TKGetGeoBoundaries(surveys);
-    }
-    this.dataset = new TKDatasetFilterer(surveys);
-
-    this.dataLoaded = true;
+    ).then(surveys => {
+      this.geoDataset = null;
+      if (this.appRootConfig?.spatialDescription.useBoundariesMasks) {
+        TKGetGeoBoundaries(surveys).then(geoDataset => {
+          this.geoDataset = geoDataset;
+          this.dataset = new TKDatasetFilterer(surveys);
+          this.dataLoaded = true;
+        });
+      } else {
+        this.dataset = new TKDatasetFilterer(surveys);
+        this.dataLoaded = true;
+      }
+      console.log("PROCESS OK");
+    });
   }
 }
 </script>
