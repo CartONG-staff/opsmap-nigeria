@@ -17,11 +17,16 @@
         <div class="tk-main-left">
           <TKTitle class="tk-home-title" :appConfig="appConfig" />
           <transition mode="out-in" name="fade">
-            <div key="3" v-if="isHomePage" class="tk-home-left">
+            <TKPlaceHolderLeft
+              key="31"
+              v-if="!dataset"
+              class="tk-placeholder-left"
+            />
+            <div key="32" v-else-if="isHomePage" class="tk-home-left">
               <TKHomeSubtitle />
               <TKHomeCombos class="tk-home-combos" :dataset="dataset" />
             </div>
-            <div key="4" v-else class="tk-camp-left">
+            <div key="33" v-else class="tk-camp-left">
               <TKCampSubtitle class="tk-camp-title" :dataset="dataset" />
               <TKCampToolbar
                 class="tk-camp-toolbar"
@@ -38,23 +43,26 @@
           </transition>
         </div>
         <TKMap
+          v-if="dataset"
           class="tk-main-map"
           :appConfig="appConfig"
           :dataset="dataset"
           :geoDataset="geoData"
         />
+        <TKPlaceHolderMap class="tk-placeholder-map" v-else />
       </div>
 
       <div class="tk-main-content">
         <transition mode="out-in" name="fade" appear>
-          <div key="5" v-if="isHomePage" class="tk-home-content">
+          <TKPlaceHolderIndicators key="51" v-if="!dataset" />
+          <div key="52" v-else-if="isHomePage" class="tk-home-content">
             <TKHomeIndicators
               class="tk-home-indicators"
               :appConfig="appConfig"
               :dataset="dataset"
             />
           </div>
-          <div key="6" v-else class="tk-camp-content">
+          <div key="53" v-else class="tk-camp-content">
             <TKCampIndicators
               class="tk-camp-indicators"
               :appConfig="appConfig"
@@ -63,10 +71,11 @@
           </div>
         </transition>
         <transition mode="out-in" name="fade" appear>
-          <div key="7" v-if="isHomePage" class="tk-home-content">
+          <div key="61" v-if="!dataset" class="tk-home-left-placeholder"></div>
+          <div key="62" v-else-if="isHomePage" class="tk-home-content">
             <TKHomeMoreInfos :appConfig="appConfig" />
           </div>
-          <div key="8" v-else class="tk-camp-content">
+          <div key="63" v-else class="tk-camp-content">
             <TKSubmissionVisualizer
               :options="visualizerOptions"
               :submission="currentSubmission"
@@ -82,7 +91,9 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 // import { APPCONFIG } from "@/app-demo/config";
-
+import TKPlaceHolderLeft from "./TKPlaceHolders/TKPlaceHolderLeft.vue";
+import TKPlaceHolderMap from "./TKPlaceHolders/TKPlaceHolderMap.vue";
+import TKPlaceHolderIndicators from "./TKPlaceHolders/TKPlaceHolderIndicators.vue";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
 
@@ -125,6 +136,9 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
     TKHomeMoreInfos,
     TKHomeSubtitle,
     TKMap,
+    TKPlaceHolderLeft,
+    TKPlaceHolderMap,
+    TKPlaceHolderIndicators,
     TKTitle
   }
 })
@@ -270,6 +284,10 @@ export default class TKMainComponent extends Vue {
 }
 
 .tk-main-map {
+  width: 65%;
+  height: 450px;
+}
+.tk-placeholder-map {
   width: 65%;
   height: 450px;
 }
