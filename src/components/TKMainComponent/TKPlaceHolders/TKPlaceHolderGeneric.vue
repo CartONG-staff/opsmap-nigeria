@@ -25,7 +25,7 @@ export default class TKPlaceHolderGeneric extends Vue {}
     rgba(243, 243, 243, 1) 100%
   );
   background-size: 200% 20px;
-  animation: place-holder-gradient 1s cubic-bezier(0.3, 0, 0.7, 1) infinite;
+  animation: place-holder-gradient 1.5s cubic-bezier(0.3, 0, 0.7, 1) infinite;
 }
 
 @keyframes place-holder-gradient {
