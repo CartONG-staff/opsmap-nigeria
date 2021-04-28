@@ -41,9 +41,6 @@ export async function TKReadGeneralConfiguration(
   const labels: TKOpsmapConfigurationLabelCSV[] = await TKCSVRead<
     TKOpsmapConfigurationLabelCSV[]
   >(configFileName, configFileFolder, true);
-
-  console.log(labels);
-
   const dict: { [key: string]: string } = labels.reduce(
     (dictionnary, item) => ({ ...dictionnary, [item.config_type]: item.info }),
     {}
@@ -205,8 +202,5 @@ export async function TKReadGeneralConfiguration(
     }
   };
 
-  console.log(config.indicatorsDescription);
-  console.log(config.surveyDescription);
-  console.log(config.footerLogos);
   return config;
 }
