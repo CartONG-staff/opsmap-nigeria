@@ -1,12 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <div class="tk-loader" v-if="!dataLoaded">
-        <h2 color="primary">
-          ...Loading Application...
-        </h2>
-      </div>
-      <div class="tk-main" v-if="dataLoaded">
+      <div class="tk-main" v-if="appRootConfig">
         <TKHeader :appConfig="appRootConfig" />
         <TKMainComponent
           class="tk-main-dashboard"
@@ -37,8 +32,7 @@ import { TKReadGeneralConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfig
   }
 })
 export default class App extends Vue {
-  appRootConfig!: TKOpsmapConfiguration;
-  dataLoaded = false;
+  appRootConfig: TKOpsmapConfiguration | null = null;
   dataset: TKDatasetFilterer | null = null;
   geoDataset: TKGeoDataset | null = null;
 
@@ -53,18 +47,19 @@ export default class App extends Vue {
       this.appRootConfig.name.charAt(0).toUpperCase() +
       this.appRootConfig.name.slice(1).toLowerCase();
 
-    const surveys = await TKCreateSurveyCollection(
+    TKCreateSurveyCollection(
       this.appRootConfig.surveyDescription,
       this.appRootConfig.spatialDescription,
       this.appRootConfig.indicatorsDescription
-    );
-    this.geoDataset = null;
-    if (this.appRootConfig.spatialDescription.useBoundariesMasks) {
-      this.geoDataset = await TKGetGeoBoundaries(surveys);
-    }
-    this.dataset = new TKDatasetFilterer(surveys);
-
-    this.dataLoaded = true;
+    ).then(surveys => {
+      this.geoDataset = null;
+      this.dataset = new TKDatasetFilterer(surveys);
+      if (this.appRootConfig?.spatialDescription.useBoundariesMasks) {
+        TKGetGeoBoundaries(surveys).then(geoDataset => {
+          this.geoDataset = geoDataset;
+        });
+      }
+    });
   }
 }
 </script>

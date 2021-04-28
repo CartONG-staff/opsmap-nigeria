@@ -90,11 +90,11 @@ export default class TKMapFilter extends Vue {
 
   @Watch("dataset.filteredCampsList", { immediate: true })
   datasetChanged() {
-    this.countCampPlanned = this.dataset.filteredCampsList.filter(
+    this.countCampPlanned = this.dataset?.filteredCampsList.filter(
       camp => camp.type === TKCampTypesValues.PLANNED
     ).length;
 
-    this.countCampSpontaneous = this.dataset.filteredCampsList.filter(
+    this.countCampSpontaneous = this.dataset?.filteredCampsList.filter(
       camp => camp.type === TKCampTypesValues.SPONTANEOUS
     ).length;
   }

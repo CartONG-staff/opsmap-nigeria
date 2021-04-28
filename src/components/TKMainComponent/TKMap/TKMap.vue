@@ -6,7 +6,6 @@
       v-on:zoomout="zoomOut"
       v-on:zoomreset="zoomReset"
     />
-
     <TKMapFilters class="tk-map-filters" :dataset="dataset" />
     <TKMapBasemapPicker class="tk-basemap-picker" :basemaps="basemaps" />
   </div>
@@ -66,6 +65,10 @@ export default class TKMap extends Vue {
   markersLoadedCount = 0;
   basemaps = TKBasemapsLayer;
 
+  mounted() {
+    this.initMap();
+  }
+
   // Initialisation of component
   @Watch("dataset", { immediate: true })
   datasetLoaded() {
@@ -112,10 +115,6 @@ export default class TKMap extends Vue {
         });
       }
     });
-  }
-
-  mounted(): void {
-    this.initMap();
   }
 
   @Watch("markersLoadedCount")
@@ -336,11 +335,6 @@ export default class TKMap extends Vue {
 }
 </script>
 <style scoped>
-#tk-map {
-  position: relative;
-  border-radius: 15px;
-}
-
 .tk-map-zoom {
   position: absolute;
   top: 8px;
