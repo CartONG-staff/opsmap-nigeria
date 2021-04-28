@@ -43,13 +43,13 @@
           </transition>
         </div>
         <TKMap
-          v-if="dataset"
+          v-if="geoData"
           class="tk-main-map"
           :appConfig="appConfig"
           :dataset="dataset"
           :geoDataset="geoData"
         />
-        <TKPlaceHolderMap class="tk-placeholder-map" v-else />
+        <TKPlaceHolderGeneric class="tk-main-map" v-else />
       </div>
 
       <div class="tk-main-content">
@@ -92,8 +92,8 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 // import { APPCONFIG } from "@/app-demo/config";
 import TKPlaceHolderLeft from "./TKPlaceHolders/TKPlaceHolderLeft.vue";
-import TKPlaceHolderMap from "./TKPlaceHolders/TKPlaceHolderMap.vue";
 import TKPlaceHolderIndicators from "./TKPlaceHolders/TKPlaceHolderIndicators.vue";
+import TKPlaceHolderGeneric from "./TKPlaceHolders/TKPlaceHolderGeneric.vue";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
 
@@ -137,8 +137,8 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
     TKHomeSubtitle,
     TKMap,
     TKPlaceHolderLeft,
-    TKPlaceHolderMap,
     TKPlaceHolderIndicators,
+    TKPlaceHolderGeneric,
     TKTitle
   }
 })
@@ -286,10 +286,9 @@ export default class TKMainComponent extends Vue {
 .tk-main-map {
   width: 65%;
   height: 450px;
-}
-.tk-placeholder-map {
-  width: 65%;
-  height: 450px;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
 }
 
 .tk-main-content {

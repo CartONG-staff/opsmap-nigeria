@@ -38,7 +38,7 @@ import { TKReadGeneralConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfig
   }
 })
 export default class App extends Vue {
-  appRootConfig!: TKOpsmapConfiguration | null = null;
+  appRootConfig: TKOpsmapConfiguration | null = null;
   dataLoaded = false;
   dataset: TKDatasetFilterer | null = null;
   geoDataset: TKGeoDataset | null = null;
@@ -62,17 +62,13 @@ export default class App extends Vue {
       this.appRootConfig.indicatorsDescription
     ).then(surveys => {
       this.geoDataset = null;
+      this.dataset = new TKDatasetFilterer(surveys);
+      this.dataLoaded = true;
       if (this.appRootConfig?.spatialDescription.useBoundariesMasks) {
         TKGetGeoBoundaries(surveys).then(geoDataset => {
           this.geoDataset = geoDataset;
-          this.dataset = new TKDatasetFilterer(surveys);
-          this.dataLoaded = true;
         });
-      } else {
-        this.dataset = new TKDatasetFilterer(surveys);
-        this.dataLoaded = true;
       }
-      console.log("PROCESS OK");
     });
   }
 }

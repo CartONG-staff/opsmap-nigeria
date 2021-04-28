@@ -1,13 +1,13 @@
 <template lang="html">
   <div id="tk-map">
-      <TKMapZoom
-        class="tk-map-zoom"
-        v-on:zoomin="zoomIn"
-        v-on:zoomout="zoomOut"
-        v-on:zoomreset="zoomReset"
-      />
-      <TKMapFilters class="tk-map-filters" :dataset="dataset" />
-      <TKMapBasemapPicker class="tk-basemap-picker" :basemaps="basemaps" />
+    <TKMapZoom
+      class="tk-map-zoom"
+      v-on:zoomin="zoomIn"
+      v-on:zoomout="zoomOut"
+      v-on:zoomreset="zoomReset"
+    />
+    <TKMapFilters class="tk-map-filters" :dataset="dataset" />
+    <TKMapBasemapPicker class="tk-basemap-picker" :basemaps="basemaps" />
   </div>
 </template>
 
@@ -335,38 +335,6 @@ export default class TKMap extends Vue {
 }
 </script>
 <style scoped>
-#tk-map {
-  border-radius: 15px;
-  position: relative;
-  overflow: hidden;
-}
-
-.tk-map-placeholder {
-  width: 100%;
-  height: 100%;
-  animation-duration: 4s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-name: placeHolderShimmer;
-  animation-timing-function: linear;
-  background: #e8eaed;
-  background: linear-gradient(to right, #f6f7f8 8%, #ffffff 18%, #f6f7f8 33%);
-  background-size: 800px 104px;
-  position: relative;
-}
-
-@keyframes placeHolderShimmer {
-  0% {
-    background-position: -800px 0;
-  }
-  50% {
-    background-position: 800px 0;
-  }
-  100% {
-    background-position: -800px 0;
-  }
-}
-
 .tk-map-zoom {
   position: absolute;
   top: 8px;
