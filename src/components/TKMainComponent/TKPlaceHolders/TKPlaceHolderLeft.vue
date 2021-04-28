@@ -1,6 +1,7 @@
 <template>
   <div class="tk-placeholder-left">
     <TKPlaceHolderGeneric class="tk-placeholder-left-title" />
+    <TKPlaceHolderGeneric class="tk-placeholder-left-title" />
     <TKPlaceHolderGeneric class="tk-placeholder-left-combos" />
     <TKPlaceHolderGeneric class="tk-placeholder-left-combos" />
     <TKPlaceHolderGeneric class="tk-placeholder-left-combos" />
@@ -28,11 +29,11 @@ export default class TKPlaceHolderLeft extends Vue {}
   align-items: middle;
   row-gap: 5px;
   height: 100%;
+  position: relative;
 }
 
 .tk-placeholder-left-title {
-  min-height: 40px;
-  width: 100%;
+  width: 40%;
 }
 
 .tk-placeholder-left-combos {
