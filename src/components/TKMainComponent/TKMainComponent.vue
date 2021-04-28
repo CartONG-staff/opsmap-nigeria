@@ -7,7 +7,7 @@
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
         <transition name="fade">
-          <div key="1" v-if="isHomePage" class="tk-home-header"></div>
+          <div key="1" v-if="isHomePage"></div>
           <div key="2" v-else class="tk-camp-header">
             <TKCampSelector :dataset="dataset" />
           </div>
@@ -15,21 +15,16 @@
       </div>
       <div class="tk-main-top">
         <div class="tk-main-left">
-          <TKTitle class="tk-home-title" :appConfig="appConfig" />
+          <TKTitle :appConfig="appConfig" />
           <transition mode="out-in" name="fade">
-            <TKPlaceHolderLeft
-              key="31"
-              v-if="!dataset"
-              class="tk-placeholder-left"
-            />
+            <TKPlaceHolderLeft v-if="!dataset" />
             <div key="32" v-else-if="isHomePage" class="tk-home-left">
               <TKHomeSubtitle />
-              <TKHomeCombos class="tk-home-combos" :dataset="dataset" />
+              <TKHomeCombos :dataset="dataset" />
             </div>
             <div key="33" v-else class="tk-camp-left">
-              <TKCampSubtitle class="tk-camp-title" :dataset="dataset" />
+              <TKCampSubtitle :dataset="dataset" />
               <TKCampToolbar
-                class="tk-camp-toolbar"
                 :submissionsDates="
                   currentSubmissions ? Object.keys(currentSubmissions) : ['']
                 "
@@ -38,7 +33,7 @@
                 :options="visualizerOptions"
                 @date-selection-changed="dateSelected"
               />
-              <TKCampInfos class="tk-camp-infos" :dataset="dataset" />
+              <TKCampInfos :dataset="dataset" />
             </div>
           </transition>
         </div>
@@ -52,30 +47,26 @@
         <TKPlaceHolderGeneric class="tk-main-map" v-else />
       </div>
 
-      <div class="tk-main-content">
+      <div>
         <transition mode="out-in" name="fade" appear>
-          <TKPlaceHolderIndicators key="51" v-if="!dataset" />
-          <div key="52" v-else-if="isHomePage" class="tk-home-content">
+          <div class="tk-main-content-layout" v-if="!dataset">
+            <TKPlaceHolderIndicators />
+            <TKPlaceHolderGeneric class="tk-main-content-placeholder" />
+          </div>
+          <div key="52" class="tk-main-content-layout" v-else-if="isHomePage">
             <TKHomeIndicators
               class="tk-home-indicators"
               :appConfig="appConfig"
               :dataset="dataset"
             />
+            <TKHomeMoreInfos :appConfig="appConfig" />
           </div>
-          <div key="53" v-else class="tk-camp-content">
+          <div key="53" class="tk-main-content-layout" v-else>
             <TKCampIndicators
               class="tk-camp-indicators"
               :appConfig="appConfig"
               :submission="currentSubmission"
             />
-          </div>
-        </transition>
-        <transition mode="out-in" name="fade" appear>
-          <div key="61" v-if="!dataset" class="tk-home-left-placeholder"></div>
-          <div key="62" v-else-if="isHomePage" class="tk-home-content">
-            <TKHomeMoreInfos :appConfig="appConfig" />
-          </div>
-          <div key="63" v-else class="tk-camp-content">
             <TKSubmissionVisualizer
               :options="visualizerOptions"
               :submission="currentSubmission"
@@ -90,7 +81,6 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-// import { APPCONFIG } from "@/app-demo/config";
 import TKPlaceHolderLeft from "./TKPlaceHolders/TKPlaceHolderLeft.vue";
 import TKPlaceHolderIndicators from "./TKPlaceHolders/TKPlaceHolderIndicators.vue";
 import TKPlaceHolderGeneric from "./TKPlaceHolders/TKPlaceHolderGeneric.vue";
@@ -239,6 +229,7 @@ export default class TKMainComponent extends Vue {
   height: 50px;
   z-index: 1000;
 }
+
 .tk-camp-header {
   align-items: flex-end;
   height: 100%;
@@ -291,11 +282,14 @@ export default class TKMainComponent extends Vue {
   overflow: hidden;
 }
 
-.tk-main-content {
-  width: 100%;
+.tk-main-content-layout {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   row-gap: 25px;
+}
+
+.tk-main-content-placeholder {
+  min-height: 300px;
 }
 </style>
