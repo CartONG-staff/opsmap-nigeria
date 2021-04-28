@@ -31,7 +31,7 @@ import { TKReadGeneralConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfig
     TKMainComponent
   }
 })
-export default class App extends Vue {
+export default class TKApp extends Vue {
   appRootConfig: TKOpsmapConfiguration | null = null;
   dataset: TKDatasetFilterer | null = null;
   geoDataset: TKGeoDataset | null = null;

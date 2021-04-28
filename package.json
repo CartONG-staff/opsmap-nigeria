@@ -8,11 +8,11 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "build-lib": "vue-cli-service build --target lib src/entry-point-lib.ts --formats umd && tsc --emitDeclarationOnly -p tsconfig.json",
+    "build-lib": "vue-cli-service build --target lib src/entry-point-lib.ts --formats umd-min && tsc --emitDeclarationOnly -p tsconfig.json",
     "doc": "typedoc --options typedoc.json",
     "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
   },
-  "main": "dist/opsmap-toolkit.umd.js",
+  "main": "dist/opsmap-toolkit.umd.min.js",
   "dependencies": {
     "@turf/turf": "^6.3.0",
     "@types/chart.js": "^2.9.31",

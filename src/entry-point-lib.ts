@@ -4,14 +4,5 @@
 //  * @internal
 //  */
 
-// import TKFooter from "./components/TKFooter/TKFooter.vue";
-// import TKHeader from "./components/TKHeader.vue";
-// import TKCampSelector from "./components/TKDashBoard/TKCampSelector";
-// import TKSurveyVisualizer from "./components/TKDashBoard/TKSurveyVisualizer";
-
-// export { TKFooter };
-// export { TKHeader };
-// export { TKCampSelector };
-// export { TKSurveyVisualizer };
-
-// export default { TKFooter, TKHeader, TKCampSelector, TKSurveyVisualizer };
+import TKApp from "@/app/TKApp.vue"
+export { TKApp };

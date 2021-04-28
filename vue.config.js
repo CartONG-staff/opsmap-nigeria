@@ -15,7 +15,7 @@ module.exports = {
 
   pages: {
     index: {
-      entry: "src/app-demo/entry-point-app.ts"
+      entry: "src/entry-point-app.ts"
     }
   },
 
