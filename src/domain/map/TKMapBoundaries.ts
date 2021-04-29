@@ -63,10 +63,10 @@ export class TKMapBoundaries {
         map
       );
     }
-    (map.getSource(TKMapLayers.ADMIN1SOURCE) as mapboxgl.GeoJSONSource).setData(
+    (map.getSource(TKMapLayers.ADMIN1SOURCE) as mapboxgl.GeoJSONSource)?.setData(
       this.admin1
     );
-    (map.getSource(TKMapLayers.ADMIN2SOURCE) as mapboxgl.GeoJSONSource).setData(
+    (map.getSource(TKMapLayers.ADMIN2SOURCE) as mapboxgl.GeoJSONSource)?.setData(
       this.admin2
     );
   }
