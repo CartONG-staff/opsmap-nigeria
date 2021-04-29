@@ -105,7 +105,7 @@ import {
 } from "./TKCampComponents";
 import { TKOpsmapConfiguration } from "@/domain";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { headerLogoBus } from "@/components/TKHeaderLogoBus";
 
@@ -151,6 +151,7 @@ export default class TKMainComponent extends Vue {
 
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
+      this.dataset.setFiltersValue(TKFilters.CAMP, null);
       this.isHomePage = true;
     });
   }
