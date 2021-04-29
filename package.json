@@ -13,6 +13,7 @@
     "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
   },
   "main": "dist/opsmap-toolkit.umd.min.js",
+  "types": "dist/src/entry-point-lib.d.ts",
   "dependencies": {
     "@turf/turf": "^6.3.0",
     "@types/chart.js": "^2.9.31",
@@ -62,6 +63,5 @@
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.7.0"
   },
-  "license": "MIT",
-  "types": "dist/src/index.d.ts"
+  "license": "MIT"
 }
