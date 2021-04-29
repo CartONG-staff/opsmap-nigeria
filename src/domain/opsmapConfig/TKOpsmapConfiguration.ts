@@ -185,12 +185,6 @@ export async function TKReadGeneralConfiguration(
         { folder: "brazil/BR_FDF_s1_080421" },
         "brazil",
         "BR_DATA_080421_FDF_s1"
-      ),
-      new TKSurveyInfosCSV(
-        "TEST",
-        { folder: "brazil/BR_FDF_s1_080421" },
-        "brazil",
-        "TEST"
       )
     ],
     mapConfig: {
