@@ -63,7 +63,7 @@
           </div>
         </transition>
         <transition mode="out-in" name="fade" appear>
-          <div key="7" v-if="isHomePage" class="tk-home-content">
+          <div key="7" v-if="isHomePage" class="tk-home-more-content">
             <TKHomeMoreInfos :appConfig="appConfig" />
             <TKPowerBI />
           </div>
@@ -109,7 +109,6 @@ import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { headerLogoBus } from "@/components/TKHeaderLogoBus";
-
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false
@@ -280,6 +279,13 @@ export default class TKMainComponent extends Vue {
 
 .tk-main-content {
   width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  row-gap: 25px;
+}
+
+.tk-home-more-content {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
