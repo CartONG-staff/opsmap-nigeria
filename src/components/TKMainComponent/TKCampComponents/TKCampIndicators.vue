@@ -29,7 +29,7 @@ export default class TKCampIndicators extends Vue {
   indicator2: TKIndicator | null = null;
   indicator3: TKIndicator | null = null;
 
-  @Watch("submission")
+  @Watch("submission", { immediate: true })
   onSubmissionChanged() {
     if (this.submission) {
       this.indicator1 = this.submission.indicators[0];
@@ -39,17 +39,17 @@ export default class TKCampIndicators extends Vue {
       this.indicator1 = {
         nameLabel: this.appConfig.indicatorsDescription.site[0].name,
         valueLabel: { name: "", labelEn: "-" },
-        iconOchaName: this.indicator1.iconOchaName
+        iconOchaName: this.indicator1?.iconOchaName ?? ""
       };
       this.indicator2 = {
         nameLabel: this.appConfig.indicatorsDescription.site[1].name,
         valueLabel: { name: "", labelEn: "-" },
-        iconOchaName: this.indicator2.iconOchaName
+        iconOchaName: this.indicator2?.iconOchaName ?? ""
       };
       this.indicator3 = {
         nameLabel: this.appConfig.indicatorsDescription.site[2].name,
         valueLabel: { name: "", labelEn: "-" },
-        iconOchaName: this.indicator3.iconOchaName
+        iconOchaName: this.indicator3?.iconOchaName ?? ""
       };
     }
   }
