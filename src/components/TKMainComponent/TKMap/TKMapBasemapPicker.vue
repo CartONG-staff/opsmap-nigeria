@@ -37,7 +37,7 @@
 <script lang="ts">
 import {
   TKBasemapDescription,
-  TKBaseMapsCollection
+  TKBaseMapsCollection,
 } from "@/domain/map/TKBasemaps";
 import { Component, Vue, Prop } from "vue-property-decorator";
 
@@ -53,8 +53,8 @@ export default class TKMapBasemapPicker extends Vue {
   }
   setBasemapSelectorStyle(bm: TKBasemapDescription) {
     return {
-      border: this.basemaps.selected === bm.id ? "red solid 2px" : "",
-      backgroundImage: `url(${bm.img})`
+      border: this.basemaps.selected === bm.id ? "#428fdf solid 3px" : "",
+      backgroundImage: `url(${bm.img})`,
     };
   }
 }
