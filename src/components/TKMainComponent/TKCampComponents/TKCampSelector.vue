@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="tk-camp-selector">
-    <v-select
+    <v-autocomplete
       class="tk-autocomplete"
       flat
       dense
@@ -8,8 +8,8 @@
       v-model="currentSurvey"
       :items="dataset.surveyList"
       @change="surveySelected"
-      single-line
-    ></v-select>
+      :disabled="dataset.surveyList.length < 2"
+    ></v-autocomplete>
     <v-autocomplete
       class="tk-autocomplete"
       flat
@@ -104,7 +104,6 @@ export default class TKCampSelector extends Vue {
   }
 }
 </script>
-
 <style scoped>
 .tk-camp-selector {
   display: flex;

@@ -139,6 +139,14 @@ h3 {
   transition: none !important;
 }
 
+.tk-autocomplete .theme--light.v-icon.v-icon.v-icon {
+  color: #000 !important;
+}
+
+.tk-autocomplete .theme--light.v-icon.v-icon.v-icon--disabled {
+  color: rgba(0, 0, 0, 0) !important;
+}
+
 .fade-enter-active,
 .fade-in-enter-active {
   transition: opacity 300ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
