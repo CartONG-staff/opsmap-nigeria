@@ -114,7 +114,14 @@ h3 {
 }
 
 .tk-autocomplete input::placeholder {
-  color: #000 !important;
+  color: #00000099 !important;
+  font-family: "Arial";
+  font-weight: bold !important;
+  font-size: 16px !important;
+}
+
+.tk-autocomplete .v-text-field__prefix {
+  color: rgba(118, 118, 118, 0.5);
   font-family: "Arial";
   font-weight: bold !important;
   font-size: 16px !important;
@@ -150,10 +157,6 @@ h3 {
 .theme--light.v-text-field.v-input--is-disabled .v-input__slot::before {
   -o-border-image: none !important;
   border-image: none !important;
-}
-
-.tk-autocomplete .v-text-field__prefix {
-  color: rgba(118, 118, 118, 0.5);
 }
 
 .fade-enter-active,
