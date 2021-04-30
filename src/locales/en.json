@@ -43,6 +43,7 @@
     "legendBasemaps": "Select a basemap",
     "legendZoomIn": "Zoom in",
     "legendZoomOut": "Zoom out",
-    "legendBbox": "Reset zoom"
+    "legendBbox": "Reset zoom",
+    "legendFilters": "Show / Hide filters"
   }
 }

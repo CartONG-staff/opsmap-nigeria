@@ -43,9 +43,20 @@
       </div>
     </transition>
     <div class="tk-vseparator" />
-    <v-btn icon color="primary" @click="show = !show">
-      <v-icon>mdi-map-legend</v-icon>
-    </v-btn>
+    <v-tooltip top>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          icon
+          color="primary"
+          @click="show = !show"
+          v-bind="attrs"
+          v-on="on"
+        >
+          <v-icon>mdi-map-legend</v-icon>
+        </v-btn>
+      </template>
+      <span>{{ $t("map.legendFilters") }}</span>
+    </v-tooltip>
   </div>
 </template>
 
