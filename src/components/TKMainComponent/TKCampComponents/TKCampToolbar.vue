@@ -1,12 +1,13 @@
 <template>
   <div class="tk-camp-toolbar">
     <div class="tk-camp-toolbar-container">
-      <v-select
-        v-if="submissionsDates.length > 1 || model == ''"
+      <v-autocomplete
+        v-if="model !== ''"
+        key="1"
         class="tk-camp-toolbar-date"
         background-color="#418fde"
         color="#ffffff"
-        :disabled="model == ''"
+        :disabled="submissionsDates.length < 2"
         flat
         filled
         solo
@@ -15,22 +16,24 @@
         :items="submissionsDates"
         v-model="model"
         @change="dateSelected"
-      ></v-select>
-      <v-text-field
+      ></v-autocomplete>
+      <v-autocomplete
         v-else
+        key="2"
+        class="tk-camp-toolbar-date-disabled"
         background-color="#418fde"
         color="#ffffff"
-        :placeholder="model"
+        disabled
+        readonly
         flat
         filled
         solo
         dense
         height="44"
-        disabled
-        readonly
-      >
-        {{ model }}
-      </v-text-field>
+        :items="submissionsDates"
+        v-model="model"
+        @change="dateSelected"
+      ></v-autocomplete>
     </div>
 
     <transition mode="out-in" name="fade-in">
@@ -170,7 +173,7 @@ export default class TKCampToolbar extends Vue {
   letter-spacing: 0.86px !important;
 }
 
-.tk-camp-toolbar-date .v-select__selection {
+.tk-camp-toolbar-date.theme--light.v-input input {
   color: #fff !important;
   font-family: "Arial";
   font-weight: bold !important;
@@ -181,7 +184,12 @@ export default class TKCampToolbar extends Vue {
 .tk-camp-toolbar-date .v-icon.v-icon {
   color: #fff !important;
 }
-.tk-camp-toolbar-date.v-input--is-disabled .v-input__slot {
+
+.tk-camp-toolbar-date .theme--light.v-icon.v-icon.v-icon--disabled {
+  color: rgba(0, 0, 0, 0) !important;
+}
+
+.tk-camp-toolbar-date-disabled.v-input--is-disabled .v-input__slot {
   background-color: rgba(0, 0, 0, 0.12) !important;
 }
 
