@@ -7,7 +7,7 @@
     </transition>
 
     <transition mode="out-in" name="fade-in">
-      <v-select
+      <v-autocomplete
         class="tk-autocomplete"
         flat
         dense
@@ -16,7 +16,8 @@
         v-model="currentSurvey"
         :items="dataset.surveyList"
         @change="surveySelected"
-      ></v-select>
+        :disabled="dataset.surveyList.length < 2"
+      ></v-autocomplete>
     </transition>
     <transition mode="out-in" name="fade-in">
       <v-autocomplete
