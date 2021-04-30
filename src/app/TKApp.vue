@@ -146,6 +146,10 @@ h3 {
 .tk-autocomplete .theme--light.v-icon.v-icon.v-icon--disabled {
   color: rgba(0, 0, 0, 0) !important;
 }
+.theme--light.v-text-field.v-input--is-disabled .v-input__slot::before {
+  -o-border-image: none !important;
+  border-image: none !important;
+}
 
 .fade-enter-active,
 .fade-in-enter-active {
