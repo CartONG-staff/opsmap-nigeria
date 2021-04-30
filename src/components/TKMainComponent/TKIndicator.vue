@@ -18,27 +18,29 @@
 
     <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
-        <div
-          class="tk-indicator-value"
-          v-bind="attrs"
-          v-on="on"
-          :style="{ fontSize: fontSize + 'px' }"
-        >
-          <transition mode="out-in" name="fade-in">
-            <div :key="value" class="tk-indicator-value-number">
-              {{ value }}
+        <div class="tk-indicator-container">
+          <div
+            class="tk-indicator-value"
+            v-bind="attrs"
+            v-on="on"
+            :style="{ fontSize: fontSize + 'px' }"
+          >
+            <transition mode="out-in" name="fade-in">
+              <div :key="value" class="tk-indicator-value-number">
+                {{ value }}
+              </div>
+            </transition>
+            <div class="tk-indicator-value-decription">
+              {{ name }}
             </div>
-          </transition>
-          <div class="tk-indicator-value-decription">
-            {{ name }}
+          </div>
+          <div class="tk-indicator-icon-container">
+            <img class="tk-indicator-icon" :src="iconUrl" />
           </div>
         </div>
       </template>
       <span>{{ name }} : {{ value }}</span>
     </v-tooltip>
-    <div class="tk-indicator-icon-container">
-      <img class="tk-indicator-icon" :src="iconUrl" />
-    </div>
   </div>
 </template>
 
@@ -106,11 +108,14 @@ export default class TKIndicatorComponent extends Vue {
   border-radius: 5px;
   min-height: 100px;
   overflow: hidden;
+}
 
+.tk-indicator-container {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
+  width: 100%;
 }
 
 .tk-indicator-icon-container {
