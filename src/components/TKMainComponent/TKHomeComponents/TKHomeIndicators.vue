@@ -1,8 +1,8 @@
 <template>
   <div class="tk-home-indicators">
-    <TKIndicatorComponent :backgroundType="1" :indicator="this.indicator1" />
-    <TKIndicatorComponent :backgroundType="2" :indicator="this.indicator2" />
-    <TKIndicatorComponent :backgroundType="3" :indicator="this.indicator3" />
+    <TKIndicatorComponent :backgroundType="1" :indicator="indicator1" />
+    <TKIndicatorComponent :backgroundType="2" :indicator="indicator2" />
+    <TKIndicatorComponent :backgroundType="3" :indicator="indicator3" />
   </div>
 </template>
 
@@ -22,19 +22,13 @@ export default class TKHomeIndicators extends Vue {
   readonly dataset!: TKDatasetFilterer;
   survey: TKSurvey | null = null;
 
-  indicator1: TKIndicator | null = this.survey
-    ? this.survey.indicators[0]
-    : null;
-  indicator2: TKIndicator | null = this.survey
-    ? this.survey.indicators[1]
-    : null;
-  indicator3: TKIndicator | null = this.survey
-    ? this.survey.indicators[2]
-    : null;
+  indicator1: TKIndicator | null = null;
+  indicator2: TKIndicator | null = null;
+  indicator3: TKIndicator | null = null;
 
-  @Watch("survey", { immediate: true })
+  @Watch("dataset", { immediate: true })
   onSurveyChanged() {
-    if (this.dataset && this.dataset.hasActiveSurvey()) {
+    if (this.dataset?.hasActiveSurvey()) {
       this.survey = this.dataset.surveys[this.dataset.currentSurvey];
       this.indicator1 = this.survey.indicators[0];
       this.indicator2 = this.survey.indicators[1];

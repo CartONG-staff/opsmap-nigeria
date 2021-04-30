@@ -1,8 +1,8 @@
 <template>
   <div class="tk-camp-indicators">
-    <TKIndicatorComponent :backgroundType="1" :indicator="this.indicator1" />
-    <TKIndicatorComponent :backgroundType="2" :indicator="this.indicator2" />
-    <TKIndicatorComponent :backgroundType="3" :indicator="this.indicator3" />
+    <TKIndicatorComponent :backgroundType="1" :indicator="indicator1" />
+    <TKIndicatorComponent :backgroundType="2" :indicator="indicator2" />
+    <TKIndicatorComponent :backgroundType="3" :indicator="indicator3" />
   </div>
 </template>
 
@@ -11,6 +11,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
+import { TKIndicator } from "@/domain/ui/TKIndicator";
 
 @Component({
   components: {
@@ -24,9 +25,9 @@ export default class TKCampIndicators extends Vue {
   @Prop()
   readonly submission!: TKSubmission;
 
-  indicator1 = this.submission.indicators[0];
-  indicator2 = this.submission.indicators[1];
-  indicator3 = this.submission.indicators[2];
+  indicator1: TKIndicator | null = null;
+  indicator2: TKIndicator | null = null;
+  indicator3: TKIndicator | null = null;
 
   @Watch("submission")
   onSubmissionChanged() {
