@@ -1,51 +1,67 @@
 <template lang="html">
   <div class="tk-camp-selector">
-    <v-autocomplete
-      class="tk-autocomplete"
-      flat
-      dense
-      :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
-      v-model="currentSurvey"
-      :items="dataset.surveyList"
-      @change="surveySelected"
-      :disabled="dataset.surveyList.length < 2"
-    ></v-autocomplete>
-    <v-autocomplete
-      class="tk-autocomplete"
-      flat
-      dense
-      :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
-      :items="dataset.filteredAdmin1List"
-      v-model="currentAdmin1"
-      item-text="name"
-      item-value="pcode"
-      @change="admin1Selected"
-      clearable
-    ></v-autocomplete>
-    <v-autocomplete
-      class="tk-autocomplete"
-      flat
-      dense
-      :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
-      v-model="currentAdmin2"
-      :items="dataset.filteredAdmin2List"
-      item-text="name"
-      item-value="pcode"
-      @change="admin2Selected"
-      clearable
-    ></v-autocomplete>
-    <v-autocomplete
-      class="tk-autocomplete"
-      flat
-      dense
-      clearable
-      :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
-      v-model="currentCamp"
-      :items="dataset.filteredCampsList"
-      item-text="name"
-      item-value="id"
-      @change="campSelected"
-    ></v-autocomplete>
+    <transition mode="out-in" name="fade-in">
+      <v-autocomplete
+        class="tk-autocomplete"
+        :key="$root.$i18n.locale"
+        flat
+        dense
+        :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
+        :prefix="currentSurvey ? $t('survey') : ''"
+        v-model="currentSurvey"
+        :items="dataset.surveyList"
+        @change="surveySelected"
+        :disabled="dataset.surveyList.length < 2"
+      ></v-autocomplete>
+    </transition>
+    <transition mode="out-in" name="fade-in">
+      <v-autocomplete
+        class="tk-autocomplete"
+        :key="$root.$i18n.locale"
+        flat
+        dense
+        :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
+        :prefix="currentAdmin1 ? $t('infosAdmin1') : ''"
+        v-model="currentAdmin1"
+        :items="dataset.filteredAdmin1List"
+        item-text="name"
+        item-value="pcode"
+        @change="admin1Selected"
+        clearable
+      ></v-autocomplete>
+    </transition>
+    <transition mode="out-in" name="fade-in">
+      <v-autocomplete
+        class="tk-autocomplete"
+        :key="$root.$i18n.locale"
+        flat
+        dense
+        :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
+        :prefix="currentAdmin2 ? $t('infosAdmin2') : ''"
+        v-model="currentAdmin2"
+        :items="dataset.filteredAdmin2List"
+        item-text="name"
+        item-value="pcode"
+        @change="admin2Selected"
+        clearable
+      ></v-autocomplete>
+    </transition>
+    <transition mode="out-in" name="fade-in">
+      <v-autocomplete
+        class="tk-autocomplete"
+        :key="$root.$i18n.locale"
+        flat
+        dense
+        :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
+        :prefix="currentCamp ? $t('camp') : ''"
+        v-model="currentCamp"
+        :items="dataset.filteredCampsList"
+        item-text="name"
+        item-value="id"
+        @change="campSelected"
+        clearable
+      ></v-autocomplete>
+    </transition>
   </div>
 </template>
 
