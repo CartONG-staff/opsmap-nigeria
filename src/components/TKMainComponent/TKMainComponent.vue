@@ -48,7 +48,7 @@
       </div>
 
       <div>
-        <transition mode="out-in" name="fade" appear>
+        <transition mode="out-in" name="fade">
           <div class="tk-main-content-layout" v-if="!dataset">
             <TKPlaceHolderIndicators />
             <TKPlaceHolderGeneric class="tk-main-content-placeholder" />
