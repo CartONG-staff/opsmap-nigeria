@@ -186,7 +186,7 @@ export default class TKCampToolbar extends Vue {
 }
 
 .tk-camp-toolbar-date .theme--light.v-icon.v-icon.v-icon--disabled {
-  color: rgba(0, 0, 0, 0) !important;
+  opacity: 0 !important;
 }
 
 .tk-camp-toolbar-date-disabled.v-input--is-disabled .v-input__slot {
