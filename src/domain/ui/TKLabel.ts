@@ -5,10 +5,13 @@ export interface TKLabel {
 }
 
 export function TKGetLocalValue(label: TKLabel, locale: string): string {
-  if (locale === "pt") {
-    return label.labelPt ? label.labelPt : label.labelEn;
+  if(label){
+    if (locale === "pt") {
+      return label.labelPt ? label.labelPt : label.labelEn;
+    }
+    return label.labelEn;
   }
-  return label.labelEn;
+  return "";
 }
 
 // field_name: string;
