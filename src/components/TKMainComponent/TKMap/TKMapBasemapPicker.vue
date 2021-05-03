@@ -72,6 +72,7 @@ export default class TKMapBasemapPicker extends Vue {
   align-items: center;
   height: 40px;
   width: 40px;
+  background-color: #f1f3f3;
   border: 2px solid #f1f3f3;
   border-radius: 50%;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
