@@ -29,7 +29,7 @@
     </div>
     <div class="tk-hseparator" />
     <!-- ADMIN3 -->
-    <div class="tk-camp-infos-field">
+    <!-- <div class="tk-camp-infos-field">
       <transition mode="out-in" name="fade-in">
         <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
           {{ $t("infosAdmin3").toUpperCase() }}
@@ -41,7 +41,7 @@
           {{ admin3.toUpperCase() }}
         </div>
       </transition>
-    </div>
+    </div> -->
     <div class="tk-hseparator" />
     <!-- GPS COORDINATES -->
     <div class="tk-camp-infos-field">
@@ -57,10 +57,25 @@
       </transition>
     </div>
     <div class="tk-hseparator" />
+    <div class="tk-camp-infos-field">
+      <transition mode="out-in" name="fade-in">
+        <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
+          {{ $t("manageBy").toUpperCase() }}
+        </div>
+      </transition>
+
+      <transition mode="out-in" name="fade-in">
+        <div :key="admin3" class="tk-camp-infos-field-value">
+          {{ manageBy.toUpperCase() }}
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+// Manage by: cccm_shelter__mangmt
+
 import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
@@ -71,8 +86,9 @@ export default class TKCampInfos extends Vue {
 
   admin1 = "-";
   admin2 = "-";
-  admin3 = "-";
+  // admin3 = "-";
   coordinates = "-";
+  manageBy = "";
 
   @Watch("dataset", { immediate: true, deep: true })
   onChange() {
@@ -83,14 +99,17 @@ export default class TKCampInfos extends Vue {
       this.admin2 = this.dataset.currentCamp
         ? this.dataset.currentCamp.admin2.name
         : "-";
-      this.admin3 = this.dataset.currentCamp
-        ? this.dataset.currentCamp.admin3.name
-        : "-";
+      // this.admin3 = this.dataset.currentCamp
+      //   ? this.dataset.currentCamp.admin3.name
+      //   : "-";
       this.coordinates = this.dataset.currentCamp
         ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
         : "-";
+      this.manageBy = "-";
     }
   }
+
+  // cccm_shelter__mangmt
 }
 </script>
 
