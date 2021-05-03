@@ -1,63 +1,91 @@
 <template lang="html">
   <div class="tk-camp-selector">
-    <transition mode="out-in" name="fade-in">
-      <v-autocomplete
-        class="tk-autocomplete"
-        :key="$root.$i18n.locale"
-        flat
-        dense
-        :label="$t('survey')"
-        v-model="currentSurvey"
-        :items="dataset.surveyList"
-        @change="surveySelected"
-        :disabled="dataset.surveyList.length < 2"
-      ></v-autocomplete>
-    </transition>
-    <transition mode="out-in" name="fade-in">
-      <v-autocomplete
-        class="tk-autocomplete"
-        :key="$root.$i18n.locale"
-        flat
-        dense
-        :label="$t('infosAdmin1')"
-        v-model="currentAdmin1"
-        :items="dataset.filteredAdmin1List"
-        item-text="name"
-        item-value="pcode"
-        @change="admin1Selected"
-        clearable
-      ></v-autocomplete>
-    </transition>
-    <transition mode="out-in" name="fade-in">
-      <v-autocomplete
-        class="tk-autocomplete"
-        :key="$root.$i18n.locale"
-        flat
-        dense
-        :label="$t('infosAdmin2')"
-        v-model="currentAdmin2"
-        :items="dataset.filteredAdmin2List"
-        item-text="name"
-        item-value="pcode"
-        @change="admin2Selected"
-        clearable
-      ></v-autocomplete>
-    </transition>
-    <transition mode="out-in" name="fade-in">
-      <v-autocomplete
-        class="tk-autocomplete"
-        :key="$root.$i18n.locale"
-        flat
-        dense
-        :label="$t('camp')"
-        v-model="currentCamp"
-        :items="dataset.filteredCampsList"
-        item-text="name"
-        item-value="id"
-        @change="campSelected"
-        clearable
-      ></v-autocomplete>
-    </transition>
+    <v-tooltip top>
+      <template v-slot:activator="{ on, attrs }">
+        <transition mode="out-in" name="fade-in">
+          <v-autocomplete
+            class="tk-autocomplete"
+            :key="$root.$i18n.locale"
+            flat
+            dense
+            :label="$t('survey')"
+            v-model="currentSurvey"
+            :items="dataset.surveyList"
+            @change="surveySelected"
+            :disabled="dataset.surveyList.length < 2"
+            v-bind="attrs"
+            v-on="on"
+          ></v-autocomplete>
+        </transition>
+      </template>
+      <span>{{ $t("selectText") }} {{ $t("survey").toLowerCase() }}</span>
+    </v-tooltip>
+    <v-tooltip top>
+      <template v-slot:activator="{ on, attrs }">
+        <transition mode="out-in" name="fade-in">
+          <v-autocomplete
+            class="tk-autocomplete"
+            :key="$root.$i18n.locale"
+            flat
+            dense
+            :label="$t('infosAdmin1')"
+            v-model="currentAdmin1"
+            :items="dataset.filteredAdmin1List"
+            item-text="name"
+            item-value="pcode"
+            @change="admin1Selected"
+            clearable
+            v-bind="attrs"
+            v-on="on"
+          ></v-autocomplete>
+        </transition>
+      </template>
+      <span>{{ $t("selectText") }} {{ $t("infosAdmin1").toLowerCase() }}</span>
+    </v-tooltip>
+    <v-tooltip top>
+      <template v-slot:activator="{ on, attrs }">
+        <transition mode="out-in" name="fade-in">
+          <v-autocomplete
+            class="tk-autocomplete"
+            :key="$root.$i18n.locale"
+            flat
+            dense
+            :label="$t('infosAdmin2')"
+            v-model="currentAdmin2"
+            :items="dataset.filteredAdmin2List"
+            item-text="name"
+            item-value="pcode"
+            @change="admin2Selected"
+            clearable
+            v-bind="attrs"
+            v-on="on"
+          ></v-autocomplete>
+        </transition>
+      </template>
+      <span>{{ $t("selectText") }} {{ $t("infosAdmin2").toLowerCase() }}</span>
+    </v-tooltip>
+    <v-tooltip top>
+      <template v-slot:activator="{ on, attrs }">
+        <transition mode="out-in" name="fade-in">
+          <v-autocomplete
+            class="tk-autocomplete"
+            :key="$root.$i18n.locale"
+            flat
+            dense
+            :label="$t('camp')"
+            v-model="currentCamp"
+            :items="dataset.filteredCampsList"
+            item-text="name"
+            item-value="id"
+            @change="campSelected"
+            clearable
+            v-bind="attrs"
+            v-on="on"
+          ></v-autocomplete>
+        </transition>
+      </template>
+      <span>{{ $t("selectText") }} {{ $t("camp").toLowerCase() }}</span>
+    </v-tooltip>
   </div>
 </template>
 
