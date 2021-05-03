@@ -6,8 +6,7 @@
         :key="$root.$i18n.locale"
         flat
         dense
-        :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
-        :prefix="currentSurvey ? $t('survey') : ''"
+        :label="$t('survey')"
         v-model="currentSurvey"
         :items="dataset.surveyList"
         @change="surveySelected"
@@ -20,8 +19,7 @@
         :key="$root.$i18n.locale"
         flat
         dense
-        :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
-        :prefix="currentAdmin1 ? $t('infosAdmin1') : ''"
+        :label="$t('infosAdmin1')"
         v-model="currentAdmin1"
         :items="dataset.filteredAdmin1List"
         item-text="name"
@@ -36,8 +34,7 @@
         :key="$root.$i18n.locale"
         flat
         dense
-        :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
-        :prefix="currentAdmin2 ? $t('infosAdmin2') : ''"
+        :label="$t('infosAdmin2')"
         v-model="currentAdmin2"
         :items="dataset.filteredAdmin2List"
         item-text="name"
@@ -52,8 +49,7 @@
         :key="$root.$i18n.locale"
         flat
         dense
-        :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
-        :prefix="currentCamp ? $t('camp') : ''"
+        :label="$t('camp')"
         v-model="currentCamp"
         :items="dataset.filteredCampsList"
         item-text="name"
@@ -133,6 +129,7 @@ export default class TKCampSelector extends Vue {
   -webkit-backdrop-filter: blur(2px);
   z-index: 3000;
   box-shadow: 0 0 20px 2px rgba(58, 158, 211, 0.15);
+  padding-top: 12px;
 }
 
 .tk-autocomplete {

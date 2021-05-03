@@ -12,7 +12,7 @@
         flat
         dense
         :key="$root.$i18n.locale"
-        :placeholder="$t('selectText') + ' ' + $t('survey').toLowerCase()"
+        :label="$t('survey')"
         v-model="currentSurvey"
         :items="dataset.surveyList"
         @change="surveySelected"
@@ -25,7 +25,7 @@
         flat
         dense
         :key="$root.$i18n.locale"
-        :placeholder="$t('selectText') + ' ' + $t('infosAdmin1').toLowerCase()"
+        :label="$t('infosAdmin1')"
         :items="dataset.filteredAdmin1List"
         item-text="name"
         item-value="pcode"
@@ -40,7 +40,7 @@
         flat
         dense
         :key="$root.$i18n.locale"
-        :placeholder="$t('selectText') + ' ' + $t('infosAdmin2').toLowerCase()"
+        :label="$t('infosAdmin2')"
         v-model="currentAdmin2"
         :items="dataset.filteredAdmin2List"
         item-text="name"
@@ -56,7 +56,7 @@
         dense
         :key="$root.$i18n.locale"
         clearable
-        :placeholder="$t('selectText') + ' ' + $t('camp').toLowerCase()"
+        :label="$t('camp')"
         :v-model="currentCamp"
         :items="dataset.filteredCampsList"
         item-text="name"
@@ -138,6 +138,7 @@ export default class TKHomeCombos extends Vue {
   flex-flow: column nowrap;
   justify-content: flex-end;
   align-items: middle;
+  row-gap: 12px;
 }
 
 .tk-home-combos-title {
