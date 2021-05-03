@@ -43,7 +43,7 @@
     "legendBasemaps": "Seleccione um mapa de fundo",
     "legendZoomIn": "Mais Zoom",
     "legendZoomOut": "Reduzir o zoom",
-    "legendBbox": "Redefinir o zoom",
+    "legendBbox": "Extensão padrão",
     "legendFilters": "Mostrar / Ocultar filtros"
   }
 }
