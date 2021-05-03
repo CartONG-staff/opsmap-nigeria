@@ -12,6 +12,7 @@
         </div>
       </div>
     </transition>
+    <TKOchaCredits :key="$root.$i18n.locale" />
     <div class="tk-footer-logos">
       <TKFooterLogoItem
         :title="$t('footer.partnerLed')"
@@ -37,10 +38,12 @@
 import { Vue, Prop, Component } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 import TKFooterLogoItem from "./TKFooterLogoItem.vue";
+import TKOchaCredits from "./TKOchaCredits.vue";
 
 @Component({
   components: {
-    TKFooterLogoItem
+    TKFooterLogoItem,
+    TKOchaCredits
   }
 })
 export default class TKFooter extends Vue {
