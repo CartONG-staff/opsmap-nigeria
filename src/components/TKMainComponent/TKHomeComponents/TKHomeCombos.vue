@@ -1,70 +1,92 @@
 <template>
-  <div class="tk-home-combos">
-    <transition mode="out-in" name="fade-in">
-      <p :key="$root.$i18n.locale" class="tk-home-combos-title">
-        {{ $t("home.combosTitle").toUpperCase() }}
-      </p>
-    </transition>
+  <transition mode="out-in" name="fade">
+    <div :key="$root.$i18n.locale" class="tk-home-combos">
+      <transition mode="out-in" name="fade-in">
+        <p :key="$root.$i18n.locale" class="tk-home-combos-title">
+          {{ $t("home.combosTitle").toUpperCase() }}
+        </p>
+      </transition>
+      <v-tooltip left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-autocomplete
+            class="tk-autocomplete"
+            flat
+            dense
+            :label="$t('survey')"
+            v-model="currentSurvey"
+            :items="dataset.surveyList"
+            @change="surveySelected"
+            :disabled="dataset.surveyList.length < 2"
+            v-bind="attrs"
+            v-on="on"
+          ></v-autocomplete>
+        </template>
+        <span>{{ $t("selectText") }} {{ $t("survey").toLowerCase() }}</span>
+      </v-tooltip>
 
-    <transition mode="out-in" name="fade-in">
-      <v-autocomplete
-        class="tk-autocomplete"
-        flat
-        dense
-        :key="$root.$i18n.locale"
-        :label="$t('survey')"
-        v-model="currentSurvey"
-        :items="dataset.surveyList"
-        @change="surveySelected"
-        :disabled="dataset.surveyList.length < 2"
-      ></v-autocomplete>
-    </transition>
-    <transition mode="out-in" name="fade-in">
-      <v-autocomplete
-        class="tk-autocomplete"
-        flat
-        dense
-        :key="$root.$i18n.locale"
-        :label="$t('infosAdmin1')"
-        :items="dataset.filteredAdmin1List"
-        item-text="name"
-        item-value="pcode"
-        v-model="currentAdmin1"
-        @change="admin1Selected"
-        clearable
-      ></v-autocomplete>
-    </transition>
-    <transition mode="out-in" name="fade-in">
-      <v-autocomplete
-        class="tk-autocomplete"
-        flat
-        dense
-        :key="$root.$i18n.locale"
-        :label="$t('infosAdmin2')"
-        v-model="currentAdmin2"
-        :items="dataset.filteredAdmin2List"
-        item-text="name"
-        item-value="pcode"
-        @change="admin2Selected"
-        clearable
-      ></v-autocomplete>
-    </transition>
-    <transition mode="out-in" name="fade-in">
-      <v-autocomplete
-        class="tk-autocomplete"
-        flat
-        dense
-        :key="$root.$i18n.locale"
-        clearable
-        :label="$t('camp')"
-        :v-model="currentCamp"
-        :items="dataset.filteredCampsList"
-        item-text="name"
-        item-value="id"
-        @change="campSelected"
-      ></v-autocomplete>
-    </transition>
-  </div>
+      <v-tooltip left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-autocomplete
+            class="tk-autocomplete"
+            flat
+            dense
+            :label="$t('infosAdmin1')"
+            :items="dataset.filteredAdmin1List"
+            item-text="name"
+            item-value="pcode"
+            v-model="currentAdmin1"
+            @change="admin1Selected"
+            clearable
+            v-bind="attrs"
+            v-on="on"
+          ></v-autocomplete>
+        </template>
+        <span
+          >{{ $t("selectText") }} {{ $t("infosAdmin1").toLowerCase() }}</span
+        >
+      </v-tooltip>
+      <v-tooltip left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-autocomplete
+            class="tk-autocomplete"
+            flat
+            dense
+            :label="$t('infosAdmin2')"
+            v-model="currentAdmin2"
+            :items="dataset.filteredAdmin2List"
+            item-text="name"
+            item-value="pcode"
+            @change="admin2Selected"
+            clearable
+            v-bind="attrs"
+            v-on="on"
+          ></v-autocomplete>
+        </template>
+        <span
+          >{{ $t("selectText") }} {{ $t("infosAdmin2").toLowerCase() }}</span
+        >
+      </v-tooltip>
+      <v-tooltip left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-autocomplete
+            class="tk-autocomplete"
+            flat
+            dense
+            clearable
+            :label="$t('camp')"
+            :v-model="currentCamp"
+            :items="dataset.filteredCampsList"
+            item-text="name"
+            item-value="id"
+            @change="campSelected"
+            v-bind="attrs"
+            v-on="on"
+          ></v-autocomplete>
+        </template>
+        <span>{{ $t("selectText") }} {{ $t("camp").toLowerCase() }}</span>
+      </v-tooltip>
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -139,11 +161,16 @@ export default class TKHomeCombos extends Vue {
   justify-content: flex-end;
   align-items: middle;
   row-gap: 6px;
+  position: relative;
 }
 
 .tk-home-combos-title {
   color: var(--v-sectionTitle-base);
   letter-spacing: 0.86px;
   font-size: 12px;
+}
+
+.tk-autocomplete {
+  position: relative;
 }
 </style>
