@@ -19,7 +19,7 @@
           <transition mode="out-in" name="fade">
             <TKPlaceHolderLeft v-if="!dataset" />
             <div key="32" v-else-if="isHomePage" class="tk-home-left">
-              <TKHomeSubtitle />
+              <TKHomeSubtitle :dataset="dataset" />
               <TKHomeCombos :dataset="dataset" />
             </div>
             <div key="33" v-else class="tk-camp-left">
