@@ -107,12 +107,9 @@ export default class TKCampToolbar extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
 
-  model =
-    this.submissionsDates && this.submissionsDates.length
-      ? this.submissionsDates[0]
-      : "";
+  model = "";
 
-  @Watch("submissionsDates")
+  @Watch("submissionsDates", { immediate: true })
   onChange() {
     this.model =
       this.submissionsDates && this.submissionsDates.length
