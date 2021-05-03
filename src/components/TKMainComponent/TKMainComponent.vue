@@ -33,7 +33,7 @@
                 :options="visualizerOptions"
                 @date-selection-changed="dateSelected"
               />
-              <TKCampInfos :dataset="dataset" />
+              <TKCampInfos :dataset="dataset" :submission="currentSubmission" />
             </div>
           </transition>
         </div>

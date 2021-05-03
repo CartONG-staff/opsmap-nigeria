@@ -65,7 +65,7 @@
       </transition>
 
       <transition mode="out-in" name="fade-in">
-        <div :key="admin3" class="tk-camp-infos-field-value">
+        <div :key="manageBy" class="tk-camp-infos-field-value">
           {{ manageBy.toUpperCase() }}
         </div>
       </transition>
@@ -77,6 +77,9 @@
 // Manage by: cccm_shelter__mangmt
 
 import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKSubmission } from "@/domain/survey/TKSubmission";
+import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
+import { TKGetLocalValue, TKLabel } from "@/domain/ui/TKLabel";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
@@ -84,13 +87,18 @@ export default class TKCampInfos extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
 
+  @Prop()
+  readonly submission!: TKSubmission;
+
+  manageByLabel!: TKLabel;
+
   admin1 = "-";
   admin2 = "-";
   // admin3 = "-";
   coordinates = "-";
   manageBy = "";
 
-  @Watch("dataset", { immediate: true, deep: true })
+  @Watch("dataset.currentCamp", { immediate: true })
   onChange() {
     if (this.dataset) {
       this.admin1 = this.dataset.currentCamp
@@ -105,11 +113,24 @@ export default class TKCampInfos extends Vue {
       this.coordinates = this.dataset.currentCamp
         ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
         : "-";
-      this.manageBy = "-";
     }
   }
 
-  // cccm_shelter__mangmt
+  @Watch("submission", { immediate: true })
+  onSubmissionChange() {
+    this.manageByLabel = (this.submission?.thematics["group_cccm"]?.data?.find(
+      item => item.field === "cccm_shelter__mangmt"
+    ) as TKSubmissionEntryText)?.answerLabel ?? { name: "-", labelEn: "-" };
+    this.handeLocale();
+  }
+
+  @Watch("$root.$i18n.locale")
+  handeLocale() {
+    this.manageBy = TKGetLocalValue(
+      this.manageByLabel,
+      this.$root.$i18n.locale
+    );
+  }
 }
 </script>
 
