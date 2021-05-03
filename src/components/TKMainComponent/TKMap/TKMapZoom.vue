@@ -67,7 +67,7 @@ export default class TKMapZoom extends Vue {}
 .tk-map-zoom {
   border-radius: 8px;
   overflow: hidden;
-  border: 2px solid #00000011;
+  border: 2px solid #f1f3f3;
   display: flex;
   flex-flow: column nowrap;
   background-color: #ffffff;

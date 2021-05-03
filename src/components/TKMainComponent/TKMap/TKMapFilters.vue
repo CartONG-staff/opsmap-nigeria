@@ -115,7 +115,7 @@ export default class TKMapFilter extends Vue {
 .tk-map-filters {
   border-radius: 8px;
   overflow: hidden;
-  border: 2px solid #00000011;
+  border: 2px solid #f1f3f3;
   background-color: #ffffff;
   display: flex;
   flex-flow: row nowrap;
@@ -175,7 +175,7 @@ export default class TKMapFilter extends Vue {
 }
 
 .tk-vseparator {
-  background-color: #00000011;
+  background-color: #f1f3f3;
   width: 1px;
   height: 100%;
   margin-left: -1px;
