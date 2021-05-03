@@ -138,7 +138,7 @@ export default class TKHomeCombos extends Vue {
   flex-flow: column nowrap;
   justify-content: flex-end;
   align-items: middle;
-  row-gap: 12px;
+  row-gap: 6px;
 }
 
 .tk-home-combos-title {
