@@ -136,6 +136,7 @@ export class TKDatasetFilterer {
           this.currentAdmin2 = this.admin2List.find(
             a => a.pcode === value
           ) as TKBoundarieDescription;
+          // this.filters.admin2 = this.currentAdmin2 ? this.currentAdmin2.pcode : null;
 
           const campAdmin2 = this.campsList.find(
             a => a.admin2.pcode === this.currentAdmin2?.pcode
@@ -149,10 +150,12 @@ export class TKDatasetFilterer {
         else {
           this.levelToZoom = TKFilters.ADMIN1;
           this.currentAdmin2 = null;
+          // this.filters.admin2 = null;
           this.filters.admin1 = this.currentAdmin1 ? this.currentAdmin1.pcode : null;
         }
         // Clear child levels
         this.currentCamp = null;
+        // this.filters.camp = null;
         break;
       // Change of CAMP ///////////////////////////////////////////////////////
       case TKFilters.CAMP:
@@ -171,6 +174,7 @@ export class TKDatasetFilterer {
         else {
           this.levelToZoom = TKFilters.ADMIN2;
           this.currentCamp = null;
+          // this.filters.camp = null;
         }
         break;
       // Change OF PLANNED TYPE ///////////////////////////////////////////////
@@ -181,6 +185,7 @@ export class TKDatasetFilterer {
           this.currentCamp.type === TKCampTypesValues.PLANNED
         ) {
           this.currentCamp = null;
+          // this.filters.camp = null;
         }
         break;
       // Change OF SPONTANEOUS TYPE ///////////////////////////////////////////
@@ -191,6 +196,7 @@ export class TKDatasetFilterer {
           this.currentCamp.type === TKCampTypesValues.SPONTANEOUS
         ) {
           this.currentCamp = null;
+          // this.filters.camp = null;
         }
         break;
     }
@@ -234,8 +240,6 @@ export class TKDatasetFilterer {
     }
   }
 
-
-
   filterAdmin1BaseOnFilteredCamp(): void{
     // Filter Admin1 based on filtered Camp List //////////////////////////////
     const validAdmin1 = new Set(
@@ -247,6 +251,7 @@ export class TKDatasetFilterer {
 
     if (this.currentAdmin1 && !validAdmin1.has(this.currentAdmin1.pcode)) {
       this.currentAdmin1 = null;
+      this.filters.admin1 = null;
     }
   }
 
@@ -260,6 +265,7 @@ export class TKDatasetFilterer {
     );
     if (this.currentAdmin2 && !validAdmin2.has(this.currentAdmin2.pcode)) {
       this.currentAdmin2 = null;
+      this.filters.admin2 = null;
     }
   }
 }
