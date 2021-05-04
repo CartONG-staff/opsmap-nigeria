@@ -38,7 +38,17 @@ export const TKMapLayersStyle = {
     layout: {},
     paint: {
       "fill-color": "#428fdf",
-      "fill-opacity": 0,
+      "fill-opacity": [
+        "match",
+        ["get", "display"],
+        "hide",
+        0.0,
+        "discrete",
+        0.1,
+        "focus",
+        0.1,
+        0.0
+      ]
     }
   },
   [TKMapLayers.ADMIN1BORDERLAYER]: {
@@ -79,7 +89,17 @@ export const TKMapLayersStyle = {
     layout: {},
     paint: {
       "fill-color": "#428fdf",
-      "fill-opacity": 0,
+      "fill-opacity": [
+        "match",
+        ["get", "display"],
+        "hide",
+        0.0,
+        "discrete",
+        0.1,
+        "focus",
+        0.1,
+        0.0
+      ]
     }
   },
   [TKMapLayers.ADMIN2BORDERLAYER]: {
