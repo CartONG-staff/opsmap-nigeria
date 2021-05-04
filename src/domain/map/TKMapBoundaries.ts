@@ -13,12 +13,18 @@ export class TKMapBoundaries {
     this.admin2 = geodataset.admin2;
   }
 
+  // //////////////////////////////////////////////////////////////////////////
+  //
+  // //////////////////////////////////////////////////////////////////////////
+
   changeStyle(
     dataset: TKDatasetFilterer,
     map: mapboxgl.Map,
     bound: LngLatBounds
   ): void {
     let setZoom;
+    const setZoom1 = this.setAdmin1Style(dataset);
+    const setZoom2 = this.setAdmin2Style(dataset);
     switch (dataset.levelToZoom) {
       case TKFilters.SURVEY:
         this.mapFitBounds(bound, map);
@@ -27,27 +33,17 @@ export class TKMapBoundaries {
             item.properties.transparent = "yes";
           }
         }
-        for (const item of this.admin2.features) {
-          if (item.properties) {
-            item.properties.transparent = "yes";
-          }
-        }
         break;
       case TKFilters.ADMIN1:
-        setZoom = this.setAdmin1Style(dataset);
+        setZoom = setZoom1;
+        this.setAdmin2Style(dataset);
         if (setZoom) {
           this.mapFitBounds(setZoom, map);
-        }
-        for (const item of this.admin2.features) {
-          if (item.properties) {
-            item.properties.transparent = "yes";
-          }
         }
         break;
       case TKFilters.CAMP:
       case TKFilters.ADMIN2:
-        setZoom = this.setAdmin1Style(dataset);
-        setZoom = this.setAdmin2Style(dataset);
+        setZoom = setZoom2;
         if (setZoom) {
           this.mapFitBounds(setZoom, map);
         }
@@ -63,63 +59,83 @@ export class TKMapBoundaries {
         map
       );
     }
-    (map.getSource(TKMapLayers.ADMIN1SOURCE) as mapboxgl.GeoJSONSource)?.setData(
-      this.admin1
-    );
-    (map.getSource(TKMapLayers.ADMIN2SOURCE) as mapboxgl.GeoJSONSource)?.setData(
-      this.admin2
-    );
+    (map.getSource(
+      TKMapLayers.ADMIN1SOURCE
+    ) as mapboxgl.GeoJSONSource)?.setData(this.admin1);
+    (map.getSource(
+      TKMapLayers.ADMIN2SOURCE
+    ) as mapboxgl.GeoJSONSource)?.setData(this.admin2);
   }
+
+  // //////////////////////////////////////////////////////////////////////////
+  //
+  // //////////////////////////////////////////////////////////////////////////
+
+  initLayersStyle(map: mapboxgl.Map) {
+    // Split in two tempos -> for transition
+    map.setPaintProperty(TKMapLayers.COUNTRYMASKLAYER, "fill-opacity", 0.5);
+  }
+
+  // //////////////////////////////////////////////////////////////////////////
+  //
+  // //////////////////////////////////////////////////////////////////////////
 
   setAdmin1Style(dataset: TKDatasetFilterer) {
     let shouldMapZoom = null;
+    const currentadmin1List = dataset.filteredAdmin1List.map(
+      (item) => item.pcode
+    );
     for (const item of this.admin1.features) {
-      if (dataset.currentAdmin1) {
-        if (item.properties?.pcode === dataset.currentAdmin1?.pcode) {
-          if (item.properties) {
-            item.properties.transparent = "yes";
-          }
-          if (dataset.levelToZoom === TKFilters.ADMIN1) {
-            shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
-          }
-        } else {
-          if (item.properties) {
-            item.properties.transparent = "no";
-          }
+      if (item.properties) {
+        if(dataset.currentAdmin2){
+          item.properties.display = "hide";
         }
-      } else {
-        if (item.properties) {
-          item.properties.transparent = "yes";
+        else if (
+          dataset.currentAdmin1 &&
+          dataset.currentAdmin1.pcode === item.properties.pcode
+        ) {
+          shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
+          item.properties.display = "focus";
+        } else if (currentadmin1List.includes(item.properties.pcode)) {
+          item.properties.display = "hide";
+        } else {
+          item.properties.display = "hide";
         }
       }
     }
     return shouldMapZoom;
   }
 
+  // //////////////////////////////////////////////////////////////////////////
+  //
+  // //////////////////////////////////////////////////////////////////////////
+
   setAdmin2Style(dataset: TKDatasetFilterer) {
     let shouldMapZoom = null;
+    const currentadmin2List = dataset.filteredAdmin2List.map(
+      (item) => item.pcode
+    );
     for (const item of this.admin2.features) {
-      if (dataset.currentAdmin2) {
-        if (item.properties?.pcode === dataset.currentAdmin2?.pcode) {
-          if (item.properties) {
-            item.properties.transparent = "yes";
-          }
-          if (dataset.levelToZoom === TKFilters.ADMIN2) {
-            shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
-          }
+      if (item.properties) {
+        if (
+          dataset.currentAdmin2 &&
+          dataset.currentAdmin2.pcode === item.properties.pcode
+        ) {
+          shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
+          item.properties.display = "focus";
+        } else if (currentadmin2List.includes(item.properties.pcode)) {
+          item.properties.display = "hide";
         } else {
-          if (item.properties) {
-            item.properties.transparent = "no";
-          }
-        }
-      } else {
-        if (item.properties) {
-          item.properties.transparent = "yes";
+          item.properties.display = "hide";
         }
       }
     }
     return shouldMapZoom;
   }
+
+  // //////////////////////////////////////////////////////////////////////////
+  //
+  // //////////////////////////////////////////////////////////////////////////
 
   mapFitBounds(bounds: LngLatBounds, map: mapboxgl.Map) {
     map.fitBounds(bounds);

@@ -17,6 +17,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import mapboxgl, {
   CircleLayer,
   FillLayer,
+  LineLayer,
   LngLatLike,
   Style,
   SymbolLayer
@@ -69,6 +70,10 @@ export default class TKMap extends Vue {
     this.initMap();
   }
 
+  // //////////////////////////////////////////////////////////////////////////
+  //
+  // //////////////////////////////////////////////////////////////////////////
+
   // Initialisation of component
   @Watch("dataset", { immediate: true })
   datasetLoaded() {
@@ -77,12 +82,9 @@ export default class TKMap extends Vue {
         this.dataset.filteredCampsList,
         this.dataset.currentCamp
       );
-    }
-  }
-  @Watch("geoDataset", { immediate: true })
-  geoDatasetLoaded() {
-    if (this.geoDataset) {
-      this.mapBoundaries = new TKMapBoundaries(this.geoDataset);
+      if (this.mapBoundaries) {
+        this.mapBoundaries.changeStyle(this.dataset, this.map, this.bound);
+      }
     }
   }
   // Change on injected dataset
@@ -103,6 +105,17 @@ export default class TKMap extends Vue {
       TKMapLayers.SELECTEDCAMPSOURCE
     ) as mapboxgl.GeoJSONSource;
     selectedCampSource?.setData(this.mapCamps.filteredCamps.selectedCamp);
+  }
+
+  // //////////////////////////////////////////////////////////////////////////
+  //
+  // //////////////////////////////////////////////////////////////////////////
+
+  @Watch("geoDataset", { immediate: true })
+  geoDatasetLoaded() {
+    if (this.geoDataset) {
+      this.mapBoundaries = new TKMapBoundaries(this.geoDataset);
+    }
   }
 
   @Watch("basemaps", { deep: true })
@@ -227,7 +240,13 @@ export default class TKMap extends Vue {
       );
     }
     this.map.addLayer(TKMapLayersStyle[TKMapLayers.ADMIN1LAYER] as FillLayer);
+    this.map.addLayer(
+      TKMapLayersStyle[TKMapLayers.ADMIN1BORDERLAYER] as LineLayer
+    );
     this.map.addLayer(TKMapLayersStyle[TKMapLayers.ADMIN2LAYER] as FillLayer);
+    this.map.addLayer(
+      TKMapLayersStyle[TKMapLayers.ADMIN2BORDERLAYER] as LineLayer
+    );
     // ADD CLUSTERS
     this.map.addLayer(
       TKMapLayersStyle[TKMapLayers.CLUSTERSCIRCLELAYER] as CircleLayer
@@ -292,6 +311,8 @@ export default class TKMap extends Vue {
       this.map.getCanvas().style.cursor = "";
       popup.remove();
     });
+
+    this.mapBoundaries?.initLayersStyle(this.map);
   }
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
