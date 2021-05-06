@@ -42,8 +42,8 @@ export function TKCreateSubmissionEntryAgePyramid(
   chartdata: Array<TKSubmissionEntryAgePyramidItem>,
   surveyConfiguration: TKFDF
 ): TKSubmissionEntryAgePyramid {
-  const malesEntries = chartdata.filter(item => item.type === "m");
-  const femalesEntries = chartdata.filter(item => item.type === "f");
+  const malesEntries = chartdata.filter(item => item.type === "m").reverse();
+  const femalesEntries = chartdata.filter(item => item.type === "f").reverse();
 
   const malesDataset = malesEntries.map(item => Number(item.value));
   const femalesDataset = femalesEntries.map(item => Number(item.value));
