@@ -31,7 +31,8 @@
     "infosCoordinates": "coordenadas GPS",
     "hideUnanswered": "Ocultar entradas não respondidas",
     "subtitlePlaceholder": "Nenhum local selecionado",
-    "extraTools": "Ferramentas Extras"
+    "extraTools": "Ferramentas Extras",
+    "datePrefix": "Data"
   },
   "charts": {
     "agePyramidTitle": "Pirâmide de Idade",

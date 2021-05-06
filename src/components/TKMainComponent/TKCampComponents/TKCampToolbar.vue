@@ -1,40 +1,43 @@
 <template>
   <div class="tk-camp-toolbar">
-    <div class="tk-camp-toolbar-container">
-      <v-autocomplete
-        v-if="model !== ''"
-        key="1"
-        class="tk-camp-toolbar-date"
-        background-color="#418fde"
-        color="#ffffff"
-        :disabled="submissionsDates.length < 2"
-        flat
-        filled
-        solo
-        dense
-        height="44"
-        :items="submissionsDates"
-        v-model="model"
-        @change="dateSelected"
-      ></v-autocomplete>
-      <v-autocomplete
-        v-else
-        key="2"
-        class="tk-camp-toolbar-date-disabled"
-        background-color="#418fde"
-        color="#ffffff"
-        disabled
-        readonly
-        flat
-        filled
-        solo
-        dense
-        height="44"
-        :items="submissionsDates"
-        v-model="model"
-        @change="dateSelected"
-      ></v-autocomplete>
-    </div>
+    <transition mode="out-in" name="fade-in">
+      <div :key="$root.$i18n.locale" class="tk-camp-toolbar-container">
+        <v-autocomplete
+          v-if="model !== ''"
+          key="1"
+          class="tk-camp-toolbar-date"
+          background-color="#418fde"
+          color="#ffffff"
+          :disabled="submissionsDates.length < 2"
+          flat
+          filled
+          solo
+          dense
+          height="44"
+          :items="submissionsDates"
+          :prefix="$t('site.datePrefix')"
+          v-model="model"
+          @change="dateSelected"
+        ></v-autocomplete>
+        <v-autocomplete
+          v-else
+          key="2"
+          class="tk-camp-toolbar-date-disabled"
+          background-color="#418fde"
+          color="#ffffff"
+          disabled
+          readonly
+          flat
+          filled
+          solo
+          dense
+          height="44"
+          :items="submissionsDates"
+          v-model="model"
+          @change="dateSelected"
+        ></v-autocomplete>
+      </div>
+    </transition>
 
     <transition mode="out-in" name="fade-in">
       <v-btn
@@ -195,7 +198,15 @@ export default class TKCampToolbar extends Vue {
 }
 
 .tk-camp-toolbar input::placeholder {
-  color: #fff !important;
+  color: #f1f3f3 !important;
+  font-family: "Arial";
+  font-weight: bold !important;
+  font-size: 12px !important;
+  letter-spacing: 0.86px !important;
+}
+
+.tk-camp-toolbar .v-text-field__prefix {
+  color: #21476f !important;
   font-family: "Arial";
   font-weight: bold !important;
   font-size: 12px !important;
