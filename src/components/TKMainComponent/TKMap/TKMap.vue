@@ -300,7 +300,10 @@ export default class TKMap extends Vue {
           e.features[0].properties?.lng,
           e.features[0].properties?.lat
         ];
-        const description = `<h4 class="primary--text">${e.features[0].properties?.name}</h4>`;
+        const description = `<div>
+                                <h4 class="primary--text">${e.features[0].properties?.name} </h4>
+                                <h8 class="primary--text">${e.features[0].properties?.lastSubmission}</h8>
+                             </div>`;
         popup
           .setLngLat(coordinates)
           .setHTML(description)

@@ -28,7 +28,17 @@ export class TKMapCamps {
             type: "Point",
             coordinates: [camp.lng, camp.lat]
           },
-          properties: { ...camp }
+          properties: {
+            id: camp.id,
+            name: camp.name,
+            type: camp.type,
+            lastSubmission: camp.submissionsDates[0],
+            lat: camp.lat,
+            lng: camp.lng,
+            admin1: camp.admin1,
+            admin2: camp.admin2,
+            admin3: camp.admin3
+          }
         };
       })
     };
