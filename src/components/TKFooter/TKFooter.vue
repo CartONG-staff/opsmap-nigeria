@@ -12,7 +12,7 @@
         </div>
       </div>
     </transition>
-    <TKOchaCredits :key="$root.$i18n.locale" />
+    <TKOchaCredits :key="$root.$i18n.locale" class="tk-footer-ocha-credits" />
     <div class="tk-footer-logos">
       <TKFooterLogoItem
         :title="$t('footer.partnerLed')"
@@ -65,9 +65,12 @@ export default class TKFooter extends Vue {
   flex-flow: row nowrap;
   column-gap: 84px;
   padding-top: 42px;
-  padding-bottom: 42px;
   padding-left: var(--side-padding);
   padding-right: var(--side-padding);
+}
+
+.tk-footer-ocha-credits {
+  padding-bottom: 42px;
 }
 
 .tk-footer-disclaimer-title {

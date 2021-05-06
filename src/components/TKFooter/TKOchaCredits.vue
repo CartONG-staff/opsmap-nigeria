@@ -3,7 +3,7 @@
     <transition mode="out-in" name="fade-in">
       <div :key="$root.$i18n.locale" class="tk-ochacredits-text">
         {{ $t("ochaCredits") }}
-         -
+        -
         <a
           href="http://creativecommons.org/licenses/by/3.0/"
           target="_blank"
@@ -25,20 +25,18 @@ export default class TKOchaCredits extends Vue {}
 
 <style scoped>
 .tk-ochacredits {
-  background-color: #f1f3f3;
+  background-color: var(--v-sectionBGSecondary-base);
   width: 100%;
-  padding-top: 42px;
-  padding-bottom: 42px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: var(--side-padding);
+  padding-right: var(--side-padding);
 }
 
 .tk-ochacredits-text {
   white-space: nowrap;
   font-size: 14px;
-  color: var(--v-secondary-base);
-  text-align: center;
-  width: 100%;
-  /* letter-spacing: 0.86; */
+  color: #b3b3b3;
+  line-height: 1.375;
+  text-align: right;
+  text-justify: inter-word;
 }
 </style>
