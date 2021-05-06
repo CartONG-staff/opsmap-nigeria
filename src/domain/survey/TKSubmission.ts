@@ -74,14 +74,14 @@ function computeSubmissionIndicator(
       };
     }
     const entry = data[thematic].data.find(
-      item => item.field === descr.entryCode
+      (item) => item.field === descr.entryCode
     );
     if (entry instanceof TKSubmissionEntryText) {
       return {
         iconOchaName: descr.iconOchaName,
         // TODO use answer label isntead of current label -> trad is not in indicator description
-        // nameLabel: entry.fieldLabel,
-        nameLabel: descr.name,
+        // nameLabel: descr.name,
+        nameLabel: entry.fieldLabel,
         valueLabel: entry.answerLabel
       };
     }
@@ -186,7 +186,7 @@ export function TKCreateSubmission(
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
-  Object.entries(submission).filter(item => item.length > 0);
+  Object.entries(submission).filter((item) => item.length > 0);
   const submissionFiltered: Record<string, TKSubmissionThematic> = {};
   for (const key of Object.keys(submission)) {
     if (submission[key].data.length > 0) {
