@@ -46,6 +46,6 @@
     "legendZoomIn": "Zoom in",
     "legendZoomOut": "Zoom out",
     "legendBbox": "Default Extent",
-    "legendFilters": "Show / Hide filters"
+    "legendFilters": "Show / Hide legend"
   }
 }
