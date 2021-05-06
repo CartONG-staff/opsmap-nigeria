@@ -6,82 +6,82 @@
           {{ $t("home.combosTitle").toUpperCase() }}
         </p>
       </transition>
-      <v-tooltip left>
+      <v-tooltip right>
         <template v-slot:activator="{ on, attrs }">
-          <v-autocomplete
-            class="tk-autocomplete"
-            flat
-            dense
-            :label="$t('survey')"
-            v-model="currentSurvey"
-            :items="dataset.surveyList"
-            @change="surveySelected"
-            :disabled="dataset.surveyList.length < 2"
-            v-bind="attrs"
-            v-on="on"
-          ></v-autocomplete>
+          <div multiple v-on="on" v-bind="attrs">
+            <v-autocomplete
+              class="tk-autocomplete"
+              flat
+              dense
+              :label="$t('survey')"
+              v-model="currentSurvey"
+              :items="dataset.surveyList"
+              @change="surveySelected"
+              :disabled="dataset.surveyList.length < 2"
+            ></v-autocomplete>
+          </div>
         </template>
         <span>{{ $t("selectText") }} {{ $t("survey").toLowerCase() }}</span>
       </v-tooltip>
 
-      <v-tooltip left>
+      <v-tooltip right>
         <template v-slot:activator="{ on, attrs }">
-          <v-autocomplete
-            class="tk-autocomplete"
-            flat
-            dense
-            :label="$t('infosAdmin1')"
-            :items="dataset.filteredAdmin1List"
-            item-text="name"
-            item-value="pcode"
-            v-model="currentAdmin1"
-            @change="admin1Selected"
-            clearable
-            v-bind="attrs"
-            v-on="on"
-          ></v-autocomplete>
+          <div multiple v-on="on" v-bind="attrs">
+            <v-autocomplete
+              class="tk-autocomplete"
+              flat
+              dense
+              :label="$t('infosAdmin1')"
+              :items="dataset.filteredAdmin1List"
+              item-text="name"
+              item-value="pcode"
+              v-model="currentAdmin1"
+              @change="admin1Selected"
+              clearable
+            ></v-autocomplete>
+          </div>
         </template>
         <span
           >{{ $t("selectText") }} {{ $t("infosAdmin1").toLowerCase() }}</span
         >
       </v-tooltip>
-      <v-tooltip left>
+      <v-tooltip right>
         <template v-slot:activator="{ on, attrs }">
-          <v-autocomplete
-            class="tk-autocomplete"
-            flat
-            dense
-            :label="$t('infosAdmin2')"
-            v-model="currentAdmin2"
-            :items="dataset.filteredAdmin2List"
-            item-text="name"
-            item-value="pcode"
-            @change="admin2Selected"
-            clearable
-            v-bind="attrs"
-            v-on="on"
-          ></v-autocomplete>
+          <div multiple v-on="on" v-bind="attrs">
+            <v-autocomplete
+              class="tk-autocomplete"
+              flat
+              dense
+              :label="$t('infosAdmin2')"
+              v-model="currentAdmin2"
+              :items="dataset.filteredAdmin2List"
+              item-text="name"
+              item-value="pcode"
+              @change="admin2Selected"
+              clearable
+            ></v-autocomplete>
+          </div>
         </template>
         <span
           >{{ $t("selectText") }} {{ $t("infosAdmin2").toLowerCase() }}</span
         >
       </v-tooltip>
-      <v-tooltip left>
+      <v-tooltip right>
         <template v-slot:activator="{ on, attrs }">
-          <v-autocomplete
-            class="tk-autocomplete"
-            flat
-            dense
-            clearable
-            :label="$t('camp')"
-            :v-model="currentCamp"
-            :items="dataset.filteredCampsList"
-            item-text="name"
-            item-value="id"
-            @change="campSelected"
-            v-bind="attrs"
-            v-on="on"
-          ></v-autocomplete>
+          <div multiple v-on="on" v-bind="attrs">
+            <v-autocomplete
+              class="tk-autocomplete"
+              flat
+              dense
+              clearable
+              :label="$t('camp')"
+              :v-model="currentCamp"
+              :items="dataset.filteredCampsList"
+              item-text="name"
+              item-value="id"
+              @change="campSelected"
+            ></v-autocomplete>
+          </div>
         </template>
         <span>{{ $t("selectText") }} {{ $t("camp").toLowerCase() }}</span>
       </v-tooltip>
