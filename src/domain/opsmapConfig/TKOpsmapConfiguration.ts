@@ -83,7 +83,8 @@ export async function TKReadGeneralConfiguration(
         {
           name: {
             name: dict["ikey1_homepage_label"] ?? "",
-            labelEn: dict["ikey1_homepage_label"] ?? ""
+            labelEn: dict["ikey1_homepage_label"] ?? "",
+            labelPt: dict["ikey1_homepage_label_pt"] ?? ""
           },
           entryCode: dict["ikey1_homepage"] ?? "",
           iconOchaName: dict["ikey1_homepage_picto"] ?? ""
@@ -91,7 +92,8 @@ export async function TKReadGeneralConfiguration(
         {
           name: {
             name: dict["ikey2_homepage_label"] ?? "",
-            labelEn: dict["ikey2_homepage_label"] ?? ""
+            labelEn: dict["ikey2_homepage_label"] ?? "",
+            labelPt: dict["ikey2_homepage_label_pt"] ?? ""
           },
           entryCode: dict["ikey2_homepage"] ?? "",
           iconOchaName: dict["ikey2_homepage_picto"] ?? ""
@@ -99,7 +101,8 @@ export async function TKReadGeneralConfiguration(
         {
           name: {
             name: dict["ikey3_homepage_label"] ?? "",
-            labelEn: dict["ikey3_homepage_label"] ?? ""
+            labelEn: dict["ikey3_homepage_label"] ?? "",
+            labelPt: dict["ikey3_homepage_label_pt"] ?? ""
           },
           entryCode: dict["ikey3_homepage"] ?? "",
           iconOchaName: dict["ikey3_homepage_picto"] ?? ""
