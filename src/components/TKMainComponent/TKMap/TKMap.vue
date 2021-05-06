@@ -310,6 +310,27 @@ export default class TKMap extends Vue {
           .addTo(this.map);
       }
     });
+    this.map.on("mouseleave", TKMapLayers.SELECTEDCAMPLAYER, () => {
+      this.map.getCanvas().style.cursor = "";
+      popup.remove();
+    });
+    this.map.on("mouseenter", TKMapLayers.SELECTEDCAMPLAYER, e => {
+      this.map.getCanvas().style.cursor = "pointer";
+      if (e.features) {
+        const coordinates: [number, number] = [
+          e.features[0].properties?.lng,
+          e.features[0].properties?.lat
+        ];
+        const description = `<div>
+                                <h4 class="primary--text">${e.features[0].properties?.name} </h4>
+                                <h8 class="primary--text">${e.features[0].properties?.lastSubmission}</h8>
+                             </div>`;
+        popup
+          .setLngLat(coordinates)
+          .setHTML(description)
+          .addTo(this.map);
+      }
+    });
     this.map.on("mouseleave", TKMapLayers.NOTSELECTEDCAMPSLAYER, () => {
       this.map.getCanvas().style.cursor = "";
       popup.remove();
