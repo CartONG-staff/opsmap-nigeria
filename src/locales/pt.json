@@ -30,7 +30,8 @@
     "exportAsCSV": "Exportar (CSV)",
     "infosCoordinates": "coordenadas GPS",
     "hideUnanswered": "Ocultar entradas não respondidas",
-    "subtitlePlaceholder": "Nenhum local selecionado"
+    "subtitlePlaceholder": "Nenhum local selecionado",
+    "extraTools": "Ferramentas Extras"
   },
   "charts": {
     "agePyramidTitle": "Pirâmide de Idade",

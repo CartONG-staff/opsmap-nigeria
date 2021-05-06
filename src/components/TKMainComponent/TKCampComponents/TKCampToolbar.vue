@@ -56,23 +56,27 @@
       :close-on-content-click="false"
       class="tk-camp-toolbar-kebab"
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          icon
-          small
-          color="accent"
-          v-bind="attrs"
-          v-on="on"
-          height="44"
-          width="44"
-          :disabled="model == ''"
-        >
-          <v-icon dark>
-            mdi-dots-vertical
-          </v-icon>
-        </v-btn>
+      <template v-slot:activator="{ on: menu, attrs }">
+        <v-tooltip top>
+          <template v-slot:activator="{ on: tooltip }">
+            <v-btn
+              icon
+              small
+              color="accent"
+              height="44"
+              width="44"
+              :disabled="model == ''"
+              v-bind="attrs"
+              v-on="{ ...tooltip, ...menu }"
+            >
+              <v-icon dark>
+                mdi-dots-vertical
+              </v-icon>
+            </v-btn>
+          </template>
+          <span>{{ $t("site.extraTools") }}</span>
+        </v-tooltip>
       </template>
-
       <v-list>
         <v-list-item>
           <v-switch
