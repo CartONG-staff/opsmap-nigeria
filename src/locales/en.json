@@ -32,7 +32,7 @@
     "hideUnanswered": "Hide unanswered entries",
     "subtitlePlaceholder": "No Site Selected",
     "extraTools": "Extra Tools",
-    "datePrefix": "Date"
+    "dateSuffix": "Report"
   },
   "charts": {
     "agePyramidTitle": "Age Pyramid",

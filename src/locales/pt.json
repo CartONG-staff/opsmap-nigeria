@@ -32,7 +32,7 @@
     "hideUnanswered": "Ocultar entradas não respondidas",
     "subtitlePlaceholder": "Nenhum local selecionado",
     "extraTools": "Ferramentas Extras",
-    "datePrefix": "Data"
+    "dateSuffix": "Relatório"
   },
   "charts": {
     "agePyramidTitle": "Pirâmide de Idade",

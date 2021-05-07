@@ -15,7 +15,7 @@
           dense
           height="44"
           :items="submissionsDates"
-          :prefix="$t('site.datePrefix')"
+          :suffix="$t('site.dateSuffix')"
           v-model="model"
           @change="dateSelected"
         ></v-autocomplete>
@@ -205,11 +205,15 @@ export default class TKCampToolbar extends Vue {
   letter-spacing: 0.86px !important;
 }
 
+.tk-camp-toolbar .v-text-field__suffix,
 .tk-camp-toolbar .v-text-field__prefix {
-  color: #21476f !important;
+  color: #fff !important;
   font-family: "Arial";
   font-weight: bold !important;
   font-size: 12px !important;
   letter-spacing: 0.86px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 </style>
