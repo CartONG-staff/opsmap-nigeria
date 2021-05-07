@@ -38,8 +38,8 @@
     "agePyramidTitle": "Pirâmide de Idade",
     "titleY": "Faixa Etária",
     "titleX": "Contar",
-    "female": "Fêmea",
-    "male": "Macho"
+    "female": "Mulher",
+    "male": "Homem"
   },
   "map": {
     "legendPlanned": "Site planejado",
