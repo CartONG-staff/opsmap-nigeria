@@ -27,7 +27,7 @@
     "combosTitle": "zoom no mapa"
   },
   "site": {
-    "exportAsCSV": "Exportar (CSV)",
+    "exportAsCSV": "Exportar",
     "infosCoordinates": "coordenadas GPS",
     "hideUnanswered": "Ocultar entradas não respondidas",
     "subtitlePlaceholder": "Nenhum local selecionado",
