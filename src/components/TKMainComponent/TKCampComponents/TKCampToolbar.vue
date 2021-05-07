@@ -15,7 +15,7 @@
           dense
           height="44"
           :items="submissionsDates"
-          :suffix="$t('site.dateSuffix')"
+          :suffix="$t('site.dateSuffix').toUpperCase()"
           v-model="model"
           @change="dateSelected"
         ></v-autocomplete>
