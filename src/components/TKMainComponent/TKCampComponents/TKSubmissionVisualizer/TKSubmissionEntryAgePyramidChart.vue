@@ -97,6 +97,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           responsive: true,
           maintainAspectRatio: false,
           font: {
+            family: "Arial",
             size: 11
           },
           layout: {
@@ -108,6 +109,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
               display: true,
               text: this.$root.$i18n.t("charts.agePyramidTitle").toString(),
               font: {
+                family: "Arial",
                 size: 12
               }
             },
@@ -116,6 +118,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
               reverse: true,
               labels: {
                 font: {
+                  family: "Arial",
                   size: 11
                 }
               }
@@ -140,9 +143,11 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
                 }
               },
               titleFont: {
+                family: "Arial",
                 size: 11
               },
               bodyFont: {
+                family: "Arial",
                 size: 11
               }
             }
@@ -193,7 +198,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 
   generateLabels(): Array<string> {
     if (this.entry) {
-      return this.entry.femalesLabels.map(item =>
+      return this.entry.femalesLabels.map((item) =>
         item.labelEn
           .replace("Females ", "")
           .replace("(", "")
@@ -206,7 +211,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 
   generateMalesDataset(): Array<number> {
     if (this.entry) {
-      return this.entry.malesEntries.map(item => -1 * item);
+      return this.entry.malesEntries.map((item) => -1 * item);
     } else {
       return [];
     }
@@ -247,6 +252,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
         stacked: true,
         title: {
           display: true,
+
           text: this.$root.$i18n.t("charts.titleY").toString()
         }
       }
