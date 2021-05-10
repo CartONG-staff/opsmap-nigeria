@@ -15,7 +15,7 @@
           dense
           height="44"
           :items="submissionsDates"
-          :suffix="$t('site.dateSuffix').toUpperCase()"
+          :prefix="$t('site.dateSuffix').toUpperCase()"
           v-model="model"
           @change="dateSelected"
         ></v-autocomplete>
@@ -190,7 +190,7 @@ export default class TKCampToolbar extends Vue {
 }
 
 .tk-camp-toolbar-date .theme--light.v-icon.v-icon.v-icon--disabled {
-  opacity: 0 !important;
+  opacity: 1 !important;
 }
 
 .tk-camp-toolbar-date-disabled.v-input--is-disabled .v-input__slot {

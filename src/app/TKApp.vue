@@ -151,7 +151,8 @@ h3 {
 }
 
 .tk-autocomplete .theme--light.v-icon.v-icon.v-icon--disabled {
-  color: rgba(0, 0, 0, 0) !important;
+  /* color: rgba(0, 0, 0, 0) !important; */
+  opacity: 0.2 !important;
 }
 
 .theme--light.v-text-field.v-input--is-disabled .v-input__slot::before {
