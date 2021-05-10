@@ -37,7 +37,7 @@
   "charts": {
     "agePyramidTitle": "Age Pyramid",
     "titleY": "Age Range",
-    "titleX": "Count",
+    "titleX": "Population",
     "female": "Female",
     "male": "Male"
   },
