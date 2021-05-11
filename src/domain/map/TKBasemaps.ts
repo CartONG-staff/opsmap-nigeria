@@ -18,7 +18,7 @@ export const TKBasemapsLayer: TKBaseMapsCollection = {
       name: "Opsmap Basemap",
       img:
         "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/basemap_opsmap.png",
-      style: "mapbox://styles/opsmapper/ckmnq4jfb12r217o7yon9r383"
+      style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4"
     },
     {
       id: 2,
