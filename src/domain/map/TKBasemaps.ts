@@ -25,7 +25,7 @@ export const TKBasemapsLayer: TKBaseMapsCollection = {
       name: "Satellite Imagery",
       img:
         "https://raw.githubusercontent.com/CartONG/opsmap-icons/main/basemap_satellite.png",
-      style: "mapbox://styles/mapbox/satellite-v9"
+      style: "mapbox://styles/unhcr/citbmkkct00322jo6ocdxdl3h"
     },
     {
       id: 3,
