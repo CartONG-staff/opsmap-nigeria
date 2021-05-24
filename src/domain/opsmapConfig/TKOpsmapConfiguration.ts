@@ -185,12 +185,12 @@ export async function TKReadGeneralConfiguration(
     },
     surveyDescription: [
       new TKSurveyInfosGSheet(
-        "GSHEET",
+        "2021 (gsheet)",
         { folder: "brazil/BR_FDF_s1_080421" },
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vQu-dYf-_BHW-m42z5HjiiAAC6OT2cIBX_BNTsWxtbSz3KPRhercCxqJ6jPOrmE8IWoJgEOfx0g2UYk/pub?gid=0&single=true&output=csv"
       ),
       new TKSurveyInfosCSV(
-        "CSV",
+        "2021 (csv)",
         { folder: "brazil/BR_FDF_s1_080421" },
         "brazil",
         "BR_DATA_080421_FDF_s1"
