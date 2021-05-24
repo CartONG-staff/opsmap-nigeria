@@ -1,4 +1,4 @@
-# Hello, you
+# Opsmap Toolkit
 
 This document is aimed at helping developer understand this project.
 
@@ -28,7 +28,6 @@ The map engine is [Mapbox](https://www.mapbox.com).
 
 ## Usage
 
-- `npm run build-lib` --> generates the lib
 - `npm run build` --> generates the app (no lib)
 - `npm run serve` --> generates the app (no lib) and start localhost
 - `npm run doc` --> generates the doc in the docs folder
@@ -37,15 +36,19 @@ The map engine is [Mapbox](https://www.mapbox.com).
 
 ## Kobo Management
 
-A kobo user for this proejct has been created. The objective is to have a readonly access to every potential opsmap related survey.
+A kobo user for this project has been created. The objective is to have a readonly access to every potential opsmap related survey.
+
+For now, it is not valid. It requires pending specific authorization from UNHCR.
 
 > username: cartong_reader
-> passwd: @bw
+> passwd: @bitwarden
 
 ## Mapbox Account
 
-A Mapbox account dedicated for Opsmaps project has been created in order to have a better monitoring of tiles consumation.
+UHCR has an unlimited mapbox acounnt. It is used n this project. (@bitwarden).
+Contact preson in UNHCR is Leo.
 
+> A Mapbox account was initially dedicated for Opsmaps project
 > username: opsmap.basemaps@gmail.com
 > passwd: @bitwarden / Same pwd for gmail account and mapbox account
 
@@ -55,38 +58,31 @@ For the seek of opsmap-tookit related files, variables, etc. , we will use the f
 
 The code will be divide into libraries, packages, etc. The idea is to encapsulate stuff as musch as we can.
 
-This code is aimed at being integrated in a two elements system:
+This code is the generic opsmap code. It is based on the FDF + data system. See project documentation for more informations.
 
-```mermaid
-classDiagram
-      opsmap ..> opsmapToolKit
-end
-```
-
-- **opsmap**: application
-- **opsmap-toolKit**: Vuejs components + javascript (pdf, csv, kobo, etc. ) package
+> This code was initially aimed at being integrated in a two elements system.
+> Yu mightalong the comments / doc / naming some trace of this. Just know that is has been forgotten since.
+> `opsmap --> opsmapToolKit`
 
 ## Current project description
+
+The objective is to provide multiple components and tools to a typical oppsmap, the standard opsmap.
 
 This project holds two differents projects:
 
 - a lib declaration
   The entry point is entry-point-lib.ts of the lib.
-
-The objective is to provide multiple components and tools to a typical oppsmap, the standard opsmap.
+  This is history
 
 - an app implementation
-  The two entry points are app-demo/entry-point-app.ts and app-demo/entry-point-app.vue
-
-The objective is to provide a way to test development inside the lib before porting them to the app. This app is for development only !
+  The two entry points are `app/TKApp.vue` and `entry-point-app.vue`
 
 We observe the following folder structure:
 
 ```bash
 src
-├──app-demo/
-│   ├── entry-point-app.ts
-│   └── entry-point-app.vue
+├──app/
+│   └── TKApp.vue
 ├──components
 │   ├── TKComponent1
 │   │     ├── index.ts
@@ -110,6 +106,10 @@ We observe the following behavior:
 - domain: attempt to structure. It holds the domain related competences.
 - locales: traduction files. conforms to i18n standards. `en.json` act as a reference.
 - plugins: auto, needed by vuetify
+
+### Domain description
+
+This section provide tools to manipulate csv files, kobo, setup
 
 ## Licences
 
