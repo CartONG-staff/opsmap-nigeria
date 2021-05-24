@@ -7,6 +7,7 @@ import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription
 import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKSurveyInfosCSV } from "@/domain/csv/TKSurveyInfosCSV";
+import { TKSurveyInfosGSheet } from "../gsheet/TKSurveyInfosGSheet";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Global Opsmap configuration
@@ -183,14 +184,18 @@ export async function TKReadGeneralConfiguration(
       ]
     },
     surveyDescription: [
+      new TKSurveyInfosGSheet(
+        "GSHEET",
+        { folder: "brazil/BR_FDF_s1_080421" },
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vQu-dYf-_BHW-m42z5HjiiAAC6OT2cIBX_BNTsWxtbSz3KPRhercCxqJ6jPOrmE8IWoJgEOfx0g2UYk/pub?gid=0&single=true&output=csv"
+      ),
       new TKSurveyInfosCSV(
-        "2021",
+        "CSV",
         { folder: "brazil/BR_FDF_s1_080421" },
         "brazil",
         "BR_DATA_080421_FDF_s1"
       )
     ],
-
     // UNHCR account
     // token: "pk.eyJ1IjoidW5oY3IiLCJhIjoiOUQzQ2dnbyJ9.6ghfFmvxpu7HvHzXci_ogw",
     // style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",

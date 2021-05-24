@@ -1,13 +1,15 @@
 import { TKSurvey } from "./TKSurvey";
-import { TKSurveyInfosCSV } from "../csv/TKSurveyInfosCSV";
+import { TKSurveyInfosCSV } from "@/domain/csv/TKSurveyInfosCSV";
 import { TKCreateFDF } from "@/domain/fdf/TKFDF";
 import { TKGetCSVRawData } from "@/domain/csv/TKGetCSVRawData";
-import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
+import { TKGetGSheetRawData } from "@/domain/gsheet/TKGetGSheetRawData"
+import { TKGetKoboRawData } from "@/domain/kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKCreateSurvey } from "./TKSurvey";
 import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
-import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
-import { TKSurveyInfosKobo } from "../kobo/TKSurveyInfosKobo";
+import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
+import { TKSurveyInfosKobo } from "@/domain/kobo/TKSurveyInfosKobo";
+import { TKSurveyInfosGSheet } from "@/domain/gsheet/TKSurveyInfosGSheet";
 
 // ////////////////////////////////////////////////////////////////////////////
 // SurveyCollection concept definition
@@ -34,6 +36,8 @@ export async function TKCreateSurveyCollection(
     let rawData;
     if (info instanceof TKSurveyInfosCSV) {
       rawData = await TKGetCSVRawData(info);
+    } else if (info instanceof TKSurveyInfosGSheet) {
+      rawData = await TKGetGSheetRawData(info);
     } else if (info instanceof TKSurveyInfosKobo) {
       rawData = await TKGetKoboRawData(info);
     }
