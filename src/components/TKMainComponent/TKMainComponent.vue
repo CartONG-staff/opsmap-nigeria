@@ -59,7 +59,6 @@
               :appConfig="appConfig"
               :dataset="dataset"
             />
-            <TKHomeMoreInfos :appConfig="appConfig" />
           </div>
           <div key="53" class="tk-main-content-layout" v-else>
             <TKCampIndicators
@@ -67,6 +66,14 @@
               :appConfig="appConfig"
               :submission="currentSubmission"
             />
+          </div>
+        </transition>
+        <transition mode="out-in" name="fade" appear>
+          <div key="7" v-if="isHomePage" class="tk-main-content-layout">
+            <TKHomeMoreInfos :appConfig="appConfig" />
+            <TKPowerBI />
+          </div>
+          <div key="8" v-else class="tk-camp-content">
             <TKSubmissionVisualizer
               :options="visualizerOptions"
               :submission="currentSubmission"
@@ -86,6 +93,7 @@ import TKPlaceHolderIndicators from "./TKPlaceHolders/TKPlaceHolderIndicators.vu
 import TKPlaceHolderGeneric from "./TKPlaceHolders/TKPlaceHolderGeneric.vue";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
+import TKPowerBI from "@/components/TKExtras/TKPowerBI.vue";
 
 import {
   TKHomeCombos,
@@ -129,6 +137,7 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
     TKPlaceHolderLeft,
     TKPlaceHolderIndicators,
     TKPlaceHolderGeneric,
+    TKPowerBI,
     TKTitle
   }
 })
@@ -292,5 +301,12 @@ export default class TKMainComponent extends Vue {
 
 .tk-main-content-placeholder {
   min-height: 300px;
+}
+
+.tk-home-more-content {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  row-gap: 25px;
 }
 </style>
