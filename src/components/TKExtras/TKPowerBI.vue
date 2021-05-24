@@ -2,10 +2,8 @@
   <div class="tk-powerbi-container">
     <iframe
       id="tk-powerbi"
-      src="https://app.powerbi.com/view?r=eyJrIjoiNmI2MDUyYWYtZGI3Ni00OGRlLTg4NmQtNDU1YTRiOGI2OTkzIiwidCI6IjBjN2ZiNjI5LWRjN2ItNGI1NC1iYjkxLTVlMzc4YmE1ZDkxYyJ9&pageName=ReportSection"
+      src="https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9"
     ></iframe>
-
-    Power BI Report https://app.powerbi.com
   </div>
 </template>
 
