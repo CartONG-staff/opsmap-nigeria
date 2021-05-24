@@ -47,7 +47,7 @@
         <TKPlaceHolderGeneric class="tk-main-map" v-else />
       </div>
 
-      <div>
+      <div class="tk-main-content-layout">
         <transition mode="out-in" name="fade">
           <div class="tk-main-content-layout" v-if="!dataset">
             <TKPlaceHolderIndicators />
@@ -59,8 +59,9 @@
               :appConfig="appConfig"
               :dataset="dataset"
             />
+            <TKHomeMoreInfos :appConfig="appConfig" />
           </div>
-          <div key="53" class="tk-main-content-layout" v-else>
+          <div key="53" v-else>
             <TKCampIndicators
               class="tk-camp-indicators"
               :appConfig="appConfig"
@@ -69,8 +70,7 @@
           </div>
         </transition>
         <transition mode="out-in" name="fade" appear>
-          <div key="7" v-if="isHomePage" class="tk-main-content-layout">
-            <TKHomeMoreInfos :appConfig="appConfig" />
+          <div key="7" v-if="isHomePage">
             <TKPowerBI />
           </div>
           <div key="8" v-else class="tk-camp-content">
