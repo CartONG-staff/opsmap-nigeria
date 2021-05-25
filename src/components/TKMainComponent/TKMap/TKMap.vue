@@ -23,7 +23,7 @@ import mapboxgl, {
   SymbolLayer
 } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";

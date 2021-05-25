@@ -5,6 +5,6 @@
  * @internal
  */
 
-import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 
 export { TKOpsmapConfiguration };

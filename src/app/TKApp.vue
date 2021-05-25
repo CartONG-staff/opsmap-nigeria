@@ -23,7 +23,8 @@ import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKCreateSurveyCollection } from "@/domain/survey/TKSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKOpsmapConfiguration } from "@/domain";
-import { TKReadGeneralConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import { TKReadGeneralConfiguration } from "@/app/TKOpsmapConfiguration";
+
 @Component({
   components: {
     TKHeader,
@@ -37,6 +38,7 @@ export default class TKApp extends Vue {
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
+
     this.appRootConfig = await TKReadGeneralConfiguration(
       "general_config",
       "brazil"

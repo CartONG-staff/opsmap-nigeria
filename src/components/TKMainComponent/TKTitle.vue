@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 
 @Component
 export default class TKTitle extends Vue {

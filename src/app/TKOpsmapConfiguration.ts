@@ -1,13 +1,11 @@
 import { TKMapboxConfiguration } from "@/domain/opsmapConfig/TKMapboxConfiguration";
 import { TKLabel } from "@/domain/ui/TKLabel";
-import { TKLogo } from "@/domain/ui/TKLogo";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogos";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKSurveyInfosCSV } from "@/domain/csv/TKSurveyInfosCSV";
-import { TKSurveyInfosGSheet } from "../gsheet/TKSurveyInfosGSheet";
+import { TKSurveyInfosGSheet } from "../domain/gsheet/TKSurveyInfosGSheet";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Global Opsmap configuration
@@ -57,8 +55,8 @@ export async function TKReadGeneralConfiguration(
   // - csv
   // - useBoundariesMasks
   const config: TKOpsmapConfiguration = {
-    name: "brazil",
-    iso3: dict["iso3"] ?? "BRA",
+    name: dict["name"] ?? "",
+    iso3: dict["iso3"] ?? "",
     opsmapDescr: {
       name: "opsmap description",
       labelEn: dict["project_overview_en"] ?? "",
@@ -175,40 +173,20 @@ export async function TKReadGeneralConfiguration(
       ],
       Webdev: [
         {
-          name: dict["webdev_name_1"] ?? "CartONG",
-          urlLogo:
-            dict["webdev_logo_1"] ??
-            "https://www.cartong.org/sites/cartong/files/images/CartONG_logo_long_0_0_0.png",
-          urlRedirection: dict["webdev_link_1"] ?? "https://www.cartong.org/"
+          name: dict["webdev_name_1"] ?? "",
+          urlLogo: dict["webdev_logo_1"] ?? "",
+          urlRedirection: dict["webdev_link_1"] ?? ""
         }
       ]
     },
     surveyDescription: [
       new TKSurveyInfosGSheet(
-        "2021 (gsheet)",
-        { folder: "brazil/BR_FDF_s1_080421" },
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vQu-dYf-_BHW-m42z5HjiiAAC6OT2cIBX_BNTsWxtbSz3KPRhercCxqJ6jPOrmE8IWoJgEOfx0g2UYk/pub?gid=0&single=true&output=csv"
-      ),
-      new TKSurveyInfosCSV(
-        "2021 (csv)",
-        { folder: "brazil/BR_FDF_s1_080421" },
-        "brazil",
-        "BR_DATA_080421_FDF_s1"
+        dict["survey_name"] ?? "",
+        { folder: dict["name"] + "/" + dict["fdf_id"] },
+        dict["survey_url"] ?? ""
       )
     ],
-    // UNHCR account
-    // token: "pk.eyJ1IjoidW5oY3IiLCJhIjoiOUQzQ2dnbyJ9.6ghfFmvxpu7HvHzXci_ogw",
-    // style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",
-
-    // OPSMAP account
-    // token: "pk.eyJ1Ijoib3BzbWFwcGVyIiwiYSI6ImNrbW5xMWFuYzBqejMydnBnN2VjMTBj;cG8ifQ.OtWWd9kzJdJjogrY7gb-sw",
-    // style: "mapbox://styles/opsmapper/ckmnq4jfb12r217o7yon9r383",
-    mapConfig: {
-      token: "pk.eyJ1IjoidW5oY3IiLCJhIjoiY2tveWJlcDV5MDVycTJ2and3ZXllcW1leCJ9.Vp5XDh5OhDXxZCZUvgEuDg",
-      style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",
-      padding: 100,
-      zoomspeed: 2
-    }
+    mapConfig: new TKMapboxConfiguration()
   };
 
   return config;

@@ -36,7 +36,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
-import { TKOpsmapConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 import TKFooterLogoItem from "./TKFooterLogoItem.vue";
 import TKOchaCredits from "./TKOchaCredits.vue";
 
