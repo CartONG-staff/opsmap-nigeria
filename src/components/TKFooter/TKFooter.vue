@@ -7,12 +7,12 @@
         </div>
         <div class="tk-footer-disclaimer-text">
           <p>
-            {{ $t("footer.moreInfosText") }}
+            <span v-html="$t('footer.moreInfosText')"></span>
           </p>
         </div>
       </div>
     </transition>
-    <TKOchaCredits :key="$root.$i18n.locale" class="tk-footer-ocha-credits" />
+    <TKCredits :key="$root.$i18n.locale" class="tk-footer-ocha-credits" />
     <div class="tk-footer-logos">
       <TKFooterLogoItem
         :title="$t('footer.partnerLed')"
@@ -38,12 +38,12 @@
 import { Vue, Prop, Component } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 import TKFooterLogoItem from "./TKFooterLogoItem.vue";
-import TKOchaCredits from "./TKOchaCredits.vue";
+import TKCredits from "./TKCredits.vue";
 
 @Component({
   components: {
     TKFooterLogoItem,
-    TKOchaCredits
+    TKCredits
   }
 })
 export default class TKFooter extends Vue {

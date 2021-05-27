@@ -7,10 +7,11 @@
   "selectText": "Selecione um",
   "survey": "Pesquisa",
   "camp": "Acampamento",
+  "dashboardCredits": "O painel de controle OPSMAP é uma solução de código aberto sob a licença do MIT",
   "ochaCredits": "Os pictogramas de fontes humanitárias são licenciados sob a licença CC BY 3.0",
   "footer": {
     "moreInfos": "Sobre Opsmap",
-    "moreInfosText": "PT Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiat nullapariatur.Excepteur sint occaecat cupidatat non proident, sunt inculpa qui officia deserunt mollit anim id est laborum.",
+    "moreInfosText": "O OPSMAP visa fornecer aos agentes humanitários informações essenciais sobre serviços em nível de local para melhorar a assistência humanitária em locais de deslocados internos.<br/>As informações são coletadas através de informantes-chave em cada site de PDI, utilizando ferramentas móveis de coleta de dados baseadas ou utilizando o formato tradicional de pesquisa.<br/>O painel de controle permite obter rapidamente informações sobre os dados coletados, fornecendo um perfil do site.<br/>Os usuários podem obter insights e usá-los para identificar itens que requerem ação urgente, e recursos devidamente direcionados.",
     "partnerLed": "Líder do grupo",
     "partnerCoordination": "Coordenação e IM apoio ",
     "partnerFieldwork": "Trabalho de campo",

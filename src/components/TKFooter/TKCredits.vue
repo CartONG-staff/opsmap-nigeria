@@ -2,8 +2,9 @@
   <div class="tk-ochacredits">
     <transition mode="out-in" name="fade-in">
       <div :key="$root.$i18n.locale" class="tk-ochacredits-text">
+        {{ $t("dashboardCredits") }}
+        <br />
         {{ $t("ochaCredits") }}
-        -
         <a
           href="http://creativecommons.org/licenses/by/3.0/"
           target="_blank"
@@ -20,7 +21,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class TKOchaCredits extends Vue {}
+export default class TKCredits extends Vue {}
 </script>
 
 <style scoped>
