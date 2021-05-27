@@ -57,7 +57,7 @@ export default class TKHomeIndicators extends Vue {
 }
 
 .tk-home-moreinfos-title {
-  width: 30%;
+  width: 10%;
   font-weight: bold;
   font-size: 12px;
   color: var(--v-secondary-base);
@@ -65,7 +65,7 @@ export default class TKHomeIndicators extends Vue {
 }
 
 .tk-home-moreinfos-content {
-  width: 65%;
+  width: 85%;
   font-size: 16px;
   color: var(--v-primary-base);
   line-height: 1.375;
