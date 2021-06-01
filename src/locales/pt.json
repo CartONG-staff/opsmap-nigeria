@@ -3,10 +3,10 @@
   "infosAdmin1": "Estado",
   "infosAdmin2": "Cidade",
   "infosAdmin3": "Morada",
-  "manageBy": "Gerenciar por",
+  "manageBy": "Gestão do Abrigo",
   "selectText": "Selecione um",
   "survey": "Pesquisa",
-  "camp": "Acampamento",
+  "camp": "Abrigo",
   "dashboardCredits": "O painel de controle OPSMAP é uma solução de código aberto sob a licença do MIT",
   "ochaCredits": "Os pictogramas de fontes humanitárias são licenciados sob a licença CC BY 3.0",
   "footer": {
@@ -19,7 +19,7 @@
   },
   "main": {
     "switchPage": "Interruptor",
-    "title": "Rastreador de site"
+    "title": "Site de Monitoramento"
   },
   "home": {
     "lastUpdate": "Última atualização",
@@ -43,8 +43,8 @@
     "male": "Homem"
   },
   "map": {
-    "legendPlanned": "Site planejado",
-    "legendSpontaneous": "Site espontâneo",
+    "legendPlanned": "Abrigos",
+    "legendSpontaneous": "Ocupação Espontânea",
     "legendBasemaps": "Seleccione um mapa de fundo",
     "legendZoomIn": "Mais Zoom",
     "legendZoomOut": "Reduzir o zoom",
