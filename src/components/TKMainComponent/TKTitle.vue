@@ -1,28 +1,36 @@
 <template>
-  <div class="tk-title">
-    <transition mode="out-in" name="fade-in">
-      <span :key="$root.$i18n.locale" class="tk-title-base">
+  <transition mode="out-in" name="fade-in">
+    <div :key="$root.$i18n.locale" class="tk-title">
+      <span class="tk-title-base">
         {{ $t("main.title") }}
       </span>
-    </transition>
-    <br />
-    <span class="tk-title-country">
-      {{
-        appConfig.name.charAt(0).toUpperCase() +
-          appConfig.name.slice(1).toLowerCase()
-      }}
-    </span>
-  </div>
+
+      <br />
+      <span class="tk-title-country">
+        {{ appName.charAt(0).toUpperCase() + appName.slice(1).toLowerCase() }}
+      </span>
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 
 @Component
 export default class TKTitle extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
+
+  appName = this.appConfig.name.labelEn;
+  @Watch("$root.$i18n.locale")
+  handeLocale() {
+    this.appName = TKGetLocalValue(
+      this.appConfig.name,
+      this.$root.$i18n.locale
+    );
+  }
 }
 </script>
 

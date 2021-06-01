@@ -8,9 +8,11 @@
           class="tk-header-logo-cccm"
         />
         <h3>
-          <span class="tk-header-title-opsmap">{{
-            appConfig.name.toUpperCase()
-          }}</span>
+          <transition mode="out-in" name="fade-in">
+            <span :key="$root.$i18n.locale" class="tk-header-title-opsmap">{{
+              appName.toUpperCase()
+            }}</span>
+          </transition>
         </h3>
       </button>
     </div>
@@ -50,12 +52,22 @@
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 import { headerLogoBus } from "@/components/TKHeaderLogoBus";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 
 @Component
 export default class TKHeader extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
   locales = this.$root.$i18n.availableLocales;
+
+  appName = this.appConfig.name.labelEn;
+  @Watch("$root.$i18n.locale")
+  handeLocale() {
+    this.appName = TKGetLocalValue(
+      this.appConfig.name,
+      this.$root.$i18n.locale
+    );
+  }
 
   language = this.$root.$i18n.locale;
   @Watch("language")

@@ -46,8 +46,8 @@ coord_logo_1;data/brazil/BR_Logo/UNHCR_PT.jpg
 fieldwork_logo_1;data/brazil/BR_Logo/FSF.png
 fieldwork_logo_2;data/brazil/BR_Logo/AVSI_BRASIL.png
 fieldwork_logo_3;data/brazil/BR_Logo/Fraternidade.png
-
-name;brazil
+name_en;brazil
+name_pt;brasil
 iso3;BRA
 webdev_name_1;CartONG
 webdev_logo_1;https://www.cartong.org/sites/cartong/files/images/CartONG_logo_long_0_0_0.png

@@ -38,7 +38,6 @@ export default class TKApp extends Vue {
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
-
     this.appRootConfig = await TKReadGeneralConfiguration(
       "general_config",
       "brazil"
@@ -46,18 +45,18 @@ export default class TKApp extends Vue {
 
     document.title =
       "Opsmap " +
-      this.appRootConfig.name.charAt(0).toUpperCase() +
-      this.appRootConfig.name.slice(1).toLowerCase();
+      this.appRootConfig.name.labelEn.charAt(0).toUpperCase() +
+      this.appRootConfig.name.labelEn.slice(1).toLowerCase();
 
     TKCreateSurveyCollection(
       this.appRootConfig.surveyDescription,
       this.appRootConfig.spatialDescription,
       this.appRootConfig.indicatorsDescription
-    ).then(surveys => {
+    ).then((surveys) => {
       this.geoDataset = null;
       this.dataset = new TKDatasetFilterer(surveys);
       if (this.appRootConfig?.spatialDescription.useBoundariesMasks) {
-        TKGetGeoBoundaries(surveys).then(geoDataset => {
+        TKGetGeoBoundaries(surveys).then((geoDataset) => {
           this.geoDataset = geoDataset;
         });
       }

@@ -11,7 +11,7 @@ import { TKSurveyInfosGSheet } from "../domain/gsheet/TKSurveyInfosGSheet";
 // Global Opsmap configuration
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKOpsmapConfiguration {
-  readonly name: string;
+  readonly name: TKLabel;
   readonly iso3: string;
   readonly surveyDescription: TKSurveyInfos[];
   readonly opsmapDescr: TKLabel;
@@ -55,7 +55,11 @@ export async function TKReadGeneralConfiguration(
   // - csv
   // - useBoundariesMasks
   const config: TKOpsmapConfiguration = {
-    name: dict["name"] ?? "",
+    name: {
+      name: "country",
+      labelEn: dict["name_en"] ?? "",
+      labelPt: dict["name_pt"] ?? undefined
+    },
     iso3: dict["iso3"] ?? "",
     opsmapDescr: {
       name: "opsmap description",
