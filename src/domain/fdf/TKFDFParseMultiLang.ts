@@ -1,6 +1,6 @@
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKLabel } from "@/domain//ui/TKLabel";
-import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
+import { TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the Answer label object
@@ -15,22 +15,17 @@ export type TKFDFLabelCollection = Record<string, TKLabel>;
 // ////////////////////////////////////////////////////////////////////////////
 
 export async function TKReadFDFLabelCollection(
-  file: string, // TKFDFFiles.ANSWERS,
+  file: string,
   infos: TKFDFInfos
 ): Promise<TKFDFLabelCollection> {
-
-  const rawLabels: TKFDFLabelRaw[] = await TKCSVRead(
-    file,
-    infos.folder,
-    false
-  );
+  const rawLabels: TKFDFLabelRaw[] = await TKCSVRead(file, infos.folder, false);
 
   // Parse header to find out coumn - language correspondance
-  const header : string[] = Object.values(rawLabels[0]);
+  const header: string[] = Object.values(rawLabels[0]);
 
   const localesValuesForIndexes: string[] = ["ignore"]; // ignore first col --> choice name
-  for(let i = 1; i < header.length; i ++){
-    const split = header[i].split('_');
+  for (let i = 1; i < header.length; i++) {
+    const split = header[i].split("_");
     const lang = split[split.length - 1] ?? "";
     localesValuesForIndexes.push(lang);
   }
@@ -38,11 +33,11 @@ export async function TKReadFDFLabelCollection(
   // Parse all the other lines: fill matching label with proper column indexes.
   const labelsCollection: TKFDFLabelCollection = {};
 
-  for(let i = 1; i < rawLabels.length; i++){
+  for (let i = 1; i < rawLabels.length; i++) {
     const answer = rawLabels[i];
-    labelsCollection[answer[0]] = {}
+    labelsCollection[answer[0]] = {};
 
-    for(let j = 1; j < answer.length; j++){
+    for (let j = 1; j < answer.length; j++) {
       labelsCollection[answer[0]][localesValuesForIndexes[j]] = answer[j];
     }
   }

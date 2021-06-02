@@ -2,7 +2,6 @@ import { TKCampDescription } from "@/domain/survey/TKCampDescription";
 import { TKCampTypesValues } from "@/domain/survey/TKCampTypesValues";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSurveyCollection } from "./TKSurveyCollection";
-import { VTabItem } from "vuetify/lib";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Filtesr Concept description. Requires Comments !

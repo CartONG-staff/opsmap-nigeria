@@ -22,13 +22,17 @@ export interface TKOpsmapConfiguration {
   readonly indicatorsDescription: TKIndicatorsDescription;
 }
 
-function readAllLocalesValues(basename: string, config: { [key: string]: string }, languages: string[]) : TKLabel {
+function readAllLocalesValues(
+  basename: string,
+  config: { [key: string]: string },
+  languages: string[]
+): TKLabel {
   const label: TKLabel = {};
   languages.forEach(lang => {
-    if(config[basename + "_" + lang]){
+    if (config[basename + "_" + lang]) {
       label[lang] = config[basename + "_" + lang];
     }
-  })
+  });
   return label;
 }
 

@@ -15,7 +15,6 @@ import {
   TKReadSubmissionsRulesCollection
 } from "./TKFDFSubmissionsRules";
 
-
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -39,8 +38,8 @@ export async function TKCreateFDF(infos: TKFDFInfos): Promise<TKFDF> {
   return {
     thematics: await TKReadFDFThematicsCollection(infos),
     trafficLights: await TKReadFDFTrafficLightsCollection(infos),
-    fieldsLabels: await TKReadFDFLabelCollection(TKFDFFiles.FIELDS,infos),
-    answersLabels: await TKReadFDFLabelCollection(TKFDFFiles.ANSWERS,infos),
+    fieldsLabels: await TKReadFDFLabelCollection(TKFDFFiles.FIELDS, infos),
+    answersLabels: await TKReadFDFLabelCollection(TKFDFFiles.ANSWERS, infos),
     submissionsRules: await TKReadSubmissionsRulesCollection(infos)
   };
 }

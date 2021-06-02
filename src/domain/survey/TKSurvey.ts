@@ -38,7 +38,7 @@ function computeSurveyIndicator(
       iconOchaName: descr.iconOchaName,
       nameLabel: descr.name,
       valueLabel: {
-        "en": String(Object.keys(data).length)
+        en: String(Object.keys(data).length)
       }
     };
   }
@@ -71,7 +71,7 @@ function computeSurveyIndicator(
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { "en": "-" }
+        valueLabel: { en: "-" }
       };
     }
 
@@ -79,7 +79,7 @@ function computeSurveyIndicator(
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { "en": String(sum) }
+        valueLabel: { en: String(sum) }
       };
     }
     if (descr.computationType === TKIndicatorComputationType.MEAN) {
@@ -87,21 +87,21 @@ function computeSurveyIndicator(
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
         valueLabel: {
-          "en": String((sum / Object.keys(data).length).toFixed(2))
+          en: String((sum / Object.keys(data).length).toFixed(2))
         }
       };
     } else if (descr.computationType === TKIndicatorComputationType.SUM) {
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { "en": String(sum) }
+        valueLabel: { en: String(sum) }
       };
     }
   }
   return {
     iconOchaName: descr.iconOchaName,
     nameLabel: descr.name,
-    valueLabel: { "en": "-" }
+    valueLabel: { en: "-" }
   };
 }
 

@@ -31,10 +31,10 @@ export async function TKReadFDFThematicsCollection(
   );
 
   // Parse header to find out coumn - language correspondance
-  const header : string[] = Object.values(rawThematics[0]);
+  const header: string[] = Object.values(rawThematics[0]);
   const localesValuesForIndexes: string[] = ["ignore-0", "ignore-1"]; // ignore first col --> choice name
-  for(let i = 2; i < header.length; i ++){
-    const split = header[i].split('_');
+  for (let i = 2; i < header.length; i++) {
+    const split = header[i].split("_");
     const lang = split[split.length - 1] ?? "";
     localesValuesForIndexes.push(lang);
   }
@@ -42,15 +42,15 @@ export async function TKReadFDFThematicsCollection(
   // Parse all the other lines: fill matching label with proper column indexes.
   const thematicsCollection: TKTFDFhematicsCollection = {};
 
-  for(let i = 1; i < rawThematics.length; i++){
+  for (let i = 1; i < rawThematics.length; i++) {
     const item = rawThematics[i];
     thematicsCollection[item[FORMATTED_NAME_INDEX]] = {
       formattedName: item[FORMATTED_NAME_INDEX],
       iconFileName: item[ICON_NAME_INDEX],
       thematicLabel: {}
-    }
+    };
 
-    for(let j = 2; j < Object.keys(item).length; j++){
+    for (let j = 2; j < Object.keys(item).length; j++) {
       thematicsCollection[item[FORMATTED_NAME_INDEX]].thematicLabel[
         localesValuesForIndexes[j]
       ] = item[j];
