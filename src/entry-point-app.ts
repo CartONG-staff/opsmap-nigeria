@@ -24,6 +24,9 @@ TKReadGeneralConfiguration("general_config", "brazil").then(config => {
     messages: messages
   });
 
+  // Freeze the config
+  Object.freeze(config);
+
   new Vue({
     vuetify,
     i18n,

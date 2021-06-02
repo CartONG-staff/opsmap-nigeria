@@ -31,7 +31,7 @@ import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
   }
 })
 export default class TKApp extends Vue {
-  appRootConfig = this.$root.config;
+  appRootConfig = this.$root.$data.config;
   dataset: TKDatasetFilterer | null = null;
   geoDataset: TKGeoDataset | null = null;
 
