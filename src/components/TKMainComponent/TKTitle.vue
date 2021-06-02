@@ -23,7 +23,7 @@ export default class TKTitle extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
 
-  appName = this.appConfig.name.labelEn;
+  appName = this.appConfig.name.en;
   @Watch("$root.$i18n.locale")
   handeLocale() {
     this.appName = TKGetLocalValue(

@@ -1,16 +1,9 @@
-export interface TKLabel {
-  labelEn: string;
-  labelPt?: string;
+export interface TKLabel extends Record<string, string> {
+  en: string;
 }
 
 export function TKGetLocalValue(label: TKLabel, locale: string): string {
-  if (label) {
-    if (locale === "pt") {
-      return label.labelPt ? label.labelPt : label.labelEn;
-    }
-    return label.labelEn;
-  }
-  return "";
+  return label[locale] ?? label["en"] ?? "" ;
 }
 
 // field_name: string;

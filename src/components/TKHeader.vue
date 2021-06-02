@@ -60,7 +60,7 @@ export default class TKHeader extends Vue {
   readonly appConfig!: TKOpsmapConfiguration;
   locales = this.$root.$i18n.availableLocales;
 
-  appName = this.appConfig.name.labelEn;
+  appName = this.appConfig.name.en;
   @Watch("$root.$i18n.locale")
   handeLocale() {
     this.appName = TKGetLocalValue(

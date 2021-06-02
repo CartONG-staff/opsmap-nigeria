@@ -70,7 +70,7 @@ function computeSubmissionIndicator(
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { labelEn: "-" }
+        valueLabel: { "en": "-" }
       };
     }
     const entry = data[thematic].data.find(
@@ -89,7 +89,7 @@ function computeSubmissionIndicator(
   return {
     iconOchaName: descr.iconOchaName,
     nameLabel: descr.name,
-    valueLabel: { labelEn: "-" }
+    valueLabel: { "en": "-" }
   };
 }
 

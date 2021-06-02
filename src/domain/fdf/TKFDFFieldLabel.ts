@@ -31,9 +31,11 @@ export async function TKReadFDFLabelsCollection(
   const labelsCollection: TKFDFFieldLabelCollection = {};
   rawFieldsLabels.map((item: TKFDFFieldLabelRaw) => {
     labelsCollection[item.field_name] = {
-      labelEn: item.field_label_en,
-      labelPt: item.field_label_pt
+      "en": item.field_label_en,
     };
+    if(item.field_label_pt){
+      labelsCollection[item.field_name]["pt"] = item.field_label_pt;
+    }
   });
   return labelsCollection;
 }

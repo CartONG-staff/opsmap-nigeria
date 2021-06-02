@@ -66,13 +66,13 @@ export async function TKReadGeneralConfiguration(
   const config: TKOpsmapConfiguration = {
     languages: languages,
     name: {
-      labelEn: dict["name_en"] ?? "",
-      labelPt: dict["name_pt"] ?? undefined
+      "en": dict["name_en"] ?? "",
+      "pt": dict["name_pt"] ?? undefined
     },
     iso3: dict["iso3"] ?? "",
     opsmapDescr: {
-      labelEn: dict["project_overview_en"] ?? "",
-      labelPt: dict["project_overview_pt"] ?? undefined
+      "en": dict["project_overview_en"] ?? "",
+      "pt": dict["project_overview_pt"] ?? undefined
     },
     spatialDescription: {
       siteIDField: dict["mp_site_id"] ?? "mp_site_id",
@@ -93,24 +93,24 @@ export async function TKReadGeneralConfiguration(
       home: [
         {
           name: {
-            labelEn: dict["ikey1_homepage_label"] ?? "",
-            labelPt: dict["ikey1_homepage_label_pt"] ?? ""
+            "en": dict["ikey1_homepage_label"] ?? "",
+            "pt": dict["ikey1_homepage_label_pt"] ?? ""
           },
           entryCode: dict["ikey1_homepage"] ?? "",
           iconOchaName: dict["ikey1_homepage_picto"] ?? ""
         },
         {
           name: {
-            labelEn: dict["ikey2_homepage_label"] ?? "",
-            labelPt: dict["ikey2_homepage_label_pt"] ?? ""
+            "en": dict["ikey2_homepage_label"] ?? "",
+            "pt": dict["ikey2_homepage_label_pt"] ?? ""
           },
           entryCode: dict["ikey2_homepage"] ?? "",
           iconOchaName: dict["ikey2_homepage_picto"] ?? ""
         },
         {
           name: {
-            labelEn: dict["ikey3_homepage_label"] ?? "",
-            labelPt: dict["ikey3_homepage_label_pt"] ?? ""
+            "en": dict["ikey3_homepage_label"] ?? "",
+            "pt": dict["ikey3_homepage_label_pt"] ?? ""
           },
           entryCode: dict["ikey3_homepage"] ?? "",
           iconOchaName: dict["ikey3_homepage_picto"] ?? ""
@@ -119,21 +119,21 @@ export async function TKReadGeneralConfiguration(
       site: [
         {
           name: {
-            labelEn: dict["ikey4_sitepage_label"] ?? ""
+            "en": dict["ikey4_sitepage_label"] ?? ""
           },
           entryCode: dict["ikey4_sitepage"] ?? "",
           iconOchaName: dict["ikey4_sitepage_picto"] ?? ""
         },
         {
           name: {
-            labelEn: dict["ikey5_sitepage_label"] ?? ""
+            "en": dict["ikey5_sitepage_label"] ?? ""
           },
           entryCode: dict["ikey5_sitepage"] ?? "",
           iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
         },
         {
           name: {
-            labelEn: dict["ikey6_sitepage_label"] ?? ""
+            "en": dict["ikey6_sitepage_label"] ?? ""
           },
           entryCode: dict["ikey6_sitepage"] ?? "",
           iconOchaName: dict["ikey6_sitepage_picto"] ?? ""

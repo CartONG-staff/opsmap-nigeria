@@ -38,8 +38,8 @@ export default class TKApp extends Vue {
   async mounted() {
     document.title =
       "Opsmap " +
-      this.appRootConfig.name.labelEn.charAt(0).toUpperCase() +
-      this.appRootConfig.name.labelEn.slice(1).toLowerCase();
+      this.appRootConfig.name.en.charAt(0).toUpperCase() +
+      this.appRootConfig.name.en.slice(1).toLowerCase();
 
     TKCreateSurveyCollection(
       this.appRootConfig.surveyDescription,

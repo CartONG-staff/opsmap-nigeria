@@ -10,7 +10,7 @@ interface TKFDFThematicRaw {
   formatted_name: string;
   icon_file_name: string;
   thematic_label_en: string;
-  thematic_label_pt: string;
+  thematic_label_pt?: string;
 }
 
 export interface TKFDFThematic {
@@ -42,10 +42,11 @@ export async function TKReadFDFThematicsCollection(
       formattedName: item.formatted_name,
       iconFileName: item.icon_file_name,
       thematicLabel: {
-        labelEn: item.thematic_label_en,
-        labelPt: item.thematic_label_pt
-      }
+        "en": item.thematic_label_en      }
     };
+    if(item.thematic_label_pt){
+      thematicsCollection[item.formatted_name].thematicLabel["pt"] = item.thematic_label_pt;
+    }
   });
   return thematicsCollection;
 }

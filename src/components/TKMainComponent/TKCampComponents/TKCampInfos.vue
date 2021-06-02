@@ -120,7 +120,7 @@ export default class TKCampInfos extends Vue {
   onSubmissionChange() {
     this.manageByLabel = (this.submission?.thematics["group_cccm"]?.data?.find(
       item => item.field === "cccm_shelter__mangmt"
-    ) as TKSubmissionEntryText)?.answerLabel ?? { name: "-", labelEn: "-" };
+    ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
     this.handeLocale();
   }
 
