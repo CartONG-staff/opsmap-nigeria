@@ -1,12 +1,39 @@
 import Vue from "vue";
 import TKApp from "@/app/TKApp.vue";
 import vuetify from "@/plugins/vuetify";
-import i18n from "@/i18n";
+import { loadLocaleMessages } from "@/i18n";
+import VueI18n, { LocaleMessages } from "vue-i18n";
+import { TKReadGeneralConfiguration } from "./app/TKOpsmapConfiguration";
 
 Vue.config.productionTip = false;
 
-new Vue({
-  vuetify,
-  i18n,
-  render: h => h(TKApp)
-}).$mount("#app");
+TKReadGeneralConfiguration(
+  "general_config",
+  "brazil"
+).then( config => {
+
+  // Filter with config languages field.
+  const messagesCandidates = loadLocaleMessages()
+  const keys = Object.keys(messagesCandidates).filter(lang => config.languages.includes(lang))
+  let messages: LocaleMessages = {};
+  keys.forEach(key => {
+    messages[key] = messagesCandidates[key]
+
+  });
+
+  const i18n = new VueI18n({
+    locale: process.env.VUE_APP_I18N_LOCALE || "en",
+    fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
+    messages: messages
+  });
+
+  new Vue({
+    vuetify,
+    i18n,
+    data: {
+      config: config
+    },
+    render: h => h(TKApp)
+  }).$mount("#app");
+});
+

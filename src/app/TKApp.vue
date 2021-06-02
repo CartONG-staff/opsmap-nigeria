@@ -33,15 +33,11 @@ import { TKReadGeneralConfiguration } from "@/app/TKOpsmapConfiguration";
   }
 })
 export default class TKApp extends Vue {
-  appRootConfig: TKOpsmapConfiguration | null = null;
+  appRootConfig = this.$root.config;
   dataset: TKDatasetFilterer | null = null;
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
-    this.appRootConfig = await TKReadGeneralConfiguration(
-      "general_config",
-      "brazil"
-    );
 
     document.title =
       "Opsmap " +
