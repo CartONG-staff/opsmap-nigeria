@@ -1,4 +1,8 @@
 ﻿config_type;info
+languages;pt,en
+name_en;brazil
+name_pt;brasil
+iso3;BRA
 fdf_id;BR_FDF_s1_080421
 adm1_unhcr;adm1pcode
 adm2_unhcr;adm2pcode
@@ -46,11 +50,10 @@ coord_logo_1;data/brazil/BR_Logo/UNHCR_PT.jpg
 fieldwork_logo_1;data/brazil/BR_Logo/FSF.png
 fieldwork_logo_2;data/brazil/BR_Logo/AVSI_BRASIL.png
 fieldwork_logo_3;data/brazil/BR_Logo/Fraternidade.png
-name_en;brazil
-name_pt;brasil
-iso3;BRA
 webdev_name_1;CartONG
 webdev_logo_1;https://www.cartong.org/sites/cartong/files/images/CartONG_logo_long_0_0_0.png
 webdev_link_1;https://www.cartong.org
+config_type;info
+fdf_id;BR_FDF_s1_080421
 survey_name;2021
 survey_url;https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=0&single=true&output=csv

@@ -12,6 +12,7 @@ import { TKSurveyInfosGSheet } from "../domain/gsheet/TKSurveyInfosGSheet";
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKOpsmapConfiguration {
   readonly name: TKLabel;
+  readonly languages: string[];
   readonly iso3: string;
   readonly surveyDescription: TKSurveyInfos[];
   readonly opsmapDescr: TKLabel;
@@ -50,11 +51,15 @@ export async function TKReadGeneralConfiguration(
   //  {config_type: "csv_data_id", info: "BR_DATA_080421_FDF_s1"}
   //  {config_type: "project_overview_fr", info: "Plus de 260 000 réfugiés et migrants se sont rendu…toyenneté, en partenariat avec les Forces Armées."}
 
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Languages
   // Lack:
   // - iso3
   // - csv
   // - useBoundariesMasks
   const config: TKOpsmapConfiguration = {
+    languages: (dict["languages"] ?? "").split(','),
     name: {
       name: "country",
       labelEn: dict["name_en"] ?? "",
