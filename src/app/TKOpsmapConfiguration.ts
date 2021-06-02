@@ -22,13 +22,22 @@ export interface TKOpsmapConfiguration {
   readonly indicatorsDescription: TKIndicatorsDescription;
 }
 
+function readAllLocalesValues(basename: string, config: { [key: string]: string }, languages: string[]) : TKLabel {
+  const label: TKLabel = {};
+  languages.forEach(lang => {
+    if(config[basename + "_" + lang]){
+      label[lang] = config[basename + "_" + lang];
+    }
+  })
+  return label;
+}
+
 // ////////////////////////////////////////////////////////////////////////////
 // Read configuration from CSV file
 //
 // Watch for default values here.
 //
 // ////////////////////////////////////////////////////////////////////////////
-
 interface TKOpsmapConfigurationLabelCSV {
   config_type: string;
   info: string;
@@ -65,15 +74,9 @@ export async function TKReadGeneralConfiguration(
   // - useBoundariesMasks
   const config: TKOpsmapConfiguration = {
     languages: languages,
-    name: {
-      "en": dict["name_en"] ?? "",
-      "pt": dict["name_pt"] ?? undefined
-    },
+    name: readAllLocalesValues("name", dict, languages),
     iso3: dict["iso3"] ?? "",
-    opsmapDescr: {
-      "en": dict["project_overview_en"] ?? "",
-      "pt": dict["project_overview_pt"] ?? undefined
-    },
+    opsmapDescr: readAllLocalesValues("project_overview", dict, languages),
     spatialDescription: {
       siteIDField: dict["mp_site_id"] ?? "mp_site_id",
       siteNameField: dict["mp_site_name"] ?? "mp_site_name",
@@ -92,49 +95,34 @@ export async function TKReadGeneralConfiguration(
     indicatorsDescription: {
       home: [
         {
-          name: {
-            "en": dict["ikey1_homepage_label"] ?? "",
-            "pt": dict["ikey1_homepage_label_pt"] ?? ""
-          },
+          name: readAllLocalesValues("ikey1_homepage_label", dict, languages),
           entryCode: dict["ikey1_homepage"] ?? "",
           iconOchaName: dict["ikey1_homepage_picto"] ?? ""
         },
         {
-          name: {
-            "en": dict["ikey2_homepage_label"] ?? "",
-            "pt": dict["ikey2_homepage_label_pt"] ?? ""
-          },
+          name: readAllLocalesValues("ikey2_homepage_label", dict, languages),
           entryCode: dict["ikey2_homepage"] ?? "",
           iconOchaName: dict["ikey2_homepage_picto"] ?? ""
         },
         {
-          name: {
-            "en": dict["ikey3_homepage_label"] ?? "",
-            "pt": dict["ikey3_homepage_label_pt"] ?? ""
-          },
+          name: readAllLocalesValues("ikey3_homepage_label", dict, languages),
           entryCode: dict["ikey3_homepage"] ?? "",
           iconOchaName: dict["ikey3_homepage_picto"] ?? ""
         }
       ],
       site: [
         {
-          name: {
-            "en": dict["ikey4_sitepage_label"] ?? ""
-          },
+          name: readAllLocalesValues("ikey4_sitepage_label", dict, languages),
           entryCode: dict["ikey4_sitepage"] ?? "",
           iconOchaName: dict["ikey4_sitepage_picto"] ?? ""
         },
         {
-          name: {
-            "en": dict["ikey5_sitepage_label"] ?? ""
-          },
+          name: readAllLocalesValues("ikey5_sitepage_label", dict, languages),
           entryCode: dict["ikey5_sitepage"] ?? "",
           iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
         },
         {
-          name: {
-            "en": dict["ikey6_sitepage_label"] ?? ""
-          },
+          name: readAllLocalesValues("ikey6_sitepage_label", dict, languages),
           entryCode: dict["ikey6_sitepage"] ?? "",
           iconOchaName: dict["ikey6_sitepage_picto"] ?? ""
         }
