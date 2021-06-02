@@ -54,12 +54,17 @@ export async function TKReadGeneralConfiguration(
 
   // ////////////////////////////////////////////////////////////////////////////
   // Languages
+  let languages = (dict["languages"] ?? "").split(',');
+  if (!languages.length) { // ensure at least english
+    languages.push("en");
+  }
+
   // Lack:
   // - iso3
   // - csv
   // - useBoundariesMasks
   const config: TKOpsmapConfiguration = {
-    languages: (dict["languages"] ?? "").split(','),
+    languages: languages,
     name: {
       name: "country",
       labelEn: dict["name_en"] ?? "",
