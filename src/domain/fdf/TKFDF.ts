@@ -7,19 +7,16 @@ import {
   TKReadFDFTrafficLightsCollection
 } from "./TKFDFTrafficLight";
 import {
-  TKFDFAnswerLabelCollection,
-  TKReadFDFAnswerLabelCollection
-} from "./TKFDFAnswerLabel";
+  TKFDFLabelCollection,
+  TKReadFDFLabelCollection
+} from "./TKFDFParseMultiLang";
 import {
   TKFDFSubmissionsRulesCollection,
   TKReadSubmissionsRulesCollection
 } from "./TKFDFSubmissionsRules";
-import {
-  TKFDFFieldLabelCollection,
-  TKReadFDFLabelsCollection
-} from "./TKFDFFieldLabel";
 
-import { TKFDFInfos } from "./TKFDFInfos";
+
+import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the FDF object
@@ -29,8 +26,8 @@ import { TKFDFInfos } from "./TKFDFInfos";
 export interface TKFDF {
   thematics: TKTFDFhematicsCollection;
   trafficLights: TKFDFTrafficLightsCollection;
-  fieldsLabels: TKFDFFieldLabelCollection;
-  answersLabels: TKFDFAnswerLabelCollection;
+  fieldsLabels: TKFDFLabelCollection;
+  answersLabels: TKFDFLabelCollection;
   submissionsRules: TKFDFSubmissionsRulesCollection;
 }
 
@@ -42,8 +39,8 @@ export async function TKCreateFDF(infos: TKFDFInfos): Promise<TKFDF> {
   return {
     thematics: await TKReadFDFThematicsCollection(infos),
     trafficLights: await TKReadFDFTrafficLightsCollection(infos),
-    fieldsLabels: await TKReadFDFLabelsCollection(infos),
-    answersLabels: await TKReadFDFAnswerLabelCollection(infos),
+    fieldsLabels: await TKReadFDFLabelCollection(TKFDFFiles.FIELDS,infos),
+    answersLabels: await TKReadFDFLabelCollection(TKFDFFiles.ANSWERS,infos),
     submissionsRules: await TKReadSubmissionsRulesCollection(infos)
   };
 }
