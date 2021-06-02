@@ -5,23 +5,17 @@ import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 // ////////////////////////////////////////////////////////////////////////////
 // Thematic datatype
 // ////////////////////////////////////////////////////////////////////////////
+const FORMATTED_NAME_INDEX = 0;
+const ICON_NAME_INDEX = 0;
 
-interface TKFDFThematicRaw {
-  formatted_name: string;
-  icon_file_name: string;
-  thematic_label_en: string;
-  thematic_label_pt?: string;
-}
-
+export type TKFDFThematicRaw = Array<string>;
 export interface TKFDFThematic {
   formattedName: string;
   iconFileName: string;
   thematicLabel: TKLabel;
 }
 
-export interface TKTFDFhematicsCollection {
-  [propName: string]: TKFDFThematic;
-}
+export type TKTFDFhematicsCollection = Record<string, TKFDFThematic>;
 
 // ////////////////////////////////////////////////////////////////////////////
 // Method that creates the Thematic collection object from the fdf folder
@@ -33,20 +27,35 @@ export async function TKReadFDFThematicsCollection(
   const rawThematics: TKFDFThematicRaw[] = await TKCSVRead<TKFDFThematicRaw[]>(
     TKFDFFiles.THEMATICS,
     infos.folder,
-    true
+    false
   );
 
+  // Parse header to find out coumn - language correspondance
+  const header : string[] = Object.values(rawThematics[0]);
+  const localesValuesForIndexes: string[] = ["ignore-0", "ignore-1"]; // ignore first col --> choice name
+  for(let i = 2; i < header.length; i ++){
+    const split = header[i].split('_');
+    const lang = split[split.length - 1] ?? "";
+    localesValuesForIndexes.push(lang);
+  }
+
+  // Parse all the other lines: fill matching label with proper column indexes.
   const thematicsCollection: TKTFDFhematicsCollection = {};
-  rawThematics.map((item: TKFDFThematicRaw) => {
-    thematicsCollection[item.formatted_name] = {
-      formattedName: item.formatted_name,
-      iconFileName: item.icon_file_name,
-      thematicLabel: {
-        "en": item.thematic_label_en      }
-    };
-    if(item.thematic_label_pt){
-      thematicsCollection[item.formatted_name].thematicLabel["pt"] = item.thematic_label_pt;
+
+  for(let i = 1; i < rawThematics.length; i++){
+    const item = rawThematics[i];
+    thematicsCollection[item[FORMATTED_NAME_INDEX]] = {
+      formattedName: item[FORMATTED_NAME_INDEX],
+      iconFileName: item[ICON_NAME_INDEX],
+      thematicLabel: {}
     }
-  });
+
+    for(let j = 2; j < Object.keys(item).length; j++){
+      thematicsCollection[item[FORMATTED_NAME_INDEX]].thematicLabel[
+        localesValuesForIndexes[j]
+      ] = item[j];
+    }
+  }
+
   return thematicsCollection;
 }
