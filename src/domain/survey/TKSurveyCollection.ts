@@ -2,7 +2,7 @@ import { TKSurvey } from "./TKSurvey";
 import { TKSurveyInfosCSV } from "@/domain/csv/TKSurveyInfosCSV";
 import { TKCreateFDF } from "@/domain/fdf/TKFDF";
 import { TKGetCSVRawData } from "@/domain/csv/TKGetCSVRawData";
-import { TKGetGSheetRawData } from "@/domain/gsheet/TKGetGSheetRawData"
+import { TKGetGSheetRawData } from "@/domain/gsheet/TKGetGSheetRawData";
 import { TKGetKoboRawData } from "@/domain/kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKCreateSurvey } from "./TKSurvey";

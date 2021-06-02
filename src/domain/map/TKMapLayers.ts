@@ -17,8 +17,6 @@ export enum TKMapLayers {
   CLUSTERSCOUNTLAYER = "clustersCount"
 }
 
-
-
 export const TKMapLayersStyle = {
   [TKMapLayers.COUNTRYMASKLAYER]: {
     id: TKMapLayers.COUNTRYMASKLAYER,

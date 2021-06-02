@@ -4,5 +4,5 @@
 //  * @internal
 //  */
 
-import TKApp from "@/app/TKApp.vue"
+import TKApp from "@/app/TKApp.vue";
 export { TKApp };

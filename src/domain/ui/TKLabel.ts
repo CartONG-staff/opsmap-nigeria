@@ -1,11 +1,10 @@
 export interface TKLabel {
-  name: string;
   labelEn: string;
   labelPt?: string;
 }
 
 export function TKGetLocalValue(label: TKLabel, locale: string): string {
-  if(label){
+  if (label) {
     if (locale === "pt") {
       return label.labelPt ? label.labelPt : label.labelEn;
     }

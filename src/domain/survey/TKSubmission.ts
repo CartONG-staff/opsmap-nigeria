@@ -70,11 +70,11 @@ function computeSubmissionIndicator(
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { name: "-", labelEn: "-" }
+        valueLabel: { labelEn: "-" }
       };
     }
     const entry = data[thematic].data.find(
-      (item) => item.field === descr.entryCode
+      item => item.field === descr.entryCode
     );
     if (entry instanceof TKSubmissionEntryText) {
       return {
@@ -89,7 +89,7 @@ function computeSubmissionIndicator(
   return {
     iconOchaName: descr.iconOchaName,
     nameLabel: descr.name,
-    valueLabel: { name: "-", labelEn: "-" }
+    valueLabel: { labelEn: "-" }
   };
 }
 
@@ -186,7 +186,7 @@ export function TKCreateSubmission(
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
-  Object.entries(submission).filter((item) => item.length > 0);
+  Object.entries(submission).filter(item => item.length > 0);
   const submissionFiltered: Record<string, TKSubmissionThematic> = {};
   for (const key of Object.keys(submission)) {
     if (submission[key].data.length > 0) {

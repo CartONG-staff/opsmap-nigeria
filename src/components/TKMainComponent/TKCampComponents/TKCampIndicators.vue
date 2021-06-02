@@ -38,17 +38,17 @@ export default class TKCampIndicators extends Vue {
     } else {
       this.indicator1 = {
         nameLabel: this.appConfig.indicatorsDescription.site[0].name,
-        valueLabel: { name: "", labelEn: "-" },
+        valueLabel: { labelEn: "-" },
         iconOchaName: this.indicator1?.iconOchaName ?? ""
       };
       this.indicator2 = {
         nameLabel: this.appConfig.indicatorsDescription.site[1].name,
-        valueLabel: { name: "", labelEn: "-" },
+        valueLabel: { labelEn: "-" },
         iconOchaName: this.indicator2?.iconOchaName ?? ""
       };
       this.indicator3 = {
         nameLabel: this.appConfig.indicatorsDescription.site[2].name,
-        valueLabel: { name: "", labelEn: "-" },
+        valueLabel: { labelEn: "-" },
         iconOchaName: this.indicator3?.iconOchaName ?? ""
       };
     }

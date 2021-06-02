@@ -66,7 +66,7 @@ export function TKCreateSubmissionEntryText(
     surveyConfiguration.fieldsLabels[field],
     surveyConfiguration.answersLabels[value]
       ? surveyConfiguration.answersLabels[value]
-      : { name: value, labelEn: value },
+      : { labelEn: value },
     surveyConfiguration.submissionsRules[field].trafficLightName.length > 0,
     surveyConfiguration.submissionsRules[field].trafficLightName.length > 0
       ? getTrafficLightColor(

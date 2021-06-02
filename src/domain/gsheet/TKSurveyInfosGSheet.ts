@@ -8,11 +8,7 @@ import { TKFDFInfos } from "../fdf/TKFDFInfos";
 export class TKSurveyInfosGSheet extends TKSurveyInfos {
   submissionsUrl: string;
 
-  constructor(
-    name: string,
-    fdf: TKFDFInfos,
-    submissionsUrl: string
-  ) {
+  constructor(name: string, fdf: TKFDFInfos, submissionsUrl: string) {
     super(name, fdf);
     this.submissionsUrl = submissionsUrl;
   }

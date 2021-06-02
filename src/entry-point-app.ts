@@ -7,18 +7,15 @@ import { TKReadGeneralConfiguration } from "./app/TKOpsmapConfiguration";
 
 Vue.config.productionTip = false;
 
-TKReadGeneralConfiguration(
-  "general_config",
-  "brazil"
-).then( config => {
-
+TKReadGeneralConfiguration("general_config", "brazil").then(config => {
   // Filter with config languages field.
-  const messagesCandidates = loadLocaleMessages()
-  const keys = Object.keys(messagesCandidates).filter(lang => config.languages.includes(lang))
-  let messages: LocaleMessages = {};
+  const messagesCandidates = loadLocaleMessages();
+  const keys = Object.keys(messagesCandidates).filter(lang =>
+    config.languages.includes(lang)
+  );
+  const messages: LocaleMessages = {};
   keys.forEach(key => {
-    messages[key] = messagesCandidates[key]
-
+    messages[key] = messagesCandidates[key];
   });
 
   const i18n = new VueI18n({
@@ -36,4 +33,3 @@ TKReadGeneralConfiguration(
     render: h => h(TKApp)
   }).$mount("#app");
 });
-

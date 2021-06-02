@@ -57,7 +57,7 @@ export function TKCreateSubmissionEntryAgePyramid(
 
   return new TKSubmissionEntryAgePyramid(
     "agepyramid",
-    { name: "agepyramid", labelEn: "agepyramid" },
+    { labelEn: "agepyramid" },
     malesDataset,
     femalesDataset,
     malesLabel,

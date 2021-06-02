@@ -144,14 +144,18 @@ export class TKDatasetFilterer {
           if (campAdmin2) {
             this.currentAdmin1 = campAdmin2.admin1;
           }
-          this.filters.admin1 = this.currentAdmin1 ? this.currentAdmin1.pcode : null;
+          this.filters.admin1 = this.currentAdmin1
+            ? this.currentAdmin1.pcode
+            : null;
         }
         // Clear admin2
         else {
           this.levelToZoom = TKFilters.ADMIN1;
           this.currentAdmin2 = null;
           // this.filters.admin2 = null;
-          this.filters.admin1 = this.currentAdmin1 ? this.currentAdmin1.pcode : null;
+          this.filters.admin1 = this.currentAdmin1
+            ? this.currentAdmin1.pcode
+            : null;
         }
         // Clear child levels
         this.currentCamp = null;
@@ -240,7 +244,7 @@ export class TKDatasetFilterer {
     }
   }
 
-  filterAdmin1BaseOnFilteredCamp(): void{
+  filterAdmin1BaseOnFilteredCamp(): void {
     // Filter Admin1 based on filtered Camp List //////////////////////////////
     const validAdmin1 = new Set(
       this.filteredCampsList.map(item => item.admin1.pcode)
@@ -255,7 +259,7 @@ export class TKDatasetFilterer {
     }
   }
 
-  filterAdmin2BaseOnFilteredCamp(): void{
+  filterAdmin2BaseOnFilteredCamp(): void {
     // Filter Admin2 based on filtered Camp List //////////////////////////////
     const validAdmin2 = new Set(
       this.filteredCampsList.map(item => item.admin2.pcode)

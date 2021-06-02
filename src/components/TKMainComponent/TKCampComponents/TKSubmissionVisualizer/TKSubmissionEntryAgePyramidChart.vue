@@ -198,7 +198,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 
   generateLabels(): Array<string> {
     if (this.entry) {
-      return this.entry.femalesLabels.map((item) =>
+      return this.entry.femalesLabels.map(item =>
         item.labelEn
           .replace("Females ", "")
           .replace("(", "")
@@ -211,7 +211,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 
   generateMalesDataset(): Array<number> {
     if (this.entry) {
-      return this.entry.malesEntries.map((item) => -1 * item);
+      return this.entry.malesEntries.map(item => -1 * item);
     } else {
       return [];
     }

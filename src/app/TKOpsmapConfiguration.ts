@@ -51,11 +51,11 @@ export async function TKReadGeneralConfiguration(
   //  {config_type: "csv_data_id", info: "BR_DATA_080421_FDF_s1"}
   //  {config_type: "project_overview_fr", info: "Plus de 260 000 réfugiés et migrants se sont rendu…toyenneté, en partenariat avec les Forces Armées."}
 
-
   // ////////////////////////////////////////////////////////////////////////////
   // Languages
-  let languages = (dict["languages"] ?? "").split(',');
-  if (!languages.length) { // ensure at least english
+  const languages = (dict["languages"] ?? "").split(",");
+  if (!languages.length) {
+    // ensure at least english
     languages.push("en");
   }
 
@@ -66,13 +66,11 @@ export async function TKReadGeneralConfiguration(
   const config: TKOpsmapConfiguration = {
     languages: languages,
     name: {
-      name: "country",
       labelEn: dict["name_en"] ?? "",
       labelPt: dict["name_pt"] ?? undefined
     },
     iso3: dict["iso3"] ?? "",
     opsmapDescr: {
-      name: "opsmap description",
       labelEn: dict["project_overview_en"] ?? "",
       labelPt: dict["project_overview_pt"] ?? undefined
     },
@@ -95,7 +93,6 @@ export async function TKReadGeneralConfiguration(
       home: [
         {
           name: {
-            name: dict["ikey1_homepage_label"] ?? "",
             labelEn: dict["ikey1_homepage_label"] ?? "",
             labelPt: dict["ikey1_homepage_label_pt"] ?? ""
           },
@@ -104,7 +101,6 @@ export async function TKReadGeneralConfiguration(
         },
         {
           name: {
-            name: dict["ikey2_homepage_label"] ?? "",
             labelEn: dict["ikey2_homepage_label"] ?? "",
             labelPt: dict["ikey2_homepage_label_pt"] ?? ""
           },
@@ -113,7 +109,6 @@ export async function TKReadGeneralConfiguration(
         },
         {
           name: {
-            name: dict["ikey3_homepage_label"] ?? "",
             labelEn: dict["ikey3_homepage_label"] ?? "",
             labelPt: dict["ikey3_homepage_label_pt"] ?? ""
           },
@@ -124,7 +119,6 @@ export async function TKReadGeneralConfiguration(
       site: [
         {
           name: {
-            name: dict["ikey4_sitepage_label"] ?? "",
             labelEn: dict["ikey4_sitepage_label"] ?? ""
           },
           entryCode: dict["ikey4_sitepage"] ?? "",
@@ -132,7 +126,6 @@ export async function TKReadGeneralConfiguration(
         },
         {
           name: {
-            name: dict["ikey5_sitepage_label"] ?? "",
             labelEn: dict["ikey5_sitepage_label"] ?? ""
           },
           entryCode: dict["ikey5_sitepage"] ?? "",
@@ -140,7 +133,6 @@ export async function TKReadGeneralConfiguration(
         },
         {
           name: {
-            name: dict["ikey6_sitepage_label"] ?? "",
             labelEn: dict["ikey6_sitepage_label"] ?? ""
           },
           entryCode: dict["ikey6_sitepage"] ?? "",

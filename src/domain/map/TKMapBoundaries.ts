@@ -83,14 +83,13 @@ export class TKMapBoundaries {
   setAdmin1Style(dataset: TKDatasetFilterer) {
     let shouldMapZoom = null;
     const currentadmin1List = dataset.filteredAdmin1List.map(
-      (item) => item.pcode
+      item => item.pcode
     );
     for (const item of this.admin1.features) {
       if (item.properties) {
-        if(dataset.currentAdmin2){
+        if (dataset.currentAdmin2) {
           item.properties.display = "hide";
-        }
-        else if (
+        } else if (
           dataset.currentAdmin1 &&
           dataset.currentAdmin1.pcode === item.properties.pcode
         ) {
@@ -113,7 +112,7 @@ export class TKMapBoundaries {
   setAdmin2Style(dataset: TKDatasetFilterer) {
     let shouldMapZoom = null;
     const currentadmin2List = dataset.filteredAdmin2List.map(
-      (item) => item.pcode
+      item => item.pcode
     );
     for (const item of this.admin2.features) {
       if (item.properties) {

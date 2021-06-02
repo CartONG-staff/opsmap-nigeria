@@ -6,9 +6,6 @@ import { TKSurveyInfosGSheet } from "./TKSurveyInfosGSheet";
 // ////////////////////////////////////////////////////////////////////////////
 
 export async function TKGetGSheetRawData(survey: TKSurveyInfosGSheet) {
-  const csvData = await TKGSheetRead(
-    survey.submissionsUrl,
-    true
-  );
+  const csvData = await TKGSheetRead(survey.submissionsUrl, true);
   return csvData;
 }

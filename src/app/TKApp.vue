@@ -22,8 +22,6 @@ import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKCreateSurveyCollection } from "@/domain/survey/TKSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
-import { TKOpsmapConfiguration } from "@/domain";
-import { TKReadGeneralConfiguration } from "@/app/TKOpsmapConfiguration";
 
 @Component({
   components: {
@@ -38,7 +36,6 @@ export default class TKApp extends Vue {
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
-
     document.title =
       "Opsmap " +
       this.appRootConfig.name.labelEn.charAt(0).toUpperCase() +
@@ -48,11 +45,11 @@ export default class TKApp extends Vue {
       this.appRootConfig.surveyDescription,
       this.appRootConfig.spatialDescription,
       this.appRootConfig.indicatorsDescription
-    ).then((surveys) => {
+    ).then(surveys => {
       this.geoDataset = null;
       this.dataset = new TKDatasetFilterer(surveys);
       if (this.appRootConfig?.spatialDescription.useBoundariesMasks) {
-        TKGetGeoBoundaries(surveys).then((geoDataset) => {
+        TKGetGeoBoundaries(surveys).then(geoDataset => {
           this.geoDataset = geoDataset;
         });
       }

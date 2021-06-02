@@ -42,7 +42,6 @@ export async function TKReadFDFThematicsCollection(
       formattedName: item.formatted_name,
       iconFileName: item.icon_file_name,
       thematicLabel: {
-        name: item.thematic_label_en,
         labelEn: item.thematic_label_en,
         labelPt: item.thematic_label_pt
       }

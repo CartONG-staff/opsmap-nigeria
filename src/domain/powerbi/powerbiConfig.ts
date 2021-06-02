@@ -1,4 +1,3 @@
-
 // import { IDashboardEmbedConfiguration, models } from "powerbi-client";
 
 // export const POWERBI_CONFIG: IDashboardEmbedConfiguration = {
@@ -12,4 +11,3 @@
 //     pageView: "fitToWidth",
 //     permissions: models.Permissions.Read
 //   };
-
