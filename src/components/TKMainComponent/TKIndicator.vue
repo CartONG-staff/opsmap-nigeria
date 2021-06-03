@@ -142,7 +142,7 @@ export default class TKIndicatorComponent extends Vue {
   align-items: left;
   padding-left: 30px;
   padding-bottom: 20px;
-  line-height: 1;
+  line-height: 1.25;
   justify-content: flex-end;
   height: 100%;
   width: 80%;
