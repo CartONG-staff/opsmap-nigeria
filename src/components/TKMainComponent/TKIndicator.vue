@@ -118,13 +118,14 @@ export default class TKIndicatorComponent extends Vue {
 .tk-indicator-container {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 36px;
+  align-items: left;
   width: 100%;
 }
 
 .tk-indicator-icon-container {
-  padding-right: 36px;
   padding-bottom: 55px;
   height: 100%;
   display: flex;
@@ -139,8 +140,6 @@ export default class TKIndicatorComponent extends Vue {
 .tk-indicator-value {
   display: flex;
   flex-flow: column nowrap;
-  align-items: left;
-  padding-left: 30px;
   padding-bottom: 20px;
   line-height: 1.25;
   justify-content: flex-end;
