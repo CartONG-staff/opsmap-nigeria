@@ -6,7 +6,7 @@ import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 // Thematic datatype
 // ////////////////////////////////////////////////////////////////////////////
 const FORMATTED_NAME_INDEX = 0;
-const ICON_NAME_INDEX = 0;
+const ICON_NAME_INDEX = 1;
 
 export type TKFDFThematicRaw = Array<string>;
 export interface TKFDFThematic {
