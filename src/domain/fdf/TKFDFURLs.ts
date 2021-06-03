@@ -27,7 +27,7 @@ export async function TKReadFDFURLsCollection(
 
   // Parse all the other lines: fill matching label with proper column indexes.
   const urlsCollection: TKFDFUrlsCollection = {};
-  rawUrl.forEach((el, index) => {
+  rawUrl.forEach(el => {
     if (el[0] && el[1]) {
       urlsCollection[el[0]] = el[1];
     }
