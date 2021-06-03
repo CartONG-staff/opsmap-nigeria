@@ -1,32 +1,31 @@
 <template lang="html">
   <div class="tk-iframe-container">
-    <iframe
-      id="tk-iframe"
-      src="https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9"
-    ></iframe>
+    <iframe id="tk-iframe" :src="url"></iframe>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component({})
 export default class TKIFrame extends Vue {
-  resizeIFrameToFitContent(event: any): void {
-    console.log(event);
-    const iFrame = document.getElementById("tk-iframe") as HTMLIFrameElement;
-    if (iFrame && iFrame.contentWindow) {
-      iFrame.width = iFrame.contentWindow.document.body.scrollWidth.toString();
-      iFrame.height = iFrame.contentWindow.document.body.scrollHeight.toString();
-      console.log(iFrame.width + " x " + iFrame.height);
-    }
-  }
+  @Prop()
+  readonly url!: string;
 
-  mounted() {
-    window.addEventListener("DOMContentLoaded", () => {
-      console.log("DOMContentLoaded");
-    });
-  }
+  // resizeIFrameToFitContent(event: any): void {
+  //   console.log(event);
+  //   const iFrame = document.getElementById("tk-iframe") as HTMLIFrameElement;
+  //   if (iFrame && iFrame.contentWindow) {
+  //     iFrame.width = iFrame.contentWindow.document.body.scrollWidth.toString();
+  //     iFrame.height = iFrame.contentWindow.document.body.scrollHeight.toString();
+  //   }
+  // }
+
+  // mounted() {
+  //   window.addEventListener("DOMContentLoaded", () => {
+  //     console.log("DOMContentLoaded");
+  //   });
+  // }
 }
 </script>
 

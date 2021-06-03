@@ -14,6 +14,7 @@ export interface TKOpsmapConfiguration {
   readonly name: TKLabel;
   readonly languages: string[];
   readonly iso3: string;
+  readonly iframe: string;
   readonly surveyDescription: TKSurveyInfos[];
   readonly opsmapDescr: TKLabel;
   readonly footerLogos: TKFooterLogosDescription;
@@ -80,6 +81,7 @@ export async function TKReadGeneralConfiguration(
     languages: languages,
     name: readAllLocalesValues("name", dict, languages),
     iso3: dict["iso3"] ?? "",
+    iframe: dict["iframe"] ?? "",
     opsmapDescr: readAllLocalesValues("project_overview", dict, languages),
     spatialDescription: {
       siteIDField: dict["mp_site_id"] ?? "mp_site_id",

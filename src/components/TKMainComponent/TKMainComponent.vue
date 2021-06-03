@@ -70,8 +70,8 @@
           </div>
         </transition>
         <transition mode="out-in" name="fade" appear>
-          <div key="7" v-if="isHomePage">
-            <TKIFrame />
+          <div key="7" v-if="isHomePage && appConfig.iframe">
+            <TKIFrame :url="appConfig.iframe" />
           </div>
           <div key="8" v-else class="tk-camp-content">
             <TKSubmissionVisualizer
