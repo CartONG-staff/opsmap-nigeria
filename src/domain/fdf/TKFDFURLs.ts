@@ -33,7 +33,5 @@ export async function TKReadFDFURLsCollection(
     }
   });
 
-  console.log(urlsCollection);
-
   return urlsCollection;
 }
