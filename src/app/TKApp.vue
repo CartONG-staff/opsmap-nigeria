@@ -16,12 +16,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components";
 import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKCreateSurveyCollection } from "@/domain/survey/TKSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 
 @Component({
   components: {
@@ -36,10 +37,7 @@ export default class TKApp extends Vue {
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
-    document.title =
-      "Opsmap " +
-      this.appRootConfig.name.en.charAt(0).toUpperCase() +
-      this.appRootConfig.name.en.slice(1).toLowerCase();
+    this.handeLocale();
 
     TKCreateSurveyCollection(
       this.appRootConfig.surveyDescription,
@@ -54,6 +52,16 @@ export default class TKApp extends Vue {
         });
       }
     });
+  }
+
+  @Watch("$root.$i18n.locale")
+  handeLocale() {
+    const name = TKGetLocalValue(
+      this.appRootConfig.name,
+      this.$root.$i18n.locale
+    );
+    document.title =
+      "Opsmap " + name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
   }
 }
 </script>
