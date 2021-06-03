@@ -16,6 +16,7 @@ import {
 } from "./TKFDFSubmissionsRules";
 
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
+import { TKFDFUrlsCollection, TKReadFDFURLsCollection } from "./TKFDFURLs";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the FDF object
@@ -28,6 +29,7 @@ export interface TKFDF {
   fieldsLabels: TKFDFLabelCollection;
   answersLabels: TKFDFLabelCollection;
   submissionsRules: TKFDFSubmissionsRulesCollection;
+  urls: TKFDFUrlsCollection;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -40,6 +42,7 @@ export async function TKCreateFDF(infos: TKFDFInfos): Promise<TKFDF> {
     trafficLights: await TKReadFDFTrafficLightsCollection(infos),
     fieldsLabels: await TKReadFDFLabelCollection(TKFDFFiles.FIELDS, infos),
     answersLabels: await TKReadFDFLabelCollection(TKFDFFiles.ANSWERS, infos),
-    submissionsRules: await TKReadSubmissionsRulesCollection(infos)
+    submissionsRules: await TKReadSubmissionsRulesCollection(infos),
+    urls: await TKReadFDFURLsCollection(infos)
   };
 }

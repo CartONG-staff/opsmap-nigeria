@@ -66,7 +66,18 @@
 
       <transition mode="out-in" name="fade-in">
         <div :key="manageBy" class="tk-camp-infos-field-value">
-          {{ manageBy.toUpperCase() }}
+          <div v-if="manageByUrl">
+            <a
+              :href="manageByUrl"
+              target="_blank"
+              class="tk-camp-infos-field-value"
+            >
+              {{ manageBy.toUpperCase() }}
+            </a>
+          </div>
+          <div v-else>
+            {{ manageBy.toUpperCase() }}
+          </div>
         </div>
       </transition>
     </div>
@@ -97,6 +108,7 @@ export default class TKCampInfos extends Vue {
   // admin3 = "-";
   coordinates = "-";
   manageBy = "";
+  manageByUrl = "";
 
   @Watch("dataset.currentCamp", { immediate: true })
   onChange() {
@@ -121,6 +133,13 @@ export default class TKCampInfos extends Vue {
     this.manageByLabel = (this.submission?.thematics["group_cccm"]?.data?.find(
       item => item.field === "cccm_shelter__mangmt"
     ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
+
+    this.manageByUrl = this.dataset.surveys[
+      this.dataset.currentSurvey
+    ].fdf.urls[this.manageByLabel["en"]];
+
+    console.log(this.manageByUrl);
+
     this.handeLocale();
   }
 
