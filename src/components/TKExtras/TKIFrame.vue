@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="tk-powerbi-container">
+  <div class="tk-iframe-container">
     <iframe
-      id="tk-powerbi"
+      id="tk-iframe"
       src="https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9"
     ></iframe>
   </div>
@@ -11,10 +11,10 @@
 import { Vue, Component } from "vue-property-decorator";
 
 @Component({})
-export default class TKPowerBI extends Vue {
+export default class TKIFrame extends Vue {
   resizeIFrameToFitContent(event: any): void {
     console.log(event);
-    const iFrame = document.getElementById("tk-powerbi") as HTMLIFrameElement;
+    const iFrame = document.getElementById("tk-iframe") as HTMLIFrameElement;
     if (iFrame && iFrame.contentWindow) {
       iFrame.width = iFrame.contentWindow.document.body.scrollWidth.toString();
       iFrame.height = iFrame.contentWindow.document.body.scrollHeight.toString();
@@ -31,7 +31,7 @@ export default class TKPowerBI extends Vue {
 </script>
 
 <style scoped>
-.tk-powerbi-container {
+.tk-iframe-container {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
@@ -39,7 +39,7 @@ export default class TKPowerBI extends Vue {
   min-height: 800px;
 }
 
-#tk-powerbi {
+#tk-iframe {
   border: 2px solid #f1f3f3;
   box-sizing: border-box;
   flex-grow: 1;

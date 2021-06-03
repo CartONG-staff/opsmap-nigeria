@@ -71,7 +71,7 @@
         </transition>
         <transition mode="out-in" name="fade" appear>
           <div key="7" v-if="isHomePage">
-            <TKPowerBI />
+            <TKIFrame />
           </div>
           <div key="8" v-else class="tk-camp-content">
             <TKSubmissionVisualizer
@@ -93,7 +93,7 @@ import TKPlaceHolderIndicators from "./TKPlaceHolders/TKPlaceHolderIndicators.vu
 import TKPlaceHolderGeneric from "./TKPlaceHolders/TKPlaceHolderGeneric.vue";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
-import TKPowerBI from "@/components/TKExtras/TKPowerBI.vue";
+import TKIFrame from "@/components/TKExtras/TKIFrame.vue";
 
 import {
   TKHomeCombos,
@@ -137,7 +137,7 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
     TKPlaceHolderLeft,
     TKPlaceHolderIndicators,
     TKPlaceHolderGeneric,
-    TKPowerBI,
+    TKIFrame,
     TKTitle
   }
 })
