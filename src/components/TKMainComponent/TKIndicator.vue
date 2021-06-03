@@ -30,9 +30,14 @@
                 {{ value }}
               </div>
             </transition>
-            <div class="tk-indicator-value-decription">
-              {{ name }}
-            </div>
+            <transition mode="out-in" name="fade-in">
+              <div
+                :key="$root.$i18n.locale"
+                class="tk-indicator-value-decription"
+              >
+                {{ name }}
+              </div>
+            </transition>
           </div>
           <div class="tk-indicator-icon-container">
             <img class="tk-indicator-icon" :src="iconUrl" />
