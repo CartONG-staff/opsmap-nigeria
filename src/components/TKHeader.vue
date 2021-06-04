@@ -34,6 +34,7 @@
         dense
         class="tk-header-buttons"
         color="accent"
+        v-if="locales.length > 1"
       >
         <div
           v-for="(locale, key) in locales"
