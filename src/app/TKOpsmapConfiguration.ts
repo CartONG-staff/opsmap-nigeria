@@ -187,7 +187,16 @@ export async function TKReadGeneralConfiguration(
         dict["survey_tr_url"] ?? ""
       )
     ],
-    mapConfig: new TKMapboxConfiguration()
+    mapConfig: {
+      token:
+        "pk.eyJ1IjoidW5oY3IiLCJhIjoiY2tveWJlcDV5MDVycTJ2and3ZXllcW1leCJ9.Vp5XDh5OhDXxZCZUvgEuDg",
+      style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",
+      padding: 100,
+      zoomspeed: 2,
+      bounds: (dict["spatial_boundaries"] ?? "")
+        .split(",")
+        .map((item) => parseFloat(item))
+    }
   };
 
   return config;

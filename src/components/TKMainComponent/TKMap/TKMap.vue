@@ -148,8 +148,8 @@ export default class TKMap extends Vue {
     if (!this.bound) {
       // Init the map - world level
       this.bound = new mapboxgl.LngLatBounds(
-        new mapboxgl.LngLat(-74.17, -33.34),
-        new mapboxgl.LngLat(-33.57, 5.02)
+        new mapboxgl.LngLat(this.appConfig.mapConfig.bounds[0], this.appConfig.mapConfig.bounds[1]),
+        new mapboxgl.LngLat(this.appConfig.mapConfig.bounds[2], this.appConfig.mapConfig.bounds[3])
       );
     }
     if (!this.map) {
