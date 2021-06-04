@@ -8,15 +8,18 @@ import {
 } from "./TKFDFTrafficLight";
 import {
   TKFDFLabelCollection,
-  TKReadFDFLabelCollection
+  TKReadFDFLabelCollection,
+  TKReadFDFLabelCollectionFromGSheet
 } from "./TKFDFParseMultiLang";
 import {
   TKFDFSubmissionsRulesCollection,
   TKReadSubmissionsRulesCollection
 } from "./TKFDFSubmissionsRules";
 
-import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
+import { TKFDFFiles } from "./TKFDFInfos";
 import { TKFDFUrlsCollection, TKReadFDFURLsCollection } from "./TKFDFURLs";
+import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
+import { TKSurveyInfosGSheet } from "../gsheet/TKSurveyInfosGSheet";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the FDF object
@@ -35,14 +38,25 @@ export interface TKFDF {
 // ////////////////////////////////////////////////////////////////////////////
 // Method that creates the FDF object from the fdf folder
 // ////////////////////////////////////////////////////////////////////////////
+export async function TKCreateFDF(infos: TKSurveyInfos): Promise<TKFDF> {
+  let answersLabels = {};
+  if (infos instanceof TKSurveyInfosGSheet) {
+    answersLabels = await TKReadFDFLabelCollectionFromGSheet(
+      infos.submissionsTrUrl
+    );
+  } else {
+    answersLabels = await TKReadFDFLabelCollection(
+      TKFDFFiles.ANSWERS,
+      infos.fdf
+    );
+  }
 
-export async function TKCreateFDF(infos: TKFDFInfos): Promise<TKFDF> {
   return {
-    thematics: await TKReadFDFThematicsCollection(infos),
-    trafficLights: await TKReadFDFTrafficLightsCollection(infos),
-    fieldsLabels: await TKReadFDFLabelCollection(TKFDFFiles.FIELDS, infos),
-    answersLabels: await TKReadFDFLabelCollection(TKFDFFiles.ANSWERS, infos),
-    submissionsRules: await TKReadSubmissionsRulesCollection(infos),
-    urls: await TKReadFDFURLsCollection(infos)
+    thematics: await TKReadFDFThematicsCollection(infos.fdf),
+    trafficLights: await TKReadFDFTrafficLightsCollection(infos.fdf),
+    fieldsLabels: await TKReadFDFLabelCollection(TKFDFFiles.FIELDS, infos.fdf),
+    answersLabels: answersLabels,
+    submissionsRules: await TKReadSubmissionsRulesCollection(infos.fdf),
+    urls: await TKReadFDFURLsCollection(infos.fdf)
   };
 }

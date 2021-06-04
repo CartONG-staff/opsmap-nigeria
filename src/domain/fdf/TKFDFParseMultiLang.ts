@@ -1,6 +1,7 @@
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKLabel } from "@/domain//ui/TKLabel";
 import { TKFDFInfos } from "./TKFDFInfos";
+import { TKGSheetRead } from "../gsheet/TKGSheetReader";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the Answer label object
@@ -11,15 +12,12 @@ export type TKFDFLabelRaw = Array<string>;
 export type TKFDFLabelCollection = Record<string, TKLabel>;
 
 // ////////////////////////////////////////////////////////////////////////////
-// Method that creates the AnswerLabel object from the fdf folder
+// Parse the csv file
 // ////////////////////////////////////////////////////////////////////////////
 
-export async function TKReadFDFLabelCollection(
-  file: string,
-  infos: TKFDFInfos
+async function parseCSVContent(
+  rawLabels: TKFDFLabelRaw[]
 ): Promise<TKFDFLabelCollection> {
-  const rawLabels: TKFDFLabelRaw[] = await TKCSVRead(file, infos.folder, false);
-
   // Parse header to find out coumn - language correspondance
   const header: string[] = Object.values(rawLabels[0]);
 
@@ -43,4 +41,23 @@ export async function TKReadFDFLabelCollection(
   }
 
   return labelsCollection;
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Method that creates the AnswerLabel object from the fdf folder
+// ////////////////////////////////////////////////////////////////////////////
+
+export async function TKReadFDFLabelCollectionFromGSheet(
+  url: string
+): Promise<TKFDFLabelCollection> {
+  const rawLabels: TKFDFLabelRaw[] = await TKGSheetRead(url, false);
+  return parseCSVContent(rawLabels);
+}
+
+export async function TKReadFDFLabelCollection(
+  file: string,
+  infos: TKFDFInfos
+): Promise<TKFDFLabelCollection> {
+  const rawLabels: TKFDFLabelRaw[] = await TKCSVRead(file, infos.folder, false);
+  return parseCSVContent(rawLabels);
 }

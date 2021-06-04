@@ -183,7 +183,8 @@ export async function TKReadGeneralConfiguration(
       new TKSurveyInfosGSheet(
         dict["survey_name"] ?? "",
         { folder: "brazil/" + dict["fdf_id"] },
-        dict["survey_url"] ?? ""
+        dict["survey_url"] ?? "",
+        dict["survey_tr_url"] ?? ""
       )
     ],
     mapConfig: new TKMapboxConfiguration()

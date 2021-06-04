@@ -43,7 +43,8 @@ export async function TKCreateSurveyCollection(
     }
 
     // Retrieve config
-    const surveyConfig = await TKCreateFDF(info.fdf);
+    const surveyConfig = await TKCreateFDF(info);
+
     // Create survey
     surveyCollection[info.name] = TKCreateSurvey(
       rawData,
