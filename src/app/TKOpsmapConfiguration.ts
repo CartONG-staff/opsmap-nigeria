@@ -195,7 +195,7 @@ export async function TKReadGeneralConfiguration(
       zoomspeed: 2,
       bounds: (dict["spatial_boundaries"] ?? "")
         .split(",")
-        .map((item) => parseFloat(item))
+        .map(item => parseFloat(item))
     }
   };
 

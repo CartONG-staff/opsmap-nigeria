@@ -18,11 +18,10 @@ export type TKFDFLabelCollection = Record<string, TKLabel>;
 async function parseCSVContent(
   rawLabels: TKFDFLabelRaw[]
 ): Promise<TKFDFLabelCollection> {
-
   // Parse all the other lines: fill matching label with proper column indexes.
   const labelsCollection: TKFDFLabelCollection = {};
 
-  if (rawLabels.length < 1){
+  if (rawLabels.length < 1) {
     return labelsCollection;
   }
 
