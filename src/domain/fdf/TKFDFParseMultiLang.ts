@@ -18,6 +18,14 @@ export type TKFDFLabelCollection = Record<string, TKLabel>;
 async function parseCSVContent(
   rawLabels: TKFDFLabelRaw[]
 ): Promise<TKFDFLabelCollection> {
+
+  // Parse all the other lines: fill matching label with proper column indexes.
+  const labelsCollection: TKFDFLabelCollection = {};
+
+  if (rawLabels.length < 1){
+    return labelsCollection;
+  }
+
   // Parse header to find out coumn - language correspondance
   const header: string[] = Object.values(rawLabels[0]);
 
@@ -27,9 +35,6 @@ async function parseCSVContent(
     const lang = split[split.length - 1] ?? "";
     localesValuesForIndexes.push(lang);
   }
-
-  // Parse all the other lines: fill matching label with proper column indexes.
-  const labelsCollection: TKFDFLabelCollection = {};
 
   for (let i = 1; i < rawLabels.length; i++) {
     const answer = rawLabels[i];
