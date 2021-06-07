@@ -7,7 +7,7 @@
 
       <br />
       <span class="tk-title-country">
-        {{ appName.charAt(0).toUpperCase() + appName.slice(1).toLowerCase() }}
+        {{ appName }}
       </span>
     </div>
   </transition>
@@ -17,18 +17,20 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { toTitleCase } from "@/domain/ui/TKStringUtils";
 
 @Component
 export default class TKTitle extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
 
-  appName = this.appConfig.name.en;
+  appName = toTitleCase(
+    TKGetLocalValue(this.appConfig.name, this.$root.$i18n.locale)
+  );
   @Watch("$root.$i18n.locale")
   handeLocale() {
-    this.appName = TKGetLocalValue(
-      this.appConfig.name,
-      this.$root.$i18n.locale
+    this.appName = toTitleCase(
+      TKGetLocalValue(this.appConfig.name, this.$root.$i18n.locale)
     );
   }
 }
