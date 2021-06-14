@@ -183,6 +183,18 @@ export function TKCreateSubmission(
         }
       }
     }
+    if (agePyramidId) {
+      console.log(agePyramidData);
+
+      submission[thematic].data.push(
+        TKCreateSubmissionEntryAgePyramid(
+          agePyramidData,
+          surveyConfiguration
+        )
+      );
+      agePyramidId = "";
+      agePyramidData = [];
+    }
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////

@@ -138,8 +138,6 @@ export default class TKCampInfos extends Vue {
       this.dataset.currentSurvey
     ].fdf.urls[this.manageByLabel["en"]];
 
-    console.log(this.manageByUrl);
-
     this.handeLocale();
   }
 

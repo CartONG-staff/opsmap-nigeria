@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="tk-submission-item-pyramid-chart">
-    <canvas :id="ctx" height="260"></canvas>
+    <canvas :id="ctx" height="360"></canvas>
   </div>
 </template>
 

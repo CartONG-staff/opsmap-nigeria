@@ -38,8 +38,8 @@
     "agePyramidTitle": "Pirâmide de Idade",
     "titleY": "Faixa Etária",
     "titleX": "População",
-    "female": "Mulher",
-    "male": "Homem"
+    "female": "Mulheres",
+    "male": "Homens"
   },
   "map": {
     "legendPlanned": "Abrigos",
