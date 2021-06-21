@@ -28,20 +28,25 @@
       </transition>
     </div>
     <div class="tk-hseparator" />
-    <!-- ADMIN3 -->
-    <!-- <div class="tk-camp-infos-field">
+    <!-- Site Type -->
+    <div class="tk-camp-infos-field">
       <transition mode="out-in" name="fade-in">
         <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
-          {{ $t("infosAdmin3").toUpperCase() }}
+          {{ $t("infosSiteType").toUpperCase() }}
         </div>
       </transition>
 
       <transition mode="out-in" name="fade-in">
-        <div :key="admin3" class="tk-camp-infos-field-value">
-          {{ admin3.toUpperCase() }}
+        <div :key="$root.$i18n.locale" class="tk-camp-infos-field-value">
+          <div v-if="isSitePlanned">
+            {{ $t("infosSitePlanned").toUpperCase() }}
+          </div>
+          <div v-else>
+            {{ $t("infosSiteSpontanneous").toUpperCase() }}
+          </div>
         </div>
       </transition>
-    </div> -->
+    </div>
     <div class="tk-hseparator" />
     <!-- GPS COORDINATES -->
     <div class="tk-camp-infos-field">
@@ -87,6 +92,7 @@
 <script lang="ts">
 // Manage by: cccm_shelter__mangmt
 
+import { TKCampTypesValues } from "@/domain/survey/TKCampTypesValues";
 import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
@@ -105,7 +111,7 @@ export default class TKCampInfos extends Vue {
 
   admin1 = "-";
   admin2 = "-";
-  // admin3 = "-";
+  isSitePlanned = true;
   coordinates = "-";
   manageBy = "";
   manageByUrl = "";
@@ -119,9 +125,10 @@ export default class TKCampInfos extends Vue {
       this.admin2 = this.dataset.currentCamp
         ? this.dataset.currentCamp.admin2.name
         : "-";
-      // this.admin3 = this.dataset.currentCamp
-      //   ? this.dataset.currentCamp.admin3.name
-      //   : "-";
+      this.isSitePlanned = this.dataset.currentCamp
+        ? this.dataset.currentCamp.type === TKCampTypesValues.PLANNED
+        : false;
+      this.isSitePlanned = !this.isSitePlanned;
       this.coordinates = this.dataset.currentCamp
         ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
         : "-";
@@ -131,7 +138,7 @@ export default class TKCampInfos extends Vue {
   @Watch("submission", { immediate: true })
   onSubmissionChange() {
     this.manageByLabel = (this.submission?.thematics["group_cccm"]?.data?.find(
-      item => item.field === "cccm_shelter__mangmt"
+      (item) => item.field === "cccm_shelter__mangmt"
     ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
 
     this.manageByUrl = this.dataset.surveys[
