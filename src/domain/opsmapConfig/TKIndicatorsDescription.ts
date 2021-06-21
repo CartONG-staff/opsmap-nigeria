@@ -10,11 +10,7 @@ export class TKIndicatorDescription {
   readonly entryCode: string;
   readonly iconOchaName: string;
 
-  constructor(
-    name: TKLabel,
-    entryCode: string,
-    iconOchaName: string
-  ) {
+  constructor(name: TKLabel, entryCode: string, iconOchaName: string) {
     this.name = name;
     this.entryCode = entryCode;
     this.iconOchaName = iconOchaName;

@@ -7,7 +7,7 @@ import { TKReadGeneralConfiguration } from "./app/TKOpsmapConfiguration";
 
 Vue.config.productionTip = false;
 
-TKReadGeneralConfiguration("general_config", "brazil").then(config => {
+TKReadGeneralConfiguration("general_config", "demo").then(config => {
   // Filter with config languages field.
   const messagesCandidates = loadLocaleMessages();
   const keys = Object.keys(messagesCandidates).filter(lang =>

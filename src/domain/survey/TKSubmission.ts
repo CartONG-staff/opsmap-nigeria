@@ -69,9 +69,7 @@ function getValue(
   if (splitted) {
     const thematic = "group_" + splitted[0];
     if (data[thematic]) {
-      const entry = data[thematic].data.find(
-        (item) => item.field === entryCode
-      );
+      const entry = data[thematic].data.find(item => item.field === entryCode);
       if (entry instanceof TKSubmissionEntryText) {
         const result = parseInt(entry.answerLabel.en, 10);
         if (isNaN(result)) {
@@ -92,9 +90,7 @@ function getLabel(
   if (splitted) {
     const thematic = "group_" + splitted[0];
     if (data[thematic]) {
-      const entry = data[thematic].data.find(
-        (item) => item.field === entryCode
-      );
+      const entry = data[thematic].data.find(item => item.field === entryCode);
       if (entry instanceof TKSubmissionEntryText) {
         return entry.answerLabel;
       }
@@ -114,19 +110,24 @@ function computeSubmissionIndicator(
     const peopleCount = getValue(data, descr.entryCodePeopleCount);
     const maxPeopleCount = getValue(data, descr.entryCodeMaxPeopleCount);
 
-    if(peopleCount !== undefined && maxPeopleCount !== undefined && maxPeopleCount !== 0) {
-      const percent = Math.round( (peopleCount / maxPeopleCount) * 100 ).toString();
+    if (
+      peopleCount !== undefined &&
+      maxPeopleCount !== undefined &&
+      maxPeopleCount !== 0
+    ) {
+      const percent = Math.round(
+        (peopleCount / maxPeopleCount) * 100
+      ).toString();
       const valueLabel: TKLabel = {};
-      for(const k in labelIsMaxCapacity){
-        valueLabel[k] = labelIsMaxCapacity[k] + ' (' + percent + ' %)';
+      for (const k in labelIsMaxCapacity) {
+        valueLabel[k] = labelIsMaxCapacity[k] + " (" + percent + " %)";
       }
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
         valueLabel: valueLabel
       };
-    }
-    else {
+    } else {
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
@@ -244,7 +245,7 @@ export function TKCreateSubmission(
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
-  Object.entries(submission).filter((item) => item.length > 0);
+  Object.entries(submission).filter(item => item.length > 0);
   const submissionFiltered: Record<string, TKSubmissionThematic> = {};
   for (const key of Object.keys(submission)) {
     if (submission[key].data.length > 0) {

@@ -47,27 +47,30 @@ function readAllLocalesValues(
 function readSiteIndicator(
   dict: { [key: string]: string },
   languages: string[],
-  index: string, ): TKIndicatorDescription{
-
-  if (dict["ikey"+index+"_sitepage"].startsWith("SITE_OCCUPATION")) {
-    const fields = (dict["ikey"+index+"_sitepage"] ?? "").split(",");
+  index: string
+): TKIndicatorDescription {
+  if (dict["ikey" + index + "_sitepage"].startsWith("SITE_OCCUPATION")) {
+    const fields = (dict["ikey" + index + "_sitepage"] ?? "").split(",");
     if (fields.length > 3) {
       return new TKIndicatorDescriptionSiteOccupation(
-        readAllLocalesValues("ikey"+index+"_sitepage_label", dict, languages),
+        readAllLocalesValues(
+          "ikey" + index + "_sitepage_label",
+          dict,
+          languages
+        ),
         fields[1],
         fields[2],
         fields[3],
-        dict["ikey"+index+"_sitepage_picto"] ?? ""
+        dict["ikey" + index + "_sitepage_picto"] ?? ""
       );
     }
   }
 
   return new TKIndicatorDescription(
-    readAllLocalesValues("ikey"+index+"_sitepage_label", dict, languages),
-    dict["ikey"+index+"_sitepage"] ?? "",
-    dict["ikey"+index+"_sitepage_picto"] ?? ""
+    readAllLocalesValues("ikey" + index + "_sitepage_label", dict, languages),
+    dict["ikey" + index + "_sitepage"] ?? "",
+    dict["ikey" + index + "_sitepage_picto"] ?? ""
   );
-
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -294,7 +297,7 @@ export async function TKReadGeneralConfiguration(
       zoomspeed: 2,
       bounds: (dict["spatial_boundaries"] ?? "")
         .split(",")
-        .map((item) => parseFloat(item))
+        .map(item => parseFloat(item))
     }
   };
 
