@@ -75,28 +75,11 @@ function computeSurveyIndicator(
       };
     }
 
-    if (!descr.computationType) {
-      return {
-        iconOchaName: descr.iconOchaName,
-        nameLabel: descr.name,
-        valueLabel: { en: String(sum) }
-      };
-    }
-    if (descr.computationType === TKIndicatorComputationType.MEAN) {
-      return {
-        iconOchaName: descr.iconOchaName,
-        nameLabel: descr.name,
-        valueLabel: {
-          en: String((sum / Object.keys(data).length).toFixed(2))
-        }
-      };
-    } else if (descr.computationType === TKIndicatorComputationType.SUM) {
-      return {
-        iconOchaName: descr.iconOchaName,
-        nameLabel: descr.name,
-        valueLabel: { en: String(sum) }
-      };
-    }
+    return {
+      iconOchaName: descr.iconOchaName,
+      nameLabel: descr.name,
+      valueLabel: { en: String(sum) }
+    };
   }
   return {
     iconOchaName: descr.iconOchaName,

@@ -3,7 +3,11 @@ import { TKLabel } from "@/domain/ui/TKLabel";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogos";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
-import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
+import {
+  TKIndicatorDescription,
+  TKIndicatorDescriptionSiteOccupation,
+  TKIndicatorsDescription
+} from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKSurveyInfosGSheet } from "../domain/gsheet/TKSurveyInfosGSheet";
 
@@ -37,11 +41,39 @@ function readAllLocalesValues(
   return label;
 }
 
+// Parse the indicator 'index'
+// Sample TKIndicatorDescriptionSiteOccupation:
+//    ikey4_sitepage;SITE_OCCUPATION,cccm_site_at_full_capacity,demo_num_indv,cccm_shelter_max_capacity:
+function readSiteIndicator(
+  dict: { [key: string]: string },
+  languages: string[],
+  index: string, ): TKIndicatorDescription{
+
+  if (dict["ikey"+index+"_sitepage"].startsWith("SITE_OCCUPATION")) {
+    const fields = (dict["ikey"+index+"_sitepage"] ?? "").split(",");
+    if (fields.length > 3) {
+      return new TKIndicatorDescriptionSiteOccupation(
+        readAllLocalesValues("ikey"+index+"_sitepage_label", dict, languages),
+        fields[1],
+        fields[2],
+        fields[3],
+        dict["ikey"+index+"_sitepage_picto"] ?? ""
+      );
+    }
+  }
+
+  return new TKIndicatorDescription(
+    readAllLocalesValues("ikey"+index+"_sitepage_label", dict, languages),
+    dict["ikey"+index+"_sitepage"] ?? "",
+    dict["ikey"+index+"_sitepage_picto"] ?? ""
+  );
+
+}
+
 // ////////////////////////////////////////////////////////////////////////////
 // Read configuration from CSV file
 //
 // Watch for default values here.
-//
 // ////////////////////////////////////////////////////////////////////////////
 interface TKOpsmapConfigurationLabelCSV {
   config_type: string;
@@ -72,6 +104,85 @@ export async function TKReadGeneralConfiguration(
     // ensure at least english
     languages.push("en");
   }
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Site indicators
+  // const siteIndicator4 =
+  // const siteIndicator5 = readSiteIndicator(dict, languages, "5");
+  // const siteIndicator6 = readSiteIndicator(dict, languages, "6");
+  // let siteIndicator2: TKIndicatorDescription = {
+  //   name: readAllLocalesValues("ikey5_sitepage_label", dict, languages),
+  //   entryCode: dict["ikey5_sitepage"] ?? "",
+  //   iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
+  // }
+  // const siteIndicator3: TKIndicatorDescription = {
+  //   name: readAllLocalesValues("ikey6_sitepage_label", dict, languages),
+  //   entryCode: dict["ikey6_sitepage"] ?? "",
+  //   iconOchaName: dict["ikey6_sitepage_picto"] ?? ""
+  // }
+
+  // if (dict["ikey4_sitepage"].startsWith("SITE_OCCUPATION")) {
+  //   const fields = (dict["ikey4_sitepage"] ?? "").split(",");
+  //   if (fields.length > 2) {
+  //     const indic: TKIndicatorDescriptionSiteOccupation = {
+  //       name: readAllLocalesValues("ikey4_sitepage_label", dict, languages),
+  //       entryCode: fields[1],
+  //       entryCodeSecond: fields[2],
+  //       iconOchaName: dict["ikey4_sitepage_picto"] ?? ""
+  //     };
+  //     siteIndicators.push(indic);
+  //   } else {
+  //     siteIndicators.push({
+  //       name: readAllLocalesValues("ikey4_sitepage_label", dict, languages),
+  //       entryCode: "",
+  //       iconOchaName: dict["ikey4_sitepage_picto"] ?? ""
+  //     });
+  //   }
+  // } else {
+  //   siteIndicators.push();
+  // }
+
+  // if (dict["ikey5_sitepage"].startsWith("SITE_OCCUPATION")) {
+  //   const fields = (dict["ikey5_sitepage"] ?? "").split(",");
+  //   if (fields.length > 2) {
+  //     const indic: TKIndicatorDescriptionSiteOccupation = {
+  //       name: readAllLocalesValues("ikey5_sitepage_label", dict, languages),
+  //       entryCode: fields[1],
+  //       entryCodeSecond: fields[2],
+  //       iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
+  //     };
+  //     siteIndicators.push(indic);
+  //   } else {
+  //     siteIndicators.push({
+  //       name: readAllLocalesValues("ikey5_sitepage_label", dict, languages),
+  //       entryCode: "",
+  //       iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
+  //     });
+  //   }
+  // } else {
+  //   siteIndicators.push();
+  // }
+
+  // if (dict["ikey6_sitepage"].startsWith("SITE_OCCUPATION")) {
+  //   const fields = (dict["ikey6_sitepage"] ?? "").split(",");
+  //   if (fields.length > 2) {
+  //     const indic: TKIndicatorDescriptionSiteOccupation = {
+  //       name: readAllLocalesValues("ikey6_sitepage_label", dict, languages),
+  //       entryCode: fields[1],
+  //       entryCodeSecond: fields[2],
+  //       iconOchaName: dict["ikey6_sitepage_picto"] ?? ""
+  //     };
+  //     siteIndicators.push(indic);
+  //   } else {
+  //     siteIndicators.push({
+  //       name: readAllLocalesValues("ikey6_sitepage_label", dict, languages),
+  //       entryCode: "",
+  //       iconOchaName: dict["ikey6_sitepage_picto"] ?? ""
+  //     });
+  //   }
+  // } else {
+  //   siteIndicators.push();
+  // }
 
   // Lack:
   // - iso3
@@ -117,21 +228,9 @@ export async function TKReadGeneralConfiguration(
         }
       ],
       site: [
-        {
-          name: readAllLocalesValues("ikey4_sitepage_label", dict, languages),
-          entryCode: dict["ikey4_sitepage"] ?? "",
-          iconOchaName: dict["ikey4_sitepage_picto"] ?? ""
-        },
-        {
-          name: readAllLocalesValues("ikey5_sitepage_label", dict, languages),
-          entryCode: dict["ikey5_sitepage"] ?? "",
-          iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
-        },
-        {
-          name: readAllLocalesValues("ikey6_sitepage_label", dict, languages),
-          entryCode: dict["ikey6_sitepage"] ?? "",
-          iconOchaName: dict["ikey6_sitepage_picto"] ?? ""
-        }
+        readSiteIndicator(dict, languages, "4"),
+        readSiteIndicator(dict, languages, "5"),
+        readSiteIndicator(dict, languages, "6")
       ]
     },
     footerLogos: {
@@ -195,7 +294,7 @@ export async function TKReadGeneralConfiguration(
       zoomspeed: 2,
       bounds: (dict["spatial_boundaries"] ?? "")
         .split(",")
-        .map(item => parseFloat(item))
+        .map((item) => parseFloat(item))
     }
   };
 
