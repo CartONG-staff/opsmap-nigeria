@@ -3,14 +3,35 @@
     <transition name="hide-filters">
       <div v-if="show" class="tk-map-filters-item">
         <div class="tk-map-filter">
-          <img class="tk-indicator-icon" :src="plannedImgUrl" />
+          <img
+            :class="
+              campPlannedEnabled
+                ? 'tk-indicator-icon'
+                : 'tk-indicator-icon tk-indicator-icon-disabled'
+            "
+            :src="plannedImgUrl"
+          />
           <transition mode="out-in" name="fade-in">
-            <div :key="$root.$i18n.locale" class="tk-map-filter-text">
+            <div
+              :key="$root.$i18n.locale"
+              :class="
+                campPlannedEnabled
+                  ? 'tk-map-filter-text'
+                  : 'tk-map-filter-text tk-map-filter-text-disabled'
+              "
+            >
               {{ $t("map.legendPlanned") }}
             </div>
           </transition>
           <transition mode="out-in" name="fade-in">
-            <div :key="countCampPlanned" class="tk-map-filter-value">
+            <div
+              :key="countCampPlanned"
+              :class="
+                campPlannedEnabled
+                  ? 'tk-map-filter-value'
+                  : 'tk-map-filter-value tk-map-filter-value-disabled'
+              "
+            >
               {{ countCampPlanned }}
             </div>
           </transition>
@@ -18,18 +39,40 @@
             v-model="checkboxs.planned"
             class="tk-map-filter-checkbox"
             @change="checkboxChange('planned')"
+            :disabled="!campPlannedEnabled"
             hide-details
           ></v-checkbox>
         </div>
         <div class="tk-map-filter">
-          <img class="tk-indicator-icon" :src="spontaneousImgUrl" />
+          <img
+            :class="
+              campSpontaneousEnabled
+                ? 'tk-indicator-icon'
+                : 'tk-indicator-icon tk-indicator-icon-disabled'
+            "
+            :src="spontaneousImgUrl"
+          />
           <transition mode="out-in" name="fade-in">
-            <div :key="$root.$i18n.locale" class="tk-map-filter-text">
+            <div
+              :key="$root.$i18n.locale"
+              :class="
+                campSpontaneousEnabled
+                  ? 'tk-map-filter-text'
+                  : 'tk-map-filter-text tk-map-filter-text-disabled'
+              "
+            >
               {{ $t("map.legendSpontaneous") }}
             </div>
           </transition>
           <transition mode="out-in" name="fade-in">
-            <div :key="countCampSpontaneous" class="tk-map-filter-value">
+            <div
+              :key="countCampSpontaneous"
+              :class="
+                campSpontaneousEnabled
+                  ? 'tk-map-filter-value'
+                  : 'tk-map-filter-value tk-map-filter-value-disabled'
+              "
+            >
               {{ countCampSpontaneous }}
             </div>
           </transition>
@@ -37,6 +80,7 @@
             v-model="checkboxs.spontaneous"
             @change="checkboxChange('spontaneous')"
             class="tk-map-filter-checkbox"
+            :disabled="!campSpontaneousEnabled"
             hide-details
           ></v-checkbox>
         </div>
@@ -80,12 +124,8 @@ export default class TKMapFilter extends Vue {
   countCampPlanned = 0;
   countCampSpontaneous = 0;
 
-  toggleChanged(): void {
-    const x = document.getElementById("myDiv");
-    if (x) {
-      x.classList.toggle("transform-active");
-    }
-  }
+  campPlannedEnabled = true;
+  campSpontaneousEnabled = true;
 
   checkboxChange(checkbox: string): void {
     checkbox === "planned"
@@ -102,12 +142,16 @@ export default class TKMapFilter extends Vue {
   @Watch("dataset.filteredCampsList", { immediate: true })
   datasetChanged() {
     this.countCampPlanned = this.dataset?.filteredCampsList.filter(
-      camp => camp.type === TKCampTypesValues.PLANNED
+      (camp) => camp.type === TKCampTypesValues.PLANNED
     ).length;
 
+    this.campPlannedEnabled =
+      !this.checkboxs.planned || this.countCampPlanned > 0;
     this.countCampSpontaneous = this.dataset?.filteredCampsList.filter(
-      camp => camp.type === TKCampTypesValues.SPONTANEOUS
+      (camp) => camp.type === TKCampTypesValues.SPONTANEOUS
     ).length;
+    this.campSpontaneousEnabled =
+      !this.checkboxs.spontaneous || this.countCampSpontaneous > 0;
   }
 }
 </script>
@@ -162,6 +206,11 @@ export default class TKMapFilter extends Vue {
   font-size: 13px;
 }
 
+.tk-map-filter-text-disabled,
+.tk-map-filter-value-disabled {
+  color: #bdbdbd;
+}
+
 .tk-map-filter-checkbox {
   padding: 0px;
   margin: auto;
@@ -172,6 +221,10 @@ export default class TKMapFilter extends Vue {
   width: 20px;
   height: 20px;
   margin-left: 5px;
+}
+
+.tk-indicator-icon-disabled {
+  filter: grayscale(1);
 }
 
 .tk-vseparator {
