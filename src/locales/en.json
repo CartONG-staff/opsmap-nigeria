@@ -19,6 +19,13 @@
     "partnerFieldwork": "Fieldwork",
     "partnerWebdev": "Webdev"
   },
+  "trafficlight": {
+    "ok": "OK",
+    "warning":  "Warning",
+    "danger": "Danger",
+    "critical": "Critical",
+    "other": "Other"
+  },
   "main": {
     "switchPage": "Switch Page",
     "title": "Site tracker"

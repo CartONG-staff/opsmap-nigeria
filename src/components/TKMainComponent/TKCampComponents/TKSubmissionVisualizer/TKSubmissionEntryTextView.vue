@@ -12,12 +12,63 @@
             {{ answer }}
           </div>
         </transition>
+
         <div class="tk-trafficlight">
-          <div v-if="isOK" class="tk-trafficlight-ok"></div>
-          <div v-if="isWarning" class="tk-trafficlight-warning"></div>
-          <div v-if="isDanger" class="tk-trafficlight-danger"></div>
-          <div v-if="isCritical" class="tk-trafficlight-critical"></div>
-          <div v-if="isOther" class="tk-trafficlight-other"></div>
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <div
+                v-if="isOK"
+                v-bind="attrs"
+                v-on="on"
+                class="tk-trafficlight-ok"
+              ></div>
+            </template>
+            <span>{{ $t("trafficlight.ok") }}</span>
+          </v-tooltip>
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <div
+                v-if="isWarning"
+                v-bind="attrs"
+                v-on="on"
+                class="tk-trafficlight-warning"
+              ></div>
+            </template>
+            <span>{{ $t("trafficlight.warning") }}</span>
+          </v-tooltip>
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <div
+                v-if="isDanger"
+                v-bind="attrs"
+                v-on="on"
+                class="tk-trafficlight-danger"
+              ></div>
+            </template>
+            <span>{{ $t("trafficlight.danger") }}</span>
+          </v-tooltip>
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <div
+                v-if="isCritical"
+                v-bind="attrs"
+                v-on="on"
+                class="tk-trafficlight-critical"
+              ></div>
+            </template>
+            <span>{{ $t("trafficlight.critical") }}</span>
+          </v-tooltip>
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <div
+                v-if="isOther"
+                v-bind="attrs"
+                v-on="on"
+                class="tk-trafficlight-other"
+              ></div>
+            </template>
+            <span>{{ $t("trafficlight.other") }}</span>
+          </v-tooltip>
         </div>
       </div>
     </div>

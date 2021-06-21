@@ -23,6 +23,13 @@
     "switchPage": "Interruptor",
     "title": "Site de Monitoramento"
   },
+  "trafficlight": {
+    "ok": "OK",
+    "warning": "Aviso",
+    "danger": "Perigo",
+    "critical": "Crítico",
+    "other": "Outro"
+  },
   "home": {
     "lastUpdate": "Última atualização",
     "moreInfosTitle": "Mais Informações",
