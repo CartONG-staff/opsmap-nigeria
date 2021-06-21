@@ -2,7 +2,8 @@
 
 import {
   TKIndicatorsDescription,
-  TKIndicatorDescription
+  TKIndicatorDescription,
+  TKIndicatorDescriptionSiteOccupation
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKFDFSubmissionsRulesCollection } from "@/domain/fdf/TKFDFSubmissionsRules";
@@ -17,6 +18,7 @@ import {
   TKCreateSubmissionThematic
 } from "./TKSubmissionThematic";
 import { TKIndicator } from "@/domain/ui/TKIndicator";
+import { TKLabel } from "../ui/TKLabel";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -59,38 +61,86 @@ function isSubmissionAnAgePyramid(surveyConfiguration: TKFDF, field: string) {
 // indicators management
 // ////////////////////////////////////////////////////////////////////////////
 
+function getValue(
+  data: Record<string, TKSubmissionThematic>,
+  entryCode: string
+): number | undefined {
+  const splitted = entryCode.split("_");
+  if (splitted) {
+    const thematic = "group_" + splitted[0];
+    if (data[thematic]) {
+      const entry = data[thematic].data.find(
+        (item) => item.field === entryCode
+      );
+      if (entry instanceof TKSubmissionEntryText) {
+        const result = parseInt(entry.answerLabel.en, 10);
+        if (isNaN(result)) {
+          return undefined;
+        }
+        return result;
+      }
+    }
+  }
+  return undefined;
+}
+
+function getLabel(
+  data: Record<string, TKSubmissionThematic>,
+  entryCode: string
+): TKLabel {
+  const splitted = entryCode.split("_");
+  if (splitted) {
+    const thematic = "group_" + splitted[0];
+    if (data[thematic]) {
+      const entry = data[thematic].data.find(
+        (item) => item.field === entryCode
+      );
+      if (entry instanceof TKSubmissionEntryText) {
+        return entry.answerLabel;
+      }
+    }
+  }
+  return { en: "-" };
+}
+
 function computeSubmissionIndicator(
   descr: TKIndicatorDescription,
   data: Record<string, TKSubmissionThematic>
 ): TKIndicator {
-  const splitted = descr.entryCode.split("_");
-  if (splitted) {
-    const thematic = "group_" + splitted[0];
-    if (!data[thematic]) {
+  if (descr instanceof TKIndicatorDescriptionSiteOccupation) {
+    const labelIsMaxCapacity = getLabel(data, descr.entryCode);
+
+    // Should be two integers
+    const peopleCount = getValue(data, descr.entryCodePeopleCount);
+    const maxPeopleCount = getValue(data, descr.entryCodeMaxPeopleCount);
+
+    if(peopleCount !== undefined && maxPeopleCount !== undefined && maxPeopleCount !== 0) {
+      const percent = Math.round( (peopleCount / maxPeopleCount) * 100 ).toString();
+      const valueLabel: TKLabel = {};
+      for(const k in labelIsMaxCapacity){
+        valueLabel[k] = labelIsMaxCapacity[k] + ' (' + percent + ' %)';
+      }
+      return {
+        iconOchaName: descr.iconOchaName,
+        nameLabel: descr.name,
+        valueLabel: valueLabel
+      };
+    }
+    else {
       return {
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
         valueLabel: { en: "-" }
       };
     }
-    const entry = data[thematic].data.find(
-      item => item.field === descr.entryCode
-    );
-    if (entry instanceof TKSubmissionEntryText) {
-      return {
-        iconOchaName: descr.iconOchaName,
-        // TODO use answer label isntead of current label -> trad is not in indicator description
-        // nameLabel: descr.name,
-        nameLabel: entry.fieldLabel,
-        valueLabel: entry.answerLabel
-      };
-    }
+  } else {
+    const label = getLabel(data, descr.entryCode);
+    return {
+      iconOchaName: descr.iconOchaName,
+      nameLabel: descr.name,
+      valueLabel: label
+    };
   }
-  return {
-    iconOchaName: descr.iconOchaName,
-    nameLabel: descr.name,
-    valueLabel: { en: "-" }
-  };
 }
 
 function computeSubmissionIndicators(
@@ -183,14 +233,10 @@ export function TKCreateSubmission(
         }
       }
     }
+    // if a current pyramid is ongoing - push it before ending
     if (agePyramidId) {
-      console.log(agePyramidData);
-
       submission[thematic].data.push(
-        TKCreateSubmissionEntryAgePyramid(
-          agePyramidData,
-          surveyConfiguration
-        )
+        TKCreateSubmissionEntryAgePyramid(agePyramidData, surveyConfiguration)
       );
       agePyramidId = "";
       agePyramidData = [];
@@ -198,7 +244,7 @@ export function TKCreateSubmission(
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
-  Object.entries(submission).filter(item => item.length > 0);
+  Object.entries(submission).filter((item) => item.length > 0);
   const submissionFiltered: Record<string, TKSubmissionThematic> = {};
   for (const key of Object.keys(submission)) {
     if (submission[key].data.length > 0) {
