@@ -11,21 +11,6 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 export default class TKIFrame extends Vue {
   @Prop()
   readonly url!: string;
-
-  // resizeIFrameToFitContent(event: any): void {
-  //   console.log(event);
-  //   const iFrame = document.getElementById("tk-iframe") as HTMLIFrameElement;
-  //   if (iFrame && iFrame.contentWindow) {
-  //     iFrame.width = iFrame.contentWindow.document.body.scrollWidth.toString();
-  //     iFrame.height = iFrame.contentWindow.document.body.scrollHeight.toString();
-  //   }
-  // }
-
-  // mounted() {
-  //   window.addEventListener("DOMContentLoaded", () => {
-  //     console.log("DOMContentLoaded");
-  //   });
-  // }
 }
 </script>
 
