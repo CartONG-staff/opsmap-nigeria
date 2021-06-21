@@ -1,5 +1,25 @@
 <template>
   <div class="tk-camp-infos">
+    <!-- Site Type -->
+    <div class="tk-camp-infos-field">
+      <transition mode="out-in" name="fade-in">
+        <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
+          {{ $t("infosSiteType").toUpperCase() }}
+        </div>
+      </transition>
+
+      <transition mode="out-in" name="fade-in">
+        <div :key="$root.$i18n.locale" class="tk-camp-infos-field-value">
+          <div v-if="isSitePlanned">
+            {{ $t("infosSitePlanned").toUpperCase() }}
+          </div>
+          <div v-else>
+            {{ $t("infosSiteSpontanneous").toUpperCase() }}
+          </div>
+        </div>
+      </transition>
+    </div>
+    <div class="tk-hseparator" />
     <!-- ADMIN1 -->
     <div class="tk-camp-infos-field">
       <transition mode="out-in" name="fade-in">
@@ -24,26 +44,6 @@
       <transition mode="out-in" name="fade-in">
         <div :key="admin2" class="tk-camp-infos-field-value">
           {{ admin2.toUpperCase() }}
-        </div>
-      </transition>
-    </div>
-    <div class="tk-hseparator" />
-    <!-- Site Type -->
-    <div class="tk-camp-infos-field">
-      <transition mode="out-in" name="fade-in">
-        <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
-          {{ $t("infosSiteType").toUpperCase() }}
-        </div>
-      </transition>
-
-      <transition mode="out-in" name="fade-in">
-        <div :key="$root.$i18n.locale" class="tk-camp-infos-field-value">
-          <div v-if="isSitePlanned">
-            {{ $t("infosSitePlanned").toUpperCase() }}
-          </div>
-          <div v-else>
-            {{ $t("infosSiteSpontanneous").toUpperCase() }}
-          </div>
         </div>
       </transition>
     </div>
