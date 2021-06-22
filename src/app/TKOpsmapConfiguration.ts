@@ -284,7 +284,7 @@ export async function TKReadGeneralConfiguration(
     surveyDescription: [
       new TKSurveyInfosGSheet(
         dict["survey_name"] ?? "",
-        { folder: "brazil/" + dict["fdf_id"] },
+        { folder: dict["fdf_id"] },
         dict["survey_url"] ?? "",
         dict["survey_tr_url"] ?? ""
       )
