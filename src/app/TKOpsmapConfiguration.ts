@@ -49,7 +49,7 @@ function readSiteIndicator(
   languages: string[],
   index: string
 ): TKIndicatorDescription {
-  if (dict["ikey" + index + "_sitepage"].startsWith("SITE_OCCUPATION")) {
+  if (dict["ikey" + index + "_sitepage"]?.startsWith("SITE_OCCUPATION")) {
     const fields = (dict["ikey" + index + "_sitepage"] ?? "").split(",");
     if (fields.length > 3) {
       return new TKIndicatorDescriptionSiteOccupation(
