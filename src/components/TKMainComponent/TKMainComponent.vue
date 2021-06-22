@@ -160,7 +160,7 @@ export default class TKMainComponent extends Vue {
 
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
-      this.dataset.setFiltersValue(TKFilters.CAMP, null);
+      this.dataset.resetSelection();
       this.isHomePage = true;
     });
   }

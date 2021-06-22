@@ -98,6 +98,10 @@ export class TKDatasetFilterer {
   // Filter values
   // ////////////////////////////////////////////////////////////////////////////
 
+  resetSelection() {
+    this.setActiveSurvey(this.currentSurvey);
+  }
+
   setFiltersValue(filter: TKFilters, value: TKFiltersTypes) {
     this.filters[filter] = value;
 
