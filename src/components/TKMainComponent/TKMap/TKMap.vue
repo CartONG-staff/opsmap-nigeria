@@ -28,7 +28,6 @@ import { TKIconUrl } from "@/domain/ui/TKIcons";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
 import TKMapFilters from "./TKMapFilters.vue";
-import { mask } from "@/secondary/map/mask";
 import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
@@ -200,7 +199,7 @@ export default class TKMap extends Vue {
     if (!this.map.getSource(TKMapLayers.COUNTRYMASKSOURCE)) {
       this.map.addSource(TKMapLayers.COUNTRYMASKSOURCE, {
         type: "geojson",
-        data: mask
+        data: this.appConfig.spatialDescription.mask
       });
     }
 

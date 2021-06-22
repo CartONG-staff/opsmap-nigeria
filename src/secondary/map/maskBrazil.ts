@@ -1,6 +1,6 @@
 import { FeatureCollection } from "geojson";
 
-export const mask: FeatureCollection = {
+export const maskBrazil : FeatureCollection = {
   type: "FeatureCollection",
   features: [
     {

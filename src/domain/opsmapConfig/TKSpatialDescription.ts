@@ -1,6 +1,9 @@
 // ////////////////////////////////////////////////////////////////////////////
 // Description of the spatial configuration
 // field name, etc.
+
+import { FeatureCollection } from "geojson";
+
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKSpatialDescription {
   siteLatitudeField: string;
@@ -16,4 +19,6 @@ export interface TKSpatialDescription {
   adm3Pcode: string;
   adm3Name: string;
   useBoundariesMasks: boolean;
+  mask: FeatureCollection;
+  admin1: FeatureCollection;
 }

@@ -10,6 +10,9 @@ import {
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKSurveyInfosGSheet } from "../domain/gsheet/TKSurveyInfosGSheet";
+import { FeatureCollection } from "geojson";
+import { admin1Brazil } from "@/secondary/map/admin1Brazil";
+import { maskBrazil } from "@/secondary/map/maskBrazil";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Global Opsmap configuration
@@ -108,84 +111,13 @@ export async function TKReadGeneralConfiguration(
     languages.push("en");
   }
 
+
   // ////////////////////////////////////////////////////////////////////////////
-  // Site indicators
-  // const siteIndicator4 =
-  // const siteIndicator5 = readSiteIndicator(dict, languages, "5");
-  // const siteIndicator6 = readSiteIndicator(dict, languages, "6");
-  // let siteIndicator2: TKIndicatorDescription = {
-  //   name: readAllLocalesValues("ikey5_sitepage_label", dict, languages),
-  //   entryCode: dict["ikey5_sitepage"] ?? "",
-  //   iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
-  // }
-  // const siteIndicator3: TKIndicatorDescription = {
-  //   name: readAllLocalesValues("ikey6_sitepage_label", dict, languages),
-  //   entryCode: dict["ikey6_sitepage"] ?? "",
-  //   iconOchaName: dict["ikey6_sitepage_picto"] ?? ""
-  // }
-
-  // if (dict["ikey4_sitepage"].startsWith("SITE_OCCUPATION")) {
-  //   const fields = (dict["ikey4_sitepage"] ?? "").split(",");
-  //   if (fields.length > 2) {
-  //     const indic: TKIndicatorDescriptionSiteOccupation = {
-  //       name: readAllLocalesValues("ikey4_sitepage_label", dict, languages),
-  //       entryCode: fields[1],
-  //       entryCodeSecond: fields[2],
-  //       iconOchaName: dict["ikey4_sitepage_picto"] ?? ""
-  //     };
-  //     siteIndicators.push(indic);
-  //   } else {
-  //     siteIndicators.push({
-  //       name: readAllLocalesValues("ikey4_sitepage_label", dict, languages),
-  //       entryCode: "",
-  //       iconOchaName: dict["ikey4_sitepage_picto"] ?? ""
-  //     });
-  //   }
-  // } else {
-  //   siteIndicators.push();
-  // }
-
-  // if (dict["ikey5_sitepage"].startsWith("SITE_OCCUPATION")) {
-  //   const fields = (dict["ikey5_sitepage"] ?? "").split(",");
-  //   if (fields.length > 2) {
-  //     const indic: TKIndicatorDescriptionSiteOccupation = {
-  //       name: readAllLocalesValues("ikey5_sitepage_label", dict, languages),
-  //       entryCode: fields[1],
-  //       entryCodeSecond: fields[2],
-  //       iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
-  //     };
-  //     siteIndicators.push(indic);
-  //   } else {
-  //     siteIndicators.push({
-  //       name: readAllLocalesValues("ikey5_sitepage_label", dict, languages),
-  //       entryCode: "",
-  //       iconOchaName: dict["ikey5_sitepage_picto"] ?? ""
-  //     });
-  //   }
-  // } else {
-  //   siteIndicators.push();
-  // }
-
-  // if (dict["ikey6_sitepage"].startsWith("SITE_OCCUPATION")) {
-  //   const fields = (dict["ikey6_sitepage"] ?? "").split(",");
-  //   if (fields.length > 2) {
-  //     const indic: TKIndicatorDescriptionSiteOccupation = {
-  //       name: readAllLocalesValues("ikey6_sitepage_label", dict, languages),
-  //       entryCode: fields[1],
-  //       entryCodeSecond: fields[2],
-  //       iconOchaName: dict["ikey6_sitepage_picto"] ?? ""
-  //     };
-  //     siteIndicators.push(indic);
-  //   } else {
-  //     siteIndicators.push({
-  //       name: readAllLocalesValues("ikey6_sitepage_label", dict, languages),
-  //       entryCode: "",
-  //       iconOchaName: dict["ikey6_sitepage_picto"] ?? ""
-  //     });
-  //   }
-  // } else {
-  //   siteIndicators.push();
-  // }
+  // masks
+  // const iso3 = dict["iso3"] ?? "";
+  // Prepare comp of iso3 based on BRA, NGA, etc. Placeholder solution
+  const maskFC : FeatureCollection = maskBrazil;
+  const admin1FC : FeatureCollection = admin1Brazil;
 
   // Lack:
   // - iso3
@@ -210,7 +142,9 @@ export async function TKReadGeneralConfiguration(
       adm2Name: dict["adm2Name"] ?? "ggi_city",
       adm3Pcode: dict["adm3Pcode"] ?? "",
       adm3Name: dict["adm3Name"] ?? "ggi_address",
-      useBoundariesMasks: true
+      useBoundariesMasks: true,
+      mask: maskFC,
+      admin1: admin1FC
     },
     indicatorsDescription: {
       home: [

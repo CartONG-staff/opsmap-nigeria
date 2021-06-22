@@ -1,6 +1,6 @@
 import { FeatureCollection } from "geojson";
 
-export const admin1: FeatureCollection = {
+export const admin1Brazil: FeatureCollection = {
   type: "FeatureCollection",
   features: [
     {
