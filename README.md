@@ -45,7 +45,7 @@ For now, it is not valid. It requires pending specific authorization from UNHCR.
 
 ## Mapbox Account
 
-UHCR has an unlimited mapbox acounnt. It is used n this project. (@bitwarden).
+UNHCR has an unlimited mapbox acounnt. It is used n this project.
 Contact preson in UNHCR is Leo.
 
 > A Mapbox account was initially dedicated for Opsmaps project
@@ -61,7 +61,7 @@ The code will be divide into libraries, packages, etc. The idea is to encapsulat
 This code is the generic opsmap code. It is based on the FDF + data system. See project documentation for more informations.
 
 > This code was initially aimed at being integrated in a two elements system.
-> Yu mightalong the comments / doc / naming some trace of this. Just know that is has been forgotten since.
+> You might encounter along the comments / doc / naming some trace of this. Just know that is has been forgotten since.
 > `opsmap --> opsmapToolKit`
 
 ## Current project description
