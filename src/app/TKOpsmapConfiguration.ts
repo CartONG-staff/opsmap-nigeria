@@ -111,13 +111,12 @@ export async function TKReadGeneralConfiguration(
     languages.push("en");
   }
 
-
   // ////////////////////////////////////////////////////////////////////////////
   // masks
   // const iso3 = dict["iso3"] ?? "";
   // Prepare comp of iso3 based on BRA, NGA, etc. Placeholder solution
-  const maskFC : FeatureCollection = maskBrazil;
-  const admin1FC : FeatureCollection = admin1Brazil;
+  const maskFC: FeatureCollection = maskBrazil;
+  const admin1FC: FeatureCollection = admin1Brazil;
 
   // Lack:
   // - iso3
