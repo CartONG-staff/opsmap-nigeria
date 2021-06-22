@@ -5,6 +5,7 @@ name_pt;dêmo
 iso3;BRA
 adm1_unhcr;adm1pcode
 adm2_unhcr;adm2pcode
+iframe;https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9
 ikey1_homepage;mp_site_id
 ikey2_homepage;demo_num_indv
 ikey3_homepage;cccm_shelter_max_capacity
@@ -58,7 +59,6 @@ fieldwork_logo_3;data/demo/DEMO_Logo/Fraternidade.png
 webdev_name_1;CartONG
 webdev_logo_1;https://www.cartong.org/sites/cartong/files/images/CartONG_logo_long_0_0_0.png
 webdev_link_1;https://www.cartong.org
-config_type;info
 fdf_id;DEMO_FDF_s1_080421
 survey_name;2021
 survey_url;https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=0&single=true&output=csv
