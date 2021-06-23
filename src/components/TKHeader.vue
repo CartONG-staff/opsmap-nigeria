@@ -75,6 +75,7 @@ export default class TKHeader extends Vue {
   // whenever question changes, this function will run
   onLanguageChanged(val: string) {
     this.$root.$i18n.locale = val;
+    // This is useless.
   }
 
   logoClicked() {
