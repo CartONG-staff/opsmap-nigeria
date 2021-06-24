@@ -8,68 +8,72 @@
           </div>
         </transition>
         <transition mode="out-in" name="fade-in">
-          <div :key="answer" class="tk-entry-field-value">
+          <div class="tk-answer-w-trafficlight">
+            <div :key="answer" class="tk-entry-field-value mr-2">
             {{ answer }}
           </div>
+            <div class="tk-trafficlight">
+              <v-tooltip right>
+                <template v-slot:activator="{ on, attrs }">
+                  <div
+                    v-if="isOK"
+                    v-bind="attrs"
+                    v-on="on"
+                    class="tk-trafficlight-ok"
+                  ></div>
+                </template>
+                <span>{{ $t("trafficlight.ok") }}</span>
+              </v-tooltip>
+              <v-tooltip right>
+                <template v-slot:activator="{ on, attrs }">
+                  <div
+                    v-if="isWarning"
+                    v-bind="attrs"
+                    v-on="on"
+                    class="tk-trafficlight-warning"
+                  ></div>
+                </template>
+                <span>{{ $t("trafficlight.warning") }}</span>
+              </v-tooltip>
+              <v-tooltip right>
+                <template v-slot:activator="{ on, attrs }">
+                  <div
+                    v-if="isDanger"
+                    v-bind="attrs"
+                    v-on="on"
+                    class="tk-trafficlight-danger"
+                  ></div>
+                </template>
+                <span>{{ $t("trafficlight.danger") }}</span>
+              </v-tooltip>
+              <v-tooltip right>
+                <template v-slot:activator="{ on, attrs }">
+                  <div
+                    v-if="isCritical"
+                    v-bind="attrs"
+                    v-on="on"
+                    class="tk-trafficlight-critical"
+                  ></div>
+                </template>
+                <span>{{ $t("trafficlight.critical") }}</span>
+              </v-tooltip>
+              <v-tooltip right>
+                <template v-slot:activator="{ on, attrs }">
+                  <div
+                    v-if="isOther"
+                    v-bind="attrs"
+                    v-on="on"
+                    class="tk-trafficlight-other"
+                  ></div>
+                </template>
+                <span>{{ $t("trafficlight.other") }}</span>
+              </v-tooltip>
+            </div>
+          </div>
+          
         </transition>
 
-        <div class="tk-trafficlight">
-          <v-tooltip right>
-            <template v-slot:activator="{ on, attrs }">
-              <div
-                v-if="isOK"
-                v-bind="attrs"
-                v-on="on"
-                class="tk-trafficlight-ok"
-              ></div>
-            </template>
-            <span>{{ $t("trafficlight.ok") }}</span>
-          </v-tooltip>
-          <v-tooltip right>
-            <template v-slot:activator="{ on, attrs }">
-              <div
-                v-if="isWarning"
-                v-bind="attrs"
-                v-on="on"
-                class="tk-trafficlight-warning"
-              ></div>
-            </template>
-            <span>{{ $t("trafficlight.warning") }}</span>
-          </v-tooltip>
-          <v-tooltip right>
-            <template v-slot:activator="{ on, attrs }">
-              <div
-                v-if="isDanger"
-                v-bind="attrs"
-                v-on="on"
-                class="tk-trafficlight-danger"
-              ></div>
-            </template>
-            <span>{{ $t("trafficlight.danger") }}</span>
-          </v-tooltip>
-          <v-tooltip right>
-            <template v-slot:activator="{ on, attrs }">
-              <div
-                v-if="isCritical"
-                v-bind="attrs"
-                v-on="on"
-                class="tk-trafficlight-critical"
-              ></div>
-            </template>
-            <span>{{ $t("trafficlight.critical") }}</span>
-          </v-tooltip>
-          <v-tooltip right>
-            <template v-slot:activator="{ on, attrs }">
-              <div
-                v-if="isOther"
-                v-bind="attrs"
-                v-on="on"
-                class="tk-trafficlight-other"
-              ></div>
-            </template>
-            <span>{{ $t("trafficlight.other") }}</span>
-          </v-tooltip>
-        </div>
+        
       </div>
     </div>
 
@@ -81,7 +85,7 @@
           </div>
         </transition>
         <transition mode="out-in" name="fade-in">
-          <div :key="answer" class="tk-entry-field-value">
+          <div :key="answer" class="tk-entry-field-value ml-4">
             {{ answer }}
           </div>
         </transition>
@@ -129,7 +133,7 @@ export default class TKSubmissionentryView extends Vue {
         !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;
       this.displayTrafficLight =
         this.entry.trafficLight && this.entry.isAnswered();
-      this.handleLocale();
+      this.handleLocale();      
     }
   }
 
@@ -155,8 +159,14 @@ export default class TKSubmissionentryView extends Vue {
 </script>
 
 <style scoped>
+.tk-submission-entry-container{
+  min-width: 100%;
+}
+.tk-layout-w-trafficlight{
+  min-width: 100%;
+}
 .tk-entry-content {
-  width: 100%;
+  min-width: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -165,14 +175,24 @@ export default class TKSubmissionentryView extends Vue {
   padding: 5px;
 }
 
+.tk-answer-w-trafficlight{
+  min-width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: end;
+  padding-right: 0px;
+  margin-right: 0px;
+}
+
 .tk-entry-field-name {
   font-weight: bold;
   font-size: 11px;
   color: #999;
-  flex-grow: 1;
-  margin-right: 5px;
+  padding-right: 5px;
   text-align: justify;
-  text-justify: inter-word;
+  text-justify: none;
+  max-width: 80%;
 }
 
 .tk-entry-field-value {
@@ -183,12 +203,9 @@ export default class TKSubmissionentryView extends Vue {
   text-justify: inter-word;
 }
 
-.tk-layout-w-trafficlight {
-  margin-right: -20px;
-}
+
 
 .tk-trafficlight {
-  width: 20px;
   text-align: center;
   height: 100%;
 }
