@@ -15,6 +15,7 @@ export async function TKCSVRead<T>(
     parse(`./data/${folder}/${name}.csv`, {
       header: header,
       download: true,
+      encoding: "utf-8",
       skipEmptyLines: true,
       complete(results: any) {
         // ? ParseResult<T> ?

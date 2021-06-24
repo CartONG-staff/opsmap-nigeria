@@ -1,94 +1,77 @@
 <template lang="html">
   <div class="tk-submission-entry-container">
-    <div v-if="displayTrafficLight" class="tk-layout-w-trafficlight">
-      <div class="tk-entry-content">
-        <transition mode="out-in" name="fade-in">
-          <div :key="question" class="tk-entry-field-name">
-            {{ question }}
-          </div>
-        </transition>
-        <transition mode="out-in" name="fade-in">
-          <div class="tk-answer-w-trafficlight">
-            <div :key="answer" class="tk-entry-field-value mr-2">
-            {{ answer }}
-          </div>
-            <div class="tk-trafficlight">
-              <v-tooltip right>
-                <template v-slot:activator="{ on, attrs }">
-                  <div
-                    v-if="isOK"
-                    v-bind="attrs"
-                    v-on="on"
-                    class="tk-trafficlight-ok"
-                  ></div>
-                </template>
-                <span>{{ $t("trafficlight.ok") }}</span>
-              </v-tooltip>
-              <v-tooltip right>
-                <template v-slot:activator="{ on, attrs }">
-                  <div
-                    v-if="isWarning"
-                    v-bind="attrs"
-                    v-on="on"
-                    class="tk-trafficlight-warning"
-                  ></div>
-                </template>
-                <span>{{ $t("trafficlight.warning") }}</span>
-              </v-tooltip>
-              <v-tooltip right>
-                <template v-slot:activator="{ on, attrs }">
-                  <div
-                    v-if="isDanger"
-                    v-bind="attrs"
-                    v-on="on"
-                    class="tk-trafficlight-danger"
-                  ></div>
-                </template>
-                <span>{{ $t("trafficlight.danger") }}</span>
-              </v-tooltip>
-              <v-tooltip right>
-                <template v-slot:activator="{ on, attrs }">
-                  <div
-                    v-if="isCritical"
-                    v-bind="attrs"
-                    v-on="on"
-                    class="tk-trafficlight-critical"
-                  ></div>
-                </template>
-                <span>{{ $t("trafficlight.critical") }}</span>
-              </v-tooltip>
-              <v-tooltip right>
-                <template v-slot:activator="{ on, attrs }">
-                  <div
-                    v-if="isOther"
-                    v-bind="attrs"
-                    v-on="on"
-                    class="tk-trafficlight-other"
-                  ></div>
-                </template>
-                <span>{{ $t("trafficlight.other") }}</span>
-              </v-tooltip>
-            </div>
-          </div>
-          
-        </transition>
-
-        
+    <transition mode="out-in" name="fade-in">
+      <div :key="question" class="tk-entry-field-name">
+        {{ question }}
       </div>
-    </div>
+    </transition>
+    <transition mode="out-in" name="fade-in">
+      <div :key="answer" class="tk-entry-field-value">
+        {{ answer }}
+      </div>
+    </transition>
 
-    <div v-else class="tk-layout-wo-trafficLight">
-      <div class="tk-entry-content">
-        <transition mode="out-in" name="fade-in">
-          <div :key="question" class="tk-entry-field-name">
-            {{ question }}
-          </div>
-        </transition>
-        <transition mode="out-in" name="fade-in">
-          <div :key="answer" class="tk-entry-field-value ml-4">
-            {{ answer }}
-          </div>
-        </transition>
+    <div>
+      <div class="tk-trafficlight">
+        <v-tooltip right>
+          <template v-slot:activator="{ on, attrs }">
+            <div
+              v-if="isOK"
+              v-bind="attrs"
+              v-on="on"
+              class="tk-trafficlight-ok"
+            ></div>
+          </template>
+          <span>{{ $t("trafficlight.ok") }}</span>
+        </v-tooltip>
+        <v-tooltip right>
+          <template v-slot:activator="{ on, attrs }">
+            <div
+              v-if="isWarning"
+              v-bind="attrs"
+              v-on="on"
+              class="tk-trafficlight-warning"
+            ></div>
+          </template>
+          <span>{{ $t("trafficlight.warning") }}</span>
+        </v-tooltip>
+        <v-tooltip right>
+          <template v-slot:activator="{ on, attrs }">
+            <div
+              v-if="isDanger"
+              v-bind="attrs"
+              v-on="on"
+              class="tk-trafficlight-danger"
+            ></div>
+          </template>
+          <span>{{ $t("trafficlight.danger") }}</span>
+        </v-tooltip>
+        <v-tooltip right>
+          <template v-slot:activator="{ on, attrs }">
+            <div
+              v-if="isCritical"
+              v-bind="attrs"
+              v-on="on"
+              class="tk-trafficlight-critical"
+            ></div>
+          </template>
+          <span>{{ $t("trafficlight.critical") }}</span>
+        </v-tooltip>
+        <v-tooltip right>
+          <template v-slot:activator="{ on, attrs }">
+            <div
+              v-if="isOther && displayTrafficLight"
+              v-bind="attrs"
+              v-on="on"
+              class="tk-trafficlight-other"
+            ></div>
+          </template>
+          <span>{{ $t("trafficlight.other") }}</span>
+        </v-tooltip>
+        <div
+          v-if="!displayTrafficLight"
+          class="tk-trafficlight tk-trafficlight-none"
+        ></div>
       </div>
     </div>
   </div>
@@ -133,15 +116,13 @@ export default class TKSubmissionentryView extends Vue {
         !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;
       this.displayTrafficLight =
         this.entry.trafficLight && this.entry.isAnswered();
-      this.handleLocale();      
+      this.handleLocale();
     }
   }
 
   @Watch("$root.$i18n.locale")
   handleLocale() {
     if (this.entry && this.entry.fieldLabel && this.entry.answerLabel) {
-      // this.question = this.entry.fieldLabel.getValue(this.$root.$i18n.locale);
-      // this.answer = this.entry.answerLabel.getValue(this.$root.$i18n.locale);
       this.question = TKGetLocalValue(
         this.entry.fieldLabel,
         this.$root.$i18n.locale
@@ -159,55 +140,31 @@ export default class TKSubmissionentryView extends Vue {
 </script>
 
 <style scoped>
-.tk-submission-entry-container{
-  min-width: 100%;
-}
-.tk-layout-w-trafficlight{
-  min-width: 100%;
-}
-.tk-entry-content {
+.tk-submission-entry-container {
   min-width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
   align-items: center;
   min-height: 30px;
-  padding: 5px;
-}
-
-.tk-answer-w-trafficlight{
-  min-width: 20%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  text-align: end;
-  padding-right: 0px;
-  margin-right: 0px;
+  column-gap: 2px;
+  font-weight: bold;
+  font-size: 11px;
 }
 
 .tk-entry-field-name {
-  font-weight: bold;
-  font-size: 11px;
   color: #999;
-  padding-right: 5px;
-  text-align: justify;
-  text-justify: none;
-  max-width: 80%;
+  text-align: left;
+  flex-grow: 2;
+  overflow: auto;
 }
 
 .tk-entry-field-value {
-  font-weight: bold;
-  font-size: 11px;
   color: #333;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: right;
+  flex-grow: 2;
 }
-
-
-
 .tk-trafficlight {
-  text-align: center;
-  height: 100%;
+  margin-right: -20px;
 }
 
 .tk-trafficlight-ok {
@@ -246,6 +203,14 @@ export default class TKSubmissionentryView extends Vue {
   height: 8px;
   width: 8px;
   background-color: purple;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.tk-trafficlight-none {
+  height: 8px;
+  width: 8px;
+  background-color: none;
   border-radius: 50%;
   margin: 0 auto;
 }
