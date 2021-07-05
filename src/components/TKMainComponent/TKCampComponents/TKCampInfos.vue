@@ -9,13 +9,8 @@
       </transition>
 
       <transition mode="out-in" name="fade-in">
-        <div :key="$root.$i18n.locale" class="tk-camp-infos-field-value">
-          <div v-if="isSitePlanned">
-            {{ $t("infosSitePlanned").toUpperCase() }}
-          </div>
-          <div v-else>
-            {{ $t("infosSiteSpontanneous").toUpperCase() }}
-          </div>
+        <div :key="siteType" class="tk-camp-infos-field-value">
+          {{ siteType.toUpperCase() }}
         </div>
       </transition>
     </div>
@@ -111,7 +106,7 @@ export default class TKCampInfos extends Vue {
 
   admin1 = "-";
   admin2 = "-";
-  isSitePlanned = true;
+  siteType = "-";
   coordinates = "-";
   manageBy = "";
   manageByUrl = "";
@@ -125,20 +120,19 @@ export default class TKCampInfos extends Vue {
       this.admin2 = this.dataset.currentCamp
         ? this.dataset.currentCamp.admin2.name
         : "-";
-      this.isSitePlanned = this.dataset.currentCamp
-        ? this.dataset.currentCamp.type === TKCampTypesValues.PLANNED
-        : false;
-      this.isSitePlanned = !this.isSitePlanned;
+
       this.coordinates = this.dataset.currentCamp
         ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
         : "-";
     }
+
+    this.handeLocale();
   }
 
   @Watch("submission", { immediate: true })
   onSubmissionChange() {
     this.manageByLabel = (this.submission?.thematics["group_cccm"]?.data?.find(
-      item => item.field === "cccm_shelter__mangmt"
+      (item) => item.field === "cccm_shelter__mangmt"
     ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
 
     this.manageByUrl = this.dataset.surveys[
@@ -154,6 +148,22 @@ export default class TKCampInfos extends Vue {
       this.manageByLabel,
       this.$root.$i18n.locale
     );
+
+    if (!this.dataset.currentCamp) {
+      this.siteType = "-";
+    } else {
+      if (this.dataset.currentCamp.type === TKCampTypesValues.PLANNED) {
+        this.siteType = this.$root.$i18n
+          .t("infosSitePlanned")
+          .toString()
+          .toUpperCase();
+      } else {
+        this.siteType = this.$root.$i18n
+          .t("infosSiteSpontanneous")
+          .toString()
+          .toUpperCase();
+      }
+    }
   }
 }
 </script>
