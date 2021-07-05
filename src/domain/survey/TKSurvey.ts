@@ -26,6 +26,32 @@ export interface TKSurvey {
 }
 
 // ////////////////////////////////////////////////////////////////////////////
+// sort dates
+// ////////////////////////////////////////////////////////////////////////////
+export function sortDates(dates: string[]) {
+  dates.sort((a: string, b: string) => {
+    const asplitted = a.split("/");
+    const bsplitted = b.split("/");
+    if (asplitted.length !== 3 || bsplitted.length !== 3) {
+      return 0;
+    }
+    const adated = new Date(
+      parseInt(asplitted[2]),
+      parseInt(asplitted[1]),
+      parseInt(asplitted[0])
+    );
+    const bdated = new Date(
+      parseInt(bsplitted[2]),
+      parseInt(bsplitted[1]),
+      parseInt(bsplitted[0])
+    );
+    if (adated < bdated) return 1;
+    else if (adated > bdated) return -1;
+    else return 0;
+  });
+  return dates;
+}
+// ////////////////////////////////////////////////////////////////////////////
 // helper method that compute survey indicator
 // ////////////////////////////////////////////////////////////////////////////
 
@@ -49,7 +75,7 @@ function computeSurveyIndicator(
     const thematic = "group_" + splitted[0];
     let sum = 0;
     for (const camp in data) {
-      const last = Object.keys(data[camp])[0];
+      const last = sortDates(Object.keys(data[camp]))[0];
       const submission = data[camp][last];
       if (submission) {
         const them = submission.thematics[thematic];
@@ -171,6 +197,10 @@ export function TKCreateSurvey(
       };
     }
   }
+
+  campsList.map((x) => {
+    sortDates(x.submissionsDates);
+  });
 
   return {
     submissionsByCamps: submissionsByCamps,

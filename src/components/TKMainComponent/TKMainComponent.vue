@@ -25,7 +25,7 @@
             <div key="33" v-else class="tk-camp-left">
               <TKCampSubtitle :dataset="dataset" />
               <TKCampToolbar
-                :submissionsDates="
+                :submissionsDatesUnsorted="
                   currentSubmissions ? Object.keys(currentSubmissions) : ['']
                 "
                 :currentSubmission="currentSubmission"

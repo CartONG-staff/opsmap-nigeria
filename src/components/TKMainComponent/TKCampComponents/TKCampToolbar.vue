@@ -98,12 +98,14 @@
 import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
+import { sortDates } from "@/domain/survey/TKSurvey";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 @Component
 export default class TKCampToolbar extends Vue {
   @Prop()
-  readonly submissionsDates!: [""];
+  readonly submissionsDatesUnsorted!: [""];
+  submissionsDates = [""];
 
   @Prop()
   readonly options!: TKSubmissionVisualizerOptions;
@@ -116,8 +118,9 @@ export default class TKCampToolbar extends Vue {
 
   model = "";
 
-  @Watch("submissionsDates", { immediate: true })
+  @Watch("submissionsDatesUnsorted", { immediate: true })
   onChange() {
+    this.submissionsDates = sortDates(this.submissionsDatesUnsorted);
     this.model =
       this.submissionsDates && this.submissionsDates.length
         ? this.submissionsDates[0]
