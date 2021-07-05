@@ -80,7 +80,7 @@ function computeSurveyIndicator(
       if (submission) {
         const them = submission.thematics[thematic];
         if (them) {
-          const item = them.data.find((item) => item.field === descr.entryCode);
+          const item = them.data.find(item => item.field === descr.entryCode);
           if (
             item &&
             item instanceof TKSubmissionEntryText &&
@@ -163,7 +163,7 @@ export function TKCreateSurvey(
       });
       if (
         !boundariesList.admin2
-          .map((x) => x.pcode)
+          .map(x => x.pcode)
           .includes(submission[spatialDescription.adm2Pcode])
       ) {
         boundariesList.admin2.push({
@@ -172,7 +172,7 @@ export function TKCreateSurvey(
         });
         if (
           !boundariesList.admin1
-            .map((x) => x.pcode)
+            .map(x => x.pcode)
             .includes(submission[spatialDescription.adm1Pcode])
         ) {
           boundariesList.admin1.push({
