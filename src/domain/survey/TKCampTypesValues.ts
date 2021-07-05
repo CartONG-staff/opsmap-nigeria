@@ -3,6 +3,6 @@
 // ////////////////////////////////////////////////////////////////////////////
 
 export enum TKCampTypesValues {
-  PLANNED = "Planned Camps",
+  PLANNED = "Planned Site",
   SPONTANEOUS = "Informal"
 }
