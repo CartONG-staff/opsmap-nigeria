@@ -198,7 +198,7 @@ export function TKCreateSurvey(
     }
   }
 
-  campsList.map((x) => {
+  campsList.map(x => {
     sortDates(x.submissionsDates);
   });
 
