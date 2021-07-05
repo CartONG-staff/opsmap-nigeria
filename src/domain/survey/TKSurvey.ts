@@ -134,13 +134,6 @@ export function TKCreateSurvey(
   };
   for (const submission of sumbmissions) {
     if (submissionsByCamps[submission[spatialDescription.siteIDField]]) {
-      campsList.map((x) => {
-        if (x.id === submission[spatialDescription.siteIDField]) {
-          x.submissionsDates.push(
-            submission[spatialDescription.siteLastUpdateField]
-          );
-        }
-      });
       submissionsByCamps[submission[spatialDescription.siteIDField]][
         submission[spatialDescription.siteLastUpdateField]
       ] = TKCreateSubmission(submission, surveyConfig, indicatorsDescription);
@@ -149,7 +142,6 @@ export function TKCreateSurvey(
         id: submission[spatialDescription.siteIDField],
         name: submission[spatialDescription.siteNameField],
         type: submission[spatialDescription.siteTypeField],
-        submissionsDates: [submission[spatialDescription.siteLastUpdateField]],
         lat: Number(
           submission[spatialDescription.siteLatitudeField].replace(",", ".")
         ),
@@ -197,10 +189,6 @@ export function TKCreateSurvey(
       };
     }
   }
-
-  campsList.map((x) => {
-    sortDates(x.submissionsDates);
-  });
 
   return {
     submissionsByCamps: submissionsByCamps,
