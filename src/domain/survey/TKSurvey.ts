@@ -37,12 +37,12 @@ export function sortDates(dates: string[]) {
     }
     const adated = new Date(
       parseInt(asplitted[2]),
-      parseInt(asplitted[1]),
+      parseInt(asplitted[1]) - 1,
       parseInt(asplitted[0])
     );
     const bdated = new Date(
       parseInt(bsplitted[2]),
-      parseInt(bsplitted[1]),
+      parseInt(bsplitted[1]) - 1,
       parseInt(bsplitted[0])
     );
     if (adated < bdated) return 1;
@@ -80,7 +80,7 @@ function computeSurveyIndicator(
       if (submission) {
         const them = submission.thematics[thematic];
         if (them) {
-          const item = them.data.find(item => item.field === descr.entryCode);
+          const item = them.data.find((item) => item.field === descr.entryCode);
           if (
             item &&
             item instanceof TKSubmissionEntryText &&
@@ -134,7 +134,7 @@ export function TKCreateSurvey(
   };
   for (const submission of sumbmissions) {
     if (submissionsByCamps[submission[spatialDescription.siteIDField]]) {
-      campsList.map(x => {
+      campsList.map((x) => {
         if (x.id === submission[spatialDescription.siteIDField]) {
           x.submissionsDates.push(
             submission[spatialDescription.siteLastUpdateField]
@@ -171,7 +171,7 @@ export function TKCreateSurvey(
       });
       if (
         !boundariesList.admin2
-          .map(x => x.pcode)
+          .map((x) => x.pcode)
           .includes(submission[spatialDescription.adm2Pcode])
       ) {
         boundariesList.admin2.push({
@@ -180,7 +180,7 @@ export function TKCreateSurvey(
         });
         if (
           !boundariesList.admin1
-            .map(x => x.pcode)
+            .map((x) => x.pcode)
             .includes(submission[spatialDescription.adm1Pcode])
         ) {
           boundariesList.admin1.push({
@@ -198,7 +198,7 @@ export function TKCreateSurvey(
     }
   }
 
-  campsList.map(x => {
+  campsList.map((x) => {
     sortDates(x.submissionsDates);
   });
 

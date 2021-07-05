@@ -26,17 +26,19 @@ export default class TKHomeSubtitle extends Vue {
       for (const campIndex in survey.submissionsByCamps) {
         for (const dateIndex in survey.submissionsByCamps[campIndex]) {
           const items = dateIndex.split("/");
-          const year = Number(items[2]) + 2000;
-          const month = Number(items[1]);
-          const day = Number(items[0]);
-          if (
-            lastDate.getFullYear() < year ||
-            (lastDate.getFullYear() === year && lastDate.getMonth() < month) ||
-            (lastDate.getFullYear() === year &&
-              lastDate.getMonth() === month &&
-              lastDate.getDay() < day)
-          ) {
-            lastDate = new Date(year, month - 1, day);
+          if (items.length === 3) {
+            let year = parseInt(items[2]);
+            year = year < 100 ? year + 2000 : year;
+
+            const date = new Date(
+              year,
+              parseInt(items[1]) - 1,
+              parseInt(items[0])
+            );
+
+            if (date > lastDate) {
+              lastDate = date;
+            }
           }
         }
       }
