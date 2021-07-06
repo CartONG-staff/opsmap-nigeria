@@ -112,6 +112,7 @@ export default class TKIndicatorComponent extends Vue {
   border-color: transparent;
   border-radius: 5px;
   min-height: 100px;
+  min-width: 250px;
   overflow: hidden;
 }
 

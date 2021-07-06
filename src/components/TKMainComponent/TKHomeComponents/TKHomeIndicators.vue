@@ -41,9 +41,11 @@ export default class TKHomeIndicators extends Vue {
 <style scoped>
 .tk-home-indicators {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-between;
   align-items: top;
+  column-gap: 10px;
+  row-gap: 10px;
 }
 
 .tk-home-indicators > * {
