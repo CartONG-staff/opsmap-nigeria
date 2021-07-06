@@ -249,10 +249,9 @@ export default class TKMainComponent extends Vue {
 
 .tk-main-top {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   align-items: top;
   width: 100%;
-  max-height: 450px;
   justify-content: space-between;
 }
 
@@ -265,6 +264,7 @@ export default class TKMainComponent extends Vue {
   justify-content: flex-start;
   align-items: left;
   height: 450px;
+  min-width: 300px;
 }
 
 .tk-home-left {
@@ -286,6 +286,8 @@ export default class TKMainComponent extends Vue {
 
 .tk-main-map {
   width: 65%;
+  min-width: 300px;
+
   height: 450px;
   border-radius: 15px;
   position: relative;
