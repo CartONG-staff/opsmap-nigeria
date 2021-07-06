@@ -147,20 +147,21 @@ export default class TKCampSelector extends Vue {
   -webkit-backdrop-filter: blur(2px);
   z-index: 3000;
   box-shadow: 0 0 20px 2px rgba(58, 158, 211, 0.15);
-  padding-top: 12px;
-
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  padding-top: 24px;
+  padding-bottom: 12px;
   display: flex;
   flex-flow: row wrap;
+  row-gap: 24px;
   justify-content: space-evenly;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  padding-top: 12px;
 }
 
 .tk-autocomplete {
   width: 20%;
   margin: 0 15px;
   height: 30px;
+  min-width: 200px;
 }
 </style>

@@ -236,7 +236,7 @@ export default class TKMainComponent extends Vue {
 
 .tk-main-header {
   display: block;
-  height: 60px;
+  min-height: 60px;
   z-index: 1000;
 }
 
