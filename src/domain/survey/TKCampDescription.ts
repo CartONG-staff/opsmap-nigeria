@@ -1,9 +1,16 @@
-import { TKCampTypesValues } from "@/domain/survey/TKCampTypesValues";
-import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
+// ////////////////////////////////////////////////////////////////////////////
+// Camp Types
+// ////////////////////////////////////////////////////////////////////////////
 
+export enum TKCampTypesValues {
+  PLANNED = "Planned Site",
+  SPONTANEOUS = "Informal"
+}
 // ////////////////////////////////////////////////////////////////////////////
 // Camp desription
 // ////////////////////////////////////////////////////////////////////////////
+
+import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 export interface TKCampDescription {
   id: string;
   name: string;

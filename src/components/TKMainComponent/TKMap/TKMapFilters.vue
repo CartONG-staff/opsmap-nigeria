@@ -108,7 +108,7 @@
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
-import { TKCampTypesValues } from "@/domain/survey/TKCampTypesValues";
+import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
 
 @Component
 export default class TKMapFilter extends Vue {

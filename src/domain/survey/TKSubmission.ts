@@ -33,11 +33,6 @@ export interface TKSubmission {
 // helpers method
 // ////////////////////////////////////////////////////////////////////////////
 
-// TO DEVELOP
-function isSubmissionRelevant(): boolean {
-  return true;
-}
-
 function isSubmissionInThematic(
   submission: string,
   thematic: string,
@@ -179,58 +174,54 @@ export function TKCreateSubmission(
           surveyConfiguration.submissionsRules
         )
       ) {
-        if (isSubmissionRelevant()) {
-          // If age pyramid -- accumulate process
-          if (isSubmissionAnAgePyramid(surveyConfiguration, field)) {
-            // If it's a new chart - create current chart, then cleanup
-            if (
-              agePyramidId &&
-              agePyramidId !==
-                surveyConfiguration.submissionsRules[field].chartId
-            ) {
-              submission[thematic].data.push(
-                TKCreateSubmissionEntryAgePyramid(
-                  agePyramidData,
-                  surveyConfiguration
-                )
-              );
-              agePyramidId = "";
-              agePyramidData = [];
-            }
-
-            // If no previous chart, init
-            if (!agePyramidId) {
-              agePyramidId =
-                surveyConfiguration.submissionsRules[field].chartId;
-              agePyramidData = [];
-            }
-
-            // accumulate
-            agePyramidData.push({
-              field: field,
-              value: submissionItem[field],
-              type: surveyConfiguration.submissionsRules[field].chartData
-            });
-          } else {
-            // if a current pyramid is ongoing - push it before switching to text item
-            if (agePyramidId) {
-              submission[thematic].data.push(
-                TKCreateSubmissionEntryAgePyramid(
-                  agePyramidData,
-                  surveyConfiguration
-                )
-              );
-              agePyramidId = "";
-              agePyramidData = [];
-            }
+        // If age pyramid -- accumulate process
+        if (isSubmissionAnAgePyramid(surveyConfiguration, field)) {
+          // If it's a new chart - create current chart, then cleanup
+          if (
+            agePyramidId &&
+            agePyramidId !== surveyConfiguration.submissionsRules[field].chartId
+          ) {
             submission[thematic].data.push(
-              TKCreateSubmissionEntryText(
-                submissionItem[field],
-                field,
+              TKCreateSubmissionEntryAgePyramid(
+                agePyramidData,
                 surveyConfiguration
               )
             );
+            agePyramidId = "";
+            agePyramidData = [];
           }
+
+          // If no previous chart, init
+          if (!agePyramidId) {
+            agePyramidId = surveyConfiguration.submissionsRules[field].chartId;
+            agePyramidData = [];
+          }
+
+          // accumulate
+          agePyramidData.push({
+            field: field,
+            value: submissionItem[field],
+            type: surveyConfiguration.submissionsRules[field].chartData
+          });
+        } else {
+          // if a current pyramid is ongoing - push it before switching to text item
+          if (agePyramidId) {
+            submission[thematic].data.push(
+              TKCreateSubmissionEntryAgePyramid(
+                agePyramidData,
+                surveyConfiguration
+              )
+            );
+            agePyramidId = "";
+            agePyramidData = [];
+          }
+          submission[thematic].data.push(
+            TKCreateSubmissionEntryText(
+              submissionItem[field],
+              field,
+              surveyConfiguration
+            )
+          );
         }
       }
     }
