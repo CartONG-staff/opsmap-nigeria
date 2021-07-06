@@ -124,15 +124,14 @@ export default class TKCampInfos extends Vue {
       this.coordinates = this.dataset.currentCamp
         ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
         : "-";
+      this.handeLocale();
     }
-
-    this.handeLocale();
   }
 
   @Watch("submission", { immediate: true })
   onSubmissionChange() {
     this.manageByLabel = (this.submission?.thematics["group_cccm"]?.data?.find(
-      item => item.field === "cccm_shelter__mangmt"
+      (item) => item.field === "cccm_shelter__mangmt"
     ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
 
     this.manageByUrl = this.dataset.surveys[
@@ -144,14 +143,13 @@ export default class TKCampInfos extends Vue {
 
   @Watch("$root.$i18n.locale")
   handeLocale() {
-    this.manageBy = TKGetLocalValue(
-      this.manageByLabel,
-      this.$root.$i18n.locale
-    );
-
-    if (!this.dataset.currentCamp) {
+    if (!this.dataset || !this.dataset.currentCamp) {
       this.siteType = "-";
     } else {
+      this.manageBy = TKGetLocalValue(
+        this.manageByLabel,
+        this.$root.$i18n.locale
+      );
       if (this.dataset.currentCamp.type === TKCampTypesValues.PLANNED) {
         this.siteType = this.$root.$i18n
           .t("infosSitePlanned")
