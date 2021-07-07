@@ -8,8 +8,7 @@ import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKIndicatorsDescription,
-  TKIndicatorDescription,
-  TKIndicatorComputationType
+  TKIndicatorDescription
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { isNumber } from "@turf/helpers";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
@@ -19,6 +18,7 @@ import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKSurvey {
   submissionsByCamps: { [campId: string]: { [date: string]: TKSubmission } };
+  dateOfSubmissionsByCamps: { [campId: string]: string[] };
   campsList: TKCampDescription[];
   boundariesList: TKBoundariesCollection;
   indicators: [TKIndicator, TKIndicator, TKIndicator];
@@ -28,7 +28,7 @@ export interface TKSurvey {
 // ////////////////////////////////////////////////////////////////////////////
 // sort dates
 // ////////////////////////////////////////////////////////////////////////////
-export function sortDates(dates: string[]) {
+function sortDates(dates: string[]) {
   dates.sort((a: string, b: string) => {
     const asplitted = a.split("/");
     const bsplitted = b.split("/");
@@ -57,7 +57,8 @@ export function sortDates(dates: string[]) {
 
 function computeSurveyIndicator(
   descr: TKIndicatorDescription,
-  data: { [campId: string]: { [date: string]: TKSubmission } }
+  data: { [campId: string]: { [date: string]: TKSubmission } },
+  sortedDates: { [date: string]: string[] }
 ): TKIndicator {
   if (descr.entryCode === "mp_site_id") {
     return {
@@ -75,7 +76,7 @@ function computeSurveyIndicator(
     const thematic = "group_" + splitted[0];
     let sum = 0;
     for (const camp in data) {
-      const last = sortDates(Object.keys(data[camp]))[0];
+      const last = sortedDates[camp][0];
       const submission = data[camp][last];
       if (submission) {
         const them = submission.thematics[thematic];
@@ -190,14 +191,34 @@ export function TKCreateSurvey(
     }
   }
 
+  const dateOfSubmissionsByCamps: { [date: string]: string[] } = {};
+  for (const site of Object.keys(submissionsByCamps)) {
+    dateOfSubmissionsByCamps[site] = sortDates(
+      Object.keys(submissionsByCamps[site])
+    );
+  }
+
   return {
     submissionsByCamps: submissionsByCamps,
+    dateOfSubmissionsByCamps: dateOfSubmissionsByCamps,
     campsList: campsList,
     boundariesList: boundariesList,
     indicators: [
-      computeSurveyIndicator(indicatorsDescription.home[0], submissionsByCamps),
-      computeSurveyIndicator(indicatorsDescription.home[1], submissionsByCamps),
-      computeSurveyIndicator(indicatorsDescription.home[2], submissionsByCamps)
+      computeSurveyIndicator(
+        indicatorsDescription.home[0],
+        submissionsByCamps,
+        dateOfSubmissionsByCamps
+      ),
+      computeSurveyIndicator(
+        indicatorsDescription.home[1],
+        submissionsByCamps,
+        dateOfSubmissionsByCamps
+      ),
+      computeSurveyIndicator(
+        indicatorsDescription.home[2],
+        submissionsByCamps,
+        dateOfSubmissionsByCamps
+      )
     ],
     fdf: surveyConfig
   };

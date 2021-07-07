@@ -24,16 +24,11 @@
             </div>
             <div key="33" v-else class="tk-camp-left">
               <TKCampSubtitle :dataset="dataset" />
-              <TKCampToolbar
-                :submissionsDatesUnsorted="
-                  currentSubmissions ? Object.keys(currentSubmissions) : ['']
-                "
-                :currentSubmission="currentSubmission"
+              <TKCampToolbar :dataset="dataset" :options="visualizerOptions" />
+              <TKCampInfos
                 :dataset="dataset"
-                :options="visualizerOptions"
-                @date-selection-changed="dateSelected"
+                :submission="dataset.currentSubmission"
               />
-              <TKCampInfos :dataset="dataset" :submission="currentSubmission" />
             </div>
           </transition>
         </div>
@@ -65,7 +60,7 @@
             <TKCampIndicators
               class="tk-camp-indicators"
               :appConfig="appConfig"
-              :submission="currentSubmission"
+              :submission="dataset.currentSubmission"
             />
           </div>
         </transition>
@@ -76,7 +71,7 @@
           <div key="8" v-else class="tk-camp-content">
             <TKSubmissionVisualizer
               :options="visualizerOptions"
-              :submission="currentSubmission"
+              :submission="dataset.currentSubmission"
               :dataset="dataset"
             />
           </div>
@@ -112,7 +107,6 @@ import {
   TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
 import { TKOpsmapConfiguration } from "@/domain";
-import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { headerLogoBus } from "@/components/TKHeaderLogoBus";
@@ -151,8 +145,6 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
 
-  currentSubmission: TKSubmission | null = null;
-  currentSubmissions: { [date: string]: TKSubmission } | null = null;
   isHomePage = true;
   visualizerOptions: TKSubmissionVisualizerOptions = {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
@@ -165,29 +157,13 @@ export default class TKMainComponent extends Vue {
     });
   }
 
-  dateSelected(date: string) {
-    if (
-      this.currentSubmissions &&
-      Object.keys(this.currentSubmissions).includes(date)
-    ) {
-      this.currentSubmission = this.currentSubmissions[date];
-    }
-  }
-
   @Watch("dataset.currentCamp")
   onCampChange() {
     if (this.dataset.currentCamp) {
       this.isHomePage = false;
       this.visualizerOptions.hideUnanswered =
         DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
-      this.currentSubmissions = this.dataset.surveys[
-        this.dataset.currentSurvey
-      ].submissionsByCamps[this.dataset.currentCamp.id];
-      const keys = Object.keys(this.currentSubmissions);
-      this.currentSubmission = this.currentSubmissions[keys[0]];
     } else {
-      this.currentSubmissions = null;
-      this.currentSubmission = null;
       this.visualizerOptions.hideUnanswered =
         DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
     }

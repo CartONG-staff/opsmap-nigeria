@@ -3,18 +3,18 @@
     <transition mode="out-in" name="fade-in">
       <div :key="$root.$i18n.locale" class="tk-camp-toolbar-container">
         <v-autocomplete
-          v-if="model !== ''"
+          v-if="dataset.currentCamp"
           key="1"
           class="tk-camp-toolbar-date"
           background-color="#418fde"
           color="#ffffff"
-          :disabled="submissionsDates.length < 2"
+          :disabled="dataset.sortedSubmissions.length < 2"
           flat
           filled
           solo
           dense
           height="44"
-          :items="submissionsDates"
+          :items="dataset.sortedSubmissions"
           :prefix="$t('site.dateSuffix').toUpperCase()"
           v-model="model"
           @change="dateSelected"
@@ -32,7 +32,7 @@
           solo
           dense
           height="44"
-          :items="submissionsDates"
+          :items="dataset.sortedSubmissions"
           v-model="model"
           @change="dateSelected"
         ></v-autocomplete>
@@ -48,7 +48,7 @@
         class="tk-camp-toolbar-export"
         height="44"
         v-on:click="onExportTriggered"
-        :disabled="model == ''"
+        :disabled="!dataset.currentCamp"
       >
         {{ $t("site.exportAsCSV") }}
       </v-btn>
@@ -68,7 +68,7 @@
               color="accent"
               height="44"
               width="44"
-              :disabled="model == ''"
+              :disabled="!dataset.currentCamp"
               v-bind="attrs"
               v-on="{ ...tooltip, ...menu }"
             >
@@ -97,47 +97,36 @@
 <script lang="ts">
 import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { TKSubmission } from "@/domain/survey/TKSubmission";
-import { sortDates } from "@/domain/survey/TKSurvey";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 @Component
 export default class TKCampToolbar extends Vue {
   @Prop()
-  readonly submissionsDatesUnsorted!: [""];
-  submissionsDates = [""];
-
-  @Prop()
   readonly options!: TKSubmissionVisualizerOptions;
-
-  @Prop()
-  readonly currentSubmission!: TKSubmission;
 
   @Prop()
   readonly dataset!: TKDatasetFilterer;
 
   model = "";
 
-  @Watch("submissionsDatesUnsorted", { immediate: true })
+  dateSelected(date: string) {
+    this.model = date;
+    this.dataset.setCurrentDate(date);
+  }
+
+  @Watch("dataset.currentCamp", { immediate: true })
   onChange() {
-    this.submissionsDates = sortDates(this.submissionsDatesUnsorted);
     this.model =
-      this.submissionsDates && this.submissionsDates.length
-        ? this.submissionsDates[0]
+      this.dataset.sortedSubmissions && this.dataset.sortedSubmissions.length
+        ? this.dataset.sortedSubmissions[0]
         : "";
   }
 
-  dateSelected(date: string) {
-    if (date) {
-      this.$emit("date-selection-changed", date);
-    }
-  }
-
   onExportTriggered() {
-    if (this.dataset && this.currentSubmission) {
+    if (this.dataset && this.dataset.currentSubmission) {
       TKCSVWrite(
         this.dataset,
-        this.currentSubmission,
+        this.dataset.currentSubmission,
         this.model,
         this.$root.$i18n.locale
       );

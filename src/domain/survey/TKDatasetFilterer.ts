@@ -2,6 +2,7 @@ import { TKCampDescription } from "@/domain/survey/TKCampDescription";
 import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSurveyCollection } from "./TKSurveyCollection";
+import { TKSubmission } from "./TKSubmission";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Filtesr Concept description. Requires Comments !
@@ -13,6 +14,7 @@ export enum TKFilters {
   ADMIN1 = "admin1",
   ADMIN2 = "admin2",
   CAMP = "currentCamp",
+  DATE = "date",
   PLANNED_SITE = "planned",
   SPONTANEOUS_SITE = "spontaneous"
 }
@@ -33,6 +35,11 @@ export class TKDatasetFilterer {
   currentAdmin2: TKBoundarieDescription | null = null;
   campsList: TKCampDescription[] = [];
   currentCamp: TKCampDescription | null = null;
+  currentDate = "";
+
+  currentSubmission: TKSubmission | null = null;
+  sortedSubmissions: string[] = [];
+
   filteredAdmin1List: TKBoundarieDescription[] = [];
   filteredAdmin2List: TKBoundarieDescription[] = [];
   filteredCampsList: TKCampDescription[] = [];
@@ -82,6 +89,9 @@ export class TKDatasetFilterer {
       this.currentAdmin1 = null;
       this.currentAdmin2 = null;
       this.currentCamp = null;
+      this.currentDate = "";
+      this.currentSubmission = null;
+      this.sortedSubmissions = [];
 
       this.filters.admin1 = null;
       this.filters.admin2 = null;
@@ -99,6 +109,49 @@ export class TKDatasetFilterer {
       this.currentAdmin1 = null;
       this.currentAdmin2 = null;
       this.currentCamp = null;
+      this.currentDate = "";
+      this.currentSubmission = null;
+      this.sortedSubmissions = [];
+    }
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Filter values
+  // ////////////////////////////////////////////////////////////////////////////
+
+  mostRecentSubmissionForCurrentCamp() {
+    if (this.currentCamp) {
+      return this.surveys[this.currentSurvey].submissionsByCamps[
+        this.currentCamp.id
+      ][this.mostRecentSubmissionDateForCurrentCamp()];
+    } else {
+      return null;
+    }
+  }
+
+  mostRecentSubmissionDateForCurrentCamp() {
+    if (this.currentCamp) {
+      return this.surveys[this.currentSurvey].dateOfSubmissionsByCamps[
+        this.currentCamp.id
+      ][0];
+    } else {
+      return "";
+    }
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Change date
+  // ////////////////////////////////////////////////////////////////////////////
+
+  setCurrentDate(date: string) {
+    if (this.currentCamp && this.sortedSubmissions.includes(date)) {
+      this.currentDate = date;
+      this.currentSubmission = this.surveys[
+        this.currentSurvey
+      ].submissionsByCamps[this.currentCamp.id][this.currentDate];
+    } else {
+      this.currentDate = "";
+      this.currentSubmission = null;
     }
   }
 
@@ -137,7 +190,9 @@ export class TKDatasetFilterer {
     }
   }
 
+  // ////////////////////////////////////////////////////////////////////////////
   // Filter all
+  // ////////////////////////////////////////////////////////////////////////////
   setFiltersValue(filter: TKFilters, value: TKFiltersTypes) {
     this.filters[filter] = value;
 
@@ -212,12 +267,16 @@ export class TKDatasetFilterer {
           this.currentAdmin2 = this.currentCamp.admin2;
           this.filters.admin1 = this.currentAdmin1.pcode;
           this.filters.admin2 = this.currentAdmin2.pcode;
+          this.currentDate = this.mostRecentSubmissionDateForCurrentCamp();
+          this.currentSubmission = this.mostRecentSubmissionForCurrentCamp();
+          this.sortedSubmissions = this.surveys[
+            this.currentSurvey
+          ].dateOfSubmissionsByCamps[this.currentCamp.id];
         }
         // Clear camp
         else {
           this.levelToZoom = TKFilters.ADMIN2;
           this.currentCamp = null;
-          // this.filters.camp = null;
         }
         break;
       // Change OF PLANNED TYPE ///////////////////////////////////////////////
@@ -228,7 +287,6 @@ export class TKDatasetFilterer {
           this.currentCamp.type === TKCampTypesValues.PLANNED
         ) {
           this.currentCamp = null;
-          // this.filters.camp = null;
         }
         break;
       // Change OF SPONTANEOUS TYPE ///////////////////////////////////////////
@@ -239,12 +297,18 @@ export class TKDatasetFilterer {
           this.currentCamp.type === TKCampTypesValues.SPONTANEOUS
         ) {
           this.currentCamp = null;
-          // this.filters.camp = null;
         }
         break;
     }
 
-    // Reset camp list list ///////////////////////////////////////////////////
+    // Handle submission deselection /////////////////////////////////////////
+    if (!this.currentCamp) {
+      this.currentDate = "";
+      this.currentSubmission = null;
+      this.sortedSubmissions = [];
+    }
+
+    // Reset camp list ////////////////////////////////////////////////////////
     this.filteredCampsList = this.surveys[this.currentSurvey].campsList;
     this.filteredAdmin1List = this.admin1List;
     this.filteredAdmin2List = this.admin2List;
