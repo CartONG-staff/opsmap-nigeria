@@ -44,7 +44,6 @@ export default class TKApp extends Vue {
       this.appRootConfig.spatialDescription,
       this.appRootConfig.indicatorsDescription
     ).then(surveys => {
-      this.geoDataset = null;
       this.dataset = new TKDatasetFilterer(surveys);
       if (this.appRootConfig?.spatialDescription.useBoundariesMasks) {
         TKGetGeoBoundaries(

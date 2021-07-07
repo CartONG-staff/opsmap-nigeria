@@ -113,7 +113,7 @@ import {
 } from "./TKCampComponents";
 import { TKOpsmapConfiguration } from "@/domain";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
-import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { headerLogoBus } from "@/components/TKHeaderLogoBus";
 
