@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component

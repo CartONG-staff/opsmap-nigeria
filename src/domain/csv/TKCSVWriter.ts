@@ -1,4 +1,4 @@
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionEntryAgePyramid } from "../survey/TKSubmissionEntryAgePyramid";
 import { TKSubmissionEntryText } from "../survey/TKSubmissionEntryText";

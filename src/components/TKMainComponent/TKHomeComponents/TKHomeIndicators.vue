@@ -11,7 +11,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import TKIndicatorComponent from "../TKIndicator.vue";
 import { TKSurvey } from "@/domain/survey/TKSurvey";
 import { TKIndicator } from "@/domain/ui/TKIndicator";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 @Component({
   components: {
     TKIndicatorComponent

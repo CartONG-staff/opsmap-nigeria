@@ -96,7 +96,7 @@
 
 <script lang="ts">
 import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { sortDates } from "@/domain/survey/TKSurvey";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";

@@ -1,6 +1,9 @@
 import { Feature, FeatureCollection } from "geojson";
 import mapboxgl, { LngLat, LngLatBounds, LngLatLike } from "mapbox-gl";
-import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
+import {
+  TKDatasetFilterer,
+  TKFilters
+} from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKMapLayers } from "./TKMapLayers";
 

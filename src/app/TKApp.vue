@@ -18,7 +18,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKCreateSurveyCollection } from "@/domain/survey/TKSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";

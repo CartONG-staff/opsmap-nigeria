@@ -22,7 +22,7 @@ import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 
 @Component({
   components: {

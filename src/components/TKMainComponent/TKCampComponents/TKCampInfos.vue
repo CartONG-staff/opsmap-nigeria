@@ -88,7 +88,7 @@
 // Manage by: cccm_shelter__mangmt
 
 import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 import { TKGetLocalValue, TKLabel } from "@/domain/ui/TKLabel";
@@ -131,7 +131,7 @@ export default class TKCampInfos extends Vue {
   @Watch("submission", { immediate: true })
   onSubmissionChange() {
     this.manageByLabel = (this.submission?.thematics["group_cccm"]?.data?.find(
-      (item) => item.field === "cccm_shelter__mangmt"
+      item => item.field === "cccm_shelter__mangmt"
     ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
 
     this.manageByUrl = this.dataset.surveys[

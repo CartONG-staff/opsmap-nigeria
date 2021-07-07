@@ -19,6 +19,10 @@ export enum TKFilters {
 
 export type TKFiltersTypes = string | boolean | null;
 
+// ////////////////////////////////////////////////////////////////////////////
+//
+// ////////////////////////////////////////////////////////////////////////////
+
 export class TKDatasetFilterer {
   surveys: TKSurveyCollection;
   surveyList: string[];
@@ -52,6 +56,10 @@ export class TKDatasetFilterer {
   // ////////////////////////////////////////////////////////////////////////////
   // Active survey management: a bit different from the others
   // ////////////////////////////////////////////////////////////////////////////
+
+  resetSelection() {
+    this.setActiveSurvey(this.currentSurvey);
+  }
 
   hasActiveSurvey(): boolean {
     return this.surveyList.includes(this.currentSurvey);
@@ -98,10 +106,38 @@ export class TKDatasetFilterer {
   // Filter values
   // ////////////////////////////////////////////////////////////////////////////
 
-  resetSelection() {
-    this.setActiveSurvey(this.currentSurvey);
+  // Admin1
+  filterAdmin1BaseOnFilteredCamp(): void {
+    // Filter Admin1 based on filtered Camp List //////////////////////////////
+    const validAdmin1 = new Set(
+      this.filteredCampsList.map(item => item.admin1.pcode)
+    );
+    this.filteredAdmin1List = this.filteredAdmin1List.filter(item =>
+      validAdmin1.has(item.pcode)
+    );
+
+    if (this.currentAdmin1 && !validAdmin1.has(this.currentAdmin1.pcode)) {
+      this.currentAdmin1 = null;
+      this.filters.admin1 = null;
+    }
   }
 
+  // Admin2
+  filterAdmin2BaseOnFilteredCamp(): void {
+    // Filter Admin2 based on filtered Camp List //////////////////////////////
+    const validAdmin2 = new Set(
+      this.filteredCampsList.map(item => item.admin2.pcode)
+    );
+    this.filteredAdmin2List = this.filteredAdmin2List.filter(item =>
+      validAdmin2.has(item.pcode)
+    );
+    if (this.currentAdmin2 && !validAdmin2.has(this.currentAdmin2.pcode)) {
+      this.currentAdmin2 = null;
+      this.filters.admin2 = null;
+    }
+  }
+
+  // Filter all
   setFiltersValue(filter: TKFilters, value: TKFiltersTypes) {
     this.filters[filter] = value;
 
@@ -244,35 +280,6 @@ export class TKDatasetFilterer {
       );
       this.filterAdmin1BaseOnFilteredCamp();
       this.filterAdmin2BaseOnFilteredCamp();
-    }
-  }
-
-  filterAdmin1BaseOnFilteredCamp(): void {
-    // Filter Admin1 based on filtered Camp List //////////////////////////////
-    const validAdmin1 = new Set(
-      this.filteredCampsList.map(item => item.admin1.pcode)
-    );
-    this.filteredAdmin1List = this.filteredAdmin1List.filter(item =>
-      validAdmin1.has(item.pcode)
-    );
-
-    if (this.currentAdmin1 && !validAdmin1.has(this.currentAdmin1.pcode)) {
-      this.currentAdmin1 = null;
-      this.filters.admin1 = null;
-    }
-  }
-
-  filterAdmin2BaseOnFilteredCamp(): void {
-    // Filter Admin2 based on filtered Camp List //////////////////////////////
-    const validAdmin2 = new Set(
-      this.filteredCampsList.map(item => item.admin2.pcode)
-    );
-    this.filteredAdmin2List = this.filteredAdmin2List.filter(item =>
-      validAdmin2.has(item.pcode)
-    );
-    if (this.currentAdmin2 && !validAdmin2.has(this.currentAdmin2.pcode)) {
-      this.currentAdmin2 = null;
-      this.filters.admin2 = null;
     }
   }
 }

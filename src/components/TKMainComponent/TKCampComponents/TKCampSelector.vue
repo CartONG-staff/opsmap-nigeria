@@ -85,7 +85,10 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
+import {
+  TKDatasetFilterer,
+  TKFilters
+} from "@/domain/survey/TKDatasetFilterer";
 
 @Component
 export default class TKCampSelector extends Vue {
