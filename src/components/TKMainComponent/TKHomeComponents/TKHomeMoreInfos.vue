@@ -43,7 +43,8 @@ export default class TKHomeIndicators extends Vue {
 <style scoped>
 .tk-home-moreinfos {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
+  row-gap: 30px;
   justify-content: space-between;
   align-items: top;
   border: 2px solid #f1f3f3;
@@ -57,11 +58,13 @@ export default class TKHomeIndicators extends Vue {
 }
 
 .tk-home-moreinfos-title {
+  display: block;
   width: 10%;
   font-weight: bold;
   font-size: 12px;
   color: var(--v-secondary-base);
   letter-spacing: 0.86px;
+  min-width: 100px;
 }
 
 .tk-home-moreinfos-content {
