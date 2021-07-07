@@ -218,6 +218,7 @@ export default class TKMainComponent extends Vue {
 .tk-maincomponent-png {
   position: absolute;
   width: 100%;
+  min-width: 1732px;
   height: 365px;
   background-size: 100% 365px;
 }
