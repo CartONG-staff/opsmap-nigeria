@@ -135,7 +135,7 @@ export default class TKHeader extends Vue {
 
 .tk-header-right {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
   column-gap: 10px;

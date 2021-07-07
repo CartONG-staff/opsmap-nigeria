@@ -105,7 +105,7 @@ export default class TKSubmissionVisualizer extends Vue {
   display: flex;
   flex-flow: row wrap;
   column-gap: 10px;
-  row-gap: 10px;
+  row-gap: 25px;
   justify-content: space-between;
   align-items: top;
 }

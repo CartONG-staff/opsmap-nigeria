@@ -253,6 +253,7 @@ export default class TKMainComponent extends Vue {
   align-items: top;
   width: 100%;
   justify-content: space-between;
+  row-gap: 10px;
 }
 
 .tk-main-left {
