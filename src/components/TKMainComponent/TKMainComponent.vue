@@ -60,7 +60,7 @@
             <TKCampIndicators
               class="tk-camp-indicators"
               :appConfig="appConfig"
-              :submission="dataset.currentSubmission"
+              :dataset="dataset"
             />
           </div>
         </transition>
@@ -71,7 +71,6 @@
           <div key="8" v-else class="tk-camp-content">
             <TKSubmissionVisualizer
               :options="visualizerOptions"
-              :submission="dataset.currentSubmission"
               :dataset="dataset"
             />
           </div>

@@ -10,8 +10,8 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 import TKIndicatorComponent from "../TKIndicator.vue";
-import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKIndicator } from "@/domain/ui/TKIndicator";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 
 @Component({
   components: {
@@ -23,18 +23,18 @@ export default class TKCampIndicators extends Vue {
   readonly appConfig!: TKOpsmapConfiguration;
 
   @Prop()
-  readonly submission!: TKSubmission;
+  readonly dataset!: TKDatasetFilterer;
 
   indicator1: TKIndicator | null = null;
   indicator2: TKIndicator | null = null;
   indicator3: TKIndicator | null = null;
 
-  @Watch("submission", { immediate: true })
+  @Watch("dataset.currentSubmission", { immediate: true })
   onSubmissionChanged() {
-    if (this.submission) {
-      this.indicator1 = this.submission.indicators[0];
-      this.indicator2 = this.submission.indicators[1];
-      this.indicator3 = this.submission.indicators[2];
+    if (this.dataset.currentSubmission) {
+      this.indicator1 = this.dataset.currentSubmission.indicators[0];
+      this.indicator2 = this.dataset.currentSubmission.indicators[1];
+      this.indicator3 = this.dataset.currentSubmission.indicators[2];
     } else {
       this.indicator1 = {
         nameLabel: this.appConfig.indicatorsDescription.site[0].name,

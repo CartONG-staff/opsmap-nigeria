@@ -19,7 +19,6 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
 import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
-import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
@@ -30,9 +29,6 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
   }
 })
 export default class TKSubmissionVisualizer extends Vue {
-  @Prop()
-  readonly submission!: TKSubmission;
-
   @Prop()
   readonly dataset!: TKDatasetFilterer;
   thematics!: TKTFDFhematicsCollection;
@@ -46,7 +42,7 @@ export default class TKSubmissionVisualizer extends Vue {
     Array<TKSubmissionThematic>
   ] = [[], [], []];
 
-  @Watch("submission", { immediate: true })
+  @Watch("dataset.currentSubmission", { immediate: true })
   onSubmissionChanged() {
     this.columns[0] = [];
     this.columns[1] = [];
@@ -54,8 +50,8 @@ export default class TKSubmissionVisualizer extends Vue {
 
     const itemsCount = [0, 0, 0];
 
-    if (this.submission) {
-      for (const them in this.submission.thematics) {
+    if (this.dataset.currentSubmission) {
+      for (const them in this.dataset.currentSubmission.thematics) {
         let index = 0;
         if (itemsCount[1] < itemsCount[0] && itemsCount[1] <= itemsCount[2]) {
           index = 1;
@@ -65,8 +61,12 @@ export default class TKSubmissionVisualizer extends Vue {
         ) {
           index = 2;
         }
-        this.columns[index].push(this.submission.thematics[them]);
-        itemsCount[index] += this.submission.thematics[them].data.length;
+        this.columns[index].push(
+          this.dataset.currentSubmission.thematics[them]
+        );
+        itemsCount[index] += this.dataset.currentSubmission.thematics[
+          them
+        ].data.length;
       }
     } else if (this.thematics) {
       let index = 0;
