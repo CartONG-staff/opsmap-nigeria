@@ -91,10 +91,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import {
-  TKFilters,
-  TKDatasetFilterer
-} from "@/domain/survey/TKDatasetFilterer";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 
 @Component({})
 export default class TKHomeCombos extends Vue {
@@ -134,25 +131,23 @@ export default class TKHomeCombos extends Vue {
     this.currentCamp = this.dataset.currentCamp;
   }
 
-  surveySelected(year: string) {
-    if (this.dataset.currentSurvey !== year) {
-      this.dataset.setFiltersValue(TKFilters.SURVEY, year ? year : null);
-    }
+  surveySelected(id: string) {
+    id ? this.dataset.setActiveSurvey(id) : this.dataset.resetActiveSurvey();
   }
   admin1Selected(pcode: string) {
-    if (this.dataset.currentAdmin1?.pcode !== pcode) {
-      this.dataset.setFiltersValue(TKFilters.ADMIN1, pcode ? pcode : null);
-    }
+    pcode
+      ? this.dataset.setCurrentAdmin1(pcode)
+      : this.dataset.clearCurrentAdmin1();
   }
   admin2Selected(pcode: string) {
-    if (this.dataset.currentAdmin2?.pcode !== pcode) {
-      this.dataset.setFiltersValue(TKFilters.ADMIN2, pcode ? pcode : null);
-    }
+    pcode
+      ? this.dataset.setCurrentAdmin2(pcode)
+      : this.dataset.clearCurrentAdmin2();
   }
   campSelected(campId: string) {
-    if (this.dataset.currentCamp?.id !== campId) {
-      this.dataset.setFiltersValue(TKFilters.CAMP, campId ? campId : null);
-    }
+    campId
+      ? this.dataset.setCurrentCamp(campId)
+      : this.dataset.clearCurrentCamp();
   }
 }
 </script>

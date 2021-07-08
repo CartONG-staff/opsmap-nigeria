@@ -64,8 +64,10 @@ export class TKDatasetFilterer {
   // Active survey management: a bit different from the others
   // ////////////////////////////////////////////////////////////////////////////
 
-  resetSelection() {
-    this.setActiveSurvey(this.currentSurvey);
+  resetActiveSurvey() {
+    if (this.surveyList.length > 0) {
+      this.setActiveSurvey(this.surveyList[0]);
+    }
   }
 
   hasActiveSurvey(): boolean {
@@ -73,70 +75,59 @@ export class TKDatasetFilterer {
   }
 
   setActiveSurvey(survey: string) {
+    this.clearCurrentAdmin1();
+
+    this.levelToZoom = TKFilters.SURVEY;
+
     if (this.surveyList.includes(survey)) {
       this.currentSurvey = survey;
       this.filters.survey = this.currentSurvey;
-      this.admin1List = this.surveys[this.currentSurvey].boundariesList.admin1;
-      this.filteredAdmin1List = this.surveys[
-        this.currentSurvey
-      ].boundariesList.admin1;
-      this.admin2List = this.surveys[this.currentSurvey].boundariesList.admin2;
-      this.filteredAdmin2List = this.surveys[
-        this.currentSurvey
-      ].boundariesList.admin2;
       this.campsList = this.surveys[this.currentSurvey].campsList;
-      this.filteredCampsList = this.surveys[this.currentSurvey].campsList;
-      this.currentAdmin1 = null;
-      this.currentAdmin2 = null;
-      this.currentCamp = null;
-      this.currentDate = "";
-      this.currentSubmission = null;
-      this.sortedSubmissions = [];
-
-      this.filters.admin1 = null;
-      this.filters.admin2 = null;
-      this.filters.camp = null;
+      this.admin1List = this.surveys[this.currentSurvey].boundariesList.admin1;
+      this.admin2List = this.surveys[this.currentSurvey].boundariesList.admin2;
     } else {
       console.error("The survey '" + survey + "' does not exist in the opsmap");
       this.currentSurvey = "";
       this.filters.survey = this.currentSurvey;
-      this.admin1List = [];
-      this.filteredAdmin1List = [];
-      this.admin2List = [];
-      this.filteredAdmin2List = [];
       this.campsList = [];
-      this.filteredCampsList = [];
-      this.currentAdmin1 = null;
-      this.currentAdmin2 = null;
-      this.currentCamp = null;
-      this.currentDate = "";
-      this.currentSubmission = null;
-      this.sortedSubmissions = [];
+      this.admin1List = [];
+      this.admin2List = [];
+      this.campsList = [];
     }
+
+    this.updateFiltering();
   }
 
   // ////////////////////////////////////////////////////////////////////////////
-  // Filter values
+  // Filter all
   // ////////////////////////////////////////////////////////////////////////////
+  setFiltersValue(filter: TKFilters, value: TKFiltersTypes) {
+    this.filters[filter] = value;
 
-  mostRecentSubmissionForCurrentCamp() {
-    if (this.currentCamp) {
-      return this.surveys[this.currentSurvey].submissionsByCamps[
-        this.currentCamp.id
-      ][this.mostRecentSubmissionDateForCurrentCamp()];
-    } else {
-      return null;
+    switch (filter) {
+      // Change OF PLANNED TYPE ///////////////////////////////////////////////
+      case TKFilters.PLANNED_SITE:
+        if (
+          this.currentCamp &&
+          value === false &&
+          this.currentCamp.type === TKCampTypesValues.PLANNED
+        ) {
+          this.clearCurrentCamp();
+        }
+        break;
+      // Change OF SPONTANEOUS TYPE ///////////////////////////////////////////
+      case TKFilters.SPONTANEOUS_SITE:
+        if (
+          this.currentCamp &&
+          value === false &&
+          this.currentCamp.type === TKCampTypesValues.SPONTANEOUS
+        ) {
+          this.clearCurrentCamp();
+        }
+        break;
     }
-  }
 
-  mostRecentSubmissionDateForCurrentCamp() {
-    if (this.currentCamp) {
-      return this.surveys[this.currentSurvey].dateOfSubmissionsByCamps[
-        this.currentCamp.id
-      ][0];
-    } else {
-      return "";
-    }
+    this.updateFiltering();
   }
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -156,7 +147,119 @@ export class TKDatasetFilterer {
   }
 
   // ////////////////////////////////////////////////////////////////////////////
-  // Filter values
+  // Change Admin1
+  // ////////////////////////////////////////////////////////////////////////////
+
+  clearCurrentAdmin1() {
+    this.clearCurrentAdmin2();
+    this.levelToZoom = TKFilters.SURVEY;
+    this.currentAdmin1 = null;
+  }
+
+  setCurrentAdmin1(pcode: string) {
+    this.filters[TKFilters.ADMIN1] = pcode;
+
+    if (this.currentAdmin1?.pcode !== pcode) {
+      this.clearCurrentAdmin2();
+
+      this.levelToZoom = TKFilters.ADMIN1;
+      this.currentAdmin1 = this.admin1List.find(
+        a => a.pcode === pcode
+      ) as TKBoundarieDescription;
+
+      this.updateFiltering();
+    }
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Change Admin2
+  // ////////////////////////////////////////////////////////////////////////////
+  clearCurrentAdmin2() {
+    this.clearCurrentCamp();
+
+    this.levelToZoom = TKFilters.ADMIN1;
+    this.currentAdmin2 = null;
+    this.filters.admin1 = this.currentAdmin1 ? this.currentAdmin1.pcode : null;
+  }
+
+  setCurrentAdmin2(pcode: string) {
+    this.filters[TKFilters.ADMIN2] = pcode;
+
+    if (this.currentAdmin2?.pcode !== pcode) {
+      this.clearCurrentCamp();
+
+      // New admin2
+      this.levelToZoom = TKFilters.ADMIN2;
+      this.currentAdmin2 = this.admin2List.find(
+        a => a.pcode === pcode
+      ) as TKBoundarieDescription;
+
+      const campAdmin2 = this.campsList.find(
+        a => a.admin2.pcode === this.currentAdmin2?.pcode
+      );
+      if (campAdmin2) {
+        this.currentAdmin1 = campAdmin2.admin1;
+      }
+      this.filters.admin1 = this.currentAdmin1
+        ? this.currentAdmin1.pcode
+        : null;
+
+      this.updateFiltering();
+    }
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Change Camp
+  // ////////////////////////////////////////////////////////////////////////////
+
+  clearCurrentCamp() {
+    // Clear camp
+    this.levelToZoom = TKFilters.ADMIN2;
+    this.currentCamp = null;
+    this.currentDate = "";
+    this.currentSubmission = null;
+    this.sortedSubmissions = [];
+    this.filters.currentCamp = null;
+  }
+
+  setCurrentCamp(campId: string) {
+    this.filters[TKFilters.CAMP] = campId;
+
+    if (this.currentCamp?.id !== campId) {
+      this.levelToZoom = TKFilters.CAMP;
+      this.currentCamp = this.campsList.find(
+        c => c.id === campId
+      ) as TKCampDescription;
+      if (this.currentCamp) {
+        if (this.currentCamp.admin1 !== this.currentAdmin1) {
+          this.currentAdmin1 = this.currentCamp.admin1;
+          this.filters.admin1 = this.currentAdmin1.pcode;
+        }
+
+        if (this.currentCamp.admin2 !== this.currentAdmin2) {
+          this.currentAdmin2 = this.currentCamp.admin2;
+          this.filters.admin2 = this.currentAdmin2.pcode;
+        }
+
+        this.currentDate = this.surveys[
+          this.currentSurvey
+        ].dateOfSubmissionsByCamps[this.currentCamp.id][0];
+
+        if (this.currentDate) {
+          this.currentSubmission = this.surveys[
+            this.currentSurvey
+          ].submissionsByCamps[this.currentCamp.id][this.currentDate];
+        }
+        this.sortedSubmissions = this.surveys[
+          this.currentSurvey
+        ].dateOfSubmissionsByCamps[this.currentCamp.id];
+      }
+      this.updateFiltering();
+    }
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Update filtering
   // ////////////////////////////////////////////////////////////////////////////
 
   // Admin1
@@ -190,126 +293,10 @@ export class TKDatasetFilterer {
     }
   }
 
-  // ////////////////////////////////////////////////////////////////////////////
-  // Filter all
-  // ////////////////////////////////////////////////////////////////////////////
-  setFiltersValue(filter: TKFilters, value: TKFiltersTypes) {
-    this.filters[filter] = value;
-
-    switch (filter) {
-      // Change of SURVEY /////////////////////////////////////////////////////
-      case TKFilters.SURVEY:
-        this.levelToZoom = TKFilters.SURVEY;
-        this.setActiveSurvey(value as string);
-        break;
-
-      // Change of ADMIN1 /////////////////////////////////////////////////////
-      case TKFilters.ADMIN1:
-        // New admin1
-        if (value) {
-          this.levelToZoom = TKFilters.ADMIN1;
-          this.currentAdmin1 = this.admin1List.find(
-            a => a.pcode === value
-          ) as TKBoundarieDescription;
-        }
-        // Clear admin1
-        else {
-          this.levelToZoom = TKFilters.SURVEY;
-          this.currentAdmin1 = null;
-        }
-        // Clear child levels
-        this.filters[TKFilters.ADMIN2] = null;
-        this.currentAdmin2 = null;
-        this.currentCamp = null;
-        break;
-      // Change of ADMIN2 /////////////////////////////////////////////////////
-      case TKFilters.ADMIN2:
-        // New admin2
-        if (value) {
-          this.levelToZoom = TKFilters.ADMIN2;
-          this.currentAdmin2 = this.admin2List.find(
-            a => a.pcode === value
-          ) as TKBoundarieDescription;
-          // this.filters.admin2 = this.currentAdmin2 ? this.currentAdmin2.pcode : null;
-
-          const campAdmin2 = this.campsList.find(
-            a => a.admin2.pcode === this.currentAdmin2?.pcode
-          );
-          if (campAdmin2) {
-            this.currentAdmin1 = campAdmin2.admin1;
-          }
-          this.filters.admin1 = this.currentAdmin1
-            ? this.currentAdmin1.pcode
-            : null;
-        }
-        // Clear admin2
-        else {
-          this.levelToZoom = TKFilters.ADMIN1;
-          this.currentAdmin2 = null;
-          // this.filters.admin2 = null;
-          this.filters.admin1 = this.currentAdmin1
-            ? this.currentAdmin1.pcode
-            : null;
-        }
-        // Clear child levels
-        this.currentCamp = null;
-        // this.filters.camp = null;
-        break;
-      // Change of CAMP ///////////////////////////////////////////////////////
-      case TKFilters.CAMP:
-        // New camp
-        if (value) {
-          this.levelToZoom = TKFilters.CAMP;
-          this.currentCamp = this.campsList.find(
-            c => c.id === value
-          ) as TKCampDescription;
-          this.currentAdmin1 = this.currentCamp.admin1;
-          this.currentAdmin2 = this.currentCamp.admin2;
-          this.filters.admin1 = this.currentAdmin1.pcode;
-          this.filters.admin2 = this.currentAdmin2.pcode;
-          this.currentDate = this.mostRecentSubmissionDateForCurrentCamp();
-          this.currentSubmission = this.mostRecentSubmissionForCurrentCamp();
-          this.sortedSubmissions = this.surveys[
-            this.currentSurvey
-          ].dateOfSubmissionsByCamps[this.currentCamp.id];
-        }
-        // Clear camp
-        else {
-          this.levelToZoom = TKFilters.ADMIN2;
-          this.currentCamp = null;
-        }
-        break;
-      // Change OF PLANNED TYPE ///////////////////////////////////////////////
-      case TKFilters.PLANNED_SITE:
-        if (
-          this.currentCamp &&
-          value === false &&
-          this.currentCamp.type === TKCampTypesValues.PLANNED
-        ) {
-          this.currentCamp = null;
-        }
-        break;
-      // Change OF SPONTANEOUS TYPE ///////////////////////////////////////////
-      case TKFilters.SPONTANEOUS_SITE:
-        if (
-          this.currentCamp &&
-          value === false &&
-          this.currentCamp.type === TKCampTypesValues.SPONTANEOUS
-        ) {
-          this.currentCamp = null;
-        }
-        break;
-    }
-
-    // Handle submission deselection /////////////////////////////////////////
-    if (!this.currentCamp) {
-      this.currentDate = "";
-      this.currentSubmission = null;
-      this.sortedSubmissions = [];
-    }
-
+  // Sponateneous
+  updateFiltering() {
     // Reset camp list ////////////////////////////////////////////////////////
-    this.filteredCampsList = this.surveys[this.currentSurvey].campsList;
+    this.filteredCampsList = this.campsList;
     this.filteredAdmin1List = this.admin1List;
     this.filteredAdmin2List = this.admin2List;
 

@@ -151,7 +151,7 @@ export default class TKMainComponent extends Vue {
 
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
-      this.dataset.resetSelection();
+      this.dataset.resetActiveSurvey();
       this.isHomePage = true;
     });
   }
