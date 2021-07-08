@@ -124,12 +124,7 @@ export default class TKCampToolbar extends Vue {
 
   onExportTriggered() {
     if (this.dataset && this.dataset.currentSubmission) {
-      TKCSVWrite(
-        this.dataset,
-        this.dataset.currentSubmission,
-        this.model,
-        this.$root.$i18n.locale
-      );
+      TKCSVWrite(this.dataset, this.$root.$i18n.locale);
     }
   }
 }

@@ -8,14 +8,11 @@ import { TKGetLocalValue } from "../ui/TKLabel";
 // Helper methods
 // ////////////////////////////////////////////////////////////////////////////
 
-function computeExportFilename(
-  dataset: TKDatasetFilterer,
-  submissionIdRaw: string
-): string {
+function computeExportFilename(dataset: TKDatasetFilterer): string {
   if (dataset) {
     const campId = dataset.currentCamp?.id ?? "";
     const campName = dataset.currentCamp?.name ?? "";
-    const submissionId = submissionIdRaw.replaceAll("/", "-");
+    const submissionId = dataset.currentDate.replaceAll("/", "-");
 
     const filename = campId + "_" + campName + "_" + submissionId;
     return filename + ".csv";
@@ -91,20 +88,14 @@ function computeCSVContent(submission: TKSubmission, locale: string): string {
 // Temaplted Read method for csv inputs
 // ////////////////////////////////////////////////////////////////////////////
 
-export function TKCSVWrite(
-  dataset: TKDatasetFilterer,
-  submission: TKSubmission,
-  submissionIdRaw: string,
-  locale: string
-) {
-  const csvContent = computeCSVContent(submission, locale);
-  const encodedUri = encodeURI(csvContent);
-  const link = document.createElement("a");
-  link.setAttribute("href", encodedUri);
-  link.setAttribute(
-    "download",
-    computeExportFilename(dataset, submissionIdRaw)
-  ); // filename
-  document.body.appendChild(link); // Required for FF ?
-  link.click();
+export function TKCSVWrite(dataset: TKDatasetFilterer, locale: string) {
+  if (dataset.currentSubmission) {
+    const csvContent = computeCSVContent(dataset.currentSubmission, locale);
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", computeExportFilename(dataset)); // filename
+    document.body.appendChild(link); // Required for FF ?
+    link.click();
+  }
 }
