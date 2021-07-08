@@ -49,39 +49,40 @@ export default class TKSubmissionVisualizer extends Vue {
     this.columns[2] = [];
 
     const itemsCount = [0, 0, 0];
-
-    if (this.dataset.currentSubmission) {
-      for (const them in this.dataset.currentSubmission.thematics) {
-        let index = 0;
-        if (itemsCount[1] < itemsCount[0] && itemsCount[1] <= itemsCount[2]) {
-          index = 1;
-        } else if (
-          itemsCount[2] < itemsCount[1] &&
-          itemsCount[2] < itemsCount[0]
-        ) {
-          index = 2;
+    if (this.dataset) {
+      if (this.dataset.currentSubmission) {
+        for (const them in this.dataset.currentSubmission.thematics) {
+          let index = 0;
+          if (itemsCount[1] < itemsCount[0] && itemsCount[1] <= itemsCount[2]) {
+            index = 1;
+          } else if (
+            itemsCount[2] < itemsCount[1] &&
+            itemsCount[2] < itemsCount[0]
+          ) {
+            index = 2;
+          }
+          this.columns[index].push(
+            this.dataset.currentSubmission.thematics[them]
+          );
+          itemsCount[index] += this.dataset.currentSubmission.thematics[
+            them
+          ].data.length;
         }
-        this.columns[index].push(
-          this.dataset.currentSubmission.thematics[them]
-        );
-        itemsCount[index] += this.dataset.currentSubmission.thematics[
-          them
-        ].data.length;
-      }
-    } else if (this.thematics) {
-      let index = 0;
-      for (const i in this.thematics) {
-        const thematicsDescr = this.thematics[i];
-        this.columns[index].push({
-          data: [],
-          nameLabel: thematicsDescr.thematicLabel,
-          formattedName: thematicsDescr.formattedName,
-          iconFileName: thematicsDescr.iconFileName
-        });
+      } else if (this.thematics) {
+        let index = 0;
+        for (const i in this.thematics) {
+          const thematicsDescr = this.thematics[i];
+          this.columns[index].push({
+            data: [],
+            nameLabel: thematicsDescr.thematicLabel,
+            formattedName: thematicsDescr.formattedName,
+            iconFileName: thematicsDescr.iconFileName
+          });
 
-        index++;
-        if (index > 2) {
-          index = 0;
+          index++;
+          if (index > 2) {
+            index = 0;
+          }
         }
       }
     }

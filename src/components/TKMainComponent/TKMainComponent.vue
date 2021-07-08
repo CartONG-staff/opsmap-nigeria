@@ -7,10 +7,9 @@
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
         <transition name="fade">
-          <div key="1" v-if="isHomePage"></div>
-          <div key="2" v-else class="tk-camp-header">
-            <TKCampSelector :dataset="dataset" />
-          </div>
+          <router-view name="header"></router-view>
+          <!-- <TKCampSelector key="2" v-else :dataset="dataset" /> -->
+          -->
         </transition>
       </div>
       <div class="tk-main-top">
@@ -159,10 +158,17 @@ export default class TKMainComponent extends Vue {
   @Watch("dataset.currentCamp")
   onCampChange() {
     if (this.dataset.currentCamp) {
+      if (this.$route.path !== "/site") {
+        this.$router.push("site");
+      }
+
       this.isHomePage = false;
       this.visualizerOptions.hideUnanswered =
         DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
     } else {
+      if (this.$route.path !== "/") {
+        this.$router.push("/");
+      }
       this.visualizerOptions.hideUnanswered =
         DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
     }
@@ -209,9 +215,6 @@ export default class TKMainComponent extends Vue {
   display: block;
   min-height: 60px;
   z-index: 1000;
-}
-
-.tk-camp-header {
   align-items: flex-end;
   height: 100%;
   margin-left: -20px;

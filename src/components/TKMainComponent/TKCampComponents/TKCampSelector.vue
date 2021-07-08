@@ -27,6 +27,7 @@
             :label="$t('infosAdmin1')"
             v-model="currentAdmin1"
             :items="dataset.filteredAdmin1List"
+            :disabled="!dataset.filteredAdmin1List.length"
             item-text="name"
             item-value="pcode"
             @change="admin1Selected"
@@ -48,6 +49,7 @@
             :label="$t('infosAdmin2')"
             v-model="currentAdmin2"
             :items="dataset.filteredAdmin2List"
+            :disabled="!dataset.filteredAdmin2List.length"
             item-text="name"
             item-value="pcode"
             @change="admin2Selected"
@@ -69,6 +71,7 @@
             :label="$t('camp')"
             v-model="currentCamp"
             :items="dataset.filteredCampsList"
+            :disabled="!dataset.filteredCampsList.length"
             item-text="name"
             item-value="id"
             @change="campSelected"
@@ -89,7 +92,7 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 
 @Component
 export default class TKCampSelector extends Vue {
-  @Prop({ default: () => [] })
+  @Prop({ default: () => new TKDatasetFilterer({}) })
   dataset!: TKDatasetFilterer;
 
   currentSurvey = this.dataset.currentSurvey;

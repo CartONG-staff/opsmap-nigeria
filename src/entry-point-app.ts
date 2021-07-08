@@ -4,6 +4,7 @@ import vuetify from "@/plugins/vuetify";
 import { loadLocaleMessages } from "@/i18n";
 import VueI18n, { LocaleMessages } from "vue-i18n";
 import { TKReadGeneralConfiguration } from "./app/TKOpsmapConfiguration";
+import router from "./router";
 
 Vue.config.productionTip = false;
 
@@ -28,6 +29,7 @@ TKReadGeneralConfiguration("general_config", "demo").then(config => {
   Object.freeze(config);
 
   new Vue({
+    router,
     vuetify,
     i18n,
     data: {
