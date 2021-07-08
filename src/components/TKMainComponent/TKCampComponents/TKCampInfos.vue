@@ -145,6 +145,7 @@ export default class TKCampInfos extends Vue {
   handeLocale() {
     if (!this.dataset || !this.dataset.currentCamp) {
       this.siteType = "-";
+      this.manageBy = "-";
     } else {
       this.manageBy = TKGetLocalValue(
         this.manageByLabel,
