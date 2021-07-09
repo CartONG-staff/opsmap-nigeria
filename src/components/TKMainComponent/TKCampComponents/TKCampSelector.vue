@@ -93,7 +93,7 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 @Component
 export default class TKCampSelector extends Vue {
   @Prop({ default: () => new TKDatasetFilterer({}) })
-  dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDatasetFilterer;
 
   currentSurvey = this.dataset.currentSurvey;
   @Watch("dataset.currentSurvey")

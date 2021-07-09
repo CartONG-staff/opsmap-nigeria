@@ -89,7 +89,6 @@
 
 import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 import { TKGetLocalValue, TKLabel } from "@/domain/ui/TKLabel";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
@@ -98,9 +97,6 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 export default class TKCampInfos extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
-
-  @Prop()
-  readonly submission!: TKSubmission;
 
   manageByLabel!: TKLabel;
 
@@ -128,15 +124,21 @@ export default class TKCampInfos extends Vue {
     }
   }
 
-  @Watch("submission", { immediate: true })
+  @Watch("dataset.currentSubmission", { immediate: true })
   onSubmissionChange() {
-    this.manageByLabel = (this.submission?.thematics["group_cccm"]?.data?.find(
+    this.manageByLabel = (this.dataset.currentSubmission?.thematics[
+      "group_cccm"
+    ]?.data?.find(
       item => item.field === "cccm_shelter__mangmt"
     ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
 
-    this.manageByUrl = this.dataset.surveys[
-      this.dataset.currentSurvey
-    ].fdf.urls[this.manageByLabel["en"]];
+    if (this.dataset && this.dataset.surveys[this.dataset.currentSurvey]) {
+      this.manageByUrl = this.dataset.surveys[
+        this.dataset.currentSurvey
+      ].fdf.urls[this.manageByLabel["en"]];
+    } else {
+      this.manageByUrl = "";
+    }
 
     this.handeLocale();
   }

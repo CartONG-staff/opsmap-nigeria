@@ -51,9 +51,10 @@ export default class TKMap extends Vue {
   readonly appConfig!: TKOpsmapConfiguration;
 
   @Prop({ default: () => [] })
-  dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDatasetFilterer;
+
   @Prop()
-  geoDataset!: TKGeoDataset;
+  readonly geoDataset!: TKGeoDataset;
 
   map!: mapboxgl.Map;
   bound!: mapboxgl.LngLatBounds;

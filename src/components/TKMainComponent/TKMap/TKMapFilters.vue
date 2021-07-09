@@ -116,7 +116,7 @@ import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
 @Component
 export default class TKMapFilter extends Vue {
   @Prop()
-  dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDatasetFilterer;
   plannedImgUrl = TKIconUrl("planned_site");
   spontaneousImgUrl = TKIconUrl("spontaneous_site");
   show = true;

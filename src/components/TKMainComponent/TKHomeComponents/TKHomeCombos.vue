@@ -96,7 +96,7 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 @Component({})
 export default class TKHomeCombos extends Vue {
   @Prop({ default: () => [] })
-  dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDatasetFilterer;
 
   currentSurvey = this.dataset.currentSurvey;
   @Watch("dataset.currentSurvey")

@@ -7,28 +7,20 @@
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
         <transition name="fade">
-          <router-view name="header"></router-view>
-          <!-- <TKCampSelector key="2" v-else :dataset="dataset" /> -->
-          -->
+          <router-view name="header" :dataset="dataset"></router-view>
         </transition>
       </div>
       <div class="tk-main-top">
         <div class="tk-main-left">
           <TKTitle :appConfig="appConfig" />
           <transition mode="out-in" name="fade">
-            <TKPlaceHolderLeft v-if="!dataset" />
-            <div key="32" v-else-if="isHomePage" class="tk-home-left">
-              <TKHomeSubtitle :dataset="dataset" />
-              <TKHomeCombos :dataset="dataset" />
-            </div>
-            <div key="33" v-else class="tk-camp-left">
-              <TKCampSubtitle :dataset="dataset" />
-              <TKCampToolbar :dataset="dataset" :options="visualizerOptions" />
-              <TKCampInfos
-                :dataset="dataset"
-                :submission="dataset.currentSubmission"
-              />
-            </div>
+            <TKPlaceHolderLeft v-if="!isDatasetInitialized" />
+            <router-view
+              v-else
+              name="left"
+              :dataset="dataset"
+              :visualizerOptions="visualizerOptions"
+            ></router-view>
           </transition>
         </div>
         <TKMap
@@ -43,36 +35,26 @@
 
       <div class="tk-main-content-layout">
         <transition mode="out-in" name="fade">
-          <div class="tk-main-content-layout" v-if="!dataset">
+          <div class="tk-main-content-layout" v-if="!isDatasetInitialized">
             <TKPlaceHolderIndicators />
             <TKPlaceHolderGeneric class="tk-main-content-placeholder" />
           </div>
-          <div key="52" class="tk-main-content-layout" v-else-if="isHomePage">
-            <TKHomeIndicators
-              class="tk-home-indicators"
-              :appConfig="appConfig"
-              :dataset="dataset"
-            />
-            <TKHomeMoreInfos :appConfig="appConfig" />
-          </div>
-          <div key="53" v-else>
-            <TKCampIndicators
-              class="tk-camp-indicators"
-              :appConfig="appConfig"
-              :dataset="dataset"
-            />
-          </div>
+          <router-view
+            name="indicators"
+            v-else
+            :visualizerOptions="visualizerOptions"
+            :appConfig="appConfig"
+            :dataset="dataset"
+          ></router-view>
         </transition>
         <transition mode="out-in" name="fade" appear>
-          <div key="7" v-if="isHomePage && appConfig.iframe">
-            <TKIFrame :url="appConfig.iframe" />
-          </div>
-          <div key="8" v-else class="tk-camp-content">
-            <TKSubmissionVisualizer
-              :options="visualizerOptions"
-              :dataset="dataset"
-            />
-          </div>
+          <router-view
+            name="content"
+            v-if="isDatasetInitialized"
+            :visualizerOptions="visualizerOptions"
+            :appConfig="appConfig"
+            :dataset="dataset"
+          ></router-view>
         </transition>
       </div>
     </div>
@@ -88,12 +70,7 @@ import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
 import TKIFrame from "@/components/TKExtras/TKIFrame.vue";
 
-import {
-  TKHomeCombos,
-  TKHomeIndicators,
-  TKHomeMoreInfos,
-  TKHomeSubtitle
-} from "./TKHomeComponents";
+import { TKHomeIndicators, TKHomeMoreInfos } from "./TKHomeComponents";
 
 import {
   TKCampIndicators,
@@ -121,10 +98,10 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
     TKCampSubtitle,
     TKCampToolbar,
     TKSubmissionVisualizer,
-    TKHomeCombos,
+
     TKHomeIndicators,
     TKHomeMoreInfos,
-    TKHomeSubtitle,
+
     TKMap,
     TKPlaceHolderLeft,
     TKPlaceHolderIndicators,
@@ -135,15 +112,17 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
 })
 export default class TKMainComponent extends Vue {
   @Prop()
-  dataset!: TKDatasetFilterer;
+  readonly isDatasetInitialized = false;
 
   @Prop()
-  geoData!: TKGeoDataset;
+  readonly dataset!: TKDatasetFilterer;
+
+  @Prop()
+  readonly geoData!: TKGeoDataset;
 
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
 
-  isHomePage = true;
   visualizerOptions: TKSubmissionVisualizerOptions = {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
   };
@@ -151,24 +130,35 @@ export default class TKMainComponent extends Vue {
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
       this.dataset.resetActiveSurvey();
-      this.isHomePage = true;
+      if (this.$route.path != "/") {
+        this.$router.push({
+          name: "home",
+          params: {
+            dataset: "dataset",
+            appConfig: "appConfig",
+            visualizerOptions: "visualizerOptions"
+          }
+        });
+      }
     });
   }
 
   @Watch("dataset.currentCamp")
   onCampChange() {
     if (this.dataset.currentCamp) {
-      if (this.$route.path !== "/site") {
-        this.$router.push("site");
-      }
-
-      this.isHomePage = false;
       this.visualizerOptions.hideUnanswered =
         DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
-    } else {
-      if (this.$route.path !== "/") {
-        this.$router.push("/");
+      if (this.$route.path !== "/site") {
+        this.$router.push({
+          name: "site",
+          params: {
+            dataset: "dataset",
+            visualizerOptions: "visualizerOptions",
+            appConfig: "appConfig"
+          }
+        });
       }
+    } else {
       this.visualizerOptions.hideUnanswered =
         DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
     }
@@ -242,23 +232,6 @@ export default class TKMainComponent extends Vue {
   min-width: 300px;
 }
 
-.tk-home-left {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  row-gap: 25px;
-  align-items: left;
-}
-
-.tk-camp-left {
-  flex-grow: 1;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: top;
-  width: 100%;
-  justify-content: space-between;
-}
-
 .tk-main-map {
   width: 65%;
   min-width: 300px;
@@ -278,12 +251,5 @@ export default class TKMainComponent extends Vue {
 
 .tk-main-content-placeholder {
   min-height: 300px;
-}
-
-.tk-home-more-content {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  row-gap: 25px;
 }
 </style>

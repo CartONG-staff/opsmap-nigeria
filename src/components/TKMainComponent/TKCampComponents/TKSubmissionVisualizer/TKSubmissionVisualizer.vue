@@ -8,7 +8,7 @@
       <TKSubmissionThematicView
         v-for="(them, indexthem) in col"
         :key="indexthem"
-        :options="options"
+        :visualizerOptions="visualizerOptions"
         :submissionThematic="them"
       />
     </div>
@@ -34,7 +34,7 @@ export default class TKSubmissionVisualizer extends Vue {
   thematics!: TKTFDFhematicsCollection;
 
   @Prop()
-  readonly options!: TKSubmissionVisualizerOptions;
+  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
 
   columns: [
     Array<TKSubmissionThematic>,

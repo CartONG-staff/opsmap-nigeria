@@ -1,6 +1,11 @@
-import Vue, { Component } from "vue";
+import Vue from "vue";
 import VueRouter from "vue-router";
-import TKMainComponent from "./components/TKMainComponent";
+import TKMainComponentLeftHome from "./components/TKMainComponent/TKMainComponentLeftHome.vue";
+import TKMainComponentLeftCamp from "./components/TKMainComponent/TKMainComponentLeftCamp.vue";
+import TKMainComponentContentHome from "./components/TKMainComponent/TKMainComponentContentHome.vue";
+import TKMainComponentContentCamp from "./components/TKMainComponent/TKMainComponentContentCamp.vue";
+import TKMainComponentIndicatorsHome from "./components/TKMainComponent/TKMainComponentIndicatorsHome.vue";
+import TKMainComponentIndicatorsCamp from "./components/TKMainComponent/TKMainComponentIndicatorsCamp.vue";
 import { TKCampSelector } from "./components/TKMainComponent/TKCampComponents";
 
 /*
@@ -15,13 +20,21 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      name: "home"
+      name: "home",
+      components: {
+        left: TKMainComponentLeftHome,
+        indicators: TKMainComponentIndicatorsHome,
+        content: TKMainComponentContentHome
+      }
     },
     {
       path: "/site",
       name: "site",
       components: {
-        header: TKCampSelector
+        header: TKCampSelector,
+        left: TKMainComponentLeftCamp,
+        indicators: TKMainComponentIndicatorsCamp,
+        content: TKMainComponentContentCamp
       }
     },
     {

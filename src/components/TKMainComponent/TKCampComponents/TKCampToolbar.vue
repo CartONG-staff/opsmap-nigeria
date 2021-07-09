@@ -86,7 +86,7 @@
             :label="$t('site.hideUnanswered')"
             color="accent"
             hide-details
-            v-model="options.hideUnanswered"
+            v-model="visualizerOptions.hideUnanswered"
           ></v-switch>
         </v-list-item>
       </v-list>
@@ -102,7 +102,7 @@ import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 @Component
 export default class TKCampToolbar extends Vue {
   @Prop()
-  readonly options!: TKSubmissionVisualizerOptions;
+  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
 
   @Prop()
   readonly dataset!: TKDatasetFilterer;

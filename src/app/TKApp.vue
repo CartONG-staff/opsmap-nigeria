@@ -8,6 +8,7 @@
           :dataset="dataset"
           :geoData="geoDataset"
           :appConfig="appRootConfig"
+          :isDatasetInitialized="isDatasetInitialized"
         />
         <TKFooter :appConfig="appRootConfig" />
       </div>
@@ -32,8 +33,9 @@ import { TKGetLocalValue } from "@/domain/ui/TKLabel";
   }
 })
 export default class TKApp extends Vue {
+  isDatasetInitialized = false;
   appRootConfig = this.$root.$data.config;
-  dataset: TKDatasetFilterer | null = null;
+  dataset: TKDatasetFilterer = new TKDatasetFilterer({});
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
@@ -45,6 +47,7 @@ export default class TKApp extends Vue {
       this.appRootConfig.indicatorsDescription
     ).then(surveys => {
       this.dataset = new TKDatasetFilterer(surveys);
+      this.isDatasetInitialized = true;
       if (this.appRootConfig?.spatialDescription.useBoundariesMasks) {
         TKGetGeoBoundaries(
           this.appRootConfig?.spatialDescription.admin1,

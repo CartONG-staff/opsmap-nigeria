@@ -11,8 +11,8 @@
         v-for="entry in thematicData"
         :key="entry.id"
         v-show="
-          !options.hideUnanswered ||
-            (options.hideUnanswered && entry.isAnswered())
+          !visualizerOptions.hideUnanswered ||
+            (visualizerOptions.hideUnanswered && entry.isAnswered())
         "
       >
         <TKSubmissionEntryView :entry="entry" />
@@ -42,7 +42,7 @@ export default class TKSubmissionThematicView extends Vue {
   thematicData: Array<TKSubmissionEntry> = [];
 
   @Prop()
-  readonly options!: TKSubmissionVisualizerOptions;
+  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
 
   title = "";
   iconurl = "";
@@ -69,11 +69,11 @@ export default class TKSubmissionThematicView extends Vue {
     }
   }
 
-  @Watch("options", { immediate: true, deep: true })
+  @Watch("visualizerOptions", { immediate: true, deep: true })
   applyOptions() {
     // Filter if needed
     if (this.submissionThematic) {
-      this.thematicData = this.options.hideUnanswered
+      this.thematicData = this.visualizerOptions.hideUnanswered
         ? this.submissionThematic.data
         : this.submissionThematic.data;
     } else {
