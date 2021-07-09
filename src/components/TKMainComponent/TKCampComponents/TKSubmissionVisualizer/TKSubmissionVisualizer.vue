@@ -96,6 +96,8 @@ export default class TKSubmissionVisualizer extends Vue {
       this.thematics = this.dataset.surveys[
         this.dataset.currentSurvey
       ].fdf.thematics;
+
+      this.onSubmissionChanged();
     }
   }
 }
