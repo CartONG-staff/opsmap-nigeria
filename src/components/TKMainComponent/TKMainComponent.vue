@@ -228,14 +228,12 @@ export default class TKMainComponent extends Vue {
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: left;
-  height: 450px;
-  min-width: 300px;
+  min-width: 350px;
 }
 
 .tk-main-map {
   width: 65%;
   min-width: 300px;
-
   height: 450px;
   border-radius: 15px;
   position: relative;
