@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="tk-home-content-layout">
     <TKHomeMoreInfos :appConfig="appConfig" />
-    <TKIFrame :url="appConfig.iframe" />
+    <TKIFrame v-if="appConfig.iframe" :url="appConfig.iframe" />
   </div>
 </template>
 
@@ -23,4 +23,11 @@ export default class TKMainComponentLeftHome extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.tk-home-content-layout {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  row-gap: 25px;
+}
+</style>

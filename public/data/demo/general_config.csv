@@ -5,6 +5,7 @@ name_pt;demo-brasil
 iso3;BRA
 adm1_unhcr;adm1pcode
 adm2_unhcr;adm2pcode
+iiframe;https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9
 ikey1_homepage;mp_site_id
 ikey2_homepage;demo_num_indv
 ikey3_homepage;cccm_shelter_max_capacity
