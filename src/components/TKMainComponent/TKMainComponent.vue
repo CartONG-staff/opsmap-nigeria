@@ -130,7 +130,7 @@ export default class TKMainComponent extends Vue {
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
       this.dataset.resetActiveSurvey();
-      if (this.$route.path != "/") {
+      if (this.$route.path !== "/") {
         this.$router.push({
           name: "home",
           params: {
@@ -145,12 +145,23 @@ export default class TKMainComponent extends Vue {
 
   @Watch("dataset.currentCamp")
   onCampChange() {
-    if (this.dataset.currentCamp) {
+    if (
+      this.dataset.currentCamp &&
+      this.dataset.currentAdmin1 &&
+      this.dataset.currentAdmin2
+    ) {
       this.visualizerOptions.hideUnanswered =
         DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
-      if (this.$route.path !== "/site") {
+
+      const surveyE = encodeURIComponent(this.dataset.currentSurvey);
+      const admin1E = encodeURIComponent(this.dataset.currentAdmin1.name);
+      const admin2E = encodeURIComponent(this.dataset.currentAdmin2.name);
+      const campE = encodeURIComponent(this.dataset.currentCamp.name);
+      const path = `/camp/${surveyE}/${admin1E}/${admin2E}/${campE}`;
+
+      if (this.$route.path !== path) {
         this.$router.push({
-          name: "site",
+          path: path,
           params: {
             dataset: "dataset",
             visualizerOptions: "visualizerOptions",

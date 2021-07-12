@@ -38,6 +38,16 @@ const router = new VueRouter({
       }
     },
     {
+      path: "/camp/:survey/:admin1?/:admin2?/:camp?",
+      name: "camp",
+      components: {
+        header: TKCampSelector,
+        left: TKMainComponentLeftCamp,
+        indicators: TKMainComponentIndicatorsCamp,
+        content: TKMainComponentContentCamp
+      }
+    },
+    {
       path: "*",
       redirect: { name: "home" }
     }
