@@ -170,6 +170,10 @@ export default class TKMap extends Vue {
 
       this.map.on("load", () => {
         this.addImages();
+
+        if (this.mapBoundaries) {
+          this.mapBoundaries.changeStyle(this.dataset, this.map, this.bound);
+        }
       });
     }
   }
