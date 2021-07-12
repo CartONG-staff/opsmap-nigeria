@@ -165,7 +165,7 @@ export class TKDatasetFilterer {
   }
 
   setCurrentAdmin1Name(admin1Name: string) {
-    const admin1 = this.admin2List.find(admin1 => admin1.name === admin1Name);
+    const admin1 = this.admin1List.find(admin1 => admin1.name === admin1Name);
     if (admin1) {
       this.setCurrentAdmin1(admin1.pcode);
     }
