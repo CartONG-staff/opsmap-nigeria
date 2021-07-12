@@ -11,9 +11,10 @@ Vue.config.productionTip = false;
 TKReadGeneralConfiguration("general_config", "demo").then(config => {
   // Filter with config languages field.
   const messagesCandidates = loadLocaleMessages();
-  const keys = Object.keys(messagesCandidates).filter(lang =>
-    config.languages.includes(lang)
+  const keys = Object.keys(messagesCandidates).filter(
+    lang => config.languages.includes(lang) || lang === "en"
   );
+
   const messages: LocaleMessages = {};
   keys.forEach(key => {
     messages[key] = messagesCandidates[key];
