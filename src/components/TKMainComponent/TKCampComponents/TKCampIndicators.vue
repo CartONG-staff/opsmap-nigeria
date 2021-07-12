@@ -60,10 +60,10 @@ export default class TKCampIndicators extends Vue {
 .tk-camp-indicators {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: left;
   align-items: top;
+  column-gap: 5%;
   row-gap: 10px;
-  column-gap: 10px;
 }
 
 .tk-camp-indicators > * {
