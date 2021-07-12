@@ -115,11 +115,16 @@ export default class TKCampToolbar extends Vue {
   }
 
   @Watch("dataset.currentCamp", { immediate: true })
-  onChange() {
+  onCampChange() {
     this.model =
       this.dataset.sortedSubmissions && this.dataset.sortedSubmissions.length
         ? this.dataset.sortedSubmissions[0]
         : "";
+  }
+
+  @Watch("dataset.currentDate", { immediate: true })
+  onDateChange() {
+    this.model = this.dataset.currentDate;
   }
 
   onExportTriggered() {

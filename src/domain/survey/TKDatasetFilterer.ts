@@ -75,27 +75,35 @@ export class TKDatasetFilterer {
   }
 
   setActiveSurvey(survey: string) {
-    this.clearCurrentAdmin1();
+    if (this.currentSurvey !== survey) {
+      this.clearCurrentAdmin1();
 
-    this.levelToZoom = TKFilters.SURVEY;
+      this.levelToZoom = TKFilters.SURVEY;
 
-    if (this.surveyList.includes(survey)) {
-      this.currentSurvey = survey;
-      this.filters.survey = this.currentSurvey;
-      this.campsList = this.surveys[this.currentSurvey].campsList;
-      this.admin1List = this.surveys[this.currentSurvey].boundariesList.admin1;
-      this.admin2List = this.surveys[this.currentSurvey].boundariesList.admin2;
-    } else {
-      console.error("The survey '" + survey + "' does not exist in the opsmap");
-      this.currentSurvey = "";
-      this.filters.survey = this.currentSurvey;
-      this.campsList = [];
-      this.admin1List = [];
-      this.admin2List = [];
-      this.campsList = [];
+      if (this.surveyList.includes(survey)) {
+        this.currentSurvey = survey;
+        this.filters.survey = this.currentSurvey;
+        this.campsList = this.surveys[this.currentSurvey].campsList;
+        this.admin1List = this.surveys[
+          this.currentSurvey
+        ].boundariesList.admin1;
+        this.admin2List = this.surveys[
+          this.currentSurvey
+        ].boundariesList.admin2;
+      } else {
+        console.error(
+          "The survey '" + survey + "' does not exist in the opsmap"
+        );
+        this.currentSurvey = "";
+        this.filters.survey = this.currentSurvey;
+        this.campsList = [];
+        this.admin1List = [];
+        this.admin2List = [];
+        this.campsList = [];
+      }
+
+      this.updateFiltering();
     }
-
-    this.updateFiltering();
   }
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -156,6 +164,13 @@ export class TKDatasetFilterer {
     this.currentAdmin1 = null;
   }
 
+  setCurrentAdmin1Name(admin1Name: string) {
+    const admin1 = this.admin2List.find(admin1 => admin1.name === admin1Name);
+    if (admin1) {
+      this.setCurrentAdmin1(admin1.pcode);
+    }
+  }
+
   setCurrentAdmin1(pcode: string) {
     this.filters[TKFilters.ADMIN1] = pcode;
 
@@ -180,6 +195,13 @@ export class TKDatasetFilterer {
     this.levelToZoom = TKFilters.ADMIN1;
     this.currentAdmin2 = null;
     this.filters.admin1 = this.currentAdmin1 ? this.currentAdmin1.pcode : null;
+  }
+
+  setCurrentAdmin2Name(admin2Name: string) {
+    const admin2 = this.admin2List.find(admin2 => admin2.name === admin2Name);
+    if (admin2) {
+      this.setCurrentAdmin2(admin2.pcode);
+    }
   }
 
   setCurrentAdmin2(pcode: string) {
@@ -222,10 +244,16 @@ export class TKDatasetFilterer {
     this.filters.currentCamp = null;
   }
 
-  setCurrentCamp(campId: string) {
-    this.filters[TKFilters.CAMP] = campId;
+  setCurrentCampName(campName: string) {
+    const camp = this.campsList.find(camp => camp.name === campName);
+    if (camp) {
+      this.setCurrentCamp(camp.id);
+    }
+  }
 
+  setCurrentCamp(campId: string) {
     if (this.currentCamp?.id !== campId) {
+      this.filters[TKFilters.CAMP] = campId;
       this.levelToZoom = TKFilters.CAMP;
       this.currentCamp = this.campsList.find(
         c => c.id === campId

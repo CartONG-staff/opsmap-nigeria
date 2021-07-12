@@ -28,17 +28,7 @@ const router = new VueRouter({
       }
     },
     {
-      path: "/site",
-      name: "site",
-      components: {
-        header: TKCampSelector,
-        left: TKMainComponentLeftCamp,
-        indicators: TKMainComponentIndicatorsCamp,
-        content: TKMainComponentContentCamp
-      }
-    },
-    {
-      path: "/camp/:survey/:admin1?/:admin2?/:camp?",
+      path: "/camp/:survey/:admin1?/:admin2?/:camp?/:date?",
       name: "camp",
       components: {
         header: TKCampSelector,

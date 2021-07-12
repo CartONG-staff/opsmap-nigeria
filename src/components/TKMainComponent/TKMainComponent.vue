@@ -141,13 +141,13 @@ export default class TKMainComponent extends Vue {
         });
       }
     });
-
-    console.log(this.$route.params);
   }
 
+  @Watch("dataset.currentDate")
   @Watch("dataset.currentCamp")
   onCampChange() {
     if (
+      this.dataset.currentDate &&
       this.dataset.currentCamp &&
       this.dataset.currentAdmin1 &&
       this.dataset.currentAdmin2
@@ -159,7 +159,10 @@ export default class TKMainComponent extends Vue {
       const admin1E = encodeURIComponent(this.dataset.currentAdmin1.name);
       const admin2E = encodeURIComponent(this.dataset.currentAdmin2.name);
       const campE = encodeURIComponent(this.dataset.currentCamp.name);
-      const path = `/camp/${surveyE}/${admin1E}/${admin2E}/${campE}`;
+      const dateE = encodeURIComponent(
+        this.dataset.currentDate.replaceAll("/", "-")
+      );
+      const path = `/camp/${surveyE}/${admin1E}/${admin2E}/${campE}/${dateE}`;
 
       if (this.$route.path !== path) {
         this.$router.push({
@@ -174,6 +177,39 @@ export default class TKMainComponent extends Vue {
     } else {
       this.visualizerOptions.hideUnanswered =
         DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
+    }
+  }
+
+  @Watch("dataset")
+  @Watch("$route.params")
+  onRouteChanged() {
+    const params = Object.keys(this.$route.params);
+    if (
+      params.includes("survey") &&
+      params.includes("admin1") &&
+      params.includes("admin2") &&
+      params.includes("camp") &&
+      params.includes("date")
+    ) {
+      const survey: string = this.$route.params["survey"];
+      const admin1: string = this.$route.params["admin1"];
+      const admin2: string = this.$route.params["admin2"];
+      const camp: string = this.$route.params["camp"];
+      const date: string = this.$route.params["date"]?.replaceAll("-", "/");
+
+      if (survey) {
+        this.dataset.setActiveSurvey(survey);
+        if (camp) {
+          this.dataset.setCurrentCampName(camp);
+          if (date) {
+            this.dataset.setCurrentDate(date);
+          }
+        } else if (admin2) {
+          this.dataset.setCurrentAdmin2Name(admin2);
+        } else if (admin1) {
+          this.dataset.setCurrentAdmin1Name(admin1);
+        }
+      }
     }
   }
 }
