@@ -141,6 +141,8 @@ export default class TKMainComponent extends Vue {
         });
       }
     });
+
+    console.log(this.$route.params);
   }
 
   @Watch("dataset.currentCamp")
