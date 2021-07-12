@@ -211,42 +211,46 @@ export default class TKMainComponent extends Vue {
           this.dataset.setCurrentAdmin1Name(admin1);
         }
       }
-    }
 
-    // upadte URL
-    const surveyE = encodeURIComponent(this.dataset.currentSurvey);
-    const admin1E = encodeURIComponent(this.dataset.currentAdmin1?.name ?? "");
-    const admin2E = encodeURIComponent(this.dataset.currentAdmin2?.name ?? "");
-    const campE = encodeURIComponent(this.dataset.currentCamp?.name ?? "");
-    const dateE = encodeURIComponent(
-      this.dataset.currentDate?.replaceAll("/", "-") ?? ""
-    );
+      // upadte URL
+      const surveyE = encodeURIComponent(this.dataset.currentSurvey);
+      const admin1E = encodeURIComponent(
+        this.dataset.currentAdmin1?.name ?? ""
+      );
+      const admin2E = encodeURIComponent(
+        this.dataset.currentAdmin2?.name ?? ""
+      );
+      const campE = encodeURIComponent(this.dataset.currentCamp?.name ?? "");
+      const dateE = encodeURIComponent(
+        this.dataset.currentDate?.replaceAll("/", "-") ?? ""
+      );
 
-    let path = `/camp`;
-    if (surveyE) {
-      path += `/${surveyE}`;
-      if (admin1E) {
-        path += `/${admin1E}`;
-        if (admin2E) {
-          path += `/${admin2E}`;
-          if (campE) {
-            path += `/${campE}`;
-            if (dateE) {
-              path += `/${dateE}`;
+      let path = `/camp`;
+      if (survey && surveyE) {
+        path += `/${surveyE}`;
+        if (admin1E) {
+          path += `/${admin1E}`;
+          if (admin2E) {
+            path += `/${admin2E}`;
+            if (campE) {
+              path += `/${campE}`;
+              if (dateE) {
+                path += `/${dateE}`;
+              }
             }
           }
         }
       }
-    }
-    if (this.$route.path !== path) {
-      this.$router.push({
-        path: path,
-        params: {
-          dataset: "dataset",
-          visualizerOptions: "visualizerOptions",
-          appConfig: "appConfig"
-        }
-      });
+      if (this.$route.path !== path) {
+        this.$router.push({
+          path: path,
+          params: {
+            dataset: "dataset",
+            visualizerOptions: "visualizerOptions",
+            appConfig: "appConfig"
+          }
+        });
+      }
     }
   }
 }
