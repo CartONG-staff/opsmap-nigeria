@@ -30,5 +30,5 @@ module.exports = {
     }
   },
 
-  publicPath: "/opsmap/opsmap-toolkit/"
+  publicPath: `/opsmap/${process.env.npm_package_name}/`
 };
