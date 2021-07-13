@@ -20,4 +20,5 @@ export interface TKCampDescription {
   admin1: TKBoundarieDescription;
   admin2: TKBoundarieDescription;
   admin3: TKBoundarieDescription;
+  lastSubmission: string; // Used for popup in the map
 }

@@ -160,7 +160,8 @@ export function TKCreateSurvey(
         admin3: {
           pcode: submission[spatialDescription.adm3Pcode],
           name: submission[spatialDescription.adm3Name]
-        }
+        },
+        lastSubmission: ""
       });
       if (
         !boundariesList.admin2
@@ -191,12 +192,17 @@ export function TKCreateSurvey(
     }
   }
 
-  const dateOfSubmissionsByCamps: { [date: string]: string[] } = {};
+  const dateOfSubmissionsByCamps: { [site: string]: string[] } = {};
   for (const site of Object.keys(submissionsByCamps)) {
     dateOfSubmissionsByCamps[site] = sortDates(
       Object.keys(submissionsByCamps[site])
     );
   }
+  campsList.map(camp => {
+    camp.lastSubmission = dateOfSubmissionsByCamps[camp.id].length
+      ? dateOfSubmissionsByCamps[camp.id][0]
+      : "-";
+  });
 
   return {
     submissionsByCamps: submissionsByCamps,
