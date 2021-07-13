@@ -107,13 +107,16 @@
 <script lang="ts">
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
+import {
+  TKDatasetFilterer,
+  TKFilters
+} from "@/domain/survey/TKDatasetFilterer";
 import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
 
 @Component
 export default class TKMapFilter extends Vue {
   @Prop()
-  dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDatasetFilterer;
   plannedImgUrl = TKIconUrl("planned_site");
   spontaneousImgUrl = TKIconUrl("spontaneous_site");
   show = true;

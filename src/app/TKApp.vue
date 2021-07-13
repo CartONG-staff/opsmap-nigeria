@@ -8,6 +8,7 @@
           :dataset="dataset"
           :geoData="geoDataset"
           :appConfig="appRootConfig"
+          :isDatasetInitialized="isDatasetInitialized"
         />
         <TKFooter :appConfig="appRootConfig" />
       </div>
@@ -18,7 +19,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKCreateSurveyCollection } from "@/domain/survey/TKSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
@@ -32,8 +33,9 @@ import { TKGetLocalValue } from "@/domain/ui/TKLabel";
   }
 })
 export default class TKApp extends Vue {
+  isDatasetInitialized = false;
   appRootConfig = this.$root.$data.config;
-  dataset: TKDatasetFilterer | null = null;
+  dataset: TKDatasetFilterer = new TKDatasetFilterer({});
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
@@ -44,8 +46,8 @@ export default class TKApp extends Vue {
       this.appRootConfig.spatialDescription,
       this.appRootConfig.indicatorsDescription
     ).then(surveys => {
-      this.geoDataset = null;
       this.dataset = new TKDatasetFilterer(surveys);
+      this.isDatasetInitialized = true;
       if (this.appRootConfig?.spatialDescription.useBoundariesMasks) {
         TKGetGeoBoundaries(
           this.appRootConfig?.spatialDescription.admin1,

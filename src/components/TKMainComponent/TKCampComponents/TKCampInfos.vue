@@ -88,8 +88,7 @@
 // Manage by: cccm_shelter__mangmt
 
 import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
-import { TKSubmission } from "@/domain/survey/TKSubmission";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 import { TKGetLocalValue, TKLabel } from "@/domain/ui/TKLabel";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
@@ -98,9 +97,6 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 export default class TKCampInfos extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
-
-  @Prop()
-  readonly submission!: TKSubmission;
 
   manageByLabel!: TKLabel;
 
@@ -124,34 +120,39 @@ export default class TKCampInfos extends Vue {
       this.coordinates = this.dataset.currentCamp
         ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
         : "-";
+      this.handeLocale();
     }
-
-    this.handeLocale();
   }
 
-  @Watch("submission", { immediate: true })
+  @Watch("dataset.currentSubmission", { immediate: true })
   onSubmissionChange() {
-    this.manageByLabel = (this.submission?.thematics["group_cccm"]?.data?.find(
+    this.manageByLabel = (this.dataset.currentSubmission?.thematics[
+      "group_cccm"
+    ]?.data?.find(
       item => item.field === "cccm_shelter__mangmt"
     ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
 
-    this.manageByUrl = this.dataset.surveys[
-      this.dataset.currentSurvey
-    ].fdf.urls[this.manageByLabel["en"]];
+    if (this.dataset && this.dataset.surveys[this.dataset.currentSurvey]) {
+      this.manageByUrl = this.dataset.surveys[
+        this.dataset.currentSurvey
+      ].fdf.urls[this.manageByLabel["en"]];
+    } else {
+      this.manageByUrl = "";
+    }
 
     this.handeLocale();
   }
 
   @Watch("$root.$i18n.locale")
   handeLocale() {
-    this.manageBy = TKGetLocalValue(
-      this.manageByLabel,
-      this.$root.$i18n.locale
-    );
-
-    if (!this.dataset.currentCamp) {
+    if (!this.dataset || !this.dataset.currentCamp) {
       this.siteType = "-";
+      this.manageBy = "-";
     } else {
+      this.manageBy = TKGetLocalValue(
+        this.manageByLabel,
+        this.$root.$i18n.locale
+      );
       if (this.dataset.currentCamp.type === TKCampTypesValues.PLANNED) {
         this.siteType = this.$root.$i18n
           .t("infosSitePlanned")

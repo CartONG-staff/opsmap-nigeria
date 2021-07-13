@@ -27,6 +27,7 @@
             :label="$t('infosAdmin1')"
             v-model="currentAdmin1"
             :items="dataset.filteredAdmin1List"
+            :disabled="!dataset.filteredAdmin1List.length"
             item-text="name"
             item-value="pcode"
             @change="admin1Selected"
@@ -48,6 +49,7 @@
             :label="$t('infosAdmin2')"
             v-model="currentAdmin2"
             :items="dataset.filteredAdmin2List"
+            :disabled="!dataset.filteredAdmin2List.length"
             item-text="name"
             item-value="pcode"
             @change="admin2Selected"
@@ -69,6 +71,7 @@
             :label="$t('camp')"
             v-model="currentCamp"
             :items="dataset.filteredCampsList"
+            :disabled="!dataset.filteredCampsList.length"
             item-text="name"
             item-value="id"
             @change="campSelected"
@@ -85,12 +88,12 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 
 @Component
 export default class TKCampSelector extends Vue {
-  @Prop({ default: () => [] })
-  dataset!: TKDatasetFilterer;
+  @Prop({ default: () => new TKDatasetFilterer({}) })
+  readonly dataset!: TKDatasetFilterer;
 
   currentSurvey = this.dataset.currentSurvey;
   @Watch("dataset.currentSurvey")
@@ -116,25 +119,23 @@ export default class TKCampSelector extends Vue {
     this.currentCamp = this.dataset.currentCamp;
   }
 
-  surveySelected(year: string) {
-    if (this.dataset.currentSurvey !== year) {
-      this.dataset.setFiltersValue(TKFilters.SURVEY, year ? year : null);
-    }
+  surveySelected(id: string) {
+    id ? this.dataset.setActiveSurvey(id) : this.dataset.resetActiveSurvey();
   }
   admin1Selected(pcode: string) {
-    if (this.dataset.currentAdmin1?.pcode !== pcode) {
-      this.dataset.setFiltersValue(TKFilters.ADMIN1, pcode ? pcode : null);
-    }
+    pcode
+      ? this.dataset.setCurrentAdmin1(pcode)
+      : this.dataset.clearCurrentAdmin1();
   }
   admin2Selected(pcode: string) {
-    if (this.dataset.currentAdmin2?.pcode !== pcode) {
-      this.dataset.setFiltersValue(TKFilters.ADMIN2, pcode ? pcode : null);
-    }
+    pcode
+      ? this.dataset.setCurrentAdmin2(pcode)
+      : this.dataset.clearCurrentAdmin2();
   }
   campSelected(campId: string) {
-    if (this.dataset.currentCamp?.id !== campId) {
-      this.dataset.setFiltersValue(TKFilters.CAMP, campId ? campId : null);
-    }
+    campId
+      ? this.dataset.setCurrentCamp(campId)
+      : this.dataset.clearCurrentCamp();
   }
 }
 </script>
@@ -147,20 +148,21 @@ export default class TKCampSelector extends Vue {
   -webkit-backdrop-filter: blur(2px);
   z-index: 3000;
   box-shadow: 0 0 20px 2px rgba(58, 158, 211, 0.15);
-  padding-top: 12px;
-
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  padding-top: 24px;
+  padding-bottom: 12px;
   display: flex;
   flex-flow: row wrap;
+  row-gap: 24px;
   justify-content: space-evenly;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  padding-top: 12px;
 }
 
 .tk-autocomplete {
   width: 20%;
   margin: 0 15px;
   height: 30px;
+  min-width: 200px;
 }
 </style>

@@ -4,15 +4,17 @@ import vuetify from "@/plugins/vuetify";
 import { loadLocaleMessages } from "@/i18n";
 import VueI18n, { LocaleMessages } from "vue-i18n";
 import { TKReadGeneralConfiguration } from "./app/TKOpsmapConfiguration";
+import router from "./router";
 
 Vue.config.productionTip = false;
 
 TKReadGeneralConfiguration("general_config", "demo").then(config => {
   // Filter with config languages field.
   const messagesCandidates = loadLocaleMessages();
-  const keys = Object.keys(messagesCandidates).filter(lang =>
-    config.languages.includes(lang)
+  const keys = Object.keys(messagesCandidates).filter(
+    lang => config.languages.includes(lang) || lang === "en"
   );
+
   const messages: LocaleMessages = {};
   keys.forEach(key => {
     messages[key] = messagesCandidates[key];
@@ -28,6 +30,7 @@ TKReadGeneralConfiguration("general_config", "demo").then(config => {
   Object.freeze(config);
 
   new Vue({
+    router,
     vuetify,
     i18n,
     data: {

@@ -33,7 +33,10 @@ import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
 import { FeatureCollection, Point } from "geojson";
-import { TKDatasetFilterer, TKFilters } from "@/domain/survey/TKFilters";
+import {
+  TKDatasetFilterer,
+  TKFilters
+} from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 
 @Component({
@@ -48,9 +51,10 @@ export default class TKMap extends Vue {
   readonly appConfig!: TKOpsmapConfiguration;
 
   @Prop({ default: () => [] })
-  dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDatasetFilterer;
+
   @Prop()
-  geoDataset!: TKGeoDataset;
+  readonly geoDataset!: TKGeoDataset;
 
   map!: mapboxgl.Map;
   bound!: mapboxgl.LngLatBounds;
@@ -142,7 +146,6 @@ export default class TKMap extends Vue {
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   // map object management method
   // ////////////////////////////////////////////////////////////////////////////////////////////////
-
   initMap(): void {
     if (!this.bound) {
       // Init the map - world level
@@ -167,6 +170,10 @@ export default class TKMap extends Vue {
 
       this.map.on("load", () => {
         this.addImages();
+
+        if (this.mapBoundaries) {
+          this.mapBoundaries.changeStyle(this.dataset, this.map, this.bound);
+        }
       });
     }
   }
@@ -288,10 +295,7 @@ export default class TKMap extends Vue {
     // CAMPS BEHAVIOR
     this.map.on("click", TKMapLayers.NOTSELECTEDCAMPSLAYER, e => {
       if (e !== undefined && e.features && e.features?.length > 0) {
-        this.dataset.setFiltersValue(
-          TKFilters.CAMP,
-          e.features[0].properties?.id as string
-        );
+        this.dataset.setCurrentCamp(e.features[0].properties?.id);
       }
     });
     const popup = new mapboxgl.Popup({

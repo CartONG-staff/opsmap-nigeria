@@ -97,9 +97,12 @@ export default class TKHeader extends Vue {
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  min-height: 70px;
   padding-left: var(--side-padding);
   padding-right: var(--side-padding);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  row-gap: 8px;
 }
 
 .tk-header-logo-opsmap-container {
@@ -115,6 +118,7 @@ export default class TKHeader extends Vue {
   letter-spacing: 1.5;
   font-weight: 700;
   font-size: 18px;
+  text-align: left;
 }
 
 .tk-header-logo-cccm-container {
@@ -135,6 +139,7 @@ export default class TKHeader extends Vue {
   justify-content: flex-end;
   align-items: center;
   column-gap: 10px;
+  row-gap: 8px;
 }
 
 .tk-buttons-container {

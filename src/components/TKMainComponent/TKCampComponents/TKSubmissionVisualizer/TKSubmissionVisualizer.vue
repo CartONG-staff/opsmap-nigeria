@@ -8,7 +8,7 @@
       <TKSubmissionThematicView
         v-for="(them, indexthem) in col"
         :key="indexthem"
-        :options="options"
+        :visualizerOptions="visualizerOptions"
         :submissionThematic="them"
       />
     </div>
@@ -19,10 +19,9 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
 import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
-import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 
 @Component({
   components: {
@@ -31,14 +30,11 @@ import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
 })
 export default class TKSubmissionVisualizer extends Vue {
   @Prop()
-  readonly submission!: TKSubmission;
-
-  @Prop()
   readonly dataset!: TKDatasetFilterer;
   thematics!: TKTFDFhematicsCollection;
 
   @Prop()
-  readonly options!: TKSubmissionVisualizerOptions;
+  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
 
   columns: [
     Array<TKSubmissionThematic>,
@@ -46,42 +42,47 @@ export default class TKSubmissionVisualizer extends Vue {
     Array<TKSubmissionThematic>
   ] = [[], [], []];
 
-  @Watch("submission", { immediate: true })
+  @Watch("dataset.currentSubmission", { immediate: true })
   onSubmissionChanged() {
     this.columns[0] = [];
     this.columns[1] = [];
     this.columns[2] = [];
 
     const itemsCount = [0, 0, 0];
-
-    if (this.submission) {
-      for (const them in this.submission.thematics) {
-        let index = 0;
-        if (itemsCount[1] < itemsCount[0] && itemsCount[1] <= itemsCount[2]) {
-          index = 1;
-        } else if (
-          itemsCount[2] < itemsCount[1] &&
-          itemsCount[2] < itemsCount[0]
-        ) {
-          index = 2;
+    if (this.dataset) {
+      if (this.dataset.currentSubmission) {
+        for (const them in this.dataset.currentSubmission.thematics) {
+          let index = 0;
+          if (itemsCount[1] < itemsCount[0] && itemsCount[1] <= itemsCount[2]) {
+            index = 1;
+          } else if (
+            itemsCount[2] < itemsCount[1] &&
+            itemsCount[2] < itemsCount[0]
+          ) {
+            index = 2;
+          }
+          this.columns[index].push(
+            this.dataset.currentSubmission.thematics[them]
+          );
+          itemsCount[index] += this.dataset.currentSubmission.thematics[
+            them
+          ].data.length;
         }
-        this.columns[index].push(this.submission.thematics[them]);
-        itemsCount[index] += this.submission.thematics[them].data.length;
-      }
-    } else if (this.thematics) {
-      let index = 0;
-      for (const i in this.thematics) {
-        const thematicsDescr = this.thematics[i];
-        this.columns[index].push({
-          data: [],
-          nameLabel: thematicsDescr.thematicLabel,
-          formattedName: thematicsDescr.formattedName,
-          iconFileName: thematicsDescr.iconFileName
-        });
+      } else if (this.thematics) {
+        let index = 0;
+        for (const i in this.thematics) {
+          const thematicsDescr = this.thematics[i];
+          this.columns[index].push({
+            data: [],
+            nameLabel: thematicsDescr.thematicLabel,
+            formattedName: thematicsDescr.formattedName,
+            iconFileName: thematicsDescr.iconFileName
+          });
 
-        index++;
-        if (index > 2) {
-          index = 0;
+          index++;
+          if (index > 2) {
+            index = 0;
+          }
         }
       }
     }
@@ -95,6 +96,8 @@ export default class TKSubmissionVisualizer extends Vue {
       this.thematics = this.dataset.surveys[
         this.dataset.currentSurvey
       ].fdf.thematics;
+
+      this.onSubmissionChanged();
     }
   }
 }
@@ -103,8 +106,10 @@ export default class TKSubmissionVisualizer extends Vue {
 <style scoped>
 .tk-submission-visualizer {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+  flex-flow: row wrap;
+  column-gap: 5%;
+  row-gap: 25px;
+  justify-content: left;
   align-items: top;
 }
 
@@ -115,5 +120,6 @@ export default class TKSubmissionVisualizer extends Vue {
   align-items: center;
   width: 30%;
   row-gap: 25px;
+  min-width: 300px;
 }
 </style>

@@ -11,7 +11,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import TKIndicatorComponent from "../TKIndicator.vue";
 import { TKSurvey } from "@/domain/survey/TKSurvey";
 import { TKIndicator } from "@/domain/ui/TKIndicator";
-import { TKDatasetFilterer } from "@/domain/survey/TKFilters";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 @Component({
   components: {
     TKIndicatorComponent
@@ -41,9 +41,11 @@ export default class TKHomeIndicators extends Vue {
 <style scoped>
 .tk-home-indicators {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+  flex-flow: row wrap;
+  justify-content: left;
   align-items: top;
+  column-gap: 5%;
+  row-gap: 10px;
 }
 
 .tk-home-indicators > * {
