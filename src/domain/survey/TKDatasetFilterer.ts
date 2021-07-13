@@ -143,14 +143,21 @@ export class TKDatasetFilterer {
   // ////////////////////////////////////////////////////////////////////////////
 
   setCurrentDate(date: string) {
-    if (this.currentCamp && this.sortedSubmissions.includes(date)) {
-      this.currentDate = date;
-      this.currentSubmission = this.surveys[
-        this.currentSurvey
-      ].submissionsByCamps[this.currentCamp.id][this.currentDate];
-    } else {
-      this.currentDate = "";
-      this.currentSubmission = null;
+    if (date !== this.currentDate) {
+      if (this.currentCamp) {
+        if (this.sortedSubmissions.includes(date)) {
+          this.currentDate = date;
+        } else {
+          this.currentDate = this.currentCamp.lastSubmission;
+        }
+
+        this.currentSubmission = this.surveys[
+          this.currentSurvey
+        ].submissionsByCamps[this.currentCamp.id][this.currentDate];
+      } else {
+        this.currentDate = "";
+        this.currentSubmission = null;
+      }
     }
   }
 
