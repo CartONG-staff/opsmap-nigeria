@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="tk-footer flex">
+  <div class="tk-footer">
     <transition mode="out-in" name="fade-in">
       <div :key="$root.$i18n.locale" class="tk-footer-disclaimer">
         <div class="tk-footer-disclaimer-title">
@@ -60,15 +60,16 @@ export default class TKFooter extends Vue {
 }
 
 .tk-footer-disclaimer {
-  background-color: var(--v-sectionBGSecondary-base);
   display: flex;
+
+  background-color: var(--v-sectionBGSecondary-base);
   flex-flow: row wrap;
   width: 100%;
   row-gap: 30px;
   justify-content: space-between;
   align-items: top;
-  column-gap: 84px;
   padding-top: 42px;
+  padding-bottom: 42px;
   padding-left: var(--side-padding);
   padding-right: var(--side-padding);
 }
@@ -91,15 +92,14 @@ export default class TKFooter extends Vue {
   font-size: 16px;
   color: var(--v-primary-base);
   line-height: 1.375;
+  width: 85%;
   text-align: justify;
   text-justify: inter-word;
-  width: 85%;
 }
 
 .tk-footer-logos {
   display: flex;
   flex-flow: row wrap;
-  /* column-gap: var(--padding-large); */
   justify-content: space-between;
   vertical-align: middle;
   padding-bottom: var(--padding-large);
