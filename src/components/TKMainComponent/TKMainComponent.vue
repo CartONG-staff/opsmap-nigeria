@@ -143,6 +143,7 @@ export default class TKMainComponent extends Vue {
     });
   }
 
+  // Trigger when a camp is selected
   @Watch("dataset.currentDate")
   @Watch("dataset.currentCamp")
   onCampChange() {
@@ -181,6 +182,7 @@ export default class TKMainComponent extends Vue {
     }
   }
 
+  // Trigger at startup or when the changes comes from the URL
   @Watch("dataset")
   @Watch("$route.params")
   onRouteChanged() {
