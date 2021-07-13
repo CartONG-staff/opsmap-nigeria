@@ -295,10 +295,7 @@ export default class TKMap extends Vue {
     // CAMPS BEHAVIOR
     this.map.on("click", TKMapLayers.NOTSELECTEDCAMPSLAYER, e => {
       if (e !== undefined && e.features && e.features?.length > 0) {
-        this.dataset.setFiltersValue(
-          TKFilters.CAMP,
-          e.features[0].properties?.id as string
-        );
+        this.dataset.setCurrentCamp(e.features[0].properties?.id);
       }
     });
     const popup = new mapboxgl.Popup({
