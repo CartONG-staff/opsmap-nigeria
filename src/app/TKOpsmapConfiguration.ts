@@ -173,36 +173,36 @@ export async function TKReadGeneralConfiguration(
       Fieldwork: [
         {
           name: dict["fieldwork_name_1"] ?? "1",
-          urlLogo: dict["fieldwork_logo_1"] ?? "1",
+          urlLogo: process.env.BASE_URL + dict["fieldwork_logo_1"] ?? "1",
           urlRedirection: dict["fieldwork_link_1"] ?? "1"
         },
         {
           name: dict["fieldwork_name_2"] ?? "2",
-          urlLogo: dict["fieldwork_logo_2"] ?? "2",
+          urlLogo: process.env.BASE_URL + dict["fieldwork_logo_2"] ?? "2",
           urlRedirection: dict["fieldwork_link_2"] ?? "2"
         },
         {
           name: dict["fieldwork_name_3"] ?? "3",
-          urlLogo: dict["fieldwork_logo_3"] ?? "3",
+          urlLogo: process.env.BASE_URL + dict["fieldwork_logo_3"] ?? "3",
           urlRedirection: dict["fieldwork_link_3"] ?? "3"
         }
       ],
       clusterLed: [
         {
           name: dict["led_name_1"] ?? "1",
-          urlLogo: dict["led_logo_1"] ?? "1",
+          urlLogo: process.env.BASE_URL + dict["led_logo_1"] ?? "1",
           urlRedirection: dict["led_link_1"] ?? "1"
         },
         {
           name: dict["led_name_2"] ?? "2",
-          urlLogo: dict["led_logo_2"] ?? "2",
+          urlLogo: process.env.BASE_URL + dict["led_logo_2"] ?? "2",
           urlRedirection: dict["led_link_2"] ?? "2"
         }
       ],
       coordinationAndIMSupport: [
         {
           name: dict["coord_name_1"] ?? "",
-          urlLogo: dict["coord_logo_1"] ?? "",
+          urlLogo: process.env.BASE_URL + dict["coord_logo_1"] ?? "",
           urlRedirection: dict["coord_link_1"] ?? ""
         }
       ],

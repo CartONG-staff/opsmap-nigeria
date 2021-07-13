@@ -30,5 +30,5 @@ module.exports = {
     }
   },
 
-  publicPath: "/"
+  publicPath: `/opsmap/${process.env.npm_package_name}/`
 };
