@@ -4,10 +4,7 @@
       <div :key="$root.$i18n.locale" class="tk-ochacredits-text">
         {{ $t("dashboardCredits") }}
         <br />
-        {{ $t("appVersion") }}: {{ version }}
-        <br />
-        {{ $t("appBuild") }}:
-        {{ build }}
+        {{ $t("appVersion") }}: {{ version }}.{{ build }}
         <br />
         {{ $t("ochaCredits") }}
         <a
