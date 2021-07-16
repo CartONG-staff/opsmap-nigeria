@@ -66,6 +66,7 @@ export class TKDatasetFilterer {
 
   resetActiveSurvey() {
     if (this.surveyList.length > 0) {
+      this.currentSurvey = "";
       this.setActiveSurvey(this.surveyList[0]);
     }
   }
@@ -166,9 +167,21 @@ export class TKDatasetFilterer {
   // ////////////////////////////////////////////////////////////////////////////
 
   clearCurrentAdmin1() {
-    this.clearCurrentAdmin2();
     this.levelToZoom = TKFilters.SURVEY;
+
     this.currentAdmin1 = null;
+    this.filters.admin1 = null;
+
+    this.currentAdmin2 = null;
+    this.filters.admin2 = null;
+
+    this.currentCamp = null;
+    this.filters.currentCamp = null;
+    this.currentDate = "";
+    this.currentSubmission = null;
+    this.sortedSubmissions = [];
+
+    this.updateFiltering();
   }
 
   setCurrentAdmin1Name(admin1Name: string) {
@@ -197,11 +210,20 @@ export class TKDatasetFilterer {
   // Change Admin2
   // ////////////////////////////////////////////////////////////////////////////
   clearCurrentAdmin2() {
-    this.clearCurrentCamp();
+    this.levelToZoom = this.currentAdmin1 ? TKFilters.ADMIN1 : TKFilters.SURVEY;
 
-    this.levelToZoom = TKFilters.ADMIN1;
-    this.currentAdmin2 = null;
     this.filters.admin1 = this.currentAdmin1 ? this.currentAdmin1.pcode : null;
+
+    this.currentAdmin2 = null;
+    this.filters.admin2 = null;
+
+    this.currentCamp = null;
+    this.filters.currentCamp = null;
+    this.currentDate = "";
+    this.currentSubmission = null;
+    this.sortedSubmissions = [];
+
+    this.updateFiltering();
   }
 
   setCurrentAdmin2Name(admin2Name: string) {
@@ -243,12 +265,17 @@ export class TKDatasetFilterer {
 
   clearCurrentCamp() {
     // Clear camp
-    this.levelToZoom = TKFilters.ADMIN2;
+    this.levelToZoom = this.currentAdmin2
+      ? TKFilters.ADMIN2
+      : this.currentAdmin1
+      ? TKFilters.ADMIN1
+      : TKFilters.SURVEY;
     this.currentCamp = null;
     this.currentDate = "";
     this.currentSubmission = null;
     this.sortedSubmissions = [];
     this.filters.currentCamp = null;
+    this.updateFiltering();
   }
 
   setCurrentCampName(campName: string) {
