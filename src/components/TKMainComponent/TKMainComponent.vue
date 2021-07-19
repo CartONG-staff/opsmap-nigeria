@@ -144,6 +144,20 @@ export default class TKMainComponent extends Vue {
   }
 
   // Trigger when a camp is selected
+  @Watch("dataset.lastModification")
+  onLastModificationChange() {
+    if (this.isInitialized) {
+      const params = Object.keys(this.$route.params);
+
+      if (params.includes("survey")) {
+        const survey: string = this.$route.params["survey"];
+        if (survey) {
+          this.updateUrl();
+        }
+      }
+    }
+  }
+
   @Watch("dataset.currentDate")
   @Watch("dataset.currentCamp")
   onCampChange() {
@@ -182,11 +196,13 @@ export default class TKMainComponent extends Vue {
     }
   }
 
+  isInitialized = false;
   // Trigger at startup or when the changes comes from the URL
   @Watch("dataset")
   @Watch("$route.params")
   onRouteChanged() {
     const params = Object.keys(this.$route.params);
+
     if (
       params.includes("survey") &&
       params.includes("admin1") &&
@@ -213,46 +229,47 @@ export default class TKMainComponent extends Vue {
           this.dataset.setCurrentAdmin1Name(admin1);
         }
       }
+      this.updateUrl();
+    }
 
-      // upadte URL
-      const surveyE = encodeURIComponent(this.dataset.currentSurvey);
-      const admin1E = encodeURIComponent(
-        this.dataset.currentAdmin1?.name ?? ""
-      );
-      const admin2E = encodeURIComponent(
-        this.dataset.currentAdmin2?.name ?? ""
-      );
-      const campE = encodeURIComponent(this.dataset.currentCamp?.name ?? "");
-      const dateE = encodeURIComponent(
-        this.dataset.currentDate?.replaceAll("/", "-") ?? ""
-      );
+    this.isInitialized = true;
+  }
 
-      let path = `/camp`;
-      if (survey && surveyE) {
-        path += `/${surveyE}`;
-        if (admin1E) {
-          path += `/${admin1E}`;
-          if (admin2E) {
-            path += `/${admin2E}`;
-            if (campE) {
-              path += `/${campE}`;
-              if (dateE) {
-                path += `/${dateE}`;
-              }
+  updateUrl() {
+    // upadte URL
+    const surveyE = encodeURIComponent(this.dataset.currentSurvey);
+    const admin1E = encodeURIComponent(this.dataset.currentAdmin1?.name ?? "");
+    const admin2E = encodeURIComponent(this.dataset.currentAdmin2?.name ?? "");
+    const campE = encodeURIComponent(this.dataset.currentCamp?.name ?? "");
+    const dateE = encodeURIComponent(
+      this.dataset.currentDate?.replaceAll("/", "-") ?? ""
+    );
+
+    let path = `/camp`;
+    if (surveyE) {
+      path += `/${surveyE}`;
+      if (admin1E) {
+        path += `/${admin1E}`;
+        if (admin2E) {
+          path += `/${admin2E}`;
+          if (campE) {
+            path += `/${campE}`;
+            if (dateE) {
+              path += `/${dateE}`;
             }
           }
         }
       }
-      if (this.$route.path !== path) {
-        this.$router.push({
-          path: path,
-          params: {
-            dataset: "dataset",
-            visualizerOptions: "visualizerOptions",
-            appConfig: "appConfig"
-          }
-        });
-      }
+    }
+    if (this.$route.path !== path) {
+      this.$router.push({
+        path: path,
+        params: {
+          dataset: "dataset",
+          visualizerOptions: "visualizerOptions",
+          appConfig: "appConfig"
+        }
+      });
     }
   }
 }
