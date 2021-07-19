@@ -26,6 +26,8 @@ export type TKFiltersTypes = string | boolean | null;
 // ////////////////////////////////////////////////////////////////////////////
 
 export class TKDatasetFilterer {
+  lastModification = "";
+
   surveys: TKSurveyCollection;
   surveyList: string[];
   currentSurvey = "";
@@ -181,6 +183,8 @@ export class TKDatasetFilterer {
     this.currentSubmission = null;
     this.sortedSubmissions = [];
 
+    this.lastModification = `clearAdmin1`;
+
     this.updateFiltering();
   }
 
@@ -188,6 +192,7 @@ export class TKDatasetFilterer {
     const admin1 = this.admin1List.find(admin1 => admin1.name === admin1Name);
     if (admin1) {
       this.setCurrentAdmin1(admin1.pcode);
+      this.lastModification = `${admin1.pcode}`;
     }
   }
 
@@ -201,6 +206,8 @@ export class TKDatasetFilterer {
       this.currentAdmin1 = this.admin1List.find(
         a => a.pcode === pcode
       ) as TKBoundarieDescription;
+
+      this.lastModification = `admin1=${this.currentAdmin1.pcode}`;
 
       this.updateFiltering();
     }
@@ -222,6 +229,8 @@ export class TKDatasetFilterer {
     this.currentDate = "";
     this.currentSubmission = null;
     this.sortedSubmissions = [];
+
+    this.lastModification = `clearAdmin2`;
 
     this.updateFiltering();
   }
@@ -255,6 +264,8 @@ export class TKDatasetFilterer {
         ? this.currentAdmin1.pcode
         : null;
 
+      this.lastModification = `admin2=${this.currentAdmin2.pcode}`;
+
       this.updateFiltering();
     }
   }
@@ -275,6 +286,9 @@ export class TKDatasetFilterer {
     this.currentSubmission = null;
     this.sortedSubmissions = [];
     this.filters.currentCamp = null;
+
+    this.lastModification = "clearCamp";
+
     this.updateFiltering();
   }
 
@@ -315,6 +329,8 @@ export class TKDatasetFilterer {
         this.sortedSubmissions = this.surveys[
           this.currentSurvey
         ].dateOfSubmissionsByCamps[this.currentCamp.id];
+
+        this.lastModification = `camp=${this.currentCamp.id}`;
       }
       this.updateFiltering();
     }
