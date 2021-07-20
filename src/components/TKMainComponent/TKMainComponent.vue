@@ -127,10 +127,13 @@ export default class TKMainComponent extends Vue {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
   };
 
+  currentRoute = "";
+
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
-      this.dataset.resetActiveSurvey();
       if (this.$route.path !== "/") {
+        this.dataset.clearCurrentAdmin1();
+        this.currentRoute = "/";
         this.$router.push({
           name: "home",
           params: {
@@ -146,74 +149,40 @@ export default class TKMainComponent extends Vue {
   // Trigger when a camp is selected
   @Watch("dataset.lastModification")
   onLastModificationChange() {
+    this.visualizerOptions.hideUnanswered =
+      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
     if (this.isInitialized) {
-      const params = Object.keys(this.$route.params);
-
-      if (params.includes("survey")) {
-        const survey: string = this.$route.params["survey"];
-        if (survey) {
-          this.updateUrl();
-        }
-      }
-    }
-  }
-
-  @Watch("dataset.currentDate")
-  @Watch("dataset.currentCamp")
-  onCampChange() {
-    if (
-      this.dataset.currentDate &&
-      this.dataset.currentCamp &&
-      this.dataset.currentAdmin2 &&
-      this.dataset.currentAdmin1 &&
-      this.dataset.currentSurvey
-    ) {
-      this.visualizerOptions.hideUnanswered =
-        DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
-
-      const surveyE = encodeURIComponent(this.dataset.currentSurvey);
-      const admin1E = encodeURIComponent(this.dataset.currentAdmin1.name);
-      const admin2E = encodeURIComponent(this.dataset.currentAdmin2.name);
-      const campE = encodeURIComponent(this.dataset.currentCamp.name);
-      const dateE = encodeURIComponent(
-        this.dataset.currentDate.replaceAll("/", "-")
-      );
-      const path = `/camp/${surveyE}/${admin1E}/${admin2E}/${campE}/${dateE}`;
-
-      if (this.$route.path !== path) {
-        this.$router.push({
-          path: path,
-          params: {
-            dataset: "dataset",
-            visualizerOptions: "visualizerOptions",
-            appConfig: "appConfig"
-          }
-        });
-      }
-    } else {
-      this.visualizerOptions.hideUnanswered =
-        DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
+      this.updateUrlFromDataset();
     }
   }
 
   isInitialized = false;
   // Trigger at startup or when the changes comes from the URL
   @Watch("dataset")
-  @Watch("$route.params")
-  onRouteChanged() {
-    const params = Object.keys(this.$route.params);
+  onDatasetChanged() {
+    this.updateDatasetFromUrl();
+    this.isInitialized = true;
+  }
 
+  @Watch("$route.path")
+  onRouteChangedInTheNavbar() {
     if (
-      params.includes("survey") &&
-      params.includes("admin1") &&
-      params.includes("admin2") &&
-      params.includes("camp") &&
-      params.includes("date")
+      this.currentRoute !== this.$route.path &&
+      this.currentRoute !== this.$route.path + "/"
     ) {
-      const survey: string = this.$route.params["survey"];
-      const admin1: string = this.$route.params["admin1"];
-      const admin2: string = this.$route.params["admin2"];
-      const camp: string = this.$route.params["camp"];
+      this.updateDatasetFromUrl();
+      this.currentRoute = this.$route.path;
+    }
+  }
+
+  updateDatasetFromUrl() {
+    if (this.$route.name === "home") {
+      this.dataset.clearCurrentAdmin1();
+    } else if (this.$route.name === "camp") {
+      const survey: string = this.$route.params["survey"] ?? "";
+      const admin1: string = this.$route.params["admin1"] ?? "";
+      const admin2: string = this.$route.params["admin2"] ?? "";
+      const camp: string = this.$route.params["camp"] ?? "";
       const date: string = this.$route.params["date"]?.replaceAll("-", "/");
 
       if (survey) {
@@ -228,14 +197,13 @@ export default class TKMainComponent extends Vue {
         } else if (admin1) {
           this.dataset.setCurrentAdmin1Name(admin1);
         }
-      }
-      this.updateUrl();
-    }
 
-    this.isInitialized = true;
+        this.updateUrlFromDataset(); // adjust URL with dataset
+      }
+    }
   }
 
-  updateUrl() {
+  updateUrlFromDataset() {
     // upadte URL
     const surveyE = encodeURIComponent(this.dataset.currentSurvey);
     const admin1E = encodeURIComponent(this.dataset.currentAdmin1?.name ?? "");
@@ -259,9 +227,13 @@ export default class TKMainComponent extends Vue {
             }
           }
         }
+      } else {
+        path = "/";
       }
     }
-    if (this.$route.path !== path) {
+
+    if (this.$route.path !== path && this.$route.path !== path + "/") {
+      this.currentRoute = path;
       this.$router.push({
         path: path,
         params: {

@@ -97,12 +97,8 @@ export class TKDatasetFilterer {
         console.error(
           "The survey '" + survey + "' does not exist in the opsmap"
         );
-        this.currentSurvey = "";
-        this.filters.survey = this.currentSurvey;
-        this.campsList = [];
-        this.admin1List = [];
-        this.admin2List = [];
-        this.campsList = [];
+        this.resetActiveSurvey();
+        this.lastModification = "home";
       }
 
       this.updateFiltering();
@@ -161,6 +157,7 @@ export class TKDatasetFilterer {
         this.currentDate = "";
         this.currentSubmission = null;
       }
+      this.lastModification = `date=${this.currentDate}`;
     }
   }
 
