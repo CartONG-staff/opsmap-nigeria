@@ -195,10 +195,9 @@ export class TKDatasetFilterer {
 
   setCurrentAdmin1(pcode: string) {
     this.filters[TKFilters.ADMIN1] = pcode;
+    this.clearCurrentAdmin2();
 
     if (this.currentAdmin1?.pcode !== pcode) {
-      this.clearCurrentAdmin2();
-
       this.levelToZoom = TKFilters.ADMIN1;
       this.currentAdmin1 = this.admin1List.find(
         a => a.pcode === pcode
@@ -241,10 +240,9 @@ export class TKDatasetFilterer {
 
   setCurrentAdmin2(pcode: string) {
     this.filters[TKFilters.ADMIN2] = pcode;
+    this.clearCurrentCamp();
 
     if (this.currentAdmin2?.pcode !== pcode) {
-      this.clearCurrentCamp();
-
       // New admin2
       this.levelToZoom = TKFilters.ADMIN2;
       this.currentAdmin2 = this.admin2List.find(
