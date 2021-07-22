@@ -16,3 +16,22 @@ pages:
     - opsmap
   only:
     - master
+
+test:
+  image: node:latest
+  stage: test
+  script:
+    - npm install --progress=false
+    - npm run build
+    - rm -rf test
+    - mkdir test
+    - cp -r dist/* test
+    - cp test/index.html test/404.html
+  artifacts:
+    paths:
+      - test
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "preview"'
+  tags:
+  - opsmap
+
