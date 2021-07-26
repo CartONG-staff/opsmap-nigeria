@@ -5,7 +5,7 @@
         <v-autocomplete
           v-if="dataset.currentCamp"
           key="1"
-          class="tk-camp-toolbar-date"
+          class="tk-camp-toolbar-item"
           background-color="#418fde"
           color="#ffffff"
           :disabled="dataset.sortedSubmissions.length < 2"
@@ -15,14 +15,14 @@
           dense
           height="44"
           :items="dataset.sortedSubmissions"
-          :prefix="$t('site.dateSuffix').toUpperCase()"
+          :prefix="$t('site.datePreffix').toUpperCase()"
           v-model="model"
           @change="dateSelected"
         ></v-autocomplete>
         <v-autocomplete
           v-else
           key="2"
-          class="tk-camp-toolbar-date-disabled"
+          class="tk-camp-toolbar-item-disabled"
           background-color="#418fde"
           color="#ffffff"
           disabled
@@ -38,21 +38,44 @@
         ></v-autocomplete>
       </div>
     </transition>
-
-    <transition mode="out-in" name="fade-in">
-      <v-btn
-        :key="$root.$i18n.locale"
-        depressed
-        color="#000"
-        elevation="0"
-        class="tk-camp-toolbar-export"
-        height="44"
-        v-on:click="onExportTriggered"
-        :disabled="!dataset.currentCamp"
-      >
-        {{ $t("site.exportAsCSV") }}
-      </v-btn>
-    </transition>
+    <TKCampToolbarExportButton
+      :dataset="dataset"
+      class="tk-camp-toolbar-container"
+    />
+    <!-- <transition mode="out-in" name="fade-in">
+      <div :key="$root.$i18n.locale" class="tk-camp-toolbar-container">
+        <v-autocomplete
+          v-if="dataset.currentCamp"
+          key="1"
+          class="tk-camp-toolbar-item"
+          background-color="#000"
+          color="#ffffff"
+          flat
+          filled
+          solo
+          dense
+          height="44"
+          :items="exportFormats"
+          :prefix="$t('site.exportPreffix').toUpperCase()"
+          v-model="exportModel"
+          @change="onExportTriggered"
+        ></v-autocomplete>
+        <v-autocomplete
+          v-else
+          key="2"
+          class="tk-camp-toolbar-item-disabled"
+          background-color="#000"
+          color="#ffffff"
+          disabled
+          readonly
+          flat
+          filled
+          solo
+          dense
+          height="44"
+        ></v-autocomplete>
+      </div>
+    </transition> -->
 
     <v-menu
       :offset-y="true"
@@ -99,7 +122,13 @@ import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
-@Component
+import TKCampToolbarExportButton from "./TKCampToolbarExportButton.vue";
+
+@Component({
+  components: {
+    TKCampToolbarExportButton
+  }
+})
 export default class TKCampToolbar extends Vue {
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
@@ -108,11 +137,28 @@ export default class TKCampToolbar extends Vue {
   readonly dataset!: TKDatasetFilterer;
 
   model = "";
+  readonly exportFormats = ["PDF", "CSV"];
+  exportModel = "PDF";
 
   dateSelected(date: string) {
     if (this.dataset.currentDate !== date) {
       this.model = date;
       this.dataset.setCurrentDate(date);
+    }
+  }
+
+  onExportTriggered(type: string) {
+    if (this.dataset && this.dataset.currentSubmission) {
+      switch (type) {
+        case "PDF":
+          console.log("Export to PDF");
+          break;
+        case "CSV":
+          TKCSVWrite(this.dataset, this.$root.$i18n.locale);
+          break;
+        default:
+          console.log("Unkknow Output format");
+      }
     }
   }
 
@@ -128,12 +174,6 @@ export default class TKCampToolbar extends Vue {
   onDateChange() {
     this.model = this.dataset.currentDate;
   }
-
-  onExportTriggered() {
-    if (this.dataset && this.dataset.currentSubmission) {
-      TKCSVWrite(this.dataset, this.$root.$i18n.locale);
-    }
-  }
 }
 </script>
 
@@ -145,12 +185,8 @@ export default class TKCampToolbar extends Vue {
   align-items: top;
   column-gap: 5px;
 }
-.tk-camp-toolbar-date-container {
-  width: 40%;
-  min-width: 50px;
-}
 
-.tk-camp-toolbar-date-single {
+.tk-camp-toolbar-item.theme--light.v-input input {
   color: #fff !important;
   font-family: "Arial";
   font-weight: bold !important;
@@ -158,36 +194,15 @@ export default class TKCampToolbar extends Vue {
   letter-spacing: 0.86px !important;
 }
 
-.tk-camp-toolbar-export {
-  width: 40%;
-  min-width: 50px;
-  overflow: hidden;
-}
-.tk-camp-toolbar-export .v-btn__content {
-  color: #fff !important;
-  font-family: "Arial";
-  font-weight: bold !important;
-  font-size: 12px !important;
-  letter-spacing: 0.86px !important;
-}
-
-.tk-camp-toolbar-date.theme--light.v-input input {
-  color: #fff !important;
-  font-family: "Arial";
-  font-weight: bold !important;
-  font-size: 12px !important;
-  letter-spacing: 0.86px !important;
-}
-
-.tk-camp-toolbar-date .v-icon.v-icon {
+.tk-camp-toolbar-item .v-icon.v-icon {
   color: #fff !important;
 }
 
-.tk-camp-toolbar-date .theme--light.v-icon.v-icon.v-icon--disabled {
+.tk-camp-toolbar-item .theme--light.v-icon.v-icon.v-icon--disabled {
   opacity: 1 !important;
 }
 
-.tk-camp-toolbar-date-disabled.v-input--is-disabled .v-input__slot {
+.tk-camp-toolbar-item-disabled.v-input--is-disabled .v-input__slot {
   background-color: rgba(0, 0, 0, 0.12) !important;
 }
 
