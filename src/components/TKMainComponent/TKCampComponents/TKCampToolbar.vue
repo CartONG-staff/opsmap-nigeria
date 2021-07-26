@@ -38,44 +38,11 @@
         ></v-autocomplete>
       </div>
     </transition>
+
     <TKCampToolbarExportButton
       :dataset="dataset"
       class="tk-camp-toolbar-container"
     />
-    <!-- <transition mode="out-in" name="fade-in">
-      <div :key="$root.$i18n.locale" class="tk-camp-toolbar-container">
-        <v-autocomplete
-          v-if="dataset.currentCamp"
-          key="1"
-          class="tk-camp-toolbar-item"
-          background-color="#000"
-          color="#ffffff"
-          flat
-          filled
-          solo
-          dense
-          height="44"
-          :items="exportFormats"
-          :prefix="$t('site.exportPreffix').toUpperCase()"
-          v-model="exportModel"
-          @change="onExportTriggered"
-        ></v-autocomplete>
-        <v-autocomplete
-          v-else
-          key="2"
-          class="tk-camp-toolbar-item-disabled"
-          background-color="#000"
-          color="#ffffff"
-          disabled
-          readonly
-          flat
-          filled
-          solo
-          dense
-          height="44"
-        ></v-autocomplete>
-      </div>
-    </transition> -->
 
     <v-menu
       :offset-y="true"
@@ -122,7 +89,7 @@ import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
-import TKCampToolbarExportButton from "./TKCampToolbarExportButton.vue";
+import TKCampToolbarExportButton from "./TKCampToolbarExportButtonV2.vue";
 
 @Component({
   components: {
