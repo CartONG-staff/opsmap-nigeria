@@ -1,7 +1,7 @@
 <template>
   <transition mode="out-in" name="fade-in">
     <div :key="$root.$i18n.locale" class="tk-camp-toolbar-container">
-      <v-autocomplete
+      <v-select
         v-if="dataset.currentCamp"
         key="1"
         class="tk-camp-toolbar-item"
@@ -13,11 +13,12 @@
         dense
         height="44"
         :items="exportFormats"
+        :label="exportModel"
         :prefix="$t('site.exportPreffix').toUpperCase()"
         v-model="exportModel"
-        @change="onExportTriggered"
-      ></v-autocomplete>
-      <v-autocomplete
+        @click="resetSelected()"
+      ></v-select>
+      <v-select
         v-else
         key="2"
         class="tk-camp-toolbar-item-disabled"
@@ -30,7 +31,7 @@
         solo
         dense
         height="44"
-      ></v-autocomplete>
+      ></v-select>
     </div>
   </transition>
 </template>
@@ -38,20 +39,26 @@
 <script lang="ts">
 import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKCampToolbarExportButton extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
-
-  model = "";
   readonly exportFormats = ["PDF", "CSV"];
   exportModel = "PDF";
 
-  onExportTriggered(type: string) {
+  resetSelected() {
+    this.exportModel = "";
+  }
+
+  @Watch("exportModel")
+  onExportTriggered() {
     if (this.dataset && this.dataset.currentSubmission) {
-      switch (type) {
+      switch (this.exportModel) {
+        case "":
+          console.log("Break because empty");
+          break;
         case "PDF":
           console.log("Export to PDF");
           break;
