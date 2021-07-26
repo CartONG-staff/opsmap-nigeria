@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Site Report</title>
+    <head>
+    <style type="text/css">
+        .container{
+            background-color: lightcoral;
+            width:21cm;
+            height:29.7cm;
+            display: flex;
+            flex-flow: column nowrap;
+            padding: 0.5cm;
+            font-family: "Arial";
+        }
+        /* HEADER */
+        .header{
+            display: flex;
+            flex-flow: row nowrap;
+            padding-left: 0.5cm;
+            padding-right: 0.5cm;
+            background-color: #fff;
+            height: 1.3cm;
+            justify-content: left;
+            align-items: center;
+        }
+        .header-left{
+            background-color: blue;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            height: 100%;
+        }
+        .header-center{
+            background-color: yellow;
+            flex-grow: 2;
+            text-align: center;
+        }
+        .header-right{
+            background-color: red;
+            height: 100%;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: left;
+        }
+
+        .header-cccm-logo{
+            text-decoration: none;
+            height: 1cm;
+        }
+        .header-opsmap-logo{
+            text-decoration: none;
+            width: 1cm;
+            height: 1cm;
+        }
+        .header-opsmap-title{
+            color: #428fdf;
+            letter-spacing: 1.5;
+            font-weight: 700;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .headlines{
+            background-color: aquamarine;
+            width:100%;
+            height: 5cm;
+        }
+        .content{
+            background-color: azure;
+            width:100%;
+            height: 5cm;
+        }
+        .footer{
+            background-color: bisque;
+            width:100%;
+            height: 5cm;
+        }
+    </style>
+    <meta charset="utf-8">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <img src="LogoOpsmap.png" class="header-opsmap-logo"/>
+                <h3>
+                    <span class="header-opsmap-title">DEMO-BRAZIL</span>
+                </h3>
+            </div>
+            <div class="header-center">
+                title
+            </div>
+            <div class="header-right">
+                <img src="LogoCluster.png" class="header-cccm-logo"/>
+            </div>
+        </div>
+        <div class="headlines"></div>
+        <div class="content"></div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>
