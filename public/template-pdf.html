@@ -5,7 +5,7 @@
     <head>
     <style type="text/css">
         .container{
-            background-color: lightcoral;
+            /* background-color: lightcoral; */
             width:21cm;
             height:29.7cm;
             display: flex;
@@ -13,7 +13,16 @@
             padding: 0.5cm;
             font-family: "Arial";
         }
-        /* HEADER */
+        /* HEADER ************************************************************/
+        .header-separator{
+            /* height: 0.1cm;
+            border: 0;
+            box-shadow: inset 0 0.1cm 0.1cm -0.1cm #428fdf88; */
+            border: 0;
+            height: 0;
+            border-top: 1px solid #428fdf22;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
         .header{
             display: flex;
             flex-flow: row nowrap;
@@ -21,32 +30,14 @@
             padding-right: 0.5cm;
             background-color: #fff;
             height: 1.3cm;
-            justify-content: left;
+            justify-content: space-between;
             align-items: center;
         }
         .header-left{
-            background-color: blue;
             display: flex;
             flex-flow: row nowrap;
             align-items: center;
             height: 100%;
-        }
-        .header-center{
-            background-color: yellow;
-            flex-grow: 2;
-            text-align: center;
-        }
-        .header-right{
-            background-color: red;
-            height: 100%;
-            flex-flow: row nowrap;
-            align-items: center;
-            justify-content: left;
-        }
-
-        .header-cccm-logo{
-            text-decoration: none;
-            height: 1cm;
         }
         .header-opsmap-logo{
             text-decoration: none;
@@ -59,13 +50,40 @@
             font-weight: 700;
             font-size: 18px;
             text-align: left;
+            margin-right: 0.3cm;
         }
 
+        .header-opsmap-date
+        .header-opsmap-subtitle{
+            color: #333333;
+            letter-spacing: 1.5;
+            font-weight: 700;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .header-center{
+            flex-grow: 2;
+            text-align: center;
+        }
+
+        .header-right{
+            flex-flow: row nowrap;
+            justify-content: right;
+            height: 1cm;
+        }
+        .header-cccm-logo{
+            text-decoration: none;
+            height: 1cm;
+        }
+
+        /* HEADLINES *********************************************************/
         .headlines{
-            background-color: aquamarine;
             width:100%;
             height: 5cm;
         }
+
+        /* CONTENT ***********************************************************/
         .content{
             background-color: azure;
             width:100%;
@@ -85,17 +103,26 @@
             <div class="header-left">
                 <img src="LogoOpsmap.png" class="header-opsmap-logo"/>
                 <h3>
-                    <span class="header-opsmap-title">DEMO-BRAZIL</span>
+                    <span class="header-opsmap-title">DEMO</span>
+                    <span class="header-opsmap-subtitle">Nova Canaã - 05/07/21</span>
                 </h3>
-            </div>
-            <div class="header-center">
-                title
             </div>
             <div class="header-right">
                 <img src="LogoCluster.png" class="header-cccm-logo"/>
             </div>
         </div>
-        <div class="headlines"></div>
+        <div class="header-separator"> </div>
+        <div class="headlines">
+            <div class="headlines-left">
+                <div class="headlines-left-title">
+                    <span class="tk-title-base">
+                        Site Tracker
+                    </span>
+                </div>
+                <div class="headlines-left-infos"></div>
+            </div>
+            <div class="headlines-right"></div>
+        </div>
         <div class="content"></div>
         <div class="footer"></div>
     </div>
