@@ -53,16 +53,9 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 export default class TKCampToolbarExportButton extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
-  readonly exportFormats = ["PDF", "CSV"];
-  exportModel = "PDF";
-
-  resetSelected() {
-    this.exportModel = "";
-  }
-
   exportToPDF() {
     if (this.dataset && this.dataset.currentSubmission) {
-      // console.log("Export to PDF");
+      console.log("About to print into PDF");
       TKPDFWrite(this.dataset, this.$root.$i18n.locale);
     }
   }
