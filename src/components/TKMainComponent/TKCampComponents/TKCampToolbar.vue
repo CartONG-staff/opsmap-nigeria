@@ -41,6 +41,7 @@
 
     <TKCampToolbarExportButton
       :dataset="dataset"
+      :visualizerOptions="visualizerOptions"
       class="tk-camp-toolbar-container"
     />
 
@@ -88,7 +89,7 @@
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
-import TKCampToolbarExportButton from "./TKCampToolbarExportButtonV2.vue";
+import TKCampToolbarExportButton from "./TKCampToolbarExportButton.vue";
 
 @Component({
   components: {
