@@ -44,7 +44,8 @@
 </template>
 
 <script lang="ts">
-import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
+import { TKCSVWrite } from "@/domain/export/TKCSVWriter";
+import { TKPDFWrite } from "@/domain/export/TKPDFWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop } from "vue-property-decorator";
 
@@ -61,7 +62,8 @@ export default class TKCampToolbarExportButton extends Vue {
 
   exportToPDF() {
     if (this.dataset && this.dataset.currentSubmission) {
-      console.log("Export to PDF");
+      // console.log("Export to PDF");
+      TKPDFWrite(this.dataset, this.$root.$i18n.locale);
     }
   }
 
@@ -72,3 +74,11 @@ export default class TKCampToolbarExportButton extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.tk-camp-toolbar-container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: top;
+}
+</style>

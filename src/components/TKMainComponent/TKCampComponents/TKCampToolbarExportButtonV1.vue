@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
+import { TKCSVWrite } from "@/domain/export/TKCSVWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 

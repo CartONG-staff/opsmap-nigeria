@@ -3,22 +3,10 @@ import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionEntryAgePyramid } from "../survey/TKSubmissionEntryAgePyramid";
 import { TKSubmissionEntryText } from "../survey/TKSubmissionEntryText";
 import { TKGetLocalValue } from "../ui/TKLabel";
-
+import { TKComputeExportFilename } from "./TKExportCommon";
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods
 // ////////////////////////////////////////////////////////////////////////////
-
-function computeExportFilename(dataset: TKDatasetFilterer): string {
-  if (dataset) {
-    const campId = dataset.currentCamp?.id ?? "";
-    const campName = dataset.currentCamp?.name ?? "";
-    const submissionId = dataset.currentDate.replaceAll("/", "-");
-
-    const filename = campId + "_" + campName + "_" + submissionId;
-    return filename + ".csv";
-  }
-  return "camp-export.json";
-}
 
 function computeCSVContent(submission: TKSubmission, locale: string): string {
   if (submission) {
@@ -94,7 +82,7 @@ export function TKCSVWrite(dataset: TKDatasetFilterer, locale: string) {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", computeExportFilename(dataset)); // filename
+    link.setAttribute("download", TKComputeExportFilename(dataset, "csv")); // filename
     document.body.appendChild(link); // Required for FF ?
     link.click();
   }
