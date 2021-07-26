@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="pdf-document">
     <div class="header">
       <div class="header-left">
         <img src="@/assets/LogoOpsmap.png" class="header-opsmap-logo" />
@@ -46,13 +46,10 @@ export default class TKCampToolbar extends Vue {
 }
 </script>
 
-<style scopde>
-.container {
-  background-color: red;
-  display: flex;
-  flex-flow: column nowrap;
-  padding: 0.5cm;
-  font-family: "Arial";
+<style scoped>
+.pdf-document {
+  background-color: coral;
+  max-width: 21cm;
 }
 
 .header {

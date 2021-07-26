@@ -23,11 +23,9 @@
           <span>{{ $t("site.exportPreffix") }} PDF</span>
         </v-tooltip>
       </template>
-      <TKCampPDF
-        class="tk-camp-pdf"
-        :visualizerOptions="visualizerOptions"
-        :dataset="dataset"
-      />
+      <v-card class="tk-camp-pdf-container">
+        <TKCampPDF :visualizerOptions="visualizerOptions" :dataset="dataset" />
+      </v-card>
     </v-dialog>
 
     <v-tooltip top>
@@ -87,13 +85,14 @@ export default class TKCampToolbarExportButton extends Vue {
 </script>
 
 <style scoped>
-.k-camp-pdf {
-  width: 21cm;
-  height: 29.7cm;
-}
 .tk-camp-toolbar-container {
   display: flex;
   flex-flow: row nowrap;
   align-items: top;
+}
+</style>
+<style>
+.v-dialog--active {
+  max-width: 21cm !important;
 }
 </style>
