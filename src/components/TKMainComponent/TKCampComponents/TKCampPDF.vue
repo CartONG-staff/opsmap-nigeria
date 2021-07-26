@@ -4,8 +4,10 @@
       <div class="header-left">
         <img src="@/assets/LogoOpsmap.png" class="header-opsmap-logo" />
         <h3>
-          <span class="header-opsmap-title">DEMO</span>
-          <span class="header-opsmap-subtitle">Nova Canaã - 05/07/21</span>
+          <span class="header-opsmap-title">{{ appName }}</span>
+          <span class="header-opsmap-subtitle"
+            >{{ siteName }} - {{ date }}</span
+          >
         </h3>
       </div>
       <div class="header-right">
@@ -30,9 +32,12 @@
 </template>
 
 <script lang="ts">
+import { TKOpsmapConfiguration } from "@/domain";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
+import { toTitleCase } from "@/domain/ui/TKStringUtils";
 
 @Component({
   components: {}
@@ -43,22 +48,37 @@ export default class TKCampToolbar extends Vue {
 
   @Prop()
   readonly dataset!: TKDatasetFilterer;
+
+  @Prop()
+  readonly appConfig!: TKOpsmapConfiguration;
+
+  appName = "";
+  siteName = "";
+  date = "";
+
+  mounted() {
+    if (this.appConfig && this.dataset && this.dataset.currentCamp) {
+      this.appName = TKGetLocalValue(
+        this.appConfig.name,
+        this.$root.$i18n.locale
+      ).toUpperCase();
+      this.siteName = toTitleCase(this.dataset.currentCamp.name.toUpperCase());
+      this.date = this.dataset.currentDate;
+    }
+  }
 }
 </script>
 
 <style scoped>
 .pdf-document {
-  background-color: coral;
+  background-color: #fff;
   max-width: 21cm;
 }
 
 .header {
   display: flex;
   flex-flow: row nowrap;
-  padding-left: 0.5cm;
-  padding-right: 0.5cm;
-  background-color: #fff;
-  height: 1.3cm;
+  padding: 0.5cm;
   justify-content: space-between;
   align-items: center;
 }
@@ -120,7 +140,6 @@ export default class TKCampToolbar extends Vue {
 
 /* HEADLINES *********************************************************/
 .headlines {
-  background-color: aqua;
   width: 100%;
   height: 5cm;
 }

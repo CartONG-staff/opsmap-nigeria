@@ -18,6 +18,7 @@
             <router-view
               v-else
               name="left"
+              :appConfig="appConfig"
               :dataset="dataset"
               :visualizerOptions="visualizerOptions"
             ></router-view>

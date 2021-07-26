@@ -1,12 +1,17 @@
 <template>
   <div class="tk-camp-left">
     <TKCampSubtitle :dataset="dataset" />
-    <TKCampToolbar :dataset="dataset" :visualizerOptions="visualizerOptions" />
+    <TKCampToolbar
+      :dataset="dataset"
+      :visualizerOptions="visualizerOptions"
+      :appConfig="appConfig"
+    />
     <TKCampInfos :dataset="dataset" />
   </div>
 </template>
 
 <script lang="ts">
+import { TKOpsmapConfiguration } from "@/domain";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import {
@@ -28,6 +33,9 @@ export default class TKMainComponentLeftHome extends Vue {
 
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
+
+  @Prop()
+  readonly appConfig!: TKOpsmapConfiguration;
 }
 </script>
 

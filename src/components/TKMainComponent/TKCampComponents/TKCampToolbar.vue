@@ -40,6 +40,7 @@
     </transition>
 
     <TKCampToolbarExportButton
+      :appConfig="appConfig"
       :dataset="dataset"
       :visualizerOptions="visualizerOptions"
       class="tk-camp-toolbar-container"
@@ -90,6 +91,7 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 import TKCampToolbarExportButton from "./TKCampToolbarExportButton.vue";
+import { TKOpsmapConfiguration } from "@/domain";
 
 @Component({
   components: {
@@ -102,6 +104,9 @@ export default class TKCampToolbar extends Vue {
 
   @Prop()
   readonly dataset!: TKDatasetFilterer;
+
+  @Prop()
+  readonly appConfig!: TKOpsmapConfiguration;
 
   dateModel = "";
 

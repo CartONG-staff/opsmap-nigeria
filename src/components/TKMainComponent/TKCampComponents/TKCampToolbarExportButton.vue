@@ -11,7 +11,6 @@
               height="44"
               width="44"
               :disabled="!dataset.currentCamp"
-              @click="exportToPDF()"
               v-bind="attrs"
               v-on="{ ...tooltip, ...dialog }"
             >
@@ -24,7 +23,11 @@
         </v-tooltip>
       </template>
       <v-card class="tk-camp-pdf-container">
-        <TKCampPDF :visualizerOptions="visualizerOptions" :dataset="dataset" />
+        <TKCampPDF
+          :visualizerOptions="visualizerOptions"
+          :dataset="dataset"
+          :appConfig="appConfig"
+        />
       </v-card>
     </v-dialog>
 
@@ -54,10 +57,10 @@
 <script lang="ts">
 import TKCampPDF from "./TKCampPDF.vue";
 import { TKCSVWrite } from "@/domain/export/TKCSVWriter";
-import { TKPDFWrite } from "@/domain/export/TKPDFWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
+import { TKOpsmapConfiguration } from "@/domain";
 
 @Component({
   components: {
@@ -69,12 +72,8 @@ export default class TKCampToolbarExportButton extends Vue {
   readonly dataset!: TKDatasetFilterer;
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-  exportToPDF() {
-    if (this.dataset && this.dataset.currentSubmission) {
-      console.log("About to print into PDF");
-      TKPDFWrite(this.dataset, this.$root.$i18n.locale);
-    }
-  }
+  @Prop()
+  readonly appConfig!: TKOpsmapConfiguration;
 
   exportToCSV() {
     if (this.dataset && this.dataset.currentSubmission) {
