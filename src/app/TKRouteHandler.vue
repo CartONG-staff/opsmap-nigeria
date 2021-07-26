@@ -77,24 +77,6 @@ export default class TKRouteHandler extends Vue {
         } else if (admin1) {
           this.dataset.setCurrentAdmin1Name(admin1);
         }
-        // if (
-        //   admin1 !== this.dataset.currentAdmin1?.name ||
-        //   admin2 !== this.dataset.currentAdmin2?.name ||
-        //   camp !== this.dataset.currentCamp?.name ||
-        //   date !== this.dataset.currentDate
-        // ) {
-        //   console.log("- requires update");
-        //   console.log(admin1);
-        //   console.log(this.dataset.currentAdmin1?.name);
-        //   console.log(admin2);
-        //   console.log(this.dataset.currentAdmin2?.name);
-        //   console.log(camp);
-        //   console.log(this.dataset.currentCamp?.name);
-        //   console.log(date);
-        //   console.log(this.dataset.currentDate);
-        //   // URL requires update
-        //   this.updateUrlFromDataset();
-        // }
       }
     }
   }
