@@ -44,6 +44,8 @@ export async function TKReadFDFTrafficLightsCollection(
   >(TKFDFFiles.TRAFFIC_LIGHTS, infos.folder, true);
 
   const trafficLights: TKFDFTrafficLightsCollection = {};
+  console.log(rawTrafficLights);
+  
   for (const item of rawTrafficLights) {
     if (trafficLights[item.traffic_light_name]) {
       trafficLights[item.traffic_light_name].values.push({
@@ -61,6 +63,7 @@ export async function TKReadFDFTrafficLightsCollection(
         ]
       };
     }
-  }
+  }  
+  console.log(trafficLights);
   return trafficLights;
 }
