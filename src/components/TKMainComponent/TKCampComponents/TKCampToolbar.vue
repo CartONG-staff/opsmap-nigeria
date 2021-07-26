@@ -16,7 +16,7 @@
           height="44"
           :items="dataset.sortedSubmissions"
           :prefix="$t('site.datePreffix').toUpperCase()"
-          v-model="model"
+          v-model="dateModel"
           @change="dateSelected"
         ></v-autocomplete>
         <v-autocomplete
@@ -33,7 +33,7 @@
           dense
           height="44"
           :items="dataset.sortedSubmissions"
-          v-model="model"
+          v-model="dateModel"
           @change="dateSelected"
         ></v-autocomplete>
       </div>
@@ -85,7 +85,6 @@
 </template>
 
 <script lang="ts">
-import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
@@ -103,43 +102,19 @@ export default class TKCampToolbar extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
 
-  model = "";
-  readonly exportFormats = ["PDF", "CSV"];
-  exportModel = "PDF";
+  dateModel = "";
 
   dateSelected(date: string) {
     if (this.dataset.currentDate !== date) {
-      this.model = date;
+      this.dateModel = date;
       this.dataset.setCurrentDate(date);
     }
   }
 
-  onExportTriggered(type: string) {
-    if (this.dataset && this.dataset.currentSubmission) {
-      switch (type) {
-        case "PDF":
-          console.log("Export to PDF");
-          break;
-        case "CSV":
-          TKCSVWrite(this.dataset, this.$root.$i18n.locale);
-          break;
-        default:
-          console.log("Unkknow Output format");
-      }
-    }
-  }
-
   @Watch("dataset.currentCamp", { immediate: true })
-  onCampChange() {
-    this.model =
-      this.dataset.sortedSubmissions && this.dataset.sortedSubmissions.length
-        ? this.dataset.sortedSubmissions[0]
-        : "";
-  }
-
   @Watch("dataset.currentDate", { immediate: true })
   onDateChange() {
-    this.model = this.dataset.currentDate;
+    this.dateModel = this.dataset.currentDate;
   }
 }
 </script>
