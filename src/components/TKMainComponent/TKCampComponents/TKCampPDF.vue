@@ -75,9 +75,18 @@
       </div>
       <div class="header-separator"></div>
       <div class="indicators">
-        <div class="indicator" />
-        <div class="indicator" />
-        <div class="indicator" />
+        <TKCampPDFIndicator
+          class="indicator"
+          :indicator="this.dataset.currentSubmission.indicators[0]"
+        />
+        <TKCampPDFIndicator
+          class="indicator"
+          :indicator="this.dataset.currentSubmission.indicators[1]"
+        />
+        <TKCampPDFIndicator
+          class="indicator"
+          :indicator="this.dataset.currentSubmission.indicators[2]"
+        />
       </div>
     </div>
   </div>
@@ -96,11 +105,10 @@ import jsPDF from "jspdf";
 import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
 import { LngLat } from "mapbox-gl";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import TKCampIndicators from "@/components/TKMainComponent/TKCampComponents/TKCampIndicators.vue";
-
+import TKCampPDFIndicator from "./TKCampPDFIndicator.vue";
 @Component({
   components: {
-    TKCampIndicators
+    TKCampPDFIndicator
   }
 })
 export default class TKCampToolbar extends Vue {
@@ -376,15 +384,8 @@ export default class TKCampToolbar extends Vue {
 
 .indicators > * {
   background-color: #fff;
-  /* box-shadow: 0 0 20px 2px rgba(18, 63, 98, 0.15); */
-  border: 1px solid #99999922;
-
   height: 20mm;
   width: 60mm;
-  /* display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: top; */
   border-radius: 15px;
 }
 
