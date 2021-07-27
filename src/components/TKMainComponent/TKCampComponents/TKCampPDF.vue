@@ -6,9 +6,6 @@
           <img src="@/assets/LogoOpsmap.png" class="header-logo" />
           <h3>
             <span class="header-opsmap-title">{{ appName }}</span>
-            <span class="header-opsmap-subtitle"
-              >{{ siteName }} - {{ date }}</span
-            >
           </h3>
         </div>
         <div class="header-right">
@@ -16,6 +13,66 @@
         </div>
       </div>
       <div class="header-separator"></div>
+      <div class="headlines">
+        <div class="headlines-left">
+          <div class="headlines-title">{{ siteName }} - {{ date }}</div>
+          <div class="headlines-infos">
+            <div class="tk-camp-infos">
+              <!-- Site Type -->
+              <div class="tk-camp-infos-field">
+                <div class="tk-camp-infos-field-key">
+                  {{ $t("infosSiteType").toUpperCase() }}
+                </div>
+                <div class="tk-camp-infos-field-value">
+                  {{ siteType.toUpperCase() }}
+                </div>
+              </div>
+              <div class="headlines-hseparator" />
+              <!-- ADMIN1 -->
+              <div class="tk-camp-infos-field">
+                <div class="tk-camp-infos-field-key">
+                  {{ $t("infosAdmin1").toUpperCase() }}
+                </div>
+                <div class="tk-camp-infos-field-value">
+                  {{ admin1.toUpperCase() }}
+                </div>
+              </div>
+              <div class="headlines-hseparator" />
+              <!-- ADMIN2 -->
+              <div class="tk-camp-infos-field">
+                <div class="tk-camp-infos-field-key">
+                  {{ $t("infosAdmin2").toUpperCase() }}
+                </div>
+                <div class="tk-camp-infos-field-value">
+                  {{ admin2.toUpperCase() }}
+                </div>
+              </div>
+              <div class="headlines-hseparator" />
+              <!-- GPS COORDINATES -->
+              <div class="tk-camp-infos-field">
+                <div class="tk-camp-infos-field-key">
+                  {{ $t("site.infosCoordinates").toUpperCase() }}
+                </div>
+                <div class="tk-camp-infos-field-value">
+                  {{ coordinates.toUpperCase() }}
+                </div>
+              </div>
+              <div class="headlines-hseparator" />
+              <div class="tk-camp-infos-field">
+                <div class="tk-camp-infos-field-key">
+                  {{ $t("manageBy").toUpperCase() }}
+                </div>
+                <div class="tk-camp-infos-field-value">
+                  {{ manageBy.toUpperCase() }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="headlines-right">
+          <div class="headlines-map" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -117,8 +174,8 @@ export default class TKCampToolbar extends Vue {
 /* A4 = 8.27x11.69" x 72points/inch = 595x842 points */
 /* 595x842 points */
 .pdf-document {
-  background-color: cornflowerblue;
-  padding: 6pt;
+  background-color: #fff;
+  padding: 5mm;
   width: 210mm;
   height: 296mm; /* Exact 297mm creates an extra blank page. */
 }
@@ -129,12 +186,13 @@ export default class TKCampToolbar extends Vue {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
+  row-gap: 3mm;
   overflow: hidden;
 }
 
+/* HEADER ************************************************************/
+
 .header {
-  /* background-color: coral; */
-  height: 2cm;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -144,7 +202,14 @@ export default class TKCampToolbar extends Vue {
   text-decoration: none;
   height: 15mm;
 }
-/* HEADER ************************************************************/
+
+.header > div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 100%;
+}
+
 .header-separator {
   /* height: 0.1pt;
             border: 0;
@@ -155,54 +220,44 @@ export default class TKCampToolbar extends Vue {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.header-left {
-  background-color: royalblue;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  height: 100%;
-}
-
-.header-opsmap-title {
-  color: #428fdf;
-  letter-spacing: 1.5;
-  font-weight: 700;
-  font-size: 18px;
-  text-align: left;
-  margin-right: 0.3pt;
-}
-
 .header-opsmap-date .header-opsmap-subtitle {
   color: #333333;
-  letter-spacing: 1.5;
+  letter-spacing: 1;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 14px;
   text-align: left;
-}
-
-.header-right {
-  background-color: crimson;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  height: 100%;
 }
 
 /* HEADLINES *********************************************************/
 .headlines {
   width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 
-.headlines-left-infos {
-  width: 80mm;
-}
-
-.tk-camp-subtitle {
-  color: var(--v-campTitle-base);
-  font-size: 30px;
+.headlines-title {
+  margin-top: 5mm;
+  margin-bottom: 5mm;
+  color: #333333;
+  font-size: 25px;
+  font-weight: bold;
   line-height: 1.467;
 }
 
+.headlines-infos {
+  width: 80mm;
+}
+
+.headlines-map {
+  background-color: coral;
+  width: 100mm;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* HEADLINES *********************************************************/
 .tk-title-base {
   color: #428fdf;
   font-size: 30px;
