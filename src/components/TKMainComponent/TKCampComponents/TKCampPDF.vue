@@ -70,7 +70,9 @@
           </div>
         </div>
         <div class="headlines-right">
-          <div class="headlines-map" />
+          <div class="headlines-map" ref="headlines-map" id="headlines-map">
+            <img class="headlines-map-img" :src="mapImg" />
+          </div>
         </div>
       </div>
     </div>
@@ -88,6 +90,10 @@ import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 import jsPDF from "jspdf";
 import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
+import mapboxgl, { LngLat, SymbolLayer } from "mapbox-gl";
+import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
+import { Feature } from "geojson";
+import { TKIconUrl } from "@/domain/ui/TKIcons";
 
 @Component({
   components: {}
@@ -113,6 +119,10 @@ export default class TKCampToolbar extends Vue {
   siteType = "-";
   coordinates = "-";
   manageBy = "";
+
+  //Img src
+  mapImg =
+    `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/-122.337798,37.810550,9.67,0.00,0.00/1000x600@2x?access_token=YOUR_MAPBOX_ACCESS_TOKEN";
 
   mounted() {
     if (this.appConfig && this.dataset && this.dataset.currentCamp) {
@@ -145,8 +155,15 @@ export default class TKCampToolbar extends Vue {
 
       this.coordinates =
         this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng;
-    }
 
+      this.initMap();
+    }
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+  // Export to pdf
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+  exportToPDF() {
     const documentTitle = TKComputeExportFilename(this.dataset, "pdf");
     const pdf = new jsPDF({
       orientation: "portrait",
@@ -168,8 +185,80 @@ export default class TKCampToolbar extends Vue {
         });
     });
   }
+
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+  // map object management method
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+  initMap(): void {
+    if (this.dataset && this.dataset.currentCamp) {
+      // Init the map - world level
+      const bound = new LngLat(
+        this.dataset.currentCamp.lng,
+        this.dataset.currentCamp.lat
+      ).toBounds(5000);
+
+      const map = new mapboxgl.Map({
+        container: "headlines-map",
+        style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",
+        accessToken: this.appConfig.mapConfig.token,
+        bounds: bound
+      });
+      map.on("load", () => {
+        if (this.dataset && this.dataset.currentCamp) {
+          const markersList = [
+            "planned_site_selected",
+            "spontaneous_site_selected"
+          ];
+          markersList.map(img => {
+            map.loadImage(TKIconUrl(img), (error, image) => {
+              if (!map.hasImage(img)) {
+                map.addImage(img, image as ImageBitmap);
+                if (error) throw error;
+              }
+            });
+          });
+
+          const feature: Feature = {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [
+                this.dataset.currentCamp.lng,
+                this.dataset.currentCamp.lat
+              ]
+            },
+            properties: {
+              id: this.dataset.currentCamp.id,
+              name: this.dataset.currentCamp.name,
+              lat: this.dataset.currentCamp.lat,
+              lng: this.dataset.currentCamp.lng
+            }
+          };
+
+          map.addSource(TKMapLayers.SELECTEDCAMPSOURCE, {
+            type: "geojson",
+            data: feature
+          });
+          map.addLayer(
+            TKMapLayersStyle[TKMapLayers.SELECTEDCAMPLAYER] as SymbolLayer
+          );
+
+          this.mapImg = map.getCanvas().toDataURL();
+
+          this.exportToPDF();
+        }
+      });
+    }
+  }
 }
 </script>
+
+<style>
+#headlines-map canvas {
+  outline: 0 !important;
+}
+</style>
+
 <style scoped>
 /* A4 = 8.27x11.69" x 72points/inch = 595x842 points */
 /* 595x842 points */
@@ -250,10 +339,15 @@ export default class TKCampToolbar extends Vue {
 }
 
 .headlines-map {
-  background-color: coral;
   width: 100mm;
   height: 100%;
   border-radius: 15px;
+  overflow: hidden;
+}
+
+.headlines-map-img {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
