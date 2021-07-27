@@ -70,10 +70,14 @@
           </div>
         </div>
         <div class="headlines-right">
-          <div class="headlines-map" ref="headlines-map" id="headlines-map">
-            <img class="headlines-map-img" :src="mapImg" />
-          </div>
+          <img class="headlines-map-img" :src="mapImg" />
         </div>
+      </div>
+      <div class="header-separator"></div>
+      <div class="indicators">
+        <div class="indicator" />
+        <div class="indicator" />
+        <div class="indicator" />
       </div>
     </div>
   </div>
@@ -90,13 +94,14 @@ import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 import jsPDF from "jspdf";
 import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
-import mapboxgl, { LngLat, SymbolLayer } from "mapbox-gl";
-import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
-import { Feature } from "geojson";
+import { LngLat } from "mapbox-gl";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
+import TKCampIndicators from "@/components/TKMainComponent/TKCampComponents/TKCampIndicators.vue";
 
 @Component({
-  components: {}
+  components: {
+    TKCampIndicators
+  }
 })
 export default class TKCampToolbar extends Vue {
   @Prop()
@@ -121,8 +126,7 @@ export default class TKCampToolbar extends Vue {
   manageBy = "";
 
   //Img src
-  mapImg =
-    `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/-122.337798,37.810550,9.67,0.00,0.00/1000x600@2x?access_token=YOUR_MAPBOX_ACCESS_TOKEN";
+  mapImg = "";
 
   mounted() {
     if (this.appConfig && this.dataset && this.dataset.currentCamp) {
@@ -157,6 +161,8 @@ export default class TKCampToolbar extends Vue {
         this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng;
 
       this.initMap();
+
+      this.exportToPDF();
     }
   }
 
@@ -191,63 +197,41 @@ export default class TKCampToolbar extends Vue {
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   initMap(): void {
     if (this.dataset && this.dataset.currentCamp) {
-      // Init the map - world level
-      const bound = new LngLat(
+      let staticMapUrl = "https://api.mapbox.com/";
+
+      // Style
+      staticMapUrl += "styles/v1/unhcr/ckok20x8h03ma18qp76mxi3u4/";
+
+      // static
+      staticMapUrl += "static/";
+
+      // Marker
+      let markerUrl = "";
+      if (this.dataset.currentCamp.type === TKCampTypesValues.PLANNED) {
+        markerUrl = encodeURIComponent(TKIconUrl("planned_site_selected"));
+      } else {
+        markerUrl = encodeURIComponent(TKIconUrl("spontaneous_site_selected"));
+      }
+      console.log(markerUrl);
+      staticMapUrl += `url-${markerUrl}(${this.dataset.currentCamp.lng},${this.dataset.currentCamp.lat})/`;
+
+      // Bounds
+      const bounds = new LngLat(
         this.dataset.currentCamp.lng,
         this.dataset.currentCamp.lat
-      ).toBounds(5000);
+      )
+        .toBounds(5000)
+        .toArray();
+      staticMapUrl += `[${bounds[0][0]},${bounds[0][1]},${bounds[1][0]},${bounds[1][1]}]/`;
 
-      const map = new mapboxgl.Map({
-        container: "headlines-map",
-        style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",
-        accessToken: this.appConfig.mapConfig.token,
-        bounds: bound
-      });
-      map.on("load", () => {
-        if (this.dataset && this.dataset.currentCamp) {
-          const markersList = [
-            "planned_site_selected",
-            "spontaneous_site_selected"
-          ];
-          markersList.map(img => {
-            map.loadImage(TKIconUrl(img), (error, image) => {
-              if (!map.hasImage(img)) {
-                map.addImage(img, image as ImageBitmap);
-                if (error) throw error;
-              }
-            });
-          });
+      // Dimension
+      staticMapUrl += "640x480@2x";
 
-          const feature: Feature = {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [
-                this.dataset.currentCamp.lng,
-                this.dataset.currentCamp.lat
-              ]
-            },
-            properties: {
-              id: this.dataset.currentCamp.id,
-              name: this.dataset.currentCamp.name,
-              lat: this.dataset.currentCamp.lat,
-              lng: this.dataset.currentCamp.lng
-            }
-          };
+      // Token
+      staticMapUrl += `?access_token=${this.appConfig.mapConfig.token}`;
 
-          map.addSource(TKMapLayers.SELECTEDCAMPSOURCE, {
-            type: "geojson",
-            data: feature
-          });
-          map.addLayer(
-            TKMapLayersStyle[TKMapLayers.SELECTEDCAMPLAYER] as SymbolLayer
-          );
-
-          this.mapImg = map.getCanvas().toDataURL();
-
-          this.exportToPDF();
-        }
-      });
+      // Upadte img URL
+      this.mapImg = staticMapUrl;
     }
   }
 }
@@ -338,16 +322,10 @@ export default class TKCampToolbar extends Vue {
   width: 80mm;
 }
 
-.headlines-map {
+.headlines-map-img {
   width: 100mm;
   height: 100%;
   border-radius: 15px;
-  overflow: hidden;
-}
-
-.headlines-map-img {
-  width: 100%;
-  height: 100%;
   overflow: hidden;
 }
 
@@ -386,6 +364,28 @@ export default class TKCampToolbar extends Vue {
   font-weight: bold;
   color: #418fde;
   letter-spacing: 0.86px;
+}
+
+/* INDICATORS ********************************************************/
+.indicators {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: top;
+}
+
+.indicators > * {
+  background-color: #fff;
+  /* box-shadow: 0 0 20px 2px rgba(18, 63, 98, 0.15); */
+  border: 1px solid #99999922;
+
+  height: 20mm;
+  width: 60mm;
+  /* display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: top; */
+  border-radius: 15px;
 }
 
 /* CONTENT ***********************************************************/
