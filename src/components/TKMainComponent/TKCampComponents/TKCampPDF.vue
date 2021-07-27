@@ -3,7 +3,7 @@
     <div class="pdf-document-content">
       <div class="header">
         <div class="header-left">
-          <img src="@/assets/LogoOpsmap.png" class="header-opsmap-logo" />
+          <img src="@/assets/LogoOpsmap.png" class="header-logo" />
           <h3>
             <span class="header-opsmap-title">{{ appName }}</span>
             <span class="header-opsmap-subtitle"
@@ -12,75 +12,10 @@
           </h3>
         </div>
         <div class="header-right">
-          <img src="@/assets/LogoCluster.png" class="header-cccm-logo" />
+          <img src="@/assets/LogoCluster.png" class="header-logo" />
         </div>
       </div>
       <div class="header-separator"></div>
-      <div class="headlines">
-        <div class="headlines-left">
-          <div class="headlines-left-title">
-            <span class="tk-title-base">
-              {{ $t("main.title").toUpperCase() }}
-            </span>
-          </div>
-          <div class="tk-camp-subtitle">{{ siteName }}</div>
-          <div class="headlines-left-infos">
-            <div class="tk-camp-infos">
-              <!-- Site Type -->
-              <div class="tk-camp-infos-field">
-                <div class="tk-camp-infos-field-key">
-                  {{ $t("infosSiteType").toUpperCase() }}
-                </div>
-                <div class="tk-camp-infos-field-value">
-                  {{ siteType.toUpperCase() }}
-                </div>
-              </div>
-              <div class="headlines-hseparator" />
-              <!-- ADMIN1 -->
-              <div class="tk-camp-infos-field">
-                <div class="tk-camp-infos-field-key">
-                  {{ $t("infosAdmin1").toUpperCase() }}
-                </div>
-                <div class="tk-camp-infos-field-value">
-                  {{ admin1.toUpperCase() }}
-                </div>
-              </div>
-              <div class="headlines-hseparator" />
-              <!-- ADMIN2 -->
-              <!-- <div class="tk-camp-infos-field">
-                <div class="tk-camp-infos-field-key">
-                  {{ $t("infosAdmin2").toUpperCase() }}
-                </div>
-                <div class="tk-camp-infos-field-value">
-                  {{ admin2.toUpperCase() }}
-                </div>
-              </div>
-              <div class="headlines-hseparator" /> -->
-              <!-- GPS COORDINATES -->
-              <!-- <div class="tk-camp-infos-field">
-                <div class="tk-camp-infos-field-key">
-                  {{ $t("site.infosCoordinates").toUpperCase() }}
-                </div>
-                <div class="tk-camp-infos-field-value">
-                  {{ coordinates.toUpperCase() }}
-                </div>
-              </div>
-              <div class="headlines-hseparator" />
-              <div class="tk-camp-infos-field">
-                <div class="tk-camp-infos-field-key">
-                  {{ $t("manageBy").toUpperCase() }}
-                </div>
-                <div class="tk-camp-infos-field-value">
-                  {{ manageBy.toUpperCase() }}
-                </div>
-              </div> -->
-            </div>
-          </div>
-        </div>
-        <div class="headlines-right"></div>
-      </div>
-      <div class="content"></div>
-      <div class="footer"></div>
     </div>
   </div>
 </template>
@@ -155,15 +90,21 @@ export default class TKCampToolbar extends Vue {
         this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng;
     }
 
-    console.log("After render!");
     const documentTitle = TKComputeExportFilename(this.dataset, "pdf");
-    const pdf = new jsPDF();
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "pt",
+      format: "a4"
+    });
+
     this.$nextTick(function() {
       const divContent = this.$refs["pdf-document"] as HTMLElement;
       pdf
         .html(divContent, {
           x: 0,
-          y: 0
+          y: 0,
+          margin: 0,
+          html2canvas: { scale: 0.75 }
         })
         .then(() => {
           pdf.save(documentTitle);
@@ -172,32 +113,42 @@ export default class TKCampToolbar extends Vue {
   }
 }
 </script>
-
 <style scoped>
+/* A4 = 8.27x11.69" x 72points/inch = 595x842 points */
+/* 595x842 points */
 .pdf-document {
-  background-color: #fff;
-  max-width: 21cm;
-  padding: 0.5cm;
+  background-color: cornflowerblue;
+  padding: 6pt;
+  width: 210mm;
+  height: 296mm; /* Exact 297mm creates an extra blank page. */
 }
+
 .pdf-document-content {
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  row-gap: 0.3cm;
+  overflow: hidden;
 }
 
 .header {
-  height: 1cm;
+  /* background-color: coral; */
+  height: 2cm;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  align-items: center;
 }
 
+.header-logo {
+  text-decoration: none;
+  height: 15mm;
+}
 /* HEADER ************************************************************/
 .header-separator {
-  /* height: 0.1cm;
+  /* height: 0.1pt;
             border: 0;
-            box-shadow: inset 0 0.1cm 0.1cm -0.1cm #428fdf88; */
+            box-shadow: inset 0 0.1pt 0.1pt -0.1pt #428fdf88; */
   border: 0;
   height: 0;
   border-top: 1px solid #428fdf22;
@@ -205,24 +156,20 @@ export default class TKCampToolbar extends Vue {
 }
 
 .header-left {
-  /* background-color: #fff; */
+  background-color: royalblue;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   height: 100%;
 }
-.header-opsmap-logo {
-  text-decoration: none;
-  width: 1cm;
-  height: 1cm;
-}
+
 .header-opsmap-title {
   color: #428fdf;
   letter-spacing: 1.5;
   font-weight: 700;
   font-size: 18px;
   text-align: left;
-  margin-right: 0.3cm;
+  margin-right: 0.3pt;
 }
 
 .header-opsmap-date .header-opsmap-subtitle {
@@ -233,19 +180,12 @@ export default class TKCampToolbar extends Vue {
   text-align: left;
 }
 
-.header-center {
-  flex-grow: 2;
-  text-align: center;
-}
-
 .header-right {
+  background-color: crimson;
+  display: flex;
   flex-flow: row nowrap;
-  justify-content: right;
-  height: 1cm;
-}
-.header-cccm-logo {
-  text-decoration: none;
-  height: 1cm;
+  align-items: center;
+  height: 100%;
 }
 
 /* HEADLINES *********************************************************/
@@ -254,7 +194,7 @@ export default class TKCampToolbar extends Vue {
 }
 
 .headlines-left-infos {
-  width: 8cm;
+  width: 80mm;
 }
 
 .tk-camp-subtitle {
@@ -303,11 +243,11 @@ export default class TKCampToolbar extends Vue {
 .content {
   background-color: azure;
   width: 100%;
-  height: 5cm;
+  height: 50mm;
 }
 .footer {
   background-color: bisque;
   width: 100%;
-  height: 5cm;
+  height: 50mm;
 }
 </style>
