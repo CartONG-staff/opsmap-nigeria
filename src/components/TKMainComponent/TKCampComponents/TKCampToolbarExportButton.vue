@@ -13,6 +13,7 @@
               :disabled="!dataset.currentCamp"
               v-bind="attrs"
               v-on="{ ...tooltip, ...dialog }"
+              @click="triggerExportToPDF()"
             >
               <v-icon dark>
                 mdi-file-pdf-outline
@@ -24,6 +25,7 @@
       </template>
       <v-card class="tk-camp-pdf-container">
         <TKSubmissionToPDF
+          ref="tk-submission-to-pdf"
           :visualizerOptions="visualizerOptions"
           :dataset="dataset"
           :appConfig="appConfig"
@@ -79,6 +81,17 @@ export default class TKCampToolbarExportButton extends Vue {
     if (this.dataset && this.dataset.currentSubmission) {
       TKCSVWrite(this.dataset, this.$root.$i18n.locale);
     }
+  }
+
+  triggerExportToPDF() {
+    this.$nextTick(function() {
+      const exportToPDFComponent = this.$refs[
+        "tk-submission-to-pdf"
+      ] as TKSubmissionToPDF;
+      if (exportToPDFComponent) {
+        exportToPDFComponent.exportToPDF();
+      }
+    });
   }
 }
 </script>

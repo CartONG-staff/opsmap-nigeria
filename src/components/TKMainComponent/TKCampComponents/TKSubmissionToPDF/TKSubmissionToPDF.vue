@@ -46,35 +46,36 @@ export default class TKSubmissionToPDF extends Vue {
   readonly appConfig!: TKOpsmapConfiguration;
 
   mounted() {
-    if (this.appConfig && this.dataset && this.dataset.currentCamp) {
-      this.exportToPDF();
-    }
+    // Trigger export on first start
+    this.exportToPDF();
   }
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   // Export to pdf
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   exportToPDF() {
-    const documentTitle = TKComputeExportFilename(this.dataset, "pdf");
-    const pdf = new jsPDF({
-      orientation: "portrait",
-      unit: "pt",
-      format: "a4"
-    });
+    if (this.appConfig && this.dataset && this.dataset.currentCamp) {
+      const documentTitle = TKComputeExportFilename(this.dataset, "pdf");
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "pt",
+        format: "a4"
+      });
 
-    this.$nextTick(function() {
-      const divContent = this.$refs["pdf-document"] as HTMLElement;
-      pdf
-        .html(divContent, {
-          x: 0,
-          y: 0,
-          margin: 0,
-          html2canvas: { scale: 0.75 }
-        })
-        .then(() => {
-          pdf.save(documentTitle);
-        });
-    });
+      this.$nextTick(function() {
+        const divContent = this.$refs["pdf-document"] as HTMLElement;
+        pdf
+          .html(divContent, {
+            x: 0,
+            y: 0,
+            margin: 0,
+            html2canvas: { scale: 0.75 }
+          })
+          .then(() => {
+            pdf.save(documentTitle);
+          });
+      });
+    }
   }
 }
 </script>
