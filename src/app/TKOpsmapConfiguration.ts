@@ -9,10 +9,10 @@ import {
   TKIndicatorsDescription
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKSurveyInfosGSheet } from "../domain/gsheet/TKSurveyInfosGSheet";
+import { TKSurveyInfosKobo } from "../domain/kobo/TKSurveyInfosKobo";
 import { FeatureCollection } from "geojson";
-import { admin1Brazil } from "@/secondary/map/admin1Brazil";
-import { maskBrazil } from "@/secondary/map/maskBrazil";
+import { admin1Boundaries } from "@/secondary/map/admin1";
+import { countryBoundaries } from "@/secondary/map/countryBoundaries";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Global Opsmap configuration
@@ -115,8 +115,8 @@ export async function TKReadGeneralConfiguration(
   // masks
   // const iso3 = dict["iso3"] ?? "";
   // Prepare comp of iso3 based on BRA, NGA, etc. Placeholder solution
-  const maskFC: FeatureCollection = maskBrazil;
-  const admin1FC: FeatureCollection = admin1Brazil;
+  const maskFC: FeatureCollection = countryBoundaries;
+  const admin1FC: FeatureCollection = admin1Boundaries;
 
   // Lack:
   // - iso3
@@ -215,11 +215,11 @@ export async function TKReadGeneralConfiguration(
       ]
     },
     surveyDescription: [
-      new TKSurveyInfosGSheet(
+      new TKSurveyInfosKobo(
         dict["survey_name"] ?? "",
         { folder: dict["fdf_id"] },
         dict["survey_url"] ?? "",
-        dict["survey_tr_url"] ?? ""
+        dict["kobo_token"] ?? ""
       )
     ],
     mapConfig: {

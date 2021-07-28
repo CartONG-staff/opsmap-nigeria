@@ -44,8 +44,6 @@ function getTrafficLightColor(
   value: string,
   trafficLight: TKFDFTrafficLightGrouped
 ): TKTrafficLightValues {  
-  console.log(evaluate(['25 > 20', '25<24']));
-  
   if (trafficLight.type === TKFDFTrafficLightTypes.STRING) {
     const match = trafficLight.values
       .filter(x => x.value.toLowerCase() === value.toLowerCase())

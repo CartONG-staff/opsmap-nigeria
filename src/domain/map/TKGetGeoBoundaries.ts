@@ -31,7 +31,8 @@ export async function TKGetGeoBoundaries(
     true,
     "geojson"
   ).getData();
-
+    console.log(admin1);
+    
   return {
     admin1: admin1,
     admin2: admin2GeoData
