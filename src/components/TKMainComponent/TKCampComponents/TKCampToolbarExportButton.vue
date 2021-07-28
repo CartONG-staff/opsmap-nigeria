@@ -23,7 +23,7 @@
         </v-tooltip>
       </template>
       <v-card class="tk-camp-pdf-container">
-        <TKCampPDF
+        <TKSubmissionToPDF
           :visualizerOptions="visualizerOptions"
           :dataset="dataset"
           :appConfig="appConfig"
@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts">
-import TKCampPDF from "./TKCampPDF.vue";
+import TKSubmissionToPDF from "./TKSubmissionToPDF/TKSubmissionToPDF.vue";
 import { TKCSVWrite } from "@/domain/export/TKCSVWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop } from "vue-property-decorator";
@@ -64,7 +64,7 @@ import { TKOpsmapConfiguration } from "@/domain";
 
 @Component({
   components: {
-    TKCampPDF
+    TKSubmissionToPDF
   }
 })
 export default class TKCampToolbarExportButton extends Vue {
