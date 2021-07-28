@@ -196,6 +196,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  height: 70mm;
 }
 
 .headlines-title {
