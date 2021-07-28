@@ -1,17 +1,36 @@
 <template>
-  <div class="pdf-document" ref="pdf-document">
-    <div class="pdf-document-content">
-      <TKSubmissionToPDFHeader :appConfig="appConfig" />
-      <div class="header-separator"></div>
-      <TKSubmissionToPDFHeadlines :appConfig="appConfig" :dataset="dataset" />
-      <div class="header-separator"></div>
-      <TKSubmissionToPDFIndicators :appConfig="appConfig" :dataset="dataset" />
-      <div class="header-separator"></div>
-      <TKSubmissionToPDFSubmission
-        :appConfig="appConfig"
-        :dataset="dataset"
-        :visualizerOptions="visualizerOptions"
-      />
+  <div class="pdf-document-container">
+    <div class="pdf-document" ref="pdf-document">
+      <div class="pdf-document-content">
+        <TKSubmissionToPDFHeader :appConfig="appConfig" />
+        <div class="header-separator"></div>
+        <TKSubmissionToPDFHeadlines :appConfig="appConfig" :dataset="dataset" />
+        <div class="header-separator"></div>
+        <TKSubmissionToPDFIndicators
+          :appConfig="appConfig"
+          :dataset="dataset"
+        />
+        <div class="header-separator"></div>
+      </div>
+    </div>
+    <div class="thematic">
+      <table id="thematic" ref="thematic">
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Age</th>
+        </tr>
+        <tr>
+          <td>Jill</td>
+          <td>Smith</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>Eve</td>
+          <td>Jackson</td>
+          <td>94</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -26,13 +45,12 @@ import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
 import TKSubmissionToPDFHeader from "./TKSubmissionToPDFHeader.vue";
 import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
 import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
-import TKSubmissionToPDFSubmission from "./TKSubmissionToPDFSubmission.vue";
+
 @Component({
   components: {
     TKSubmissionToPDFHeader,
     TKSubmissionToPDFHeadlines,
-    TKSubmissionToPDFIndicators,
-    TKSubmissionToPDFSubmission
+    TKSubmissionToPDFIndicators
   }
 })
 export default class TKSubmissionToPDF extends Vue {
@@ -46,7 +64,6 @@ export default class TKSubmissionToPDF extends Vue {
   readonly appConfig!: TKOpsmapConfiguration;
 
   mounted() {
-    // Trigger export on first start
     this.exportToPDF();
   }
 
@@ -54,7 +71,14 @@ export default class TKSubmissionToPDF extends Vue {
   // Export to pdf
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   exportToPDF() {
-    if (this.appConfig && this.dataset && this.dataset.currentCamp) {
+    if (
+      this.appConfig &&
+      this.dataset &&
+      this.dataset.currentCamp &&
+      this.dataset.currentSubmission
+    ) {
+      console.log(this.dataset.currentSubmission?.thematics);
+
       const documentTitle = TKComputeExportFilename(this.dataset, "pdf");
       const pdf = new jsPDF({
         orientation: "portrait",
@@ -72,7 +96,12 @@ export default class TKSubmissionToPDF extends Vue {
             html2canvas: { scale: 0.75 }
           })
           .then(() => {
-            pdf.save(documentTitle);
+            pdf
+              .autoTable({ html: "#myTable" })
+
+              .then(() => {
+                pdf.save(documentTitle);
+              });
           });
       });
     }
@@ -87,7 +116,6 @@ export default class TKSubmissionToPDF extends Vue {
   background-color: #fff;
   padding: 5mm;
   width: 210mm;
-  height: 296mm; /* Exact 297mm creates an extra blank page. */
 }
 
 .pdf-document-content {
@@ -100,6 +128,16 @@ export default class TKSubmissionToPDF extends Vue {
   overflow: hidden;
 }
 
+.pdf-document-container {
+  background-color: crimson;
+
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 0;
+  width: 210mm;
+  min-height: 296mm; /* Exact 297mm creates an extra blank page. */
+}
+
 /* Separator *********************************************************/
 .header-separator {
   /* height: 0.1pt;
@@ -109,6 +147,13 @@ export default class TKSubmissionToPDF extends Vue {
   height: 0;
   border-top: 1px solid #428fdf22;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* THEMATIC **********************************************************/
+
+.thematic {
+  background-color: crimson;
+  height: 15cm;
 }
 
 /* CONTENT ***********************************************************/
