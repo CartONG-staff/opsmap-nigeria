@@ -48,6 +48,14 @@ export default class TKSubmissionToPDFHeader extends Vue {
   justify-content: space-between;
 }
 
+.header-opsmap-title {
+  color: var(--v-accent-base);
+  letter-spacing: 1.5;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: left;
+}
+
 .header-logo {
   text-decoration: none;
   height: 15mm;
@@ -58,13 +66,5 @@ export default class TKSubmissionToPDFHeader extends Vue {
   flex-flow: row nowrap;
   align-items: center;
   height: 100%;
-}
-
-.header-opsmap-date .header-opsmap-subtitle {
-  color: #333333;
-  letter-spacing: 1;
-  font-weight: 700;
-  font-size: 14px;
-  text-align: left;
 }
 </style>
