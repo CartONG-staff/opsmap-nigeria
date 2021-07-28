@@ -88,6 +88,7 @@
           :indicator="this.dataset.currentSubmission.indicators[2]"
         />
       </div>
+      <div class="header-separator"></div>
     </div>
   </div>
 </template>
