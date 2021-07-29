@@ -15,11 +15,11 @@ adm2Name;group_general_info/lga_name
 adm3Pcode;group_general_info/ward
 adm3Name;group_general_info/ward_name
 ikey1_homepage;mp_site_id
-ikey2_homepage;demo_num_indv
+ikey2_homepage;group_pop_change/individualpopulation
 ikey3_homepage;cccm_shelter_max_capacity
-ikey4_sitepage;SITE_OCCUPATION,cccm_site_at_full_capacity,demo_num_indv,cccm_shelter_max_capacity
+ikey4_sitepage;group_general_info/crowded
 ikey5_sitepage;cccm_shelter_type
-ikey6_sitepage;demo_num_indv
+ikey6_sitepage;group_pop_change/individualpopulation
 ikey1_homepage_picto;IDP-refugee-camp
 ikey2_homepage_picto;People-in-need
 ikey3_homepage_picto;Camp-Coordination-and-Camp-Management
