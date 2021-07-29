@@ -70,48 +70,53 @@ function computeSurveyIndicator(
     };
   }
 
-  const splitted = descr.entryCode.split("_");
   let foundAtLeastOnce = false;
-  if (splitted) {
-    const thematic = "group_" + splitted[0];
-    let sum = 0;
-    for (const camp in data) {
-      const last = sortedDates[camp][0];
-      const submission = data[camp][last];
-      if (submission) {
-        const them = submission.thematics[thematic];
-        if (them) {
-          const item = them.data.find(item => item.field === descr.entryCode);
-          if (
-            item &&
-            item instanceof TKSubmissionEntryText &&
-            item.answerLabel &&
-            isNumber(item.answerLabel.en)
-          ) {
+  let thematic_name = "";
+  let item_index = -1;
+  let sum = 0;
+  for (const camp in data) {
+    const last = sortedDates[camp][0];
+    const submission = data[camp][last];
+    if (submission) {
+      if (!foundAtLeastOnce) {
+        for (const thematic in submission.thematics) {
+          const them = submission.thematics[thematic];
+          item_index = them.data.findIndex(
+            item => item.field === descr.entryCode
+          );
+          if (item_index > -1) {
             foundAtLeastOnce = true;
-            sum += Number(item.answerLabel.en);
+            thematic_name = thematic;
+            break;
           }
         }
       }
+      if (foundAtLeastOnce) {
+        const item = submission.thematics[thematic_name].data[item_index];
+        if (
+          item &&
+          item instanceof TKSubmissionEntryText &&
+          item.answerLabel &&
+          isNumber(item.answerLabel.en)
+        ) {
+          sum += Number(item.answerLabel.en);
+        }
+      }
     }
-    if (!foundAtLeastOnce) {
-      return {
-        iconOchaName: descr.iconOchaName,
-        nameLabel: descr.name,
-        valueLabel: { en: "-" }
-      };
-    }
+  }
 
+  if (!foundAtLeastOnce) {
     return {
       iconOchaName: descr.iconOchaName,
       nameLabel: descr.name,
-      valueLabel: { en: String(sum) }
+      valueLabel: { en: "-" }
     };
   }
+
   return {
     iconOchaName: descr.iconOchaName,
     nameLabel: descr.name,
-    valueLabel: { en: "-" }
+    valueLabel: { en: String(sum) }
   };
 }
 
