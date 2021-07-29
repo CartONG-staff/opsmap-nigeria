@@ -11,17 +11,15 @@
           :dataset="dataset"
         />
         <div class="header-separator"></div>
+        <!-- <TKSubmissionToPDFubmission
+          :appConfig="appConfig"
+          :dataset="dataset"
+          :visualizerOptions="visualizerOptions"
+        /> -->
       </div>
     </div>
-    <div class="thematic">
+    <div class="thematics">
       <table id="thematic" ref="thematic">
-        <thead>
-          <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Age</th>
-          </tr>
-        </thead>
         <tbody>
           <tr>
             <td>Jill</td>
@@ -34,323 +32,6 @@
             <td>94</td>
           </tr>
           <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Age</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </template>
 
@@ -367,6 +48,7 @@ import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
 import TKSubmissionToPDFHeader from "./TKSubmissionToPDFHeader.vue";
 import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
 import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
+import { TKFDFThematic, TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 
 @Component({
   components: {
@@ -385,12 +67,15 @@ export default class TKSubmissionToPDF extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
 
+  thematics!: TKTFDFhematicsCollection;
+  them!: TKFDFThematic;
+
   mounted() {
     this.exportToPDF();
   }
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
-  // Export to pdf
+  // EXPORT TO PDF
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   exportToPDF() {
     if (
@@ -414,7 +99,6 @@ export default class TKSubmissionToPDF extends Vue {
           .html(divContent, {
             x: 0,
             y: 0,
-            margin: 0,
             html2canvas: { scale: 0.75 }
           })
           .then(() => {
@@ -450,8 +134,6 @@ export default class TKSubmissionToPDF extends Vue {
 }
 
 .pdf-document-container {
-  background-color: crimson;
-
   display: flex;
   flex-flow: column nowrap;
   row-gap: 0;
@@ -459,7 +141,7 @@ export default class TKSubmissionToPDF extends Vue {
   min-height: 296mm; /* Exact 297mm creates an extra blank page. */
 }
 
-/* Separator *********************************************************/
+/* SEPARATOR *********************************************************/
 .header-separator {
   /* height: 0.1pt;
             border: 0;
@@ -471,7 +153,6 @@ export default class TKSubmissionToPDF extends Vue {
 }
 
 /* THEMATIC **********************************************************/
-
 .thematic {
   background-color: crimson;
   height: 15cm;
