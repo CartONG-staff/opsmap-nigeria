@@ -55,7 +55,6 @@ export default class TKApp extends Vue {
           surveys
         ).then(geoDataset => {
           console.log(geoDataset);
-          
           this.geoDataset = geoDataset;
         });
       }
