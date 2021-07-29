@@ -9,7 +9,7 @@ mp_last_date;date
 mp_latitude;group_general_info/latitude
 mp_longitude;group_general_info/longitude
 adm1_unhcr;group_general_info/state
-adm1Name;roup_general_info/state_name
+adm1Name;group_general_info/state_name
 adm2_unhcr;group_general_info/lga
 adm2Name;group_general_info/lga_name
 adm3Pcode;group_general_info/ward
