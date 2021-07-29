@@ -3,8 +3,8 @@
 // ////////////////////////////////////////////////////////////////////////////
 
 export enum TKCampTypesValues {
-  PLANNED = "Planned Site",
-  SPONTANEOUS = "Informal"
+  PLANNED = "site_planned",
+  SPONTANEOUS = "site_spontaneous"
 }
 // ////////////////////////////////////////////////////////////////////////////
 // Camp desription
@@ -14,7 +14,7 @@ import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescrip
 export interface TKCampDescription {
   id: string;
   name: string;
-  type: TKCampTypesValues.PLANNED | TKCampTypesValues.SPONTANEOUS;
+  type: TKCampTypesValues;
   lat: number;
   lng: number;
   admin1: TKBoundarieDescription;

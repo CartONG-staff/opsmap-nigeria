@@ -20,6 +20,10 @@ import { TKFDFFiles } from "./TKFDFInfos";
 import { TKFDFUrlsCollection, TKReadFDFURLsCollection } from "./TKFDFURLs";
 import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
 import { TKSurveyInfosGSheet } from "../gsheet/TKSurveyInfosGSheet";
+import {
+  TKFDFTerminologyCollection,
+  TKReadFDFTerminologyCollection
+} from "./TKFDFTerminology";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the FDF object
@@ -27,6 +31,7 @@ import { TKSurveyInfosGSheet } from "../gsheet/TKSurveyInfosGSheet";
 // It is needed to create an actual survey
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKFDF {
+  terminology: TKFDFTerminologyCollection;
   thematics: TKTFDFhematicsCollection;
   trafficLights: TKFDFTrafficLightsCollection;
   fieldsLabels: TKFDFLabelCollection;
@@ -52,6 +57,7 @@ export async function TKCreateFDF(infos: TKSurveyInfos): Promise<TKFDF> {
   }
 
   return {
+    terminology: await TKReadFDFTerminologyCollection(infos.fdf),
     thematics: await TKReadFDFThematicsCollection(infos.fdf),
     trafficLights: await TKReadFDFTrafficLightsCollection(infos.fdf),
     fieldsLabels: await TKReadFDFLabelCollection(TKFDFFiles.FIELDS, infos.fdf),
