@@ -24,6 +24,7 @@ import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKCreateSurveyCollection } from "@/domain/survey/TKSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { log } from "mathjs";
 
 @Component({
   components: {
@@ -53,6 +54,8 @@ export default class TKApp extends Vue {
           this.appRootConfig?.spatialDescription.admin1,
           surveys
         ).then(geoDataset => {
+          console.log(geoDataset);
+          
           this.geoDataset = geoDataset;
         });
       }
