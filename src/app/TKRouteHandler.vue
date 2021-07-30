@@ -13,7 +13,7 @@ export default class TKRouteHandler extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
 
-  currentRoute = "";
+  currentRoute = "/";
 
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
