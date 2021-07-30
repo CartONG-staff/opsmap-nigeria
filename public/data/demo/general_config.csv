@@ -18,19 +18,19 @@ ikey1_homepage;mp_site_id
 ikey2_homepage;group_pop_change/individualpopulation
 ikey3_homepage;cccm_shelter_max_capacity
 ikey4_sitepage;group_general_info/crowded
-ikey5_sitepage;cccm_shelter_type
+ikey5_sitepage;group_general_info/camp_management
 ikey6_sitepage;group_pop_change/individualpopulation
 ikey1_homepage_picto;IDP-refugee-camp
 ikey2_homepage_picto;People-in-need
 ikey3_homepage_picto;Camp-Coordination-and-Camp-Management
 ikey4_sitepage_picto;Camp-Coordination-and-Camp-Management
-ikey5_sitepage_picto;Camp-Coordination-and-Camp-Management
+ikey5_sitepage_picto;Government-office
 ikey6_sitepage_picto;People-in-need
 ikey1_homepage_label_en;Site
 ikey2_homepage_label_en;People
 ikey3_homepage_label_en;Shelter Max Capacity
 ikey4_sitepage_label_en;Site at Full Capacity
-ikey5_sitepage_label_en;Shelter Type
+ikey5_sitepage_label_en;Managed by a Government Agency
 ikey6_sitepage_label_en;No. of Individuals
 project_overview_en;"More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>
 Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>
