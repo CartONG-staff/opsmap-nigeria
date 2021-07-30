@@ -71,8 +71,8 @@ function computeSurveyIndicator(
   }
 
   let foundAtLeastOnce = false;
-  let thematic_name = "";
-  let item_index = -1;
+  let thematicName = "";
+  let itemIndex = -1;
   let sum = 0;
   for (const camp in data) {
     const last = sortedDates[camp][0];
@@ -81,18 +81,18 @@ function computeSurveyIndicator(
       if (!foundAtLeastOnce) {
         for (const thematic in submission.thematics) {
           const them = submission.thematics[thematic];
-          item_index = them.data.findIndex(
+          itemIndex = them.data.findIndex(
             item => item.field === descr.entryCode
           );
-          if (item_index > -1) {
+          if (itemIndex > -1) {
             foundAtLeastOnce = true;
-            thematic_name = thematic;
+            thematicName = thematic;
             break;
           }
         }
       }
       if (foundAtLeastOnce) {
-        const item = submission.thematics[thematic_name].data[item_index];
+        const item = submission.thematics[thematicName].data[itemIndex];
         if (
           item &&
           item instanceof TKSubmissionEntryText &&
