@@ -253,6 +253,13 @@ export class TKDatasetFilterer {
     this.filters[TKFilters.CAMP] = null;
   }
 
+  setCurrentCampName(campName: string) {
+    const camp = this.campsList.find(camp => camp.name === campName);
+    if (camp) {
+      this.setCurrentCamp(camp.id);
+    }
+  }
+
   setCurrentCamp(campId: string) {
     if (this.currentCamp?.id !== campId) {
       this.filters[TKFilters.CAMP] = campId;
