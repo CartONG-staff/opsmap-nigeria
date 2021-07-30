@@ -1,8 +1,10 @@
+import { Style } from "mapbox-gl";
+
 export interface TKBasemapDescription {
   id: number;
   name: string;
   img: string;
-  style: any;
+  style: string | Style | undefined;
 }
 
 export interface TKBaseMapsCollection {

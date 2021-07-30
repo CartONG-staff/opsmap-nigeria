@@ -26,6 +26,8 @@ export type TKFiltersTypes = string | boolean | null;
 // ////////////////////////////////////////////////////////////////////////////
 
 export class TKDatasetFilterer {
+  lastModification = "";
+
   surveys: TKSurveyCollection;
   surveyList: string[];
   currentSurvey = "";
@@ -104,12 +106,8 @@ export class TKDatasetFilterer {
         console.error(
           "The survey '" + survey + "' does not exist in the opsmap"
         );
-        this.currentSurvey = "";
-        this.filters[TKFilters.SURVEY] = null;
-        this.campsList = [];
-        this.admin1List = [];
-        this.admin2List = [];
-        this.campsList = [];
+        this.resetActiveSurvey();
+        this.lastModification = "home";
       }
 
       this.updateFiltering();
@@ -133,7 +131,17 @@ export class TKDatasetFilterer {
           value === false &&
           this.currentCamp.type === TKCampTypesValues.PLANNED
         ) {
-          this.clearCurrentCamp();
+          this.levelToZoom = this.currentAdmin2
+            ? TKFilters.ADMIN2
+            : this.currentAdmin1
+            ? TKFilters.ADMIN1
+            : TKFilters.SURVEY;
+          this.currentCamp = null;
+          this.currentDate = "";
+          this.currentSubmission = null;
+          this.sortedSubmissions = [];
+          this.filters[TKFilters.CAMP] = null;
+          this.lastModification = "clearCamp";
         }
         break;
       // Change OF SPONTANEOUS TYPE ///////////////////////////////////////////
@@ -143,7 +151,17 @@ export class TKDatasetFilterer {
           value === false &&
           this.currentCamp.type === TKCampTypesValues.SPONTANEOUS
         ) {
-          this.clearCurrentCamp();
+          this.levelToZoom = this.currentAdmin2
+            ? TKFilters.ADMIN2
+            : this.currentAdmin1
+            ? TKFilters.ADMIN1
+            : TKFilters.SURVEY;
+          this.currentCamp = null;
+          this.currentDate = "";
+          this.currentSubmission = null;
+          this.sortedSubmissions = [];
+          this.filters[TKFilters.CAMP] = null;
+          this.lastModification = "clearCamp";
         }
         break;
     }
@@ -171,6 +189,7 @@ export class TKDatasetFilterer {
         this.currentDate = "";
         this.currentSubmission = null;
       }
+      this.lastModification = `date=${this.currentDate}`;
     }
   }
 
@@ -179,16 +198,21 @@ export class TKDatasetFilterer {
   // ////////////////////////////////////////////////////////////////////////////
 
   clearCurrentAdmin1() {
+    this.levelToZoom = TKFilters.SURVEY;
+
+    this.currentAdmin1 = null;
+    this.filters[TKFilters.ADMIN1] = null;
+
+    this.currentAdmin2 = null;
+    this.filters[TKFilters.ADMIN2] = null;
+
     this.currentCamp = null;
+    this.filters[TKFilters.CAMP] = null;
     this.currentDate = "";
     this.currentSubmission = null;
     this.sortedSubmissions = [];
-    this.currentAdmin2 = null;
-    this.currentAdmin1 = null;
-    this.filters[TKFilters.CAMP] = null;
-    this.filters[TKFilters.ADMIN2] = null;
-    this.filters[TKFilters.ADMIN1] = null;
-    this.levelToZoom = TKFilters.SURVEY;
+
+    this.lastModification = `clearAdmin1`;
 
     this.updateFiltering();
   }
@@ -197,25 +221,29 @@ export class TKDatasetFilterer {
     const admin1 = this.admin1List.find(admin1 => admin1.name === admin1Name);
     if (admin1) {
       this.setCurrentAdmin1(admin1.pcode);
+      this.lastModification = `${admin1.pcode}`;
     }
   }
 
   setCurrentAdmin1(pcode: string) {
+    this.filters[TKFilters.ADMIN1] = pcode;
+
     if (this.currentAdmin1?.pcode !== pcode) {
+      // Clear Current Admin
+      this.filters[TKFilters.ADMIN2] = null;
+      this.currentAdmin2 = null;
       this.currentCamp = null;
       this.currentDate = "";
       this.currentSubmission = null;
       this.sortedSubmissions = [];
-      this.currentAdmin2 = null;
       this.filters[TKFilters.CAMP] = null;
-      this.filters[TKFilters.ADMIN2] = null;
 
-      this.filters[TKFilters.ADMIN1] = pcode;
       this.levelToZoom = TKFilters.ADMIN1;
-
       this.currentAdmin1 = this.admin1List.find(
         a => a.pcode === pcode
       ) as TKBoundarieDescription;
+
+      this.lastModification = `admin1=${this.currentAdmin1.pcode}`;
 
       this.updateFiltering();
     }
@@ -224,19 +252,23 @@ export class TKDatasetFilterer {
   // ////////////////////////////////////////////////////////////////////////////
   // Change Admin2
   // ////////////////////////////////////////////////////////////////////////////
-
   clearCurrentAdmin2() {
-    this.currentCamp = null;
-    this.currentDate = "";
-    this.currentSubmission = null;
-    this.sortedSubmissions = [];
-    this.filters[TKFilters.CAMP] = null;
-    this.filters[TKFilters.ADMIN2] = null;
-    this.currentAdmin2 = null;
-    this.levelToZoom = TKFilters.ADMIN1;
+    this.levelToZoom = this.currentAdmin1 ? TKFilters.ADMIN1 : TKFilters.SURVEY;
+
     this.filters[TKFilters.ADMIN1] = this.currentAdmin1
       ? this.currentAdmin1.pcode
       : null;
+
+    this.currentAdmin2 = null;
+    this.filters[TKFilters.ADMIN2] = null;
+
+    this.currentCamp = null;
+    this.filters[TKFilters.CAMP] = null;
+    this.currentDate = "";
+    this.currentSubmission = null;
+    this.sortedSubmissions = [];
+
+    this.lastModification = `clearAdmin2`;
 
     this.updateFiltering();
   }
@@ -249,6 +281,8 @@ export class TKDatasetFilterer {
   }
 
   setCurrentAdmin2(pcode: string) {
+    this.filters[TKFilters.ADMIN2] = pcode;
+
     if (this.currentAdmin2?.pcode !== pcode) {
       // Clear camp
       this.currentCamp = null;
@@ -256,8 +290,6 @@ export class TKDatasetFilterer {
       this.currentSubmission = null;
       this.sortedSubmissions = [];
       this.filters[TKFilters.CAMP] = null;
-
-      this.filters[TKFilters.ADMIN2] = pcode;
 
       // New admin2
       this.levelToZoom = TKFilters.ADMIN2;
@@ -275,6 +307,8 @@ export class TKDatasetFilterer {
         ? this.currentAdmin1.pcode
         : null;
 
+      this.lastModification = `admin2=${this.currentAdmin2.pcode}`;
+
       this.updateFiltering();
     }
   }
@@ -285,12 +319,20 @@ export class TKDatasetFilterer {
 
   clearCurrentCamp() {
     // Clear camp
-    this.levelToZoom = TKFilters.ADMIN2;
+    this.levelToZoom = this.currentAdmin2
+      ? TKFilters.ADMIN2
+      : this.currentAdmin1
+      ? TKFilters.ADMIN1
+      : TKFilters.SURVEY;
     this.currentCamp = null;
     this.currentDate = "";
     this.currentSubmission = null;
     this.sortedSubmissions = [];
     this.filters[TKFilters.CAMP] = null;
+
+    this.lastModification = "clearCamp";
+
+    this.updateFiltering();
   }
 
   setCurrentCampName(campName: string) {
@@ -330,6 +372,8 @@ export class TKDatasetFilterer {
         this.sortedSubmissions = this.surveys[
           this.currentSurvey
         ].dateOfSubmissionsByCamps[this.currentCamp.id];
+
+        this.lastModification = `camp=${this.currentCamp.id}`;
       }
       this.updateFiltering();
     }

@@ -135,19 +135,25 @@ export default class TKHomeCombos extends Vue {
     id ? this.dataset.setActiveSurvey(id) : this.dataset.resetActiveSurvey();
   }
   admin1Selected(pcode: string) {
-    pcode
-      ? this.dataset.setCurrentAdmin1(pcode)
-      : this.dataset.clearCurrentAdmin1();
+    if (pcode !== this.dataset.currentAdmin1?.pcode) {
+      pcode
+        ? this.dataset.setCurrentAdmin1(pcode)
+        : this.dataset.clearCurrentAdmin1();
+    }
   }
   admin2Selected(pcode: string) {
-    pcode
-      ? this.dataset.setCurrentAdmin2(pcode)
-      : this.dataset.clearCurrentAdmin2();
+    if (pcode !== this.dataset.currentAdmin2?.pcode) {
+      pcode
+        ? this.dataset.setCurrentAdmin2(pcode)
+        : this.dataset.clearCurrentAdmin2();
+    }
   }
   campSelected(campId: string) {
-    campId
-      ? this.dataset.setCurrentCamp(campId)
-      : this.dataset.clearCurrentCamp();
+    if (campId !== this.dataset.currentCamp?.id) {
+      campId
+        ? this.dataset.setCurrentCamp(campId)
+        : this.dataset.clearCurrentCamp();
+    }
   }
 }
 </script>

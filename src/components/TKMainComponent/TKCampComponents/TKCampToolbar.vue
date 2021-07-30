@@ -110,8 +110,10 @@ export default class TKCampToolbar extends Vue {
   model = "";
 
   dateSelected(date: string) {
-    this.model = date;
-    this.dataset.setCurrentDate(date);
+    if (this.dataset.currentDate !== date) {
+      this.model = date;
+      this.dataset.setCurrentDate(date);
+    }
   }
 
   @Watch("dataset.currentCamp", { immediate: true })

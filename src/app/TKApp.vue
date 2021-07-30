@@ -12,6 +12,7 @@
         />
         <TKFooter :appConfig="appRootConfig" />
       </div>
+      <TKRouteHandler :dataset="dataset" />
     </v-main>
   </v-app>
 </template>
@@ -24,12 +25,14 @@ import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKCreateSurveyCollection } from "@/domain/survey/TKSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import TKRouteHandler from "@/app/TKRouteHandler.vue";
 
 @Component({
   components: {
     TKHeader,
     TKFooter,
-    TKMainComponent
+    TKMainComponent,
+    TKRouteHandler
   }
 })
 export default class TKApp extends Vue {

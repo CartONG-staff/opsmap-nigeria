@@ -84,7 +84,6 @@ import {
 import { TKOpsmapConfiguration } from "@/domain";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
-import { headerLogoBus } from "@/components/TKHeaderLogoBus";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false
@@ -98,15 +97,13 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
     TKCampSubtitle,
     TKCampToolbar,
     TKSubmissionVisualizer,
-
     TKHomeIndicators,
     TKHomeMoreInfos,
-
+    TKIFrame,
     TKMap,
     TKPlaceHolderLeft,
     TKPlaceHolderIndicators,
     TKPlaceHolderGeneric,
-    TKIFrame,
     TKTitle
   }
 })
@@ -127,133 +124,11 @@ export default class TKMainComponent extends Vue {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
   };
 
-  created() {
-    headerLogoBus.$on("switchToHomePage", () => {
-      this.dataset.resetActiveSurvey();
-      if (this.$route.path !== "/") {
-        this.$router.push({
-          name: "home",
-          params: {
-            dataset: "dataset",
-            appConfig: "appConfig",
-            visualizerOptions: "visualizerOptions"
-          }
-        });
-      }
-    });
-  }
-
   // Trigger when a camp is selected
-  @Watch("dataset.currentDate")
-  @Watch("dataset.currentCamp")
-  onCampChange() {
-    if (
-      this.dataset.currentDate &&
-      this.dataset.currentCamp &&
-      this.dataset.currentAdmin2 &&
-      this.dataset.currentAdmin1 &&
-      this.dataset.currentSurvey
-    ) {
-      this.visualizerOptions.hideUnanswered =
-        DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
-
-      const surveyE = encodeURIComponent(this.dataset.currentSurvey);
-      const admin1E = encodeURIComponent(this.dataset.currentAdmin1.name);
-      const admin2E = encodeURIComponent(this.dataset.currentAdmin2.name);
-      const campE = encodeURIComponent(this.dataset.currentCamp.name);
-      const dateE = encodeURIComponent(
-        this.dataset.currentDate.replaceAll("/", "-")
-      );
-      const path = `/camp/${surveyE}/${admin1E}/${admin2E}/${campE}/${dateE}`;
-
-      if (this.$route.path !== path) {
-        this.$router.push({
-          path: path,
-          params: {
-            dataset: "dataset",
-            visualizerOptions: "visualizerOptions",
-            appConfig: "appConfig"
-          }
-        });
-      }
-    } else {
-      this.visualizerOptions.hideUnanswered =
-        DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
-    }
-  }
-
-  // Trigger at startup or when the changes comes from the URL
-  @Watch("dataset")
-  @Watch("$route.params")
-  onRouteChanged() {
-    const params = Object.keys(this.$route.params);
-    if (
-      params.includes("survey") &&
-      params.includes("admin1") &&
-      params.includes("admin2") &&
-      params.includes("camp") &&
-      params.includes("date")
-    ) {
-      const survey: string = this.$route.params["survey"];
-      const admin1: string = this.$route.params["admin1"];
-      const admin2: string = this.$route.params["admin2"];
-      const camp: string = this.$route.params["camp"];
-      const date: string = this.$route.params["date"]?.replaceAll("-", "/");
-
-      if (survey) {
-        this.dataset.setActiveSurvey(survey);
-        if (camp) {
-          this.dataset.setCurrentCampName(camp);
-          if (date) {
-            this.dataset.setCurrentDate(date);
-          }
-        } else if (admin2) {
-          this.dataset.setCurrentAdmin2Name(admin2);
-        } else if (admin1) {
-          this.dataset.setCurrentAdmin1Name(admin1);
-        }
-      }
-
-      // upadte URL
-      const surveyE = encodeURIComponent(this.dataset.currentSurvey);
-      const admin1E = encodeURIComponent(
-        this.dataset.currentAdmin1?.name ?? ""
-      );
-      const admin2E = encodeURIComponent(
-        this.dataset.currentAdmin2?.name ?? ""
-      );
-      const campE = encodeURIComponent(this.dataset.currentCamp?.name ?? "");
-      const dateE = encodeURIComponent(
-        this.dataset.currentDate?.replaceAll("/", "-") ?? ""
-      );
-
-      let path = `/camp`;
-      if (survey && surveyE) {
-        path += `/${surveyE}`;
-        if (admin1E) {
-          path += `/${admin1E}`;
-          if (admin2E) {
-            path += `/${admin2E}`;
-            if (campE) {
-              path += `/${campE}`;
-              if (dateE) {
-                path += `/${dateE}`;
-              }
-            }
-          }
-        }
-      }
-      if (this.$route.path !== path) {
-        this.$router.push({
-          path: path,
-          params: {
-            dataset: "dataset",
-            visualizerOptions: "visualizerOptions",
-            appConfig: "appConfig"
-          }
-        });
-      }
-    }
+  @Watch("dataset.lastModification")
+  onLastModificationChange() {
+    this.visualizerOptions.hideUnanswered =
+      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
   }
 }
 </script>
