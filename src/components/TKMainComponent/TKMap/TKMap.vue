@@ -87,8 +87,10 @@ export default class TKMap extends Vue {
       }
     }
   }
-  // Change on injected dataset
-  @Watch("dataset", { deep: true })
+
+  // Change on filtered data -> why rebuild the whole TKMapCamps list ?
+  // TODO: improve this !!!!
+  @Watch("dataset.lastModification")
   currentCampChanged() {
     if (this.mapBoundaries) {
       this.mapBoundaries.changeStyle(this.dataset, this.map, this.bound);
@@ -118,8 +120,9 @@ export default class TKMap extends Vue {
     }
   }
 
-  @Watch("basemaps", { deep: true })
+  @Watch("basemaps")
   updateBasemap(): void {
+    console.log("begin bm");
     this.basemaps.basemapsList.map(x => {
       if (x.id === this.basemaps.selected) {
         this.map.setStyle(x.style as Style);
@@ -128,6 +131,7 @@ export default class TKMap extends Vue {
         });
       }
     });
+    console.log("end bm");
   }
 
   @Watch("markersLoadedCount")
