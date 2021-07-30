@@ -124,8 +124,6 @@ export default class TKRouteHandler extends Vue {
           appConfig: "appConfig"
         }
       });
-    } else {
-      console.log("Condition was false");
     }
   }
 }

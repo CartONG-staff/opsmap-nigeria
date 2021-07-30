@@ -123,7 +123,6 @@ export default class TKMap extends Vue {
   // TODO: source of trouvle right here
   @Watch("basemaps", { deep: true })
   updateBasemap(): void {
-    console.log("begin bm");
     this.basemaps.basemapsList.map(x => {
       if (x.id === this.basemaps.selected) {
         this.map.setStyle(x.style as Style);
@@ -132,7 +131,6 @@ export default class TKMap extends Vue {
         });
       }
     });
-    console.log("end bm");
   }
 
   @Watch("markersLoadedCount")
