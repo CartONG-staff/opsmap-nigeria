@@ -102,6 +102,7 @@ export class TKDatasetFilterer {
         this.admin2List = this.surveys[
           this.currentSurvey
         ].boundariesList.admin2;
+        this.lastModification = `survey=${this.currentSurvey}`;
       } else {
         console.error(
           "The survey '" + survey + "' does not exist in the opsmap"
