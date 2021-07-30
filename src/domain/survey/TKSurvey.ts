@@ -139,11 +139,12 @@ export function TKCreateSurvey(
     admin2: []
   };
   for (const submission of sumbmissions) {
-    if (submissionsByCamps[submission[spatialDescription.siteIDField]]) {
-      submissionsByCamps[submission[spatialDescription.siteIDField]][
-        submission[spatialDescription.siteLastUpdateField]
-      ] = TKCreateSubmission(submission, surveyConfig, indicatorsDescription);
-    } else {
+    // If no previous submission for the camp
+    if (!submissionsByCamps[submission[spatialDescription.siteIDField]]) {
+      // Create data structure for future submissions
+      submissionsByCamps[submission[spatialDescription.siteIDField]] = {};
+
+      // Create the camp
       campsList.push({
         id: submission[spatialDescription.siteIDField],
         name: submission[spatialDescription.siteNameField],
@@ -170,6 +171,8 @@ export function TKCreateSurvey(
         },
         lastSubmission: ""
       });
+
+      // Add the admin2 if it doesn't exists
       if (
         !boundariesList.admin2
           .map(x => x.pcode)
@@ -179,24 +182,25 @@ export function TKCreateSurvey(
           pcode: submission[spatialDescription.adm2Pcode],
           name: submission[spatialDescription.adm2Name]
         });
-        if (
-          !boundariesList.admin1
-            .map(x => x.pcode)
-            .includes(submission[spatialDescription.adm1Pcode])
-        ) {
-          boundariesList.admin1.push({
-            pcode: submission[spatialDescription.adm1Pcode],
-            name: submission[spatialDescription.adm1Name]
-          });
-        }
       }
 
-      submissionsByCamps[submission[spatialDescription.siteIDField]] = {
-        [submission[
-          spatialDescription.siteLastUpdateField
-        ]]: TKCreateSubmission(submission, surveyConfig, indicatorsDescription)
-      };
+      // Add the admin1 if it doesn't exists
+      if (
+        !boundariesList.admin1
+          .map(x => x.pcode)
+          .includes(submission[spatialDescription.adm1Pcode])
+      ) {
+        boundariesList.admin1.push({
+          pcode: submission[spatialDescription.adm1Pcode],
+          name: submission[spatialDescription.adm1Name]
+        });
+      }
     }
+
+    // Add the submissions
+    submissionsByCamps[submission[spatialDescription.siteIDField]][
+      submission[spatialDescription.siteLastUpdateField]
+    ] = TKCreateSubmission(submission, surveyConfig, indicatorsDescription);
   }
 
   const dateOfSubmissionsByCamps: { [site: string]: string[] } = {};
