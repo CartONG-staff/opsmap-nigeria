@@ -67,6 +67,7 @@ export class TKDatasetFilterer {
 
   resetActiveSurvey() {
     if (this.surveyList.length > 0) {
+      this.currentSurvey = "";
       this.setActiveSurvey(this.surveyList[0]);
     }
   }
@@ -76,19 +77,19 @@ export class TKDatasetFilterer {
   }
 
   setActiveSurvey(survey: string) {
-    // Erase everything
-    this.currentCamp = null;
-    this.currentDate = "";
-    this.currentSubmission = null;
-    this.sortedSubmissions = [];
-    this.currentAdmin2 = null;
-    this.currentAdmin1 = null;
-    this.filters[TKFilters.CAMP] = null;
-    this.filters[TKFilters.ADMIN2] = null;
-    this.filters[TKFilters.ADMIN1] = null;
-    this.levelToZoom = TKFilters.SURVEY;
-
     if (this.currentSurvey !== survey) {
+      // Erase everything
+      this.currentCamp = null;
+      this.currentDate = "";
+      this.currentSubmission = null;
+      this.sortedSubmissions = [];
+      this.currentAdmin2 = null;
+      this.currentAdmin1 = null;
+      this.filters[TKFilters.CAMP] = null;
+      this.filters[TKFilters.ADMIN2] = null;
+      this.filters[TKFilters.ADMIN1] = null;
+      this.levelToZoom = TKFilters.SURVEY;
+
       if (this.surveyList.includes(survey)) {
         this.currentSurvey = survey;
         this.filters[TKFilters.SURVEY] = this.currentSurvey;
@@ -201,7 +202,14 @@ export class TKDatasetFilterer {
 
   setCurrentAdmin1(pcode: string) {
     if (this.currentAdmin1?.pcode !== pcode) {
-      this.clearCurrentAdmin2();
+      this.currentCamp = null;
+      this.currentDate = "";
+      this.currentSubmission = null;
+      this.sortedSubmissions = [];
+      this.currentAdmin2 = null;
+      this.filters[TKFilters.CAMP] = null;
+      this.filters[TKFilters.ADMIN2] = null;
+
       this.filters[TKFilters.ADMIN1] = pcode;
       this.levelToZoom = TKFilters.ADMIN1;
 
@@ -242,7 +250,13 @@ export class TKDatasetFilterer {
 
   setCurrentAdmin2(pcode: string) {
     if (this.currentAdmin2?.pcode !== pcode) {
-      this.clearCurrentCamp();
+      // Clear camp
+      this.currentCamp = null;
+      this.currentDate = "";
+      this.currentSubmission = null;
+      this.sortedSubmissions = [];
+      this.filters[TKFilters.CAMP] = null;
+
       this.filters[TKFilters.ADMIN2] = pcode;
 
       // New admin2
@@ -358,6 +372,8 @@ export class TKDatasetFilterer {
 
   // Sponateneous
   updateFiltering() {
+    console.log("POPOPOPOPO");
+
     // Reset camp list ////////////////////////////////////////////////////////
     this.filteredCampsList = this.campsList;
     this.filteredAdmin1List = this.admin1List;
