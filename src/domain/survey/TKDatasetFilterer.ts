@@ -226,9 +226,9 @@ export class TKDatasetFilterer {
   }
 
   setCurrentAdmin1(pcode: string) {
-    this.filters[TKFilters.ADMIN1] = pcode;
-
     if (this.currentAdmin1?.pcode !== pcode) {
+      this.filters[TKFilters.ADMIN1] = pcode;
+
       // Clear Current Admin
       this.filters[TKFilters.ADMIN2] = null;
       this.currentAdmin2 = null;
@@ -416,8 +416,6 @@ export class TKDatasetFilterer {
 
   // Sponateneous
   updateFiltering() {
-    console.log("POPOPOPOPO");
-
     // Reset camp list ////////////////////////////////////////////////////////
     this.filteredCampsList = this.campsList;
     this.filteredAdmin1List = this.admin1List;
