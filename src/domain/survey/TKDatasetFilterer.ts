@@ -9,12 +9,12 @@ import { TKSubmission } from "./TKSubmission";
 // TODO : work on this : clarity, comments, etc.
 // ////////////////////////////////////////////////////////////////////////////
 
+// TODO : split level (survey -> camp and filter planned / spontaneous)
 export enum TKFilters {
   SURVEY = "survey",
   ADMIN1 = "admin1",
   ADMIN2 = "admin2",
-  CAMP = "currentCamp",
-  DATE = "date",
+  CAMP = "camp",
   PLANNED_SITE = "planned",
   SPONTANEOUS_SITE = "spontaneous"
 }
@@ -43,10 +43,11 @@ export class TKDatasetFilterer {
   filteredAdmin1List: TKBoundarieDescription[] = [];
   filteredAdmin2List: TKBoundarieDescription[] = [];
   filteredCampsList: TKCampDescription[] = [];
-  filters: { [key: string]: TKFiltersTypes } = {
+  filters: { [key in TKFilters]: TKFiltersTypes } = {
     survey: null,
     admin1: null,
     admin2: null,
+    camp: null,
     planned: true,
     spontaneous: true
   };
@@ -75,11 +76,19 @@ export class TKDatasetFilterer {
   }
 
   setActiveSurvey(survey: string) {
+    // Erase everything
+    this.currentCamp = null;
+    this.currentDate = "";
+    this.currentSubmission = null;
+    this.sortedSubmissions = [];
+    this.currentAdmin2 = null;
+    this.currentAdmin1 = null;
+    this.filters[TKFilters.CAMP] = null;
+    this.filters[TKFilters.ADMIN2] = null;
+    this.filters[TKFilters.ADMIN1] = null;
+    this.levelToZoom = TKFilters.SURVEY;
+
     if (this.currentSurvey !== survey) {
-      this.clearCurrentAdmin1();
-
-      this.levelToZoom = TKFilters.SURVEY;
-
       if (this.surveyList.includes(survey)) {
         this.currentSurvey = survey;
         this.filters[TKFilters.SURVEY] = this.currentSurvey;
@@ -95,7 +104,7 @@ export class TKDatasetFilterer {
           "The survey '" + survey + "' does not exist in the opsmap"
         );
         this.currentSurvey = "";
-        this.filters[TKFilters.SURVEY] = this.currentSurvey;
+        this.filters[TKFilters.SURVEY] = null;
         this.campsList = [];
         this.admin1List = [];
         this.admin2List = [];
@@ -109,7 +118,10 @@ export class TKDatasetFilterer {
   // ////////////////////////////////////////////////////////////////////////////
   // Filter all
   // ////////////////////////////////////////////////////////////////////////////
-  setFiltersValue(filter: TKFilters, value: TKFiltersTypes) {
+  setFiltersValue(
+    filter: TKFilters.PLANNED_SITE | TKFilters.SPONTANEOUS_SITE,
+    value: TKFiltersTypes
+  ) {
     this.filters[filter] = value;
 
     switch (filter) {
@@ -166,9 +178,18 @@ export class TKDatasetFilterer {
   // ////////////////////////////////////////////////////////////////////////////
 
   clearCurrentAdmin1() {
-    this.clearCurrentAdmin2();
-    this.levelToZoom = TKFilters.SURVEY;
+    this.currentCamp = null;
+    this.currentDate = "";
+    this.currentSubmission = null;
+    this.sortedSubmissions = [];
+    this.currentAdmin2 = null;
     this.currentAdmin1 = null;
+    this.filters[TKFilters.CAMP] = null;
+    this.filters[TKFilters.ADMIN2] = null;
+    this.filters[TKFilters.ADMIN1] = null;
+    this.levelToZoom = TKFilters.SURVEY;
+
+    this.updateFiltering();
   }
 
   setCurrentAdmin1Name(admin1Name: string) {
@@ -179,12 +200,11 @@ export class TKDatasetFilterer {
   }
 
   setCurrentAdmin1(pcode: string) {
-    this.filters[TKFilters.ADMIN1] = pcode;
-
     if (this.currentAdmin1?.pcode !== pcode) {
       this.clearCurrentAdmin2();
-
+      this.filters[TKFilters.ADMIN1] = pcode;
       this.levelToZoom = TKFilters.ADMIN1;
+
       this.currentAdmin1 = this.admin1List.find(
         a => a.pcode === pcode
       ) as TKBoundarieDescription;
@@ -196,14 +216,21 @@ export class TKDatasetFilterer {
   // ////////////////////////////////////////////////////////////////////////////
   // Change Admin2
   // ////////////////////////////////////////////////////////////////////////////
-  clearCurrentAdmin2() {
-    this.clearCurrentCamp();
 
-    this.levelToZoom = TKFilters.ADMIN1;
+  clearCurrentAdmin2() {
+    this.currentCamp = null;
+    this.currentDate = "";
+    this.currentSubmission = null;
+    this.sortedSubmissions = [];
+    this.filters[TKFilters.CAMP] = null;
+    this.filters[TKFilters.ADMIN2] = null;
     this.currentAdmin2 = null;
+    this.levelToZoom = TKFilters.ADMIN1;
     this.filters[TKFilters.ADMIN1] = this.currentAdmin1
       ? this.currentAdmin1.pcode
       : null;
+
+    this.updateFiltering();
   }
 
   setCurrentAdmin2Name(admin2Name: string) {
@@ -214,10 +241,9 @@ export class TKDatasetFilterer {
   }
 
   setCurrentAdmin2(pcode: string) {
-    this.filters[TKFilters.ADMIN2] = pcode;
-
     if (this.currentAdmin2?.pcode !== pcode) {
       this.clearCurrentCamp();
+      this.filters[TKFilters.ADMIN2] = pcode;
 
       // New admin2
       this.levelToZoom = TKFilters.ADMIN2;
@@ -344,6 +370,7 @@ export class TKDatasetFilterer {
       );
       this.filterAdmin2BaseOnFilteredCamp();
     }
+
     // Camp filtering base on Admin2 //////////////////////////////////////////
     if (this.filters[TKFilters.ADMIN2]) {
       this.filteredCampsList = this.filteredCampsList.filter(
