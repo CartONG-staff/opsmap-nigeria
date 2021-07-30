@@ -161,8 +161,6 @@ export async function TKReadGeneralConfiguration(
     i++;
   }
 
-  console.log(surveys);
-
   // Lack:
   // - iso3
   // - csv

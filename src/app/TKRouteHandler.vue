@@ -110,11 +110,10 @@ export default class TKRouteHandler extends Vue {
         path = "/";
       }
     }
-
     if (
       this.$route.path !== path &&
       this.$route.path !== path + "/" &&
-      !(!campE && this.currentRoute === "/") // PRevent to to camp page  when no camp is selected
+      !(!campE && this.$route.name === "home") // Prevent to camp page when no camp is selected
     ) {
       this.currentRoute = path;
       this.$router.push({
@@ -125,6 +124,8 @@ export default class TKRouteHandler extends Vue {
           appConfig: "appConfig"
         }
       });
+    } else {
+      console.log("Condition was false");
     }
   }
 }
