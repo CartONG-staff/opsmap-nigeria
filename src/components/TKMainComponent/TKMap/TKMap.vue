@@ -120,7 +120,8 @@ export default class TKMap extends Vue {
     }
   }
 
-  @Watch("basemaps")
+  // TODO: source of trouvle right here
+  @Watch("basemaps", { deep: true })
   updateBasemap(): void {
     console.log("begin bm");
     this.basemaps.basemapsList.map(x => {
