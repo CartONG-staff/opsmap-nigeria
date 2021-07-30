@@ -13,6 +13,8 @@ import { TKSurveyInfosKobo } from "../domain/kobo/TKSurveyInfosKobo";
 import { FeatureCollection } from "geojson";
 import { admin1Boundaries } from "@/secondary/map/admin1";
 import { countryBoundaries } from "@/secondary/map/countryBoundaries";
+import { boolean, string } from "mathjs";
+import { TKSurveyInfosGSheet } from "@/domain/gsheet/TKSurveyInfosGSheet";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Global Opsmap configuration
@@ -93,8 +95,13 @@ export async function TKReadGeneralConfiguration(
   const labels: TKOpsmapConfigurationLabelCSV[] = await TKCSVRead<
     TKOpsmapConfigurationLabelCSV[]
   >(configFileName, configFileFolder, true);
-  const dict: { [key: string]: string } = labels.reduce(
-    (dictionnary, item) => ({ ...dictionnary, [item.config_type]: item.info }),
+  const dict: {
+    [key: string]: string;
+  } = labels.reduce(
+    (dictionnary, item) => ({
+      ...dictionnary,
+      [item.config_type]: item.info
+    }),
     {}
   );
 
@@ -117,6 +124,44 @@ export async function TKReadGeneralConfiguration(
   // Prepare comp of iso3 based on BRA, NGA, etc. Placeholder solution
   const maskFC: FeatureCollection = countryBoundaries;
   const admin1FC: FeatureCollection = admin1Boundaries;
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // survey collection analysis
+  // For now, it only allows a single survey
+  const surveys: Array<TKSurveyInfos> = [];
+  let hasFoundSurvey = true;
+  let i = 0;
+  while (hasFoundSurvey) {
+    const surveyName = dict["survey_name_" + string(i)] ?? "";
+    const surveyType = dict["survey_type_" + string(i)] ?? "";
+    hasFoundSurvey = surveyName !== "" && surveyType !== "";
+
+    if (hasFoundSurvey) {
+      if (surveyType === "gsheet") {
+        surveys.push(
+          new TKSurveyInfosGSheet(
+            surveyName,
+            { folder: dict["fdf_id_" + string(i)] ?? "" },
+            dict["survey_url_" + string(i)] ?? "",
+            dict["survey_tr_url_" + string(i)] ?? ""
+          )
+        );
+      } else if (surveyType === "kobo") {
+        surveys.push(
+          new TKSurveyInfosKobo(
+            dict["survey_name_" + string(i)] ?? "",
+            { folder: dict["fdf_id_" + string(i)] ?? "" },
+            dict["survey_url_" + string(i)] ?? "",
+            dict["survey_kobo_token_" + string(i)] ?? ""
+          )
+        );
+      }
+    }
+
+    i++;
+  }
+
+  console.log(surveys);
 
   // Lack:
   // - iso3
@@ -214,14 +259,7 @@ export async function TKReadGeneralConfiguration(
         }
       ]
     },
-    surveyDescription: [
-      new TKSurveyInfosKobo(
-        dict["survey_name"] ?? "",
-        { folder: dict["fdf_id"] },
-        dict["survey_url"] ?? "",
-        dict["kobo_token"] ?? ""
-      )
-    ],
+    surveyDescription: surveys,
     mapConfig: {
       token:
         "pk.eyJ1IjoidW5oY3IiLCJhIjoiY2tveWJlcDV5MDVycTJ2and3ZXllcW1leCJ9.Vp5XDh5OhDXxZCZUvgEuDg",
