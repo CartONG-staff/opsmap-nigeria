@@ -11,14 +11,12 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import {
   TKSubmissionVisualizer,
-  TKCampIndicators,
   TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 @Component({
   components: {
-    TKSubmissionVisualizer,
-    TKCampIndicators
+    TKSubmissionVisualizer
   }
 })
 export default class TKMainComponentLeftCamp extends Vue {

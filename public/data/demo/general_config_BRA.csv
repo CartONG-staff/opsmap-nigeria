@@ -59,8 +59,9 @@ fieldwork_logo_3;data/demo/DEMO_brazil/Logo/Fraternidade.png
 webdev_name_1;CartONG
 webdev_logo_1;https://www.cartong.org/sites/cartong/files/images/CartONG_logo_long_0_0_0.png
 webdev_link_1;https://www.cartong.org
-fdf_id;demo/DEMO_brazil/FDF
-survey_name;2021
-survey_url;https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=0&single=true&output=csv
-survey_tr_url;https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=1157434408&single=true&output=csv
 spatial_boundaries;-74.17,-33.34,-33.57,5.02
+fdf_id_0;demo/DEMO_brazil/FDF
+survey_name_0;2021
+survey_type_0;gsheet
+survey_url_0;https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=0&single=true&output=csv
+survey_tr_url_0;https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=1157434408&single=true&output=csv

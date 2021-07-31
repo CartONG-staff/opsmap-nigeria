@@ -12,6 +12,7 @@ import {
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { isNumber } from "@turf/helpers";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
+import moment from "moment";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
@@ -28,6 +29,20 @@ export interface TKSurvey {
 // ////////////////////////////////////////////////////////////////////////////
 // sort dates
 // ////////////////////////////////////////////////////////////////////////////
+
+function formatDate(date: string, fdf: TKFDF): string {
+  if (fdf.terminology.date_format) {
+    const day = moment(date, fdf.terminology.date_format);
+    return day.format("DD/MM/YYYY");
+  }
+
+  return date;
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// sort dates
+// ////////////////////////////////////////////////////////////////////////////
+
 function sortDates(dates: string[]) {
   dates.sort((a: string, b: string) => {
     const asplitted = a.split("/");
@@ -51,6 +66,7 @@ function sortDates(dates: string[]) {
   });
   return dates;
 }
+
 // ////////////////////////////////////////////////////////////////////////////
 // helper method that compute survey indicator
 // ////////////////////////////////////////////////////////////////////////////
@@ -74,6 +90,7 @@ function computeSurveyIndicator(
   let thematicName = "";
   let itemIndex = -1;
   let sum = 0;
+
   for (const camp in data) {
     const last = sortedDates[camp][0];
     const submission = data[camp][last];
@@ -91,7 +108,14 @@ function computeSurveyIndicator(
           }
         }
       }
-      if (foundAtLeastOnce) {
+
+      if (
+        foundAtLeastOnce &&
+        submission.thematics &&
+        submission.thematics[thematicName] &&
+        submission.thematics[thematicName].data &&
+        submission.thematics[thematicName].data[itemIndex]
+      ) {
         const item = submission.thematics[thematicName].data[itemIndex];
         if (
           item &&
@@ -104,7 +128,6 @@ function computeSurveyIndicator(
       }
     }
   }
-
   if (!foundAtLeastOnce) {
     return {
       iconOchaName: descr.iconOchaName,
@@ -125,7 +148,7 @@ function computeSurveyIndicator(
 // ////////////////////////////////////////////////////////////////////////////
 
 export function TKCreateSurvey(
-  sumbmissions: any[],
+  submissions: any[],
   surveyConfig: TKFDF,
   spatialDescription: TKSpatialDescription,
   indicatorsDescription: TKIndicatorsDescription
@@ -138,12 +161,21 @@ export function TKCreateSurvey(
     admin1: [],
     admin2: []
   };
-  for (const submission of sumbmissions) {
-    if (submissionsByCamps[submission[spatialDescription.siteIDField]]) {
-      submissionsByCamps[submission[spatialDescription.siteIDField]][
-        submission[spatialDescription.siteLastUpdateField]
-      ] = TKCreateSubmission(submission, surveyConfig, indicatorsDescription);
-    } else {
+
+  submissions.map(submission => {
+    submission[spatialDescription.siteLastUpdateField] = formatDate(
+      submission[spatialDescription.siteLastUpdateField],
+      surveyConfig
+    );
+  });
+
+  for (const submission of submissions) {
+    // If no previous submission for the camp
+    if (!submissionsByCamps[submission[spatialDescription.siteIDField]]) {
+      // Create data structure for future submissions
+      submissionsByCamps[submission[spatialDescription.siteIDField]] = {};
+
+      // Create the camp
       campsList.push({
         id: submission[spatialDescription.siteIDField],
         name: submission[spatialDescription.siteNameField],
@@ -170,6 +202,8 @@ export function TKCreateSurvey(
         },
         lastSubmission: ""
       });
+
+      // Add the admin2 if it doesn't exists
       if (
         !boundariesList.admin2
           .map(x => x.pcode)
@@ -179,32 +213,36 @@ export function TKCreateSurvey(
           pcode: submission[spatialDescription.adm2Pcode],
           name: submission[spatialDescription.adm2Name]
         });
-        if (
-          !boundariesList.admin1
-            .map(x => x.pcode)
-            .includes(submission[spatialDescription.adm1Pcode])
-        ) {
-          boundariesList.admin1.push({
-            pcode: submission[spatialDescription.adm1Pcode],
-            name: submission[spatialDescription.adm1Name]
-          });
-        }
       }
 
-      submissionsByCamps[submission[spatialDescription.siteIDField]] = {
-        [submission[
-          spatialDescription.siteLastUpdateField
-        ]]: TKCreateSubmission(submission, surveyConfig, indicatorsDescription)
-      };
+      // Add the admin1 if it doesn't exists
+      if (
+        !boundariesList.admin1
+          .map(x => x.pcode)
+          .includes(submission[spatialDescription.adm1Pcode])
+      ) {
+        boundariesList.admin1.push({
+          pcode: submission[spatialDescription.adm1Pcode],
+          name: submission[spatialDescription.adm1Name]
+        });
+      }
     }
+
+    // Add the submissions
+    submissionsByCamps[submission[spatialDescription.siteIDField]][
+      submission[spatialDescription.siteLastUpdateField]
+    ] = TKCreateSubmission(submission, surveyConfig, indicatorsDescription);
   }
 
+  // Sort the dates
   const dateOfSubmissionsByCamps: { [site: string]: string[] } = {};
-  for (const site of Object.keys(submissionsByCamps)) {
-    dateOfSubmissionsByCamps[site] = sortDates(
-      Object.keys(submissionsByCamps[site])
+  for (const camp of Object.keys(submissionsByCamps)) {
+    dateOfSubmissionsByCamps[camp] = sortDates(
+      Object.keys(submissionsByCamps[camp])
     );
   }
+
+  // Update last submission date for each camp
   campsList.map(camp => {
     camp.lastSubmission = dateOfSubmissionsByCamps[camp.id].length
       ? dateOfSubmissionsByCamps[camp.id][0]

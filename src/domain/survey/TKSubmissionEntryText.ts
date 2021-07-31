@@ -6,8 +6,7 @@ import {
   TKFDFTrafficLightGrouped,
   TKFDFTrafficLightTypes
 } from "@/domain/fdf/TKFDFTrafficLight";
-import { evaluate } from 'mathjs'
-
+import { evaluate } from "mathjs";
 
 // ////////////////////////////////////////////////////////////////////////////
 // EntryText concept definition
@@ -43,7 +42,7 @@ export class TKSubmissionEntryText extends TKSubmissionEntry {
 function getTrafficLightColor(
   value: string,
   trafficLight: TKFDFTrafficLightGrouped
-): TKTrafficLightValues {  
+): TKTrafficLightValues {
   if (trafficLight.type === TKFDFTrafficLightTypes.STRING) {
     const match = trafficLight.values
       .filter(x => x.value.toLowerCase() === value.toLowerCase())
@@ -52,12 +51,12 @@ function getTrafficLightColor(
     return match === undefined ? TKTrafficLightValues.UNDEFINED : match;
   }
   if (trafficLight.type === TKFDFTrafficLightTypes.MATH) {
-    let match
+    let match;
     for (const item of trafficLight.values) {
-      const conditions = item.value.split("and")
-      const result = conditions.map(x => evaluate(Number(value) + x))
+      const conditions = item.value.split("and");
+      const result = conditions.map(x => evaluate(Number(value) + x));
       if (!result.includes(false)) {
-        match = item.color
+        match = item.color;
       }
       return match === undefined ? TKTrafficLightValues.UNDEFINED : match;
     }

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import {
   TKIndicatorsDescription,
   TKIndicatorDescription,
@@ -19,6 +18,7 @@ import {
 } from "./TKSubmissionThematic";
 import { TKIndicator } from "@/domain/ui/TKIndicator";
 import { TKLabel } from "../ui/TKLabel";
+import { isNumber } from "@turf/turf";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -60,18 +60,16 @@ function getValue(
   data: Record<string, TKSubmissionThematic>,
   entryCode: string
 ): number | undefined {
-  const splitted = entryCode.split("_");
-  if (splitted) {
-    const thematic = "group_" + splitted[0];
-    if (data[thematic]) {
-      const entry = data[thematic].data.find(item => item.field === entryCode);
-      if (entry instanceof TKSubmissionEntryText) {
-        const result = parseInt(entry.answerLabel.en, 10);
-        if (isNaN(result)) {
-          return undefined;
-        }
-        return result;
-      }
+  for (const thematic in data) {
+    const them = data[thematic];
+    const item = them.data.find(item => item.field === entryCode);
+    if (
+      item &&
+      item instanceof TKSubmissionEntryText &&
+      item.answerLabel &&
+      isNumber(item.answerLabel.en)
+    ) {
+      return Number(item.answerLabel.en);
     }
   }
   return undefined;
@@ -81,14 +79,11 @@ function getLabel(
   data: Record<string, TKSubmissionThematic>,
   entryCode: string
 ): TKLabel {
-  const splitted = entryCode.split("_");
-  if (splitted) {
-    const thematic = "group_" + splitted[0];
-    if (data[thematic]) {
-      const entry = data[thematic].data.find(item => item.field === entryCode);
-      if (entry instanceof TKSubmissionEntryText) {
-        return entry.answerLabel;
-      }
+  for (const thematic in data) {
+    const them = data[thematic];
+    const item = them.data.find(item => item.field === entryCode);
+    if (item && item instanceof TKSubmissionEntryText && item.answerLabel) {
+      return item.answerLabel;
     }
   }
   return { en: "-" };

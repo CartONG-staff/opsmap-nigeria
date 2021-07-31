@@ -33,10 +33,7 @@ import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
 import { FeatureCollection, Point } from "geojson";
-import {
-  TKDatasetFilterer,
-  TKFilters
-} from "@/domain/survey/TKDatasetFilterer";
+import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 
 @Component({
@@ -90,8 +87,10 @@ export default class TKMap extends Vue {
       }
     }
   }
-  // Change on injected dataset
-  @Watch("dataset", { deep: true })
+
+  // Change on filtered data -> why rebuild the whole TKMapCamps list ?
+  // TODO: improve this !!!!
+  @Watch("dataset.lastModification")
   currentCampChanged() {
     if (this.mapBoundaries) {
       this.mapBoundaries.changeStyle(this.dataset, this.map, this.bound);
@@ -121,6 +120,7 @@ export default class TKMap extends Vue {
     }
   }
 
+  // TODO: source of trouvle right here
   @Watch("basemaps", { deep: true })
   updateBasemap(): void {
     this.basemaps.basemapsList.map(x => {

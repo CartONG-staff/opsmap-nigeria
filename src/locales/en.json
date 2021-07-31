@@ -10,6 +10,7 @@
   "survey": "Survey",
   "camp": "Camp",
   "dashboardCredits": "The OPSMAP dashboard is an opensource solution under the MIT license",
+  "appVersion": "Version",
   "ochaCredits": "The Humanitarian font pictograms are licensed under the CC BY 3.0",
   "footer": {
     "moreInfos": "About Opsmap",
