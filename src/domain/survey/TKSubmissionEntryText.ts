@@ -58,8 +58,8 @@ function getTrafficLightColor(
       if (!result.includes(false)) {
         match = item.color;
       }
-      return match === undefined ? TKTrafficLightValues.UNDEFINED : match;
     }
+    return match === undefined ? TKTrafficLightValues.UNDEFINED : match;
   }
   if (trafficLight.type === TKFDFTrafficLightTypes.LIST) {
     const match = trafficLight.values
