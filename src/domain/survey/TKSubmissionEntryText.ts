@@ -68,6 +68,10 @@ function getTrafficLightColor(
       .pop();
     return match === undefined ? TKTrafficLightValues.CRITICAL : match;
   }
+  if (trafficLight.type === TKFDFTrafficLightTypes.NOTINLIST) {
+    const condition = value !== 'none'
+    return condition ? TKTrafficLightValues.OK : TKTrafficLightValues.CRITICAL
+  }
   return TKTrafficLightValues.UNDEFINED;
 }
 
