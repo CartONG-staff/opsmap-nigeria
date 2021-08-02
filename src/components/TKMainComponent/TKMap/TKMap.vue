@@ -116,7 +116,10 @@ export default class TKMap extends Vue {
   @Watch("geoDataset", { immediate: true })
   geoDatasetLoaded() {
     if (this.geoDataset) {
-      this.mapBoundaries = new TKMapBoundaries(this.geoDataset);
+      this.mapBoundaries = new TKMapBoundaries(
+        this.geoDataset,
+        this.appConfig.spatialDescription
+      );
     }
   }
 

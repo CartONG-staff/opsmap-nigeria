@@ -13,7 +13,7 @@ import { TKSurveyInfosKobo } from "../domain/kobo/TKSurveyInfosKobo";
 import { FeatureCollection } from "geojson";
 import { admin1Boundaries } from "@/secondary/map/admin1";
 import { countryBoundaries } from "@/secondary/map/countryBoundaries";
-import { boolean, string } from "mathjs";
+import { string } from "mathjs";
 import { TKSurveyInfosGSheet } from "@/domain/gsheet/TKSurveyInfosGSheet";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -179,8 +179,10 @@ export async function TKReadGeneralConfiguration(
       siteLatitudeField: dict["mp_latitude"] ?? "mp_latitude",
       siteLongitudeField: dict["mp_longitude"] ?? "mp_longitude",
       adm1Pcode: dict["adm1_unhcr"] ?? "adm1pcode",
+      adm1DBPcode: dict["adm1_dbField"] ?? "adm1pcode",
       adm1Name: dict["adm1Name"] ?? "ggi_state",
       adm2Pcode: dict["adm2_unhcr"] ?? "adm2pcode",
+      adm2DBPcode: dict["adm2_dbField"] ?? "adm2pcode",
       adm2Name: dict["adm2Name"] ?? "ggi_city",
       adm3Pcode: dict["adm3Pcode"] ?? "",
       adm3Name: dict["adm3Name"] ?? "ggi_address",

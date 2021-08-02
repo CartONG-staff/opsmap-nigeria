@@ -180,4 +180,4 @@ group_wash/gendermarkedbath;integer;group_wash;;;;;
 group_wash/latrineslighting;string;group_wash;yesno;;;;
 group_wash/bathlighting;string;group_wash;yesno;;;;
 group_wash/partners_wash;list;group_wash;;;;;
-group_wash/other_wash_partner;string;group_wash;;;;;
+group_wash/other_wash_partner;string;group_wash;PartnerPresenceWash;;;;

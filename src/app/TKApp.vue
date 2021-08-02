@@ -56,6 +56,7 @@ export default class TKApp extends Vue {
           this.appRootConfig?.spatialDescription.admin1,
           surveys
         ).then(geoDataset => {
+          console.log(geoDataset);
           this.geoDataset = geoDataset;
         });
       }

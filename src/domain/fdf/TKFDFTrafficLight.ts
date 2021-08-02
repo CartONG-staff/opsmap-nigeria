@@ -9,7 +9,8 @@ import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 export enum TKFDFTrafficLightTypes {
   STRING = "string",
   MATH = "math",
-  LIST = "list"
+  LIST = "list",
+  NOTINLIST = "notnone"
 }
 interface TKFDFTrafficLightItem {
   traffic_light_name: string;

@@ -13,7 +13,6 @@ import {
 import { isNumber } from "@turf/helpers";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 import moment from "moment";
-import { string } from "mathjs";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
