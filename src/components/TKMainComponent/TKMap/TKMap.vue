@@ -209,7 +209,7 @@ export default class TKMap extends Vue {
     if (!this.map.getSource(TKMapLayers.COUNTRYMASKSOURCE)) {
       this.map.addSource(TKMapLayers.COUNTRYMASKSOURCE, {
         type: "geojson",
-        data: this.appConfig.spatialDescription.mask
+        data: this.appConfig.spatialDescription.admin0LocalURL
       });
     }
 
@@ -217,13 +217,14 @@ export default class TKMap extends Vue {
       if (!this.map.getSource(TKMapLayers.ADMIN1SOURCE)) {
         this.map.addSource(TKMapLayers.ADMIN1SOURCE, {
           type: "geojson",
-          data: this.mapBoundaries?.admin1 as FeatureCollection
+          data: this.mapBoundaries?.admin1
         });
       }
+
       if (!this.map.getSource(TKMapLayers.ADMIN2SOURCE)) {
         this.map.addSource(TKMapLayers.ADMIN2SOURCE, {
           type: "geojson",
-          data: this.mapBoundaries?.admin2 as FeatureCollection
+          data: this.mapBoundaries?.admin2
         });
       }
     }

@@ -34,6 +34,7 @@ export async function TKCreateSurveyCollection(
   for (const info of surveyDescription) {
     // Retrieve raw data
     let rawData;
+    const before = Date.now();
     if (info instanceof TKSurveyInfosCSV) {
       rawData = await TKGetCSVRawData(info);
     } else if (info instanceof TKSurveyInfosGSheet) {
@@ -41,9 +42,22 @@ export async function TKCreateSurveyCollection(
     } else if (info instanceof TKSurveyInfosKobo) {
       rawData = await TKGetKoboRawData(info);
     }
+    console.log(
+      `Raw data ${info.name} retrieved in ${(Date.now() - before) /
+        1000} seconds.`
+    );
+
+    const beforeFDF = Date.now();
 
     // Retrieve config
     const surveyConfig = await TKCreateFDF(info);
+
+    console.log(
+      `FDF  ${info.name} retrieved in ${(Date.now() - beforeFDF) /
+        1000} seconds.`
+    );
+
+    const beforeSurvey = Date.now();
 
     // Create survey
     surveyCollection[info.name] = TKCreateSurvey(
@@ -51,6 +65,11 @@ export async function TKCreateSurveyCollection(
       surveyConfig,
       spatialDescription,
       indicatorsDescription
+    );
+
+    console.log(
+      `Survey  ${info.name} computed in ${(Date.now() - beforeSurvey) /
+        1000} seconds.`
     );
   }
   return surveyCollection;

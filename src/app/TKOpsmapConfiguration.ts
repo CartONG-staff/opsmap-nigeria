@@ -11,8 +11,6 @@ import {
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKSurveyInfosKobo } from "../domain/kobo/TKSurveyInfosKobo";
 import { FeatureCollection } from "geojson";
-import { admin1Boundaries } from "@/secondary/map/admin1";
-import { countryBoundaries } from "@/secondary/map/countryBoundaries";
 import { string } from "mathjs";
 import { TKSurveyInfosGSheet } from "@/domain/gsheet/TKSurveyInfosGSheet";
 
@@ -119,13 +117,6 @@ export async function TKReadGeneralConfiguration(
   }
 
   // ////////////////////////////////////////////////////////////////////////////
-  // masks
-  // const iso3 = dict["iso3"] ?? "";
-  // Prepare comp of iso3 based on BRA, NGA, etc. Placeholder solution
-  const maskFC: FeatureCollection = countryBoundaries;
-  const admin1FC: FeatureCollection = admin1Boundaries;
-
-  // ////////////////////////////////////////////////////////////////////////////
   // survey collection analysis
   // For now, it only allows a single survey
   const surveys: Array<TKSurveyInfos> = [];
@@ -172,23 +163,24 @@ export async function TKReadGeneralConfiguration(
     iframe: dict["iframe"] ?? "",
     opsmapDescr: readAllLocalesValues("project_overview", dict, languages),
     spatialDescription: {
-      siteIDField: dict["mp_site_id"] ?? "mp_site_id",
-      siteNameField: dict["mp_site_name"] ?? "mp_site_name",
-      siteTypeField: dict["mp_shelter_type"] ?? "mp_shelter_type",
-      siteLastUpdateField: dict["mp_last_date"] ?? "mp_last_date",
-      siteLatitudeField: dict["mp_latitude"] ?? "mp_latitude",
-      siteLongitudeField: dict["mp_longitude"] ?? "mp_longitude",
-      adm1Pcode: dict["adm1_unhcr"] ?? "adm1pcode",
-      adm1DBPcode: dict["adm1_dbField"] ?? "adm1pcode",
-      adm1Name: dict["adm1Name"] ?? "ggi_state",
-      adm2Pcode: dict["adm2_unhcr"] ?? "adm2pcode",
-      adm2DBPcode: dict["adm2_dbField"] ?? "adm2pcode",
-      adm2Name: dict["adm2Name"] ?? "ggi_city",
+      siteIDField: dict["mp_site_id"] ?? "",
+      siteNameField: dict["mp_site_name"] ?? "",
+      siteTypeField: dict["mp_shelter_type"] ?? "",
+      siteLastUpdateField: dict["mp_last_date"] ?? "",
+      siteLatitudeField: dict["mp_latitude"] ?? "",
+      siteLongitudeField: dict["mp_longitude"] ?? "",
+      adm1Pcode: dict["adm1_unhcr"] ?? "",
+      adm1DBPcode: dict["adm1_dbField"] ?? "",
+      adm1Name: dict["adm1Name"] ?? "",
+      adm2Pcode: dict["adm2_unhcr"] ?? "",
+      adm2DBPcode: dict["adm2_dbField"] ?? "",
+      adm2Name: dict["adm2Name"] ?? "",
+      adm2RefInAdm1: dict["adm2RefInAdm1"] ?? "",
       adm3Pcode: dict["adm3Pcode"] ?? "",
-      adm3Name: dict["adm3Name"] ?? "ggi_address",
+      adm3Name: dict["adm3Name"] ?? "",
       useBoundariesMasks: true,
-      mask: maskFC,
-      admin1: admin1FC
+      admin0LocalURL: dict["admin0_local_url"] ?? "",
+      admin1LocalURL: dict["admin1_local_url"] ?? ""
     },
     indicatorsDescription: {
       home: [

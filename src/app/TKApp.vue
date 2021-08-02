@@ -52,13 +52,11 @@ export default class TKApp extends Vue {
       this.dataset = new TKDatasetFilterer(surveys);
       this.isDatasetInitialized = true;
       if (this.appRootConfig?.spatialDescription.useBoundariesMasks) {
-        TKGetGeoBoundaries(
-          this.appRootConfig?.spatialDescription.admin1,
-          surveys
-        ).then(geoDataset => {
-          console.log(geoDataset);
-          this.geoDataset = geoDataset;
-        });
+        TKGetGeoBoundaries(surveys, this.appRootConfig.spatialDescription).then(
+          geoDataset => {
+            this.geoDataset = geoDataset;
+          }
+        );
       }
     });
   }

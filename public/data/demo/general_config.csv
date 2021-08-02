@@ -1,43 +1,57 @@
 config_type;info
-languages;en
-name_en;Nigeriaaa
-iso3;NGA
-mp_site_id;group_general_info/site
-mp_site_name;group_general_info/site_name
-mp_shelter_type;group_general_info/site_type
-mp_last_date;date
-mp_latitude;group_general_info/latitude
-mp_longitude;group_general_info/longitude
-adm1_unhcr;group_general_info/state
-adm1_dbField;dscodeadm1
-adm1Name;group_general_info/state_name
-adm2_unhcr;group_general_info/lga
-adm2_dbField;dscodeadm2
-adm2Name;group_general_info/lga_name
-adm3Pcode;group_general_info/ward
-adm3Name;group_general_info/ward_name
+languages;pt,en
+name_en;demo-brazil
+name_pt;demo-brasil
+iso3;BRA
+mp_site_id;mp_site_id
+mp_site_name;mp_site_name
+mp_shelter_type;mp_shelter_type
+mp_last_date;mp_last_date
+mp_latitude;mp_latitude
+mp_longitude;mp_longitude
+adm1_unhcr;adm1pcode
+adm1_dbField;pcode
+adm1Name;ggi_state
+adm2_unhcr;adm2pcode
+adm2_dbField;pcode
+adm2RefInAdm1;adm1pcode
+adm2Name;ggi_city
+adm3Pcode;adm3pcode
+adm3Name;ggi_address
+admin0_local_url;/data/demo/DEMO_brazil/map/admin0.geojson
+admin1_local_url;/data/demo/DEMO_brazil/map/admin1.geojson
 ikey1_homepage;mp_site_id
-ikey2_homepage;group_pop_change/individualpopulation
-ikey3_homepage;group_pop_change/familiespopulation
-ikey4_sitepage;group_general_info/crowded
-ikey5_sitepage;group_general_info/camp_management
-ikey6_sitepage;group_pop_change/individualpopulation
+ikey2_homepage;demo_num_indv
+ikey3_homepage;cccm_shelter_max_capacity
+ikey4_sitepage;SITE_OCCUPATION,cccm_site_at_full_capacity,demo_num_indv,cccm_shelter_max_capacity
+ikey5_sitepage;cccm_shelter_type
+ikey6_sitepage;demo_num_indv
 ikey1_homepage_picto;IDP-refugee-camp
 ikey2_homepage_picto;People-in-need
 ikey3_homepage_picto;Camp-Coordination-and-Camp-Management
 ikey4_sitepage_picto;Camp-Coordination-and-Camp-Management
-ikey5_sitepage_picto;Government-office
+ikey5_sitepage_picto;Camp-Coordination-and-Camp-Management
 ikey6_sitepage_picto;People-in-need
 ikey1_homepage_label_en;Site
 ikey2_homepage_label_en;People
-ikey3_homepage_label_en;Families
+ikey3_homepage_label_en;Shelter Max Capacity
 ikey4_sitepage_label_en;Site at Full Capacity
-ikey5_sitepage_label_en;Managed by a Government Agency
+ikey5_sitepage_label_en;Shelter Type
 ikey6_sitepage_label_en;No. of Individuals
+ikey1_homepage_label_pt;Abrigos
+ikey2_homepage_label_pt;Indivíduos
+ikey3_homepage_label_pt;Capacidade Máxima dos Abrigos
+ikey4_sitepage_label_pt;Abrigo em plena capacidade
+ikey5_sitepage_label_pt;Tipo de Abrigo
+ikey6_sitepage_label_pt;Nº de Indivíduos
 project_overview_en;"More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>
 Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>
 Currently, Roraima has 13 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than seven thousand refugees, refugee seekers, and migrants. Of these, 11 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>
 All 13 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces."
+project_overview_pt;"Mais de 260 mil refugiados e migrantes deslocaram-se ao Brasil em busca de proteção em decorrência da crise política, social e econômica que assola a Venezuela.<br/>
+Considerando-se as necessidades urgentes de assistência humanitária, como alimentação, abrigamento, saúde e proteção, especialmente para pessoas com vulnerabilidades (crianças, mulheres grávidas, idosos, pessoas com deficiência, etc.), o Governo Federal Brasileiro editou a Lei no. 13.684/2018, prevendo a execução de medidas de assistência emergencial para acolhimento da pessoas afetadas.<br/>
+Atualmente, Roraima conta com 13 espaços de acolhimento, entre abrigos (entre abrigos indígenas e não-indígenas), com potencial de atender mais de sete mil refugiados, solicitantes de refúgio e migrantes. Desses abrigos, 11 estão na cidade de Boa Vista, 2 cidade de Pacaraima.<br/>
+Todos os 13 espaços são coordenados pelo ACNUR, por conta do convênio firmado com o Ministério da Cidadania, em parceria com as Forças Armadas."
 led_name_1;UNHCR
 led_name_2;Ministério da Cidadania
 coord_name_1;UNHCR
@@ -50,18 +64,18 @@ coord_link_1;https://www.acnur.org.br
 fieldwork_link_1;https://www.fraternidadesemfronteiras.org.br/
 fieldwork_link_2;http://www.avsibrasil.org.br/
 fieldwork_link_3;https://www.fraterinternacional.org/
-led_logo_1;data/demo/DEMO_nigeria/Logo/UNHCR_PT.jpg
-led_logo_2;data/demo/DEMO_nigeria/Logo/Ministrerio_da_CIDADANIA.png
-coord_logo_1;data/demo/DEMO_nigeria/Logo/UNHCR_PT.jpg
-fieldwork_logo_1;data/demo/DEMO_nigeria/Logo/FSF.png
-fieldwork_logo_2;data/demo/DEMO_nigeria/Logo/AVSI_BRASIL.png
-fieldwork_logo_3;data/demo/DEMO_nigeria/Logo/Fraternidade.png
+led_logo_1;data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg
+led_logo_2;data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png
+coord_logo_1;data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg
+fieldwork_logo_1;data/demo/DEMO_brazil/Logo/FSF.png
+fieldwork_logo_2;data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png
+fieldwork_logo_3;data/demo/DEMO_brazil/Logo/Fraternidade.png
 webdev_name_1;CartONG
 webdev_logo_1;https://www.cartong.org/sites/cartong/files/images/CartONG_logo_long_0_0_0.png
 webdev_link_1;https://www.cartong.org
-spatial_boundaries;2.460938,3.995781,14.941406,14.221789
-fdf_id_0;demo/DEMO_nigeria/FDF
-survey_name_0;Last known FDF
-survey_url_0;https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json
-survey_kobo_token_0;ab46c724b720d44c4c8d44e86241219ce5cec6d6
-survey_type_0;kobo
+spatial_boundaries;-74.17,-33.34,-33.57,5.02
+fdf_id_0;demo/DEMO_brazil/FDF
+survey_name_0;2021
+survey_type_0;gsheet
+survey_url_0;https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=0&single=true&output=csv
+survey_tr_url_0;https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=1157434408&single=true&output=csv

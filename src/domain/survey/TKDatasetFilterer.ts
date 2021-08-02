@@ -56,11 +56,16 @@ export class TKDatasetFilterer {
   levelToZoom: TKFilters = TKFilters.SURVEY;
 
   constructor(surveys: TKSurveyCollection) {
+    const before = Date.now();
+
     this.surveys = surveys;
     this.surveyList = Object.keys(surveys);
     if (this.surveyList.length > 0) {
       this.setActiveSurvey(this.surveyList[0]);
     }
+    console.log(
+      `Dataset filterer set up ${(Date.now() - before) / 1000} seconds.`
+    );
   }
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -244,7 +249,9 @@ export class TKDatasetFilterer {
         a => a.pcode === pcode
       ) as TKBoundarieDescription;
 
-      this.lastModification = `admin1=${this.currentAdmin1.pcode}`;
+      if (this.currentAdmin1) {
+        this.lastModification = `admin1=${this.currentAdmin1}`;
+      }
 
       this.updateFiltering();
     }
