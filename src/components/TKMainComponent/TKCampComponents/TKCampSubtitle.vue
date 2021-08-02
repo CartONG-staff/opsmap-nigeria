@@ -18,8 +18,9 @@ export default class TKCampSubtitle extends Vue {
   readonly dataset!: TKDatasetFilterer;
 
   name = "";
+
   @Watch("$root.$i18n.locale")
-  @Watch("dataset.currentCamp")
+  @Watch("dataset.currentCamp", { immediate: true })
   onChange() {
     this.name = this.dataset.currentCamp
       ? this.dataset.currentCamp.name
