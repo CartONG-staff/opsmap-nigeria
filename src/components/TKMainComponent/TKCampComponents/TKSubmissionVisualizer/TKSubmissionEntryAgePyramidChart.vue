@@ -58,6 +58,8 @@ Chart.register(
   Tooltip
 );
 
+import { v4 } from "uuid";
+
 @Component
 export default class TKSubmissionItemAgePyramidChart extends Vue {
   @Prop()
@@ -65,7 +67,8 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 
   // charts
   chart!: Chart;
-  readonly ctx = Date.now().toString();
+  readonly ctx = v4();
+
   height = 0;
   readonly barthickness = 15;
 
