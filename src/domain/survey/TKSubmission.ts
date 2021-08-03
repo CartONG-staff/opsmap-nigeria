@@ -200,16 +200,6 @@ export function TKCreateSubmission(
           });
         } else {
           // if a current pyramid is ongoing - push it before switching to text item
-          if (agePyramidId) {
-            submission[thematic].data.push(
-              TKCreateSubmissionEntryAgePyramid(
-                agePyramidData,
-                surveyConfiguration
-              )
-            );
-            agePyramidId = "";
-            agePyramidData = [];
-          }
           submission[thematic].data.push(
             TKCreateSubmissionEntryText(
               submissionItem[field],
