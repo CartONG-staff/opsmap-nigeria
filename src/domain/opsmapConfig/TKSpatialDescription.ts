@@ -19,7 +19,6 @@ export interface TKSpatialDescription {
   adm2RefInAdm1: string;
   adm3Pcode: string;
   adm3Name: string;
-  useBoundariesMasks: boolean;
   admin0LocalURL: string;
   admin1LocalURL: string;
 }

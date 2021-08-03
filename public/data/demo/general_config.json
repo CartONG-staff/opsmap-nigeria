@@ -105,6 +105,25 @@
             "urlRedirection": "https://www.cartong.org"
         }]
     },
+    "spatial":{
+        "siteIDField": "mp_site_id",
+        "siteNameField": "mp_site_name",
+        "siteTypeField": "mp_shelter_type",
+        "siteLastUpdateField": "mp_last_date",
+        "siteLatitudeField": "mp_latitude",
+        "siteLongitudeField": "mp_longitude",
+        "adm1Pcode": "adm1pcode",
+        "adm1DBPcode": "pcode",
+        "adm1Name": "ggi_state",
+        "adm2Pcode": "adm2pcode",
+        "adm2DBPcode": "pcode",
+        "adm2Name": "ggi_city",
+        "adm2RefInAdm1": "adm1pcode",
+        "adm3Pcode": "adm3pcode",
+        "adm3Name": "ggi_address",
+        "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson",
+        "admin1LocalURL": "/data/demo/DEMO_brazil/map/admin1.geojson"
+    },
     "surveys":[{
         "type":"gsheet",
         "fdf": {
@@ -113,5 +132,15 @@
         "name": "2021",
         "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=0&single=true&output=csv",
         "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=1157434408&single=true&output=csv"
-    }]
+    }],
+    "mapConfig": {
+        "token": "pk.eyJ1IjoidW5oY3IiLCJhIjoiY2tveWJlcDV5MDVycTJ2and3ZXllcW1leCJ9.Vp5XDh5OhDXxZCZUvgEuDg",
+        "style": "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",
+        "padding": 100,
+        "zoomspeed": 2,
+        "bounds": [
+            -74.17,-33.34,-33.57,5.02
+        ]
+    }
 }
+

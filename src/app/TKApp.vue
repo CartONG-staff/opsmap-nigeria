@@ -26,6 +26,7 @@ import { TKCreateSurveyCollection } from "@/domain/survey/TKSurveyCollection";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 import TKRouteHandler from "@/app/TKRouteHandler.vue";
+import { TKOpsmapConfiguration } from "@/domain";
 
 @Component({
   components: {
@@ -37,7 +38,7 @@ import TKRouteHandler from "@/app/TKRouteHandler.vue";
 })
 export default class TKApp extends Vue {
   isDatasetInitialized = false;
-  appRootConfig = this.$root.$data.config;
+  appRootConfig: TKOpsmapConfiguration = this.$root.$data.config;
   dataset: TKDatasetFilterer = new TKDatasetFilterer({});
   geoDataset: TKGeoDataset | null = null;
 
@@ -45,19 +46,17 @@ export default class TKApp extends Vue {
     this.handeLocale();
 
     TKCreateSurveyCollection(
-      this.appRootConfig.surveyDescription,
-      this.appRootConfig.spatialDescription,
-      this.appRootConfig.indicatorsDescription
+      this.appRootConfig.surveys,
+      this.appRootConfig.spatial,
+      this.appRootConfig.indicators
     ).then(surveys => {
       this.dataset = new TKDatasetFilterer(surveys);
       this.isDatasetInitialized = true;
-      if (this.appRootConfig?.spatialDescription.useBoundariesMasks) {
-        TKGetGeoBoundaries(surveys, this.appRootConfig.spatialDescription).then(
-          geoDataset => {
-            this.geoDataset = geoDataset;
-          }
-        );
-      }
+      TKGetGeoBoundaries(surveys, this.appRootConfig.spatial).then(
+        geoDataset => {
+          this.geoDataset = geoDataset;
+        }
+      );
     });
   }
 

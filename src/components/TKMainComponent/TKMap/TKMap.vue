@@ -32,9 +32,9 @@ import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
-import { FeatureCollection, Point } from "geojson";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
+import { Point } from "geojson";
 
 @Component({
   components: {
@@ -118,7 +118,7 @@ export default class TKMap extends Vue {
     if (this.geoDataset) {
       this.mapBoundaries = new TKMapBoundaries(
         this.geoDataset,
-        this.appConfig.spatialDescription
+        this.appConfig.spatial
       );
     }
   }
@@ -209,7 +209,7 @@ export default class TKMap extends Vue {
     if (!this.map.getSource(TKMapLayers.COUNTRYMASKSOURCE)) {
       this.map.addSource(TKMapLayers.COUNTRYMASKSOURCE, {
         type: "geojson",
-        data: this.appConfig.spatialDescription.admin0LocalURL
+        data: this.appConfig.spatial.admin0LocalURL
       });
     }
 

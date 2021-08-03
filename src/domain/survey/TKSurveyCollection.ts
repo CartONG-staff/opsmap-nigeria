@@ -6,7 +6,7 @@ import { TKGetKoboRawData } from "@/domain/kobo/TKGetKoboRawData";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKCreateSurvey } from "./TKSurvey";
 import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
-import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
+import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
 // SurveyCollection concept definition
