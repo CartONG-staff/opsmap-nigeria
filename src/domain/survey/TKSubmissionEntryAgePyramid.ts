@@ -54,6 +54,8 @@ export function TKCreateSubmissionEntryAgePyramid(
   const femalesLabel = femalesEntries.map(
     item => surveyConfiguration.fieldsLabels[item.field]
   );
+  // TODO set up a regex to order following the number found
+  // console.log(malesLabel.map(item => item.en.match(/^[^\d]*(\d+)/)));
 
   return new TKSubmissionEntryAgePyramid(
     "agepyramid",

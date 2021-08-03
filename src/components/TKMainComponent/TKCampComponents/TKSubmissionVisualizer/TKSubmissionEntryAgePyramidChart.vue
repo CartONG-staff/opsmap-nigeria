@@ -77,7 +77,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   beforeMount() {
     if (this.entry) {
       this.height =
-        this.entry.malesEntries.length * (this.barthickness - 1) + 140;
+        this.entry.malesEntries.length * (this.barthickness - 1) + 140; // This is magic !
     }
   }
 
@@ -141,7 +141,10 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
                   const value = Math.abs(Number(tooltipItem.raw));
                   let label = tooltipItem.dataset.label;
                   label = value > 1 ? label + "s" : label;
-                  return label + ": " + value.toString();
+                  if (!label?.endsWith(":")) {
+                    label += ":";
+                  }
+                  return label + value.toString();
                 },
                 title: function(tooltipItems): string {
                   const sum = tooltipItems.reduce(function(
@@ -151,7 +154,11 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
                     return accumulateur + Math.abs(Number(valeurCourante.raw));
                   },
                   0);
-                  return tooltipItems[0].label + ": " + sum.toString();
+                  let label = tooltipItems[0].label;
+                  if (!label?.endsWith(":")) {
+                    label += ":";
+                  }
+                  return label + " " + sum.toString();
                 }
               },
               titleFont: {
