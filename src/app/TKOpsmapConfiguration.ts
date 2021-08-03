@@ -10,9 +10,15 @@ import {
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
 import { TKSurveyInfosKobo } from "../domain/kobo/TKSurveyInfosKobo";
-import { FeatureCollection } from "geojson";
 import { string } from "mathjs";
 import { TKSurveyInfosGSheet } from "@/domain/gsheet/TKSurveyInfosGSheet";
+
+interface TKOpsmapConfigurationJSON {
+  readonly name: TKLabel;
+  readonly languages: string[];
+  readonly iso3: string;
+  readonly indicatorsDescription: TKIndicatorsDescription;
+}
 
 // ////////////////////////////////////////////////////////////////////////////
 // Global Opsmap configuration
@@ -44,37 +50,37 @@ function readAllLocalesValues(
   return label;
 }
 
-// Parse the indicator 'index'
-// Sample TKIndicatorDescriptionSiteOccupation:
-//    ikey4_sitepage;SITE_OCCUPATION,cccm_site_at_full_capacity,demo_num_indv,cccm_shelter_max_capacity:
-function readSiteIndicator(
-  dict: { [key: string]: string },
-  languages: string[],
-  index: string
-): TKIndicatorDescription {
-  if (dict["ikey" + index + "_sitepage"]?.startsWith("SITE_OCCUPATION")) {
-    const fields = (dict["ikey" + index + "_sitepage"] ?? "").split(",");
-    if (fields.length > 3) {
-      return new TKIndicatorDescriptionSiteOccupation(
-        readAllLocalesValues(
-          "ikey" + index + "_sitepage_label",
-          dict,
-          languages
-        ),
-        fields[1],
-        fields[2],
-        fields[3],
-        dict["ikey" + index + "_sitepage_picto"] ?? ""
-      );
-    }
-  }
+// // Parse the indicator 'index'
+// // Sample TKIndicatorDescriptionSiteOccupation:
+// //    ikey4_sitepage;SITE_OCCUPATION,cccm_site_at_full_capacity,demo_num_indv,cccm_shelter_max_capacity:
+// function readSiteIndicator(
+//   dict: { [key: string]: string },
+//   languages: string[],
+//   index: string
+// ): TKIndicatorDescription {
+//   if (dict["ikey" + index + "_sitepage"]?.startsWith("SITE_OCCUPATION")) {
+//     const fields = (dict["ikey" + index + "_sitepage"] ?? "").split(",");
+//     if (fields.length > 3) {
+//       return new TKIndicatorDescriptionSiteOccupation(
+//         readAllLocalesValues(
+//           "ikey" + index + "_sitepage_label",
+//           dict,
+//           languages
+//         ),
+//         fields[1],
+//         fields[2],
+//         fields[3],
+//         dict["ikey" + index + "_sitepage_picto"] ?? ""
+//       );
+//     }
+//   }
 
-  return new TKIndicatorDescription(
-    readAllLocalesValues("ikey" + index + "_sitepage_label", dict, languages),
-    dict["ikey" + index + "_sitepage"] ?? "",
-    dict["ikey" + index + "_sitepage_picto"] ?? ""
-  );
-}
+//   return new TKIndicatorDescription(
+//     readAllLocalesValues("ikey" + index + "_sitepage_label", dict, languages),
+//     dict["ikey" + index + "_sitepage"] ?? "",
+//     dict["ikey" + index + "_sitepage_picto"] ?? ""
+//   );
+// }
 
 // ////////////////////////////////////////////////////////////////////////////
 // Read configuration from CSV file
@@ -90,6 +96,12 @@ export async function TKReadGeneralConfiguration(
   configFileName: string,
   configFileFolder: string
 ): Promise<TKOpsmapConfiguration> {
+  const json: TKOpsmapConfigurationJSON = await fetch(
+    "/data/demo/general_config.json"
+  ).then(response => response.json());
+
+  console.log(json);
+
   const labels: TKOpsmapConfigurationLabelCSV[] = await TKCSVRead<
     TKOpsmapConfigurationLabelCSV[]
   >(configFileName, configFileFolder, true);
@@ -157,9 +169,9 @@ export async function TKReadGeneralConfiguration(
   // - csv
   // - useBoundariesMasks
   const config: TKOpsmapConfiguration = {
-    languages: languages,
-    name: readAllLocalesValues("name", dict, languages),
-    iso3: dict["iso3"] ?? "",
+    languages: json.languages,
+    name: json.name, //readAllLocalesValues("name", dict, languages),
+    iso3: json.iso3,
     iframe: dict["iframe"] ?? "",
     opsmapDescr: readAllLocalesValues("project_overview", dict, languages),
     spatialDescription: {
@@ -182,30 +194,7 @@ export async function TKReadGeneralConfiguration(
       admin0LocalURL: dict["admin0_local_url"] ?? "",
       admin1LocalURL: dict["admin1_local_url"] ?? ""
     },
-    indicatorsDescription: {
-      home: [
-        {
-          name: readAllLocalesValues("ikey1_homepage_label", dict, languages),
-          entryCode: dict["ikey1_homepage"] ?? "",
-          iconOchaName: dict["ikey1_homepage_picto"] ?? ""
-        },
-        {
-          name: readAllLocalesValues("ikey2_homepage_label", dict, languages),
-          entryCode: dict["ikey2_homepage"] ?? "",
-          iconOchaName: dict["ikey2_homepage_picto"] ?? ""
-        },
-        {
-          name: readAllLocalesValues("ikey3_homepage_label", dict, languages),
-          entryCode: dict["ikey3_homepage"] ?? "",
-          iconOchaName: dict["ikey3_homepage_picto"] ?? ""
-        }
-      ],
-      site: [
-        readSiteIndicator(dict, languages, "4"),
-        readSiteIndicator(dict, languages, "5"),
-        readSiteIndicator(dict, languages, "6")
-      ]
-    },
+    indicatorsDescription: json.indicatorsDescription,
     footerLogos: {
       Fieldwork: [
         {

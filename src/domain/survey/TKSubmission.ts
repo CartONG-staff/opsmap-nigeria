@@ -90,11 +90,11 @@ function getLabel(
 }
 
 function computeSubmissionIndicator(
-  descr: TKIndicatorDescription,
+  descr: TKIndicatorDescription | TKIndicatorDescriptionSiteOccupation,
   data: Record<string, TKSubmissionThematic>
 ): TKIndicator {
-  if (descr instanceof TKIndicatorDescriptionSiteOccupation) {
-    const labelIsMaxCapacity = getLabel(data, descr.entryCode);
+  if (descr.type === "site_occupation") {
+    const labelIsMaxCapacity = getLabel(data, descr.entryCodeMaxCapacity);
 
     // Should be two integers
     const peopleCount = getValue(data, descr.entryCodePeopleCount);

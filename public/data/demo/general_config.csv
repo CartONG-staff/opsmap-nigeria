@@ -1,8 +1,4 @@
 config_type;info
-languages;pt,en
-name_en;demo-brazil
-name_pt;demo-brasil
-iso3;BRA
 mp_site_id;mp_site_id
 mp_site_name;mp_site_name
 mp_shelter_type;mp_shelter_type
@@ -20,30 +16,6 @@ adm3Pcode;adm3pcode
 adm3Name;ggi_address
 admin0_local_url;/data/demo/DEMO_brazil/map/admin0.geojson
 admin1_local_url;/data/demo/DEMO_brazil/map/admin1.geojson
-ikey1_homepage;mp_site_id
-ikey2_homepage;demo_num_indv
-ikey3_homepage;cccm_shelter_max_capacity
-ikey4_sitepage;SITE_OCCUPATION,cccm_site_at_full_capacity,demo_num_indv,cccm_shelter_max_capacity
-ikey5_sitepage;cccm_shelter_type
-ikey6_sitepage;demo_num_indv
-ikey1_homepage_picto;IDP-refugee-camp
-ikey2_homepage_picto;People-in-need
-ikey3_homepage_picto;Camp-Coordination-and-Camp-Management
-ikey4_sitepage_picto;Camp-Coordination-and-Camp-Management
-ikey5_sitepage_picto;Camp-Coordination-and-Camp-Management
-ikey6_sitepage_picto;People-in-need
-ikey1_homepage_label_en;Site
-ikey2_homepage_label_en;People
-ikey3_homepage_label_en;Shelter Max Capacity
-ikey4_sitepage_label_en;Site at Full Capacity
-ikey5_sitepage_label_en;Shelter Type
-ikey6_sitepage_label_en;No. of Individuals
-ikey1_homepage_label_pt;Abrigos
-ikey2_homepage_label_pt;Indivíduos
-ikey3_homepage_label_pt;Capacidade Máxima dos Abrigos
-ikey4_sitepage_label_pt;Abrigo em plena capacidade
-ikey5_sitepage_label_pt;Tipo de Abrigo
-ikey6_sitepage_label_pt;Nº de Indivíduos
 project_overview_en;"More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>
 Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>
 Currently, Roraima has 13 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than seven thousand refugees, refugee seekers, and migrants. Of these, 11 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>

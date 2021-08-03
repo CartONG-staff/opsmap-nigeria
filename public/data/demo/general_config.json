@@ -1,0 +1,67 @@
+{
+    "languages":["pt","en"],
+    "iso3":"BRA",
+    "name":{
+        "en":"demo-brazil",
+        "pt":"demo-brasil"
+    },
+    "indicatorsDescription": {
+        "home": [{
+            "type": "standard",
+            "name": {
+                "en": "Site",
+                "pt": "Abrigos"
+            },
+            "entryCode": "mp_site_id",
+            "iconOchaName": "IDP-refugee-camp"
+        },
+        {
+            "type": "standard",
+            "name": {
+                "en": "People",
+                "pt": "Indivíduos"
+            },
+            "entryCode": "demo_num_indv",
+            "iconOchaName": "People-in-need"
+        },
+        {
+            "type": "standard",
+            "name": {
+                "en": "Shelter Max Capacity",
+                "pt": "Capacidade Máxima dos Abrigos"
+            },
+            "entryCode": "cccm_shelter_max_capacity",
+            "iconOchaName": "Camp-Coordination-and-Camp-Management"
+        }],
+        "site": [{
+            "type": "site_occupation",
+            "name": {
+                "en": "Site at Full Capacity",
+                "pt": "Abrigo em plena capacidade"
+            },
+            "iconOchaName": "Camp-Coordination-and-Camp-Management",
+            "entryCodeMaxCapacity": "cccm_site_at_full_capacity",
+            "entryCodePeopleCount": "demo_num_indv",
+            "entryCodeMaxPeopleCount": "cccm_shelter_max_capacity"
+        },
+        {
+            "type": "standard",
+            "name": {
+                "en": "Shelter Type",
+                "pt": "Tipo de Abrigo"
+            },
+            "entryCode": "cccm_shelter_type",
+            "iconOchaName": "Camp-Coordination-and-Camp-Management"
+        },
+        {
+            "type": "standard",
+            "name": {
+                "en": "No. of Individuals",
+                "pt": "Nº de Indivíduos"
+            },
+            "entryCode": "demo_num_indv",
+            "iconOchaName": "People-in-need"
+        }]
+    }
+
+}
