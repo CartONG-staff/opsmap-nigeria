@@ -73,43 +73,43 @@
     },
     "headerLogos":[{
             "name": "UNHCR",
-            "urlLogo": "data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+            "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
             "urlRedirection": "https://www.acnur.org.br"
         },
         {
             "name": "Ministério da Cidadania",
-            "urlLogo": "data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
+            "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
             "urlRedirection": "https://www.gov.br/cidadania/pt-br"
     }],
     "footerLogos":{
         "clusterLed": [{
                 "name": "UNHCR",
-                "urlLogo": "data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+                "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
                 "urlRedirection": "https://www.acnur.org.br"
             },
             {
                 "name": "Ministério da Cidadania",
-                "urlLogo": "data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
+                "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
                 "urlRedirection": "https://www.gov.br/cidadania/pt-br"
         }],
         "coordinationAndIMSupport": [{
             "name": "UNHCR",
-            "urlLogo": "data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+            "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
             "urlRedirection": "https://www.acnur.org.br"
         }],
         "Fieldwork": [{
                 "name": "FSF",
-                "urlLogo": "data/demo/DEMO_brazil/Logo/FSF.png",
+                "urlLogo": "/data/demo/DEMO_brazil/Logo/FSF.png",
                 "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
             },
             {
                 "name": "AVSI",
-                "urlLogo": "data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
+                "urlLogo": "/data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
                 "urlRedirection": "http://www.avsibrasil.org.br/"
             },
             {
                 "name": "FFHI",
-                "urlLogo": "data/demo/DEMO_brazil/Logo/Fraternidade.png",
+                "urlLogo": "/data/demo/DEMO_brazil/Logo/Fraternidade.png",
                 "urlRedirection": "https://www.fraterinternacional.org/"
         }],
         "Webdev": [{
