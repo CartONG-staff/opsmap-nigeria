@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="tk-header">
-    <div>
+    <div class="tk-header-left">
       <button class="tk-header-logo-opsmap-container" v-on:click="logoClicked">
         <img
           src="@/assets/LogoOpsmap.png"
@@ -15,9 +15,21 @@
           </transition>
         </h3>
       </button>
+      <div v-for="item in appConfig.headerLogos" :key="item.name">
+        <a :href="item.urlRedirection" target="_blank">
+          <img
+            :src="item.urlLogo"
+            :alt="item.name"
+            class="tk-header-logo-cccm"
+          />
+        </a>
+      </div>
     </div>
     <div class="tk-header-right">
-      <div class="tk-header-logo-cccm-container">
+      <div
+        class="tk-header-logo-cccm-container"
+        v-show="appConfig.options.showCCCMLogo"
+      >
         <a href="https://cccmcluster.org" target="_blank">
           <img
             src="@/assets/LogoCluster.png"
@@ -102,6 +114,15 @@ export default class TKHeader extends Vue {
   padding-right: var(--side-padding);
   padding-top: 8px;
   padding-bottom: 8px;
+  row-gap: 8px;
+}
+
+.tk-header-left {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 10px;
   row-gap: 8px;
 }
 

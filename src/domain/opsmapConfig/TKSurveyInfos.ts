@@ -1,14 +1,47 @@
-import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
+import { TKFDFInfos } from "../fdf/TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
-// Generic approach for suvey configuration: name + FDF
+// Specialization of TKSurveyInfo for KOBO Inputs
 // ////////////////////////////////////////////////////////////////////////////
-export class TKSurveyInfos {
-  name: string;
-  fdf: TKFDFInfos;
-
-  constructor(name: string, fdf: TKFDFInfos) {
-    this.name = name;
-    this.fdf = fdf;
-  }
+export interface TKSurveyInfosKobo {
+  readonly type: "kobo";
+  readonly name: string;
+  readonly fdf: TKFDFInfos;
+  readonly url: string;
+  readonly token: string;
 }
+
+// ////////////////////////////////////////////////////////////////////////////
+// Specialization of TKSurveyInfo for CSV Inputs
+// ////////////////////////////////////////////////////////////////////////////
+
+export interface TKSurveyInfosCSV {
+  readonly type: "csv";
+  readonly name: string;
+  readonly fdf: TKFDFInfos;
+  readonly submissionsFolder: string;
+  readonly submissionsFile: string;
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Specialization of TKSurveyInfo for CSV Inputs
+// ////////////////////////////////////////////////////////////////////////////
+
+export interface TKSurveyInfosGSheet {
+  readonly type: "gsheet";
+  readonly name: string;
+  readonly fdf: TKFDFInfos;
+  readonly submissionsUrl: string;
+  readonly submissionsTrUrl: string;
+}
+
+// folder: string;
+
+// ////////////////////////////////////////////////////////////////////////////
+// Alltogether type
+// ////////////////////////////////////////////////////////////////////////////
+
+export type TKSurveyInfos =
+  | TKSurveyInfosKobo
+  | TKSurveyInfosGSheet
+  | TKSurveyInfosCSV;

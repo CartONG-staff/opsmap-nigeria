@@ -25,6 +25,8 @@
     "core-js": "^3.15.2",
     "git-describe": "^4.0.4",
     "mapbox-gl": "^2.3.1",
+    "mathjs": "^9.4.4",
+    "moment": "^2.29.1",
     "papaparse": "^5.3.1",
     "powerbi-client": "^2.18.0",
     "vue": "^2.6.14",

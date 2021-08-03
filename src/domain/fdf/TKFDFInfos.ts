@@ -14,6 +14,7 @@ export enum TKFDFFiles {
   FIELDS = "field_labels",
   SUBMISSION_RULES = "submissions_rules",
   THEMATICS = "thematic_config",
+  TERMINOLOGY = "terminology",
   TRAFFIC_LIGHTS = "traffic_light_config",
   URLS = "partners_urls"
 }

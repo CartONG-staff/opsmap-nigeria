@@ -6,6 +6,7 @@ import {
   TKFDFTrafficLightGrouped,
   TKFDFTrafficLightTypes
 } from "@/domain/fdf/TKFDFTrafficLight";
+import { evaluate } from "mathjs";
 
 // ////////////////////////////////////////////////////////////////////////////
 // EntryText concept definition
@@ -48,6 +49,28 @@ function getTrafficLightColor(
       .map(x => x.color)
       .pop();
     return match === undefined ? TKTrafficLightValues.UNDEFINED : match;
+  }
+  if (trafficLight.type === TKFDFTrafficLightTypes.MATH) {
+    let match;
+    for (const item of trafficLight.values) {
+      const conditions = item.value.split("and");
+      const result = conditions.map(x => evaluate(Number(value) + x));
+      if (!result.includes(false)) {
+        match = item.color;
+      }
+    }
+    return match === undefined ? TKTrafficLightValues.UNDEFINED : match;
+  }
+  if (trafficLight.type === TKFDFTrafficLightTypes.LIST) {
+    const match = trafficLight.values
+      .filter(x => x.value.toLowerCase() === value.toLowerCase())
+      .map(x => x.color)
+      .pop();
+    return match === undefined ? TKTrafficLightValues.CRITICAL : match;
+  }
+  if (trafficLight.type === TKFDFTrafficLightTypes.NOTINLIST) {
+    const condition = value !== 'none'
+    return condition ? TKTrafficLightValues.OK : TKTrafficLightValues.CRITICAL
   }
   return TKTrafficLightValues.UNDEFINED;
 }

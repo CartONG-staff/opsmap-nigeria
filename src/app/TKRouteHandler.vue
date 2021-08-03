@@ -13,7 +13,7 @@ export default class TKRouteHandler extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
 
-  currentRoute = "";
+  currentRoute = "/";
 
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
@@ -77,24 +77,6 @@ export default class TKRouteHandler extends Vue {
         } else if (admin1) {
           this.dataset.setCurrentAdmin1Name(admin1);
         }
-        // if (
-        //   admin1 !== this.dataset.currentAdmin1?.name ||
-        //   admin2 !== this.dataset.currentAdmin2?.name ||
-        //   camp !== this.dataset.currentCamp?.name ||
-        //   date !== this.dataset.currentDate
-        // ) {
-        //   console.log("- requires update");
-        //   console.log(admin1);
-        //   console.log(this.dataset.currentAdmin1?.name);
-        //   console.log(admin2);
-        //   console.log(this.dataset.currentAdmin2?.name);
-        //   console.log(camp);
-        //   console.log(this.dataset.currentCamp?.name);
-        //   console.log(date);
-        //   console.log(this.dataset.currentDate);
-        //   // URL requires update
-        //   this.updateUrlFromDataset();
-        // }
       }
     }
   }
@@ -128,8 +110,11 @@ export default class TKRouteHandler extends Vue {
         path = "/";
       }
     }
-
-    if (this.$route.path !== path && this.$route.path !== path + "/") {
+    if (
+      this.$route.path !== path &&
+      this.$route.path !== path + "/" &&
+      !(!campE && this.$route.name === "home") // Prevent to camp page when no camp is selected
+    ) {
       this.currentRoute = path;
       this.$router.push({
         path: path,

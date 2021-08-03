@@ -1,5 +1,4 @@
 import { TKSurvey } from "./TKSurvey";
-import { TKSurveyInfosCSV } from "@/domain/csv/TKSurveyInfosCSV";
 import { TKCreateFDF } from "@/domain/fdf/TKFDF";
 import { TKGetCSVRawData } from "@/domain/csv/TKGetCSVRawData";
 import { TKGetGSheetRawData } from "@/domain/gsheet/TKGetGSheetRawData";
@@ -8,8 +7,6 @@ import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription
 import { TKCreateSurvey } from "./TKSurvey";
 import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
-import { TKSurveyInfosKobo } from "@/domain/kobo/TKSurveyInfosKobo";
-import { TKSurveyInfosGSheet } from "@/domain/gsheet/TKSurveyInfosGSheet";
 
 // ////////////////////////////////////////////////////////////////////////////
 // SurveyCollection concept definition
@@ -34,16 +31,30 @@ export async function TKCreateSurveyCollection(
   for (const info of surveyDescription) {
     // Retrieve raw data
     let rawData;
-    if (info instanceof TKSurveyInfosCSV) {
+    const before = Date.now();
+    if (info.type === "csv") {
       rawData = await TKGetCSVRawData(info);
-    } else if (info instanceof TKSurveyInfosGSheet) {
+    } else if (info.type === "gsheet") {
       rawData = await TKGetGSheetRawData(info);
-    } else if (info instanceof TKSurveyInfosKobo) {
+    } else if (info.type === "kobo") {
       rawData = await TKGetKoboRawData(info);
     }
+    console.log(
+      `Raw data ${info.name} retrieved in ${(Date.now() - before) /
+        1000} seconds.`
+    );
+
+    const beforeFDF = Date.now();
 
     // Retrieve config
     const surveyConfig = await TKCreateFDF(info);
+
+    console.log(
+      `FDF  ${info.name} retrieved in ${(Date.now() - beforeFDF) /
+        1000} seconds.`
+    );
+
+    const beforeSurvey = Date.now();
 
     // Create survey
     surveyCollection[info.name] = TKCreateSurvey(
@@ -51,6 +62,11 @@ export async function TKCreateSurveyCollection(
       surveyConfig,
       spatialDescription,
       indicatorsDescription
+    );
+
+    console.log(
+      `Survey  ${info.name} computed in ${(Date.now() - beforeSurvey) /
+        1000} seconds.`
     );
   }
   return surveyCollection;

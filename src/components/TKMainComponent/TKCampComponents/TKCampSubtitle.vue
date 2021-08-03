@@ -18,15 +18,10 @@ export default class TKCampSubtitle extends Vue {
   readonly dataset!: TKDatasetFilterer;
 
   name = "";
-  @Watch("dataset", { immediate: true, deep: true })
-  onChange() {
-    this.name = this.dataset.currentCamp
-      ? this.dataset.currentCamp.name
-      : this.$root.$i18n.t("site.subtitlePlaceholder").toString();
-  }
 
   @Watch("$root.$i18n.locale")
-  onLocaleChange() {
+  @Watch("dataset.currentCamp", { immediate: true })
+  onChange() {
     this.name = this.dataset.currentCamp
       ? this.dataset.currentCamp.name
       : this.$root.$i18n.t("site.subtitlePlaceholder").toString();

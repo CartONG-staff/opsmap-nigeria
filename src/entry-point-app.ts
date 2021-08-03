@@ -8,7 +8,7 @@ import router from "./router";
 
 Vue.config.productionTip = false;
 
-TKReadGeneralConfiguration("general_config", "demo").then(config => {
+TKReadGeneralConfiguration("/data/demo/general_config.json").then(config => {
   // Filter with config languages field.
   const messagesCandidates = loadLocaleMessages();
   const keys = Object.keys(messagesCandidates).filter(

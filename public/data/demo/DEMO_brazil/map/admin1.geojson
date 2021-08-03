@@ -1,13 +1,11 @@
-import { FeatureCollection } from "geojson";
-
-export const admin1Brazil: FeatureCollection = {
-  type: "FeatureCollection",
-  features: [
+{
+  "type": "FeatureCollection",
+  "features": [
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-37.2532913809428, -4.83155557330317],
             [-37.64033838136443, -4.926404606205342],
@@ -76,32 +74,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 8846,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Rio Grande Do Norte",
-        pcode: "20BRA024",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "24",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{23CB8EAF-2E88-419F-A2D6-7232450DF42B}"
+      "properties": {
+        "properties": 8846,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Rio Grande Do Norte",
+        "pcode": "20BRA024",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "24",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{23CB8EAF-2E88-419F-A2D6-7232450DF42B}"
       },
-      id: 8846
+      "id": 8846
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-35.152526501104425, -8.913837168793233],
             [-35.53517790919526, -8.819454778853228],
@@ -149,32 +147,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9161,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Alagoas",
-        pcode: "20BRA027",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "27",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{8BDA89D7-833C-4421-A2BC-1CBC8208A698}"
+      "properties": {
+        "properties": 9161,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Alagoas",
+        "pcode": "20BRA027",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "27",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{8BDA89D7-833C-4421-A2BC-1CBC8208A698}"
       },
-      id: 9161
+      "id": 9161
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-40.22235060897847, -17.980417385348535],
             [-40.17412729011717, -17.851561216012126],
@@ -404,32 +402,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9176,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Minas Gerais",
-        pcode: "20BRA031",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "31",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{96A8B4FF-F340-4DC1-94B1-95CE9AF88F5D}"
+      "properties": {
+        "properties": 9176,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Minas Gerais",
+        "pcode": "20BRA031",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "31",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{96A8B4FF-F340-4DC1-94B1-95CE9AF88F5D}"
       },
-      id: 9176
+      "id": 9176
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-48.59459170762635, -25.976787748817763],
             [-48.960478395660516, -25.980799833389895],
@@ -517,32 +515,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9432,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Santa Catarina",
-        pcode: "20BRA042",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "42",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{9984F83D-DF46-479E-B0CD-8FE0A47D16C6}"
+      "properties": {
+        "properties": 9432,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Santa Catarina",
+        "pcode": "20BRA042",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "42",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{9984F83D-DF46-479E-B0CD-8FE0A47D16C6}"
       },
-      id: 9432
+      "id": 9432
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-36.393876846091366, -10.500343568298117],
             [-36.4304583240606, -10.425311243589036],
@@ -581,32 +579,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9245,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Sergipe",
-        pcode: "20BRA028",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "28",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{DC63C2BB-98E4-4861-8BCC-6C0E5B7EB6F5}"
+      "properties": {
+        "properties": 9245,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Sergipe",
+        "pcode": "20BRA028",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "28",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{DC63C2BB-98E4-4861-8BCC-6C0E5B7EB6F5}"
       },
-      id: 9245
+      "id": 9245
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-47.31000618912485, -16.036273509246985],
             [-47.37834559533115, -15.978475952229903],
@@ -624,32 +622,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9272,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Distrito Federal",
-        pcode: "20BRA053",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "53",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{D0450570-D395-45A1-9CA8-6F2374A1C0B6}"
+      "properties": {
+        "properties": 9272,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Distrito Federal",
+        "pcode": "20BRA053",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "53",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{D0450570-D395-45A1-9CA8-6F2374A1C0B6}"
       },
-      id: 9272
+      "id": 9272
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-38.23758980361059, -9.329794345950388],
             [-38.31865874971958, -9.141001718083237],
@@ -880,32 +878,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9518,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Bahia",
-        pcode: "20BRA029",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "29",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{7CB54914-94E0-4E96-BB0B-0F5897246DA9}"
+      "properties": {
+        "properties": 9518,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Bahia",
+        "pcode": "20BRA029",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "29",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{7CB54914-94E0-4E96-BB0B-0F5897246DA9}"
       },
-      id: 9518
+      "id": 9518
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-53.07227751491823, -18.033975304415154],
             [-53.17432596320924, -18.041598239814146],
@@ -1045,32 +1043,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 8908,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Mato Grosso Do Sul",
-        pcode: "20BRA050",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "50",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{55ECA97D-0AB5-4B82-9597-838E218FF33C}"
+      "properties": {
+        "properties": 8908,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Mato Grosso Do Sul",
+        "pcode": "20BRA050",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "50",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{55ECA97D-0AB5-4B82-9597-838E218FF33C}"
       },
-      id: 8908
+      "id": 8908
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-37.2532913809428, -4.83155557330317],
             [-37.325151174254785, -4.701746175435206],
@@ -1162,32 +1160,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 8657,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Ceara",
-        pcode: "20BRA023",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "23",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{7E3C5195-6D98-4866-89C0-DEE2723C95D3}"
+      "properties": {
+        "properties": 8657,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Ceara",
+        "pcode": "20BRA023",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "23",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{7E3C5195-6D98-4866-89C0-DEE2723C95D3}"
       },
-      id: 8657
+      "id": 8657
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-50.093914341161835, 0.7020927028875057],
             [-50.09308120134653, 0.7821838032609884],
@@ -1292,32 +1290,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9571,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Amapa",
-        pcode: "20BRA016",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "16",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{59DF7CF5-91FB-4AE1-ABB6-B2422ED84FD7}"
+      "properties": {
+        "properties": 9571,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Amapa",
+        "pcode": "20BRA016",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "16",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{59DF7CF5-91FB-4AE1-ABB6-B2422ED84FD7}"
       },
-      id: 9571
+      "id": 9571
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "MultiPolygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
           [
             [
               [-44.80943624565527, -22.40557081861547],
@@ -1491,32 +1489,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 8649,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Sao Paulo",
-        pcode: "20BRA035",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "35",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{083B6591-B00D-468E-9FC2-5250979BB2DB}"
+      "properties": {
+        "properties": 8649,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Sao Paulo",
+        "pcode": "20BRA035",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "35",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{083B6591-B00D-468E-9FC2-5250979BB2DB}"
       },
-      id: 8649
+      "id": 8649
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-40.22235060897847, -17.980417385348535],
             [-40.345521800315154, -17.92378202786793],
@@ -1573,32 +1571,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 8677,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Espirito Santo",
-        pcode: "20BRA032",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "32",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{09472F60-DEE3-4FBB-9D88-B5A21F68B630}"
+      "properties": {
+        "properties": 8677,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Espirito Santo",
+        "pcode": "20BRA032",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "32",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{09472F60-DEE3-4FBB-9D88-B5A21F68B630}"
       },
-      id: 8677
+      "id": 8677
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-54.872250929925144, 2.4337465858830614],
             [-55.00380588939937, 2.5910270463418335],
@@ -1849,32 +1847,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9602,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Para",
-        pcode: "20BRA015",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "15",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{10B55881-369B-4B3B-9F36-F382FA46B830}"
+      "properties": {
+        "properties": 9602,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Para",
+        "pcode": "20BRA015",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "15",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{10B55881-369B-4B3B-9F36-F382FA46B830}"
       },
-      id: 9602
+      "id": 9602
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-45.946265325614064, -10.25854990658972],
             [-46.02827816572807, -10.1768696480163],
@@ -2039,32 +2037,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 8745,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Tocantins",
-        pcode: "20BRA017",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "17",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{79A15322-FEE3-4727-AC03-22375B6FD3F1}"
+      "properties": {
+        "properties": 8745,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Tocantins",
+        "pcode": "20BRA017",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "17",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{79A15322-FEE3-4727-AC03-22375B6FD3F1}"
       },
-      id: 8745
+      "id": 8745
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-66.81025311292022, -9.818045875221035],
             [-67.32581722115516, -9.592381467605417],
@@ -2141,32 +2139,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 8836,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Acre",
-        pcode: "20BRA012",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "12",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{33E55286-9019-4A0E-8761-B0AFD433650F}"
+      "properties": {
+        "properties": 8836,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Acre",
+        "pcode": "20BRA012",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "12",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{33E55286-9019-4A0E-8761-B0AFD433650F}"
       },
-      id: 8836
+      "id": 8836
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-41.322681309623405, -2.921319574371646],
             [-41.6331793019668, -2.886404545319792],
@@ -2318,32 +2316,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 8889,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Piaui",
-        pcode: "20BRA022",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "22",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{D471CF06-2A8C-4E22-8CF1-420460AFE2D8}"
+      "properties": {
+        "properties": 8889,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Piaui",
+        "pcode": "20BRA022",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "22",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{D471CF06-2A8C-4E22-8CF1-420460AFE2D8}"
       },
-      id: 8889
+      "id": 8889
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-48.09769512639134, -25.310092597320622],
             [-48.18252033743669, -25.20499879739165],
@@ -2455,32 +2453,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 8903,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Parana",
-        pcode: "20BRA041",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "41",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{82ECC868-5824-4B21-9F50-C99E229E7EF7}"
+      "properties": {
+        "properties": 8903,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Parana",
+        "pcode": "20BRA041",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "41",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{82ECC868-5824-4B21-9F50-C99E229E7EF7}"
       },
-      id: 8903
+      "id": 8903
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-34.8338806319289, -7.548634372400366],
             [-34.96078689424944, -7.538766050427092],
@@ -2606,32 +2604,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 8921,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Pernambuco",
-        pcode: "20BRA026",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "26",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{EC27B012-14E0-4FED-81F3-0264E553C44E}"
+      "properties": {
+        "properties": 8921,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Pernambuco",
+        "pcode": "20BRA026",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "26",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{EC27B012-14E0-4FED-81F3-0264E553C44E}"
       },
-      id: 8921
+      "id": 8921
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-50.224806382583935, -9.841153478114595],
             [-51.30428726902777, -9.772859970663443],
@@ -2878,32 +2876,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9020,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Mato Grosso",
-        pcode: "20BRA051",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "51",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{007546AC-C8D8-49F9-AA2C-6E861149ACD5}"
+      "properties": {
+        "properties": 9020,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Mato Grosso",
+        "pcode": "20BRA051",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "51",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{007546AC-C8D8-49F9-AA2C-6E861149ACD5}"
       },
-      id: 9020
+      "id": 9020
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-62.743972495983094, -8.04528370097407],
             [-62.866616572080716, -7.975865931181526],
@@ -3113,32 +3111,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9040,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Rondonia",
-        pcode: "20BRA011",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "11",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{E395D70C-8FDB-4C32-859A-626B3E74F376}"
+      "properties": {
+        "properties": 9040,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Rondonia",
+        "pcode": "20BRA011",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "11",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{E395D70C-8FDB-4C32-859A-626B3E74F376}"
       },
-      id: 9040
+      "id": 9040
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-58.89549794272107, 1.2276938379342548],
             [-58.918549372274995, 1.3165784605527273],
@@ -3290,32 +3288,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9075,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Roraima",
-        pcode: "20BRA014",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "14",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{572CFC30-F476-443B-A698-E7CC2DB6DE5F}"
+      "properties": {
+        "properties": 9075,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Roraima",
+        "pcode": "20BRA014",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "14",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{572CFC30-F476-443B-A698-E7CC2DB6DE5F}"
       },
-      id: 9075
+      "id": 9075
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-49.712565922322625, -29.325572026682416],
             [-49.96273414984099, -29.19885462264331],
@@ -3491,32 +3489,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 8857,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Rio Grande Do Sul",
-        pcode: "20BRA043",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "43",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{84BCF157-2A1E-444E-A33C-A3E27E269FB6}"
+      "properties": {
+        "properties": 8857,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Rio Grande Do Sul",
+        "pcode": "20BRA043",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "43",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{84BCF157-2A1E-444E-A33C-A3E27E269FB6}"
       },
-      id: 8857
+      "id": 8857
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-63.372089104330215, 2.2118616498530774],
             [-63.397740891628665, 2.146886822374112],
@@ -3800,32 +3798,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9301,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Amazonas",
-        pcode: "20BRA013",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "13",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{FD6E1817-84BD-428E-A788-FBACEB32A55B}"
+      "properties": {
+        "properties": 9301,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Amazonas",
+        "pcode": "20BRA013",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "13",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{FD6E1817-84BD-428E-A788-FBACEB32A55B}"
       },
-      id: 9301
+      "id": 9301
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-34.96853802115319, -6.487260754712099],
             [-35.14544347912525, -6.552709710161284],
@@ -3924,32 +3922,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9349,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Paraiba",
-        pcode: "20BRA025",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "25",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{33E434C1-C716-42F6-AA29-9E076E66BE10}"
+      "properties": {
+        "properties": 9349,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Paraiba",
+        "pcode": "20BRA025",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "25",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{33E434C1-C716-42F6-AA29-9E076E66BE10}"
       },
-      id: 9349
+      "id": 9349
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-40.96016236965679, -21.301594558850585],
             [-41.08954721679687, -21.219569340324977],
@@ -4022,32 +4020,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9142,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Rio De Janeiro",
-        pcode: "20BRA033",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "33",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{69838F56-7249-41AB-8693-8E12449B39C0}"
+      "properties": {
+        "properties": 9142,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Rio De Janeiro",
+        "pcode": "20BRA033",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "33",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{69838F56-7249-41AB-8693-8E12449B39C0}"
       },
-      id: 9142
+      "id": 9142
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-41.814107634071746, -2.739308919726093],
             [-42.06869428190892, -2.687914437760663],
@@ -4224,32 +4222,32 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9642,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Maranhao",
-        pcode: "20BRA021",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "21",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{0C600334-AA57-4573-A5A2-C018C51C9A02}"
+      "properties": {
+        "properties": 9642,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Maranhao",
+        "pcode": "20BRA021",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "21",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{0C600334-AA57-4573-A5A2-C018C51C9A02}"
       },
-      id: 9642
+      "id": 9642
     },
     {
-      type: "Feature",
-      geometry: {
-        type: "Polygon",
-        coordinates: [
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
           [
             [-46.11427457957959, -12.917905522413571],
             [-46.37016654420329, -12.988867128626254],
@@ -4418,26 +4416,26 @@ export const admin1Brazil: FeatureCollection = {
           ]
         ]
       },
-      properties: {
-        objectid: 9576,
-        adm0name: "Brazil",
-        iso3: "BRA",
-        name: "Goias",
-        pcode: "20BRA052",
-        source: "IBGE",
-        srcdate: 1420070400000,
-        modby: "unknown",
-        moddate: -2208988800000,
-        editby: "FICSS-UNHCR",
-        editdate: 1493337600000,
-        dscodeadm1: "52",
-        comments: " ",
-        focusID: " ",
-        progresID: " ",
-        status: "1",
-        globalid: "{D0BD1123-70EC-4F5E-85BE-18BC01F0B099}"
+      "properties": {
+        "properties": 9576,
+        "adm0name": "Brazil",
+        "iso3": "BRA",
+        "name": "Goias",
+        "pcode": "20BRA052",
+        "source": "IBGE",
+        "srcdate": 1420070400000,
+        "modby": "unknown",
+        "moddate": -2208988800000,
+        "editby": "FICSS-UNHCR",
+        "editdate": 1493337600000,
+        "dscodeadm1": "52",
+        "comments": " ",
+        "focusID": " ",
+        "progresID": " ",
+        "status": "1",
+        "globalid": "{D0BD1123-70EC-4F5E-85BE-18BC01F0B099}"
       },
-      id: 9576
+      "id": 9576
     }
   ]
-};
+}
