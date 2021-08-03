@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="tk-submission-item-pyramid-chart">
-    <canvas :id="ctx" height="360"></canvas>
+    <canvas :id="ctx" :height="height"></canvas>
   </div>
 </template>
 
@@ -66,8 +66,17 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   // charts
   chart!: Chart;
   readonly ctx = Date.now().toString();
+  height = 0;
+  readonly barthickness = 15;
 
   // TODO : make this nice. translate, style customizable, etc.
+
+  beforeMount() {
+    if (this.entry) {
+      this.height =
+        this.entry.malesEntries.length * (this.barthickness - 1) + 140;
+    }
+  }
 
   mounted() {
     if (this.entry) {
@@ -80,14 +89,14 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
               label: this.$root.$i18n.t("charts.female").toString(),
               data: this.generateFemalesDataset(),
               backgroundColor: "#f37788",
-              barThickness: 15,
+              barThickness: this.barthickness,
               minBarLength: 1
             },
             {
               label: this.$root.$i18n.t("charts.male").toString(),
               data: this.generateMalesDataset(),
               backgroundColor: "#4095cd",
-              barThickness: 15,
+              barThickness: this.barthickness,
               minBarLength: 1
             }
           ]
