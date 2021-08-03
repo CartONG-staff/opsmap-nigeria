@@ -1,7 +1,10 @@
 <template>
   <div class="tk-home-content-layout">
     <TKHomeMoreInfos :appConfig="appConfig" />
-    <TKIFrame v-if="appConfig.iframe" :url="appConfig.iframe" />
+    <TKIFrame
+      v-if="appConfig.iframe && appConfig.iframe.display"
+      :url="appConfig.iframe.url"
+    />
   </div>
 </template>
 

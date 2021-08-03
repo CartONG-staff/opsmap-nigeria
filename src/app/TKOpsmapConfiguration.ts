@@ -1,17 +1,12 @@
 import { TKMapboxConfiguration } from "@/domain/opsmapConfig/TKMapboxConfiguration";
 import { TKLabel } from "@/domain/ui/TKLabel";
-import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogos";
+import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogosDescription";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
-
-// ////////////////////////////////////////////////////////////////////////////
-// ui options
-// ////////////////////////////////////////////////////////////////////////////
-
-export interface TKAppOptions {
-  hideCCCMLogo: boolean;
-}
+import { TKAppOptions } from "@/domain/opsmapConfig/TKAppOptions";
+import { TKLogo } from "@/domain/ui/TKLogo";
+import { TKIFrameDescription } from "@/domain/opsmapConfig/TKIFrameDescription";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Global Opsmap configuration
@@ -23,9 +18,10 @@ export interface TKOpsmapConfiguration {
   readonly opsmapDescr: TKLabel;
   readonly indicators: TKIndicatorsDescription;
   readonly footerLogos: TKFooterLogosDescription;
-  readonly iframe?: string;
+  readonly iframe?: TKIFrameDescription;
   readonly surveys: TKSurveyInfos[];
   readonly spatial: TKSpatialDescription;
+  headerLogos: TKLogo[];
   mapConfig: TKMapboxConfiguration;
   options: TKAppOptions;
 }
@@ -77,10 +73,20 @@ export async function TKReadGeneralConfiguration(
   };
 
   // ////////////////////////////////////////////////////////////////////////////
+  // Header Logo
+  // ////////////////////////////////////////////////////////////////////////////
+  const defaultHeaderLogo: TKLogo[] = [];
+
+  json.headerLogos = {
+    ...defaultHeaderLogo,
+    ...json.headerLogos
+  };
+
+  // ////////////////////////////////////////////////////////////////////////////
   // Options
   // ////////////////////////////////////////////////////////////////////////////
   const defaultOptions: TKAppOptions = {
-    hideCCCMLogo: false
+    showCCCMLogo: true
   };
 
   // Init with defaultOptions, then replace existing key with options.

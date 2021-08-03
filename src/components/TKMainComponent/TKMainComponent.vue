@@ -68,7 +68,6 @@ import TKPlaceHolderIndicators from "./TKPlaceHolders/TKPlaceHolderIndicators.vu
 import TKPlaceHolderGeneric from "./TKPlaceHolders/TKPlaceHolderGeneric.vue";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
-import TKIFrame from "@/components/TKExtras/TKIFrame.vue";
 
 import { TKHomeIndicators, TKHomeMoreInfos } from "./TKHomeComponents";
 
@@ -99,7 +98,6 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
     TKSubmissionVisualizer,
     TKHomeIndicators,
     TKHomeMoreInfos,
-    TKIFrame,
     TKMap,
     TKPlaceHolderLeft,
     TKPlaceHolderIndicators,
