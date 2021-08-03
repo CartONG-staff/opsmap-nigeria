@@ -18,7 +18,7 @@ export interface TKOpsmapConfiguration {
   readonly iframe?: string;
   readonly surveys: TKSurveyInfos[];
   readonly spatial: TKSpatialDescription;
-  readonly mapConfig: TKMapboxConfiguration;
+  mapConfig: TKMapboxConfiguration;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -32,14 +32,55 @@ export async function TKReadGeneralConfiguration(
     configFileName
   ).then(response => response.json());
 
-  console.log(json);
-
   // ////////////////////////////////////////////////////////////////////////////
   // Languages
   // Always has english, is never empty.
   if (!json.languages.includes("en")) {
     json.languages.push("en");
   }
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Mapbox configuration - handle default values
+  // ////////////////////////////////////////////////////////////////////////////
+  // Provide defaults values to mapbox config
+  // UNHCR account
+  // token: "pk.eyJ1IjoidW5oY3IiLCJhIjoiY2tveWJlcDV5MDVycTJ2and3ZXllcW1leCJ9.Vp5XDh5OhDXxZCZUvgEuDg",
+  // style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",
+
+  // OPSMAP account
+  // token: "pk.eyJ1Ijoib3BzbWFwcGVyIiwiYSI6ImNrbW5xMWFuYzBqejMydnBnN2VjMTBj;cG8ifQ.OtWWd9kzJdJjogrY7gb-sw",
+  // style: "mapbox://styles/opsmapper/ckmnq4jfb12r217o7yon9r383",
+
+  const defaultMapBoxConfig: TKMapboxConfiguration = {
+    token:
+      "pk.eyJ1IjoidW5oY3IiLCJhIjoiY2tveWJlcDV5MDVycTJ2and3ZXllcW1leCJ9.Vp5XDh5OhDXxZCZUvgEuDg",
+    style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",
+    padding: 100,
+    zoomspeed: 2,
+    bounds: [-74.17, -33.34, -33.57, 5.02]
+  };
+  if (!json.mapConfig) {
+    json.mapConfig = defaultMapBoxConfig;
+  } else {
+    if (!json.mapConfig.token) {
+      json.mapConfig.token = defaultMapBoxConfig.token;
+    }
+    if (!json.mapConfig.style) {
+      json.mapConfig.style = defaultMapBoxConfig.style;
+    }
+    if (!json.mapConfig.padding) {
+      json.mapConfig.padding = defaultMapBoxConfig.padding;
+    }
+    if (!json.mapConfig.zoomspeed) {
+      json.mapConfig.zoomspeed = defaultMapBoxConfig.zoomspeed;
+    }
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Return final json
+  // ////////////////////////////////////////////////////////////////////////////
+
+  console.log(json);
 
   return json;
 }
