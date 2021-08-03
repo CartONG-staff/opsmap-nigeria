@@ -62,10 +62,11 @@ export class TKDatasetFilterer {
     this.surveyList = Object.keys(surveys);
     if (this.surveyList.length > 0) {
       this.setActiveSurvey(this.surveyList[0]);
+
+      console.log(
+        `Dataset filterer set up ${(Date.now() - before) / 1000} seconds.`
+      );
     }
-    console.log(
-      `Dataset filterer set up ${(Date.now() - before) / 1000} seconds.`
-    );
   }
 
   // ////////////////////////////////////////////////////////////////////////////
