@@ -6,6 +6,14 @@ import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescr
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
+// ui options
+// ////////////////////////////////////////////////////////////////////////////
+
+export interface TKAppOptions {
+  hideCCCMLogo: boolean;
+}
+
+// ////////////////////////////////////////////////////////////////////////////
 // Global Opsmap configuration
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKOpsmapConfiguration {
@@ -19,6 +27,7 @@ export interface TKOpsmapConfiguration {
   readonly surveys: TKSurveyInfos[];
   readonly spatial: TKSpatialDescription;
   mapConfig: TKMapboxConfiguration;
+  options: TKAppOptions;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -59,22 +68,27 @@ export async function TKReadGeneralConfiguration(
     zoomspeed: 2,
     bounds: [-74.17, -33.34, -33.57, 5.02]
   };
-  if (!json.mapConfig) {
-    json.mapConfig = defaultMapBoxConfig;
-  } else {
-    if (!json.mapConfig.token) {
-      json.mapConfig.token = defaultMapBoxConfig.token;
-    }
-    if (!json.mapConfig.style) {
-      json.mapConfig.style = defaultMapBoxConfig.style;
-    }
-    if (!json.mapConfig.padding) {
-      json.mapConfig.padding = defaultMapBoxConfig.padding;
-    }
-    if (!json.mapConfig.zoomspeed) {
-      json.mapConfig.zoomspeed = defaultMapBoxConfig.zoomspeed;
-    }
-  }
+
+  // Init with defaultMApBoxConfig, then replace existing key with mapConfig.
+  // Order matter !
+  json.mapConfig = {
+    ...defaultMapBoxConfig,
+    ...json.mapConfig
+  };
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Options
+  // ////////////////////////////////////////////////////////////////////////////
+  const defaultOptions: TKAppOptions = {
+    hideCCCMLogo: false
+  };
+
+  // Init with defaultOptions, then replace existing key with options.
+  // Order matter !
+  json.options = {
+    ...defaultOptions,
+    ...json.options
+  };
 
   // ////////////////////////////////////////////////////////////////////////////
   // Return final json
