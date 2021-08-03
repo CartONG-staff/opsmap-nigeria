@@ -18,12 +18,11 @@ import {
 
 import { TKFDFFiles } from "./TKFDFInfos";
 import { TKFDFUrlsCollection, TKReadFDFURLsCollection } from "./TKFDFURLs";
-import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
-import { TKSurveyInfosGSheet } from "../gsheet/TKSurveyInfosGSheet";
 import {
   TKFDFTerminologyCollection,
   TKReadFDFTerminologyCollection
 } from "./TKFDFTerminology";
+import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the FDF object
@@ -45,7 +44,7 @@ export interface TKFDF {
 // ////////////////////////////////////////////////////////////////////////////
 export async function TKCreateFDF(infos: TKSurveyInfos): Promise<TKFDF> {
   let answersLabels = {};
-  if (infos instanceof TKSurveyInfosGSheet) {
+  if (infos.type === "gsheet") {
     answersLabels = await TKReadFDFLabelCollectionFromGSheet(
       infos.submissionsTrUrl
     );

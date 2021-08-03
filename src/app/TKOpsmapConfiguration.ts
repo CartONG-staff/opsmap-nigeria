@@ -1,23 +1,20 @@
 import { TKMapboxConfiguration } from "@/domain/opsmapConfig/TKMapboxConfiguration";
 import { TKLabel } from "@/domain/ui/TKLabel";
-import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogos";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
-import {
-  TKIndicatorDescription,
-  TKIndicatorDescriptionSiteOccupation,
-  TKIndicatorsDescription
-} from "@/domain/opsmapConfig/TKIndicatorsDescription";
+import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKSurveyInfosKobo } from "../domain/kobo/TKSurveyInfosKobo";
-import { string } from "mathjs";
-import { TKSurveyInfosGSheet } from "@/domain/gsheet/TKSurveyInfosGSheet";
+import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 
 interface TKOpsmapConfigurationJSON {
   readonly name: TKLabel;
   readonly languages: string[];
   readonly iso3: string;
-  readonly indicatorsDescription: TKIndicatorsDescription;
+  readonly opsmapDescr: TKLabel;
+  readonly indicators: TKIndicatorsDescription;
+  readonly footerLogos: TKFooterLogosDescription;
+  readonly iframe?: string;
+  readonly surveys: TKSurveyInfos[];
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -27,13 +24,13 @@ export interface TKOpsmapConfiguration {
   readonly name: TKLabel;
   readonly languages: string[];
   readonly iso3: string;
-  readonly iframe: string;
   readonly surveyDescription: TKSurveyInfos[];
   readonly opsmapDescr: TKLabel;
   readonly footerLogos: TKFooterLogosDescription;
   readonly mapConfig: TKMapboxConfiguration;
   readonly spatialDescription: TKSpatialDescription;
   readonly indicatorsDescription: TKIndicatorsDescription;
+  readonly iframe?: string;
 }
 
 function readAllLocalesValues(
@@ -131,38 +128,38 @@ export async function TKReadGeneralConfiguration(
   // ////////////////////////////////////////////////////////////////////////////
   // survey collection analysis
   // For now, it only allows a single survey
-  const surveys: Array<TKSurveyInfos> = [];
-  let hasFoundSurvey = true;
-  let i = 0;
-  while (hasFoundSurvey) {
-    const surveyName = dict["survey_name_" + string(i)] ?? "";
-    const surveyType = dict["survey_type_" + string(i)] ?? "";
-    hasFoundSurvey = surveyName !== "" && surveyType !== "";
+  // const surveys: Array<TKSurveyInfos> = [];
+  // let hasFoundSurvey = true;
+  // let i = 0;
+  // while (hasFoundSurvey) {
+  //   const surveyName = dict["survey_name_" + string(i)] ?? "";
+  //   const surveyType = dict["survey_type_" + string(i)] ?? "";
+  //   hasFoundSurvey = surveyName !== "" && surveyType !== "";
 
-    if (hasFoundSurvey) {
-      if (surveyType === "gsheet") {
-        surveys.push(
-          new TKSurveyInfosGSheet(
-            surveyName,
-            { folder: dict["fdf_id_" + string(i)] ?? "" },
-            dict["survey_url_" + string(i)] ?? "",
-            dict["survey_tr_url_" + string(i)] ?? ""
-          )
-        );
-      } else if (surveyType === "kobo") {
-        surveys.push(
-          new TKSurveyInfosKobo(
-            dict["survey_name_" + string(i)] ?? "",
-            { folder: dict["fdf_id_" + string(i)] ?? "" },
-            dict["survey_url_" + string(i)] ?? "",
-            dict["survey_kobo_token_" + string(i)] ?? ""
-          )
-        );
-      }
-    }
+  //   if (hasFoundSurvey) {
+  //     if (surveyType === "gsheet") {
+  //       surveys.push(
+  //         new TKSurveyInfosGSheet(
+  //           surveyName,
+  //           { folder: dict["fdf_id_" + string(i)] ?? "" },
+  //           dict["survey_url_" + string(i)] ?? "",
+  //           dict["survey_tr_url_" + string(i)] ?? ""
+  //         )
+  //       );
+  //     } else if (surveyType === "kobo") {
+  //       surveys.push(
+  //         new TKSurveyInfosKobo(
+  //           dict["survey_name_" + string(i)] ?? "",
+  //           { folder: dict["fdf_id_" + string(i)] ?? "" },
+  //           dict["survey_url_" + string(i)] ?? "",
+  //           dict["survey_kobo_token_" + string(i)] ?? ""
+  //         )
+  //       );
+  //     }
+  //   }
 
-    i++;
-  }
+  //   i++;
+  // }
 
   // Lack:
   // - iso3
@@ -172,8 +169,8 @@ export async function TKReadGeneralConfiguration(
     languages: json.languages,
     name: json.name, //readAllLocalesValues("name", dict, languages),
     iso3: json.iso3,
-    iframe: dict["iframe"] ?? "",
-    opsmapDescr: readAllLocalesValues("project_overview", dict, languages),
+    iframe: json.iframe,
+    opsmapDescr: json.opsmapDescr,
     spatialDescription: {
       siteIDField: dict["mp_site_id"] ?? "",
       siteNameField: dict["mp_site_name"] ?? "",
@@ -194,53 +191,9 @@ export async function TKReadGeneralConfiguration(
       admin0LocalURL: dict["admin0_local_url"] ?? "",
       admin1LocalURL: dict["admin1_local_url"] ?? ""
     },
-    indicatorsDescription: json.indicatorsDescription,
-    footerLogos: {
-      Fieldwork: [
-        {
-          name: dict["fieldwork_name_1"] ?? "1",
-          urlLogo: process.env.BASE_URL + dict["fieldwork_logo_1"] ?? "1",
-          urlRedirection: dict["fieldwork_link_1"] ?? "1"
-        },
-        {
-          name: dict["fieldwork_name_2"] ?? "2",
-          urlLogo: process.env.BASE_URL + dict["fieldwork_logo_2"] ?? "2",
-          urlRedirection: dict["fieldwork_link_2"] ?? "2"
-        },
-        {
-          name: dict["fieldwork_name_3"] ?? "3",
-          urlLogo: process.env.BASE_URL + dict["fieldwork_logo_3"] ?? "3",
-          urlRedirection: dict["fieldwork_link_3"] ?? "3"
-        }
-      ],
-      clusterLed: [
-        {
-          name: dict["led_name_1"] ?? "1",
-          urlLogo: process.env.BASE_URL + dict["led_logo_1"] ?? "1",
-          urlRedirection: dict["led_link_1"] ?? "1"
-        },
-        {
-          name: dict["led_name_2"] ?? "2",
-          urlLogo: process.env.BASE_URL + dict["led_logo_2"] ?? "2",
-          urlRedirection: dict["led_link_2"] ?? "2"
-        }
-      ],
-      coordinationAndIMSupport: [
-        {
-          name: dict["coord_name_1"] ?? "",
-          urlLogo: process.env.BASE_URL + dict["coord_logo_1"] ?? "",
-          urlRedirection: dict["coord_link_1"] ?? ""
-        }
-      ],
-      Webdev: [
-        {
-          name: dict["webdev_name_1"] ?? "",
-          urlLogo: dict["webdev_logo_1"] ?? "",
-          urlRedirection: dict["webdev_link_1"] ?? ""
-        }
-      ]
-    },
-    surveyDescription: surveys,
+    indicatorsDescription: json.indicators,
+    footerLogos: json.footerLogos,
+    surveyDescription: json.surveys,
     mapConfig: {
       token:
         "pk.eyJ1IjoidW5oY3IiLCJhIjoiY2tveWJlcDV5MDVycTJ2and3ZXllcW1leCJ9.Vp5XDh5OhDXxZCZUvgEuDg",
