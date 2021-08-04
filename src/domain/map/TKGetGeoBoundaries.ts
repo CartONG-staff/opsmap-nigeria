@@ -15,7 +15,7 @@ export async function TKGetGeoBoundaries(
     type: "FeatureCollection",
     features: []
   };
-  await fetch(spatialDescription.admin1LocalURL)
+  await fetch(`${process.env.BASE_URL}/${spatialDescription.admin1LocalURL}`)
     .then(response => response.json())
     .then(json => {
       admin1GeoData = json;

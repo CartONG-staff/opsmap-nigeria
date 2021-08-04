@@ -209,7 +209,7 @@ export default class TKMap extends Vue {
     if (!this.map.getSource(TKMapLayers.COUNTRYMASKSOURCE)) {
       this.map.addSource(TKMapLayers.COUNTRYMASKSOURCE, {
         type: "geojson",
-        data: this.appConfig.spatial.admin0LocalURL
+        data: `${process.env.BASE_URL}/${this.appConfig.spatial.admin0LocalURL}`
       });
     }
 

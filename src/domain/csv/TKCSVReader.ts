@@ -12,7 +12,7 @@ export async function TKCSVRead<T>(
   header: boolean
 ): Promise<T> {
   return new Promise((resolve, reject) => {
-    parse(`${process.env.BASE_URL}/data/${folder}/${name}.csv`, {
+    parse(`${process.env.BASE_URL}/${folder}/${name}.csv`, {
       header: header,
       download: true,
       encoding: "utf-8",
