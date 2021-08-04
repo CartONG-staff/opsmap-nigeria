@@ -11,7 +11,7 @@
     },
     "iframe": {
         "url": "https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9",
-        "display": false
+        "display": true
     },
     "indicators": {
         "home": [{
