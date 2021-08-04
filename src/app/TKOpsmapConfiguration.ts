@@ -45,6 +45,34 @@ export async function TKReadGeneralConfiguration(
   }
 
   // ////////////////////////////////////////////////////////////////////////////
+  // Update urlLogo
+  // Could be improved
+  // Webdev is not modified, because it isn't a local url.
+  for (const key in json.footerLogos.Fieldwork) {
+    json.footerLogos.Fieldwork[
+      key
+    ].urlLogo = `${process.env.BASE_URL}/${json.footerLogos.Fieldwork[key].urlLogo}`;
+  }
+
+  for (const key in json.footerLogos.clusterLed) {
+    json.footerLogos.clusterLed[
+      key
+    ].urlLogo = `${process.env.BASE_URL}/${json.footerLogos.clusterLed[key].urlLogo}`;
+  }
+
+  for (const key in json.footerLogos.coordinationAndIMSupport) {
+    json.footerLogos.coordinationAndIMSupport[
+      key
+    ].urlLogo = `${process.env.BASE_URL}/${json.footerLogos.coordinationAndIMSupport[key].urlLogo}`;
+  }
+
+  for (const key in json.headerLogos) {
+    json.headerLogos[
+      key
+    ].urlLogo = `${process.env.BASE_URL}/${json.headerLogos[key].urlLogo}`;
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////
   // Mapbox configuration - handle default values
   // ////////////////////////////////////////////////////////////////////////////
   // Provide defaults values to mapbox config
