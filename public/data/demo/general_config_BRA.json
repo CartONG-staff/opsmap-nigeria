@@ -77,6 +77,11 @@
             "urlRedirection": "https://www.acnur.org.br"
         },
         {
+            "name": "Acolhida",
+            "urlLogo": "/data/demo/DEMO_brazil/Logo/Acolhida.png",
+            "urlRedirection": "https://www.gov.br/casacivil/pt-br/acolhida/"
+        },
+        {
             "name": "Ministério da Cidadania",
             "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
             "urlRedirection": "https://www.gov.br/cidadania/pt-br"
