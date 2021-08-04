@@ -228,7 +228,6 @@ export class TKDatasetFilterer {
     const admin1 = this.admin1List.find(admin1 => admin1.name === admin1Name);
     if (admin1) {
       this.setCurrentAdmin1(admin1.pcode);
-      this.lastModification = `${admin1.pcode}`;
     }
   }
 
@@ -251,7 +250,7 @@ export class TKDatasetFilterer {
       ) as TKBoundarieDescription;
 
       if (this.currentAdmin1) {
-        this.lastModification = `admin1=${this.currentAdmin1}`;
+        this.lastModification = `admin1=${this.currentAdmin1.pcode}`;
       }
 
       this.updateFiltering();
