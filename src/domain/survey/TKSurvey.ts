@@ -148,7 +148,7 @@ function computeSurveyIndicator(
 // ////////////////////////////////////////////////////////////////////////////
 
 export function TKCreateSurvey(
-  submissions: any[],
+  submissions: Record<string, string>[],
   surveyConfig: TKFDF,
   spatialDescription: TKSpatialDescription,
   indicatorsDescription: TKIndicatorsDescription

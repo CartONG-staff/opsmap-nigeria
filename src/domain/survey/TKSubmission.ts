@@ -150,74 +150,75 @@ function computeSubmissionIndicators(
 // ////////////////////////////////////////////////////////////////////////////
 
 export function TKCreateSubmission(
-  submissionItem: any,
+  submissionItem: Record<string, string>,
   surveyConfiguration: TKFDF,
   indicatorsDescription: TKIndicatorsDescription
 ): TKSubmission {
   const submission: Record<string, TKSubmissionThematic> = {};
+
   for (const thematic in surveyConfiguration.thematics) {
     submission[thematic] = TKCreateSubmissionThematic(
       surveyConfiguration.thematics[thematic]
     );
-    let agePyramidId = "";
-    let agePyramidData: Array<TKSubmissionEntryAgePyramidItem> = [];
-    for (const field in submissionItem) {
-      if (
-        isSubmissionInThematic(
-          field,
-          thematic,
-          surveyConfiguration.submissionsRules
-        )
-      ) {
-        // If age pyramid -- accumulate process
-        if (isSubmissionAnAgePyramid(surveyConfiguration, field)) {
-          // If it's a new chart - create current chart, then cleanup
-          if (
-            agePyramidId &&
-            agePyramidId !== surveyConfiguration.submissionsRules[field].chartId
-          ) {
-            submission[thematic].data.push(
-              TKCreateSubmissionEntryAgePyramid(
-                agePyramidData,
-                surveyConfiguration
-              )
-            );
-            agePyramidId = "";
-            agePyramidData = [];
-          }
+  }
 
-          // If no previous chart, init
-          if (!agePyramidId) {
-            agePyramidId = surveyConfiguration.submissionsRules[field].chartId;
-            agePyramidData = [];
-          }
+  let agePyramidThematic = "";
+  let agePyramidId = "";
+  let agePyramidData: Array<TKSubmissionEntryAgePyramidItem> = [];
 
-          // accumulate
-          agePyramidData.push({
-            field: field,
-            value: submissionItem[field],
-            type: surveyConfiguration.submissionsRules[field].chartData
-          });
-        } else {
-          // if a current pyramid is ongoing - push it before switching to text item
-          submission[thematic].data.push(
-            TKCreateSubmissionEntryText(
-              submissionItem[field],
-              field,
+  for (const key in surveyConfiguration.submissionsRules) {
+    const rule = surveyConfiguration.submissionsRules[key];
+    const value = submissionItem[rule.fieldName];
+
+    if (value) {
+      // If age pyramid -- accumulate process
+      if (rule.chartId && rule.chartId.includes("age_pyramid")) {
+        // If it's a new chart - create current chart, then cleanup
+        if (agePyramidId && agePyramidId !== rule.chartId) {
+          submission[rule.thematicGroup].data.push(
+            TKCreateSubmissionEntryAgePyramid(
+              agePyramidData,
               surveyConfiguration
             )
           );
+          agePyramidThematic = "";
+          agePyramidId = "";
+          agePyramidData = [];
         }
+
+        // If no previous chart, init
+        if (!agePyramidId) {
+          agePyramidThematic = rule.thematicGroup;
+          agePyramidId = rule.chartId;
+          agePyramidData = [];
+        }
+
+        // accumulate
+        agePyramidData.push({
+          field: rule.fieldName,
+          value: value,
+          type: rule.chartData
+        });
+      } else {
+        // push it before switching to text item
+        submission[rule.thematicGroup].data.push(
+          TKCreateSubmissionEntryText(
+            value,
+            rule.fieldName,
+            surveyConfiguration
+          )
+        );
       }
     }
-    // if a current pyramid is ongoing - push it before ending
-    if (agePyramidId) {
-      submission[thematic].data.push(
-        TKCreateSubmissionEntryAgePyramid(agePyramidData, surveyConfiguration)
-      );
-      agePyramidId = "";
-      agePyramidData = [];
-    }
+  }
+
+  // if a current pyramid is ongoing - push it before ending
+  if (agePyramidId) {
+    submission[agePyramidThematic].data.push(
+      TKCreateSubmissionEntryAgePyramid(agePyramidData, surveyConfiguration)
+    );
+    agePyramidId = "";
+    agePyramidData = [];
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
