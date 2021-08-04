@@ -236,7 +236,7 @@ export function TKCreateSurvey(
 
   // Sort the dates
   const dateOfSubmissionsByCamps: { [site: string]: string[] } = {};
-  for (const camp of Object.keys(submissionsByCamps)) {
+  for (const camp in submissionsByCamps) {
     dateOfSubmissionsByCamps[camp] = sortDates(
       Object.keys(submissionsByCamps[camp])
     );

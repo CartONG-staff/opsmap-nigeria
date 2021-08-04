@@ -217,14 +217,11 @@ export function TKCreateSubmission(
     submission[agePyramidThematic].data.push(
       TKCreateSubmissionEntryAgePyramid(agePyramidData, surveyConfiguration)
     );
-    agePyramidId = "";
-    agePyramidData = [];
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
-  Object.entries(submission).filter(item => item.length > 0);
   const submissionFiltered: Record<string, TKSubmissionThematic> = {};
-  for (const key of Object.keys(submission)) {
+  for (const key in submission) {
     if (submission[key].data.length > 0) {
       submissionFiltered[key] = submission[key];
     }
