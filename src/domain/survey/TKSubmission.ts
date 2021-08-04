@@ -7,9 +7,9 @@ import {
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKCreateSubmissionEntryAgePyramid,
-  TKSubmissionEntryAgePyramidItem
-} from "./TKSubmissionEntryAgePyramid";
-import { TKCreateSubmissionEntryText } from "./TKSubmissionEntryText";
+  TKSubmissionEntryAgePyramidItem,
+  TKCreateSubmissionEntryText
+} from "./TKSubmissionEntry";
 import {
   TKSubmissionThematic,
   TKCreateSubmissionThematic
