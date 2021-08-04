@@ -1,17 +1,24 @@
 {
-    "languages":["en"],
-    "iso3":"NGA",
+    "languages":["pt","en"],
+    "iso3":"BRA",
     "name":{
-        "en":"Nigeriaaa"
+        "en":"demo-brazil",
+        "pt":"demo-brasil"
     },
     "opsmapDescr":{
-        "en": "More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>Currently, Roraima has 13 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than seven thousand refugees, refugee seekers, and migrants. Of these, 11 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>All 13 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces."
+        "en": "More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>Currently, Roraima has 13 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than seven thousand refugees, refugee seekers, and migrants. Of these, 12 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>All 14 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces.",
+        "pt": "Mais de 260 mil refugiados e migrantes deslocaram-se ao Brasil em busca de proteção em decorrência da crise política, social e econômica que assola a Venezuela.<br/>Considerando-se as necessidades urgentes de assistência humanitária, como alimentação, abrigamento, saúde e proteção, especialmente para pessoas com vulnerabilidades (crianças, mulheres grávidas, idosos, pessoas com deficiência, etc.), o Governo Federal Brasileiro editou a Lei no. 13.684/2018, prevendo a execução de medidas de assistência emergencial para acolhimento da pessoas afetadas.<br/>Atualmente, Roraima conta com 13 espaços de acolhimento, entre abrigos (entre abrigos indígenas e não-indígenas), com potencial de atender mais de sete mil refugiados, solicitantes de refúgio e migrantes. Desses abrigos, 12 estão na cidade de Boa Vista, 2 cidade de Pacaraima.<br/>Todos os 14 espaços são coordenados pelo ACNUR, por conta do convênio firmado com o Ministério da Cidadania, em parceria com as Forças Armadas."
+    },
+    "iframe": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9",
+        "display": false
     },
     "indicators": {
         "home": [{
             "type": "standard",
             "name": {
-                "en": "Site"
+                "en": "Site",
+                "pt": "Abrigos"
             },
             "entryCode": "mp_site_id",
             "iconOchaName": "IDP-refugee-camp"
@@ -19,44 +26,66 @@
         {
             "type": "standard",
             "name": {
-                "en": "People"
+                "en": "People",
+                "pt": "Indivíduos"
             },
-            "entryCode": "group_pop_change/individualpopulation",
+            "entryCode": "demo_num_indv",
             "iconOchaName": "People-in-need"
         },
         {
             "type": "standard",
             "name": {
-                "en": "Families"
+                "en": "Shelter Max Capacity",
+                "pt": "Capacidade Máxima dos Abrigos"
             },
-            "entryCode": "group_pop_change/familiespopulation",
+            "entryCode": "cccm_shelter_max_capacity",
             "iconOchaName": "Camp-Coordination-and-Camp-Management"
         }],
         "site": [{
-            "type": "standard",
+            "type": "site_occupation",
             "name": {
-                "en": "Site at Full Capacity"
+                "en": "Site at Full Capacity",
+                "pt": "Abrigo em plena capacidade"
             },
             "iconOchaName": "Camp-Coordination-and-Camp-Management",
-            "entryCode": "group_general_info/crowded"
+            "entryCodeMaxCapacity": "cccm_site_at_full_capacity",
+            "entryCodePeopleCount": "demo_num_indv",
+            "entryCodeMaxPeopleCount": "cccm_shelter_max_capacity"
         },
         {
             "type": "standard",
             "name": {
-                "en": "Managed by a Government Agency"
+                "en": "Shelter Type",
+                "pt": "Tipo de Abrigo"
             },
-            "entryCode": "group_general_info/camp_management",
-            "iconOchaName": "Government-office"
+            "entryCode": "cccm_shelter_type",
+            "iconOchaName": "Camp-Coordination-and-Camp-Management"
         },
         {
             "type": "standard",
             "name": {
-                "en": "No. of Individuals"
+                "en": "No. of Individuals",
+                "pt": "Nº de Indivíduos"
             },
-            "entryCode": "group_pop_change/individualpopulation",
+            "entryCode": "demo_num_indv",
             "iconOchaName": "People-in-need"
         }]
     },
+    "headerLogos":[{
+            "name": "UNHCR",
+            "urlLogo": "data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+            "urlRedirection": "https://www.acnur.org.br"
+        },
+        {
+            "name": "Acolhida",
+            "urlLogo": "data/demo/DEMO_brazil/Logo/Acolhida.png",
+            "urlRedirection": "https://www.gov.br/casacivil/pt-br/acolhida/"
+        },
+        {
+            "name": "Ministério da Cidadania",
+            "urlLogo": "data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
+            "urlRedirection": "https://www.gov.br/cidadania/pt-br"
+    }],
     "footerLogos":{
         "clusterLed": [{
                 "name": "UNHCR",
@@ -95,40 +124,40 @@
         }]
     },
     "spatial":{
-        "siteIDField": "group_general_info/site",
-        "siteNameField": "group_general_info/site_name",
-        "siteTypeField": "group_general_info/site_type",
-        "siteLastUpdateField": "date",
-        "siteLatitudeField": "group_general_info/latitude",
-        "siteLongitudeField": "group_general_info/longitude",
-        "adm1Pcode": "group_general_info/state",
-        "adm1DBPcode": "dscodeadm1",
-        "adm1Name": "group_general_info/state_name",
-        "adm2Pcode": "group_general_info/lga",
-        "adm2DBPcode": "dscodeadm2",
-        "adm2Name": "group_general_info/lga_name",
-        "adm2RefInAdm1": "dscodeadm1",
-        "adm3Pcode": "group_general_info/ward",
-        "adm3Name": "group_general_info/ward_name",
-        "admin0LocalURL": "/data/demo/DEMO_nigeria/map/admin0.geojson",
-        "admin1LocalURL": "/data/demo/DEMO_nigeria/map/admin1.geojson"
+        "siteIDField": "mp_site_id",
+        "siteNameField": "mp_site_name",
+        "siteTypeField": "mp_shelter_type",
+        "siteLastUpdateField": "mp_last_date",
+        "siteLatitudeField": "mp_latitude",
+        "siteLongitudeField": "mp_longitude",
+        "adm1Pcode": "adm1pcode",
+        "adm1DBPcode": "pcode",
+        "adm1Name": "ggi_state",
+        "adm2Pcode": "adm2pcode",
+        "adm2DBPcode": "pcode",
+        "adm2Name": "ggi_city",
+        "adm2RefInAdm1": "adm1pcode",
+        "adm3Pcode": "adm3pcode",
+        "adm3Name": "ggi_address",
+        "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson",
+        "admin1LocalURL": "/data/demo/DEMO_brazil/map/admin1.geojson"
     },
     "surveys":[{
-        "type":"kobo",
+        "type":"gsheet",
         "fdf": {
-            "folder": "/data/demo/DEMO_nigeria/FDF"
+            "folder": "/data/demo/DEMO_brazil/FDF"
         },
-        "name": "Last known FDF",
-        "url": "https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json",
-        "token": "ab46c724b720d44c4c8d44e86241219ce5cec6d6"
+        "name": "2021",
+        "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=0&single=true&output=csv",
+        "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=1157434408&single=true&output=csv"
     }],
     "mapConfig": {
         "bounds": [
-            2.460938,3.995781,14.941406,14.221789
+            -74.17,-33.34,-33.57,5.02
         ]
     },
     "options": {
-        "showCCCMLogo": true
+        "showCCCMLogo": false
     }
 }
 

@@ -1,4 +1,4 @@
-{
+﻿{
     "languages":["pt","en"],
     "iso3":"BRA",
     "name":{
@@ -73,48 +73,48 @@
     },
     "headerLogos":[{
             "name": "UNHCR",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+            "urlLogo": "data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
             "urlRedirection": "https://www.acnur.org.br"
         },
         {
             "name": "Acolhida",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/Acolhida.png",
+            "urlLogo": "data/demo/DEMO_brazil/Logo/Acolhida.png",
             "urlRedirection": "https://www.gov.br/casacivil/pt-br/acolhida/"
         },
         {
             "name": "Ministério da Cidadania",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
+            "urlLogo": "data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
             "urlRedirection": "https://www.gov.br/cidadania/pt-br"
     }],
     "footerLogos":{
         "clusterLed": [{
                 "name": "UNHCR",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+                "urlLogo": "data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
                 "urlRedirection": "https://www.acnur.org.br"
             },
             {
                 "name": "Ministério da Cidadania",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
+                "urlLogo": "data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
                 "urlRedirection": "https://www.gov.br/cidadania/pt-br"
         }],
         "coordinationAndIMSupport": [{
             "name": "UNHCR",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+            "urlLogo": "data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
             "urlRedirection": "https://www.acnur.org.br"
         }],
         "Fieldwork": [{
                 "name": "FSF",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/FSF.png",
+                "urlLogo": "data/demo/DEMO_brazil/Logo/FSF.png",
                 "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
             },
             {
                 "name": "AVSI",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
+                "urlLogo": "data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
                 "urlRedirection": "http://www.avsibrasil.org.br/"
             },
             {
                 "name": "FFHI",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/Fraternidade.png",
+                "urlLogo": "data/demo/DEMO_brazil/Logo/Fraternidade.png",
                 "urlRedirection": "https://www.fraterinternacional.org/"
         }],
         "Webdev": [{
@@ -145,7 +145,7 @@
     "surveys":[{
         "type":"gsheet",
         "fdf": {
-            "folder": "demo/DEMO_brazil/FDF"
+            "folder": "/data/demo/DEMO_brazil/FDF"
         },
         "name": "2021",
         "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=0&single=true&output=csv",
