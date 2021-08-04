@@ -12,7 +12,7 @@
         :key="entry.id"
         v-show="
           !visualizerOptions.hideUnanswered ||
-            (visualizerOptions.hideUnanswered && entry.isAnswered())
+            (visualizerOptions.hideUnanswered && entry.isAnswered)
         "
       >
         <TKSubmissionEntryView :entry="entry" />

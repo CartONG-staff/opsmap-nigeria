@@ -1,33 +1,9 @@
-import { TKLabel } from "@/domain/ui/TKLabel";
-import { TKSubmissionEntry } from "./TKSubmissionEntry";
 import { TKFDF } from "@/domain/fdf/TKFDF";
+import { TKSubmissionEntryAgePyramid } from "./TKSubmissionEntry";
 
 // ////////////////////////////////////////////////////////////////////////////
 // EntryAgePyramid concept definition
 // ////////////////////////////////////////////////////////////////////////////
-
-export class TKSubmissionEntryAgePyramid extends TKSubmissionEntry {
-  malesEntries: Array<number>;
-  femalesEntries: Array<number>;
-  malesLabels: Array<TKLabel>;
-  femalesLabels: Array<TKLabel>;
-
-  constructor(
-    field: string,
-    fieldLabel: TKLabel,
-    malesEntries: Array<number>,
-    femalesEntries: Array<number>,
-    malesLabels: Array<TKLabel>,
-    femalesLabels: Array<TKLabel>
-  ) {
-    super(field, fieldLabel);
-    this.malesEntries = malesEntries;
-    this.femalesEntries = femalesEntries;
-    this.malesLabels = malesLabels;
-    this.femalesLabels = femalesLabels;
-  }
-}
-
 export interface TKSubmissionEntryAgePyramidItem {
   field: string;
   value: string;
@@ -54,15 +30,13 @@ export function TKCreateSubmissionEntryAgePyramid(
   const femalesLabel = femalesEntries.map(
     item => surveyConfiguration.fieldsLabels[item.field]
   );
-  // TODO set up a regex to order following the number found
-  // console.log(malesLabel.map(item => item.en.match(/^[^\d]*(\d+)/)));
 
-  return new TKSubmissionEntryAgePyramid(
-    "agepyramid",
-    { en: "agepyramid" },
-    malesDataset,
-    femalesDataset,
-    malesLabel,
-    femalesLabel
-  );
+  return {
+    type: "age_pyramid",
+    isAnswered: true,
+    malesEntries: malesDataset,
+    femalesEntries: femalesDataset,
+    malesLabels: malesLabel,
+    femalesLabels: femalesLabel
+  };
 }

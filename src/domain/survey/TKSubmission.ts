@@ -5,13 +5,11 @@ import {
   TKIndicatorDescriptionSiteOccupation
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import { TKFDFSubmissionsRulesCollection } from "@/domain/fdf/TKFDFSubmissionsRules";
 import {
   TKCreateSubmissionEntryAgePyramid,
   TKSubmissionEntryAgePyramidItem
 } from "./TKSubmissionEntryAgePyramid";
 import { TKCreateSubmissionEntryText } from "./TKSubmissionEntryText";
-import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 import {
   TKSubmissionThematic,
   TKCreateSubmissionThematic
@@ -33,24 +31,24 @@ export interface TKSubmission {
 // helpers method
 // ////////////////////////////////////////////////////////////////////////////
 
-function isSubmissionInThematic(
-  submission: string,
-  thematic: string,
-  submissionsRules: TKFDFSubmissionsRulesCollection
-): boolean {
-  return submissionsRules[submission]
-    ? submissionsRules[submission].thematicGroup === thematic
-      ? true
-      : false
-    : false;
-}
+// function isSubmissionInThematic(
+//   submission: string,
+//   thematic: string,
+//   submissionsRules: TKFDFSubmissionsRulesCollection
+// ): boolean {
+//   return submissionsRules[submission]
+//     ? submissionsRules[submission].thematicGroup === thematic
+//       ? true
+//       : false
+//     : false;
+// }
 
-function isSubmissionAnAgePyramid(surveyConfiguration: TKFDF, field: string) {
-  return (
-    surveyConfiguration.submissionsRules[field].chartId &&
-    surveyConfiguration.submissionsRules[field].chartId.includes("age_pyramid")
-  );
-}
+// function isSubmissionAnAgePyramid(surveyConfiguration: TKFDF, field: string) {
+//   return (
+//     surveyConfiguration.submissionsRules[field].chartId &&
+//     surveyConfiguration.submissionsRules[field].chartId.includes("age_pyramid")
+//   );
+// }
 
 // ////////////////////////////////////////////////////////////////////////////
 // indicators management
@@ -62,10 +60,12 @@ function getValue(
 ): number | undefined {
   for (const thematic in data) {
     const them = data[thematic];
-    const item = them.data.find(item => item.field === entryCode);
+    const item = them.data.find(
+      item => item.type === "text" && item.field === entryCode
+    );
     if (
       item &&
-      item instanceof TKSubmissionEntryText &&
+      item.type === "text" &&
       item.answerLabel &&
       isNumber(item.answerLabel.en)
     ) {
@@ -81,8 +81,10 @@ function getLabel(
 ): TKLabel {
   for (const thematic in data) {
     const them = data[thematic];
-    const item = them.data.find(item => item.field === entryCode);
-    if (item && item instanceof TKSubmissionEntryText && item.answerLabel) {
+    const item = them.data.find(
+      item => item.type === "text" && item.field === entryCode
+    );
+    if (item && item.type === "text" && item.answerLabel) {
       return item.answerLabel;
     }
   }

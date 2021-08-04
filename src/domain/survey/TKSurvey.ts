@@ -10,9 +10,8 @@ import {
   TKIndicatorsDescription,
   TKIndicatorDescription
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
-import { isNumber } from "@turf/helpers";
-import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 import moment from "moment";
+import { isNumber } from "@turf/turf";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
@@ -99,7 +98,7 @@ function computeSurveyIndicator(
         for (const thematic in submission.thematics) {
           const them = submission.thematics[thematic];
           itemIndex = them.data.findIndex(
-            item => item.field === descr.entryCode
+            item => item.type === "text" && item.field === descr.entryCode
           );
           if (itemIndex > -1) {
             foundAtLeastOnce = true;
@@ -119,7 +118,7 @@ function computeSurveyIndicator(
         const item = submission.thematics[thematicName].data[itemIndex];
         if (
           item &&
-          item instanceof TKSubmissionEntryText &&
+          item.type === "text" &&
           item.answerLabel &&
           isNumber(item.answerLabel.en)
         ) {
