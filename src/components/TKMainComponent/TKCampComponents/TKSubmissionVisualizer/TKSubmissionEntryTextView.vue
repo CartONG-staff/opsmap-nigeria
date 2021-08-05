@@ -12,66 +12,21 @@
     </transition>
 
     <div>
-      <div class="tk-trafficlight">
-        <v-tooltip right>
-          <template v-slot:activator="{ on, attrs }">
-            <div
-              v-if="isOK"
-              v-bind="attrs"
-              v-on="on"
-              class="tk-trafficlight-ok"
-            ></div>
-          </template>
-          <span>{{ $t("trafficlight.ok") }}</span>
-        </v-tooltip>
-        <v-tooltip right>
-          <template v-slot:activator="{ on, attrs }">
-            <div
-              v-if="isWarning"
-              v-bind="attrs"
-              v-on="on"
-              class="tk-trafficlight-warning"
-            ></div>
-          </template>
-          <span>{{ $t("trafficlight.warning") }}</span>
-        </v-tooltip>
-        <v-tooltip right>
-          <template v-slot:activator="{ on, attrs }">
-            <div
-              v-if="isDanger"
-              v-bind="attrs"
-              v-on="on"
-              class="tk-trafficlight-danger"
-            ></div>
-          </template>
-          <span>{{ $t("trafficlight.danger") }}</span>
-        </v-tooltip>
-        <v-tooltip right>
-          <template v-slot:activator="{ on, attrs }">
-            <div
-              v-if="isCritical"
-              v-bind="attrs"
-              v-on="on"
-              class="tk-trafficlight-critical"
-            ></div>
-          </template>
-          <span>{{ $t("trafficlight.critical") }}</span>
-        </v-tooltip>
-        <v-tooltip right>
-          <template v-slot:activator="{ on, attrs }">
-            <div
-              v-if="isOther && displayTrafficLight"
-              v-bind="attrs"
-              v-on="on"
-              class="tk-trafficlight-other"
-            ></div>
-          </template>
-          <span>{{ $t("trafficlight.other") }}</span>
-        </v-tooltip>
-        <div
-          v-if="!displayTrafficLight"
-          class="tk-trafficlight tk-trafficlight-none"
-        ></div>
+      <div class="tk-trafficlight-container">
+        <div v-if="displayTrafficLight">
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <div
+                v-bind="attrs"
+                v-on="on"
+                class="tk-trafficlight"
+                :style="trafficLightColor"
+              ></div>
+            </template>
+            <span>{{ $t(trafficLightCategory) }}</span>
+          </v-tooltip>
+        </div>
+        <div v-else class="tk-trafficlight"></div>
       </div>
     </div>
   </div>
@@ -80,8 +35,8 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
-import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 @Component
 export default class TKSubmissionentryView extends Vue {
   @Prop()
@@ -89,35 +44,38 @@ export default class TKSubmissionentryView extends Vue {
 
   question = "";
   answer = "";
-  displayTrafficLight = true;
-
-  isOK = false;
-  isWarning = false;
-  isDanger = false;
-  isCritical = false;
-  isOther = false;
+  displayTrafficLight = false;
+  trafficLightCategory = "";
+  trafficLightColor = {
+    backgroundColor: "none"
+  };
 
   @Watch("entry", { immediate: true })
   onentryChanged() {
-    if (this.entry) {
-      this.isOK = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightValues.OK
-        : false;
-      this.isWarning = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightValues.WARNING
-        : false;
-      this.isDanger = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightValues.DANGER
-        : false;
-      this.isCritical = this.entry
-        ? this.entry.trafficLightColor === TKTrafficLightValues.CRITICAL
-        : false;
-      this.isOther =
-        !this.isOK && !this.isWarning && !this.isDanger && !this.isCritical;
-      this.displayTrafficLight =
-        this.entry.trafficLight && this.entry.isAnswered();
-      this.handleLocale();
+    switch (this.entry.trafficLightColor) {
+      case TKTrafficLightValues.OK:
+        this.trafficLightColor.backgroundColor = "green";
+        this.trafficLightCategory = "trafficlight.ok";
+        break;
+      case TKTrafficLightValues.WARNING:
+        this.trafficLightColor.backgroundColor = "yellow";
+        this.trafficLightCategory = "trafficlight.warning";
+        break;
+      case TKTrafficLightValues.DANGER:
+        this.trafficLightColor.backgroundColor = "orange";
+        this.trafficLightCategory = "trafficlight.danger";
+        break;
+      case TKTrafficLightValues.CRITICAL:
+        this.trafficLightColor.backgroundColor = "#e91d1d";
+        this.trafficLightCategory = "trafficlight.critical";
+        break;
+      default:
+        this.trafficLightColor.backgroundColor = "purple";
+        this.trafficLightCategory = "trafficlight.other";
+        break;
     }
+    this.displayTrafficLight = this.entry.trafficLight && this.entry.isAnswered;
+    this.handleLocale();
   }
 
   @Watch("$root.$i18n.locale")
@@ -163,55 +121,16 @@ export default class TKSubmissionentryView extends Vue {
   text-align: right;
   flex-grow: 2;
 }
-.tk-trafficlight {
+
+.tk-trafficlight-container {
   margin-right: -20px;
 }
 
-.tk-trafficlight-ok {
+.tk-trafficlight {
   height: 8px;
   width: 8px;
-  background-color: green;
   border-radius: 50%;
   margin: 0 auto;
-}
-
-.tk-trafficlight-warning {
-  height: 8px;
-  width: 8px;
-  background-color: yellow;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.tk-trafficlight-danger {
-  height: 8px;
-  width: 8px;
-  background-color: orange;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.tk-trafficlight-critical {
-  height: 8px;
-  width: 8px;
-  background-color: #e91d1d;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.tk-trafficlight-other {
-  height: 8px;
-  width: 8px;
-  background-color: purple;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.tk-trafficlight-none {
-  height: 8px;
-  width: 8px;
   background-color: none;
-  border-radius: 50%;
-  margin: 0 auto;
 }
 </style>

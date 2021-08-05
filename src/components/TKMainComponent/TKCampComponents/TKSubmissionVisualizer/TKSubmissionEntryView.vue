@@ -1,48 +1,45 @@
 <template lang="html">
   <div class="tk-submission-entry-container">
-    <TKSubmissionEntryTextView v-if="entryText" :entry="entryText" />
+    <TKSubmissionEntryTextView v-if="entry.type === 'text'" :entry="entry" />
     <TKSubmissionEntryAgePyramidChart
       class="tk-chart"
-      v-if="entryAgePyramid"
-      :entry="entryAgePyramid"
+      v-else-if="entry.type === 'age_pyramid'"
+      :entry="entry"
     />
-    <div v-if="entryText" class="tk-hseparator"></div>
+    <TKSubmissionEntryDoughnutChart
+      class="tk-chart"
+      v-else-if="entry.type === 'doughnut'"
+      :entry="entry"
+    />
+    <TKSubmissionEntryPolarChart
+      class="tk-chart"
+      v-else-if="entry.type === 'polar'"
+      :entry="entry"
+    />
+    <div class="tk-hseparator" />
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component, Watch } from "vue-property-decorator";
+import { Vue, Prop, Component } from "vue-property-decorator";
 import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
-import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntryAgePyramid";
-import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 
 import TKSubmissionEntryAgePyramidChart from "./TKSubmissionEntryAgePyramidChart.vue";
+import TKSubmissionEntryDoughnutChart from "./TKSubmissionEntryDoughnutChart.vue";
+import TKSubmissionEntryPolarChart from "./TKSubmissionEntryPolarChart.vue";
 import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
 
 @Component({
   components: {
     TKSubmissionEntryAgePyramidChart,
+    TKSubmissionEntryDoughnutChart,
+    TKSubmissionEntryPolarChart,
     TKSubmissionEntryTextView
   }
 })
 export default class TKSubmissionentryView extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntry;
-
-  entryText: TKSubmissionEntryText | null = null;
-  entryAgePyramid: TKSubmissionEntryAgePyramid | null = null;
-
-  @Watch("entry", { immediate: true })
-  onentryChanged() {
-    this.entryText = null;
-    this.entryAgePyramid = null;
-
-    if (this.entry instanceof TKSubmissionEntryText) {
-      this.entryText = this.entry;
-    } else if (this.entry instanceof TKSubmissionEntryAgePyramid) {
-      this.entryAgePyramid = this.entry;
-    }
-  }
 }
 </script>
 
@@ -55,5 +52,9 @@ export default class TKSubmissionentryView extends Vue {
 
 .tk-chart {
   margin-top: -1px;
+  background-color: transparent;
+  border-radius: 3px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 </style>

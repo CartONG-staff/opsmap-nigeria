@@ -70,7 +70,17 @@ import TKPlaceHolderGeneric from "./TKPlaceHolders/TKPlaceHolderGeneric.vue";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
 
-import { TKSubmissionVisualizerOptions } from "./TKCampComponents";
+import { TKHomeIndicators, TKHomeMoreInfos } from "./TKHomeComponents";
+
+import {
+  TKCampIndicators,
+  TKCampInfos,
+  TKCampSelector,
+  TKCampToolbar,
+  TKCampSubtitle,
+  TKSubmissionVisualizer,
+  TKSubmissionVisualizerOptions
+} from "./TKCampComponents";
 import { TKOpsmapConfiguration } from "@/domain";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
@@ -81,6 +91,14 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
 
 @Component({
   components: {
+    TKCampIndicators,
+    TKCampInfos,
+    TKCampSelector,
+    TKCampSubtitle,
+    TKCampToolbar,
+    TKSubmissionVisualizer,
+    TKHomeIndicators,
+    TKHomeMoreInfos,
     TKMap,
     TKPlaceHolderLeft,
     TKPlaceHolderIndicators,

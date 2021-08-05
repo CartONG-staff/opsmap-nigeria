@@ -46,6 +46,8 @@
   },
   "charts": {
     "agePyramidTitle": "Age Pyramid",
+    "doughnutTitle": "Specific Group",
+    "polarTitle": "Types",
     "titleY": "Age Range",
     "titleX": "Population",
     "female": "Female",

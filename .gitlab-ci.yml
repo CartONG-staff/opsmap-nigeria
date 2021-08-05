@@ -15,4 +15,4 @@ pages:
   tags:
     - opsmap
   only:
-    - master
+    - production

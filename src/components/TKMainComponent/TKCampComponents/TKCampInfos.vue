@@ -89,7 +89,7 @@
 
 import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
+import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue, TKLabel } from "@/domain/ui/TKLabel";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
@@ -129,7 +129,7 @@ export default class TKCampInfos extends Vue {
     this.manageByLabel = (this.dataset.currentSubmission?.thematics[
       "group_cccm"
     ]?.data?.find(
-      item => item.field === "cccm_shelter__mangmt"
+      item => item.type === "text" && item.field === "cccm_shelter__mangmt"
     ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
 
     if (this.dataset && this.dataset.surveys[this.dataset.currentSurvey]) {

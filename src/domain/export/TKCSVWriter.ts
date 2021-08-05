@@ -1,7 +1,5 @@
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
-import { TKSubmissionEntryAgePyramid } from "../survey/TKSubmissionEntryAgePyramid";
-import { TKSubmissionEntryText } from "../survey/TKSubmissionEntryText";
 import { TKGetLocalValue } from "../ui/TKLabel";
 import { TKComputeExportFilename } from "./TKExportCommon";
 // ////////////////////////////////////////////////////////////////////////////
@@ -20,15 +18,14 @@ function computeCSVContent(submission: TKSubmission, locale: string): string {
 
       for (const submissionItem in submission.thematics[thematic].data) {
         const item = submission.thematics[thematic].data[submissionItem];
-
-        const itemName = TKGetLocalValue(item.fieldLabel, locale);
-
-        if (item instanceof TKSubmissionEntryText) {
+        if (item.type === "text") {
+          const itemName = TKGetLocalValue(item.fieldLabel, locale);
           const answer = TKGetLocalValue(item.answerLabel, locale);
           const trafficlight = item.trafficLight ? item.trafficLightColor : "";
 
           rows.push([thematicName, itemName, answer, trafficlight]);
-        } else if (item instanceof TKSubmissionEntryAgePyramid) {
+        } else if (item.type === "age_pyramid") {
+          const itemName = "age_pyramid";
           for (const [index, value] of item.malesEntries.entries()) {
             const chartItemName =
               itemName +

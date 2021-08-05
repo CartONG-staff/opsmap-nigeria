@@ -5,34 +5,22 @@ export enum TKIndicatorComputationType {
   MEAN
 }
 
-export class TKIndicatorDescription {
+export interface TKIndicatorDescription {
+  readonly type: "standard";
   readonly name: TKLabel;
   readonly entryCode: string;
   readonly iconOchaName: string;
-
-  constructor(name: TKLabel, entryCode: string, iconOchaName: string) {
-    this.name = name;
-    this.entryCode = entryCode;
-    this.iconOchaName = iconOchaName;
-  }
 }
-export class TKIndicatorDescriptionSiteOccupation extends TKIndicatorDescription {
+export interface TKIndicatorDescriptionSiteOccupation {
   // In the case of occupation:
   // - entryCode is supposed to be Site max capicity
   // - entryCodeSecond is supposed to be People
+  readonly type: "site_occupation";
+  readonly name: TKLabel;
+  readonly entryCodeMaxCapacity: string;
+  readonly iconOchaName: string;
   readonly entryCodePeopleCount: string;
   readonly entryCodeMaxPeopleCount: string;
-  constructor(
-    name: TKLabel,
-    entryCode: string,
-    entryCodePeopleCount: string,
-    entryCodeMaxPeopleCount: string,
-    iconOchaName: string
-  ) {
-    super(name, entryCode, iconOchaName);
-    this.entryCodePeopleCount = entryCodePeopleCount;
-    this.entryCodeMaxPeopleCount = entryCodeMaxPeopleCount;
-  }
 }
 
 export interface TKIndicatorsDescription {
@@ -42,8 +30,8 @@ export interface TKIndicatorsDescription {
     TKIndicatorDescription
   ];
   site: [
-    TKIndicatorDescription,
-    TKIndicatorDescription,
-    TKIndicatorDescription
+    TKIndicatorDescription | TKIndicatorDescriptionSiteOccupation,
+    TKIndicatorDescription | TKIndicatorDescriptionSiteOccupation,
+    TKIndicatorDescription | TKIndicatorDescriptionSiteOccupation
   ];
 }

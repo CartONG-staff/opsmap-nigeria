@@ -1,59 +1,33 @@
 <template lang="html">
-  <div class="tk-submission-item-pyramid-chart">
-    <canvas :id="ctx" height="360"></canvas>
+  <div>
+    <canvas :id="ctx" :height="height"></canvas>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import {
+  BarController,
+  BarElement,
+  CategoryScale,
   Chart,
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Filler,
+  ChartConfiguration,
   Legend,
+  LinearScale,
   Title,
-  Tooltip,
-  ChartConfiguration
+  Tooltip
 } from "chart.js";
-import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntryAgePyramid";
+import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
+
+import { v4 } from "uuid";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+
 Chart.register(
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
   BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
+  BarElement,
   CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Filler,
   Legend,
+  LinearScale,
   Title,
   Tooltip
 );
@@ -65,9 +39,19 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 
   // charts
   chart!: Chart;
-  readonly ctx = Date.now().toString();
+  readonly ctx = v4();
+
+  height = 0;
+  readonly barthickness = 15;
 
   // TODO : make this nice. translate, style customizable, etc.
+
+  beforeMount() {
+    if (this.entry) {
+      this.height =
+        this.entry.malesEntries.length * (this.barthickness - 1) + 140; // This is magic !
+    }
+  }
 
   mounted() {
     if (this.entry) {
@@ -80,14 +64,14 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
               label: this.$root.$i18n.t("charts.female").toString(),
               data: this.generateFemalesDataset(),
               backgroundColor: "#f37788",
-              barThickness: 15,
+              barThickness: this.barthickness,
               minBarLength: 1
             },
             {
               label: this.$root.$i18n.t("charts.male").toString(),
               data: this.generateMalesDataset(),
               backgroundColor: "#4095cd",
-              barThickness: 15,
+              barThickness: this.barthickness,
               minBarLength: 1
             }
           ]
@@ -107,7 +91,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           plugins: {
             title: {
               display: true,
-              text: this.$root.$i18n.t("charts.agePyramidTitle").toString(),
+              text: TKGetLocalValue(this.entry.title, this.$i18n.locale),
               font: {
                 family: "Arial",
                 size: 12
@@ -129,7 +113,10 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
                   const value = Math.abs(Number(tooltipItem.raw));
                   let label = tooltipItem.dataset.label;
                   label = value > 1 ? label + "s" : label;
-                  return label + ": " + value.toString();
+                  if (!label?.endsWith(":")) {
+                    label += ":";
+                  }
+                  return label + value.toString();
                 },
                 title: function(tooltipItems): string {
                   const sum = tooltipItems.reduce(function(
@@ -139,7 +126,11 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
                     return accumulateur + Math.abs(Number(valeurCourante.raw));
                   },
                   0);
-                  return tooltipItems[0].label + ": " + sum.toString();
+                  let label = tooltipItems[0].label;
+                  if (!label?.endsWith(":")) {
+                    label += ":";
+                  }
+                  return label + " " + sum.toString();
                 }
               },
               titleFont: {
@@ -176,9 +167,10 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   @Watch("$root.$i18n.locale")
   onLocalChanged() {
     if (this.chart.options.plugins && this.chart.options.plugins.title) {
-      this.chart.options.plugins.title.text = this.$root.$i18n
-        .t("charts.agePyramidTitle")
-        .toString();
+      this.chart.options.plugins.title.text = TKGetLocalValue(
+        this.entry.title,
+        this.$i18n.locale
+      );
     }
 
     this.chart.data.datasets[0].label = this.$root.$i18n
@@ -260,15 +252,3 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   }
 }
 </script>
-
-<style scoped>
-.tk-submission-item-pyramid-chart {
-  background-color: transparent;
-  border-radius: 3px;
-}
-
-.tk-submission-item-pyramid-chart {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-</style>

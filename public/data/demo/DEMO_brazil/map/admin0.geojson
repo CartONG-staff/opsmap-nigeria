@@ -1,14 +1,12 @@
-import { FeatureCollection } from "geojson";
-
-export const maskBrazil: FeatureCollection = {
-  type: "FeatureCollection",
-  features: [
+{
+  "type": "FeatureCollection",
+  "features": [
     {
-      type: "Feature",
-      properties: { id: null },
-      geometry: {
-        type: "MultiPolygon",
-        coordinates: [
+      "type": "Feature",
+      "properties": { "id": null },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
           [
             [
               [-180.0, 90.0],
@@ -2632,4 +2630,4 @@ export const maskBrazil: FeatureCollection = {
       }
     }
   ]
-};
+}

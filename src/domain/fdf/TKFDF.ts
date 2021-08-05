@@ -18,8 +18,11 @@ import {
 
 import { TKFDFFiles } from "./TKFDFInfos";
 import { TKFDFUrlsCollection, TKReadFDFURLsCollection } from "./TKFDFURLs";
+import {
+  TKFDFTerminologyCollection,
+  TKReadFDFTerminologyCollection
+} from "./TKFDFTerminology";
 import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
-import { TKSurveyInfosGSheet } from "../gsheet/TKSurveyInfosGSheet";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the FDF object
@@ -27,6 +30,7 @@ import { TKSurveyInfosGSheet } from "../gsheet/TKSurveyInfosGSheet";
 // It is needed to create an actual survey
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKFDF {
+  terminology: TKFDFTerminologyCollection;
   thematics: TKTFDFhematicsCollection;
   trafficLights: TKFDFTrafficLightsCollection;
   fieldsLabels: TKFDFLabelCollection;
@@ -40,7 +44,7 @@ export interface TKFDF {
 // ////////////////////////////////////////////////////////////////////////////
 export async function TKCreateFDF(infos: TKSurveyInfos): Promise<TKFDF> {
   let answersLabels = {};
-  if (infos instanceof TKSurveyInfosGSheet) {
+  if (infos.type === "gsheet") {
     answersLabels = await TKReadFDFLabelCollectionFromGSheet(
       infos.submissionsTrUrl
     );
@@ -52,6 +56,7 @@ export async function TKCreateFDF(infos: TKSurveyInfos): Promise<TKFDF> {
   }
 
   return {
+    terminology: await TKReadFDFTerminologyCollection(infos.fdf),
     thematics: await TKReadFDFThematicsCollection(infos.fdf),
     trafficLights: await TKReadFDFTrafficLightsCollection(infos.fdf),
     fieldsLabels: await TKReadFDFLabelCollection(TKFDFFiles.FIELDS, infos.fdf),

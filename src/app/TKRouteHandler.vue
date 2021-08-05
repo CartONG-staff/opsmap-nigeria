@@ -13,7 +13,7 @@ export default class TKRouteHandler extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
 
-  currentRoute = "";
+  currentRoute = "/";
 
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
@@ -110,8 +110,11 @@ export default class TKRouteHandler extends Vue {
         path = "/";
       }
     }
-
-    if (this.$route.path !== path && this.$route.path !== path + "/") {
+    if (
+      this.$route.path !== path &&
+      this.$route.path !== path + "/" &&
+      !(!campE && this.$route.name === "home") // Prevent to camp page when no camp is selected
+    ) {
       this.currentRoute = path;
       this.$router.push({
         path: path,

@@ -12,7 +12,7 @@
         :key="entry.id"
         v-show="
           !visualizerOptions.hideUnanswered ||
-            (visualizerOptions.hideUnanswered && entry.isAnswered())
+            (visualizerOptions.hideUnanswered && entry.isAnswered)
         "
       >
         <TKSubmissionEntryView :entry="entry" />
@@ -54,7 +54,7 @@ export default class TKSubmissionThematicView extends Vue {
     } else {
       this.iconurl = "";
     }
-    this.applyOptions();
+    this.applyHideUnansweredOption();
   }
 
   @Watch("$root.$i18n.locale")
@@ -69,8 +69,8 @@ export default class TKSubmissionThematicView extends Vue {
     }
   }
 
-  @Watch("visualizerOptions", { immediate: true, deep: true })
-  applyOptions() {
+  @Watch("visualizerOptions.hideUnanswered", { immediate: true })
+  applyHideUnansweredOption() {
     // Filter if needed
     if (this.submissionThematic) {
       this.thematicData = this.visualizerOptions.hideUnanswered

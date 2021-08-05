@@ -6,14 +6,20 @@ import {
 } from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKMapLayers } from "./TKMapLayers";
+import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
 
 export class TKMapBoundaries {
   public admin1: FeatureCollection;
   public admin2: FeatureCollection;
+  public spatialDescription: TKSpatialDescription;
 
-  constructor(geodataset: TKGeoDataset) {
+  constructor(
+    geodataset: TKGeoDataset,
+    spatialDescription: TKSpatialDescription
+  ) {
     this.admin1 = geodataset.admin1;
     this.admin2 = geodataset.admin2;
+    this.spatialDescription = spatialDescription;
   }
 
   // //////////////////////////////////////////////////////////////////////////
@@ -94,11 +100,16 @@ export class TKMapBoundaries {
           item.properties.display = "hide";
         } else if (
           dataset.currentAdmin1 &&
-          dataset.currentAdmin1.pcode === item.properties.pcode
+          dataset.currentAdmin1.pcode ===
+            item.properties[this.spatialDescription.adm1DBPcode]
         ) {
           shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
           item.properties.display = "focus";
-        } else if (currentadmin1List.includes(item.properties.pcode)) {
+        } else if (
+          currentadmin1List.includes(
+            item.properties[this.spatialDescription.adm1DBPcode]
+          )
+        ) {
           item.properties.display = "hide";
         } else {
           item.properties.display = "hide";
@@ -121,11 +132,16 @@ export class TKMapBoundaries {
       if (item.properties) {
         if (
           dataset.currentAdmin2 &&
-          dataset.currentAdmin2.pcode === item.properties.pcode
+          dataset.currentAdmin2.pcode ===
+            item.properties[this.spatialDescription.adm2DBPcode]
         ) {
           shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
           item.properties.display = "focus";
-        } else if (currentadmin2List.includes(item.properties.pcode)) {
+        } else if (
+          currentadmin2List.includes(
+            item.properties[this.spatialDescription.adm2DBPcode]
+          )
+        ) {
           item.properties.display = "hide";
         } else {
           item.properties.display = "hide";

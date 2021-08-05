@@ -32,9 +32,9 @@ import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
-import { FeatureCollection, Point } from "geojson";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
+import { Point } from "geojson";
 
 @Component({
   components: {
@@ -87,8 +87,10 @@ export default class TKMap extends Vue {
       }
     }
   }
-  // Change on injected dataset
-  @Watch("dataset", { deep: true })
+
+  // Change on filtered data -> why rebuild the whole TKMapCamps list ?
+  // TODO: improve this !!!!
+  @Watch("dataset.lastModification")
   currentCampChanged() {
     if (this.mapBoundaries) {
       this.mapBoundaries.changeStyle(this.dataset, this.map, this.bound);
@@ -114,10 +116,14 @@ export default class TKMap extends Vue {
   @Watch("geoDataset", { immediate: true })
   geoDatasetLoaded() {
     if (this.geoDataset) {
-      this.mapBoundaries = new TKMapBoundaries(this.geoDataset);
+      this.mapBoundaries = new TKMapBoundaries(
+        this.geoDataset,
+        this.appConfig.spatial
+      );
     }
   }
 
+  // TODO: source of trouvle right here
   @Watch("basemaps", { deep: true })
   updateBasemap(): void {
     this.basemaps.basemapsList.map(x => {
@@ -203,7 +209,7 @@ export default class TKMap extends Vue {
     if (!this.map.getSource(TKMapLayers.COUNTRYMASKSOURCE)) {
       this.map.addSource(TKMapLayers.COUNTRYMASKSOURCE, {
         type: "geojson",
-        data: this.appConfig.spatialDescription.mask
+        data: `${process.env.BASE_URL}/${this.appConfig.spatial.admin0LocalURL}`
       });
     }
 
@@ -211,13 +217,14 @@ export default class TKMap extends Vue {
       if (!this.map.getSource(TKMapLayers.ADMIN1SOURCE)) {
         this.map.addSource(TKMapLayers.ADMIN1SOURCE, {
           type: "geojson",
-          data: this.mapBoundaries?.admin1 as FeatureCollection
+          data: this.mapBoundaries?.admin1
         });
       }
+
       if (!this.map.getSource(TKMapLayers.ADMIN2SOURCE)) {
         this.map.addSource(TKMapLayers.ADMIN2SOURCE, {
           type: "geojson",
-          data: this.mapBoundaries?.admin2 as FeatureCollection
+          data: this.mapBoundaries?.admin2
         });
       }
     }

@@ -1,4 +1,4 @@
-import { TKSurveyInfosCSV } from "./TKSurveyInfosCSV";
+import { TKSurveyInfosCSV } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKCSVRead } from "./TKCSVReader";
 
 // ////////////////////////////////////////////////////////////////////////////
