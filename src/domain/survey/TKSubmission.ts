@@ -32,7 +32,7 @@ export interface TKSubmission {
 // indicators management
 // ////////////////////////////////////////////////////////////////////////////
 
-function getValue(
+function getValueForIndicator(
   data: Record<string, TKSubmissionThematic>,
   entryCode: string
 ): number | undefined {
@@ -53,7 +53,7 @@ function getValue(
   return undefined;
 }
 
-function getLabel(
+function getLabelForIndicator(
   data: Record<string, TKSubmissionThematic>,
   entryCode: string
 ): TKLabel {
@@ -68,17 +68,22 @@ function getLabel(
   }
   return { en: "-" };
 }
-
 function computeSubmissionIndicator(
   descr: TKIndicatorDescription | TKIndicatorDescriptionSiteOccupation,
   data: Record<string, TKSubmissionThematic>
 ): TKIndicator {
   if (descr.type === "site_occupation") {
-    const labelIsMaxCapacity = getLabel(data, descr.entryCodeMaxCapacity);
+    const labelIsMaxCapacity = getLabelForIndicator(
+      data,
+      descr.entryCodeMaxCapacity
+    );
 
     // Should be two integers
-    const peopleCount = getValue(data, descr.entryCodePeopleCount);
-    const maxPeopleCount = getValue(data, descr.entryCodeMaxPeopleCount);
+    const peopleCount = getValueForIndicator(data, descr.entryCodePeopleCount);
+    const maxPeopleCount = getValueForIndicator(
+      data,
+      descr.entryCodeMaxPeopleCount
+    );
 
     if (
       peopleCount !== undefined &&
@@ -105,7 +110,7 @@ function computeSubmissionIndicator(
       };
     }
   } else {
-    const label = getLabel(data, descr.entryCode);
+    const label = getLabelForIndicator(data, descr.entryCode);
     return {
       iconOchaName: descr.iconOchaName,
       nameLabel: descr.name,
@@ -114,19 +119,8 @@ function computeSubmissionIndicator(
   }
 }
 
-function computeSubmissionIndicators(
-  descr: TKIndicatorsDescription,
-  data: Record<string, TKSubmissionThematic>
-): [TKIndicator, TKIndicator, TKIndicator] {
-  return [
-    computeSubmissionIndicator(descr.site[0], data),
-    computeSubmissionIndicator(descr.site[1], data),
-    computeSubmissionIndicator(descr.site[2], data)
-  ];
-}
-
 // ////////////////////////////////////////////////////////////////////////////
-// Create the submission
+// Create the chart associated to the submission
 // ////////////////////////////////////////////////////////////////////////////
 
 type ChartData = {
@@ -194,6 +188,10 @@ function createChartInSubmission(
     submission[chartData.thematic].data.push(entry);
   }
 }
+
+// ////////////////////////////////////////////////////////////////////////////
+// Create the submission
+// ////////////////////////////////////////////////////////////////////////////
 
 export function TKCreateSubmission(
   submissionItem: Record<string, string>,
@@ -279,6 +277,10 @@ export function TKCreateSubmission(
 
   return {
     thematics: submissionFiltered,
-    indicators: computeSubmissionIndicators(indicatorsDescription, submission)
+    indicators: [
+      computeSubmissionIndicator(indicatorsDescription.site[0], submission),
+      computeSubmissionIndicator(indicatorsDescription.site[1], submission),
+      computeSubmissionIndicator(indicatorsDescription.site[2], submission)
+    ]
   };
 }
