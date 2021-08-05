@@ -168,6 +168,7 @@ export function TKCreateSubmission(
         if (agePyramidId && agePyramidId !== rule.chartId) {
           submission[rule.thematicGroup].data.push(
             TKCreateSubmissionEntryAgePyramid(
+              agePyramidId,
               agePyramidData,
               surveyConfiguration
             )
@@ -196,7 +197,11 @@ export function TKCreateSubmission(
         // If it's a new chart - create current chart, then cleanup
         if (doughnutId && doughnutId !== rule.chartId) {
           submission[rule.thematicGroup].data.push(
-            TKCreateSubmissionEntryDoughnut(doughnutData, surveyConfiguration)
+            TKCreateSubmissionEntryDoughnut(
+              doughnutId,
+              doughnutData,
+              surveyConfiguration
+            )
           );
           doughnutThematic = "";
           doughnutId = "";
@@ -222,7 +227,11 @@ export function TKCreateSubmission(
         // If it's a new chart - create current chart, then cleanup
         if (polarId && polarId !== rule.chartId) {
           submission[rule.thematicGroup].data.push(
-            TKCreateSubmissionEntryPolar(polarData, surveyConfiguration)
+            TKCreateSubmissionEntryPolar(
+              polarId,
+              polarData,
+              surveyConfiguration
+            )
           );
           polarThematic = "";
           polarId = "";
@@ -260,21 +269,29 @@ export function TKCreateSubmission(
   // if a current pyramid is ongoing - push it before ending
   if (agePyramidId) {
     submission[agePyramidThematic].data.push(
-      TKCreateSubmissionEntryAgePyramid(agePyramidData, surveyConfiguration)
+      TKCreateSubmissionEntryAgePyramid(
+        agePyramidId,
+        agePyramidData,
+        surveyConfiguration
+      )
     );
   }
 
   // if a current pyramid is ongoing - push it before ending
   if (doughnutId) {
     submission[doughnutThematic].data.push(
-      TKCreateSubmissionEntryDoughnut(doughnutData, surveyConfiguration)
+      TKCreateSubmissionEntryDoughnut(
+        doughnutId,
+        doughnutData,
+        surveyConfiguration
+      )
     );
   }
 
   // if a current pyramid is ongoing - push it before ending
   if (polarId) {
     submission[polarThematic].data.push(
-      TKCreateSubmissionEntryPolar(polarData, surveyConfiguration)
+      TKCreateSubmissionEntryPolar(polarId, polarData, surveyConfiguration)
     );
   }
 

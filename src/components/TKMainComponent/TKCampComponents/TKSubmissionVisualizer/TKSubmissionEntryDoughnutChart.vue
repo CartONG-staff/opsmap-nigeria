@@ -110,7 +110,7 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
           plugins: {
             title: {
               display: true,
-              text: this.$root.$i18n.t("charts.doughnutTitle").toString(),
+              text: TKGetLocalValue(this.entry.title, this.$i18n.locale),
               font: {
                 family: "Arial",
                 size: 12

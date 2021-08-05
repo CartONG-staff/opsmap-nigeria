@@ -21,6 +21,7 @@ export interface TKSubmissionEntryText {
 }
 export interface TKSubmissionEntryAgePyramid {
   type: "age_pyramid";
+  title: TKLabel;
   malesEntries: Array<number>;
   femalesEntries: Array<number>;
   malesLabels: Array<TKLabel>;
@@ -30,11 +31,13 @@ export interface TKSubmissionEntryAgePyramid {
 
 export interface TKSubmissionEntryDoughnut {
   type: "doughnut";
+  title: TKLabel;
   isAnswered: true;
   entries: Array<{ value: number; label: TKLabel }>;
 }
 export interface TKSubmissionEntryPolar {
   type: "polar";
+  title: TKLabel;
   isAnswered: true;
   entries: Array<{ value: number; label: TKLabel }>;
 }
@@ -130,6 +133,7 @@ export interface TKSubmissionEntryAgePyramidItem {
 }
 
 export function TKCreateSubmissionEntryAgePyramid(
+  field: string,
   chartdata: Array<TKSubmissionEntryAgePyramidItem>,
   surveyConfiguration: TKFDF
 ): TKSubmissionEntryAgePyramid {
@@ -149,6 +153,7 @@ export function TKCreateSubmissionEntryAgePyramid(
   return {
     type: "age_pyramid",
     isAnswered: true,
+    title: surveyConfiguration.fieldsLabels[field],
     malesEntries: malesDataset,
     femalesEntries: femalesDataset,
     malesLabels: malesLabel,
@@ -165,12 +170,14 @@ export interface TKSubmissionEntryDoughnutItem {
 }
 
 export function TKCreateSubmissionEntryDoughnut(
+  field: string,
   chartdata: Array<TKSubmissionEntryDoughnutItem>,
   surveyConfiguration: TKFDF
 ): TKSubmissionEntryDoughnut {
   return {
     type: "doughnut",
     isAnswered: true,
+    title: surveyConfiguration.fieldsLabels[field],
     entries: chartdata.map(item => {
       return {
         value: Number(item.value),
@@ -189,12 +196,14 @@ export interface TKSubmissionEntryPolarItem {
 }
 
 export function TKCreateSubmissionEntryPolar(
+  field: string,
   chartdata: Array<TKSubmissionEntryPolarItem>,
   surveyConfiguration: TKFDF
 ): TKSubmissionEntryPolar {
   return {
     type: "polar",
     isAnswered: true,
+    title: surveyConfiguration.fieldsLabels[field],
     entries: chartdata.map(item => {
       return {
         value: Number(item.value),

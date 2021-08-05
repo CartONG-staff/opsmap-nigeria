@@ -181,3 +181,6 @@ group_wash/latrineslighting;Lighting around the latrines at night:
 group_wash/bathlighting;Lighting around the shower/bathing facilities at night:
 group_wash/partners_wash;WASH partners on site:
 group_wash/other_wash_partner;Other WASH partners on site:
+age_pyramid#1;Age pyramid
+doughnut_chart#1;Specific groups
+polar_area_chart#1;Shelter types

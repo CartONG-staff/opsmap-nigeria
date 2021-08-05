@@ -59,6 +59,7 @@ Chart.register(
 );
 
 import { v4 } from "uuid";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 
 @Component
 export default class TKSubmissionItemAgePyramidChart extends Vue {
@@ -119,7 +120,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           plugins: {
             title: {
               display: true,
-              text: this.$root.$i18n.t("charts.agePyramidTitle").toString(),
+              text: TKGetLocalValue(this.entry.title, this.$i18n.locale),
               font: {
                 family: "Arial",
                 size: 12
@@ -195,9 +196,10 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   @Watch("$root.$i18n.locale")
   onLocalChanged() {
     if (this.chart.options.plugins && this.chart.options.plugins.title) {
-      this.chart.options.plugins.title.text = this.$root.$i18n
-        .t("charts.agePyramidTitle")
-        .toString();
+      this.chart.options.plugins.title.text = TKGetLocalValue(
+        this.entry.title,
+        this.$i18n.locale
+      );
     }
 
     this.chart.data.datasets[0].label = this.$root.$i18n

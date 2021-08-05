@@ -118,7 +118,7 @@ export default class TKSubmissionItemPolarChart extends Vue {
           plugins: {
             title: {
               display: true,
-              text: this.$root.$i18n.t("charts.polarTitle").toString(),
+              text: TKGetLocalValue(this.entry.title, this.$i18n.locale),
               font: {
                 family: "Arial",
                 size: 12
