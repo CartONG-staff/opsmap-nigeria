@@ -6,59 +6,22 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import {
-  Chart,
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Filler,
-  Legend,
-  Title,
-  Tooltip,
-  ChartConfiguration
-} from "chart.js";
+
 import { v4 } from "uuid";
 import { TKSubmissionEntryPolar } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
-Chart.register(
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Filler,
+
+import {
+  Chart,
+  ChartConfiguration,
   Legend,
+  PolarAreaController,
+  RadialLinearScale,
   Title,
   Tooltip
-);
+} from "chart.js";
+
+Chart.register(PolarAreaController, RadialLinearScale, Legend, Title, Tooltip);
 
 @Component
 export default class TKSubmissionItemPolarChart extends Vue {

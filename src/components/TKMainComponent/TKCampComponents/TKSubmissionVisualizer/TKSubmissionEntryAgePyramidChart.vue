@@ -7,59 +7,30 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import {
+  BarController,
+  BarElement,
+  CategoryScale,
   Chart,
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Filler,
+  ChartConfiguration,
   Legend,
-  Title,
-  Tooltip,
-  ChartConfiguration
-} from "chart.js";
-import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
-Chart.register(
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
   LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Filler,
-  Legend,
   Title,
   Tooltip
-);
+} from "chart.js";
+import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
 
 import { v4 } from "uuid";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+
+Chart.register(
+  BarController,
+  BarElement,
+  CategoryScale,
+  Legend,
+  LinearScale,
+  Title,
+  Tooltip
+);
 
 @Component
 export default class TKSubmissionItemAgePyramidChart extends Vue {

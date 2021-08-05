@@ -7,58 +7,19 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import {
-  Chart,
   ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
+  Chart,
+  ChartConfiguration,
   DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Filler,
   Legend,
   Title,
-  Tooltip,
-  ChartConfiguration
+  Tooltip
 } from "chart.js";
 import { v4 } from "uuid";
 import { TKSubmissionEntryDoughnut } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
-Chart.register(
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Filler,
-  Legend,
-  Title,
-  Tooltip
-);
+
+Chart.register(DoughnutController, ArcElement, Legend, Title, Tooltip);
 
 @Component
 export default class TKSubmissionItemDoughnutChart extends Vue {
