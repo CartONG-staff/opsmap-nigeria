@@ -14,7 +14,7 @@
     <div>
       <div class="tk-trafficlight-container">
         <div v-if="displayTrafficLight">
-            <v-tooltip right>
+          <v-tooltip right>
             <template v-slot:activator="{ on, attrs }">
               <div
                 v-bind="attrs"
@@ -35,8 +35,8 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
-import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 @Component
 export default class TKSubmissionentryView extends Vue {
   @Prop()
@@ -45,7 +45,7 @@ export default class TKSubmissionentryView extends Vue {
   question = "";
   answer = "";
   displayTrafficLight = false;
-  trafficLightCategory = ''
+  trafficLightCategory = "";
   trafficLightColor = {
     backgroundColor: "none"
   };
@@ -55,27 +55,26 @@ export default class TKSubmissionentryView extends Vue {
     switch (this.entry.trafficLightColor) {
       case TKTrafficLightValues.OK:
         this.trafficLightColor.backgroundColor = "green";
-        this.trafficLightCategory = "trafficlight.ok"
+        this.trafficLightCategory = "trafficlight.ok";
         break;
       case TKTrafficLightValues.WARNING:
         this.trafficLightColor.backgroundColor = "yellow";
-        this.trafficLightCategory = "trafficlight.warning"
+        this.trafficLightCategory = "trafficlight.warning";
         break;
       case TKTrafficLightValues.DANGER:
         this.trafficLightColor.backgroundColor = "orange";
-        this.trafficLightCategory = "trafficlight.danger"
+        this.trafficLightCategory = "trafficlight.danger";
         break;
       case TKTrafficLightValues.CRITICAL:
         this.trafficLightColor.backgroundColor = "#e91d1d";
-        this.trafficLightCategory = "trafficlight.critical"
+        this.trafficLightCategory = "trafficlight.critical";
         break;
       default:
         this.trafficLightColor.backgroundColor = "purple";
-        this.trafficLightCategory = "trafficlight.other"
+        this.trafficLightCategory = "trafficlight.other";
         break;
     }
-    this.displayTrafficLight =
-      this.entry.trafficLight && this.entry.isAnswered();
+    this.displayTrafficLight = this.entry.trafficLight && this.entry.isAnswered;
     this.handleLocale();
   }
 
@@ -134,52 +133,4 @@ export default class TKSubmissionentryView extends Vue {
   margin: 0 auto;
   background-color: none;
 }
-
-/* .tk-trafficlight-ok {
-  height: 8px;
-  width: 8px;
-  background-color: green;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.tk-trafficlight-warning {
-  height: 8px;
-  width: 8px;
-  background-color: yellow;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.tk-trafficlight-danger {
-  height: 8px;
-  width: 8px;
-  background-color: orange;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.tk-trafficlight-critical {
-  height: 8px;
-  width: 8px;
-  background-color: #e91d1d;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.tk-trafficlight-other {
-  height: 8px;
-  width: 8px;
-  background-color: purple;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.tk-trafficlight-none {
-  height: 8px;
-  width: 8px;
-  background-color: none;
-  border-radius: 50%;
-  margin: 0 auto;
-} */
 </style>

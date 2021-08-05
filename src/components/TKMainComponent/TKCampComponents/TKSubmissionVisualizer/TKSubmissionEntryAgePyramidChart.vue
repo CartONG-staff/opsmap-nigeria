@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="tk-submission-item-pyramid-chart">
+  <div>
     <canvas :id="ctx" :height="height"></canvas>
   </div>
 </template>
@@ -7,58 +7,30 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import {
+  BarController,
+  BarElement,
+  CategoryScale,
   Chart,
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Filler,
+  ChartConfiguration,
   Legend,
+  LinearScale,
   Title,
-  Tooltip,
-  ChartConfiguration
+  Tooltip
 } from "chart.js";
-import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntryAgePyramid";
+import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
+
+import { v4 } from "uuid";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+
 Chart.register(
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
   BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
+  BarElement,
   CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Filler,
   Legend,
+  LinearScale,
   Title,
   Tooltip
 );
-
-import { v4 } from "uuid";
 
 @Component
 export default class TKSubmissionItemAgePyramidChart extends Vue {
@@ -119,7 +91,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           plugins: {
             title: {
               display: true,
-              text: this.$root.$i18n.t("charts.agePyramidTitle").toString(),
+              text: TKGetLocalValue(this.entry.title, this.$i18n.locale),
               font: {
                 family: "Arial",
                 size: 12
@@ -195,9 +167,10 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   @Watch("$root.$i18n.locale")
   onLocalChanged() {
     if (this.chart.options.plugins && this.chart.options.plugins.title) {
-      this.chart.options.plugins.title.text = this.$root.$i18n
-        .t("charts.agePyramidTitle")
-        .toString();
+      this.chart.options.plugins.title.text = TKGetLocalValue(
+        this.entry.title,
+        this.$i18n.locale
+      );
     }
 
     this.chart.data.datasets[0].label = this.$root.$i18n
@@ -279,15 +252,3 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   }
 }
 </script>
-
-<style scoped>
-.tk-submission-item-pyramid-chart {
-  background-color: transparent;
-  border-radius: 3px;
-}
-
-.tk-submission-item-pyramid-chart {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-</style>
