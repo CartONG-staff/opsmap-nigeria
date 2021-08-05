@@ -3,7 +3,12 @@
     <TKSubmissionEntryTextView v-if="entry.type === 'text'" :entry="entry" />
     <TKSubmissionEntryAgePyramidChart
       class="tk-chart"
-      v-if="entry.type === 'age_pyramid'"
+      v-else-if="entry.type === 'age_pyramid'"
+      :entry="entry"
+    />
+    <TKSubmissionEntryDoughnutChart
+      class="tk-chart"
+      v-else-if="entry.type === 'doughnut'"
       :entry="entry"
     />
     <div v-if="entry.type === 'text'" class="tk-hseparator"></div>
@@ -15,11 +20,13 @@ import { Vue, Prop, Component } from "vue-property-decorator";
 import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
 
 import TKSubmissionEntryAgePyramidChart from "./TKSubmissionEntryAgePyramidChart.vue";
+import TKSubmissionEntryDoughnutChart from "./TKSubmissionEntryDoughnutChart.vue";
 import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
 
 @Component({
   components: {
     TKSubmissionEntryAgePyramidChart,
+    TKSubmissionEntryDoughnutChart,
     TKSubmissionEntryTextView
   }
 })

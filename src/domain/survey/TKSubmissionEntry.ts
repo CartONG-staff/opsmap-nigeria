@@ -28,12 +28,12 @@ export interface TKSubmissionEntryAgePyramid {
   femalesLabels: Array<TKLabel>;
 }
 
-// export interface TKSubmissionEntryDoughnut {
-//   type: "doughnut";
-//   entries: Array<number>;
-//   isAnswered: true;
-//   labels: Array<TKLabel>;
-// }
+export interface TKSubmissionEntryDoughnut {
+  type: "doughnut";
+  entries: Array<number>;
+  isAnswered: true;
+  labels: Array<TKLabel>;
+}
 
 // ////////////////////////////////////////////////////////////////////////////
 // Alltogether type
@@ -41,8 +41,8 @@ export interface TKSubmissionEntryAgePyramid {
 
 export type TKSubmissionEntry =
   | TKSubmissionEntryText
-  | TKSubmissionEntryAgePyramid;
-// | TKSubmissionEntryDoughnut;
+  | TKSubmissionEntryAgePyramid
+  | TKSubmissionEntryDoughnut;
 
 // ////////////////////////////////////////////////////////////////////////////
 // helpers method
@@ -124,10 +124,6 @@ export interface TKSubmissionEntryAgePyramidItem {
   type: string;
 }
 
-// ////////////////////////////////////////////////////////////////////////////
-// EntryAgePyramid creation method
-// ////////////////////////////////////////////////////////////////////////////
-
 export function TKCreateSubmissionEntryAgePyramid(
   chartdata: Array<TKSubmissionEntryAgePyramidItem>,
   surveyConfiguration: TKFDF
@@ -152,5 +148,25 @@ export function TKCreateSubmissionEntryAgePyramid(
     femalesEntries: femalesDataset,
     malesLabels: malesLabel,
     femalesLabels: femalesLabel
+  };
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Doughnut concept definition
+// ////////////////////////////////////////////////////////////////////////////
+export interface TKSubmissionEntryDoughnutItem {
+  field: string;
+  value: string;
+}
+
+export function TKCreateSubmissionEntryDoughnut(
+  chartdata: Array<TKSubmissionEntryDoughnutItem>,
+  surveyConfiguration: TKFDF
+): TKSubmissionEntryDoughnut {
+  return {
+    type: "doughnut",
+    isAnswered: true,
+    entries: chartdata.map(item => Number(item.value)),
+    labels: chartdata.map(item => surveyConfiguration.fieldsLabels[item.field])
   };
 }

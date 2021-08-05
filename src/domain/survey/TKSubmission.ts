@@ -8,7 +8,9 @@ import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKCreateSubmissionEntryAgePyramid,
   TKSubmissionEntryAgePyramidItem,
-  TKCreateSubmissionEntryText
+  TKCreateSubmissionEntryText,
+  TKCreateSubmissionEntryDoughnut,
+  TKSubmissionEntryDoughnutItem
 } from "./TKSubmissionEntry";
 import {
   TKSubmissionThematic,
@@ -26,29 +28,6 @@ export interface TKSubmission {
   thematics: Record<string, TKSubmissionThematic>;
   indicators: [TKIndicator, TKIndicator, TKIndicator];
 }
-
-// ////////////////////////////////////////////////////////////////////////////
-// helpers method
-// ////////////////////////////////////////////////////////////////////////////
-
-// function isSubmissionInThematic(
-//   submission: string,
-//   thematic: string,
-//   submissionsRules: TKFDFSubmissionsRulesCollection
-// ): boolean {
-//   return submissionsRules[submission]
-//     ? submissionsRules[submission].thematicGroup === thematic
-//       ? true
-//       : false
-//     : false;
-// }
-
-// function isSubmissionAnAgePyramid(surveyConfiguration: TKFDF, field: string) {
-//   return (
-//     surveyConfiguration.submissionsRules[field].chartId &&
-//     surveyConfiguration.submissionsRules[field].chartId.includes("age_pyramid")
-//   );
-// }
 
 // ////////////////////////////////////////////////////////////////////////////
 // indicators management
@@ -168,6 +147,10 @@ export function TKCreateSubmission(
   let agePyramidId = "";
   let agePyramidData: Array<TKSubmissionEntryAgePyramidItem> = [];
 
+  let doughnutThematic = "";
+  let doughnutId = "";
+  let doughnutData: Array<TKSubmissionEntryDoughnutItem> = [];
+
   for (const key in surveyConfiguration.submissionsRules) {
     const rule = surveyConfiguration.submissionsRules[key];
     const value = submissionItem[rule.fieldName];
@@ -201,7 +184,35 @@ export function TKCreateSubmission(
           value: value,
           type: rule.chartData
         });
-      } else {
+      }
+      // If age pyramid -- accumulate process
+      else if (rule.chartId && rule.chartId.includes("doughnut")) {
+        // If it's a new chart - create current chart, then cleanup
+        if (doughnutId && doughnutId !== rule.chartId) {
+          submission[rule.thematicGroup].data.push(
+            TKCreateSubmissionEntryDoughnut(doughnutData, surveyConfiguration)
+          );
+          doughnutThematic = "";
+          doughnutId = "";
+          doughnutData = [];
+        }
+
+        // If no previous chart, init
+        if (!doughnutId) {
+          doughnutThematic = rule.thematicGroup;
+          doughnutId = rule.chartId;
+          doughnutData = [];
+        }
+
+        // accumulate
+        doughnutData.push({
+          field: rule.fieldName,
+          value: value
+        });
+      }
+
+      // If text item
+      else {
         // push it before switching to text item
         submission[rule.thematicGroup].data.push(
           TKCreateSubmissionEntryText(
@@ -218,6 +229,13 @@ export function TKCreateSubmission(
   if (agePyramidId) {
     submission[agePyramidThematic].data.push(
       TKCreateSubmissionEntryAgePyramid(agePyramidData, surveyConfiguration)
+    );
+  }
+
+  // if a current pyramid is ongoing - push it before ending
+  if (doughnutId) {
+    submission[agePyramidThematic].data.push(
+      TKCreateSubmissionEntryDoughnut(doughnutData, surveyConfiguration)
     );
   }
 

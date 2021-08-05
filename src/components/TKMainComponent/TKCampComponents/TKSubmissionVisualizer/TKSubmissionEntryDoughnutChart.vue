@@ -1,11 +1,11 @@
 <template lang="html">
   <div class="tk-submission-item-doughnut-chart">
-    <canvas :id="ctx"> </canvas>
+    <canvas :id="ctx" :height="height"> </canvas>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import {
   Chart,
   ArcElement,
@@ -32,6 +32,8 @@ import {
   Tooltip,
   ChartConfiguration
 } from "chart.js";
+import { v4 } from "uuid";
+import { TKSubmissionEntryDoughnut } from "@/domain/survey/TKSubmissionEntry";
 Chart.register(
   ArcElement,
   LineElement,
@@ -60,63 +62,78 @@ Chart.register(
 @Component
 export default class TKSubmissionItemDoughnutChart extends Vue {
   @Prop()
-  readonly name!: string;
+  readonly entry!: TKSubmissionEntryDoughnut;
 
   // charts
   chart!: Chart;
+  readonly ctx = v4();
 
-  ctx = this.name;
-  config: ChartConfiguration = {
-    type: "doughnut",
-    data: {
-      labels: [
-        "Number of pregnant/lactating women",
-        "Single elderly households",
-        "Person with mental health disabilities",
-        "Person with permanent phyical disabilities",
-        "Child headed households",
-        "Female headed households"
-      ],
-      datasets: [
-        {
-          data: [512, 52, 1, 24, 1, 236],
-          backgroundColor: [
-            "#ff335c",
-            "#12bfce",
-            "#c6ecae",
-            "#642b50",
-            "#8b9376",
-            "#b2916c"
-          ]
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        title: {
-          display: true,
-          text: "Specific group",
-          font: {
-            size: 14
-          }
-        },
-        legend: {
-          position: "left",
-          reverse: true
-        }
-      }
-    }
-  };
+  readonly height = 150;
 
   mounted() {
+    const config: ChartConfiguration = {
+      type: "doughnut",
+      data: {
+        labels: [
+          "Number of pregnant/lactating women",
+          "Single elderly households",
+          "Person with mental health disabilities",
+          "Person with permanent phyical disabilities",
+          "Child headed households",
+          "Female headed households"
+        ],
+        datasets: [
+          {
+            data: [512, 52, 1, 24, 1, 236],
+            backgroundColor: [
+              "#ff335c",
+              "#12bfce",
+              "#c6ecae",
+              "#642b50",
+              "#8b9376",
+              "#b2916c"
+            ]
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: "Specific group",
+            font: {
+              size: 14
+            }
+          },
+          legend: {
+            position: "left",
+            reverse: true
+          }
+        }
+      }
+    };
+
     if (this.chart) {
       this.chart.destroy();
     }
-    if (this.ctx && this.config) {
-      this.chart = new Chart(this.ctx, this.config);
-    }
+    this.chart = new Chart(this.ctx, config);
+  }
+
+  @Watch("entry")
+  onEntryChanged() {
+    // Update labels and data Labels
+    // this.chart.data.labels = this.generateLabels();
+    // this.chart.data.datasets[0].data = this.generateFemalesDataset();
+    // this.chart.data.datasets[1].data = this.generateMalesDataset();
+
+    this.chart.update();
+  }
+
+  @Watch("$root.$i18n.locale")
+  onLocalChanged() {
+    this.chart.update();
   }
 }
 </script>
