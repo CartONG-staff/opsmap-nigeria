@@ -6,13 +6,10 @@ import {
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
-  TKCreateSubmissionEntryAgePyramid,
-  TKSubmissionEntryAgePyramidItem,
   TKCreateSubmissionEntryText,
-  TKCreateSubmissionEntryDoughnut,
-  TKSubmissionEntryDoughnutItem,
-  TKSubmissionEntryPolarItem,
-  TKCreateSubmissionEntryPolar
+  TKSubmissionEntryPolar,
+  TKSubmissionEntryDoughnut,
+  TKSubmissionEntryAgePyramid
 } from "./TKSubmissionEntry";
 import {
   TKSubmissionThematic,
@@ -132,6 +129,72 @@ function computeSubmissionIndicators(
 // Create the submission
 // ////////////////////////////////////////////////////////////////////////////
 
+type ChartData = {
+  id: string;
+  thematic: string;
+  data: Array<{
+    field: string;
+    value: string;
+    type: string;
+  }>;
+};
+
+function createChartInSubmission(
+  chartData: ChartData,
+  submission: Record<string, TKSubmissionThematic>,
+  surveyConfiguration: TKFDF
+) {
+  if (chartData.id.includes("age_pyramid")) {
+    const malesEntries = chartData.data
+      .filter(item => item.type === "m")
+      .reverse();
+    const femalesEntries = chartData.data
+      .filter(item => item.type === "f")
+      .reverse();
+
+    const entry: TKSubmissionEntryAgePyramid = {
+      type: "age_pyramid",
+      isAnswered: true,
+      title: surveyConfiguration.fieldsLabels[chartData.id],
+      malesEntries: malesEntries.map(item => Number(item.value)),
+      femalesEntries: femalesEntries.map(item => Number(item.value)),
+      malesLabels: malesEntries.map(
+        item => surveyConfiguration.fieldsLabels[item.field]
+      ),
+      femalesLabels: femalesEntries.map(
+        item => surveyConfiguration.fieldsLabels[item.field]
+      )
+    };
+    submission[chartData.thematic].data.push(entry);
+  } else if (chartData.id.includes("doughnut")) {
+    const entry: TKSubmissionEntryDoughnut = {
+      type: "doughnut",
+      isAnswered: true,
+      title: surveyConfiguration.fieldsLabels[chartData.id],
+      entries: chartData.data.map(item => {
+        return {
+          value: Number(item.value),
+          label: surveyConfiguration.fieldsLabels[item.field]
+        };
+      })
+    };
+    submission[chartData.thematic].data.push(entry);
+  } else if (chartData.id.includes("polar_area_chart")) {
+    const entry: TKSubmissionEntryPolar = {
+      type: "polar",
+      isAnswered: true,
+      title: surveyConfiguration.fieldsLabels[chartData.id],
+      entries: chartData.data.map(item => {
+        return {
+          value: Number(item.value),
+          label: surveyConfiguration.fieldsLabels[item.field]
+        };
+      })
+    };
+    submission[chartData.thematic].data.push(entry);
+  }
+}
+
 export function TKCreateSubmission(
   submissionItem: Record<string, string>,
   surveyConfiguration: TKFDF,
@@ -145,110 +208,45 @@ export function TKCreateSubmission(
     );
   }
 
-  let agePyramidThematic = "";
-  let agePyramidId = "";
-  let agePyramidData: Array<TKSubmissionEntryAgePyramidItem> = [];
-
-  let doughnutThematic = "";
-  let doughnutId = "";
-  let doughnutData: Array<TKSubmissionEntryDoughnutItem> = [];
-
-  let polarThematic = "";
-  let polarId = "";
-  let polarData: Array<TKSubmissionEntryPolarItem> = [];
+  const currentChart: ChartData = {
+    id: "",
+    thematic: "",
+    data: []
+  };
 
   for (const key in surveyConfiguration.submissionsRules) {
     const rule = surveyConfiguration.submissionsRules[key];
     const value = submissionItem[rule.fieldName];
 
     if (value) {
-      // If age pyramid -- accumulate process
-      if (rule.chartId && rule.chartId.includes("age_pyramid")) {
-        // If it's a new chart - create current chart, then cleanup
-        if (agePyramidId && agePyramidId !== rule.chartId) {
-          submission[rule.thematicGroup].data.push(
-            TKCreateSubmissionEntryAgePyramid(
-              agePyramidId,
-              agePyramidData,
-              surveyConfiguration
-            )
+      // If charts
+      if (rule.chartId) {
+        // If exists chart
+        if (currentChart.id && rule.chartId !== currentChart.id) {
+          createChartInSubmission(
+            currentChart,
+            submission,
+            surveyConfiguration
           );
-          agePyramidThematic = "";
-          agePyramidId = "";
-          agePyramidData = [];
+
+          // Create submission
+          currentChart.id = "";
+          currentChart.thematic = "";
+          currentChart.data = [];
         }
 
-        // If no previous chart, init
-        if (!agePyramidId) {
-          agePyramidThematic = rule.thematicGroup;
-          agePyramidId = rule.chartId;
-          agePyramidData = [];
+        // Init currentChart
+        if (!currentChart.id) {
+          currentChart.id = rule.chartId;
+          currentChart.thematic = rule.thematicGroup;
+          currentChart.data = [];
         }
 
         // accumulate
-        agePyramidData.push({
+        currentChart.data.push({
           field: rule.fieldName,
           value: value,
           type: rule.chartData
-        });
-      }
-      // If age pyramid -- accumulate process
-      else if (rule.chartId && rule.chartId.includes("doughnut")) {
-        // If it's a new chart - create current chart, then cleanup
-        if (doughnutId && doughnutId !== rule.chartId) {
-          submission[rule.thematicGroup].data.push(
-            TKCreateSubmissionEntryDoughnut(
-              doughnutId,
-              doughnutData,
-              surveyConfiguration
-            )
-          );
-          doughnutThematic = "";
-          doughnutId = "";
-          doughnutData = [];
-        }
-
-        // If no previous chart, init
-        if (!doughnutId) {
-          doughnutThematic = rule.thematicGroup;
-          doughnutId = rule.chartId;
-          doughnutData = [];
-        }
-
-        // accumulate
-        doughnutData.push({
-          field: rule.fieldName,
-          value: value
-        });
-      }
-
-      // If polar chart -- accumulate process
-      else if (rule.chartId && rule.chartId.includes("polar_area_chart")) {
-        // If it's a new chart - create current chart, then cleanup
-        if (polarId && polarId !== rule.chartId) {
-          submission[rule.thematicGroup].data.push(
-            TKCreateSubmissionEntryPolar(
-              polarId,
-              polarData,
-              surveyConfiguration
-            )
-          );
-          polarThematic = "";
-          polarId = "";
-          polarData = [];
-        }
-
-        // If no previous chart, init
-        if (!polarId) {
-          polarThematic = rule.thematicGroup;
-          polarId = rule.chartId;
-          polarData = [];
-        }
-
-        // accumulate
-        polarData.push({
-          field: rule.fieldName,
-          value: value
         });
       }
 
@@ -267,32 +265,8 @@ export function TKCreateSubmission(
   }
 
   // if a current pyramid is ongoing - push it before ending
-  if (agePyramidId) {
-    submission[agePyramidThematic].data.push(
-      TKCreateSubmissionEntryAgePyramid(
-        agePyramidId,
-        agePyramidData,
-        surveyConfiguration
-      )
-    );
-  }
-
-  // if a current pyramid is ongoing - push it before ending
-  if (doughnutId) {
-    submission[doughnutThematic].data.push(
-      TKCreateSubmissionEntryDoughnut(
-        doughnutId,
-        doughnutData,
-        surveyConfiguration
-      )
-    );
-  }
-
-  // if a current pyramid is ongoing - push it before ending
-  if (polarId) {
-    submission[polarThematic].data.push(
-      TKCreateSubmissionEntryPolar(polarId, polarData, surveyConfiguration)
-    );
+  if (currentChart.id) {
+    createChartInSubmission(currentChart, submission, surveyConfiguration);
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
