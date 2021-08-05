@@ -227,7 +227,7 @@ export function TKCreateSubmission(
             surveyConfiguration
           );
 
-          // Create submission
+          // Clear current submission
           currentChart.id = "";
           currentChart.thematic = "";
           currentChart.data = [];
@@ -250,6 +250,19 @@ export function TKCreateSubmission(
 
       // If text item
       else {
+        // If exists chart
+        if (currentChart.id) {
+          createChartInSubmission(
+            currentChart,
+            submission,
+            surveyConfiguration
+          );
+
+          // Clear current submission
+          currentChart.id = "";
+          currentChart.thematic = "";
+          currentChart.data = [];
+        }
         // push it before switching to text item
         submission[rule.thematicGroup].data.push(
           TKCreateSubmissionEntryText(

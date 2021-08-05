@@ -16,7 +16,7 @@
       v-else-if="entry.type === 'polar'"
       :entry="entry"
     />
-    <div v-if="entry.type === 'text'" class="tk-hseparator"></div>
+    <div class="tk-hseparator" />
   </div>
 </template>
 
@@ -52,5 +52,9 @@ export default class TKSubmissionentryView extends Vue {
 
 .tk-chart {
   margin-top: -1px;
+  background-color: transparent;
+  border-radius: 3px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="tk-submission-item-polar-chart">
+  <div>
     <canvas :id="ctx" :height="height"> </canvas>
   </div>
 </template>
@@ -195,12 +195,3 @@ export default class TKSubmissionItemPolarChart extends Vue {
   }
 }
 </script>
-
-<style scoped>
-.tk-submission-item-doughnut-chart {
-  background-color: transparent;
-  border-radius: 3px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-</style>

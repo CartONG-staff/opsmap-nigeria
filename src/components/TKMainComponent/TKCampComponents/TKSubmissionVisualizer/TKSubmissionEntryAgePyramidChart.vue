@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="tk-submission-item-pyramid-chart">
+  <div>
     <canvas :id="ctx" :height="height"></canvas>
   </div>
 </template>
@@ -281,12 +281,3 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   }
 }
 </script>
-
-<style scoped>
-.tk-submission-item-pyramid-chart {
-  background-color: transparent;
-  border-radius: 3px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-</style>
