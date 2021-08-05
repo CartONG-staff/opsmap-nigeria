@@ -10,7 +10,9 @@ import {
   TKSubmissionEntryAgePyramidItem,
   TKCreateSubmissionEntryText,
   TKCreateSubmissionEntryDoughnut,
-  TKSubmissionEntryDoughnutItem
+  TKSubmissionEntryDoughnutItem,
+  TKSubmissionEntryPolarItem,
+  TKCreateSubmissionEntryPolar
 } from "./TKSubmissionEntry";
 import {
   TKSubmissionThematic,
@@ -151,6 +153,10 @@ export function TKCreateSubmission(
   let doughnutId = "";
   let doughnutData: Array<TKSubmissionEntryDoughnutItem> = [];
 
+  let polarThematic = "";
+  let polarId = "";
+  let polarData: Array<TKSubmissionEntryPolarItem> = [];
+
   for (const key in surveyConfiguration.submissionsRules) {
     const rule = surveyConfiguration.submissionsRules[key];
     const value = submissionItem[rule.fieldName];
@@ -211,6 +217,32 @@ export function TKCreateSubmission(
         });
       }
 
+      // If polar chart -- accumulate process
+      else if (rule.chartId && rule.chartId.includes("polar_area_chart")) {
+        // If it's a new chart - create current chart, then cleanup
+        if (polarId && polarId !== rule.chartId) {
+          submission[rule.thematicGroup].data.push(
+            TKCreateSubmissionEntryPolar(polarData, surveyConfiguration)
+          );
+          polarThematic = "";
+          polarId = "";
+          polarData = [];
+        }
+
+        // If no previous chart, init
+        if (!polarId) {
+          polarThematic = rule.thematicGroup;
+          polarId = rule.chartId;
+          polarData = [];
+        }
+
+        // accumulate
+        polarData.push({
+          field: rule.fieldName,
+          value: value
+        });
+      }
+
       // If text item
       else {
         // push it before switching to text item
@@ -234,8 +266,15 @@ export function TKCreateSubmission(
 
   // if a current pyramid is ongoing - push it before ending
   if (doughnutId) {
-    submission[agePyramidThematic].data.push(
+    submission[doughnutThematic].data.push(
       TKCreateSubmissionEntryDoughnut(doughnutData, surveyConfiguration)
+    );
+  }
+
+  // if a current pyramid is ongoing - push it before ending
+  if (polarId) {
+    submission[polarThematic].data.push(
+      TKCreateSubmissionEntryPolar(polarData, surveyConfiguration)
     );
   }
 

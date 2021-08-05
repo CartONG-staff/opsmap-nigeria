@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="tk-submission-item-doughnut-chart">
+  <div class="tk-submission-item-polar-chart">
     <canvas :id="ctx" :height="height"> </canvas>
   </div>
 </template>
@@ -33,7 +33,7 @@ import {
   ChartConfiguration
 } from "chart.js";
 import { v4 } from "uuid";
-import { TKSubmissionEntryDoughnut } from "@/domain/survey/TKSubmissionEntry";
+import { TKSubmissionEntryPolar } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 Chart.register(
   ArcElement,
@@ -61,18 +61,18 @@ Chart.register(
 );
 
 @Component
-export default class TKSubmissionItemDoughnutChart extends Vue {
+export default class TKSubmissionItemPolarChart extends Vue {
   @Prop()
-  readonly entry!: TKSubmissionEntryDoughnut;
+  readonly entry!: TKSubmissionEntryPolar;
 
   // charts
   chart!: Chart;
   readonly ctx = v4();
   readonly height = 300;
   readonly colors = [
-    "#ff335c",
-    "#12bfce",
-    "#c6ecae",
+    "rgba(255, 51, 92, 0.5)",
+    "rgba(18, 191, 206, 0.5)",
+    "rgba(198, 236, 174, 0.5)",
     "#642b50",
     "#8b9376",
     "#b2916c"
@@ -81,7 +81,7 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
   mounted() {
     if (this.entry) {
       const config: ChartConfiguration = {
-        type: "doughnut",
+        type: "polarArea",
         data: {
           labels: this.generateLabels(),
           datasets: [
@@ -100,6 +100,14 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
               borderWidth: 1
             }
           },
+          scales: {
+            r: {
+              ticks: {
+                backdropColor: "#f1f3f3"
+              },
+              display: true
+            }
+          },
           font: {
             family: "Arial",
             size: 11
@@ -110,7 +118,7 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
           plugins: {
             title: {
               display: true,
-              text: this.$root.$i18n.t("charts.doughnutTitle").toString(),
+              text: this.$root.$i18n.t("charts.polarTitle").toString(),
               font: {
                 family: "Arial",
                 size: 12

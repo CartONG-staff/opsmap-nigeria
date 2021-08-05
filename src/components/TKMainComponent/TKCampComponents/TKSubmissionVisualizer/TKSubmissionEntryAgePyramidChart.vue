@@ -284,9 +284,6 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 .tk-submission-item-pyramid-chart {
   background-color: transparent;
   border-radius: 3px;
-}
-
-.tk-submission-item-pyramid-chart {
   padding-top: 15px;
   padding-bottom: 15px;
 }

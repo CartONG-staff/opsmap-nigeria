@@ -11,6 +11,11 @@
       v-else-if="entry.type === 'doughnut'"
       :entry="entry"
     />
+    <TKSubmissionEntryPolarChart
+      class="tk-chart"
+      v-else-if="entry.type === 'polar'"
+      :entry="entry"
+    />
     <div v-if="entry.type === 'text'" class="tk-hseparator"></div>
   </div>
 </template>
@@ -21,12 +26,14 @@ import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
 
 import TKSubmissionEntryAgePyramidChart from "./TKSubmissionEntryAgePyramidChart.vue";
 import TKSubmissionEntryDoughnutChart from "./TKSubmissionEntryDoughnutChart.vue";
+import TKSubmissionEntryPolarChart from "./TKSubmissionEntryPolarChart.vue";
 import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
 
 @Component({
   components: {
     TKSubmissionEntryAgePyramidChart,
     TKSubmissionEntryDoughnutChart,
+    TKSubmissionEntryPolarChart,
     TKSubmissionEntryTextView
   }
 })

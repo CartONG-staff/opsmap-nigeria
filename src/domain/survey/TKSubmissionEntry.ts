@@ -30,9 +30,13 @@ export interface TKSubmissionEntryAgePyramid {
 
 export interface TKSubmissionEntryDoughnut {
   type: "doughnut";
-  entries: Array<number>;
   isAnswered: true;
-  labels: Array<TKLabel>;
+  entries: Array<{ value: number; label: TKLabel }>;
+}
+export interface TKSubmissionEntryPolar {
+  type: "polar";
+  isAnswered: true;
+  entries: Array<{ value: number; label: TKLabel }>;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -42,7 +46,8 @@ export interface TKSubmissionEntryDoughnut {
 export type TKSubmissionEntry =
   | TKSubmissionEntryText
   | TKSubmissionEntryAgePyramid
-  | TKSubmissionEntryDoughnut;
+  | TKSubmissionEntryDoughnut
+  | TKSubmissionEntryPolar;
 
 // ////////////////////////////////////////////////////////////////////////////
 // helpers method
@@ -166,7 +171,35 @@ export function TKCreateSubmissionEntryDoughnut(
   return {
     type: "doughnut",
     isAnswered: true,
-    entries: chartdata.map(item => Number(item.value)),
-    labels: chartdata.map(item => surveyConfiguration.fieldsLabels[item.field])
+    entries: chartdata.map(item => {
+      return {
+        value: Number(item.value),
+        label: surveyConfiguration.fieldsLabels[item.field]
+      };
+    })
+  };
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Polar chart concept definition
+// ////////////////////////////////////////////////////////////////////////////
+export interface TKSubmissionEntryPolarItem {
+  field: string;
+  value: string;
+}
+
+export function TKCreateSubmissionEntryPolar(
+  chartdata: Array<TKSubmissionEntryPolarItem>,
+  surveyConfiguration: TKFDF
+): TKSubmissionEntryPolar {
+  return {
+    type: "polar",
+    isAnswered: true,
+    entries: chartdata.map(item => {
+      return {
+        value: Number(item.value),
+        label: surveyConfiguration.fieldsLabels[item.field]
+      };
+    })
   };
 }
