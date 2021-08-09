@@ -122,17 +122,19 @@ h3 {
 }
 
 .tk-autocomplete input::placeholder {
-  color: #00000099 !important;
+  color: var(--v-autocomplete-base) !important;
   font-family: "Arial" !important;
   font-weight: bold !important;
   font-size: 16px !important;
+  opacity: 0.5 !important;
 }
 
 .tk-autocomplete .v-text-field__prefix {
-  color: rgba(118, 118, 118, 0.5) !important;
+  color: rgba(118, 118, 118) !important;
   font-family: "Arial" !important;
   font-weight: bold !important;
   font-size: 16px !important;
+  opacity: 0.5 !important;
 }
 
 .tk-autocomplete .theme--dark.v-icon,

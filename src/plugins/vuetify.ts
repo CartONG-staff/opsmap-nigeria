@@ -46,7 +46,8 @@ export default new Vuetify({
         border: "#f1f3f3",
         thematicBackground: "#f1f3f3",
         thematicHeader: "#ffffff",
-        thematicBorder: "#f1f3f3"
+        thematicBorder: "#f1f3f3",
+        campSelector: "#f0fbff"
         // indicatorBorder: "rgba(18, 63, 98, 0.15)" // 26
         // accent
         // anchor
@@ -68,7 +69,8 @@ export default new Vuetify({
         thematicBackground: "#171717",
         thematicHeader: "#2c2c2c",
         thematicBorder: "#2c2c2c",
-        backgroundSecondary: "#171717"
+        backgroundSecondary: "#171717",
+        campSelector: "#000305"
       }
     },
     dark: true

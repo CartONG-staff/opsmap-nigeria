@@ -149,7 +149,8 @@ export default class TKCampSelector extends Vue {
 .tk-camp-selector {
   border-radius: 8px;
   align-items: center;
-  background-color: #f0fbffcc;
+  background-color: var(--v-campSelector-base);
+  opacity: 0.75;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   z-index: 3000;
