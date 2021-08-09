@@ -129,28 +129,28 @@ h3 {
 }
 
 .tk-autocomplete .v-text-field__prefix {
-  color: rgba(118, 118, 118, 0.5);
+  color: rgba(118, 118, 118, 0.5) !important;
   font-family: "Arial";
   font-weight: bold !important;
   font-size: 16px !important;
 }
 
 .tk-autocomplete .theme--light.v-icon {
-  color: #d8d8d8 !important;
+  color: var(--v-discrete-base) !important;
 }
 
 .tk-autocomplete .v-input__slot {
-  border-color: #d8d8d8 !important;
+  border-color: var(--v-discrete-base) !important;
   transition: none !important;
 }
 
 .tk-autocomplete .v-input__slot:before {
-  border-color: #d8d8d8 !important;
+  border-color: var(--v-discrete-base) !important;
   transition: none !important;
 }
 
 .tk-autocomplete .v-input__slot:after {
-  border-color: #d8d8d8 !important;
+  border-color: var(--v-discrete-base) !important;
   transition: none !important;
 }
 

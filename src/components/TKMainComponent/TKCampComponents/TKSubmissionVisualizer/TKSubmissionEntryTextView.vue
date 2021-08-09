@@ -110,14 +110,14 @@ export default class TKSubmissionentryView extends Vue {
 }
 
 .tk-entry-field-name {
-  color: #999;
+  color: var(--v-secondary-base);
   text-align: left;
   flex-grow: 2;
   overflow: auto;
 }
 
 .tk-entry-field-value {
-  color: #333;
+  color: var(--v-primary-base);
   text-align: right;
   flex-grow: 2;
 }

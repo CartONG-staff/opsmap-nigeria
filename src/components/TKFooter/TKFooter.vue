@@ -62,7 +62,7 @@ export default class TKFooter extends Vue {
 .tk-footer-disclaimer {
   display: flex;
 
-  background-color: var(--v-sectionBGSecondary-base);
+  background-color: var(--v-backgroundSecondary-base);
   flex-flow: row wrap;
   width: 100%;
   row-gap: 30px;

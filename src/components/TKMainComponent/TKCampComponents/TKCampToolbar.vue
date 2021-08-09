@@ -6,8 +6,8 @@
           v-if="dataset.currentCamp"
           key="1"
           class="tk-camp-toolbar-date"
-          background-color="#418fde"
-          color="#ffffff"
+          background-color="accent"
+          color="background"
           :disabled="dataset.sortedSubmissions.length < 2"
           flat
           filled
@@ -23,8 +23,8 @@
           v-else
           key="2"
           class="tk-camp-toolbar-date-disabled"
-          background-color="#418fde"
-          color="#ffffff"
+          background-color="accent"
+          color="background"
           disabled
           readonly
           flat

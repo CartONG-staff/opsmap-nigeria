@@ -42,13 +42,13 @@ export default new Vuetify({
         quaternary: "#000000",
         background: "#ffffff",
         discrete: "#d8d8d8",
-        sectionBG: "#ffffff",
         sectionTitle: "#a1a1a1",
-        sectionBGSecondary: "#fafafa",
-        sectionTitleSecondary: "#999",
-        homeTitle: "#000000",
+        backgroundSecondary: "#fafafa",
         autocomplete: "#000000",
-        border: "#f1f3f3"
+        border: "#f1f3f3",
+        thematicBackground: "#f1f3f3",
+        thematicHeader: "#ffffff",
+        thematicBorder: "#f1f3f3"
         // indicatorBorder: "rgba(18, 63, 98, 0.15)" // 26
         // accent
         // anchor
@@ -59,12 +59,18 @@ export default new Vuetify({
       },
       dark: {
         accent: "#428fdf",
+        info: "#ff0000",
         sectionTitle: "#a1a1a1",
         background: "#121212",
         autocomplete: "#a1a1a1",
         primary: "#aaaaaa",
-        secondary: "#666666",
-        border: "#2c2c2c"
+        secondary: "#777777",
+        border: "#2c2c2c",
+        discrete: "#393939",
+        thematicBackground: "#171717",
+        thematicHeader: "#2c2c2c",
+        thematicBorder: "#2c2c2c",
+        backgroundSecondary: "#171717"
       }
     },
     dark: true
