@@ -108,7 +108,6 @@ export default class TKSubmissionThematicView extends Vue {
 .tk-submission-thematic-title {
   font-size: 16px;
   font-weight: bolder;
-  color: var(--v-quaternary-base);
 }
 
 .tk-submission-chart {

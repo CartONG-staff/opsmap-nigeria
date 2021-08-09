@@ -38,8 +38,6 @@ export default new Vuetify({
         accent: "#428fdf",
         primary: "#333333",
         secondary: "#999999",
-        tertiary: "#a6a6a6",
-        quaternary: "#000000",
         background: "#ffffff",
         discrete: "#d8d8d8",
         sectionTitle: "#a1a1a1",

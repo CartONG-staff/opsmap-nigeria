@@ -171,6 +171,7 @@ export default class TKCampToolbar extends Vue {
   letter-spacing: 0.86px !important;
 }
 
+.tk-camp-toolbar-date.theme--dark.v-input input,
 .tk-camp-toolbar-date.theme--light.v-input input {
   color: #fff !important;
   font-family: "Arial";
@@ -183,6 +184,7 @@ export default class TKCampToolbar extends Vue {
   color: #fff !important;
 }
 
+.tk-camp-toolbar-date .theme--dark.v-icon.v-icon.v-icon--disabled,
 .tk-camp-toolbar-date .theme--light.v-icon.v-icon.v-icon--disabled {
   opacity: 1 !important;
 }
