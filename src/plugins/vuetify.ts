@@ -46,14 +46,27 @@ export default new Vuetify({
         sectionTitle: "#a1a1a1",
         sectionBGSecondary: "#fafafa",
         sectionTitleSecondary: "#999",
-        homeTitle: "#000000"
+        homeTitle: "#000000",
+        autocomplete: "#000000",
+        border: "#f1f3f3"
+        // indicatorBorder: "rgba(18, 63, 98, 0.15)" // 26
         // accent
         // anchor
         // error
         // info
         // success
         // warning
+      },
+      dark: {
+        accent: "#428fdf",
+        sectionTitle: "#a1a1a1",
+        background: "#121212",
+        autocomplete: "#a1a1a1",
+        primary: "#aaaaaa",
+        secondary: "#666666",
+        border: "#2c2c2c"
       }
-    }
+    },
+    dark: true
   }
 });

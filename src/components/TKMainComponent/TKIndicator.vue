@@ -106,16 +106,15 @@ export default class TKIndicatorComponent extends Vue {
 
 <style scoped>
 .tk-indicator {
+  background-color: var(--v-background-base);
   position: relative;
   box-shadow: 0 0 20px 2px rgba(18, 63, 98, 0.15);
-  background-color: white;
   border-color: transparent;
   border-radius: 5px;
   min-height: 100px;
   min-width: 300px;
   overflow: hidden;
 }
-
 .tk-indicator-container {
   display: flex;
   flex-flow: row nowrap;
@@ -157,7 +156,6 @@ export default class TKIndicatorComponent extends Vue {
 }
 
 .tk-indicator-value-decription {
-  color: var(--v-quaternary-base);
   font-weight: bolder;
   font-size: 16px;
   line-height: 17px;

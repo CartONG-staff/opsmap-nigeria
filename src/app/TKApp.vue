@@ -115,7 +115,7 @@ h3 {
 }
 
 .tk-autocomplete input {
-  color: #000 !important;
+  color: var(--v-autocomplete-base) !important;
   font-family: "Arial";
   font-weight: bold !important;
   font-size: 16px !important;
@@ -155,7 +155,7 @@ h3 {
 }
 
 .tk-autocomplete .theme--light.v-icon.v-icon.v-icon {
-  color: #000 !important;
+  color: var(--v-autocomplete-base) !important;
 }
 
 .tk-autocomplete .theme--light.v-icon.v-icon.v-icon--disabled {
