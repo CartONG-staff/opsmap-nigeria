@@ -18,6 +18,7 @@ import {
 import { TKIndicator } from "@/domain/ui/TKIndicator";
 import { TKLabel } from "../ui/TKLabel";
 import { isNumber } from "@turf/turf";
+import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -214,8 +215,24 @@ export function TKCreateSubmission(
 
   for (const key in surveyConfiguration.submissionsRules) {
     const rule = surveyConfiguration.submissionsRules[key];
-    const value = submissionItem[rule.fieldName];
+    let value = undefined;
 
+    if (rule.type === TKFDFSubmissionItemType.COMPUTED && rule.computed) {
+      const expressionDisplay = `"${
+        submissionItem[rule.computed.display_condition.field]
+      }" ${rule.computed.display_condition.operator} "${
+        rule.computed.display_condition.value
+      }"`;
+      const display: boolean = eval(expressionDisplay);
+      if (display) {
+        const expressionValue = `${submissionItem[rule.computed.rule.field1]} ${
+          rule.computed.rule.operator
+        } ${submissionItem[rule.computed.rule.field2]}`;
+        value = eval(expressionValue);
+      }
+    } else {
+      value = submissionItem[rule.fieldName];
+    }
     if (value) {
       // If charts
       if (rule.chartId) {

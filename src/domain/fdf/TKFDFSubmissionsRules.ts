@@ -1,4 +1,5 @@
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
+import math from "mathjs";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -10,7 +11,7 @@ export enum TKFDFSubmissionItemType {
   INTEGER = "integer",
   LIST = "list",
   DATE = "date",
-  CALCUL = "calcul"
+  COMPUTED = "computed"
 }
 interface TKFDFSubmissionRuleRaw {
   field_name: string;
@@ -19,8 +20,8 @@ interface TKFDFSubmissionRuleRaw {
   traffic_light_name: string;
   chart_id: string;
   chart_data: string;
-  display_condition: string;
-  indicator_operation: string;
+  computed_display_condition: string;
+  computed_rule: string;
 }
 
 export interface TKFDFSubmissionRule {
@@ -30,8 +31,18 @@ export interface TKFDFSubmissionRule {
   trafficLightName: string;
   chartId: string;
   chartData: string;
-  displayCondition: string;
-  indicatorOperation: string;
+  computed?: {
+    display_condition: {
+      field: string;
+      operator: string;
+      value: string;
+    };
+    rule: {
+      field1: string;
+      operator: string;
+      field2: string;
+    };
+  };
 }
 
 export interface TKFDFSubmissionsRulesCollection {
@@ -50,6 +61,27 @@ export async function TKReadSubmissionsRulesCollection(
   >(TKFDFFiles.SUBMISSION_RULES, infos.folder, true);
   const submissionsRules: TKFDFSubmissionsRulesCollection = {};
   rawSubmissionsRules.map(item => {
+    // Parse computed rule and condition
+    let computed = undefined;
+    if (item.type === TKFDFSubmissionItemType.COMPUTED) {
+      const condition = item.computed_display_condition.split("#");
+      const rule = item.computed_rule.split("#");
+      if (condition.length === 3 && rule.length === 3) {
+        computed = {
+          display_condition: {
+            field: condition[0],
+            operator: condition[1],
+            value: condition[2]
+          },
+          rule: {
+            field1: rule[0],
+            operator: rule[1],
+            field2: rule[2]
+          }
+        };
+      }
+    }
+
     submissionsRules[item.field_name] = {
       fieldName: item.field_name,
       type: item.type,
@@ -57,8 +89,7 @@ export async function TKReadSubmissionsRulesCollection(
       trafficLightName: item.traffic_light_name,
       chartId: item.chart_id,
       chartData: item.chart_data,
-      displayCondition: item.display_condition,
-      indicatorOperation: item.indicator_operation
+      computed: computed
     };
   });
   return submissionsRules;
