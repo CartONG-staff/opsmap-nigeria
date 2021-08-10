@@ -32,7 +32,7 @@ export interface TKFDFSubmissionRule {
   chartId: string;
   chartData: string;
   computed?: {
-    display_condition: {
+    display_condition?: {
       field: string;
       operator: string;
       value: string;

@@ -218,12 +218,15 @@ export function TKCreateSubmission(
     let value = undefined;
 
     if (rule.type === TKFDFSubmissionItemType.COMPUTED && rule.computed) {
-      const expressionDisplay = `"${
-        submissionItem[rule.computed.display_condition.field]
-      }" ${rule.computed.display_condition.operator} "${
-        rule.computed.display_condition.value
-      }"`;
-      const display: boolean = eval(expressionDisplay);
+      let display = true;
+      if (rule.computed.display_condition) {
+        const expressionDisplay = `"${
+          submissionItem[rule.computed.display_condition.field]
+        }" ${rule.computed.display_condition.operator} "${
+          rule.computed.display_condition.value
+        }"`;
+        display = eval(expressionDisplay);
+      }
       if (display) {
         const expressionValue = `${submissionItem[rule.computed.rule.field1]} ${
           rule.computed.rule.operator
