@@ -60,13 +60,23 @@ export async function TKReadSubmissionsRulesCollection(
   rawSubmissionsRules.map(item => {
     // Parse computed rule and condition
     let displayCondition = undefined;
-    const condition = item.display_condition.split("#");
-    if (condition.length === 3) {
-      displayCondition = {
-        field: condition[0],
-        operator: condition[1],
-        value: condition[2]
-      };
+    if (item.display_condition) {
+      if (item.display_condition === "hide") {
+        displayCondition = {
+          field: "hack to have false value",
+          operator: "hack again",
+          value: "hack again"
+        };
+      } else {
+        const condition = item.display_condition.split("#");
+        if (condition.length === 3) {
+          displayCondition = {
+            field: condition[0],
+            operator: condition[1],
+            value: condition[2]
+          };
+        }
+      }
     }
 
     let computedRule = undefined;
