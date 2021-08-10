@@ -211,7 +211,7 @@ export default class TKMapFilter extends Vue {
 
 .tk-map-filter-text-disabled,
 .tk-map-filter-value-disabled {
-  color: #bdbdbd;
+  color: var(--v-disabled-base);
 }
 
 .tk-map-filter-checkbox {

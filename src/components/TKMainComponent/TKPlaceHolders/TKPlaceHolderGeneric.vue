@@ -15,14 +15,14 @@ export default class TKPlaceHolderGeneric extends Vue {}
   width: 100%;
   height: 100%;
   opacity: 1;
-  background: rgb(243, 243, 243);
+  background: var(--v-placeholder-base);
   background: linear-gradient(
     90deg,
-    rgba(243, 243, 243, 1) 0%,
-    rgba(243, 243, 243, 1) 45%,
-    rgba(246, 246, 246, 1) 50%,
-    rgba(243, 243, 243, 1) 55%,
-    rgba(243, 243, 243, 1) 100%
+    var(--v-placeholder-base) 0%,
+    var(--v-placeholder-base) 45%,
+    var(--v-placeholderAccent-base) 50%,
+    var(--v-placeholder-base) 55%,
+    var(--v-placeholder-base) 100%
   );
   background-size: 200% 20px;
   animation: place-holder-gradient 1.5s cubic-bezier(0.3, 0, 0.7, 1) infinite;

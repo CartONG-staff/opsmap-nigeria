@@ -43,7 +43,7 @@ export default class TKTitle extends Vue {
 }
 
 .tk-title-country {
-  color: var(--v-campTitle-base);
+  color: var(--v-autocomplete-base);
   font-size: 40px;
   font-weight: bold;
 }

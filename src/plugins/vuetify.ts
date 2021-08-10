@@ -47,7 +47,10 @@ export default new Vuetify({
         thematicBackground: "#f1f3f3",
         thematicHeader: "#ffffff",
         thematicBorder: "#f1f3f3",
-        campSelector: "#f0fbff"
+        campSelector: "#f0fbff",
+        placeholder: "#f3f3f3",
+        placeholderAccent: "#f6f6f6",
+        disabled: "#bdbdbd"
         // indicatorBorder: "rgba(18, 63, 98, 0.15)" // 26
         // accent
         // anchor
@@ -58,19 +61,21 @@ export default new Vuetify({
       },
       dark: {
         accent: "#428fdf",
-        info: "#ff0000",
-        sectionTitle: "#a1a1a1",
-        background: "#121212",
-        autocomplete: "#a1a1a1",
         primary: "#aaaaaa",
         secondary: "#777777",
+        background: "#121212",
+        sectionTitle: "#a1a1a1",
+        autocomplete: "#f2f2f2",
         border: "#2c2c2c",
         discrete: "#393939",
         thematicBackground: "#171717",
         thematicHeader: "#2c2c2c",
         thematicBorder: "#2c2c2c",
         backgroundSecondary: "#171717",
-        campSelector: "#000305"
+        campSelector: "#000305",
+        placeholder: "#171717",
+        placeholderAccent: "#1a1a1a",
+        disabled: "#717171"
       }
     },
     dark: true

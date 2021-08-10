@@ -156,6 +156,7 @@ export default class TKIndicatorComponent extends Vue {
 }
 
 .tk-indicator-value-decription {
+  color: var(--v-autocomplete-base);
   font-weight: bolder;
   font-size: 16px;
   line-height: 17px;
