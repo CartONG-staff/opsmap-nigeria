@@ -215,82 +215,91 @@ export function TKCreateSubmission(
 
   for (const key in surveyConfiguration.submissionsRules) {
     const rule = surveyConfiguration.submissionsRules[key];
-    let value = undefined;
 
-    if (rule.type === TKFDFSubmissionItemType.COMPUTED && rule.computed) {
-      let display = true;
-      if (rule.computed.display_condition) {
-        const expressionDisplay = `"${
-          submissionItem[rule.computed.display_condition.field]
-        }" ${rule.computed.display_condition.operator} "${
-          rule.computed.display_condition.value
-        }"`;
+    let display = true;
+    if (rule.displayCondition) {
+      try {
+        const expressionDisplay = `"${submissionItem[
+          rule.displayCondition.field
+        ].replaceAll('"', "")}" ${
+          rule.displayCondition.operator
+        } "${rule.displayCondition.value.replaceAll('"', "")}"`;
         display = eval(expressionDisplay);
+      } catch (error) {
+        display = false;
       }
-      if (display) {
-        const expressionValue = `${submissionItem[rule.computed.rule.field1]} ${
-          rule.computed.rule.operator
-        } ${submissionItem[rule.computed.rule.field2]}`;
-        value = eval(expressionValue);
-      }
-    } else {
-      value = submissionItem[rule.fieldName];
     }
-    if (value) {
-      // If charts
-      if (rule.chartId) {
-        // If exists chart
-        if (currentChart.id && rule.chartId !== currentChart.id) {
-          createChartInSubmission(
-            currentChart,
-            submission,
-            surveyConfiguration
-          );
-
-          // Clear current submission
-          currentChart.id = "";
-          currentChart.thematic = "";
-          currentChart.data = [];
+    if (display) {
+      let value = undefined;
+      try {
+        if (rule.type === TKFDFSubmissionItemType.COMPUTED && rule.computed) {
+          const expressionValue = `${submissionItem[rule.computed.field1]} ${
+            rule.computed.operator
+          } ${submissionItem[rule.computed.field2]}`;
+          value = Math.round(eval(expressionValue));
+        } else {
+          value = submissionItem[rule.fieldName];
         }
-
-        // Init currentChart
-        if (!currentChart.id) {
-          currentChart.id = rule.chartId;
-          currentChart.thematic = rule.thematicGroup;
-          currentChart.data = [];
-        }
-
-        // accumulate
-        currentChart.data.push({
-          field: rule.fieldName,
-          value: value,
-          type: rule.chartData
-        });
+      } catch (error) {
+        value = "-";
       }
 
-      // If text item
-      else {
-        // If exists chart
-        if (currentChart.id) {
-          createChartInSubmission(
-            currentChart,
-            submission,
-            surveyConfiguration
-          );
+      if (value) {
+        // If charts
+        if (rule.chartId) {
+          // If exists chart
+          if (currentChart.id && rule.chartId !== currentChart.id) {
+            createChartInSubmission(
+              currentChart,
+              submission,
+              surveyConfiguration
+            );
 
-          // Clear current submission
-          currentChart.id = "";
-          currentChart.thematic = "";
-          currentChart.data = [];
+            // Clear current submission
+            currentChart.id = "";
+            currentChart.thematic = "";
+            currentChart.data = [];
+          }
+
+          // Init currentChart
+          if (!currentChart.id) {
+            currentChart.id = rule.chartId;
+            currentChart.thematic = rule.thematicGroup;
+            currentChart.data = [];
+          }
+
+          // accumulate
+          currentChart.data.push({
+            field: rule.fieldName,
+            value: value,
+            type: rule.chartData
+          });
         }
-        // push it before switching to text item
-        submission[rule.thematicGroup].data.push(
-          TKCreateSubmissionEntryText(
-            value,
-            rule.fieldName,
-            surveyConfiguration
-          )
-        );
+
+        // If text item
+        else {
+          // If exists chart
+          if (currentChart.id) {
+            createChartInSubmission(
+              currentChart,
+              submission,
+              surveyConfiguration
+            );
+
+            // Clear current submission
+            currentChart.id = "";
+            currentChart.thematic = "";
+            currentChart.data = [];
+          }
+          // push it before switching to text item
+          submission[rule.thematicGroup].data.push(
+            TKCreateSubmissionEntryText(
+              value,
+              rule.fieldName,
+              surveyConfiguration
+            )
+          );
+        }
       }
     }
   }

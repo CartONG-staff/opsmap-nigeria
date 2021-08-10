@@ -1,4 +1,4 @@
-field_name;type;thematic_group;traffic_light_name;chart_id;chart_data;computed_display_condition;computed_rule
+field_name;type;thematic_group;traffic_light_name;chart_id;chart_data;display_condition;computed_rule
 date;date;group_general_info;;;;;
 group_general_info/reporting_week;date;group_general_info;;;;;
 group_general_info/organisation;string;group_general_info;;;;;
@@ -165,14 +165,14 @@ group_wash/wating_time;string;group_wash;WaterWaitingTime;;;;
 group_wash/wastedisposal;list;group_wash;;;;;
 group_wash/wastebins_no;integer;group_wash;;;;;
 group_wash/numberlatrines;integer;group_wash;;;;;
-numberlatrines_calcpopulationvslatrines;computed;group_wash;TotalLatrinesVsIndidual;;NumberLatrines_calcPopulationVsLatrines;group_cccm/site_facilitation_type#===#dedicated;division
+numberlatrines_calcpopulationvslatrines;computed;group_wash;TotalLatrinesVsIndidual;;NumberLatrines_calcPopulationVsLatrines;;group_pop_change/individualpopulation#/#group_wash/numberlatrines
 group_wash/latrines_nonf;integer;group_wash;;;;;
 group_wash/latrines_func;integer;group_wash;;;;;
 group_wash/latrines_desludgement;integer;group_wash;;;;;
 group_wash/segregation;integer;group_wash;;;;;
 group_wash/gendermarked;integer;group_wash;;;;;
 group_wash/numbershowers;integer;group_wash;;;;;
-numbershowers_calcpopulationvsshowers;computed;group_wash;TotalShowersVsIndidual;;NumberShowers_calcPopulationVsShowers;hide;division
+numbershowers_calcpopulationvsshowers;computed;group_wash;TotalShowersVsIndidual;;NumberShowers_calcPopulationVsShowers;;group_pop_change/individualpopulation#/#group_wash/numbershowers
 group_wash/showers_nonshw;integer;group_wash;;;;;
 group_wash/showers_func;integer;group_wash;;;;;
 group_wash/segregationbath;integer;group_wash;;;;;
