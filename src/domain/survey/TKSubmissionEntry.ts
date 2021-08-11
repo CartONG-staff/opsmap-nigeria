@@ -6,6 +6,7 @@ import {
 } from "../fdf/TKFDFTrafficLight";
 import { TKTrafficLightValues } from "../fdf/TKTrafficLightValues";
 import { TKLabel } from "../ui/TKLabel";
+import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Entry abstract concept definition
@@ -99,15 +100,42 @@ function getTrafficLightColor(
 export function TKCreateSubmissionEntryText(
   value: string,
   field: string,
-  surveyConfiguration: TKFDF
+  surveyConfiguration: TKFDF,
+  languages: string[]
 ): TKSubmissionEntryText {
+  let correctedValue: Record<string, string> = {};
+  if (
+    surveyConfiguration.submissionsRules[field].type ===
+    TKFDFSubmissionItemType.LIST
+  ) {
+    console.log(value);
+
+    languages.map(
+      lang =>
+        (correctedValue[lang] = value
+          .split(" ")
+          .map(x => {
+            const lowerCasedValue = x.toLowerCase();
+            if (
+              surveyConfiguration.answersLabels[lowerCasedValue] &&
+              surveyConfiguration.answersLabels[lowerCasedValue][lang]
+            ) {
+              return surveyConfiguration.answersLabels[lowerCasedValue][lang];
+            }
+            return x;
+          })
+          .join(", "))
+    );
+  } else {
+    correctedValue = surveyConfiguration.answersLabels[value]
+      ? surveyConfiguration.answersLabels[value]
+      : { en: value };
+  }
   return {
     type: "text",
     field: field,
     fieldLabel: surveyConfiguration.fieldsLabels[field],
-    answerLabel: surveyConfiguration.answersLabels[value]
-      ? surveyConfiguration.answersLabels[value]
-      : { en: value },
+    answerLabel: correctedValue,
     isAnswered: value !== "",
     trafficLight:
       surveyConfiguration.submissionsRules[field].trafficLightName.length > 0,
