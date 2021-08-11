@@ -1,4 +1,4 @@
-field_name;type;thematic_group;traffic_light_name;chart_id;chart_data;display_condition;indicator_operation
+field_name;type;thematic_group;traffic_light_name;chart_id;chart_data;display_condition;computed_rule
 date;date;group_general_info;;;;;
 group_general_info/reporting_week;date;group_general_info;;;;;
 group_general_info/organisation;string;group_general_info;;;;;
@@ -30,8 +30,8 @@ specificgroups/number_of_preglac_dis;integer;Number_of_Individuals;;doughnut_cha
 group_cccm/campmanagementoffice;string;group_cccm;yesno;;;;
 group_cccm/site_facilitation_type;string;group_cccm;;;;;
 group_cccm/site_facilitators;integer;group_cccm;;;;;
-site_facilitator_calcpopulationvsdedicated;;group_cccm;dedicatedSfVsPopulation;;;"${site_facilitation_type} = ""dedicated""";division
-site_facilitator_calcpopulationvsmobile;;group_cccm;mobileSfVsPopulation;;;"${site_facilitation_type} = ""mobile""";division
+site_facilitator_calcpopulationvsdedicated;computed;group_cccm;dedicatedSfVsPopulation;;;group_cccm/site_facilitation_type#===#dedicated;group_pop_change/individualpopulation#/#group_cccm/site_facilitators
+site_facilitator_calcpopulationvsmobile;computed;group_cccm;mobileSfVsPopulation;;;group_cccm/site_facilitation_type#===#mobile;group_pop_change/individualpopulation#/#group_cccm/site_facilitators
 group_cccm/femalesitefacilitators;integer;group_cccm;;;;;
 group_cccm/numberofsites;string;group_cccm;;;;;
 group_cccm/numbersitescovered;integer;group_cccm;;;;;
@@ -165,14 +165,14 @@ group_wash/wating_time;string;group_wash;WaterWaitingTime;;;;
 group_wash/wastedisposal;list;group_wash;;;;;
 group_wash/wastebins_no;integer;group_wash;;;;;
 group_wash/numberlatrines;integer;group_wash;;;;;
-numberlatrines_calcpopulationvslatrines;;group_wash;TotalLatrinesVsIndidual;;NumberLatrines_calcPopulationVsLatrines;hide;division
+numberlatrines_calcpopulationvslatrines;computed;group_wash;TotalLatrinesVsIndidual;;NumberLatrines_calcPopulationVsLatrines;hide;group_pop_change/individualpopulation#/#group_wash/numberlatrines
 group_wash/latrines_nonf;integer;group_wash;;;;;
 group_wash/latrines_func;integer;group_wash;;;;;
 group_wash/latrines_desludgement;integer;group_wash;;;;;
 group_wash/segregation;integer;group_wash;;;;;
 group_wash/gendermarked;integer;group_wash;;;;;
 group_wash/numbershowers;integer;group_wash;;;;;
-numbershowers_calcpopulationvsshowers;;group_wash;TotalShowersVsIndidual;;NumberShowers_calcPopulationVsShowers;hide;division
+numbershowers_calcpopulationvsshowers;computed;group_wash;TotalShowersVsIndidual;;NumberShowers_calcPopulationVsShowers;hide;group_pop_change/individualpopulation#/#group_wash/numbershowers
 group_wash/showers_nonshw;integer;group_wash;;;;;
 group_wash/showers_func;integer;group_wash;;;;;
 group_wash/segregationbath;integer;group_wash;;;;;
