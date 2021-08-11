@@ -151,7 +151,7 @@ export default class TKSubmissionItemPolarChart extends Vue {
         item =>
           TKGetLocalValue(item.label, this.$root.$i18n.locale) +
           " " +
-          item.value.toString().replace("NaN", "-");
+          item.value.toString().replace("NaN", "-")
       );
     } else {
       return [];
