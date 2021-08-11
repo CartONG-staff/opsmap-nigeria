@@ -108,8 +108,6 @@ export function TKCreateSubmissionEntryText(
     surveyConfiguration.submissionsRules[field].type ===
     TKFDFSubmissionItemType.LIST
   ) {
-    console.log(value);
-
     languages.map(
       lang =>
         (correctedValue[lang] = value
