@@ -235,7 +235,7 @@ export function TKCreateSubmission(
     if (display) {
       // If charts
       if (rule.chartId) {
-        const value = submissionItem[rule.fieldName] ?? "0";
+        const value = submissionItem[rule.fieldName];
 
         // If exists chart
         if (currentChart.id && rule.chartId !== currentChart.id) {
