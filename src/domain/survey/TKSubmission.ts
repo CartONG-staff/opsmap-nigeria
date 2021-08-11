@@ -196,7 +196,8 @@ function createChartInSubmission(
 export function TKCreateSubmission(
   submissionItem: Record<string, string>,
   surveyConfiguration: TKFDF,
-  indicatorsDescription: TKIndicatorsDescription
+  indicatorsDescription: TKIndicatorsDescription,
+  languages: string[]
 ): TKSubmission {
   const submission: Record<string, TKSubmissionThematic> = {};
 
@@ -261,7 +262,8 @@ export function TKCreateSubmission(
           TKCreateSubmissionEntryText(
             value,
             rule.fieldName,
-            surveyConfiguration
+            surveyConfiguration,
+            languages
           )
         );
       }

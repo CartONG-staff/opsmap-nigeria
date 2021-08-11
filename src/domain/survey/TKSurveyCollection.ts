@@ -22,12 +22,13 @@ export interface TKSurveyCollection {
 export async function TKCreateSurveyCollection(
   surveyDescription: TKSurveyInfos[],
   spatialDescription: TKSpatialDescription,
-  indicatorsDescription: TKIndicatorsDescription
+  indicatorsDescription: TKIndicatorsDescription,
+  languages: Array<string>
 ): Promise<TKSurveyCollection> {
   // prepare output
   const surveyCollection: TKSurveyCollection = {};
 
-  // foreach survey info
+  // foreach survey info  
   for (const info of surveyDescription) {
     // Retrieve raw data
     let rawData;
@@ -61,7 +62,8 @@ export async function TKCreateSurveyCollection(
       rawData,
       surveyConfig,
       spatialDescription,
-      indicatorsDescription
+      indicatorsDescription,
+      languages
     );
 
     console.log(
