@@ -41,15 +41,17 @@ export default class TKApp extends Vue {
   appRootConfig: TKOpsmapConfiguration = this.$root.$data.config;
   dataset: TKDatasetFilterer = new TKDatasetFilterer({});
   geoDataset: TKGeoDataset | null = null;
-
+  
+  
   async mounted() {
     this.handeLocale();
-
     TKCreateSurveyCollection(
       this.appRootConfig.surveys,
       this.appRootConfig.spatial,
-      this.appRootConfig.indicators
+      this.appRootConfig.indicators,
+      this.appRootConfig.languages
     ).then(surveys => {
+      
       this.dataset = new TKDatasetFilterer(surveys);
       this.isDatasetInitialized = true;
       TKGetGeoBoundaries(surveys, this.appRootConfig.spatial).then(
