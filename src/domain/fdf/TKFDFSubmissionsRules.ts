@@ -10,7 +10,7 @@ export enum TKFDFSubmissionItemType {
   INTEGER = "integer",
   LIST = "list",
   DATE = "date",
-  CALCUL = "calcul"
+  COMPUTED = "computed"
 }
 interface TKFDFSubmissionRuleRaw {
   field_name: string;
@@ -20,7 +20,7 @@ interface TKFDFSubmissionRuleRaw {
   chart_id: string;
   chart_data: string;
   display_condition: string;
-  indicator_operation: string;
+  computed_rule: string;
 }
 
 export interface TKFDFSubmissionRule {
@@ -30,8 +30,16 @@ export interface TKFDFSubmissionRule {
   trafficLightName: string;
   chartId: string;
   chartData: string;
-  displayCondition: string;
-  indicatorOperation: string;
+  displayCondition?: {
+    field: string;
+    operator: string;
+    value: string;
+  };
+  computed?: {
+    field1: string;
+    operator: string;
+    field2: string;
+  };
 }
 
 export interface TKFDFSubmissionsRulesCollection {
@@ -50,6 +58,39 @@ export async function TKReadSubmissionsRulesCollection(
   >(TKFDFFiles.SUBMISSION_RULES, infos.folder, true);
   const submissionsRules: TKFDFSubmissionsRulesCollection = {};
   rawSubmissionsRules.map(item => {
+    // Parse computed rule and condition
+    let displayCondition = undefined;
+    if (item.display_condition) {
+      if (item.display_condition === "hide") {
+        displayCondition = {
+          field: "hack to have false value",
+          operator: "hack again",
+          value: "hack again"
+        };
+      } else {
+        const condition = item.display_condition.split("#");
+        if (condition.length === 3) {
+          displayCondition = {
+            field: condition[0],
+            operator: condition[1],
+            value: condition[2]
+          };
+        }
+      }
+    }
+
+    let computedRule = undefined;
+    if (item.type === TKFDFSubmissionItemType.COMPUTED) {
+      const rule = item.computed_rule.split("#");
+      if (rule.length === 3) {
+        computedRule = {
+          field1: rule[0],
+          operator: rule[1],
+          field2: rule[2]
+        };
+      }
+    }
+
     submissionsRules[item.field_name] = {
       fieldName: item.field_name,
       type: item.type,
@@ -57,8 +98,8 @@ export async function TKReadSubmissionsRulesCollection(
       trafficLightName: item.traffic_light_name,
       chartId: item.chart_id,
       chartData: item.chart_data,
-      displayCondition: item.display_condition,
-      indicatorOperation: item.indicator_operation
+      displayCondition: displayCondition,
+      computed: computedRule
     };
   });
   return submissionsRules;

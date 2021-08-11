@@ -28,7 +28,7 @@ export async function TKCreateSurveyCollection(
   // prepare output
   const surveyCollection: TKSurveyCollection = {};
 
-  // foreach survey info  
+  // foreach survey info
   for (const info of surveyDescription) {
     // Retrieve raw data
     let rawData;
