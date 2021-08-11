@@ -150,7 +150,8 @@ export function TKCreateSurvey(
   submissions: Record<string, string>[],
   surveyConfig: TKFDF,
   spatialDescription: TKSpatialDescription,
-  indicatorsDescription: TKIndicatorsDescription
+  indicatorsDescription: TKIndicatorsDescription,
+  languages: Array<string>
 ): TKSurvey {
   const submissionsByCamps: {
     [campId: string]: { [date: string]: TKSubmission };
@@ -230,7 +231,12 @@ export function TKCreateSurvey(
     // Add the submissions
     submissionsByCamps[submission[spatialDescription.siteIDField]][
       submission[spatialDescription.siteLastUpdateField]
-    ] = TKCreateSubmission(submission, surveyConfig, indicatorsDescription);
+    ] = TKCreateSubmission(
+      submission,
+      surveyConfig,
+      indicatorsDescription,
+      languages
+    );
   }
 
   // Sort the dates

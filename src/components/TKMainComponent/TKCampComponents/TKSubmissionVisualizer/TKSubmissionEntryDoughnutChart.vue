@@ -92,7 +92,7 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
             tooltip: {
               callbacks: {
                 label: function(tooltipItem): string {
-                  return tooltipItem.label;
+                  return tooltipItem.label.replace("NaN", "-");
                 }
               },
               bodyFont: {
@@ -140,7 +140,7 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
         item =>
           TKGetLocalValue(item.label, this.$root.$i18n.locale) +
           " " +
-          item.value
+          item.value.toString().replace("NaN", "-")
       );
     } else {
       return [];

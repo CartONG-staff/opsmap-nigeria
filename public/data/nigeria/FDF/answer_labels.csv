@@ -1,0 +1,425 @@
+choice_name,choice_label_en
+cccmact1,Allocation of shelter
+cccmact10,Hygiene promotion session
+cccmact11,Camp Coordination activities
+cccmact12,Camp Management activities
+cccmact13,Complaint/information desk
+cccmact14,Registration of new arrivals
+cccmact15,Community led sensitization
+cccmact2,Safety mapping and safety mapping
+cccmact3,Sanitation led by the community
+cccmact4,Sensitization on CFM
+cccmact5,Fire sensitization
+cccmact6,COVID-19 sensitization
+cccmact7,Points of Entry (PoE) COVID-19 screening.
+cccmact8,Committees meeting
+cccmact9,GBV awareness raising session
+other,Other
+no,No
+yes,Yes
+cp_cfs,Child Friendly Spaces
+cp_mhpss,MHPSS services
+none,None
+other,Other
+distancex1,< 1km
+distancex2,1 - 5km
+distancex3,6 - 10km
+distancex4,>10km
+classroom,"Classroom construction, rehabilitation or reopened"
+extra_curricular,"Extra curricular activities - sports, etc"
+learning_supplies,Distribution of learning supplies
+none,None
+other,Other
+teacher_training,Training of teachers
+cashwork,Employment through Cash-for-Work activities
+coheshionerl,IDPs have access to social cohesion security activities
+none,None
+other,Other
+recoerl,IDPs have access to community reconciliation activities
+sbusiness,Support to establish or scale up small businesses
+gbv_case_mgt,GBV case management
+gbv_cmr,Clinical Management of Rape (CMR) offered at health facility
+gbv_mhpss,MHPSS services
+gbv_referral,Functional GBV referral pathways
+gbv_wgyfs,"Women, girls and youth friendly spaces"
+none,None
+other,Other
+legal_documentation,"Access to legal documentation, advice and services"
+mine_risk,Mine risk education
+none,None
+other,Other
+referral_prot,Referral mechanisms to protection services
+screening,"Sreening, registration and monitoring of vulnerable groups"
+tranining_prot,Trainings on protection principles
+curfew,Curfew
+militarysearch,Military search
+fear,Fear of attack
+no_safe_space,No safe space or caseworker
+conflict,Fear due to the ongoing conflict
+essential_meds,Distribution of essential medicines and equipments
+establishmenths,Establishment of health structure
+food_distribut,Food distribution
+latrine,Latrine area
+waterpoint,Water points
+fence,Fence or camp boundary
+marketarea,Market area
+entry,Gate or Camp entry point
+medical_referr,Medical referrals
+none,None
+other_health,Other
+vaccination,Vaccination
+malaria,Malaria
+typhoid,Typhoid
+skin_disease,Skin Disease
+cough,Cough
+diarrhea,Diarrhea
+flu,Flu
+pneumonia,Pneumonia
+insuf_medi,Insufficient medicines at the health facility
+money,Money related constraint
+queue,Long waiting time on queue
+health_workers,Unavailability of health workers.
+fire,Fire
+flooding,Flooding
+influx,Influx
+other,Other
+AgriculturalInput,Agricultural input
+BusinessGrants,Business grants
+CashForWork,Cash for work
+OtherSources,Other
+VocationalInput,Vocational input
+none,None
+blanketsMats,Blankets/Mats
+bucket/Jerrycan,Bucket/Jerry Can
+kitchenSets,Kitchen Sets
+mosquitoNets,Mosquito Nets
+sheeting,Plastic Sheeting
+soap,Soap
+over_6months,> 6 months
+within_1month,within the last 1 month
+within_2months,within the last 2 months
+within_3month,within the last 3 months
+cash_nutrition,Cash assistance for prevention of malnutrition
+none,None
+other,Other
+supplementary1,Supplementary Feeding for children
+supplementary2,Supplementary feeding for pregnant and lactating mothers
+supplementary3,Screening and supplementary feeding for malnourished children
+acted,ACTED
+boaid,BOAID
+ggsi,GGSI
+greencode,GREENCODE
+haraf,HARAF
+hope360,HOPE 360
+intersos,INTERSOS
+iom,IOM
+loc-din,LOC-DIN
+nrc,NRC
+ppgw,PPGW
+pride,PRIDE
+saf,SAF
+salient,SALIENT
+shi,SHI
+unhcr,UNHCR
+ypho,YPHO
+aun,American University of Nigeria
+bac,Borno Action Coalition
+bisa,Borno Islamiyya Schools Association
+cai,Creative Associates International
+caritas,Catholic Caritas Foundation of Nigeria
+cfl,Care for Life Mission
+chad,Centre for Community Health & Development
+cidar,Centre for Integrated Development and Research
+coopi,Cooperazione Internazionale
+cri,Community Reachout Initiative
+csfn,Communual Support Foundaton of Nigeria
+ecr,Education Crisis Response
+gccd,Gammun Centre for Care and Development
+gddc,Gammu
+geidamjin,GEIDAMJIN Foundation
+gepadc,"Gender Equality, Peace and Development Centre"
+gon,GOALPrime Organization Nigeria
+haraf,Hope and Rural Aid Foundation
+hcdi,Huda Community Development Initiative
+hli,Hallmark Leadership initiative
+iai,Integrated Aid Initiative
+icad,International Centre for Accelerated Development
+ican,International Civil Society Action Fund
+iom,IOM
+irc,IRC
+kabhuda,Kanem Borno Human Development Association
+kscf,Kishimi Shelter and Care Foundation
+lea,LEA
+lhi,Life and Hope Initiative
+mcrdf,Majesty Community Rural Development Foundation
+mercycorps,Mercy Corps
+moe,Ministry of Education
+naf,Nigeria Air Force (NAF)
+neyif,North East Youth Initiative Forum
+none,None
+nrc,NRC
+other,Other
+planint,Plan International
+prehya,Pioneer Reproductive Youth Association
+rei,Riplington Education Initiative
+rohi,Restoration of Hope Initiative
+same,State Agency for Mass Education
+scd,Society for Community Development
+sci,Save the Children International
+scoda,Sukul Community Development Association
+smoed,State Ministry of Education
+srf,Swift Relief Foundation
+streetchild,Street Child
+subeb,State Universal Basic Education Board
+tcdi,Tamaiko Community Development Initiative
+uls,Universal Learning Solutions
+unicef,UNICEF
+winn,Women In New Nigeria & Youth Empowerment
+wyeahi,Women and Youth Empowerment for Advancement and Health Initiative
+yia,Young International Aid
+yipdi,Youth Integrated for Positive Development Initiative
+yscwodc,"Yobe Society for Care of Widows, Orphans and Disabled Children"
+acf,Action Against Hunger
+ai,Aid initiative
+aun,American University of Nigeria
+caid,CHRISTIAN AID
+care,Care International
+crudan,CRUDAN
+drc,DRC
+fao,FAO
+gepadc,"Gender Equality, Peace and Development Centre"
+gzdi,Gogoji Zumunchi Development initiative
+herwacdi,Herwa Community Development Initiative
+iceed,ICEED
+icrc,ICRC
+idso,Intercommunity Development Social Organisation
+imc,IMC
+intersos,INTERSOS
+iom,IOM
+irc,IRC
+mercycorps,Mercy Corps
+nca,Norwegian Church Aid
+neyif,North East Youth Initiative Forum
+none,None
+other,Other
+planint,Plan International
+sc,Samaritan Care
+sci,Save the Children International
+undp,UNDP
+unfpa,UNFPA
+unhcr,UNHCR
+wfp,WFP
+acf,Action Against Hunger
+adra,ADRA
+caid,CHRISTIAN AID
+care,Care International
+caritas,Catholic Caritas Foundation of Nigeria
+crs,CRS
+crudan,CRUDAN
+drc,DRC
+fao,FAO
+greencode,GREENCODE
+imc,IMC
+intersos,INTERSOS
+irc,IRC
+mercycorps,Mercy Corps
+nema,NEMA
+none,None
+nrc,NRC
+other,Other
+oxfam,OXFAM International
+planint,Plan International
+pui,PUI
+sci,Save the Children International
+si,Solidarites International
+sif,Secours Islamique France
+wfp,WFP
+zoa,ZOA
+acf,Action Against Hunger
+alima,ALIMA
+caid,CHRISTIAN AID
+care,Care International
+fhi360,FHI360
+fmoh,Federal Ministry Of Health
+icrc,ICRC
+intersos,INTERSOS
+irc,IRC
+mdm,MDM
+msf,MSF
+naf,Nigeria Air Force (NAF)
+none,None
+other,Other
+pui,PUI
+smoh,State Ministry of Health
+sphcda,State Primary Health Care Development Agency (SPHCDA)
+unicef,UNICEF
+who,WHO
+acf,Action Against Hunger
+alima,ALIMA
+caid,CHRISTIAN AID
+care,Care International
+crs,CRS
+eyn,Ekelisiyar Yanuwa A Nigeria (EYN)
+fhi360,FHI360
+icrc,ICRC
+imc,IMC
+intersos,INTERSOS
+irc,IRC
+mdm,MdM
+msf,MSF
+none,none
+other,Other
+planint,Plan International
+pui,PUI
+sci,Save the Children International
+sphcda,State Primary Health Care Development Agency (SPHCDA)
+unicef,UNICEF
+wfp,WFP
+who,WHO
+alima,ALIMA
+aun,American University of Nigeria
+caid,Christian Aid
+caritas,Catholic Caritas Foundation of Nigeria
+cchd,Center for Community Health Development
+chadint,CHAD INT.
+coopi,Cooperazione Internazionale
+drc,DRC
+drc/ddg,DRC/DDG
+eyn,Ekelisiyar Yanuwa A Nigeria (EYN)
+fhi360,FHI360
+fomwan,Federation of Muslim Women's Associations in Nigeria
+gepadc,"Gender Equality, Peace and Development Centre"
+giscor,Grassroot Initiative for Strengthening Community Resilience
+hcdfi,Health Care Development Focus Initiative
+herwacdi,Herwa Community Development Initiative
+idso,Intercommunity Development Social Organisation
+imc,IMC
+internationalalert,International Alert
+intersos,INTERSOS
+iom,IOM
+irc,IRC
+jdf,Jireh Doo Foundation
+labdi,LABDI
+mag,MAG
+mdm,MdM
+mlgeca,"Ministry of Local Government and Emirate Council Affairs, Borno"
+msf,MSF
+nca,Norwegian Church Aid
+neem,NEEM Foundation
+neyif,North East Youth Initiative Forum
+none,None
+nrc,NRC
+other,Other
+planint,Plan International
+play_back,"Play Back, Nigeria"
+sc,Samaritan Care
+sci,Save the Children International
+sfcg,Search for Common Ground
+smowasd,State Ministry of Women Affairs and Social Development
+smysscd,State Ministry Youth Social Support and Community Development
+srf,Swift Relief Foundation
+streetchild,Street Child
+tdh,TdH
+undp,UNDP
+unfpa,UNFPA
+unhcr,UNHCR
+unicef,UNICEF
+winn,Women in New Nigeria & Youth Empowerment
+yfwp,Youth Federation for World Peace
+acted,ACTED
+crs,CRS
+drc,DRC
+icrc,ICRC
+imc,IMC
+intersos,INTERSOS
+iom,IOM
+mercycorps,Mercy Corps
+msf,MSF
+none,None
+nrc,NRC
+other,Other
+pcni,PCNI
+si,Solidarites International
+unhcr,UNHCR
+acf,Action Against Hunger
+cider,Cider
+crs,CRS
+drc,DRC
+fhi360,FHI360
+icrc,ICRC
+imc,IMC
+iom,IOM
+irc,IRC
+mercycorps,Mercy Corps
+msf,MSF
+nca,Norwegian Church Aid
+none,None
+nrc,NRC
+other,Other
+si,Solidarites International
+tdh,TdH
+unicef,UNICEF
+25_and_below,1-25 %
+50_and_below,26-50%
+75_and_below,51-75%
+76_and_above,76% and above
+child_protection,Child protection
+gbv,Gender Based Violence (GBV)
+none,None
+protection,Protection
+camp_managemen,CCCM/ Site facilitaion
+education,Education
+food_security,Food Security
+health,Health
+livelihood,Early Recovery & Livelihoods
+nutrition,Nutrition
+protection,Protection (includes Child Protection & GBV)
+shelter,Shelter/NFI
+wash,WASH
+excellent,Excellent
+good,Good
+poor,Poor
+very_good,Very Good
+very_poor,Very Poor
+dedicated,Dedicated
+mobile,Mobile
+bama_shelt,Construction of emergency shelters
+cash_shelt,Distribution of cash/voucher for NFI
+nfi_shelt,NFI kits distribution
+none,None
+other,Other
+repair_shelt,Shelter repair and improvements
+commu_shelpart_1,Communal/ collective shelters (partitioned)
+commu_shelunpa,Communal/ collective shelters (unpartitioned)
+emerge_shel,Emergency shelters
+health_shel,Public facility- health facility
+makeshi_shel,Makeshift shelters built using local materials
+makeshi_shel2,Makeshift shelters built using blankets/ nets
+other_shel,Public facility- other
+school_shel,Public facility- school
+trans_shel,Transitional shelters
+ad-hoc,Ad-hoc/incidents
+bi_weekly,Bi-weekly
+time1,<15mins
+time2,15 - 29Mins
+time3,30Mins - 1hour
+time4,>1hour
+cash_wash,Cash transfer activities or voucher to meet water needs
+cleaninglat_wash,Desludging and cleaning of latrines services
+latrines_wash,Construction of latrines as per sector's standard
+maint_wash,Construction and rehabilitation of water systems
+none,None
+other,Other
+watersys_wash,Water systems supported by operations and maintenance
+borehole,Borehole
+delivery_from_outside,Delivery from outside
+hand_pump,Hand Pump
+none,None
+others,Other
+river_stream,River/ Stream
+water_vendor,Water Vendor
+well,Well
+wastebin,Waste bin
+incenerators,Incenerators
+dumpsite,Dumpsite
+other,Other

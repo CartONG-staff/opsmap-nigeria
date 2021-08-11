@@ -9,7 +9,7 @@ import router from "./router";
 Vue.config.productionTip = false;
 
 TKReadGeneralConfiguration(
-  `${process.env.BASE_URL}/data/demo/general_config.json`
+  `${process.env.BASE_URL}/data/nigeria/general_config.json`
 ).then(config => {
   // Filter with config languages field.
   const messagesCandidates = loadLocaleMessages();
