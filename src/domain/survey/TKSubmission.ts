@@ -230,54 +230,55 @@ export function TKCreateSubmission(
       }
     }
     if (display) {
-      let value = undefined;
-      try {
-        if (rule.type === TKFDFSubmissionItemType.COMPUTED && rule.computed) {
-          const expressionValue = `${submissionItem[rule.computed.field1]} ${
-            rule.computed.operator
-          } ${submissionItem[rule.computed.field2]}`;
-          value = Math.round(eval(expressionValue));
-        } else {
-          value = submissionItem[rule.fieldName];
+      // If charts
+      if (rule.chartId) {
+        const value = submissionItem[rule.fieldName] ?? "0";
+
+        // If exists chart
+        if (currentChart.id && rule.chartId !== currentChart.id) {
+          createChartInSubmission(
+            currentChart,
+            submission,
+            surveyConfiguration
+          );
+
+          // Clear current submission
+          currentChart.id = "";
+          currentChart.thematic = "";
+          currentChart.data = [];
         }
-      } catch (error) {
-        value = "-";
+
+        // Init currentChart
+        if (!currentChart.id) {
+          currentChart.id = rule.chartId;
+          currentChart.thematic = rule.thematicGroup;
+          currentChart.data = [];
+        }
+
+        // accumulate
+        currentChart.data.push({
+          field: rule.fieldName,
+          value: value,
+          type: rule.chartData
+        });
       }
 
-      if (value) {
-        // If charts
-        if (rule.chartId) {
-          // If exists chart
-          if (currentChart.id && rule.chartId !== currentChart.id) {
-            createChartInSubmission(
-              currentChart,
-              submission,
-              surveyConfiguration
-            );
-
-            // Clear current submission
-            currentChart.id = "";
-            currentChart.thematic = "";
-            currentChart.data = [];
+      // If text item
+      else {
+        let value = undefined;
+        try {
+          if (rule.type === TKFDFSubmissionItemType.COMPUTED && rule.computed) {
+            const expressionValue = `${submissionItem[rule.computed.field1]} ${
+              rule.computed.operator
+            } ${submissionItem[rule.computed.field2]}`;
+            value = Math.round(eval(expressionValue)).toString();
+          } else {
+            value = submissionItem[rule.fieldName];
           }
-
-          // Init currentChart
-          if (!currentChart.id) {
-            currentChart.id = rule.chartId;
-            currentChart.thematic = rule.thematicGroup;
-            currentChart.data = [];
-          }
-
-          // accumulate
-          currentChart.data.push({
-            field: rule.fieldName,
-            value: value,
-            type: rule.chartData
-          });
+        } catch (error) {
+          value = "-";
         }
-
-        // If text item
-        else {
+        if (value) {
           // If exists chart
           if (currentChart.id) {
             createChartInSubmission(
