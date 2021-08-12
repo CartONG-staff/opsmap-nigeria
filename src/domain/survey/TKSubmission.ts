@@ -200,14 +200,15 @@ export function TKCreateSubmission(
   indicatorsDescription: TKIndicatorsDescription,
   languages: string[]
 ): TKSubmission {
+  // Init all the thematics
   const submission: Record<string, TKSubmissionThematic> = {};
-
   for (const thematic in surveyConfiguration.thematics) {
     submission[thematic] = TKCreateSubmissionThematic(
       surveyConfiguration.thematics[thematic]
     );
   }
 
+  // Init chart
   const currentChart: ChartData = {
     id: "",
     thematic: "",
@@ -217,6 +218,7 @@ export function TKCreateSubmission(
   for (const key in surveyConfiguration.submissionsRules) {
     const rule = surveyConfiguration.submissionsRules[key];
 
+    // Handle display status
     let display = true;
     if (rule.displayCondition) {
       try {
@@ -233,7 +235,7 @@ export function TKCreateSubmission(
     if (display) {
       // If charts
       if (rule.chartId) {
-        const value = submissionItem[rule.fieldName] ?? "0";
+        const value = submissionItem[rule.fieldName];
 
         // If exists chart
         if (currentChart.id && rule.chartId !== currentChart.id) {
@@ -243,17 +245,25 @@ export function TKCreateSubmission(
             surveyConfiguration
           );
 
-        // Clear current submission
-        currentChart.id = "";
-        currentChart.thematic = "";
-        currentChart.data = [];
-      }
+          // Clear current submission
+          currentChart.id = "";
+          currentChart.thematic = "";
+          currentChart.data = [];
+        }
 
-      // Init currentChart
-      if (!currentChart.id) {
-        currentChart.id = rule.chartId;
-        currentChart.thematic = rule.thematicGroup;
-        currentChart.data = [];
+        // Init currentChart
+        if (!currentChart.id) {
+          currentChart.id = rule.chartId;
+          currentChart.thematic = rule.thematicGroup;
+          currentChart.data = [];
+        }
+
+        // Accumulate Chart data
+        currentChart.data.push({
+          field: rule.fieldName,
+          value: value,
+          type: rule.chartData
+        });
       }
 
       // If text item
@@ -297,7 +307,6 @@ export function TKCreateSubmission(
         }
       }
     }
-  }
   }
 
   // if a current pyramid is ongoing - push it before ending
