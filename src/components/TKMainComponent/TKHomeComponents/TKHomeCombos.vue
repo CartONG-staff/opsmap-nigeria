@@ -77,11 +77,10 @@
               dense
               clearable
               :label="$t('camp')"
-              :v-model="currentCamp"
+              v-model="dataset.currentCamp"
               :items="dataset.filteredCampsList"
               item-text="infos.name"
-              item-value="infos.id"
-              @change="campSelected"
+              return-object
             ></v-autocomplete>
           </div>
         </template>
@@ -102,7 +101,6 @@ export default class TKHomeCombos extends Vue {
   readonly dataset!: TKDatasetFilterer;
 
   currentSurvey = this.dataset.currentSurvey;
-
   @Watch("dataset.currentSurvey")
   onCurrentSurveyChanged() {
     this.currentSurvey = this.dataset.currentSurvey;
@@ -120,13 +118,6 @@ export default class TKHomeCombos extends Vue {
   @Watch("dataset.currentAdmin2")
   onCurrentAdmin2Changed() {
     this.currentAdmin2 = this.dataset.currentAdmin2;
-  }
-
-  currentCamp = this.dataset.currentCamp;
-
-  @Watch("dataset.currentCamp")
-  onCurrentCampChanged() {
-    this.currentCamp = this.dataset.currentCamp;
   }
 
   surveySelected(survey: TKSurvey) {
@@ -149,13 +140,6 @@ export default class TKHomeCombos extends Vue {
       pcode
         ? this.dataset.setCurrentAdmin2(pcode)
         : this.dataset.clearCurrentAdmin2();
-    }
-  }
-  campSelected(campId: string) {
-    if (campId !== this.dataset.currentCamp?.infos.id) {
-      campId
-        ? this.dataset.setCurrentCamp(campId)
-        : this.dataset.clearCurrentCamp();
     }
   }
 }

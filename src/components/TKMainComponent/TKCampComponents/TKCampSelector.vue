@@ -71,12 +71,11 @@
             flat
             dense
             :label="$t('camp')"
-            v-model="currentCamp"
+            v-model="dataset.currentCamp"
             :items="dataset.filteredCampsList"
             :disabled="!dataset.filteredCampsList.length"
             item-text="infos.name"
-            item-value="infos.id"
-            @change="campSelected"
+            return-object
             clearable
             v-bind="attrs"
             v-on="on"
@@ -116,12 +115,6 @@ export default class TKCampSelector extends Vue {
     this.currentAdmin2 = this.dataset.currentAdmin2;
   }
 
-  currentCamp = this.dataset.currentCamp;
-  @Watch("dataset.currentCamp")
-  onCurrentCampChanged() {
-    this.currentCamp = this.dataset.currentCamp;
-  }
-
   surveySelected(survey: TKSurvey) {
     if (survey) {
       this.dataset.setActiveSurvey(survey);
@@ -142,13 +135,6 @@ export default class TKCampSelector extends Vue {
       pcode
         ? this.dataset.setCurrentAdmin2(pcode)
         : this.dataset.clearCurrentAdmin2();
-    }
-  }
-  campSelected(campId: string) {
-    if (campId !== this.dataset.currentCamp?.infos.id) {
-      campId
-        ? this.dataset.setCurrentCamp(campId)
-        : this.dataset.clearCurrentCamp();
     }
   }
 }
