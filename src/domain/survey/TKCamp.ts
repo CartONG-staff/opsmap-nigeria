@@ -31,6 +31,5 @@ interface TKCampInfos {
 
 export interface TKCamp {
   infos: TKCampInfos;
-  submissions: { [date: string]: TKSubmission };
-  dates: string[];
+  submissions: TKSubmission[];
 }

@@ -2,7 +2,7 @@
 
 import { TKCampTypesValues } from "./TKCamp";
 import { TKBoundariesCollection } from "./TKBoundariesCollection";
-import { TKCreateSubmission } from "./TKSubmission";
+import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
 import { TKIndicator } from "../ui/TKIndicator";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
@@ -39,34 +39,6 @@ function formatDate(date: string, fdf: TKFDF): string {
 }
 
 // ////////////////////////////////////////////////////////////////////////////
-// sort dates
-// ////////////////////////////////////////////////////////////////////////////
-
-function sortDates(dates: string[]) {
-  dates.sort((a: string, b: string) => {
-    const asplitted = a.split("/");
-    const bsplitted = b.split("/");
-    if (asplitted.length !== 3 || bsplitted.length !== 3) {
-      return 0;
-    }
-    const adated = new Date(
-      parseInt(asplitted[2]),
-      parseInt(asplitted[1]) - 1,
-      parseInt(asplitted[0])
-    );
-    const bdated = new Date(
-      parseInt(bsplitted[2]),
-      parseInt(bsplitted[1]) - 1,
-      parseInt(bsplitted[0])
-    );
-    if (adated < bdated) return 1;
-    else if (adated > bdated) return -1;
-    else return 0;
-  });
-  return dates;
-}
-
-// ////////////////////////////////////////////////////////////////////////////
 // helper method that compute survey indicator
 // ////////////////////////////////////////////////////////////////////////////
 
@@ -90,7 +62,8 @@ function computeSurveyIndicator(
   let sum = 0;
 
   for (const camp of camps) {
-    const submission = camp.submissions[camp.infos.lastSubmission];
+    // TODO : improve last submission
+    const submission = camp.submissions[0]; // camp.infos.lastSubmission];
     if (submission) {
       if (!foundAtLeastOnce) {
         for (const thematic in submission.thematics) {
@@ -198,8 +171,7 @@ export function TKCreateSurvey(
           },
           lastSubmission: ""
         },
-        dates: [],
-        submissions: {}
+        submissions: []
       };
       camps.push(camp);
 
@@ -229,38 +201,44 @@ export function TKCreateSurvey(
     }
 
     // Add the submissions
-    camp.submissions[
-      submission[spatialDescription.siteLastUpdateField]
-    ] = TKCreateSubmission(
-      submission,
-      surveyConfig,
-      indicatorsDescription,
-      languages
+    camp?.submissions.push(
+      TKCreateSubmission(
+        submission,
+        surveyConfig,
+        indicatorsDescription,
+        spatialDescription,
+        languages
+      )
     );
   }
 
   // Sort the dates and update last submission date for each camp
-  camps.map(camp => {
-    camp.dates = sortDates(Object.keys(camp.submissions));
-    camp.infos.lastSubmission = camp.dates.length ? camp.dates[0] : "-";
-  });
-  // const dateOfSubmissionsByCamps: { [site: string]: string[] } = {};
-  // for (const camp in submissionsByCamps) {
-  //   dateOfSubmissionsByCamps[camp] = sortDates();
-  // }
-
-  // campsList.map(camp => {
-  //   camp.lastSubmission = dateOfSubmissionsByCamps[camp.id].length
-  //     ? dateOfSubmissionsByCamps[camp.id][0]
-  //     : "-";
-  // });
+  camps.map(camp =>
+    camp.submissions.sort((a: TKSubmission, b: TKSubmission) => {
+      const asplitted = a.date.split("/");
+      const bsplitted = b.date.split("/");
+      if (asplitted.length !== 3 || bsplitted.length !== 3) {
+        return 0;
+      }
+      const adated = new Date(
+        parseInt(asplitted[2]),
+        parseInt(asplitted[1]) - 1,
+        parseInt(asplitted[0])
+      );
+      const bdated = new Date(
+        parseInt(bsplitted[2]),
+        parseInt(bsplitted[1]) - 1,
+        parseInt(bsplitted[0])
+      );
+      if (adated < bdated) return 1;
+      else if (adated > bdated) return -1;
+      else return 0;
+    })
+  );
 
   return {
     name: surveyConfig.name,
     camps: camps,
-    // submissionsByCamps: submissionsByCamps,
-    // dateOfSubmissionsByCamps: dateOfSubmissionsByCamps,
-    // campsList: campsList,
     boundariesList: boundariesList,
     indicators: [
       computeSurveyIndicator(indicatorsDescription.home[0], camps),

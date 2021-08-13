@@ -36,11 +36,7 @@ export class TKDatasetFilterer {
   currentAdmin1: TKBoundarieDescription | null = null;
   currentAdmin2: TKBoundarieDescription | null = null;
   currentCamp: TKCamp | null = null;
-  currentDate = "";
   currentSubmission: TKSubmission | null = null;
-
-  // Filtered state
-  sortedSubmissions: string[] = [];
 
   filteredAdmin1List: TKBoundarieDescription[] = [];
   filteredAdmin2List: TKBoundarieDescription[] = [];
@@ -94,9 +90,7 @@ export class TKDatasetFilterer {
     if (this.currentSurvey !== survey) {
       // Erase everything
       this.currentCamp = null;
-      this.currentDate = "";
       this.currentSubmission = null;
-      this.sortedSubmissions = [];
       this.currentAdmin2 = null;
       this.currentAdmin1 = null;
       this.filters[TKFilters.CAMP] = null;
@@ -135,9 +129,7 @@ export class TKDatasetFilterer {
             ? TKFilters.ADMIN1
             : TKFilters.SURVEY;
           this.currentCamp = null;
-          this.currentDate = "";
           this.currentSubmission = null;
-          this.sortedSubmissions = [];
           this.filters[TKFilters.CAMP] = null;
           this.lastModification = "clearCamp";
         }
@@ -155,9 +147,7 @@ export class TKDatasetFilterer {
             ? TKFilters.ADMIN1
             : TKFilters.SURVEY;
           this.currentCamp = null;
-          this.currentDate = "";
           this.currentSubmission = null;
-          this.sortedSubmissions = [];
           this.filters[TKFilters.CAMP] = null;
           this.lastModification = "clearCamp";
         }
@@ -171,22 +161,26 @@ export class TKDatasetFilterer {
   // Change date
   // ////////////////////////////////////////////////////////////////////////////
 
-  setCurrentDate(date: string) {
-    if (date !== this.currentDate) {
-      if (this.currentSurvey && this.currentCamp) {
-        if (this.sortedSubmissions.includes(date)) {
-          this.currentDate = date;
-        } else {
-          this.currentDate = this.currentCamp.infos.lastSubmission;
-        }
-
-        this.currentSubmission = this.currentCamp.submissions[date];
-      } else {
-        this.currentDate = "";
-        this.currentSubmission = null;
-      }
-      this.lastModification = `date=${this.currentDate}`;
+  setSubmissionByDate(date: string) {
+    const submission = this.currentCamp?.submissions.find(
+      submission => submission.date === date
+    );
+    if (submission) {
+      this.setCurrentSubmission(submission);
+    } else {
+      this.setCurrentSubmission(
+        this.currentCamp?.submissions[0] as TKSubmission
+      );
     }
+  }
+
+  setCurrentSubmission(submission: TKSubmission) {
+    if (this.currentCamp?.submissions.includes(submission)) {
+      this.currentSubmission = submission;
+    } else {
+      this.currentSubmission = this.currentCamp?.submissions[0] ?? null;
+    }
+    this.lastModification = `submission=${this.currentSubmission?.date}`;
   }
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -204,9 +198,7 @@ export class TKDatasetFilterer {
 
     this.currentCamp = null;
     this.filters[TKFilters.CAMP] = null;
-    this.currentDate = "";
     this.currentSubmission = null;
-    this.sortedSubmissions = [];
 
     this.lastModification = `clearAdmin1`;
 
@@ -230,9 +222,7 @@ export class TKDatasetFilterer {
       this.filters[TKFilters.ADMIN2] = null;
       this.currentAdmin2 = null;
       this.currentCamp = null;
-      this.currentDate = "";
       this.currentSubmission = null;
-      this.sortedSubmissions = [];
       this.filters[TKFilters.CAMP] = null;
 
       this.levelToZoom = TKFilters.ADMIN1;
@@ -263,9 +253,7 @@ export class TKDatasetFilterer {
 
     this.currentCamp = null;
     this.filters[TKFilters.CAMP] = null;
-    this.currentDate = "";
     this.currentSubmission = null;
-    this.sortedSubmissions = [];
 
     this.lastModification = `clearAdmin2`;
 
@@ -287,9 +275,7 @@ export class TKDatasetFilterer {
     if (this.currentAdmin2?.pcode !== pcode) {
       // Clear camp
       this.currentCamp = null;
-      this.currentDate = "";
       this.currentSubmission = null;
-      this.sortedSubmissions = [];
       this.filters[TKFilters.CAMP] = null;
 
       // New admin2
@@ -326,9 +312,7 @@ export class TKDatasetFilterer {
       ? TKFilters.ADMIN1
       : TKFilters.SURVEY;
     this.currentCamp = null;
-    this.currentDate = "";
     this.currentSubmission = null;
-    this.sortedSubmissions = [];
     this.filters[TKFilters.CAMP] = null;
 
     this.lastModification = "clearCamp";
@@ -363,14 +347,7 @@ export class TKDatasetFilterer {
           this.filters[TKFilters.ADMIN2] = this.currentAdmin2.pcode;
         }
 
-        this.currentDate = this.currentCamp.infos.lastSubmission;
-
-        if (this.currentDate) {
-          this.currentSubmission = this.currentCamp.submissions[
-            this.currentDate
-          ];
-        }
-        this.sortedSubmissions = this.currentCamp.dates;
+        this.currentSubmission = this.currentCamp.submissions[0];
 
         this.lastModification = `camp=${this.currentCamp.infos.id}`;
       }

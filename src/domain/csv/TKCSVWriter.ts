@@ -10,7 +10,7 @@ function computeExportFilename(dataset: TKDatasetFilterer): string {
   if (dataset) {
     const campId = dataset.currentCamp?.infos.id ?? "";
     const campName = dataset.currentCamp?.infos.name ?? "";
-    const submissionId = dataset.currentDate.replaceAll("/", "-");
+    const submissionId = dataset.currentSubmission?.date.replaceAll("/", "-");
 
     const filename = campId + "_" + campName + "_" + submissionId;
     return filename + ".csv";

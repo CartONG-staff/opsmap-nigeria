@@ -70,7 +70,7 @@ export default class TKRouteHandler extends Vue {
         if (camp) {
           this.dataset.setCurrentCampName(camp);
           if (date) {
-            this.dataset.setCurrentDate(date);
+            this.dataset.setSubmissionByDate(date);
           }
         } else if (admin2) {
           this.dataset.setCurrentAdmin2Name(admin2);
@@ -91,7 +91,7 @@ export default class TKRouteHandler extends Vue {
       this.dataset.currentCamp?.infos.name ?? ""
     );
     const dateE = encodeURIComponent(
-      this.dataset.currentDate?.replaceAll("/", "-") ?? ""
+      this.dataset.currentSubmission?.date.replaceAll("/", "-") ?? ""
     );
 
     let path = `/camp`;
