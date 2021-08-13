@@ -63,8 +63,8 @@ export class TKMapBoundaries {
     if (dataset.currentCamp) {
       this.mapFitBounds(
         new LngLat(
-          dataset.currentCamp.camp.lng,
-          dataset.currentCamp.camp.lat
+          dataset.currentCamp.infos.lng,
+          dataset.currentCamp.infos.lat
         ).toBounds(100),
         map
       );

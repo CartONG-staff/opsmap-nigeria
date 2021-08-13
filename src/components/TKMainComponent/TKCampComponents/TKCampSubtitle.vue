@@ -23,7 +23,7 @@ export default class TKCampSubtitle extends Vue {
   @Watch("dataset.currentCamp", { immediate: true })
   onChange() {
     this.name = this.dataset.currentCamp
-      ? this.dataset.currentCamp.camp.name
+      ? this.dataset.currentCamp.infos.name
       : this.$root.$i18n.t("site.subtitlePlaceholder").toString();
   }
 }

@@ -22,18 +22,18 @@ export class TKMapCamps {
           type: "Feature",
           geometry: {
             type: "Point",
-            coordinates: [camp.camp.lng, camp.camp.lat]
+            coordinates: [camp.infos.lng, camp.infos.lat]
           },
           properties: {
-            id: camp.camp.id,
-            name: camp.camp.name,
-            type: camp.camp.type,
-            lastSubmission: camp.camp.lastSubmission,
-            lat: camp.camp.lat,
-            lng: camp.camp.lng,
-            admin1: camp.camp.admin1,
-            admin2: camp.camp.admin2,
-            admin3: camp.camp.admin3
+            id: camp.infos.id,
+            name: camp.infos.name,
+            type: camp.infos.type,
+            lastSubmission: camp.infos.lastSubmission,
+            lat: camp.infos.lat,
+            lng: camp.infos.lng,
+            admin1: camp.infos.admin1,
+            admin2: camp.infos.admin2,
+            admin3: camp.infos.admin3
           }
         };
       })
@@ -43,11 +43,13 @@ export class TKMapCamps {
   filterCamps(): TKFilteredCamps {
     return {
       selectedCamp: this.toGeoJSON(
-        this.camps.filter(x => x.camp.id === this.currentCamp?.camp.id)
+        this.camps.filter(camp => camp.infos.id === this.currentCamp?.infos.id)
       ),
       otherCamps: this.toGeoJSON(
         this.currentCamp
-          ? this.camps.filter(x => x.camp.id !== this.currentCamp?.camp.id)
+          ? this.camps.filter(
+              camp => camp.infos.id !== this.currentCamp?.infos.id
+            )
           : this.camps
       )
     };

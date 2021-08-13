@@ -13,7 +13,7 @@ export enum TKCampTypesValues {
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSubmission } from "./TKSubmission";
 
-export interface TKCampDescription {
+interface TKCampInfos {
   id: string;
   name: string;
   type: TKCampTypesValues;
@@ -30,7 +30,7 @@ export interface TKCampDescription {
 // ////////////////////////////////////////////////////////////////////////////
 
 export interface TKCamp {
-  camp: TKCampDescription;
+  infos: TKCampInfos;
   submissions: { [date: string]: TKSubmission };
   dates: string[];
 }
