@@ -111,14 +111,16 @@ export default class TKCampInfos extends Vue {
   onChange() {
     if (this.dataset) {
       this.admin1 = this.dataset.currentCamp
-        ? this.dataset.currentCamp.admin1.name
+        ? this.dataset.currentCamp.camp.admin1.name
         : "-";
       this.admin2 = this.dataset.currentCamp
-        ? this.dataset.currentCamp.admin2.name
+        ? this.dataset.currentCamp.camp.admin2.name
         : "-";
 
       this.coordinates = this.dataset.currentCamp
-        ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
+        ? this.dataset.currentCamp.camp.lat +
+          "," +
+          this.dataset.currentCamp.camp.lng
         : "-";
       this.handeLocale();
     }
@@ -153,7 +155,7 @@ export default class TKCampInfos extends Vue {
         this.manageByLabel,
         this.$root.$i18n.locale
       );
-      if (this.dataset.currentCamp.type === TKCampTypesValues.PLANNED) {
+      if (this.dataset.currentCamp.camp.type === TKCampTypesValues.PLANNED) {
         this.siteType = this.$root.$i18n
           .t("infosSitePlanned")
           .toString()

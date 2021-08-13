@@ -74,8 +74,8 @@
             v-model="currentCamp"
             :items="dataset.filteredCampsList"
             :disabled="!dataset.filteredCampsList.length"
-            item-text="name"
-            item-value="id"
+            item-text="camp.name"
+            item-value="camp.id"
             @change="campSelected"
             clearable
             v-bind="attrs"
@@ -145,7 +145,7 @@ export default class TKCampSelector extends Vue {
     }
   }
   campSelected(campId: string) {
-    if (campId !== this.dataset.currentCamp?.id) {
+    if (campId !== this.dataset.currentCamp?.camp.id) {
       campId
         ? this.dataset.setCurrentCamp(campId)
         : this.dataset.clearCurrentCamp();

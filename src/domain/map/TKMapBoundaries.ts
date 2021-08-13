@@ -62,9 +62,10 @@ export class TKMapBoundaries {
     }
     if (dataset.currentCamp) {
       this.mapFitBounds(
-        new LngLat(dataset.currentCamp.lng, dataset.currentCamp.lat).toBounds(
-          100
-        ),
+        new LngLat(
+          dataset.currentCamp.camp.lng,
+          dataset.currentCamp.camp.lat
+        ).toBounds(100),
         map
       );
     }

@@ -79,8 +79,8 @@
               :label="$t('camp')"
               :v-model="currentCamp"
               :items="dataset.filteredCampsList"
-              item-text="name"
-              item-value="id"
+              item-text="camp.name"
+              item-value="camp.id"
               @change="campSelected"
             ></v-autocomplete>
           </div>
@@ -152,7 +152,7 @@ export default class TKHomeCombos extends Vue {
     }
   }
   campSelected(campId: string) {
-    if (campId !== this.dataset.currentCamp?.id) {
+    if (campId !== this.dataset.currentCamp?.camp.id) {
       campId
         ? this.dataset.setCurrentCamp(campId)
         : this.dataset.clearCurrentCamp();

@@ -2,7 +2,7 @@ import { TKCampDescription } from "@/domain/survey/TKCampDescription";
 import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSubmission } from "./TKSubmission";
-import { TKSurvey } from "./TKSurvey";
+import { TKCamp, TKSurvey } from "./TKSurvey";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Filters Concept description. Requires Comments !
@@ -28,20 +28,23 @@ export type TKFiltersTypes = string | boolean | null;
 export class TKDatasetFilterer {
   lastModification = "";
 
+  // Dataset
   surveys: TKSurvey[];
   currentSurvey!: TKSurvey; // ! --> Disable'not defined in ctor error'
 
+  // Selection state
   currentAdmin1: TKBoundarieDescription | null = null;
   currentAdmin2: TKBoundarieDescription | null = null;
-  currentCamp: TKCampDescription | null = null;
+  currentCamp: TKCamp | null = null;
   currentDate = "";
-
   currentSubmission: TKSubmission | null = null;
+
+  // Filtered state
   sortedSubmissions: string[] = [];
 
   filteredAdmin1List: TKBoundarieDescription[] = [];
   filteredAdmin2List: TKBoundarieDescription[] = [];
-  filteredCampsList: TKCampDescription[] = [];
+  filteredCampsList: TKCamp[] = [];
   filters: { [key in TKFilters]: TKFiltersTypes } = {
     survey: null,
     admin1: null,
@@ -124,7 +127,7 @@ export class TKDatasetFilterer {
         if (
           this.currentCamp &&
           value === false &&
-          this.currentCamp.type === TKCampTypesValues.PLANNED
+          this.currentCamp.camp.type === TKCampTypesValues.PLANNED
         ) {
           this.levelToZoom = this.currentAdmin2
             ? TKFilters.ADMIN2
@@ -144,7 +147,7 @@ export class TKDatasetFilterer {
         if (
           this.currentCamp &&
           value === false &&
-          this.currentCamp.type === TKCampTypesValues.SPONTANEOUS
+          this.currentCamp.camp.type === TKCampTypesValues.SPONTANEOUS
         ) {
           this.levelToZoom = this.currentAdmin2
             ? TKFilters.ADMIN2
@@ -174,12 +177,10 @@ export class TKDatasetFilterer {
         if (this.sortedSubmissions.includes(date)) {
           this.currentDate = date;
         } else {
-          this.currentDate = this.currentCamp.lastSubmission;
+          this.currentDate = this.currentCamp.camp.lastSubmission;
         }
 
-        this.currentSubmission = this.currentSurvey.submissionsByCamps[
-          this.currentCamp.id
-        ][this.currentDate];
+        this.currentSubmission = this.currentCamp.submissions[date];
       } else {
         this.currentDate = "";
         this.currentSubmission = null;
@@ -297,11 +298,11 @@ export class TKDatasetFilterer {
         a => a.pcode === pcode
       ) as TKBoundarieDescription;
 
-      const campAdmin2 = this.currentSurvey.campsList.find(
-        a => a.admin2.pcode === this.currentAdmin2?.pcode
+      const campAdmin2 = this.currentSurvey.camps.find(
+        camp => camp.camp.admin2.pcode === this.currentAdmin2?.pcode
       );
       if (campAdmin2) {
-        this.currentAdmin1 = campAdmin2.admin1;
+        this.currentAdmin1 = campAdmin2.camp.admin1;
       }
       this.filters[TKFilters.ADMIN1] = this.currentAdmin1
         ? this.currentAdmin1.pcode
@@ -336,46 +337,42 @@ export class TKDatasetFilterer {
   }
 
   setCurrentCampName(campName: string) {
-    const camp = this.currentSurvey.campsList.find(
-      camp => camp.name === campName
+    const camp = this.currentSurvey.camps.find(
+      camp => camp.camp.name === campName
     );
     if (camp) {
-      this.setCurrentCamp(camp.id);
+      this.setCurrentCamp(camp.camp.id);
     }
   }
 
   setCurrentCamp(campId: string) {
-    if (this.currentCamp?.id !== campId) {
+    if (this.currentCamp?.camp.id !== campId) {
       this.filters[TKFilters.CAMP] = campId;
       this.levelToZoom = TKFilters.CAMP;
-      this.currentCamp = this.currentSurvey.campsList.find(
-        c => c.id === campId
-      ) as TKCampDescription;
+      this.currentCamp = this.currentSurvey.camps.find(
+        camp => camp.camp.id === campId
+      ) as TKCamp;
       if (this.currentCamp && this.currentSurvey) {
-        if (this.currentCamp.admin1 !== this.currentAdmin1) {
-          this.currentAdmin1 = this.currentCamp.admin1;
+        if (this.currentCamp.camp.admin1 !== this.currentAdmin1) {
+          this.currentAdmin1 = this.currentCamp.camp.admin1;
           this.filters[TKFilters.ADMIN1] = this.currentAdmin1.pcode;
         }
 
-        if (this.currentCamp.admin2 !== this.currentAdmin2) {
-          this.currentAdmin2 = this.currentCamp.admin2;
+        if (this.currentCamp.camp.admin2 !== this.currentAdmin2) {
+          this.currentAdmin2 = this.currentCamp.camp.admin2;
           this.filters[TKFilters.ADMIN2] = this.currentAdmin2.pcode;
         }
 
-        this.currentDate = this.currentSurvey.dateOfSubmissionsByCamps[
-          this.currentCamp.id
-        ][0];
+        this.currentDate = this.currentCamp.camp.lastSubmission;
 
         if (this.currentDate) {
-          this.currentSubmission = this.currentSurvey.submissionsByCamps[
-            this.currentCamp.id
-          ][this.currentDate];
+          this.currentSubmission = this.currentCamp.submissions[
+            this.currentDate
+          ];
         }
-        this.sortedSubmissions = this.currentSurvey.dateOfSubmissionsByCamps[
-          this.currentCamp.id
-        ];
+        this.sortedSubmissions = this.currentCamp.dates;
 
-        this.lastModification = `camp=${this.currentCamp.id}`;
+        this.lastModification = `camp=${this.currentCamp.camp.id}`;
       }
       this.updateFiltering();
     }
@@ -389,7 +386,7 @@ export class TKDatasetFilterer {
   filterAdmin1BaseOnFilteredCamp(): void {
     // Filter Admin1 based on filtered Camp List //////////////////////////////
     const validAdmin1 = new Set(
-      this.filteredCampsList.map(item => item.admin1.pcode)
+      this.filteredCampsList.map(item => item.camp.admin1.pcode)
     );
     this.filteredAdmin1List = this.filteredAdmin1List.filter(item =>
       validAdmin1.has(item.pcode)
@@ -405,7 +402,7 @@ export class TKDatasetFilterer {
   filterAdmin2BaseOnFilteredCamp(): void {
     // Filter Admin2 based on filtered Camp List //////////////////////////////
     const validAdmin2 = new Set(
-      this.filteredCampsList.map(item => item.admin2.pcode)
+      this.filteredCampsList.map(item => item.camp.admin2.pcode)
     );
     this.filteredAdmin2List = this.filteredAdmin2List.filter(item =>
       validAdmin2.has(item.pcode)
@@ -419,14 +416,14 @@ export class TKDatasetFilterer {
   // Sponateneous
   updateFiltering() {
     // Reset camp list ////////////////////////////////////////////////////////
-    this.filteredCampsList = this.currentSurvey.campsList;
+    this.filteredCampsList = this.currentSurvey.camps;
     this.filteredAdmin1List = this.currentSurvey.boundariesList.admin1;
     this.filteredAdmin2List = this.currentSurvey.boundariesList.admin2;
 
     // Camp filtering base on Admin1 //////////////////////////////////////////
     if (this.filters[TKFilters.ADMIN1]) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        x => x.admin1.pcode === this.filters[TKFilters.ADMIN1]
+        x => x.camp.admin1.pcode === this.filters[TKFilters.ADMIN1]
       );
       this.filterAdmin2BaseOnFilteredCamp();
     }
@@ -434,14 +431,14 @@ export class TKDatasetFilterer {
     // Camp filtering base on Admin2 //////////////////////////////////////////
     if (this.filters[TKFilters.ADMIN2]) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        x => x.admin2.pcode === this.filters[TKFilters.ADMIN2]
+        x => x.camp.admin2.pcode === this.filters[TKFilters.ADMIN2]
       );
     }
 
     // Remove planned if needed ///////////////////////////////////////////////
     if (!this.filters[TKFilters.PLANNED_SITE]) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        x => x.type !== TKCampTypesValues.PLANNED
+        x => x.camp.type !== TKCampTypesValues.PLANNED
       );
 
       this.filterAdmin1BaseOnFilteredCamp();
@@ -451,7 +448,7 @@ export class TKDatasetFilterer {
     // Remove spontaneous if needed ///////////////////////////////////////////
     if (!this.filters[TKFilters.SPONTANEOUS_SITE]) {
       this.filteredCampsList = this.filteredCampsList.filter(
-        x => x.type !== TKCampTypesValues.SPONTANEOUS
+        x => x.camp.type !== TKCampTypesValues.SPONTANEOUS
       );
       this.filterAdmin1BaseOnFilteredCamp();
       this.filterAdmin2BaseOnFilteredCamp();

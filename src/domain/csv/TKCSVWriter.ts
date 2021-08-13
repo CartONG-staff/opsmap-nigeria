@@ -8,8 +8,8 @@ import { TKGetLocalValue } from "../ui/TKLabel";
 
 function computeExportFilename(dataset: TKDatasetFilterer): string {
   if (dataset) {
-    const campId = dataset.currentCamp?.id ?? "";
-    const campName = dataset.currentCamp?.name ?? "";
+    const campId = dataset.currentCamp?.camp.id ?? "";
+    const campName = dataset.currentCamp?.camp.name ?? "";
     const submissionId = dataset.currentDate.replaceAll("/", "-");
 
     const filename = campId + "_" + campName + "_" + submissionId;

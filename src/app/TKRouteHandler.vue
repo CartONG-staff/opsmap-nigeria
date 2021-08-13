@@ -87,7 +87,7 @@ export default class TKRouteHandler extends Vue {
     const surveyE = encodeURIComponent(this.dataset.currentSurvey?.name ?? "");
     const admin1E = encodeURIComponent(this.dataset.currentAdmin1?.name ?? "");
     const admin2E = encodeURIComponent(this.dataset.currentAdmin2?.name ?? "");
-    const campE = encodeURIComponent(this.dataset.currentCamp?.name ?? "");
+    const campE = encodeURIComponent(this.dataset.currentCamp?.camp.name ?? "");
     const dateE = encodeURIComponent(
       this.dataset.currentDate?.replaceAll("/", "-") ?? ""
     );
