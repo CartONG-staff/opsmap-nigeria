@@ -31,11 +31,8 @@ export class TKDatasetFilterer {
   surveys: TKSurvey[];
   currentSurvey: TKSurvey;
 
-  admin1List: TKBoundarieDescription[] = [];
   currentAdmin1: TKBoundarieDescription | null = null;
-  admin2List: TKBoundarieDescription[] = [];
   currentAdmin2: TKBoundarieDescription | null = null;
-  campsList: TKCampDescription[] = [];
   currentCamp: TKCampDescription | null = null;
   currentDate = "";
 
@@ -108,23 +105,9 @@ export class TKDatasetFilterer {
       this.filters[TKFilters.ADMIN1] = null;
       this.levelToZoom = TKFilters.SURVEY;
 
-      // if (survey) {
       this.currentSurvey = survey;
 
-      // TODO : understand filtering
-      // this.filters[TKFilters.SURVEY] = this.currentSurvey;
-
-      this.campsList = this.currentSurvey.campsList;
-      this.admin1List = this.currentSurvey.boundariesList.admin1;
-      this.admin2List = this.currentSurvey.boundariesList.admin2;
-      this.lastModification = `survey=${this.currentSurvey}`;
-      // } else {
-      //   console.error(
-      //     "The survey '" + survey + "' does not exist in the opsmap"
-      //   );
-      //   this.resetActiveSurvey();
-      //   this.lastModification = "home";
-      // }
+      this.lastModification = `survey=${this.currentSurvey.name}`;
 
       this.updateFiltering();
     }
@@ -234,7 +217,9 @@ export class TKDatasetFilterer {
   }
 
   setCurrentAdmin1Name(admin1Name: string) {
-    const admin1 = this.admin1List.find(admin1 => admin1.name === admin1Name);
+    const admin1 = this.currentSurvey.boundariesList.admin1.find(
+      admin1 => admin1.name === admin1Name
+    );
     if (admin1) {
       this.setCurrentAdmin1(admin1.pcode);
     }
@@ -254,7 +239,7 @@ export class TKDatasetFilterer {
       this.filters[TKFilters.CAMP] = null;
 
       this.levelToZoom = TKFilters.ADMIN1;
-      this.currentAdmin1 = this.admin1List.find(
+      this.currentAdmin1 = this.currentSurvey.boundariesList.admin1.find(
         a => a.pcode === pcode
       ) as TKBoundarieDescription;
 
@@ -291,7 +276,9 @@ export class TKDatasetFilterer {
   }
 
   setCurrentAdmin2Name(admin2Name: string) {
-    const admin2 = this.admin2List.find(admin2 => admin2.name === admin2Name);
+    const admin2 = this.currentSurvey.boundariesList.admin2.find(
+      admin2 => admin2.name === admin2Name
+    );
     if (admin2) {
       this.setCurrentAdmin2(admin2.pcode);
     }
@@ -310,11 +297,11 @@ export class TKDatasetFilterer {
 
       // New admin2
       this.levelToZoom = TKFilters.ADMIN2;
-      this.currentAdmin2 = this.admin2List.find(
+      this.currentAdmin2 = this.currentSurvey.boundariesList.admin2.find(
         a => a.pcode === pcode
       ) as TKBoundarieDescription;
 
-      const campAdmin2 = this.campsList.find(
+      const campAdmin2 = this.currentSurvey.campsList.find(
         a => a.admin2.pcode === this.currentAdmin2?.pcode
       );
       if (campAdmin2) {
@@ -353,7 +340,9 @@ export class TKDatasetFilterer {
   }
 
   setCurrentCampName(campName: string) {
-    const camp = this.campsList.find(camp => camp.name === campName);
+    const camp = this.currentSurvey.campsList.find(
+      camp => camp.name === campName
+    );
     if (camp) {
       this.setCurrentCamp(camp.id);
     }
@@ -363,7 +352,7 @@ export class TKDatasetFilterer {
     if (this.currentCamp?.id !== campId) {
       this.filters[TKFilters.CAMP] = campId;
       this.levelToZoom = TKFilters.CAMP;
-      this.currentCamp = this.campsList.find(
+      this.currentCamp = this.currentSurvey.campsList.find(
         c => c.id === campId
       ) as TKCampDescription;
       if (this.currentCamp && this.currentSurvey) {
@@ -434,9 +423,9 @@ export class TKDatasetFilterer {
   // Sponateneous
   updateFiltering() {
     // Reset camp list ////////////////////////////////////////////////////////
-    this.filteredCampsList = this.campsList;
-    this.filteredAdmin1List = this.admin1List;
-    this.filteredAdmin2List = this.admin2List;
+    this.filteredCampsList = this.currentSurvey.campsList;
+    this.filteredAdmin1List = this.currentSurvey.boundariesList.admin1;
+    this.filteredAdmin2List = this.currentSurvey.boundariesList.admin2;
 
     // Camp filtering base on Admin1 //////////////////////////////////////////
     if (this.filters[TKFilters.ADMIN1]) {
