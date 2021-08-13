@@ -22,7 +22,6 @@ interface TKCampInfos {
   admin1: TKBoundarieDescription;
   admin2: TKBoundarieDescription;
   admin3: TKBoundarieDescription;
-  lastSubmission: string; // Used for popup in the map
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -31,5 +30,5 @@ interface TKCampInfos {
 
 export interface TKCamp {
   infos: TKCampInfos;
-  submissions: TKSubmission[];
+  submissions: [TKSubmission, ...TKSubmission[]]; // At least one element!
 }

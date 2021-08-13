@@ -62,8 +62,7 @@ function computeSurveyIndicator(
   let sum = 0;
 
   for (const camp of camps) {
-    // TODO : improve last submission
-    const submission = camp.submissions[0]; // camp.infos.lastSubmission];
+    const submission = camp.submissions[0];
     if (submission) {
       if (!foundAtLeastOnce) {
         for (const thematic in submission.thematics) {
@@ -139,10 +138,20 @@ export function TKCreateSurvey(
   });
 
   for (const submission of submissions) {
-    // Doesn't exist in camps list
+    const computedSubmission = TKCreateSubmission(
+      submission,
+      surveyConfig,
+      indicatorsDescription,
+      spatialDescription,
+      languages
+    );
+
+    // Check if new camp
     let camp = camps.find(
       camp => camp.infos.id === submission[spatialDescription.siteIDField]
     );
+
+    // Doesn't exist in camps list
     if (!camp) {
       camp = {
         infos: {
@@ -168,10 +177,9 @@ export function TKCreateSurvey(
           admin3: {
             pcode: submission[spatialDescription.adm3Pcode],
             name: submission[spatialDescription.adm3Name]
-          },
-          lastSubmission: ""
+          }
         },
-        submissions: []
+        submissions: [computedSubmission]
       };
       camps.push(camp);
 
@@ -199,17 +207,11 @@ export function TKCreateSurvey(
         });
       }
     }
-
-    // Add the submissions
-    camp?.submissions.push(
-      TKCreateSubmission(
-        submission,
-        surveyConfig,
-        indicatorsDescription,
-        spatialDescription,
-        languages
-      )
-    );
+    // Exist in camps list
+    else {
+      // Add the submissions
+      camp.submissions.push(computedSubmission);
+    }
   }
 
   // Sort the dates and update last submission date for each camp
