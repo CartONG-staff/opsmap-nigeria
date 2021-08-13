@@ -1,7 +1,5 @@
-import { TKCampDescription } from "@/domain/survey/TKCampDescription";
 import { FeatureCollection } from "geojson";
-import { TKCamp } from "../survey/TKSurvey";
-
+import { TKCamp } from "@/domain/survey/TKCamp";
 interface TKFilteredCamps {
   selectedCamp: FeatureCollection | string;
   otherCamps: FeatureCollection;

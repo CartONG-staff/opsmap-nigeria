@@ -1,8 +1,8 @@
-import { TKCampDescription } from "@/domain/survey/TKCampDescription";
-import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
+import { TKCampTypesValues } from "@/domain/survey/TKCamp";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSubmission } from "./TKSubmission";
-import { TKCamp, TKSurvey } from "./TKSurvey";
+import { TKSurvey } from "./TKSurvey";
+import { TKCamp } from "@/domain/survey/TKCamp";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Filters Concept description. Requires Comments !

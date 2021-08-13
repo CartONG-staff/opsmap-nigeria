@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { TKCampDescription, TKCampTypesValues } from "./TKCampDescription";
+import { TKCampTypesValues } from "./TKCamp";
 import { TKBoundariesCollection } from "./TKBoundariesCollection";
-import { TKSubmission, TKCreateSubmission } from "./TKSubmission";
+import { TKCreateSubmission } from "./TKSubmission";
 import { TKIndicator } from "../ui/TKIndicator";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
@@ -12,16 +12,7 @@ import {
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import moment from "moment";
 import { isNumber } from "@turf/turf";
-
-// ////////////////////////////////////////////////////////////////////////////
-// Camp Type definition
-// ////////////////////////////////////////////////////////////////////////////
-
-export interface TKCamp {
-  camp: TKCampDescription;
-  submissions: { [date: string]: TKSubmission };
-  dates: string[];
-}
+import { TKCamp } from "@/domain/survey/TKCamp";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition

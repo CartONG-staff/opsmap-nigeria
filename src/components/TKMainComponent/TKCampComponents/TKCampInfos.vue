@@ -87,7 +87,7 @@
 <script lang="ts">
 // Manage by: cccm_shelter__mangmt
 
-import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
+import { TKCampTypesValues } from "@/domain/survey/TKCamp";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue, TKLabel } from "@/domain/ui/TKLabel";

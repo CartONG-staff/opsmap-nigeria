@@ -11,6 +11,8 @@ export enum TKCampTypesValues {
 // ////////////////////////////////////////////////////////////////////////////
 
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
+import { TKSubmission } from "./TKSubmission";
+
 export interface TKCampDescription {
   id: string;
   name: string;
@@ -21,4 +23,14 @@ export interface TKCampDescription {
   admin2: TKBoundarieDescription;
   admin3: TKBoundarieDescription;
   lastSubmission: string; // Used for popup in the map
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Camp Type definition
+// ////////////////////////////////////////////////////////////////////////////
+
+export interface TKCamp {
+  camp: TKCampDescription;
+  submissions: { [date: string]: TKSubmission };
+  dates: string[];
 }

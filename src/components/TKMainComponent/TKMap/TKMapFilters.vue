@@ -111,7 +111,7 @@ import {
   TKDatasetFilterer,
   TKFilters
 } from "@/domain/survey/TKDatasetFilterer";
-import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
+import { TKCampTypesValues } from "@/domain/survey/TKCamp";
 
 @Component
 export default class TKMapFilter extends Vue {
