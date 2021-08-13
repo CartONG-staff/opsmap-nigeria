@@ -19,7 +19,6 @@
           item-text="date"
           return-object
           :prefix="$t('site.dateSuffix').toUpperCase()"
-          @change="submissionSelected"
         ></v-autocomplete>
         <v-autocomplete
           v-else
@@ -34,11 +33,6 @@
           solo
           dense
           height="44"
-          v-model="dataset.currentSubmission"
-          :items="dataset.currentCamp.submissions"
-          item-text="date"
-          return-object
-          @change="dateSelected"
         ></v-autocomplete>
       </div>
     </transition>
@@ -101,8 +95,7 @@
 <script lang="ts">
 import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { TKSubmission } from "@/domain/survey/TKSubmission";
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 @Component
 export default class TKCampToolbar extends Vue {
@@ -111,17 +104,6 @@ export default class TKCampToolbar extends Vue {
 
   @Prop()
   readonly dataset!: TKDatasetFilterer;
-
-  currentSubmission = this.dataset.currentSubmission;
-  @Watch("dataset.currentSubmission")
-  onCurrentSubmissionChanged() {
-    this.currentSubmission = this.dataset.currentSubmission;
-  }
-
-  submissionSelected(submission: TKSubmission) {
-    console.log(submission);
-    this.dataset.setCurrentSubmission(submission);
-  }
 
   onExportTriggered() {
     if (this.dataset && this.dataset.currentSubmission) {
