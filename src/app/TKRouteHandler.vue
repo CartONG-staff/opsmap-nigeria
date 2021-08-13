@@ -18,7 +18,7 @@ export default class TKRouteHandler extends Vue {
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
       if (this.$route.path !== "/") {
-        this.dataset.clearCurrentAdmin1();
+        this.dataset.currentAdmin1 = null;
         this.currentRoute = "/";
         this.$router.push({
           name: "home",
@@ -58,7 +58,7 @@ export default class TKRouteHandler extends Vue {
   // Adjust dataset from a given URL
   updateDatasetFromUrl() {
     if (this.$route.name === "home") {
-      this.dataset.clearCurrentAdmin1();
+      this.dataset.currentAdmin1 = null;
     } else if (this.$route.name === "camp") {
       const survey: string = this.$route.params["survey"] ?? "";
       const admin1: string = this.$route.params["admin1"] ?? "";
@@ -73,9 +73,9 @@ export default class TKRouteHandler extends Vue {
             this.dataset.setSubmissionByDate(date);
           }
         } else if (admin2) {
-          this.dataset.setCurrentAdmin2Name(admin2);
+          this.dataset.setCurrentAdmin2ByName(admin2);
         } else if (admin1) {
-          this.dataset.setCurrentAdmin1Name(admin1);
+          this.dataset.setCurrentAdmin1ByName(admin1);
         }
       }
     }

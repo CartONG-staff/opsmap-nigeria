@@ -27,12 +27,11 @@
             flat
             dense
             :label="$t('infosAdmin1')"
-            v-model="currentAdmin1"
+            v-model="dataset.currentAdmin1"
             :items="dataset.filteredAdmin1List"
             :disabled="!dataset.filteredAdmin1List.length"
             item-text="name"
-            item-value="pcode"
-            @change="admin1Selected"
+            return-object
             clearable
             v-bind="attrs"
             v-on="on"
@@ -49,12 +48,11 @@
             flat
             dense
             :label="$t('infosAdmin2')"
-            v-model="currentAdmin2"
+            v-model="dataset.currentAdmin2"
             :items="dataset.filteredAdmin2List"
             :disabled="!dataset.filteredAdmin2List.length"
             item-text="name"
-            item-value="pcode"
-            @change="admin2Selected"
+            return-object
             clearable
             v-bind="attrs"
             v-on="on"
@@ -103,38 +101,11 @@ export default class TKCampSelector extends Vue {
     this.currentSurvey = this.dataset.currentSurvey;
   }
 
-  currentAdmin1 = this.dataset.currentAdmin1;
-  @Watch("dataset.currentAdmin1")
-  onCurrentAdmin1Changed() {
-    this.currentAdmin1 = this.dataset.currentAdmin1;
-  }
-
-  currentAdmin2 = this.dataset.currentAdmin2;
-  @Watch("dataset.currentAdmin2")
-  onCurrentAdmin2Changed() {
-    this.currentAdmin2 = this.dataset.currentAdmin2;
-  }
-
   surveySelected(survey: TKSurvey) {
     if (survey) {
       this.dataset.setActiveSurvey(survey);
     } else {
       this.dataset.resetActiveSurvey();
-    }
-  }
-
-  admin1Selected(pcode: string) {
-    if (pcode !== this.dataset.currentAdmin1?.pcode) {
-      pcode
-        ? this.dataset.setCurrentAdmin1(pcode)
-        : this.dataset.clearCurrentAdmin1();
-    }
-  }
-  admin2Selected(pcode: string) {
-    if (pcode !== this.dataset.currentAdmin2?.pcode) {
-      pcode
-        ? this.dataset.setCurrentAdmin2(pcode)
-        : this.dataset.clearCurrentAdmin2();
     }
   }
 }
