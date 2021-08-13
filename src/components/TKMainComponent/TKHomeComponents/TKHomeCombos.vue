@@ -98,43 +98,34 @@ import { TKSurvey } from "@/domain/survey/TKSurvey";
 
 @Component({})
 export default class TKHomeCombos extends Vue {
-  @Prop({ default: () => [] })
+  @Prop()
   readonly dataset!: TKDatasetFilterer;
 
   currentSurvey = this.dataset.currentSurvey;
 
   @Watch("dataset.currentSurvey")
   onCurrentSurveyChanged() {
-    if (this.currentSurvey !== this.dataset.currentSurvey) {
-      this.currentSurvey = this.dataset.currentSurvey;
-    }
+    this.currentSurvey = this.dataset.currentSurvey;
   }
 
   currentAdmin1 = this.dataset.currentAdmin1;
 
   @Watch("dataset.currentAdmin1")
   onCurrentAdmin1Changed() {
-    if (this.currentAdmin1 !== this.dataset.currentAdmin1) {
-      this.currentAdmin1 = this.dataset.currentAdmin1;
-    }
+    this.currentAdmin1 = this.dataset.currentAdmin1;
   }
 
   currentAdmin2 = this.dataset.currentAdmin2;
 
   @Watch("dataset.currentAdmin2")
   onCurrentAdmin2Changed() {
-    if (this.currentAdmin2 !== this.dataset.currentAdmin2) {
-      this.currentAdmin2 = this.dataset.currentAdmin2;
-    }
+    this.currentAdmin2 = this.dataset.currentAdmin2;
   }
 
   currentCamp = this.dataset.currentCamp;
 
   @Watch("dataset.currentCamp")
   onCurrentCampChanged() {
-    if (this.currentCamp !== this.dataset.currentCamp) {
-      this.currentCamp = this.dataset.currentCamp;
-    }
     this.currentCamp = this.dataset.currentCamp;
   }
 

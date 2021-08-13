@@ -1,7 +1,6 @@
 import { TKCampDescription } from "@/domain/survey/TKCampDescription";
 import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
-import { TKSurveyCollection } from "./TKSurveyCollection";
 import { TKSubmission } from "./TKSubmission";
 import { TKSurvey } from "./TKSurvey";
 
@@ -30,7 +29,7 @@ export class TKDatasetFilterer {
   lastModification = "";
 
   surveys: TKSurvey[];
-  currentSurvey: TKSurvey | null = null;
+  currentSurvey: TKSurvey;
 
   admin1List: TKBoundarieDescription[] = [];
   currentAdmin1: TKBoundarieDescription | null = null;
@@ -56,18 +55,16 @@ export class TKDatasetFilterer {
   };
   levelToZoom: TKFilters = TKFilters.SURVEY;
 
-  constructor(surveys: TKSurveyCollection) {
+  constructor(surveys: TKSurvey[]) {
     const before = Date.now();
 
-    // TODO REFACTOR
-    this.surveys = [];
-    for (const index in surveys) {
-      this.surveys.push(surveys[index]);
-    }
+    this.surveys = surveys;
 
-    // this.surveys = surveys;
-    // this.surveyList = Object.keys(surveys);
-    this.resetActiveSurvey();
+    this.setActiveSurvey(this.surveys[0]);
+
+    // Disable'not defined in ctor error'
+    // After setActiveSurvey
+    this.currentSurvey = this.surveys[0];
 
     console.log(
       `Dataset filterer set up ${(Date.now() - before) / 1000} seconds.`
@@ -81,8 +78,6 @@ export class TKDatasetFilterer {
   resetActiveSurvey() {
     if (this.surveys.length > 0) {
       this.setActiveSurvey(this.surveys[0]);
-    } else {
-      this.currentSurvey = null;
     }
   }
 
@@ -113,23 +108,23 @@ export class TKDatasetFilterer {
       this.filters[TKFilters.ADMIN1] = null;
       this.levelToZoom = TKFilters.SURVEY;
 
-      if (survey) {
-        this.currentSurvey = survey;
+      // if (survey) {
+      this.currentSurvey = survey;
 
-        // TODO : understand filtering
-        // this.filters[TKFilters.SURVEY] = this.currentSurvey;
+      // TODO : understand filtering
+      // this.filters[TKFilters.SURVEY] = this.currentSurvey;
 
-        this.campsList = this.currentSurvey.campsList;
-        this.admin1List = this.currentSurvey.boundariesList.admin1;
-        this.admin2List = this.currentSurvey.boundariesList.admin2;
-        this.lastModification = `survey=${this.currentSurvey}`;
-      } else {
-        console.error(
-          "The survey '" + survey + "' does not exist in the opsmap"
-        );
-        this.resetActiveSurvey();
-        this.lastModification = "home";
-      }
+      this.campsList = this.currentSurvey.campsList;
+      this.admin1List = this.currentSurvey.boundariesList.admin1;
+      this.admin2List = this.currentSurvey.boundariesList.admin2;
+      this.lastModification = `survey=${this.currentSurvey}`;
+      // } else {
+      //   console.error(
+      //     "The survey '" + survey + "' does not exist in the opsmap"
+      //   );
+      //   this.resetActiveSurvey();
+      //   this.lastModification = "home";
+      // }
 
       this.updateFiltering();
     }

@@ -95,7 +95,7 @@ import { TKSurvey } from "@/domain/survey/TKSurvey";
 
 @Component
 export default class TKCampSelector extends Vue {
-  @Prop({ default: () => new TKDatasetFilterer({}) })
+  @Prop()
   readonly dataset!: TKDatasetFilterer;
 
   currentSurvey = this.dataset.currentSurvey;
