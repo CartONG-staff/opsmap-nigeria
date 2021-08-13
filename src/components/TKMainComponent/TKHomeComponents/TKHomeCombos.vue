@@ -15,9 +15,11 @@
               dense
               :label="$t('survey')"
               v-model="currentSurvey"
-              :items="dataset.surveyList"
+              :items="dataset.surveys"
+              item-text="name"
               @change="surveySelected"
-              :disabled="dataset.surveyList.length < 2"
+              :disabled="dataset.surveys.length < 2"
+              return-object
             ></v-autocomplete>
           </div>
         </template>
@@ -92,6 +94,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKSurvey } from "@/domain/survey/TKSurvey";
 
 @Component({})
 export default class TKHomeCombos extends Vue {
@@ -99,6 +102,7 @@ export default class TKHomeCombos extends Vue {
   readonly dataset!: TKDatasetFilterer;
 
   currentSurvey = this.dataset.currentSurvey;
+
   @Watch("dataset.currentSurvey")
   onCurrentSurveyChanged() {
     if (this.currentSurvey !== this.dataset.currentSurvey) {
@@ -107,6 +111,7 @@ export default class TKHomeCombos extends Vue {
   }
 
   currentAdmin1 = this.dataset.currentAdmin1;
+
   @Watch("dataset.currentAdmin1")
   onCurrentAdmin1Changed() {
     if (this.currentAdmin1 !== this.dataset.currentAdmin1) {
@@ -115,6 +120,7 @@ export default class TKHomeCombos extends Vue {
   }
 
   currentAdmin2 = this.dataset.currentAdmin2;
+
   @Watch("dataset.currentAdmin2")
   onCurrentAdmin2Changed() {
     if (this.currentAdmin2 !== this.dataset.currentAdmin2) {
@@ -123,6 +129,7 @@ export default class TKHomeCombos extends Vue {
   }
 
   currentCamp = this.dataset.currentCamp;
+
   @Watch("dataset.currentCamp")
   onCurrentCampChanged() {
     if (this.currentCamp !== this.dataset.currentCamp) {
@@ -131,9 +138,14 @@ export default class TKHomeCombos extends Vue {
     this.currentCamp = this.dataset.currentCamp;
   }
 
-  surveySelected(id: string) {
-    id ? this.dataset.setActiveSurvey(id) : this.dataset.resetActiveSurvey();
+  surveySelected(survey: TKSurvey) {
+    if (survey) {
+      this.dataset.setActiveSurvey(survey);
+    } else {
+      this.dataset.resetActiveSurvey();
+    }
   }
+
   admin1Selected(pcode: string) {
     if (pcode !== this.dataset.currentAdmin1?.pcode) {
       pcode

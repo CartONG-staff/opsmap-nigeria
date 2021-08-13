@@ -66,7 +66,7 @@ export default class TKRouteHandler extends Vue {
       const camp: string = this.$route.params["camp"] ?? "";
       const date: string = this.$route.params["date"]?.replaceAll("-", "/");
       if (survey) {
-        this.dataset.setActiveSurvey(survey);
+        this.dataset.setActiveSurveyByName(survey);
         if (camp) {
           this.dataset.setCurrentCampName(camp);
           if (date) {
@@ -84,7 +84,7 @@ export default class TKRouteHandler extends Vue {
   // Adjust URL from a given dataset
   updateUrlFromDataset() {
     // upadte URL
-    const surveyE = encodeURIComponent(this.dataset.currentSurvey);
+    const surveyE = encodeURIComponent(this.dataset.currentSurvey?.name ?? "");
     const admin1E = encodeURIComponent(this.dataset.currentAdmin1?.name ?? "");
     const admin2E = encodeURIComponent(this.dataset.currentAdmin2?.name ?? "");
     const campE = encodeURIComponent(this.dataset.currentCamp?.name ?? "");

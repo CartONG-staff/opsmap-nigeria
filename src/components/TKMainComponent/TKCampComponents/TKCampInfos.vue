@@ -132,10 +132,10 @@ export default class TKCampInfos extends Vue {
       item => item.type === "text" && item.field === "cccm_shelter__mangmt"
     ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
 
-    if (this.dataset && this.dataset.surveys[this.dataset.currentSurvey]) {
-      this.manageByUrl = this.dataset.surveys[
-        this.dataset.currentSurvey
-      ].fdf.urls[this.manageByLabel["en"]];
+    if (this.dataset && this.dataset.currentSurvey) {
+      this.manageByUrl = this.dataset.currentSurvey.fdf.urls[
+        this.manageByLabel["en"]
+      ];
     } else {
       this.manageByUrl = "";
     }

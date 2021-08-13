@@ -3,9 +3,10 @@ import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSurveyCollection } from "./TKSurveyCollection";
 import { TKSubmission } from "./TKSubmission";
+import { TKSurvey } from "./TKSurvey";
 
 // ////////////////////////////////////////////////////////////////////////////
-// Filtesr Concept description. Requires Comments !
+// Filters Concept description. Requires Comments !
 // TODO : work on this : clarity, comments, etc.
 // ////////////////////////////////////////////////////////////////////////////
 
@@ -28,9 +29,9 @@ export type TKFiltersTypes = string | boolean | null;
 export class TKDatasetFilterer {
   lastModification = "";
 
-  surveys: TKSurveyCollection;
-  surveyList: string[];
-  currentSurvey = "";
+  surveys: TKSurvey[];
+  currentSurvey: TKSurvey | null = null;
+
   admin1List: TKBoundarieDescription[] = [];
   currentAdmin1: TKBoundarieDescription | null = null;
   admin2List: TKBoundarieDescription[] = [];
@@ -58,15 +59,19 @@ export class TKDatasetFilterer {
   constructor(surveys: TKSurveyCollection) {
     const before = Date.now();
 
-    this.surveys = surveys;
-    this.surveyList = Object.keys(surveys);
-    if (this.surveyList.length > 0) {
-      this.setActiveSurvey(this.surveyList[0]);
-
-      console.log(
-        `Dataset filterer set up ${(Date.now() - before) / 1000} seconds.`
-      );
+    // TODO REFACTOR
+    this.surveys = [];
+    for (const index in surveys) {
+      this.surveys.push(surveys[index]);
     }
+
+    // this.surveys = surveys;
+    // this.surveyList = Object.keys(surveys);
+    this.resetActiveSurvey();
+
+    console.log(
+      `Dataset filterer set up ${(Date.now() - before) / 1000} seconds.`
+    );
   }
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -74,17 +79,27 @@ export class TKDatasetFilterer {
   // ////////////////////////////////////////////////////////////////////////////
 
   resetActiveSurvey() {
-    if (this.surveyList.length > 0) {
-      this.currentSurvey = "";
-      this.setActiveSurvey(this.surveyList[0]);
+    if (this.surveys.length > 0) {
+      this.setActiveSurvey(this.surveys[0]);
+    } else {
+      this.currentSurvey = null;
     }
   }
 
   hasActiveSurvey(): boolean {
-    return this.surveyList.includes(this.currentSurvey);
+    return this.currentSurvey !== null;
   }
 
-  setActiveSurvey(survey: string) {
+  setActiveSurveyByName(name: string) {
+    const survey = this.surveys.find(item => item.name === name);
+    if (survey) {
+      this.setActiveSurvey(survey);
+    } else {
+      this.resetActiveSurvey();
+    }
+  }
+
+  setActiveSurvey(survey: TKSurvey) {
     if (this.currentSurvey !== survey) {
       // Erase everything
       this.currentCamp = null;
@@ -98,16 +113,15 @@ export class TKDatasetFilterer {
       this.filters[TKFilters.ADMIN1] = null;
       this.levelToZoom = TKFilters.SURVEY;
 
-      if (this.surveyList.includes(survey)) {
+      if (survey) {
         this.currentSurvey = survey;
-        this.filters[TKFilters.SURVEY] = this.currentSurvey;
-        this.campsList = this.surveys[this.currentSurvey].campsList;
-        this.admin1List = this.surveys[
-          this.currentSurvey
-        ].boundariesList.admin1;
-        this.admin2List = this.surveys[
-          this.currentSurvey
-        ].boundariesList.admin2;
+
+        // TODO : understand filtering
+        // this.filters[TKFilters.SURVEY] = this.currentSurvey;
+
+        this.campsList = this.currentSurvey.campsList;
+        this.admin1List = this.currentSurvey.boundariesList.admin1;
+        this.admin2List = this.currentSurvey.boundariesList.admin2;
         this.lastModification = `survey=${this.currentSurvey}`;
       } else {
         console.error(
@@ -182,16 +196,16 @@ export class TKDatasetFilterer {
 
   setCurrentDate(date: string) {
     if (date !== this.currentDate) {
-      if (this.currentCamp) {
+      if (this.currentSurvey && this.currentCamp) {
         if (this.sortedSubmissions.includes(date)) {
           this.currentDate = date;
         } else {
           this.currentDate = this.currentCamp.lastSubmission;
         }
 
-        this.currentSubmission = this.surveys[
-          this.currentSurvey
-        ].submissionsByCamps[this.currentCamp.id][this.currentDate];
+        this.currentSubmission = this.currentSurvey.submissionsByCamps[
+          this.currentCamp.id
+        ][this.currentDate];
       } else {
         this.currentDate = "";
         this.currentSubmission = null;
@@ -357,7 +371,7 @@ export class TKDatasetFilterer {
       this.currentCamp = this.campsList.find(
         c => c.id === campId
       ) as TKCampDescription;
-      if (this.currentCamp) {
+      if (this.currentCamp && this.currentSurvey) {
         if (this.currentCamp.admin1 !== this.currentAdmin1) {
           this.currentAdmin1 = this.currentCamp.admin1;
           this.filters[TKFilters.ADMIN1] = this.currentAdmin1.pcode;
@@ -368,18 +382,18 @@ export class TKDatasetFilterer {
           this.filters[TKFilters.ADMIN2] = this.currentAdmin2.pcode;
         }
 
-        this.currentDate = this.surveys[
-          this.currentSurvey
-        ].dateOfSubmissionsByCamps[this.currentCamp.id][0];
+        this.currentDate = this.currentSurvey.dateOfSubmissionsByCamps[
+          this.currentCamp.id
+        ][0];
 
         if (this.currentDate) {
-          this.currentSubmission = this.surveys[
-            this.currentSurvey
-          ].submissionsByCamps[this.currentCamp.id][this.currentDate];
+          this.currentSubmission = this.currentSurvey.submissionsByCamps[
+            this.currentCamp.id
+          ][this.currentDate];
         }
-        this.sortedSubmissions = this.surveys[
-          this.currentSurvey
-        ].dateOfSubmissionsByCamps[this.currentCamp.id];
+        this.sortedSubmissions = this.currentSurvey.dateOfSubmissionsByCamps[
+          this.currentCamp.id
+        ];
 
         this.lastModification = `camp=${this.currentCamp.id}`;
       }

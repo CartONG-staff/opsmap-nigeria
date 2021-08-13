@@ -17,6 +17,7 @@ import { isNumber } from "@turf/turf";
 // Survey concept definition
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKSurvey {
+  name: string;
   submissionsByCamps: { [campId: string]: { [date: string]: TKSubmission } };
   dateOfSubmissionsByCamps: { [campId: string]: string[] };
   campsList: TKCampDescription[];
@@ -255,6 +256,7 @@ export function TKCreateSurvey(
   });
 
   return {
+    name: surveyConfig.name,
     submissionsByCamps: submissionsByCamps,
     dateOfSubmissionsByCamps: dateOfSubmissionsByCamps,
     campsList: campsList,

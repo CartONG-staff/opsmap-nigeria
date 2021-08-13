@@ -9,9 +9,11 @@
             dense
             :label="$t('survey')"
             v-model="currentSurvey"
-            :items="dataset.surveyList"
+            :items="dataset.surveys"
+            item-text="name"
             @change="surveySelected"
-            :disabled="dataset.surveyList.length < 2"
+            :disabled="dataset.surveys.length < 2"
+            return-object
             v-bind="attrs"
             v-on="on"
           ></v-autocomplete>
@@ -89,6 +91,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKSurvey } from "@/domain/survey/TKSurvey";
 
 @Component
 export default class TKCampSelector extends Vue {
@@ -119,9 +122,14 @@ export default class TKCampSelector extends Vue {
     this.currentCamp = this.dataset.currentCamp;
   }
 
-  surveySelected(id: string) {
-    id ? this.dataset.setActiveSurvey(id) : this.dataset.resetActiveSurvey();
+  surveySelected(survey: TKSurvey) {
+    if (survey) {
+      this.dataset.setActiveSurvey(survey);
+    } else {
+      this.dataset.resetActiveSurvey();
+    }
   }
+
   admin1Selected(pcode: string) {
     if (pcode !== this.dataset.currentAdmin1?.pcode) {
       pcode
