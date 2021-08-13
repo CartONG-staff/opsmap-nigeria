@@ -87,7 +87,7 @@
 <script lang="ts">
 // Manage by: cccm_shelter__mangmt
 
-import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
+import { TKCampTypesValues } from "@/domain/survey/TKCamp";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue, TKLabel } from "@/domain/ui/TKLabel";
@@ -111,14 +111,16 @@ export default class TKCampInfos extends Vue {
   onChange() {
     if (this.dataset) {
       this.admin1 = this.dataset.currentCamp
-        ? this.dataset.currentCamp.admin1.name
+        ? this.dataset.currentCamp.infos.admin1.name
         : "-";
       this.admin2 = this.dataset.currentCamp
-        ? this.dataset.currentCamp.admin2.name
+        ? this.dataset.currentCamp.infos.admin2.name
         : "-";
 
       this.coordinates = this.dataset.currentCamp
-        ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
+        ? this.dataset.currentCamp.infos.lat +
+          "," +
+          this.dataset.currentCamp.infos.lng
         : "-";
       this.handeLocale();
     }
@@ -132,10 +134,10 @@ export default class TKCampInfos extends Vue {
       item => item.type === "text" && item.field === "cccm_shelter__mangmt"
     ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
 
-    if (this.dataset && this.dataset.surveys[this.dataset.currentSurvey]) {
-      this.manageByUrl = this.dataset.surveys[
-        this.dataset.currentSurvey
-      ].fdf.urls[this.manageByLabel["en"]];
+    if (this.dataset && this.dataset.currentSurvey) {
+      this.manageByUrl = this.dataset.currentSurvey.fdf.urls[
+        this.manageByLabel["en"]
+      ];
     } else {
       this.manageByUrl = "";
     }
@@ -153,7 +155,7 @@ export default class TKCampInfos extends Vue {
         this.manageByLabel,
         this.$root.$i18n.locale
       );
-      if (this.dataset.currentCamp.type === TKCampTypesValues.PLANNED) {
+      if (this.dataset.currentCamp.infos.type === TKCampTypesValues.PLANNED) {
         this.siteType = this.$root.$i18n
           .t("infosSitePlanned")
           .toString()
