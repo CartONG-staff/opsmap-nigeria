@@ -8,10 +8,9 @@
             flat
             dense
             :label="$t('survey')"
-            v-model="currentSurvey"
+            v-model="dataset.currentSurvey"
             :items="dataset.surveys"
             item-text="name"
-            @change="surveySelected"
             :disabled="dataset.surveys.length < 2"
             return-object
             v-bind="attrs"
@@ -86,28 +85,13 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { TKSurvey } from "@/domain/survey/TKSurvey";
 
 @Component
 export default class TKCampSelector extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
-
-  currentSurvey = this.dataset.currentSurvey;
-  @Watch("dataset.currentSurvey")
-  onCurrentSurveyChanged() {
-    this.currentSurvey = this.dataset.currentSurvey;
-  }
-
-  surveySelected(survey: TKSurvey) {
-    if (survey) {
-      this.dataset.setActiveSurvey(survey);
-    } else {
-      this.dataset.resetActiveSurvey();
-    }
-  }
 }
 </script>
 <style scoped>

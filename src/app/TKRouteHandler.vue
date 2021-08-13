@@ -66,7 +66,7 @@ export default class TKRouteHandler extends Vue {
       const camp: string = this.$route.params["camp"] ?? "";
       const date: string = this.$route.params["date"]?.replaceAll("-", "/");
       if (survey) {
-        this.dataset.setActiveSurveyByName(survey);
+        this.dataset.setCurrentSurveyByName(survey);
         if (camp) {
           this.dataset.setCurrentCampByName(camp);
           if (date) {
