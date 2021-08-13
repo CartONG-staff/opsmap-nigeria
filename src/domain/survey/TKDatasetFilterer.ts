@@ -29,7 +29,7 @@ export class TKDatasetFilterer {
   lastModification = "";
 
   surveys: TKSurvey[];
-  currentSurvey: TKSurvey;
+  currentSurvey!: TKSurvey; // ! --> Disable'not defined in ctor error'
 
   currentAdmin1: TKBoundarieDescription | null = null;
   currentAdmin2: TKBoundarieDescription | null = null;
@@ -58,10 +58,6 @@ export class TKDatasetFilterer {
     this.surveys = surveys;
 
     this.setActiveSurvey(this.surveys[0]);
-
-    // Disable'not defined in ctor error'
-    // After setActiveSurvey
-    this.currentSurvey = this.surveys[0];
 
     console.log(
       `Dataset filterer set up ${(Date.now() - before) / 1000} seconds.`
