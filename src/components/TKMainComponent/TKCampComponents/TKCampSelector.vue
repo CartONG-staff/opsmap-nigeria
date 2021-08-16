@@ -1,6 +1,6 @@
 <template lang="html">
   <transition mode="out-in" name="fade">
-    <div :key="$root.$i18n.locale" class="tk-camp-selector">
+    <div :key="$root.$i18n.locale" class="tk-camp-selector" :style="opacity">
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <v-autocomplete
@@ -143,6 +143,18 @@ export default class TKCampSelector extends Vue {
         : this.dataset.clearCurrentCamp();
     }
   }
+
+  get opacity() {
+    if (this.$vuetify.theme.dark) {
+      return {
+        "--opacity": 0.9
+      };
+    }
+
+    return {
+      "--opacity": 0.75
+    };
+  }
 }
 </script>
 <style scoped>
@@ -150,7 +162,7 @@ export default class TKCampSelector extends Vue {
   border-radius: 8px;
   align-items: center;
   background-color: var(--v-campSelector-base);
-  opacity: 0.75;
+  opacity: var(--opacity);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   z-index: 3000;

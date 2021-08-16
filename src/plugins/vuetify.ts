@@ -51,13 +51,6 @@ export default new Vuetify({
         placeholder: "#f3f3f3",
         placeholderAccent: "#f6f6f6",
         disabled: "#bdbdbd"
-        // indicatorBorder: "rgba(18, 63, 98, 0.15)" // 26
-        // accent
-        // anchor
-        // error
-        // info
-        // success
-        // warning
       },
       dark: {
         accent: "#428fdf",

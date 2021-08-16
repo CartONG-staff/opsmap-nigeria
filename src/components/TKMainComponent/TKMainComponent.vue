@@ -1,7 +1,7 @@
 <template>
   <div class="tk-maincomponent">
     <div class="tk-maincomponent-decoration">
-      <div class="tk-maincomponent-blur"></div>
+      <div class="tk-maincomponent-blur" :style="cssVars"></div>
       <img class="tk-maincomponent-png" src="@/assets/bg-isoline-custom.png" />
     </div>
     <div class="tk-maincomponent-container">
@@ -122,6 +122,20 @@ export default class TKMainComponent extends Vue {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
   };
 
+  get cssVars() {
+    if (this.$vuetify.theme.dark) {
+      return {
+        "--bg-color-beg": "#3a9ed355",
+        "--bg-color-end": "#3a9ed300"
+      };
+    }
+
+    return {
+      "--bg-color-beg": "#3a9ed3ff",
+      "--bg-color-end": "#3a9ed300"
+    };
+  }
+
   // Trigger when a camp is selected
   @Watch("dataset.lastModification")
   onLastModificationChange() {
@@ -143,7 +157,7 @@ export default class TKMainComponent extends Vue {
   width: 100%;
   height: 365px;
   opacity: 0.21;
-  background: linear-gradient(#3a9ed3ff, #3a9ed300);
+  background: linear-gradient(var(--bg-color-beg), var(--bg-color-end));
 }
 
 .tk-maincomponent-png {
