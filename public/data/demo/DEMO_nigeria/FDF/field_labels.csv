@@ -30,8 +30,8 @@ specificgroups/number_of_preglac_dis;Number of pregnant/lactating women:
 group_cccm/campmanagementoffice;Camp management office on site:
 group_cccm/site_facilitation_type;Site facilitation being provided:
 group_cccm/site_facilitators;Site facilitators covering the site:
-site_facilitator_calcpopulationvsdedicated;
-site_facilitator_calcpopulationvsmobile;
+site_facilitator_calcpopulationvsdedicated;Population per dedicated site facilitator:
+site_facilitator_calcpopulationvsmobile;Population per mobile site facilitator:
 group_cccm/femalesitefacilitators;Female site facilitators staff covering the site:
 group_cccm/numberofsites;Site facilitators cover more than one site:
 group_cccm/numbersitescovered;Number of sites covered:

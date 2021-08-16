@@ -102,6 +102,7 @@ export default class TKSubmissionItemPolarChart extends Vue {
             tooltip: {
               callbacks: {
                 label: function(tooltipItem): string {
+                  tooltipItem.label.replace("NaN", "-");
                   return tooltipItem.label;
                 }
               },
@@ -150,7 +151,7 @@ export default class TKSubmissionItemPolarChart extends Vue {
         item =>
           TKGetLocalValue(item.label, this.$root.$i18n.locale) +
           " " +
-          item.value
+          item.value.toString().replace("NaN", "-")
       );
     } else {
       return [];

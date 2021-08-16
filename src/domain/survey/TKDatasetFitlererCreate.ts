@@ -1,31 +1,25 @@
-import { TKSurvey } from "./TKSurvey";
-import { TKCreateFDF } from "@/domain/fdf/TKFDF";
-import { TKGetCSVRawData } from "@/domain/csv/TKGetCSVRawData";
-import { TKGetGSheetRawData } from "@/domain/gsheet/TKGetGSheetRawData";
-import { TKGetKoboRawData } from "@/domain/kobo/TKGetKoboRawData";
-import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
-import { TKCreateSurvey } from "./TKSurvey";
-import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
-import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
-
-// ////////////////////////////////////////////////////////////////////////////
-// SurveyCollection concept definition
-// ////////////////////////////////////////////////////////////////////////////
-export interface TKSurveyCollection {
-  [fdf: string]: TKSurvey;
-}
-
 // ////////////////////////////////////////////////////////////////////////////
 // Create all the survey based on the surveys infos
 // ////////////////////////////////////////////////////////////////////////////
 
-export async function TKCreateSurveyCollection(
+import { TKGetCSVRawData } from "../csv/TKGetCSVRawData";
+import { TKCreateFDF } from "../fdf/TKFDF";
+import { TKGetGSheetRawData } from "../gsheet/TKGetGSheetRawData";
+import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
+import { TKIndicatorsDescription } from "../opsmapConfig/TKIndicatorsDescription";
+import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
+import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
+import { TKDatasetFilterer } from "./TKDatasetFilterer";
+import { TKCreateSurvey, TKSurvey } from "./TKSurvey";
+
+export async function TKDatasetFitlererCreate(
   surveyDescription: TKSurveyInfos[],
   spatialDescription: TKSpatialDescription,
-  indicatorsDescription: TKIndicatorsDescription
-): Promise<TKSurveyCollection> {
+  indicatorsDescription: TKIndicatorsDescription,
+  languages: Array<string>
+): Promise<TKDatasetFilterer> {
   // prepare output
-  const surveyCollection: TKSurveyCollection = {};
+  const surveys: TKSurvey[] = [];
 
   // foreach survey info
   for (const info of surveyDescription) {
@@ -57,11 +51,14 @@ export async function TKCreateSurveyCollection(
     const beforeSurvey = Date.now();
 
     // Create survey
-    surveyCollection[info.name] = TKCreateSurvey(
-      rawData,
-      surveyConfig,
-      spatialDescription,
-      indicatorsDescription
+    surveys.push(
+      TKCreateSurvey(
+        rawData,
+        surveyConfig,
+        spatialDescription,
+        indicatorsDescription,
+        languages
+      )
     );
 
     console.log(
@@ -69,5 +66,5 @@ export async function TKCreateSurveyCollection(
         1000} seconds.`
     );
   }
-  return surveyCollection;
+  return new TKDatasetFilterer(surveys);
 }
