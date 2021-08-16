@@ -114,7 +114,8 @@ export async function TKReadGeneralConfiguration(
   // Options
   // ////////////////////////////////////////////////////////////////////////////
   const defaultOptions: TKAppOptions = {
-    showCCCMLogo: true
+    showCCCMLogo: true,
+    dark: false
   };
 
   // Init with defaultOptions, then replace existing key with options.

@@ -4,4 +4,5 @@
 
 export interface TKAppOptions {
   readonly showCCCMLogo: boolean;
+  readonly dark: boolean;
 }

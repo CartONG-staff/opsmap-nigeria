@@ -166,7 +166,8 @@
         ]
     },
     "options": {
-        "showCCCMLogo": false
+        "showCCCMLogo": false,
+        "dark": true
     }
 }
 
