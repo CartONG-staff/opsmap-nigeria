@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { TKCampDescription, TKCampTypesValues } from "./TKCampDescription";
+import { TKCampTypesValues } from "./TKCamp";
 import { TKBoundariesCollection } from "./TKBoundariesCollection";
-import { TKSubmission, TKCreateSubmission } from "./TKSubmission";
+import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
 import { TKIndicator } from "../ui/TKIndicator";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
@@ -12,17 +12,17 @@ import {
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import moment from "moment";
 import { isNumber } from "@turf/turf";
+import { TKCamp } from "@/domain/survey/TKCamp";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKSurvey {
-  submissionsByCamps: { [campId: string]: { [date: string]: TKSubmission } };
-  dateOfSubmissionsByCamps: { [campId: string]: string[] };
-  campsList: TKCampDescription[];
+  name: string;
   boundariesList: TKBoundariesCollection;
   indicators: [TKIndicator, TKIndicator, TKIndicator];
   fdf: TKFDF;
+  camps: TKCamp[];
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -39,48 +39,19 @@ function formatDate(date: string, fdf: TKFDF): string {
 }
 
 // ////////////////////////////////////////////////////////////////////////////
-// sort dates
-// ////////////////////////////////////////////////////////////////////////////
-
-function sortDates(dates: string[]) {
-  dates.sort((a: string, b: string) => {
-    const asplitted = a.split("/");
-    const bsplitted = b.split("/");
-    if (asplitted.length !== 3 || bsplitted.length !== 3) {
-      return 0;
-    }
-    const adated = new Date(
-      parseInt(asplitted[2]),
-      parseInt(asplitted[1]) - 1,
-      parseInt(asplitted[0])
-    );
-    const bdated = new Date(
-      parseInt(bsplitted[2]),
-      parseInt(bsplitted[1]) - 1,
-      parseInt(bsplitted[0])
-    );
-    if (adated < bdated) return 1;
-    else if (adated > bdated) return -1;
-    else return 0;
-  });
-  return dates;
-}
-
-// ////////////////////////////////////////////////////////////////////////////
 // helper method that compute survey indicator
 // ////////////////////////////////////////////////////////////////////////////
 
 function computeSurveyIndicator(
   descr: TKIndicatorDescription,
-  data: { [campId: string]: { [date: string]: TKSubmission } },
-  sortedDates: { [date: string]: string[] }
+  camps: TKCamp[]
 ): TKIndicator {
   if (descr.entryCode === "mp_site_id") {
     return {
       iconOchaName: descr.iconOchaName,
       nameLabel: descr.name,
       valueLabel: {
-        en: String(Object.keys(data).length)
+        en: String(camps.length)
       }
     };
   }
@@ -90,9 +61,8 @@ function computeSurveyIndicator(
   let itemIndex = -1;
   let sum = 0;
 
-  for (const camp in data) {
-    const last = sortedDates[camp][0];
-    const submission = data[camp][last];
+  for (const camp of camps) {
+    const submission = camp.submissions[0];
     if (submission) {
       if (!foundAtLeastOnce) {
         for (const thematic in submission.thematics) {
@@ -150,12 +120,11 @@ export function TKCreateSurvey(
   submissions: Record<string, string>[],
   surveyConfig: TKFDF,
   spatialDescription: TKSpatialDescription,
-  indicatorsDescription: TKIndicatorsDescription
+  indicatorsDescription: TKIndicatorsDescription,
+  languages: Array<string>
 ): TKSurvey {
-  const submissionsByCamps: {
-    [campId: string]: { [date: string]: TKSubmission };
-  } = {};
-  const campsList: TKCampDescription[] = [];
+  const camps: TKCamp[] = [];
+
   const boundariesList: TKBoundariesCollection = {
     admin1: [],
     admin2: []
@@ -169,38 +138,50 @@ export function TKCreateSurvey(
   });
 
   for (const submission of submissions) {
-    // If no previous submission for the camp
-    if (!submissionsByCamps[submission[spatialDescription.siteIDField]]) {
-      // Create data structure for future submissions
-      submissionsByCamps[submission[spatialDescription.siteIDField]] = {};
+    const computedSubmission = TKCreateSubmission(
+      submission,
+      surveyConfig,
+      indicatorsDescription,
+      spatialDescription,
+      languages
+    );
 
-      // Create the camp
-      campsList.push({
-        id: submission[spatialDescription.siteIDField],
-        name: submission[spatialDescription.siteNameField],
-        type: surveyConfig.terminology[
-          submission[spatialDescription.siteTypeField]
-        ] as TKCampTypesValues,
-        lat: Number(
-          submission[spatialDescription.siteLatitudeField].replace(",", ".")
-        ),
-        lng: Number(
-          submission[spatialDescription.siteLongitudeField].replace(",", ".")
-        ),
-        admin1: {
-          pcode: submission[spatialDescription.adm1Pcode],
-          name: submission[spatialDescription.adm1Name]
+    // Check if new camp
+    let camp = camps.find(
+      camp => camp.infos.id === submission[spatialDescription.siteIDField]
+    );
+
+    // Doesn't exist in camps list
+    if (!camp) {
+      camp = {
+        infos: {
+          id: submission[spatialDescription.siteIDField],
+          name: submission[spatialDescription.siteNameField],
+          type: surveyConfig.terminology[
+            submission[spatialDescription.siteTypeField]
+          ] as TKCampTypesValues,
+          lat: Number(
+            submission[spatialDescription.siteLatitudeField].replace(",", ".")
+          ),
+          lng: Number(
+            submission[spatialDescription.siteLongitudeField].replace(",", ".")
+          ),
+          admin1: {
+            pcode: submission[spatialDescription.adm1Pcode],
+            name: submission[spatialDescription.adm1Name]
+          },
+          admin2: {
+            pcode: submission[spatialDescription.adm2Pcode],
+            name: submission[spatialDescription.adm2Name]
+          },
+          admin3: {
+            pcode: submission[spatialDescription.adm3Pcode],
+            name: submission[spatialDescription.adm3Name]
+          }
         },
-        admin2: {
-          pcode: submission[spatialDescription.adm2Pcode],
-          name: submission[spatialDescription.adm2Name]
-        },
-        admin3: {
-          pcode: submission[spatialDescription.adm3Pcode],
-          name: submission[spatialDescription.adm3Name]
-        },
-        lastSubmission: ""
-      });
+        submissions: [computedSubmission]
+      };
+      camps.push(camp);
 
       // Add the admin2 if it doesn't exists
       if (
@@ -226,49 +207,45 @@ export function TKCreateSurvey(
         });
       }
     }
-
-    // Add the submissions
-    submissionsByCamps[submission[spatialDescription.siteIDField]][
-      submission[spatialDescription.siteLastUpdateField]
-    ] = TKCreateSubmission(submission, surveyConfig, indicatorsDescription);
+    // Exist in camps list
+    else {
+      // Add the submissions
+      camp.submissions.push(computedSubmission);
+    }
   }
 
-  // Sort the dates
-  const dateOfSubmissionsByCamps: { [site: string]: string[] } = {};
-  for (const camp in submissionsByCamps) {
-    dateOfSubmissionsByCamps[camp] = sortDates(
-      Object.keys(submissionsByCamps[camp])
-    );
-  }
-
-  // Update last submission date for each camp
-  campsList.map(camp => {
-    camp.lastSubmission = dateOfSubmissionsByCamps[camp.id].length
-      ? dateOfSubmissionsByCamps[camp.id][0]
-      : "-";
-  });
+  // Sort the dates and update last submission date for each camp
+  camps.map(camp =>
+    camp.submissions.sort((a: TKSubmission, b: TKSubmission) => {
+      const asplitted = a.date.split("/");
+      const bsplitted = b.date.split("/");
+      if (asplitted.length !== 3 || bsplitted.length !== 3) {
+        return 0;
+      }
+      const adated = new Date(
+        parseInt(asplitted[2]),
+        parseInt(asplitted[1]) - 1,
+        parseInt(asplitted[0])
+      );
+      const bdated = new Date(
+        parseInt(bsplitted[2]),
+        parseInt(bsplitted[1]) - 1,
+        parseInt(bsplitted[0])
+      );
+      if (adated < bdated) return 1;
+      else if (adated > bdated) return -1;
+      else return 0;
+    })
+  );
 
   return {
-    submissionsByCamps: submissionsByCamps,
-    dateOfSubmissionsByCamps: dateOfSubmissionsByCamps,
-    campsList: campsList,
+    name: surveyConfig.name,
+    camps: camps,
     boundariesList: boundariesList,
     indicators: [
-      computeSurveyIndicator(
-        indicatorsDescription.home[0],
-        submissionsByCamps,
-        dateOfSubmissionsByCamps
-      ),
-      computeSurveyIndicator(
-        indicatorsDescription.home[1],
-        submissionsByCamps,
-        dateOfSubmissionsByCamps
-      ),
-      computeSurveyIndicator(
-        indicatorsDescription.home[2],
-        submissionsByCamps,
-        dateOfSubmissionsByCamps
-      )
+      computeSurveyIndicator(indicatorsDescription.home[0], camps),
+      computeSurveyIndicator(indicatorsDescription.home[1], camps),
+      computeSurveyIndicator(indicatorsDescription.home[2], camps)
     ],
     fdf: surveyConfig
   };

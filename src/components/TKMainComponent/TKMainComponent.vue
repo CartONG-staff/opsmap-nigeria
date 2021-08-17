@@ -7,7 +7,11 @@
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
         <transition name="fade">
-          <router-view name="header" :dataset="dataset"></router-view>
+          <router-view
+            name="header"
+            v-if="isDatasetInitialized"
+            :dataset="dataset"
+          ></router-view>
         </transition>
       </div>
       <div class="tk-main-top">

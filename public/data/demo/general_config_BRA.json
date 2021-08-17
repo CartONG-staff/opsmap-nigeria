@@ -78,7 +78,7 @@
         },
         {
             "name": "Acolhida",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/Acolhida.png",
+            "urlLogo": "/data/demo/DEMO_brazil/Logo/Acolhida.jpeg",
             "urlRedirection": "https://www.gov.br/casacivil/pt-br/acolhida/"
         },
         {
@@ -150,7 +150,16 @@
         "name": "2021",
         "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=0&single=true&output=csv",
         "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=1157434408&single=true&output=csv"
+    },{
+        "type":"gsheet",
+        "fdf": {
+            "folder": "/data/demo/DEMO_brazil/FDF"
+        },
+        "name": "RealGSheet",
+        "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=0&single=true&output=csv",
+        "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=1157434408&single=true&output=csv"
     }],
+
     "mapConfig": {
         "bounds": [
             -74.17,-33.34,-33.57,5.02

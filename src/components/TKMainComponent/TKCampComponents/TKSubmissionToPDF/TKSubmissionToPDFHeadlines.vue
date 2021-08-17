@@ -63,9 +63,10 @@
 
 <script lang="ts">
 import { TKOpsmapConfiguration } from "@/domain";
-import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
+import { TKCampTypesValues } from "@/domain/survey/TKCamp";
+
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntryText";
+import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import { TKGetLocalValue, TKLabel } from "@/domain/ui/TKLabel";
 import { toTitleCase } from "@/domain/ui/TKStringUtils";
@@ -102,7 +103,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
         this.$root.$i18n.locale
       );
 
-      if (this.dataset.currentCamp.type === TKCampTypesValues.PLANNED) {
+      if (this.dataset.currentCamp.infos.type === TKCampTypesValues.PLANNED) {
         this.siteType = this.$root.$i18n
           .t("infosSitePlanned")
           .toString()
@@ -119,11 +120,15 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   @Watch("dataset.currentCamp", { immediate: true })
   campChanged() {
     if (this.appConfig && this.dataset && this.dataset.currentCamp) {
-      this.siteName = toTitleCase(this.dataset.currentCamp.name.toUpperCase());
-      this.admin1 = this.dataset.currentCamp.admin1.name;
-      this.admin2 = this.dataset.currentCamp.admin2.name;
+      this.siteName = toTitleCase(
+        this.dataset.currentCamp.infos.name.toUpperCase()
+      );
+      this.admin1 = this.dataset.currentCamp.infos.admin1.name;
+      this.admin2 = this.dataset.currentCamp.infos.admin2.name;
       this.coordinates =
-        this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng;
+        this.dataset.currentCamp.infos.lat +
+        "," +
+        this.dataset.currentCamp.infos.lng;
 
       this.handleLocale();
 
@@ -131,17 +136,19 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
     }
   }
 
-  @Watch("dataset.currentDate", { immediate: true })
+  @Watch("dataset.currentSubmission", { immediate: true })
   dateChanged() {
-    this.date = this.dataset.currentDate;
-    // TODO  move this computation elsewhere
-    this.manageByLabel = (this.dataset.currentSubmission?.thematics[
-      "group_cccm"
-    ]?.data?.find(
-      item => item.field === "cccm_shelter__mangmt"
-    ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
+    if (this.dataset.currentSubmission) {
+      this.date = this.dataset.currentSubmission.date;
+      // TODO  move this computation elsewhere
+      this.manageByLabel = (this.dataset.currentSubmission?.thematics[
+        "group_cccm"
+      ]?.data?.find(
+        item => item.type === "text" && item.field === "cccm_shelter__mangmt"
+      ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
 
-    this.handleLocale();
+      this.handleLocale();
+    }
   }
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -160,17 +167,17 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
       // Marker
       // TODO: magic value : automate icon file name with CampTypesValues
       let markerUrl = "";
-      if (this.dataset.currentCamp.type === TKCampTypesValues.PLANNED) {
+      if (this.dataset.currentCamp.infos.type === TKCampTypesValues.PLANNED) {
         markerUrl = encodeURIComponent(TKIconUrl("planned_site_selected"));
       } else {
         markerUrl = encodeURIComponent(TKIconUrl("spontaneous_site_selected"));
       }
-      staticMapUrl += `url-${markerUrl}(${this.dataset.currentCamp.lng},${this.dataset.currentCamp.lat})/`;
+      staticMapUrl += `url-${markerUrl}(${this.dataset.currentCamp.infos.lng},${this.dataset.currentCamp.infos.lat})/`;
 
       // Bounds
       const bounds = new LngLat(
-        this.dataset.currentCamp.lng,
-        this.dataset.currentCamp.lat
+        this.dataset.currentCamp.infos.lng,
+        this.dataset.currentCamp.infos.lat
       )
         .toBounds(5000)
         .toArray();

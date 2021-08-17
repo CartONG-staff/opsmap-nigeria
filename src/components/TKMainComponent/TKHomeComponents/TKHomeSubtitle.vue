@@ -23,8 +23,8 @@ export default class TKHomeSubtitle extends Vue {
 
     for (const surveyIndex in this.dataset.surveys) {
       const survey = this.dataset.surveys[surveyIndex];
-      for (const campIndex in survey.submissionsByCamps) {
-        for (const dateIndex in survey.submissionsByCamps[campIndex]) {
+      for (const camp of survey.camps) {
+        for (const dateIndex in camp.submissions) {
           const items = dateIndex.split("/");
           if (items.length === 3) {
             let year = parseInt(items[2]);

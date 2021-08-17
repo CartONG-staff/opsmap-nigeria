@@ -8,16 +8,17 @@
           class="tk-camp-toolbar-item"
           background-color="#418fde"
           color="#ffffff"
-          :disabled="dataset.sortedSubmissions.length < 2"
+          :disabled="dataset.currentCamp.submissions.length < 2"
           flat
           filled
           solo
           dense
           height="44"
-          :items="dataset.sortedSubmissions"
+          v-model="dataset.currentSubmission"
+          :items="dataset.currentCamp.submissions"
+          item-text="date"
+          return-object
           :prefix="$t('site.datePreffix').toUpperCase()"
-          v-model="dateModel"
-          @change="dateSelected"
         ></v-autocomplete>
         <v-autocomplete
           v-else
@@ -32,9 +33,6 @@
           solo
           dense
           height="44"
-          :items="dataset.sortedSubmissions"
-          v-model="dateModel"
-          @change="dateSelected"
         ></v-autocomplete>
       </div>
     </transition>
@@ -88,7 +86,7 @@
 
 <script lang="ts">
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 import TKCampToolbarExportButton from "./TKCampToolbarExportButton.vue";
 import { TKOpsmapConfiguration } from "@/domain";
@@ -107,21 +105,6 @@ export default class TKCampToolbar extends Vue {
 
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
-
-  dateModel = "";
-
-  dateSelected(date: string) {
-    if (this.dataset.currentDate !== date) {
-      this.dateModel = date;
-      this.dataset.setCurrentDate(date);
-    }
-  }
-
-  @Watch("dataset.currentCamp", { immediate: true })
-  @Watch("dataset.currentDate", { immediate: true })
-  onDateChange() {
-    this.dateModel = this.dataset.currentDate;
-  }
 }
 </script>
 
