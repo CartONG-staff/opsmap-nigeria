@@ -18,7 +18,7 @@ export default class TKRouteHandler extends Vue {
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
       if (this.$route.path !== "/") {
-        this.dataset.clearCurrentAdmin1();
+        this.dataset.currentAdmin1 = null;
         this.currentRoute = "/";
         this.$router.push({
           name: "home",
@@ -58,7 +58,7 @@ export default class TKRouteHandler extends Vue {
   // Adjust dataset from a given URL
   updateDatasetFromUrl() {
     if (this.$route.name === "home") {
-      this.dataset.clearCurrentAdmin1();
+      this.dataset.currentAdmin1 = null;
     } else if (this.$route.name === "camp") {
       const survey: string = this.$route.params["survey"] ?? "";
       const admin1: string = this.$route.params["admin1"] ?? "";
@@ -66,16 +66,16 @@ export default class TKRouteHandler extends Vue {
       const camp: string = this.$route.params["camp"] ?? "";
       const date: string = this.$route.params["date"]?.replaceAll("-", "/");
       if (survey) {
-        this.dataset.setActiveSurvey(survey);
+        this.dataset.setCurrentSurveyByName(survey);
         if (camp) {
-          this.dataset.setCurrentCampName(camp);
+          this.dataset.setCurrentCampByName(camp);
           if (date) {
-            this.dataset.setCurrentDate(date);
+            this.dataset.setSubmissionByDate(date);
           }
         } else if (admin2) {
-          this.dataset.setCurrentAdmin2Name(admin2);
+          this.dataset.setCurrentAdmin2ByName(admin2);
         } else if (admin1) {
-          this.dataset.setCurrentAdmin1Name(admin1);
+          this.dataset.setCurrentAdmin1ByName(admin1);
         }
       }
     }
@@ -84,12 +84,14 @@ export default class TKRouteHandler extends Vue {
   // Adjust URL from a given dataset
   updateUrlFromDataset() {
     // upadte URL
-    const surveyE = encodeURIComponent(this.dataset.currentSurvey);
+    const surveyE = encodeURIComponent(this.dataset.currentSurvey?.name ?? "");
     const admin1E = encodeURIComponent(this.dataset.currentAdmin1?.name ?? "");
     const admin2E = encodeURIComponent(this.dataset.currentAdmin2?.name ?? "");
-    const campE = encodeURIComponent(this.dataset.currentCamp?.name ?? "");
+    const campE = encodeURIComponent(
+      this.dataset.currentCamp?.infos.name ?? ""
+    );
     const dateE = encodeURIComponent(
-      this.dataset.currentDate?.replaceAll("/", "-") ?? ""
+      this.dataset.currentSubmission?.date.replaceAll("/", "-") ?? ""
     );
 
     let path = `/camp`;

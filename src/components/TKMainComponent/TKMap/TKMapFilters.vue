@@ -111,7 +111,7 @@ import {
   TKDatasetFilterer,
   TKFilters
 } from "@/domain/survey/TKDatasetFilterer";
-import { TKCampTypesValues } from "@/domain/survey/TKCampDescription";
+import { TKCampTypesValues } from "@/domain/survey/TKCamp";
 
 @Component
 export default class TKMapFilter extends Vue {
@@ -145,13 +145,13 @@ export default class TKMapFilter extends Vue {
   @Watch("dataset.filteredCampsList", { immediate: true })
   datasetChanged() {
     this.countCampPlanned = this.dataset?.filteredCampsList.filter(
-      camp => camp.type === TKCampTypesValues.PLANNED
+      camp => camp.infos.type === TKCampTypesValues.PLANNED
     ).length;
 
     this.campPlannedEnabled =
       !this.checkboxs.planned || this.countCampPlanned > 0;
     this.countCampSpontaneous = this.dataset?.filteredCampsList.filter(
-      camp => camp.type === TKCampTypesValues.SPONTANEOUS
+      camp => camp.infos.type === TKCampTypesValues.SPONTANEOUS
     ).length;
     this.campSpontaneousEnabled =
       !this.checkboxs.spontaneous || this.countCampSpontaneous > 0;

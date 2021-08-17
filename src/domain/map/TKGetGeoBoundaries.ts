@@ -1,11 +1,11 @@
-import { TKSurveyCollection } from "@/domain/survey/TKSurveyCollection";
 import { ArcgisServerDataGetter } from "@/domain/map/TKArcgisServerDataGetter";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { FeatureCollection } from "geojson";
 import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
+import { TKDatasetFilterer } from "../survey/TKDatasetFilterer";
 
 export async function TKGetGeoBoundaries(
-  surveys: TKSurveyCollection,
+  dataset: TKDatasetFilterer,
   spatialDescription: TKSpatialDescription
 ): Promise<TKGeoDataset> {
   const before = Date.now();
@@ -23,8 +23,8 @@ export async function TKGetGeoBoundaries(
 
   // Get Admin2 from unhcr server
   let admin1List: string[] = [];
-  for (const key in surveys) {
-    surveys[key].boundariesList.admin1.map(x => admin1List.push(x.pcode));
+  for (const survey of dataset.surveys) {
+    survey.boundariesList.admin1.map(x => admin1List.push(x.pcode));
   }
 
   admin1List = [...new Set(admin1List)];

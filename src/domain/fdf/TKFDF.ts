@@ -30,6 +30,7 @@ import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
 // It is needed to create an actual survey
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKFDF {
+  name: string;
   terminology: TKFDFTerminologyCollection;
   thematics: TKTFDFhematicsCollection;
   trafficLights: TKFDFTrafficLightsCollection;
@@ -56,6 +57,7 @@ export async function TKCreateFDF(infos: TKSurveyInfos): Promise<TKFDF> {
   }
 
   return {
+    name: infos.name,
     terminology: await TKReadFDFTerminologyCollection(infos.fdf),
     thematics: await TKReadFDFThematicsCollection(infos.fdf),
     trafficLights: await TKReadFDFTrafficLightsCollection(infos.fdf),

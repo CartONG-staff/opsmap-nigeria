@@ -1,6 +1,5 @@
-import { TKCampDescription } from "@/domain/survey/TKCampDescription";
 import { FeatureCollection } from "geojson";
-
+import { TKCamp } from "@/domain/survey/TKCamp";
 interface TKFilteredCamps {
   selectedCamp: FeatureCollection | string;
   otherCamps: FeatureCollection;
@@ -9,53 +8,48 @@ interface TKFilteredCamps {
 export class TKMapCamps {
   public filteredCamps: TKFilteredCamps;
 
-  constructor(
-    private camps: TKCampDescription[],
-    private currentCamp: TKCampDescription | null
-  ) {
+  constructor(private camps: TKCamp[], private currentCamp: TKCamp | null) {
     this.camps = camps;
     this.currentCamp = currentCamp;
     this.filteredCamps = this.filterCamps();
   }
 
-  toGeoJSON(campsArray: TKCampDescription[]): FeatureCollection {
+  toGeoJSON(campsArray: TKCamp[]): FeatureCollection {
     return {
       type: "FeatureCollection",
-      features: campsArray.map((camp: TKCampDescription) => {
+      features: campsArray.map((camp: TKCamp) => {
         return {
           type: "Feature",
           geometry: {
             type: "Point",
-            coordinates: [camp.lng, camp.lat]
+            coordinates: [camp.infos.lng, camp.infos.lat]
           },
           properties: {
-            id: camp.id,
-            name: camp.name,
-            type: camp.type,
-            lastSubmission: camp.lastSubmission,
-            lat: camp.lat,
-            lng: camp.lng,
-            admin1: camp.admin1,
-            admin2: camp.admin2,
-            admin3: camp.admin3
+            id: camp.infos.id,
+            name: camp.infos.name,
+            type: camp.infos.type,
+            lastSubmission: camp.submissions[0].date,
+            lat: camp.infos.lat,
+            lng: camp.infos.lng,
+            admin1: camp.infos.admin1,
+            admin2: camp.infos.admin2,
+            admin3: camp.infos.admin3
           }
         };
       })
     };
   }
 
-  toTKCampDescription(featureID: string): TKCampDescription {
-    return this.camps.find(x => x.id === featureID) as TKCampDescription;
-  }
-
   filterCamps(): TKFilteredCamps {
     return {
       selectedCamp: this.toGeoJSON(
-        this.camps.filter(x => x.id === this.currentCamp?.id)
+        this.camps.filter(camp => camp.infos.id === this.currentCamp?.infos.id)
       ),
       otherCamps: this.toGeoJSON(
         this.currentCamp
-          ? this.camps.filter(x => x.id !== this.currentCamp?.id)
+          ? this.camps.filter(
+              camp => camp.infos.id !== this.currentCamp?.infos.id
+            )
           : this.camps
       )
     };

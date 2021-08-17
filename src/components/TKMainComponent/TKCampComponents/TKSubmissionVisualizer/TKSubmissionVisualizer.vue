@@ -92,10 +92,8 @@ export default class TKSubmissionVisualizer extends Vue {
 
   @Watch("dataset.currentSurvey", { immediate: true })
   onDatasetChange() {
-    if (this.dataset?.currentSurvey) {
-      this.thematics = this.dataset.surveys[
-        this.dataset.currentSurvey
-      ].fdf.thematics;
+    if (this.dataset && this.dataset.currentSurvey) {
+      this.thematics = this.dataset.currentSurvey.fdf.thematics;
 
       this.onSubmissionChanged();
     }
