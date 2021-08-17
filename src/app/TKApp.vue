@@ -78,6 +78,7 @@ body {
   --padding-small: 5px;
   --padding-medium: 10px;
   --padding-large: 15px;
+  --padding-logos: 30px;
   --side-padding: 10%;
 
   font-family: "Arial";
