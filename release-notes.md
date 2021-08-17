@@ -2,15 +2,15 @@
 
 ## Development
 
-Road to 1.2.0.
-A priori:
 
-- New Charts possibility
+## 1.2.0.
+- Polar Charts
+- Doughnut Charts
 - Display condition
 - Computed entries added
-- polar charts NaN fixes : value missing
-- etc.
-- Code published as OpenSource to CartONG github
+- List (Multiples) entries added
+- Site Occupation indicator test version
+
 
 ## 1.1.0
 
