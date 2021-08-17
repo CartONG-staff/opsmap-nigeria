@@ -78,6 +78,7 @@ body {
   --padding-small: 5px;
   --padding-medium: 10px;
   --padding-large: 15px;
+  --padding-logos: 30px;
   --side-padding: 10%;
 
   font-family: "Arial";
@@ -183,5 +184,8 @@ h3 {
 .fade-in-enter,
 .fade-in-leave-to {
   opacity: 0;
+}
+.v-slider__thumb-label {
+  transform: translateY(60%) translateY(30px) translateX(-50%) rotate(225deg) !important;
 }
 </style>

@@ -57,7 +57,8 @@ export async function TKDatasetFitlererCreate(
         surveyConfig,
         spatialDescription,
         indicatorsDescription,
-        languages
+        languages,
+        info.options
       )
     );
 

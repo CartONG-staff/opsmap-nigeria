@@ -11,6 +11,7 @@ export enum TKCampTypesValues {
 // ////////////////////////////////////////////////////////////////////////////
 
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
+import { TKLabel } from "../ui/TKLabel";
 import { TKSubmission } from "./TKSubmission";
 
 interface TKCampInfos {
@@ -22,6 +23,7 @@ interface TKCampInfos {
   admin1: TKBoundarieDescription;
   admin2: TKBoundarieDescription;
   admin3: TKBoundarieDescription;
+  managedBy: TKLabel;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
