@@ -22,7 +22,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
-import { TKCreateSurveyCollection } from "@/domain/survey/TKSurveyCollection";
+import { TKDatasetFitlererCreate } from "@/domain/survey/TKDatasetFitlererCreate";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 import TKRouteHandler from "@/app/TKRouteHandler.vue";
@@ -39,22 +39,20 @@ import { TKOpsmapConfiguration } from "@/domain";
 export default class TKApp extends Vue {
   isDatasetInitialized = false;
   appRootConfig: TKOpsmapConfiguration = this.$root.$data.config;
-  dataset: TKDatasetFilterer = new TKDatasetFilterer({});
+  dataset: TKDatasetFilterer | null = null;
   geoDataset: TKGeoDataset | null = null;
-  
-  
+
   async mounted() {
     this.handeLocale();
-    TKCreateSurveyCollection(
+    TKDatasetFitlererCreate(
       this.appRootConfig.surveys,
       this.appRootConfig.spatial,
       this.appRootConfig.indicators,
       this.appRootConfig.languages
-    ).then(surveys => {
-      
-      this.dataset = new TKDatasetFilterer(surveys);
+    ).then(dataset => {
+      this.dataset = dataset;
       this.isDatasetInitialized = true;
-      TKGetGeoBoundaries(surveys, this.appRootConfig.spatial).then(
+      TKGetGeoBoundaries(this.dataset, this.appRootConfig.spatial).then(
         geoDataset => {
           this.geoDataset = geoDataset;
         }
@@ -80,6 +78,7 @@ body {
   --padding-small: 5px;
   --padding-medium: 10px;
   --padding-large: 15px;
+  --padding-logos: 30px;
   --side-padding: 10%;
 
   font-family: "Arial";
@@ -185,5 +184,8 @@ h3 {
 .fade-in-enter,
 .fade-in-leave-to {
   opacity: 0;
+}
+.v-slider__thumb-label {
+  transform: translateY(60%) translateY(30px) translateX(-50%) rotate(225deg) !important;
 }
 </style>

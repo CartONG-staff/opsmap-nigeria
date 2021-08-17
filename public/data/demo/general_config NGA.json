@@ -57,43 +57,77 @@
             "iconOchaName": "People-in-need"
         }]
     },
-    "footerLogos":{
-        "clusterLed": [{
+    "footerLogos":[
+        {
+            "title": {
+                "en": "Cluster Lead"
+            },
+            "logos": [{
+                "name": "sector_logo",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/sector_logo.png",
+                "urlRedirection": "https://www.sheltercluster.org/response/nigeria"
+            }]
+        },
+        {
+            "title": {
+                "en": "Partners"
+            },
+            "logos": [{
+                "name": "Acted",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/ACTED.jpg",
+                "urlRedirection": "https://www.acted.org/"
+            },
+            {
+                "name": "INTERSOS",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/INTERSOS.png",
+                "urlRedirection": "https://www.intersos.org/"
+            },
+            {
+                "name": "IOM",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/IOM.jpg",
+                "urlRedirection": "https://www.iom.int"
+            },{
+                "name": "LOCDIN",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/LOC-DIN.jpg",
+                "urlRedirection": "https://loc-din.org.ng"
+            },
+            {
+                "name": "NRC",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/NRC.png",
+                "urlRedirection": "https://www.nrc.no"
+            },
+            {
+                "name": "Salient",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/SALINT_HUMANITARIANORGANIZATON.png",
+                "urlRedirection": "https://salientho.org"
+            },
+            {
+                "name": "SHI",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/SMILING_HEARTS_INTERNATIONAL.jpg",
+                "urlRedirection": "https://www.smilingheartsinitiativeinternational.org"
+            },
+            {
+                "name": "Translators",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/TRANSLATORS_WITHOUT_BOARDERS.png",
+                "urlRedirection": "https://translatorswithoutborders.org"
+            },
+            {
                 "name": "UNHCR",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-                "urlRedirection": "https://www.acnur.org.br"
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/UNHCR.jpg",
+                "urlRedirection": "https://www.unhcr.org"
+            }]
+        },
+        {
+            "title": {
+                "en": "Webdev"
             },
-            {
-                "name": "Ministério da Cidadania",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
-                "urlRedirection": "https://www.gov.br/cidadania/pt-br"
-        }],
-        "coordinationAndIMSupport": [{
-            "name": "UNHCR",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-            "urlRedirection": "https://www.acnur.org.br"
-        }],
-        "Fieldwork": [{
-                "name": "FSF",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/FSF.png",
-                "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
-            },
-            {
-                "name": "AVSI",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
-                "urlRedirection": "http://www.avsibrasil.org.br/"
-            },
-            {
-                "name": "FFHI",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/Fraternidade.png",
-                "urlRedirection": "https://www.fraterinternacional.org/"
-        }],
-        "Webdev": [{
-            "name": "CartONG",
-            "urlLogo": "https://www.cartong.org/sites/cartong/files/images/CartONG_logo_long_0_0_0.png",
-            "urlRedirection": "https://www.cartong.org"
-        }]
-    },
+            "logos": [{
+                "name": "CartONG",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/CartONG_logo_long_0_0_0.png",
+                "urlRedirection": "https://www.cartong.org"
+            }]
+        }
+    ],
     "spatial":{
         "siteIDField": "group_general_info/site",
         "siteNameField": "group_general_info/site_name",
@@ -120,7 +154,12 @@
         },
         "name": "Last known FDF",
         "url": "https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json",
-        "token": "ab46c724b720d44c4c8d44e86241219ce5cec6d6"
+        "token": "ab46c724b720d44c4c8d44e86241219ce5cec6d6",
+        "options": {
+            "dateFormat": "YYYY-MM-DD",
+            "manageByField": "group_general_info/organisation",
+            "manageByAltValue": "cccm"
+        }
     }],
     "mapConfig": {
         "bounds": [
@@ -131,4 +170,3 @@
         "showCCCMLogo": true
     }
 }
-
