@@ -17,7 +17,7 @@ export interface TKOpsmapConfiguration {
   readonly iso3: string;
   readonly opsmapDescr: TKLabel;
   readonly indicators: TKIndicatorsDescription;
-  readonly footerLogos: TKFooterLogosDescription;
+  readonly footerLogos: TKFooterLogosDescription[];
   readonly iframe?: TKIFrameDescription;
   readonly surveys: TKSurveyInfos[];
   readonly spatial: TKSpatialDescription;
@@ -48,28 +48,12 @@ export async function TKReadGeneralConfiguration(
   // Update urlLogo
   // Could be improved
   // Webdev is not modified, because it isn't a local url.
-  for (const key in json.footerLogos.Fieldwork) {
-    json.footerLogos.Fieldwork[
-      key
-    ].urlLogo = `${process.env.BASE_URL}/${json.footerLogos.Fieldwork[key].urlLogo}`;
-  }
 
-  for (const key in json.footerLogos.clusterLed) {
-    json.footerLogos.clusterLed[
-      key
-    ].urlLogo = `${process.env.BASE_URL}/${json.footerLogos.clusterLed[key].urlLogo}`;
-  }
-
-  for (const key in json.footerLogos.coordinationAndIMSupport) {
-    json.footerLogos.coordinationAndIMSupport[
-      key
-    ].urlLogo = `${process.env.BASE_URL}/${json.footerLogos.coordinationAndIMSupport[key].urlLogo}`;
-  }
-
-  for (const key in json.headerLogos) {
-    json.headerLogos[
-      key
-    ].urlLogo = `${process.env.BASE_URL}/${json.headerLogos[key].urlLogo}`;
+  // TODO UPDATE ALL OF THIS
+  for (const descr of json.footerLogos) {
+    for (const logo of descr.logos) {
+      logo.urlLogo = `${process.env.BASE_URL}/${logo.urlLogo}`;
+    }
   }
 
   // ////////////////////////////////////////////////////////////////////////////
