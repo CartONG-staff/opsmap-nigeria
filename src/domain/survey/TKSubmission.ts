@@ -96,15 +96,17 @@ function computeSubmissionIndicator(
       ).toString();
       const valueLabel: TKLabel = {};
       for (const k in labelIsMaxCapacity) {
-        valueLabel[k] = labelIsMaxCapacity[k] + " (" + percent + " %)";
+        valueLabel[k] = labelIsMaxCapacity[k] + "-" + percent;
       }
       return {
+        type: descr.type,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
         valueLabel: valueLabel
       };
     } else {
       return {
+        type: descr.type,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
         valueLabel: { en: "-" }
@@ -113,6 +115,7 @@ function computeSubmissionIndicator(
   } else {
     const label = getLabelForIndicator(data, descr.entryCode);
     return {
+      type: descr.type,
       iconOchaName: descr.iconOchaName,
       nameLabel: descr.name,
       valueLabel: label

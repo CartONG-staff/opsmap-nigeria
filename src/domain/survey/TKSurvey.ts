@@ -77,6 +77,7 @@ function computeSurveyIndicator(
 ): TKIndicator {
   if (descr.entryCode === "mp_site_id") {
     return {
+      type: descr.type,
       iconOchaName: descr.iconOchaName,
       nameLabel: descr.name,
       valueLabel: {
@@ -129,6 +130,7 @@ function computeSurveyIndicator(
   }
   if (!foundAtLeastOnce) {
     return {
+      type: descr.type,
       iconOchaName: descr.iconOchaName,
       nameLabel: descr.name,
       valueLabel: { en: "-" }
@@ -136,6 +138,7 @@ function computeSurveyIndicator(
   }
 
   return {
+    type: descr.type,
     iconOchaName: descr.iconOchaName,
     nameLabel: descr.name,
     valueLabel: { en: String(sum) }
