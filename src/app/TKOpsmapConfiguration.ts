@@ -50,6 +50,11 @@ export async function TKReadGeneralConfiguration(
   // Webdev is not modified, because it isn't a local url.
 
   // TODO UPDATE ALL OF THIS
+  for (const logo of json.headerLogos) {
+    logo.urlLogo = `${process.env.BASE_URL}/${logo.urlLogo}`;
+  }
+
+  // TODO UPDATE ALL OF THIS
   for (const descr of json.footerLogos) {
     for (const logo of descr.logos) {
       logo.urlLogo = `${process.env.BASE_URL}/${logo.urlLogo}`;

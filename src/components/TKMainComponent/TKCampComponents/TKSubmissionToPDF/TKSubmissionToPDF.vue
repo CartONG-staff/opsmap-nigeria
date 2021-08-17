@@ -18,20 +18,6 @@
         /> -->
       </div>
     </div>
-    <div class="thematics">
-      <table id="thematic" ref="thematic">
-        <tbody>
-          <tr>
-            <td>Jill</td>
-            <td>Smitd</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
   </div>
 </template>
 
@@ -41,14 +27,17 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "../TKSubmissionVisualizer";
 import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
+// import autoTable from "jspdf-autotable";
 import "jspdf-autotable";
 
 import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
 import TKSubmissionToPDFHeader from "./TKSubmissionToPDFHeader.vue";
 import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
 import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
-import { TKFDFThematic, TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
+import {
+  TKFDFThematic,
+  TKTFDFhematicsCollection
+} from "@/domain/fdf/TKFDFThematics";
 
 @Component({
   components: {
@@ -102,10 +91,10 @@ export default class TKSubmissionToPDF extends Vue {
             html2canvas: { scale: 0.75 }
           })
           .then(() => {
-            autoTable(pdf, {
-              html: "#thematic",
-              startY: 375
-            });
+            // autoTable(pdf, {
+            //   html: "#thematic",
+            //   startY: 375
+            // });
             pdf.save(documentTitle);
           });
       });

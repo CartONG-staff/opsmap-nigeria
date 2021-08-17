@@ -1,12 +1,18 @@
 <template>
   <div class="header">
-    <div class="header-left">
+    <div>
       <img src="@/assets/LogoOpsmap.png" class="header-logo" />
       <h3>
         <span class="header-opsmap-title">{{ appName }}</span>
       </h3>
+      <img
+        v-for="(item, key) in appConfig.headerLogos"
+        :key="key"
+        :src="item.urlLogo"
+        class="header-logo"
+      />
     </div>
-    <div class="header-right">
+    <div v-show="appConfig.options.showCCCMLogo" class="header-right">
       <img src="@/assets/LogoCluster.png" class="header-logo" />
     </div>
   </div>
