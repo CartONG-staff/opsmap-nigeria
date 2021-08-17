@@ -59,8 +59,8 @@ export default class TKFooterLogoItem extends Vue {
   display: flex;
   flex-flow: row nowrap;
   vertical-align: middle;
-  justify-content: left;
-  column-gap: var(--padding-small);
+  justify-content: center;
+  column-gap: var(--padding-logos);
 }
 
 .tk-footer-logos-item-logo {
