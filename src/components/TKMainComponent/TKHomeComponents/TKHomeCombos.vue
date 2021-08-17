@@ -14,10 +14,11 @@
               flat
               dense
               :label="$t('survey')"
-              v-model="currentSurvey"
-              :items="dataset.surveyList"
-              @change="surveySelected"
-              :disabled="dataset.surveyList.length < 2"
+              v-model="dataset.currentSurvey"
+              :items="dataset.surveys"
+              item-text="name"
+              :disabled="dataset.surveys.length < 2"
+              return-object
             ></v-autocomplete>
           </div>
         </template>
@@ -34,9 +35,8 @@
               :label="$t('infosAdmin1')"
               :items="dataset.filteredAdmin1List"
               item-text="name"
-              item-value="pcode"
-              v-model="currentAdmin1"
-              @change="admin1Selected"
+              v-model="dataset.currentAdmin1"
+              return-object
               clearable
             ></v-autocomplete>
           </div>
@@ -53,11 +53,10 @@
               flat
               dense
               :label="$t('infosAdmin2')"
-              v-model="currentAdmin2"
+              v-model="dataset.currentAdmin2"
               :items="dataset.filteredAdmin2List"
               item-text="name"
-              item-value="pcode"
-              @change="admin2Selected"
+              return-object
               clearable
             ></v-autocomplete>
           </div>
@@ -75,11 +74,10 @@
               dense
               clearable
               :label="$t('camp')"
-              :v-model="currentCamp"
+              v-model="dataset.currentCamp"
               :items="dataset.filteredCampsList"
-              item-text="name"
-              item-value="id"
-              @change="campSelected"
+              item-text="infos.name"
+              return-object
             ></v-autocomplete>
           </div>
         </template>
@@ -90,71 +88,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 
 @Component({})
 export default class TKHomeCombos extends Vue {
-  @Prop({ default: () => [] })
+  @Prop()
   readonly dataset!: TKDatasetFilterer;
-
-  currentSurvey = this.dataset.currentSurvey;
-  @Watch("dataset.currentSurvey")
-  onCurrentSurveyChanged() {
-    if (this.currentSurvey !== this.dataset.currentSurvey) {
-      this.currentSurvey = this.dataset.currentSurvey;
-    }
-  }
-
-  currentAdmin1 = this.dataset.currentAdmin1;
-  @Watch("dataset.currentAdmin1")
-  onCurrentAdmin1Changed() {
-    if (this.currentAdmin1 !== this.dataset.currentAdmin1) {
-      this.currentAdmin1 = this.dataset.currentAdmin1;
-    }
-  }
-
-  currentAdmin2 = this.dataset.currentAdmin2;
-  @Watch("dataset.currentAdmin2")
-  onCurrentAdmin2Changed() {
-    if (this.currentAdmin2 !== this.dataset.currentAdmin2) {
-      this.currentAdmin2 = this.dataset.currentAdmin2;
-    }
-  }
-
-  currentCamp = this.dataset.currentCamp;
-  @Watch("dataset.currentCamp")
-  onCurrentCampChanged() {
-    if (this.currentCamp !== this.dataset.currentCamp) {
-      this.currentCamp = this.dataset.currentCamp;
-    }
-    this.currentCamp = this.dataset.currentCamp;
-  }
-
-  surveySelected(id: string) {
-    id ? this.dataset.setActiveSurvey(id) : this.dataset.resetActiveSurvey();
-  }
-  admin1Selected(pcode: string) {
-    if (pcode !== this.dataset.currentAdmin1?.pcode) {
-      pcode
-        ? this.dataset.setCurrentAdmin1(pcode)
-        : this.dataset.clearCurrentAdmin1();
-    }
-  }
-  admin2Selected(pcode: string) {
-    if (pcode !== this.dataset.currentAdmin2?.pcode) {
-      pcode
-        ? this.dataset.setCurrentAdmin2(pcode)
-        : this.dataset.clearCurrentAdmin2();
-    }
-  }
-  campSelected(campId: string) {
-    if (campId !== this.dataset.currentCamp?.id) {
-      campId
-        ? this.dataset.setCurrentCamp(campId)
-        : this.dataset.clearCurrentCamp();
-    }
-  }
 }
 </script>
 

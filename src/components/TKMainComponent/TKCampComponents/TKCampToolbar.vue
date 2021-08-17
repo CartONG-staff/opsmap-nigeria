@@ -8,16 +8,17 @@
           class="tk-camp-toolbar-date"
           background-color="#418fde"
           color="#ffffff"
-          :disabled="dataset.sortedSubmissions.length < 2"
+          :disabled="dataset.currentCamp.submissions.length < 2"
           flat
           filled
           solo
           dense
           height="44"
-          :items="dataset.sortedSubmissions"
+          v-model="dataset.currentSubmission"
+          :items="dataset.currentCamp.submissions"
+          item-text="date"
+          return-object
           :prefix="$t('site.dateSuffix').toUpperCase()"
-          v-model="model"
-          @change="dateSelected"
         ></v-autocomplete>
         <v-autocomplete
           v-else
@@ -32,9 +33,6 @@
           solo
           dense
           height="44"
-          :items="dataset.sortedSubmissions"
-          v-model="model"
-          @change="dateSelected"
         ></v-autocomplete>
       </div>
     </transition>
@@ -97,7 +95,7 @@
 <script lang="ts">
 import { TKCSVWrite } from "@/domain/csv/TKCSVWriter";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 @Component
 export default class TKCampToolbar extends Vue {
@@ -106,28 +104,6 @@ export default class TKCampToolbar extends Vue {
 
   @Prop()
   readonly dataset!: TKDatasetFilterer;
-
-  model = "";
-
-  dateSelected(date: string) {
-    if (this.dataset.currentDate !== date) {
-      this.model = date;
-      this.dataset.setCurrentDate(date);
-    }
-  }
-
-  @Watch("dataset.currentCamp", { immediate: true })
-  onCampChange() {
-    this.model =
-      this.dataset.sortedSubmissions && this.dataset.sortedSubmissions.length
-        ? this.dataset.sortedSubmissions[0]
-        : "";
-  }
-
-  @Watch("dataset.currentDate", { immediate: true })
-  onDateChange() {
-    this.model = this.dataset.currentDate;
-  }
 
   onExportTriggered() {
     if (this.dataset && this.dataset.currentSubmission) {

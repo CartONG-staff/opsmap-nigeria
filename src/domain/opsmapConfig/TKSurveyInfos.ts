@@ -1,4 +1,5 @@
 import { TKFDFInfos } from "../fdf/TKFDFInfos";
+import { TKSurveyOptions } from "../survey/TKSurvey";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Specialization of TKSurveyInfo for KOBO Inputs
@@ -9,6 +10,7 @@ export interface TKSurveyInfosKobo {
   readonly fdf: TKFDFInfos;
   readonly url: string;
   readonly token: string;
+  readonly options: TKSurveyOptions;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -21,6 +23,7 @@ export interface TKSurveyInfosCSV {
   readonly fdf: TKFDFInfos;
   readonly submissionsFolder: string;
   readonly submissionsFile: string;
+  readonly options: TKSurveyOptions;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -33,6 +36,7 @@ export interface TKSurveyInfosGSheet {
   readonly fdf: TKFDFInfos;
   readonly submissionsUrl: string;
   readonly submissionsTrUrl: string;
+  readonly options: TKSurveyOptions;
 }
 
 // folder: string;
