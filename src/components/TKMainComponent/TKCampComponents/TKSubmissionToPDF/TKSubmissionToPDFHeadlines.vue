@@ -3,61 +3,54 @@
     <div class="headlines-left">
       <div class="headlines-title">{{ siteName }} - {{ date }}</div>
       <div class="headlines-infos">
-        <div class="tk-camp-infos">
-          <!-- Site Type -->
-          <div class="tk-camp-infos-field">
-            <div class="tk-camp-infos-field-key">
-              {{ $t("infosSiteType").toUpperCase() }}
-            </div>
-            <div class="tk-camp-infos-field-value">
-              {{ siteType.toUpperCase() }}
-            </div>
+        <!-- Site Type -->
+        <div class="tk-camp-infos-field">
+          <div class="tk-camp-infos-field-key">
+            {{ $t("infosSiteType").toUpperCase() }}
           </div>
-          <div class="headlines-hseparator" />
-          <!-- ADMIN1 -->
-          <div class="tk-camp-infos-field">
-            <div class="tk-camp-infos-field-key">
-              {{ $t("infosAdmin1").toUpperCase() }}
-            </div>
-            <div class="tk-camp-infos-field-value">
-              {{ admin1.toUpperCase() }}
-            </div>
+          <div class="tk-camp-infos-field-value">
+            {{ siteType.toUpperCase() }}
           </div>
-          <div class="headlines-hseparator" />
-          <!-- ADMIN2 -->
-          <div class="tk-camp-infos-field">
-            <div class="tk-camp-infos-field-key">
-              {{ $t("infosAdmin2").toUpperCase() }}
-            </div>
-            <div class="tk-camp-infos-field-value">
-              {{ admin2.toUpperCase() }}
-            </div>
+        </div>
+        <!-- ADMIN1 -->
+        <div class="tk-camp-infos-field">
+          <div class="tk-camp-infos-field-key">
+            {{ $t("infosAdmin1").toUpperCase() }}
           </div>
-          <div class="headlines-hseparator" />
-          <!-- GPS COORDINATES -->
-          <div class="tk-camp-infos-field">
-            <div class="tk-camp-infos-field-key">
-              {{ $t("site.infosCoordinates").toUpperCase() }}
-            </div>
-            <div class="tk-camp-infos-field-value">
-              {{ coordinates.toUpperCase() }}
-            </div>
+          <div class="tk-camp-infos-field-value">
+            {{ admin1.toUpperCase() }}
           </div>
-          <div class="headlines-hseparator" />
-          <div class="tk-camp-infos-field">
-            <div class="tk-camp-infos-field-key">
-              {{ $t("manageBy").toUpperCase() }}
-            </div>
-            <div class="tk-camp-infos-field-value">
-              {{ manageBy.toUpperCase() }}
-            </div>
+        </div>
+        <!-- ADMIN2 -->
+        <div class="tk-camp-infos-field">
+          <div class="tk-camp-infos-field-key">
+            {{ $t("infosAdmin2").toUpperCase() }}
+          </div>
+          <div class="tk-camp-infos-field-value">
+            {{ admin2.toUpperCase() }}
+          </div>
+        </div>
+        <!-- GPS COORDINATES -->
+        <div class="tk-camp-infos-field">
+          <div class="tk-camp-infos-field-key">
+            {{ $t("site.infosCoordinates").toUpperCase() }}
+          </div>
+          <div class="tk-camp-infos-field-value">
+            {{ coordinates.toUpperCase() }}
+          </div>
+        </div>
+        <!-- MANAGE BY -->
+        <div class="tk-camp-infos-field">
+          <div class="tk-camp-infos-field-key">
+            {{ $t("manageBy").toUpperCase() }}
+          </div>
+          <div class="tk-camp-infos-field-value">
+            {{ manageBy.toUpperCase() }}
           </div>
         </div>
       </div>
     </div>
-    <div class="headlines-right">
-      <img class="headlines-map-img" :src="mapImg" />
-    </div>
+    <img class="headlines-map-img" :src="mapImg" />
   </div>
 </template>
 
@@ -203,12 +196,17 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  height: 70mm;
+  height: 48mm;
+}
+
+.headlines-left {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 5mm;
+  justify-content: flex-start;
 }
 
 .headlines-title {
-  margin-top: 5mm;
-  margin-bottom: 5mm;
   color: #333333;
   font-size: 25px;
   font-weight: bold;
@@ -216,12 +214,12 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
 }
 
 .headlines-infos {
-  width: 80mm;
+  width: 100%;
 }
 
 .headlines-map-img {
-  width: 100mm;
-  height: 100%;
+  width: 64mm;
+  height: 48mm;
   border-radius: 15px;
   overflow: hidden;
 }
@@ -243,7 +241,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
 }
 
 .tk-camp-infos-field-key {
-  line-height: 3;
+  line-height: 2;
   font-size: 12px;
   font-weight: bold;
   color: #999;
@@ -251,7 +249,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
 }
 
 .tk-camp-infos-field-value {
-  line-height: 3;
+  line-height: 2;
   font-size: 12px;
   font-weight: bold;
   color: #418fde;
