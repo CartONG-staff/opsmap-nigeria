@@ -228,12 +228,16 @@ export function TKCreateSubmission(
     let display = true;
     if (rule.displayCondition) {
       try {
-        const expressionDisplay = `"${submissionItem[
-          rule.displayCondition.field
-        ].replaceAll('"', "")}" ${
-          rule.displayCondition.operator
-        } "${rule.displayCondition.value.replaceAll('"', "")}"`;
-        display = eval(expressionDisplay);
+        switch (rule.displayCondition.operator) {
+          case "==":
+          case "===":
+            display =
+              submissionItem[rule.displayCondition.field] ==
+              rule.displayCondition.value;
+            break;
+          default:
+            display = false;
+        }
       } catch (error) {
         display = false;
       }
