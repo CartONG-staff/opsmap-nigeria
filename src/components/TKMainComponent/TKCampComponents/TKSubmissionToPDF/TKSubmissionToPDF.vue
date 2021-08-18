@@ -5,17 +5,28 @@
         <TKSubmissionToPDFHeader :appConfig="appConfig" />
         <div class="header-separator"></div>
         <TKSubmissionToPDFHeadlines :appConfig="appConfig" :dataset="dataset" />
-        <div class="header-separator"></div>
         <TKSubmissionToPDFIndicators
           :appConfig="appConfig"
           :dataset="dataset"
         />
-        <div class="header-separator"></div>
-        <!-- <TKSubmissionToPDFubmission
-          :appConfig="appConfig"
-          :dataset="dataset"
-          :visualizerOptions="visualizerOptions"
-        /> -->
+        <table id="table">
+          <thead>
+            <tr>
+              <th>key</th>
+              <th>value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in thematicData" :key="item.key">
+              <td>
+                {{ item.key }}
+              </td>
+              <td>
+                {{ item.value }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -27,17 +38,14 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "../TKSubmissionVisualizer";
 import jsPDF from "jspdf";
-// import autoTable from "jspdf-autotable";
-import "jspdf-autotable";
+import autoTable from "jspdf-autotable";
 
 import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
 import TKSubmissionToPDFHeader from "./TKSubmissionToPDFHeader.vue";
 import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
 import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
-import {
-  TKFDFThematic,
-  TKTFDFhematicsCollection
-} from "@/domain/fdf/TKFDFThematics";
+
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 
 @Component({
   components: {
@@ -56,8 +64,7 @@ export default class TKSubmissionToPDF extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
 
-  thematics!: TKTFDFhematicsCollection;
-  them!: TKFDFThematic;
+  thematicData: Array<{ key: string; value: string }> = [];
 
   mounted() {
     this.exportToPDF();
@@ -75,6 +82,21 @@ export default class TKSubmissionToPDF extends Vue {
     ) {
       console.log(this.dataset.currentSubmission?.thematics);
 
+      this.thematicData = this.dataset.currentSubmission.thematics[
+        "group_infrastructure"
+      ].data.map(item => {
+        if (item.type === "text") {
+          return {
+            key: TKGetLocalValue(item.fieldLabel, this.$i18n.locale),
+            value: TKGetLocalValue(item.answerLabel, this.$i18n.locale)
+          };
+        }
+        return {
+          key: "-",
+          value: "-"
+        };
+      });
+
       const documentTitle = TKComputeExportFilename(this.dataset, "pdf");
       const pdf = new jsPDF({
         orientation: "portrait",
@@ -91,10 +113,10 @@ export default class TKSubmissionToPDF extends Vue {
             html2canvas: { scale: 0.75 }
           })
           .then(() => {
-            // autoTable(pdf, {
-            //   html: "#thematic",
-            //   startY: 375
-            // });
+            autoTable(pdf, {
+              html: "#table",
+              startY: 300
+            });
             pdf.save(documentTitle);
           });
       });
@@ -132,19 +154,10 @@ export default class TKSubmissionToPDF extends Vue {
 
 /* SEPARATOR *********************************************************/
 .header-separator {
-  /* height: 0.1pt;
-            border: 0;
-            box-shadow: inset 0 0.1pt 0.1pt -0.1pt #428fdf88; */
   border: 0;
   height: 0;
   border-top: 1px solid #428fdf22;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* THEMATIC **********************************************************/
-.thematic {
-  background-color: crimson;
-  height: 15cm;
 }
 
 /* CONTENT ***********************************************************/
