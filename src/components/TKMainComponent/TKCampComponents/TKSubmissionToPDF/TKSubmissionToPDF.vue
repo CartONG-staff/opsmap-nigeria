@@ -9,24 +9,6 @@
           :appConfig="appConfig"
           :dataset="dataset"
         />
-        <table id="table">
-          <thead>
-            <tr>
-              <th>key</th>
-              <th>value</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in thematicData" :key="item.key">
-              <td>
-                {{ item.key }}
-              </td>
-              <td>
-                {{ item.value }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>
@@ -46,6 +28,8 @@ import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
 import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
 
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKIconUrl } from "@/domain/ui/TKIcons";
+import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 
 @Component({
   components: {
@@ -64,8 +48,6 @@ export default class TKSubmissionToPDF extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
 
-  thematicData: Array<{ key: string; value: string }> = [];
-
   mounted() {
     this.exportToPDF();
   }
@@ -82,20 +64,9 @@ export default class TKSubmissionToPDF extends Vue {
     ) {
       console.log(this.dataset.currentSubmission?.thematics);
 
-      this.thematicData = this.dataset.currentSubmission.thematics[
+      const submissionThematic = this.dataset.currentSubmission.thematics[
         "group_infrastructure"
-      ].data.map(item => {
-        if (item.type === "text") {
-          return {
-            key: TKGetLocalValue(item.fieldLabel, this.$i18n.locale),
-            value: TKGetLocalValue(item.answerLabel, this.$i18n.locale)
-          };
-        }
-        return {
-          key: "-",
-          value: "-"
-        };
-      });
+      ];
 
       const documentTitle = TKComputeExportFilename(this.dataset, "pdf");
       const pdf = new jsPDF({
@@ -113,14 +84,70 @@ export default class TKSubmissionToPDF extends Vue {
             html2canvas: { scale: 0.75 }
           })
           .then(() => {
-            autoTable(pdf, {
-              html: "#table",
-              startY: 300
-            });
+            autoTable(pdf, this.createTable(pdf, submissionThematic));
             pdf.save(documentTitle);
           });
       });
     }
+  }
+
+  createTable(pdf: jsPDF, thematic: TKSubmissionThematic): any {
+    const thematicHeaderImageURL = TKIconUrl(thematic.iconFileName);
+    const thematicDataHeader = [
+      { key: TKGetLocalValue(thematic.nameLabel, this.$i18n.locale), value: "" }
+    ];
+    const thematicDataBody = thematic.data.map(item => {
+      if (item.type === "text") {
+        return {
+          key: TKGetLocalValue(item.fieldLabel, this.$i18n.locale),
+          value: TKGetLocalValue(item.answerLabel, this.$i18n.locale)
+        };
+      }
+      return {
+        key: "-",
+        value: "-"
+      };
+    });
+    thematicDataBody.push(...thematicDataBody);
+
+    const thematicHeadMargins = 8;
+    return {
+      head: thematicDataHeader,
+      body: thematicDataBody,
+      startY: 265,
+      headStyles: {
+        fillColor: "#754514",
+        minCellHeight: 4 * thematicHeadMargins,
+        valign: "middle"
+      },
+      // Use for changing styles with jspdf functions or customize the positioning of cells or cell text
+      // just before they are drawn to the page.
+      willDrawCell: function(data) {
+        if (data.row.section === "head") {
+          if (data.column.dataKey === "key") {
+            data.cell.styles.cellPadding = {
+              left: 4 * thematicHeadMargins
+              // top: thematicHeadMargins
+            };
+          }
+        }
+      },
+      // Use for adding content to the cells after they are drawn. This could be images or links.
+      // You can also use this to draw other custom jspdf content to cells with doc.text or doc.rect
+      // for example.
+      didDrawCell: function(data) {
+        if (data.row.section === "head" && data.column.dataKey === "key") {
+          pdf.addImage(
+            thematicHeaderImageURL,
+            "PNG",
+            data.cell.x + thematicHeadMargins,
+            data.cell.y + thematicHeadMargins,
+            2 * thematicHeadMargins,
+            2 * thematicHeadMargins
+          );
+        }
+      }
+    };
   }
 }
 </script>
