@@ -30,8 +30,8 @@ specificgroups/number_of_preglac_dis;integer;Number_of_Individuals;;doughnut_cha
 group_cccm/campmanagementoffice;string;group_cccm;yesno;;;;
 group_cccm/site_facilitation_type;string;group_cccm;;;;;
 group_cccm/site_facilitators;integer;group_cccm;;;;;
-site_facilitator_calcpopulationvsdedicated;computed;group_cccm;dedicatedSfVsPopulation;only_traffic_light;;group_cccm/site_facilitation_type#===#dedicated;group_pop_change/individualpopulation#/#group_cccm/site_facilitators
-site_facilitator_calcpopulationvsmobile;computed;group_cccm;mobileSfVsPopulation;only_traffic_light;;group_cccm/site_facilitation_type#===#mobile;group_pop_change/individualpopulation#/#group_cccm/site_facilitators
+site_facilitator_calcpopulationvsdedicated;computed;group_cccm;dedicatedSfVsPopulation;;;group_cccm/site_facilitation_type#===#dedicated;group_pop_change/individualpopulation#/#group_cccm/site_facilitators
+site_facilitator_calcpopulationvsmobile;computed;group_cccm;mobileSfVsPopulation;;;group_cccm/site_facilitation_type#===#mobile;group_pop_change/individualpopulation#/#group_cccm/site_facilitators
 group_cccm/femalesitefacilitators;integer;group_cccm;;;;;
 group_cccm/numberofsites;string;group_cccm;;;;;
 group_cccm/numbersitescovered;integer;group_cccm;;;;;
