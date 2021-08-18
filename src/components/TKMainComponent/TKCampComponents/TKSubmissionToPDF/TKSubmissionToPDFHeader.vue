@@ -52,7 +52,7 @@ export default class TKSubmissionToPDFHeader extends Vue {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  height: 15mm;
+  height: 12mm;
 }
 
 .header-opsmap-title {
