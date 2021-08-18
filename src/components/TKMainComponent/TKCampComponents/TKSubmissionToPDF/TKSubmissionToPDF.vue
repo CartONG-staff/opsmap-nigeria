@@ -20,7 +20,7 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "../TKSubmissionVisualizer";
 import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
+import autoTable, { UserOptions } from "jspdf-autotable";
 
 import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
 import TKSubmissionToPDFHeader from "./TKSubmissionToPDFHeader.vue";
@@ -91,7 +91,7 @@ export default class TKSubmissionToPDF extends Vue {
     }
   }
 
-  createTable(pdf: jsPDF, thematic: TKSubmissionThematic): any {
+  createTable(pdf: jsPDF, thematic: TKSubmissionThematic): UserOptions {
     const thematicHeaderImageURL = TKIconUrl(thematic.iconFileName);
     const thematicDataHeader = [
       { key: TKGetLocalValue(thematic.nameLabel, this.$i18n.locale), value: "" }
@@ -120,6 +120,8 @@ export default class TKSubmissionToPDF extends Vue {
         minCellHeight: 4 * thematicHeadMargins,
         valign: "middle"
       },
+      margin: { left: 15, right: 15 },
+
       // Use for changing styles with jspdf functions or customize the positioning of cells or cell text
       // just before they are drawn to the page.
       willDrawCell: function(data) {
