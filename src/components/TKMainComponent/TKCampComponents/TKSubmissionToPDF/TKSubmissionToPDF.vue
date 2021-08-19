@@ -112,22 +112,18 @@ export default class TKSubmissionToPDF extends Vue {
             // Draw FIRST RANGE OF COLUMN
             for (const key in submission.thematics) {
               const thematic = submission.thematics[key];
-              const p = drawPosition[indexColumn];
-              console.log(thematic.nameLabel.en);
-              console.log(p);
-              pdf.setPage(p.pageNumber);
 
-              const pageNumberBefore = (pdf.internal as any).getNumberOfPages();
+              const p = drawPosition[indexColumn];
+
+              pdf.setPage(p.pageNumber);
               autoTable(
                 pdf,
                 this.createTable(pdf, p.startY, margins[indexColumn], thematic)
               );
-              const pageNumberAfter = (pdf.internal as any).getNumberOfPages();
 
-              if (pageNumberAfter !== pageNumberBefore) {
-                p.pageNumber = pageNumberAfter;
-              }
-
+              p.pageNumber =
+                (pdf as any).lastAutoTable.startPageNumber +
+                ((pdf as any).lastAutoTable.pageCount - 1);
               p.startY = (pdf as any).lastAutoTable.finalY + 15;
               indexColumn++;
               if (indexColumn > 2) {
@@ -146,96 +142,101 @@ export default class TKSubmissionToPDF extends Vue {
     margins: MarginPaddingInput,
     thematic: TKSubmissionThematic
   ): UserOptions {
-    const thematicHeaderImageURL = TKIconUrl(thematic.iconFileName);
-    const thematicDataHeader = [
-      {
-        key: TKGetLocalValue(thematic.nameLabel, this.$i18n.locale),
-        value: ""
-      }
-    ];
-    const thematicDataBody = thematic.data.map(item => {
-      if (item.type === "text") {
-        return {
-          key: TKGetLocalValue(item.fieldLabel, this.$i18n.locale),
-          value: TKGetLocalValue(item.answerLabel, this.$i18n.locale),
-          trafficLightColor: item.trafficLightColor
-        };
-      }
-      return {
-        key: "-",
-        value: "-",
-        trafficLightColor: false
-      };
-    });
-    thematicDataBody.push(...thematicDataBody);
+    const headerHeight = 35;
 
-    const thematicHeadMargins = 10;
-    const cellFontSize = 9;
+    const iconURL = TKIconUrl(thematic.iconFileName);
+
+    const iconProps = pdf.getImageProperties(iconURL);
+
+    const iconContainerWidth = 35;
+    const iconDisplayHeight = 15;
+
+    const iconDisplayWidth =
+      (iconProps.width / iconProps.height) * iconDisplayHeight;
+    const iconDisplayX = iconContainerWidth / 2.0 - iconDisplayWidth / 2.0;
+    const iconDisplayY = headerHeight / 2.0 - iconDisplayHeight / 2.0;
+
+    const body = [];
+    for (let i = 0; i < thematic.data.length; i++) {
+      const item = thematic.data[i];
+      if (item.type === "text") {
+        let color = "#000000";
+        switch (item.trafficLightColor) {
+          case TKTrafficLightValues.OK:
+            color = "#157815";
+            break;
+          case TKTrafficLightValues.WARNING:
+            color = "#ffcc00";
+            break;
+          case TKTrafficLightValues.DANGER:
+            color = "#cc7000";
+            break;
+          case TKTrafficLightValues.CRITICAL:
+            color = "#cc0a00";
+            break;
+        }
+
+        const row: RowInput = [];
+        row.push({
+          content: TKGetLocalValue(item.fieldLabel, this.$i18n.locale),
+          styles: {
+            halign: "left",
+            fontSize: 9
+          }
+        });
+        row.push({
+          content: TKGetLocalValue(item.answerLabel, this.$i18n.locale),
+          styles: {
+            halign: "right",
+            textColor: color,
+            fontSize: 9,
+            fontStyle: "bold"
+          }
+        });
+        body.push(row);
+      }
+    }
+
     return {
-      head: thematicDataHeader,
-      body: thematicDataBody as RowInput[], // Remove warning
+      // Content
+      head: [
+        [
+          {
+            content: TKGetLocalValue(thematic.nameLabel, this.$i18n.locale),
+            colSpan: 2,
+            styles: {
+              valign: "middle",
+              halign: "left",
+              cellPadding: { left: iconContainerWidth },
+              fillColor: "#f1f3f3",
+              textColor: "#428fdf",
+              minCellHeight: headerHeight,
+              fontSize: 10
+            }
+          }
+        ]
+      ],
+      body: body,
+
+      // Position in the document
       startY: startY,
       margin: margins,
-      columnStyles: {
-        key: { halign: "left", fontSize: cellFontSize },
-        value: { halign: "right", fontSize: cellFontSize, fontStyle: "bold" }
-      },
-      headStyles: {
-        fillColor: "#f1f3f3",
-        fontStyle: "bold",
-        textColor: "#428fdf",
-        minCellHeight: 4 * thematicHeadMargins,
-        valign: "middle"
-      },
+
+      // Style
       alternateRowStyles: {
         fillColor: "#F9F9F9"
       },
 
-      // margin: { left: 15, right: 15, top: 15, bottom: 15 },
-
-      // Use for changing styles with jspdf functions or customize the positioning of cells or cell text
-      // just before they are drawn to the page.
-      willDrawCell: function(data) {
-        if (data.row.section === "head") {
-          if (data.column.dataKey === "key") {
-            data.cell.styles.cellPadding = {
-              left: 5 * thematicHeadMargins
-            };
-            data.cell.width = 179;
-          } else if (data.column.dataKey === "value") {
-            data.cell.width = 0;
-          }
-        } else if (data.row.section === "body") {
-          if (data.column.dataKey === "value") {
-            switch ((data.row.raw as any).trafficLightColor) {
-              case TKTrafficLightValues.OK:
-                pdf.setTextColor(21, 120, 21);
-                break;
-              case TKTrafficLightValues.WARNING:
-                pdf.setTextColor(255, 204, 0);
-                break;
-              case TKTrafficLightValues.DANGER:
-                pdf.setTextColor(204, 112, 0);
-                break;
-              case TKTrafficLightValues.CRITICAL:
-                pdf.setTextColor(204, 10, 0);
-                break;
-            }
-          }
-        }
-      },
-      // Use for adding content to the cells after they are drawn. This could be images or links.
-      // You can also use this to draw other custom jspdf content to cells with doc.text or doc.rect
-      // for example.
+      // Thematic logo inside the header
       didDrawCell: function(data) {
-        if (data.row.section === "head" && data.column.dataKey === "key") {
+        if (data.row.section === "head") {
           pdf.addImage(
-            thematicHeaderImageURL,
+            iconURL,
             "PNG",
-            data.cell.x + thematicHeadMargins,
-            data.cell.y + thematicHeadMargins,
-            2 * thematicHeadMargins,
-            2 * thematicHeadMargins
+            data.cell.x + iconDisplayX,
+            data.cell.y + iconDisplayY,
+            iconDisplayWidth,
+            iconDisplayHeight
           );
         }
       }
