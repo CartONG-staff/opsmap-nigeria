@@ -221,6 +221,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   width: 64mm;
   height: 48mm;
   border-radius: 15px;
+  border: solid 1px #999;
   overflow: hidden;
 }
 
