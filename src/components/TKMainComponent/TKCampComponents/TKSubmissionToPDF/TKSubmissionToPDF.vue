@@ -62,19 +62,13 @@ export default class TKSubmissionToPDF extends Vue {
       this.dataset.currentCamp &&
       this.dataset.currentSubmission
     ) {
-      console.log(this.dataset.currentSubmission?.thematics);
-
-      const submissionThematic = this.dataset.currentSubmission.thematics[
-        "group_infrastructure"
-      ];
-
       const documentTitle = TKComputeExportFilename(this.dataset, "pdf");
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "pt",
         format: "a4"
       });
-
+      const submission = this.dataset.currentSubmission;
       this.$nextTick(function() {
         const divContent = this.$refs["pdf-document"] as HTMLElement;
         pdf
@@ -84,14 +78,33 @@ export default class TKSubmissionToPDF extends Vue {
             html2canvas: { scale: 0.75 }
           })
           .then(() => {
-            autoTable(pdf, this.createTable(pdf, submissionThematic));
+            autoTable(
+              pdf,
+              this.createTable(
+                pdf,
+                265,
+                submission.thematics["group_infrastructure"]
+              )
+            );
+            autoTable(
+              pdf,
+              this.createTable(
+                pdf,
+                (pdf as any).lastAutoTable.finalY + 10,
+                submission.thematics["group_cccm"]
+              )
+            );
             pdf.save(documentTitle);
           });
       });
     }
   }
 
-  createTable(pdf: jsPDF, thematic: TKSubmissionThematic): UserOptions {
+  createTable(
+    pdf: jsPDF,
+    startY: number,
+    thematic: TKSubmissionThematic
+  ): UserOptions {
     const thematicHeaderImageURL = TKIconUrl(thematic.iconFileName);
     const thematicDataHeader = [
       { key: TKGetLocalValue(thematic.nameLabel, this.$i18n.locale), value: "" }
@@ -114,7 +127,7 @@ export default class TKSubmissionToPDF extends Vue {
     return {
       head: thematicDataHeader,
       body: thematicDataBody,
-      startY: 265,
+      startY: startY,
       headStyles: {
         fillColor: "#754514",
         minCellHeight: 4 * thematicHeadMargins,
