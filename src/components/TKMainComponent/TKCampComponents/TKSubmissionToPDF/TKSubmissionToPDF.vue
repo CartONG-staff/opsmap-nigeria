@@ -20,7 +20,7 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "../TKSubmissionVisualizer";
 import jsPDF from "jspdf";
-import autoTable, { UserOptions } from "jspdf-autotable";
+import autoTable, { MarginPaddingInput, UserOptions } from "jspdf-autotable";
 
 import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
 import TKSubmissionToPDFHeader from "./TKSubmissionToPDFHeader.vue";
@@ -78,20 +78,35 @@ export default class TKSubmissionToPDF extends Vue {
             html2canvas: { scale: 0.75 }
           })
           .then(() => {
+            // Draw FIRST RANGE OF COLUMN
+            const pageNumber = (pdf.internal as any).getNumberOfPages();
             autoTable(
               pdf,
               this.createTable(
                 pdf,
                 265,
+                { left: 15, right: 401 },
                 submission.thematics["group_infrastructure"]
               )
             );
+            pdf.setPage(pageNumber);
             autoTable(
               pdf,
               this.createTable(
                 pdf,
-                (pdf as any).lastAutoTable.finalY + 15,
+                265, //(pdf as any).lastAutoTable.finalY + 15,
+                { left: 208, right: 208 },
                 submission.thematics["group_cccm"]
+              )
+            );
+            pdf.setPage(pageNumber);
+            autoTable(
+              pdf,
+              this.createTable(
+                pdf,
+                265, //(pdf as any).lastAutoTable.finalY + 15,
+                { left: 401, right: 15 },
+                submission.thematics["group_protection"]
               )
             );
             pdf.save(documentTitle);
@@ -103,6 +118,7 @@ export default class TKSubmissionToPDF extends Vue {
   createTable(
     pdf: jsPDF,
     startY: number,
+    margins: MarginPaddingInput,
     thematic: TKSubmissionThematic
   ): UserOptions {
     const thematicHeaderImageURL = TKIconUrl(thematic.iconFileName);
@@ -128,6 +144,8 @@ export default class TKSubmissionToPDF extends Vue {
       head: thematicDataHeader,
       body: thematicDataBody,
       startY: startY,
+      margin: margins,
+
       columnStyles: {
         key: { halign: "left" },
         value: { halign: "right", fontStyle: "bold" }
@@ -135,7 +153,6 @@ export default class TKSubmissionToPDF extends Vue {
       headStyles: {
         fillColor: "#f1f3f3",
         fontStyle: "bold",
-        fontSize: 16,
         textColor: "#428fdf",
         minCellHeight: 4 * thematicHeadMargins,
         valign: "middle"
@@ -144,7 +161,7 @@ export default class TKSubmissionToPDF extends Vue {
         fillColor: "#F9F9F9"
       },
 
-      margin: { left: 15, right: 15, top: 15, bottom: 15 },
+      // margin: { left: 15, right: 15, top: 15, bottom: 15 },
 
       // Use for changing styles with jspdf functions or customize the positioning of cells or cell text
       // just before they are drawn to the page.
@@ -154,6 +171,9 @@ export default class TKSubmissionToPDF extends Vue {
             data.cell.styles.cellPadding = {
               left: 5 * thematicHeadMargins
             };
+            data.cell.width = 178;
+          } else if (data.column.dataKey === "value") {
+            data.cell.width = 0;
           }
         }
       },
