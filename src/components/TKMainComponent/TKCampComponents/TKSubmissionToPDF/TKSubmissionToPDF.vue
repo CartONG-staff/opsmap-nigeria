@@ -194,6 +194,18 @@ export default class TKSubmissionToPDF extends Vue {
           }
         });
         body.push(row);
+      } else {
+        const row: RowInput = [];
+        row.push({
+          content: "ETIENNE",
+          colSpan: 2,
+          styles: {
+            minCellHeight: 100,
+            halign: "center",
+            fillColor: "#ff00ff"
+          }
+        });
+        body.push(row);
       }
     }
 
