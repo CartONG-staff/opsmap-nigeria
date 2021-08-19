@@ -228,6 +228,7 @@ export function TKCreateSubmission(
     let display = true;
     if (rule.displayCondition) {
       try {
+        // TODO: improve, and move to function
         switch (rule.displayCondition.operator) {
           case "==":
           case "===":
