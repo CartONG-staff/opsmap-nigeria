@@ -83,37 +83,57 @@ export default class TKSubmissionToPDF extends Vue {
             html2canvas: { scale: 0.75 }
           })
           .then(() => {
+            const margins = [
+              { left: 15, right: 401 },
+              { left: 208, right: 208 },
+              { left: 401, right: 15 }
+            ];
+
+            const nonAutotableContentHeight = 265;
+            const drawPosition: Array<{
+              startY: number;
+              pageNumber: number;
+            }> = [
+              {
+                startY: nonAutotableContentHeight,
+                pageNumber: (pdf.internal as any).getNumberOfPages()
+              },
+              {
+                startY: nonAutotableContentHeight,
+                pageNumber: (pdf.internal as any).getNumberOfPages()
+              },
+              {
+                startY: nonAutotableContentHeight,
+                pageNumber: (pdf.internal as any).getNumberOfPages()
+              }
+            ];
+
+            let indexColumn = 0;
             // Draw FIRST RANGE OF COLUMN
-            const pageNumber = (pdf.internal as any).getNumberOfPages();
-            autoTable(
-              pdf,
-              this.createTable(
+            for (const key in submission.thematics) {
+              const thematic = submission.thematics[key];
+              const p = drawPosition[indexColumn];
+              console.log(thematic.nameLabel.en);
+              console.log(p);
+              pdf.setPage(p.pageNumber);
+
+              const pageNumberBefore = (pdf.internal as any).getNumberOfPages();
+              autoTable(
                 pdf,
-                265,
-                { left: 15, right: 401 },
-                submission.thematics["group_infrastructure"]
-              )
-            );
-            pdf.setPage(pageNumber);
-            autoTable(
-              pdf,
-              this.createTable(
-                pdf,
-                265, //(pdf as any).lastAutoTable.finalY + 15,
-                { left: 208, right: 208 },
-                submission.thematics["group_cccm"]
-              )
-            );
-            pdf.setPage(pageNumber);
-            autoTable(
-              pdf,
-              this.createTable(
-                pdf,
-                265, //(pdf as any).lastAutoTable.finalY + 15,
-                { left: 401, right: 15 },
-                submission.thematics["group_protection"]
-              )
-            );
+                this.createTable(pdf, p.startY, margins[indexColumn], thematic)
+              );
+              const pageNumberAfter = (pdf.internal as any).getNumberOfPages();
+
+              if (pageNumberAfter !== pageNumberBefore) {
+                p.pageNumber = pageNumberAfter;
+              }
+
+              p.startY = (pdf as any).lastAutoTable.finalY + 15;
+              indexColumn++;
+              if (indexColumn > 2) {
+                indexColumn = 0;
+              }
+            }
             pdf.save(documentTitle);
           });
       });
