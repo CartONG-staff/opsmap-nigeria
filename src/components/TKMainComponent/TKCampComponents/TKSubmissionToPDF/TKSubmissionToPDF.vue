@@ -90,7 +90,7 @@ export default class TKSubmissionToPDF extends Vue {
               pdf,
               this.createTable(
                 pdf,
-                (pdf as any).lastAutoTable.finalY + 10,
+                (pdf as any).lastAutoTable.finalY + 15,
                 submission.thematics["group_cccm"]
               )
             );
@@ -123,17 +123,28 @@ export default class TKSubmissionToPDF extends Vue {
     });
     thematicDataBody.push(...thematicDataBody);
 
-    const thematicHeadMargins = 8;
+    const thematicHeadMargins = 10;
     return {
       head: thematicDataHeader,
       body: thematicDataBody,
       startY: startY,
+      columnStyles: {
+        key: { halign: "left" },
+        value: { halign: "right", fontStyle: "bold" }
+      },
       headStyles: {
-        fillColor: "#754514",
+        fillColor: "#f1f3f3",
+        fontStyle: "bold",
+        fontSize: 16,
+        textColor: "#428fdf",
         minCellHeight: 4 * thematicHeadMargins,
         valign: "middle"
       },
-      margin: { left: 15, right: 15 },
+      alternateRowStyles: {
+        fillColor: "#F9F9F9"
+      },
+
+      margin: { left: 15, right: 15, top: 15, bottom: 15 },
 
       // Use for changing styles with jspdf functions or customize the positioning of cells or cell text
       // just before they are drawn to the page.
@@ -141,8 +152,7 @@ export default class TKSubmissionToPDF extends Vue {
         if (data.row.section === "head") {
           if (data.column.dataKey === "key") {
             data.cell.styles.cellPadding = {
-              left: 4 * thematicHeadMargins
-              // top: thematicHeadMargins
+              left: 5 * thematicHeadMargins
             };
           }
         }
