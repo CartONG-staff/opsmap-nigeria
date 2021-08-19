@@ -140,15 +140,16 @@ export default class TKSubmissionToPDF extends Vue {
     thematicDataBody.push(...thematicDataBody);
 
     const thematicHeadMargins = 10;
+    const cellFontSize = 9;
     return {
       head: thematicDataHeader,
       body: thematicDataBody,
       startY: startY,
       margin: margins,
-
+      styles: {},
       columnStyles: {
-        key: { halign: "left" },
-        value: { halign: "right", fontStyle: "bold" }
+        key: { halign: "left", fontSize: cellFontSize },
+        value: { halign: "right", fontSize: cellFontSize, fontStyle: "bold" }
       },
       headStyles: {
         fillColor: "#f1f3f3",
