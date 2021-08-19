@@ -142,6 +142,9 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
                 size: 11
               }
             }
+          },
+          animation: {
+            onComplete: this.updateBase64data
           }
         }
       };
@@ -152,6 +155,10 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 
       this.chart = new Chart(this.ctx, config);
     }
+  }
+
+  updateBase64data() {
+    this.entry.base64 = this.chart.toBase64Image();
   }
 
   @Watch("entry")

@@ -163,7 +163,8 @@ function createChartInSubmission(
       ),
       femalesLabels: femalesEntries.map(
         item => surveyConfiguration.fieldsLabels[item.field]
-      )
+      ),
+      base64: ""
     };
     submission[chartData.thematic].data.push(entry);
   } else if (chartData.id.includes("doughnut")) {

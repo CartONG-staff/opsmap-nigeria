@@ -28,6 +28,7 @@ export interface TKSubmissionEntryAgePyramid {
   malesLabels: Array<TKLabel>;
   isAnswered: true;
   femalesLabels: Array<TKLabel>;
+  base64: string;
 }
 
 export interface TKSubmissionEntryDoughnut {
