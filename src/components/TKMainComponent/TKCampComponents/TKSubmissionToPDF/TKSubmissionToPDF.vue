@@ -89,7 +89,7 @@ export default class TKSubmissionToPDF extends Vue {
               { left: 401, right: 15 }
             ];
 
-            const nonAutotableContentHeight = 265;
+            const nonAutotableContentHeight = 280;
             const drawPosition: Array<{
               startY: number;
               pageNumber: number;
