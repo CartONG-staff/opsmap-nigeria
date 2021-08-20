@@ -132,7 +132,7 @@ export default class TKSubmissionItemPolarChart extends Vue {
   updateBase64data() {
     this.pdfInfos.currentChartsBase64[
       this.entry.chartid
-    ] = this.chart.toBase64Image();
+    ] = this.chart.toBase64Image("image/png", 1);
   }
 
   @Watch("entry")
