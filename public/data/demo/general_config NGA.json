@@ -57,6 +57,7 @@
             "iconOchaName": "People-in-need"
         }]
     },
+    "headerLogos":[],
     "footerLogos":[
         {
             "title": {
@@ -167,6 +168,7 @@
         ]
     },
     "options": {
-        "showCCCMLogo": true
+        "showCCCMLogo": true,
+        "pdfColumnCount": 3
     }
 }

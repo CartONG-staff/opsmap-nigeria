@@ -37,12 +37,12 @@
     "combosTitle": "Zoom on the map"
   },
   "site": {
-    "exportAsCSV": "Export",
+    "exportPreffix": "Export as",
     "infosCoordinates": "gps coordinates",
     "hideUnanswered": "Hide unanswered entries",
     "subtitlePlaceholder": "No Site Selected",
     "extraTools": "Extra Tools",
-    "dateSuffix": "Report"
+    "datePreffix": "Report"
   },
   "charts": {
     "agePyramidTitle": "Age Pyramid",

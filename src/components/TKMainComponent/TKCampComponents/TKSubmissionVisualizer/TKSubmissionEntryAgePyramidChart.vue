@@ -21,6 +21,7 @@ import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
 
 import { v4 } from "uuid";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 
 Chart.register(
   BarController,
@@ -36,6 +37,9 @@ Chart.register(
 export default class TKSubmissionItemAgePyramidChart extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryAgePyramid;
+
+  @Prop()
+  readonly pdfInfos!: TKPDFInfos;
 
   // charts
   chart!: Chart;
@@ -142,6 +146,9 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
                 size: 11
               }
             }
+          },
+          animation: {
+            onComplete: this.updateBase64data
           }
         }
       };
@@ -152,6 +159,12 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 
       this.chart = new Chart(this.ctx, config);
     }
+  }
+
+  updateBase64data() {
+    this.pdfInfos.currentChartsBase64[
+      this.entry.chartid
+    ] = this.chart.toBase64Image("image/png", 1);
   }
 
   @Watch("entry")

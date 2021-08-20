@@ -93,25 +93,28 @@ function computeSubmissionIndicator(
       maxPeopleCount !== undefined &&
       maxPeopleCount !== 0
     ) {
-      const percent = Math.round(
-        (peopleCount / maxPeopleCount) * 100
-      ).toString();
+      const percentValue = Math.round((peopleCount / maxPeopleCount) * 100);
+      const percentText = percentValue.toString();
       const valueLabel: TKLabel = {};
       for (const k in labelIsMaxCapacity) {
-        valueLabel[k] = labelIsMaxCapacity[k] + "-" + percent;
+        valueLabel[k] = labelIsMaxCapacity[k] + " (" + percentText + "%)";
       }
       return {
         type: descr.type,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: valueLabel
+        valueNumber: percentValue,
+        valueLabel: valueLabel,
+        valueYesNoLabel: labelIsMaxCapacity
       };
     } else {
       return {
         type: descr.type,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { en: "-" }
+        valueLabel: { en: "-" },
+        valueNumber: -1,
+        valueYesNoLabel: { en: "-" }
       };
     }
   } else {
@@ -154,6 +157,7 @@ function createChartInSubmission(
 
     const entry: TKSubmissionEntryAgePyramid = {
       type: "age_pyramid",
+      chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],
       malesEntries: malesEntries.map(item => Number(item.value)),
@@ -169,6 +173,7 @@ function createChartInSubmission(
   } else if (chartData.id.includes("doughnut")) {
     const entry: TKSubmissionEntryDoughnut = {
       type: "doughnut",
+      chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],
       entries: chartData.data.map(item => {
@@ -182,6 +187,7 @@ function createChartInSubmission(
   } else if (chartData.id.includes("polar_area_chart")) {
     const entry: TKSubmissionEntryPolar = {
       type: "polar",
+      chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],
       entries: chartData.data.map(item => {

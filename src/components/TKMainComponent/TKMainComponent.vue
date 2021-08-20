@@ -22,8 +22,10 @@
             <router-view
               v-else
               name="left"
+              :appConfig="appConfig"
               :dataset="dataset"
               :visualizerOptions="visualizerOptions"
+              :pdfInfos="pdfInfos"
             ></router-view>
           </transition>
         </div>
@@ -58,6 +60,7 @@
             :visualizerOptions="visualizerOptions"
             :appConfig="appConfig"
             :dataset="dataset"
+            :pdfInfos="pdfInfos"
           ></router-view>
         </transition>
       </div>
@@ -86,6 +89,7 @@ import {
 } from "./TKCampComponents";
 import { TKOpsmapConfiguration } from "@/domain";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
@@ -121,6 +125,11 @@ export default class TKMainComponent extends Vue {
 
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
+
+  readonly pdfInfos: TKPDFInfos = {
+    currentChartsBase64: {},
+    pdfColumnCount: this.appConfig.options.pdfColumnCount
+  };
 
   visualizerOptions: TKSubmissionVisualizerOptions = {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
@@ -172,8 +181,8 @@ export default class TKMainComponent extends Vue {
 
 .tk-main-header {
   display: block;
+  z-index: 1;
   min-height: 64px;
-  z-index: 1000;
   align-items: flex-end;
   height: 100%;
   margin-left: -20px;

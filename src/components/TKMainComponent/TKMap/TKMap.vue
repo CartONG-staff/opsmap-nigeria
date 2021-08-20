@@ -397,7 +397,7 @@ export default class TKMap extends Vue {
   position: absolute;
   top: 8px;
   right: 8px;
-  z-index: 2500;
+  z-index: 1;
   background-color: #fff;
 }
 
@@ -405,14 +405,14 @@ export default class TKMap extends Vue {
   position: absolute;
   top: 8px;
   left: 8px;
-  z-index: 2500;
+  z-index: 1;
 }
 
 .tk-map-filters {
   position: absolute;
   bottom: 28px;
   right: 8px;
-  z-index: 2500;
+  z-index: 1;
 }
 </style>
 
