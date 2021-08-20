@@ -1,4 +1,5 @@
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
+import { TKOperatorComparison, TKOperatorComputation } from "../ui/TKOperator";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -32,12 +33,12 @@ export interface TKFDFSubmissionRule {
   chartData: string;
   displayCondition?: {
     field: string;
-    operator: string;
+    operator: TKOperatorComparison;
     value: string;
   };
   computed?: {
     field1: string;
-    operator: string;
+    operator: TKOperatorComputation;
     field2: string;
   };
 }
