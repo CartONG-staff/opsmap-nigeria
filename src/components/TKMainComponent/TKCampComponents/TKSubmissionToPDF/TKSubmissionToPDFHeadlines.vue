@@ -59,9 +59,8 @@ import { TKOpsmapConfiguration } from "@/domain";
 import { TKCampTypesValues } from "@/domain/survey/TKCamp";
 
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
-import { TKGetLocalValue, TKLabel } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 import { toTitleCase } from "@/domain/ui/TKStringUtils";
 import { LngLat } from "mapbox-gl";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
@@ -83,7 +82,6 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   siteType = "-";
   coordinates = "-";
   manageBy = "";
-  manageByLabel: TKLabel = {};
 
   //Img src
   mapImg = "";
@@ -92,7 +90,9 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   handleLocale() {
     if (this.dataset && this.dataset.currentCamp) {
       this.manageBy = TKGetLocalValue(
-        this.manageByLabel,
+        this.dataset.currentCamp
+          ? this.dataset.currentCamp?.infos.managedBy
+          : { en: "-" },
         this.$root.$i18n.locale
       );
 
@@ -133,13 +133,6 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   dateChanged() {
     if (this.dataset.currentSubmission) {
       this.date = this.dataset.currentSubmission.date;
-      // TODO  move this computation elsewhere
-      this.manageByLabel = (this.dataset.currentSubmission?.thematics[
-        "group_cccm"
-      ]?.data?.find(
-        item => item.type === "text" && item.field === "cccm_shelter__mangmt"
-      ) as TKSubmissionEntryText)?.answerLabel ?? { en: "-" };
-
       this.handleLocale();
     }
   }
