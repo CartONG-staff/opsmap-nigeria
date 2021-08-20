@@ -20,6 +20,7 @@ import { TKLabel } from "../ui/TKLabel";
 import { isNumber } from "@turf/turf";
 import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
+import { TKCompare, TKCompute } from "../ui/TKOperator";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -234,17 +235,11 @@ export function TKCreateSubmission(
     let display = true;
     if (rule.displayCondition) {
       try {
-        // TODO: improve, and move to function
-        switch (rule.displayCondition.operator) {
-          case "==":
-          case "===":
-            display =
-              submissionItem[rule.displayCondition.field] ==
-              rule.displayCondition.value;
-            break;
-          default:
-            display = false;
-        }
+        display = TKCompare(
+          submissionItem[rule.displayCondition.field],
+          rule.displayCondition.operator,
+          rule.displayCondition.value
+        );
       } catch (error) {
         display = false;
       }
@@ -288,10 +283,13 @@ export function TKCreateSubmission(
         let value = undefined;
         try {
           if (rule.type === TKFDFSubmissionItemType.COMPUTED && rule.computed) {
-            const expressionValue = `${submissionItem[rule.computed.field1]} ${
-              rule.computed.operator
-            } ${submissionItem[rule.computed.field2]}`;
-            value = Math.round(eval(expressionValue)).toString();
+            value = Math.round(
+              TKCompute(
+                Number(submissionItem[rule.computed.field1]),
+                rule.computed.operator,
+                Number(submissionItem[rule.computed.field2])
+              )
+            ).toString();
           } else {
             value = submissionItem[rule.fieldName];
           }
