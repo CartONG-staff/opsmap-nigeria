@@ -18,6 +18,7 @@ import {
 import { v4 } from "uuid";
 import { TKSubmissionEntryDoughnut } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 
 Chart.register(DoughnutController, ArcElement, Legend, Title, Tooltip);
 
@@ -25,6 +26,9 @@ Chart.register(DoughnutController, ArcElement, Legend, Title, Tooltip);
 export default class TKSubmissionItemDoughnutChart extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryDoughnut;
+
+  @Prop()
+  readonly pdfInfos!: TKPDFInfos;
 
   // charts
   chart!: Chart;
@@ -100,6 +104,9 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
                 size: 11
               }
             }
+          },
+          animation: {
+            onComplete: this.updateBase64data
           }
         }
       };
@@ -109,6 +116,12 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
       }
       this.chart = new Chart(this.ctx, config);
     }
+  }
+
+  updateBase64data() {
+    this.pdfInfos.currentChartsBase64[
+      this.entry.chartid
+    ] = this.chart.toBase64Image();
   }
 
   @Watch("entry")

@@ -15,7 +15,7 @@
             (visualizerOptions.hideUnanswered && entry.isAnswered)
         "
       >
-        <TKSubmissionEntryView :entry="entry" />
+        <TKSubmissionEntryView :entry="entry" :pdfInfos="pdfInfos" />
       </div>
     </div>
   </div>
@@ -29,6 +29,7 @@ import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 
 @Component({
   components: {
@@ -43,6 +44,9 @@ export default class TKSubmissionThematicView extends Vue {
 
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
+
+  @Prop()
+  readonly pdfInfos!: TKPDFInfos;
 
   title = "";
   iconurl = "";

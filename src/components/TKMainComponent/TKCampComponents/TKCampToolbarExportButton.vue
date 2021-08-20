@@ -29,6 +29,7 @@
           :visualizerOptions="visualizerOptions"
           :dataset="dataset"
           :appConfig="appConfig"
+          :pdfInfos="pdfInfos"
         />
       </v-card>
     </v-dialog>
@@ -63,6 +64,7 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 import { TKOpsmapConfiguration } from "@/domain";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 
 @Component({
   components: {
@@ -76,6 +78,8 @@ export default class TKCampToolbarExportButton extends Vue {
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
+  @Prop()
+  readonly pdfInfos!: TKPDFInfos;
 
   exportToCSV() {
     if (this.dataset && this.dataset.currentSubmission) {

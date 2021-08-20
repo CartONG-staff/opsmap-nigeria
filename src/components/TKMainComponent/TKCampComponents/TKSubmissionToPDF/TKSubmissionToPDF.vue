@@ -35,7 +35,7 @@ import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
-let GRAPHASIMAGE64 = "";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 
 @Component({
   components: {
@@ -53,6 +53,9 @@ export default class TKSubmissionToPDF extends Vue {
 
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
+
+  @Prop()
+  readonly pdfInfos!: TKPDFInfos;
 
   mounted() {
     this.exportToPDF();
@@ -196,9 +199,16 @@ export default class TKSubmissionToPDF extends Vue {
         });
         body.push(row);
       } else {
-        if (item.type === "age_pyramid") {
-          GRAPHASIMAGE64 = item.base64;
-          const props = pdf.getImageProperties(item.base64);
+        if (
+          item.type === "age_pyramid" ||
+          item.type === "doughnut" ||
+          item.type === "polar"
+        ) {
+          // GRAPHASIMAGE64 = item.base64;
+          const props = pdf.getImageProperties(
+            this.pdfInfos.currentChartsBase64[item.chartid]
+          );
+          console.log(props);
           const maxWidth = 180;
           const width = props.width > maxWidth ? maxWidth : props.width;
           const height = (props.height / props.width) * width;
@@ -257,24 +267,25 @@ export default class TKSubmissionToPDF extends Vue {
             iconDisplayWidth,
             iconDisplayHeight
           );
-        } else {
-          if ((data.row.raw as RowInput).length === 1) {
-            const props = pdf.getImageProperties(GRAPHASIMAGE64);
-            const width =
-              props.width > data.cell.width ? data.cell.width : props.width;
-            const height = (props.height / props.width) * width;
-            const x = (data.cell.width - width) / 2;
-            const y = (data.cell.height - height) / 2;
-            pdf.addImage(
-              GRAPHASIMAGE64,
-              "PNG",
-              data.cell.x + x,
-              data.cell.y + y,
-              width,
-              height
-            );
-          }
         }
+        // else {
+        //   if ((data.row.raw as RowInput).length === 1) {
+        // const props = pdf.getImageProperties(GRAPHASIMAGE64);
+        // const width =
+        //   props.width > data.cell.width ? data.cell.width : props.width;
+        // const height = (props.height / props.width) * width;
+        // const x = (data.cell.width - width) / 2;
+        // const y = (data.cell.height - height) / 2;
+        // pdf.addImage(
+        //   GRAPHASIMAGE64,
+        //   "PNG",
+        //   data.cell.x + x,
+        //   data.cell.y + y,
+        //   width,
+        //   height
+        // );
+        // }
+        // }
       }
     };
   }

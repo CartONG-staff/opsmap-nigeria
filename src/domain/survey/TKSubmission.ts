@@ -157,6 +157,7 @@ function createChartInSubmission(
 
     const entry: TKSubmissionEntryAgePyramid = {
       type: "age_pyramid",
+      chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],
       malesEntries: malesEntries.map(item => Number(item.value)),
@@ -166,13 +167,13 @@ function createChartInSubmission(
       ),
       femalesLabels: femalesEntries.map(
         item => surveyConfiguration.fieldsLabels[item.field]
-      ),
-      base64: ""
+      )
     };
     submission[chartData.thematic].data.push(entry);
   } else if (chartData.id.includes("doughnut")) {
     const entry: TKSubmissionEntryDoughnut = {
       type: "doughnut",
+      chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],
       entries: chartData.data.map(item => {
@@ -186,6 +187,7 @@ function createChartInSubmission(
   } else if (chartData.id.includes("polar_area_chart")) {
     const entry: TKSubmissionEntryPolar = {
       type: "polar",
+      chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],
       entries: chartData.data.map(item => {

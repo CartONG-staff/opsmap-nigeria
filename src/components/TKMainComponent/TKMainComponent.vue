@@ -25,6 +25,7 @@
               :appConfig="appConfig"
               :dataset="dataset"
               :visualizerOptions="visualizerOptions"
+              :pdfInfos="pdfInfos"
             ></router-view>
           </transition>
         </div>
@@ -59,6 +60,7 @@
             :visualizerOptions="visualizerOptions"
             :appConfig="appConfig"
             :dataset="dataset"
+            :pdfInfos="pdfInfos"
           ></router-view>
         </transition>
       </div>
@@ -87,6 +89,7 @@ import {
 } from "./TKCampComponents";
 import { TKOpsmapConfiguration } from "@/domain";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
@@ -122,6 +125,10 @@ export default class TKMainComponent extends Vue {
 
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
+
+  readonly pdfInfos: TKPDFInfos = {
+    currentChartsBase64: {}
+  };
 
   visualizerOptions: TKSubmissionVisualizerOptions = {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered

@@ -22,23 +22,25 @@ export interface TKSubmissionEntryText {
 }
 export interface TKSubmissionEntryAgePyramid {
   type: "age_pyramid";
+  chartid: string;
   title: TKLabel;
   malesEntries: Array<number>;
   femalesEntries: Array<number>;
   malesLabels: Array<TKLabel>;
   isAnswered: true;
   femalesLabels: Array<TKLabel>;
-  base64: string;
 }
 
 export interface TKSubmissionEntryDoughnut {
   type: "doughnut";
+  chartid: string;
   title: TKLabel;
   isAnswered: true;
   entries: Array<{ value: number; label: TKLabel }>;
 }
 export interface TKSubmissionEntryPolar {
   type: "polar";
+  chartid: string;
   title: TKLabel;
   isAnswered: true;
   entries: Array<{ value: number; label: TKLabel }>;
