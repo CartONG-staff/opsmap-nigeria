@@ -73,7 +73,7 @@ export async function TKReadSubmissionsRulesCollection(
         if (condition.length === 3) {
           displayCondition = {
             field: condition[0],
-            operator: condition[1],
+            operator: condition[1] as TKOperatorComparison,
             value: condition[2]
           };
         }
@@ -86,7 +86,7 @@ export async function TKReadSubmissionsRulesCollection(
       if (rule.length === 3) {
         computedRule = {
           field1: rule[0],
-          operator: rule[1],
+          operator: rule[1] as TKOperatorComputation,
           field2: rule[2]
         };
       }
