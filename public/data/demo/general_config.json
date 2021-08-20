@@ -1,24 +1,17 @@
 {
-    "languages":["pt","en"],
-    "iso3":"BRA",
+    "languages":["en"],
+    "iso3":"NGA",
     "name":{
-        "en":"demo-brazil",
-        "pt":"demo-brasil"
+        "en":"Nigeriaaa"
     },
     "opsmapDescr":{
-        "en": "More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>Currently, Roraima has 13 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than seven thousand refugees, refugee seekers, and migrants. Of these, 12 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>All 14 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces.",
-        "pt": "Mais de 260 mil refugiados e migrantes deslocaram-se ao Brasil em busca de proteção em decorrência da crise política, social e econômica que assola a Venezuela.<br/>Considerando-se as necessidades urgentes de assistência humanitária, como alimentação, abrigamento, saúde e proteção, especialmente para pessoas com vulnerabilidades (crianças, mulheres grávidas, idosos, pessoas com deficiência, etc.), o Governo Federal Brasileiro editou a Lei no. 13.684/2018, prevendo a execução de medidas de assistência emergencial para acolhimento da pessoas afetadas.<br/>Atualmente, Roraima conta com 13 espaços de acolhimento, entre abrigos (entre abrigos indígenas e não-indígenas), com potencial de atender mais de sete mil refugiados, solicitantes de refúgio e migrantes. Desses abrigos, 12 estão na cidade de Boa Vista, 2 cidade de Pacaraima.<br/>Todos os 14 espaços são coordenados pelo ACNUR, por conta do convênio firmado com o Ministério da Cidadania, em parceria com as Forças Armadas."
-    },
-    "iframe": {
-        "url": "https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9",
-        "display": false
+        "en":  "<p>The site tracker tool aims to provide relevant and adequate current situation on the IDP settlements by assessing information and services at site level to improve humanitarian assistance in IDP sites.Site profiles and displayed data are collected by CCCM Partners in Nigeria through key informant interview for each IDP site with the camp managers/site facilitators. The data is collected and updated on a bi-weekly basis. The tool consists of both open and closed-ended questions that were provided by Sector leads.</p><p>For the full datasets or further questions please contact:<br><span class=\"font-weight-medium\">Robert Odhiambo: +234 903 428 3512 || Ibrahim Mahammat: +234 901 066 0575</span><br><span class=\"font-weight-medium\">Email: <a href=\"mailto:cccmshelternga@humanitarianresponse.info\">cccmshelternga@humanitarianresponse.info</a> | Website: <a href=\"https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi\" target=\"_blank\">https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi</a></span></p>"
     },
     "indicators": {
         "home": [{
             "type": "standard",
             "name": {
-                "en": "Site",
-                "pt": "Abrigos"
+                "en": "Site"
             },
             "entryCode": "mp_site_id",
             "iconOchaName": "IDP-refugee-camp"
@@ -26,181 +19,156 @@
         {
             "type": "standard",
             "name": {
-                "en": "People",
-                "pt": "Indivíduos"
+                "en": "People"
             },
-            "entryCode": "demo_num_indv",
+            "entryCode": "group_pop_change/individualpopulation",
             "iconOchaName": "People-in-need"
         },
         {
             "type": "standard",
             "name": {
-                "en": "Shelter Max Capacity",
-                "pt": "Capacidade Máxima dos Abrigos"
+                "en": "Families"
             },
-            "entryCode": "cccm_shelter_max_capacity",
+            "entryCode": "group_pop_change/familiespopulation",
             "iconOchaName": "Camp-Coordination-and-Camp-Management"
         }],
         "site": [{
-            "type": "site_occupation",
+            "type": "standard",
             "name": {
-                "en": "Site at Full Capacity",
-                "pt": "Abrigo em plena capacidade"
+                "en": "Site at Full Capacity"
             },
             "iconOchaName": "Camp-Coordination-and-Camp-Management",
-            "entryCodeMaxCapacity": "cccm_site_at_full_capacity",
-            "entryCodePeopleCount": "demo_num_indv",
-            "entryCodeMaxPeopleCount": "cccm_shelter_max_capacity"
+            "entryCode": "group_general_info/crowded"
         },
         {
             "type": "standard",
             "name": {
-                "en": "Shelter Type",
-                "pt": "Tipo de Abrigo"
+                "en": "Managed by a Government Agency"
             },
-            "entryCode": "cccm_shelter_type",
-            "iconOchaName": "Camp-Coordination-and-Camp-Management"
+            "entryCode": "group_general_info/camp_management",
+            "iconOchaName": "Government-office"
         },
         {
             "type": "standard",
             "name": {
-                "en": "No. of Individuals",
-                "pt": "Nº de Indivíduos"
+                "en": "No. of Individuals"
             },
-            "entryCode": "demo_num_indv",
+            "entryCode": "group_pop_change/individualpopulation",
             "iconOchaName": "People-in-need"
         }]
     },
-    "headerLogos":[
-        {
-            "name": "UNHCR",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-            "urlRedirection": "https://www.acnur.org.br"
-        },
-        {
-            "name": "Acolhida",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/Acolhida.jpeg",
-            "urlRedirection": "https://www.gov.br/casacivil/pt-br/acolhida/"
-        },
-        {
-            "name": "Ministério da Cidadania",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
-            "urlRedirection": "https://www.gov.br/cidadania/pt-br"
-        }],
-    "footerLogos": [
+    "headerLogos":[],
+    "footerLogos":[
         {
             "title": {
-                "en": "Cluster Lead",
-                "pt": "Líder do grupo"
+                "en": "Cluster Lead"
             },
             "logos": [{
+                "name": "sector_logo",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/sector_logo.png",
+                "urlRedirection": "https://www.sheltercluster.org/response/nigeria"
+            }]
+        },
+        {
+            "title": {
+                "en": "Partners"
+            },
+            "logos": [{
+                "name": "Acted",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/ACTED.jpg",
+                "urlRedirection": "https://www.acted.org/"
+            },
+            {
+                "name": "INTERSOS",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/INTERSOS.png",
+                "urlRedirection": "https://www.intersos.org/"
+            },
+            {
+                "name": "IOM",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/IOM.jpg",
+                "urlRedirection": "https://www.iom.int"
+            },{
+                "name": "LOCDIN",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/LOC-DIN.jpg",
+                "urlRedirection": "https://loc-din.org.ng"
+            },
+            {
+                "name": "NRC",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/NRC.png",
+                "urlRedirection": "https://www.nrc.no"
+            },
+            {
+                "name": "Salient",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/SALINT_HUMANITARIANORGANIZATON.png",
+                "urlRedirection": "https://salientho.org"
+            },
+            {
+                "name": "SHI",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/SMILING_HEARTS_INTERNATIONAL.jpg",
+                "urlRedirection": "https://www.smilingheartsinitiativeinternational.org"
+            },
+            {
+                "name": "Translators",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/TRANSLATORS_WITHOUT_BOARDERS.png",
+                "urlRedirection": "https://translatorswithoutborders.org"
+            },
+            {
                 "name": "UNHCR",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-                "urlRedirection": "https://www.acnur.org.br"
-            },
-            {
-                "name": "Ministério da Cidadania",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
-                "urlRedirection": "https://www.gov.br/cidadania/pt-br"
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/UNHCR.jpg",
+                "urlRedirection": "https://www.unhcr.org"
             }]
         },
         {
             "title": {
-                "en": "Coordination and IM support",
-                "pt": "Coordenação e IM apoio"
-            },
-            "logos": [{
-                "name": "UNHCR",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-                "urlRedirection": "https://www.acnur.org.br"
-            }]
-        },
-        {
-            "title": {
-                "en": "Fieldwork",
-                "pt": "Trabalho de campo"
-            },
-            "logos": [{
-                "name": "FSF",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/FSF.png",
-                "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
-            },
-            {
-                "name": "AVSI",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
-                "urlRedirection": "http://www.avsibrasil.org.br/"
-            },
-            {
-                "name": "FFHI",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/Fraternidade.png",
-                "urlRedirection": "https://www.fraterinternacional.org/"
-            }]
-        },
-        {
-            "title": {
-                "en": "Webdev",
-                "pt": "Desenvolvimento Web"
+                "en": "Webdev"
             },
             "logos": [{
                 "name": "CartONG",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/CartONG_logo_long_0_0_0.png",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/CartONG_logo_long_0_0_0.png",
                 "urlRedirection": "https://www.cartong.org"
             }]
         }
     ],
     "spatial":{
-        "siteIDField": "mp_site_id",
-        "siteNameField": "mp_site_name",
-        "siteTypeField": "mp_shelter_type",
-        "siteLastUpdateField": "mp_last_date",
-        "siteLatitudeField": "mp_latitude",
-        "siteLongitudeField": "mp_longitude",
-        "adm1Pcode": "adm1pcode",
-        "adm1DBPcode": "pcode",
-        "adm1Name": "ggi_state",
-        "adm2Pcode": "adm2pcode",
-        "adm2DBPcode": "pcode",
-        "adm2Name": "ggi_city",
-        "adm2RefInAdm1": "adm1pcode",
-        "adm3Pcode": "adm3pcode",
-        "adm3Name": "ggi_address",
-        "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson",
-        "admin1LocalURL": "/data/demo/DEMO_brazil/map/admin1.geojson"
+        "siteIDField": "group_general_info/site",
+        "siteNameField": "group_general_info/site_name",
+        "siteTypeField": "group_general_info/site_type",
+        "siteLastUpdateField": "date",
+        "siteLatitudeField": "group_general_info/latitude",
+        "siteLongitudeField": "group_general_info/longitude",
+        "adm1Pcode": "group_general_info/state",
+        "adm1DBPcode": "dscodeadm1",
+        "adm1Name": "group_general_info/state_name",
+        "adm2Pcode": "group_general_info/lga",
+        "adm2DBPcode": "dscodeadm2",
+        "adm2Name": "group_general_info/lga_name",
+        "adm2RefInAdm1": "dscodeadm1",
+        "adm3Pcode": "group_general_info/ward",
+        "adm3Name": "group_general_info/ward_name",
+        "admin0LocalURL": "/data/demo/DEMO_nigeria/map/admin0.geojson",
+        "admin1LocalURL": "/data/demo/DEMO_nigeria/map/admin1.geojson"
     },
     "surveys":[{
-        "type":"gsheet",
+        "type":"kobo",
         "fdf": {
-            "folder": "/data/demo/DEMO_brazil/FDF"
+            "folder": "/data/demo/DEMO_nigeria/FDF"
         },
-        "name": "2021",
-        "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=0&single=true&output=csv",
-        "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=1157434408&single=true&output=csv",
+        "name": "Last known FDF",
+        "url": "https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json",
+        "token": "ab46c724b720d44c4c8d44e86241219ce5cec6d6",
         "options": {
-            "dateFormat": "DD/MM/YYYY",
-            "manageByField": "cccm_shelter__mangmt"
-        }
-    },{
-        "type":"gsheet",
-        "fdf": {
-            "folder": "/data/demo/DEMO_brazil/FDF"
-        },
-        "name": "RealGSheet",
-        "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=0&single=true&output=csv",
-        "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=1157434408&single=true&output=csv",
-        "options": {
-            "dateFormat": "DD/MM/YYYY",
-            "manageByField": "cccm_shelter__mangmt"
+            "dateFormat": "YYYY-MM-DD",
+            "manageByField": "organisation",
+            "manageByAltValue": "cccm"
         }
     }],
-
     "mapConfig": {
         "bounds": [
-            -74.17,-33.34,-33.57,5.02
+            2.460938,3.995781,14.941406,14.221789
         ]
     },
     "options": {
-        "showCCCMLogo": false,
+        "showCCCMLogo": true,
         "pdfColumnCount": 3
     }
 }
-
