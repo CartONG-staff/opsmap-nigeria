@@ -282,6 +282,7 @@ export default class TKSubmissionToPDF extends Vue {
       // Position in the document
       startY: startY,
       margin: margins,
+      rowPageBreak: "avoid",
 
       // Style
       alternateRowStyles: {
