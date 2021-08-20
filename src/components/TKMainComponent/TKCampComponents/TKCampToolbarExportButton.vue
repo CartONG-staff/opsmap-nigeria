@@ -1,6 +1,6 @@
 <template>
   <div class="tk-camp-toolbar-container">
-    <v-dialog>
+    <v-dialog v-model="generatePDF" hide-overlay>
       <template v-slot:activator="{ on: dialog, attrs }">
         <v-tooltip top>
           <template v-slot:activator="{ on: tooltip }">
@@ -14,6 +14,7 @@
               v-bind="attrs"
               v-on="{ ...tooltip, ...dialog }"
               @click="triggerExportToPDF()"
+              :loading="generatePDF"
             >
               <v-icon dark>
                 mdi-file-pdf-outline
@@ -23,15 +24,14 @@
           <span>{{ $t("site.exportPreffix") }} PDF</span>
         </v-tooltip>
       </template>
-      <v-card class="tk-camp-pdf-container">
-        <TKSubmissionToPDF
-          ref="tk-submission-to-pdf"
-          :visualizerOptions="visualizerOptions"
-          :dataset="dataset"
-          :appConfig="appConfig"
-          :pdfInfos="pdfInfos"
-        />
-      </v-card>
+      <TKSubmissionToPDF
+        ref="tk-submission-to-pdf"
+        :visualizerOptions="visualizerOptions"
+        :dataset="dataset"
+        :appConfig="appConfig"
+        :pdfInfos="pdfInfos"
+        @close-dialog="generatePDF = false"
+      />
     </v-dialog>
 
     <v-tooltip top>
@@ -81,6 +81,8 @@ export default class TKCampToolbarExportButton extends Vue {
   @Prop()
   readonly pdfInfos!: TKPDFInfos;
 
+  generatePDF = false;
+
   exportToCSV() {
     if (this.dataset && this.dataset.currentSubmission) {
       TKCSVWrite(this.dataset, this.$root.$i18n.locale);
@@ -107,8 +109,9 @@ export default class TKCampToolbarExportButton extends Vue {
   align-items: top;
 }
 </style>
+
 <style>
-.v-dialog--active {
-  max-width: 21cm !important;
+.v-dialog {
+  box-shadow: none !important;
 }
 </style>

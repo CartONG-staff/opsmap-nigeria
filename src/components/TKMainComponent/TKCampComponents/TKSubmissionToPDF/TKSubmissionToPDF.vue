@@ -151,6 +151,7 @@ export default class TKSubmissionToPDF extends Vue {
               }
             }
             pdf.save(documentTitle);
+            this.$emit("close-dialog");
           });
       });
     }
@@ -301,13 +302,9 @@ export default class TKSubmissionToPDF extends Vue {
           );
         } else {
           if ((data.row.raw as RowInput).length === 1) {
-            // const props = pdf.getImageProperties(charts[data.row.index].base64);
-            console.log(charts[data.row.index]);
             if (charts[data.row.index]) {
               const width = charts[data.row.index].width;
               const height = charts[data.row.index].height;
-              // props.width > data.cell.width ? data.cell.width : props.width;
-              // const height = (props.height / props.width) * width;
               const x = (data.cell.width - width) / 2;
               const y = (data.cell.height - height) / 2;
               pdf.addImage(
@@ -328,12 +325,19 @@ export default class TKSubmissionToPDF extends Vue {
 </script>
 
 <style scoped>
+.pdf-document-container {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 /* A4 = 8.27x11.69" x 72points/inch = 595x842 points */
 /* 595x842 points */
 .pdf-document {
   background-color: #fff;
   padding: 5mm;
   width: 210mm;
+  min-height: 296mm; /* Exact 297mm creates an extra blank page. */
 }
 
 .pdf-document-content {
@@ -346,31 +350,11 @@ export default class TKSubmissionToPDF extends Vue {
   overflow: hidden;
 }
 
-.pdf-document-container {
-  display: flex;
-  flex-flow: column nowrap;
-  row-gap: 0;
-  width: 210mm;
-  min-height: 296mm; /* Exact 297mm creates an extra blank page. */
-}
-
 /* SEPARATOR *********************************************************/
 .header-separator {
   border: 0;
   height: 0;
   border-top: 1px solid #428fdf22;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* CONTENT ***********************************************************/
-.content {
-  background-color: azure;
-  width: 100%;
-  height: 50mm;
-}
-.footer {
-  background-color: bisque;
-  width: 100%;
-  height: 50mm;
 }
 </style>
