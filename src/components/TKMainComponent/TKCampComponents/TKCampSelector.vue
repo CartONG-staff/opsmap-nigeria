@@ -101,7 +101,6 @@ export default class TKCampSelector extends Vue {
   background-color: #f0fbffcc;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  z-index: 3000;
   box-shadow: 0 0 20px 2px rgba(58, 158, 211, 0.15);
   width: 100%;
   height: 100%;

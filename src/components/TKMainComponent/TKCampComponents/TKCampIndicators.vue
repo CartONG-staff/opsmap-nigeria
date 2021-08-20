@@ -12,6 +12,11 @@ import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
 import { TKIndicator } from "@/domain/ui/TKIndicator";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import {
+  TKIndicatorDescription,
+  TKIndicatorDescriptionSiteOccupation,
+  TKIndicatorType
+} from "@/domain/opsmapConfig/TKIndicatorsDescription";
 
 @Component({
   components: {
@@ -36,25 +41,38 @@ export default class TKCampIndicators extends Vue {
       this.indicator2 = this.dataset.currentSubmission.indicators[1];
       this.indicator3 = this.dataset.currentSubmission.indicators[2];
     } else {
-      this.indicator1 = {
-        type: this.appConfig.indicators.site[0].type,
-        nameLabel: this.appConfig.indicators.site[0].name,
+      this.indicator1 = this.computeDefaultIndicator(
+        this.appConfig.indicators.site[0]
+      );
+      this.indicator2 = this.computeDefaultIndicator(
+        this.appConfig.indicators.site[1]
+      );
+      this.indicator3 = this.computeDefaultIndicator(
+        this.appConfig.indicators.site[2]
+      );
+    }
+  }
+
+  computeDefaultIndicator(
+    ref: TKIndicatorDescription | TKIndicatorDescriptionSiteOccupation
+  ): TKIndicator {
+    if (ref.type === TKIndicatorType.OCCUPATION) {
+      return {
+        type: ref.type,
+        valueNumber: -1,
+        valueYesNoLabel: { en: "-" },
+        nameLabel: ref.name,
         valueLabel: { en: "-" },
-        iconOchaName: this.appConfig.indicators.site[0].iconOchaName
-      };
-      this.indicator2 = {
-        type: this.appConfig.indicators.site[1].type,
-        nameLabel: this.appConfig.indicators.site[1].name,
-        valueLabel: { en: "-" },
-        iconOchaName: this.appConfig.indicators.site[1].iconOchaName
-      };
-      this.indicator3 = {
-        type: this.appConfig.indicators.site[2].type,
-        nameLabel: this.appConfig.indicators.site[2].name,
-        valueLabel: { en: "-" },
-        iconOchaName: this.appConfig.indicators.site[2].iconOchaName
+        iconOchaName: ref.iconOchaName
       };
     }
+
+    return {
+      type: ref.type,
+      nameLabel: ref.name,
+      valueLabel: { en: "-" },
+      iconOchaName: ref.iconOchaName
+    };
   }
 }
 </script>

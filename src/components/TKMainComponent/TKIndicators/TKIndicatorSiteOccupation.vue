@@ -4,14 +4,14 @@
       <template v-slot:activator="{ on, attrs }">
         <div class="tk-indicator-subcontainer mt-5" v-bind="attrs" v-on="on">
           <v-progress-linear
-            :value="siteOccupationValues.occupationTreshold"
+            :value="value"
             height="30"
             rounded
             stream
             :color="siteOccupationColor"
             readonly
           >
-            <strong>{{ siteOccupationValues.occupationTreshold }}%</strong>
+            <strong>{{ labelCenterOfProgress }}</strong>
           </v-progress-linear>
           <transition mode="out-in" name="fade-in">
             <div
@@ -19,17 +19,12 @@
               class="tk-indicator-value-decription"
             >
               <span>{{ name }} : </span>
-              <span class="uppercase--text">{{
-                siteOccupationValues.label
-              }}</span>
+              <span class="uppercase--text">{{ labelYesNo }}</span>
             </div>
           </transition>
         </div>
       </template>
-      <span
-        >{{ name }} : {{ siteOccupationValues.label }} -
-        {{ siteOccupationValues.occupationTreshold }}%</span
-      >
+      <span>{{ name }} : {{ labelValue }} </span>
     </v-tooltip>
   </div>
 </template>
@@ -44,12 +39,11 @@ import { TKIndicatorType } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 @Component
 export default class TKIndicatorSiteOccupation extends Vue {
   @Prop() readonly indicator!: TKIndicator;
-  value = "";
+  value = -1;
   name = "";
-  siteOccupationValues = {
-    label: "",
-    occupationTreshold: 0
-  };
+  labelCenterOfProgress = "-";
+  labelValue = "";
+  labelYesNo = "";
 
   @Watch("indicator", { immediate: true })
   handleIndicatorChange() {
@@ -58,30 +52,40 @@ export default class TKIndicatorSiteOccupation extends Vue {
 
   @Watch("$root.$i18n.locale")
   handleLocale() {
-    if (this.indicator) {
+    if (this.indicator && this.indicator.type === TKIndicatorType.OCCUPATION) {
       this.name = TKGetLocalValue(
         this.indicator.nameLabel,
         this.$root.$i18n.locale
       );
-      this.value = TKGetLocalValue(
+      this.labelValue = TKGetLocalValue(
         this.indicator.valueLabel,
         this.$root.$i18n.locale
       );
-      if (this.indicator.type === TKIndicatorType.OCCUPATION) {
-        this.siteOccupationValues.label = this.value.split("-")[0];
-        this.siteOccupationValues.occupationTreshold = Number(
-          this.value.split("-")[1]
-        );
+
+      this.labelYesNo = TKGetLocalValue(
+        this.indicator.valueYesNoLabel,
+        this.$root.$i18n.locale
+      );
+
+      this.value = this.indicator.valueNumber;
+      if (this.value > -1) {
+        this.labelCenterOfProgress = `${this.value}%`;
+      } else {
+        this.labelCenterOfProgress = "";
+        this.labelYesNo = "-";
       }
     } else {
-      this.value = "";
-      this.name = "";
+      this.value = 0;
+      this.name = "-";
+      this.labelYesNo = "-";
+      this.labelCenterOfProgress = "-";
     }
   }
   get siteOccupationColor() {
-    if (this.siteOccupationValues.occupationTreshold < 80) return "green";
-    if (this.siteOccupationValues.occupationTreshold < 90) return "yellow";
-    if (this.siteOccupationValues.occupationTreshold < 100) return "orange";
+    if (this.value === undefined || this.value < 0) return "#E0E0E0";
+    if (this.value < 80) return "green";
+    if (this.value < 90) return "yellow";
+    if (this.value < 100) return "orange";
     return "#e91d1d";
   }
 }
