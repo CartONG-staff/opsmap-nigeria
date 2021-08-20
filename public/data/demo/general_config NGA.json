@@ -168,6 +168,7 @@
         ]
     },
     "options": {
-        "showCCCMLogo": true
+        "showCCCMLogo": true,
+        "pdfColumnCount": 3
     }
 }

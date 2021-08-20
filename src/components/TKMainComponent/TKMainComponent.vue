@@ -127,7 +127,8 @@ export default class TKMainComponent extends Vue {
   readonly appConfig!: TKOpsmapConfiguration;
 
   readonly pdfInfos: TKPDFInfos = {
-    currentChartsBase64: {}
+    currentChartsBase64: {},
+    pdfColumnCount: this.appConfig.options.pdfColumnCount
   };
 
   visualizerOptions: TKSubmissionVisualizerOptions = {

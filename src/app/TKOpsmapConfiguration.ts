@@ -103,7 +103,8 @@ export async function TKReadGeneralConfiguration(
   // Options
   // ////////////////////////////////////////////////////////////////////////////
   const defaultOptions: TKAppOptions = {
-    showCCCMLogo: true
+    showCCCMLogo: true,
+    pdfColumnCount: 3
   };
 
   // Init with defaultOptions, then replace existing key with options.

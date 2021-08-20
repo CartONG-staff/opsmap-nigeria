@@ -91,17 +91,16 @@ export default class TKSubmissionToPDF extends Vue {
           })
           .then(() => {
             const PAGE_WIDTH = 595;
-            const COLUMN_COUNT = 3;
             const SPACING = 15;
-            const TOTAL_SPACING_COUNT = 2 + COLUMN_COUNT - 1;
+            const TOTAL_SPACING_COUNT = 2 + this.pdfInfos.pdfColumnCount - 1;
             const TOTAL_SPACING = TOTAL_SPACING_COUNT * SPACING;
 
             const COLUMN_WIDTH = Math.round(
-              (PAGE_WIDTH - TOTAL_SPACING) / COLUMN_COUNT
+              (PAGE_WIDTH - TOTAL_SPACING) / this.pdfInfos.pdfColumnCount
             );
 
             const margins = [];
-            for (let i = 0; i < COLUMN_COUNT; i++) {
+            for (let i = 0; i < this.pdfInfos.pdfColumnCount; i++) {
               margins.push({
                 left: SPACING + (COLUMN_WIDTH + SPACING) * i,
                 right:
@@ -117,7 +116,7 @@ export default class TKSubmissionToPDF extends Vue {
               pageNumber: number;
             }> = [];
 
-            for (let i = 0; i < COLUMN_COUNT; i++) {
+            for (let i = 0; i < this.pdfInfos.pdfColumnCount; i++) {
               drawPosition.push({
                 startY: NONAUTOTABLECONTENTHEIGHT,
                 pageNumber: (pdf.internal as any).getNumberOfPages()
@@ -147,7 +146,7 @@ export default class TKSubmissionToPDF extends Vue {
                 ((pdf as any).lastAutoTable.pageCount - 1);
               p.startY = (pdf as any).lastAutoTable.finalY + 15;
               indexColumn++;
-              if (indexColumn === COLUMN_COUNT) {
+              if (indexColumn === this.pdfInfos.pdfColumnCount) {
                 indexColumn = 0;
               }
             }
