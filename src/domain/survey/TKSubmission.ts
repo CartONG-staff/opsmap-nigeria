@@ -93,25 +93,28 @@ function computeSubmissionIndicator(
       maxPeopleCount !== undefined &&
       maxPeopleCount !== 0
     ) {
-      const percent = Math.round(
-        (peopleCount / maxPeopleCount) * 100
-      ).toString();
+      const percentValue = Math.round((peopleCount / maxPeopleCount) * 100);
+      const percentText = percentValue.toString();
       const valueLabel: TKLabel = {};
       for (const k in labelIsMaxCapacity) {
-        valueLabel[k] = labelIsMaxCapacity[k] + "-" + percent;
+        valueLabel[k] = labelIsMaxCapacity[k] + " (" + percentText + "%)";
       }
       return {
         type: descr.type,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: valueLabel
+        valueNumber: percentValue,
+        valueLabel: valueLabel,
+        valueYesNoLabel: labelIsMaxCapacity
       };
     } else {
       return {
         type: descr.type,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { en: "-" }
+        valueLabel: { en: "-" },
+        valueNumber: -1,
+        valueYesNoLabel: { en: "-" }
       };
     }
   } else {
