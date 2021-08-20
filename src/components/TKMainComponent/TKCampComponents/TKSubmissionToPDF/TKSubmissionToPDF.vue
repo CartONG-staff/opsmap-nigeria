@@ -78,6 +78,8 @@ export default class TKSubmissionToPDF extends Vue {
         unit: "pt",
         format: "a4"
       });
+
+      ///
       const submission = this.dataset.currentSubmission;
       this.$nextTick(function() {
         const divContent = this.$refs["pdf-document"] as HTMLElement;
@@ -88,30 +90,39 @@ export default class TKSubmissionToPDF extends Vue {
             html2canvas: { scale: 0.75 }
           })
           .then(() => {
-            const margins = [
-              { left: 15, right: 401 },
-              { left: 208, right: 208 },
-              { left: 401, right: 15 }
-            ];
+            const PAGE_WIDTH = 595;
+            const COLUMN_COUNT = 3;
+            const SPACING = 15;
+            const TOTAL_SPACING_COUNT = 2 + COLUMN_COUNT - 1;
+            const TOTAL_SPACING = TOTAL_SPACING_COUNT * SPACING;
 
-            const nonAutotableContentHeight = 280;
+            const COLUMN_WIDTH = Math.round(
+              (PAGE_WIDTH - TOTAL_SPACING) / COLUMN_COUNT
+            );
+
+            const margins = [];
+            for (let i = 0; i < COLUMN_COUNT; i++) {
+              margins.push({
+                left: SPACING + (COLUMN_WIDTH + SPACING) * i,
+                right:
+                  PAGE_WIDTH -
+                  COLUMN_WIDTH -
+                  (SPACING + (COLUMN_WIDTH + SPACING) * i)
+              });
+            }
+
+            const NONAUTOTABLECONTENTHEIGHT = 280;
             const drawPosition: Array<{
               startY: number;
               pageNumber: number;
-            }> = [
-              {
-                startY: nonAutotableContentHeight,
+            }> = [];
+
+            for (let i = 0; i < COLUMN_COUNT; i++) {
+              drawPosition.push({
+                startY: NONAUTOTABLECONTENTHEIGHT,
                 pageNumber: (pdf.internal as any).getNumberOfPages()
-              },
-              {
-                startY: nonAutotableContentHeight,
-                pageNumber: (pdf.internal as any).getNumberOfPages()
-              },
-              {
-                startY: nonAutotableContentHeight,
-                pageNumber: (pdf.internal as any).getNumberOfPages()
-              }
-            ];
+              });
+            }
 
             let indexColumn = 0;
             for (const key in submission.thematics) {
@@ -122,7 +133,13 @@ export default class TKSubmissionToPDF extends Vue {
               pdf.setPage(p.pageNumber);
               autoTable(
                 pdf,
-                this.createTable(pdf, p.startY, margins[indexColumn], thematic)
+                this.createTable(
+                  pdf,
+                  p.startY,
+                  margins[indexColumn],
+                  thematic,
+                  COLUMN_WIDTH
+                )
               );
 
               p.pageNumber =
@@ -130,7 +147,7 @@ export default class TKSubmissionToPDF extends Vue {
                 ((pdf as any).lastAutoTable.pageCount - 1);
               p.startY = (pdf as any).lastAutoTable.finalY + 15;
               indexColumn++;
-              if (indexColumn > 2) {
+              if (indexColumn === COLUMN_COUNT) {
                 indexColumn = 0;
               }
             }
@@ -144,7 +161,8 @@ export default class TKSubmissionToPDF extends Vue {
     pdf: jsPDF,
     startY: number,
     margins: MarginPaddingInput,
-    thematic: TKSubmissionThematic
+    thematic: TKSubmissionThematic,
+    columnWidth: number
   ): UserOptions {
     const headerHeight = 35;
 
@@ -162,7 +180,14 @@ export default class TKSubmissionToPDF extends Vue {
 
     const body = [];
 
-    const charts: Record<number, string> = {};
+    const charts: Record<
+      number,
+      {
+        base64: string;
+        width: number;
+        height: number;
+      }
+    > = {};
 
     for (let i = 0; i < thematic.data.length; i++) {
       const item = thematic.data[i];
@@ -207,13 +232,13 @@ export default class TKSubmissionToPDF extends Vue {
           item.type === "doughnut" ||
           item.type === "polar"
         ) {
-          // GRAPHASIMAGE64 = item.base64;
           const props = pdf.getImageProperties(
             this.pdfInfos.currentChartsBase64[item.chartid]
           );
-          const maxWidth = 180;
+          const maxWidth = Math.min(columnWidth - 20, 150);
           const width = props.width > maxWidth ? maxWidth : props.width;
           const height = (props.height / props.width) * width;
+
           const row: RowInput = [];
           row.push({
             content: "",
@@ -223,7 +248,11 @@ export default class TKSubmissionToPDF extends Vue {
             }
           });
           const str = this.pdfInfos.currentChartsBase64[item.chartid];
-          charts[body.length] = str;
+          charts[body.length] = {
+            base64: str,
+            width: width,
+            height: height
+          };
 
           body.push(row);
         }
@@ -272,20 +301,24 @@ export default class TKSubmissionToPDF extends Vue {
           );
         } else {
           if ((data.row.raw as RowInput).length === 1) {
-            const props = pdf.getImageProperties(charts[data.row.index]);
-            const width =
-              props.width > data.cell.width ? data.cell.width : props.width;
-            const height = (props.height / props.width) * width;
-            const x = (data.cell.width - width) / 2;
-            const y = (data.cell.height - height) / 2;
-            pdf.addImage(
-              charts[data.row.index],
-              "PNG",
-              data.cell.x + x,
-              data.cell.y + y,
-              width,
-              height
-            );
+            // const props = pdf.getImageProperties(charts[data.row.index].base64);
+            console.log(charts[data.row.index]);
+            if (charts[data.row.index]) {
+              const width = charts[data.row.index].width;
+              const height = charts[data.row.index].height;
+              // props.width > data.cell.width ? data.cell.width : props.width;
+              // const height = (props.height / props.width) * width;
+              const x = (data.cell.width - width) / 2;
+              const y = (data.cell.height - height) / 2;
+              pdf.addImage(
+                charts[data.row.index].base64,
+                "PNG",
+                data.cell.x + x,
+                data.cell.y + y,
+                width,
+                height
+              );
+            }
           }
         }
       }
