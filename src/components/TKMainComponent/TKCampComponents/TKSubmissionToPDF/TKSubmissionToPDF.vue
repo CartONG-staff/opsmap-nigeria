@@ -161,6 +161,9 @@ export default class TKSubmissionToPDF extends Vue {
     const iconDisplayY = headerHeight / 2.0 - iconDisplayHeight / 2.0;
 
     const body = [];
+
+    const charts: Record<number, string> = {};
+
     for (let i = 0; i < thematic.data.length; i++) {
       const item = thematic.data[i];
       if (item.type === "text") {
@@ -208,11 +211,9 @@ export default class TKSubmissionToPDF extends Vue {
           const props = pdf.getImageProperties(
             this.pdfInfos.currentChartsBase64[item.chartid]
           );
-          console.log(props);
           const maxWidth = 180;
           const width = props.width > maxWidth ? maxWidth : props.width;
           const height = (props.height / props.width) * width;
-
           const row: RowInput = [];
           row.push({
             content: "",
@@ -221,6 +222,9 @@ export default class TKSubmissionToPDF extends Vue {
               minCellHeight: height
             }
           });
+          const str = this.pdfInfos.currentChartsBase64[item.chartid];
+          charts[body.length] = str;
+
           body.push(row);
         }
       }
@@ -246,7 +250,6 @@ export default class TKSubmissionToPDF extends Vue {
         ]
       ],
       body: body,
-
       // Position in the document
       startY: startY,
       margin: margins,
@@ -267,25 +270,24 @@ export default class TKSubmissionToPDF extends Vue {
             iconDisplayWidth,
             iconDisplayHeight
           );
+        } else {
+          if ((data.row.raw as RowInput).length === 1) {
+            const props = pdf.getImageProperties(charts[data.row.index]);
+            const width =
+              props.width > data.cell.width ? data.cell.width : props.width;
+            const height = (props.height / props.width) * width;
+            const x = (data.cell.width - width) / 2;
+            const y = (data.cell.height - height) / 2;
+            pdf.addImage(
+              charts[data.row.index],
+              "PNG",
+              data.cell.x + x,
+              data.cell.y + y,
+              width,
+              height
+            );
+          }
         }
-        // else {
-        //   if ((data.row.raw as RowInput).length === 1) {
-        // const props = pdf.getImageProperties(GRAPHASIMAGE64);
-        // const width =
-        //   props.width > data.cell.width ? data.cell.width : props.width;
-        // const height = (props.height / props.width) * width;
-        // const x = (data.cell.width - width) / 2;
-        // const y = (data.cell.height - height) / 2;
-        // pdf.addImage(
-        //   GRAPHASIMAGE64,
-        //   "PNG",
-        //   data.cell.x + x,
-        //   data.cell.y + y,
-        //   width,
-        //   height
-        // );
-        // }
-        // }
       }
     };
   }
