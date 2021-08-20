@@ -19,9 +19,7 @@
               class="tk-indicator-value-decription"
             >
               <span>{{ name }} : </span>
-              <span class="uppercase--text">{{
-                labelYesNo.toUpperCase()
-              }}</span>
+              <span class="uppercase--text">{{ labelYesNo }}</span>
             </div>
           </transition>
         </div>
@@ -84,7 +82,7 @@ export default class TKIndicatorSiteOccupation extends Vue {
     }
   }
   get siteOccupationColor() {
-    if (this.value === undefined) return "#E0E0E0";
+    if (this.value === undefined || this.value < 0) return "#E0E0E0";
     if (this.value < 80) return "green";
     if (this.value < 90) return "yellow";
     if (this.value < 100) return "orange";
