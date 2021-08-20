@@ -21,6 +21,8 @@ import { isNumber } from "@turf/turf";
 import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
 import { TKCompare, TKCompute } from "../ui/TKOperator";
+import { TKOperatorComputation } from "../ui/TKOperator";
+import { TKOperatorComparison } from "../ui/TKOperator";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -237,7 +239,7 @@ export function TKCreateSubmission(
       try {
         display = TKCompare(
           submissionItem[rule.displayCondition.field],
-          rule.displayCondition.operator,
+          rule.displayCondition.operator as TKOperatorComparison,
           rule.displayCondition.value
         );
       } catch (error) {
@@ -286,7 +288,7 @@ export function TKCreateSubmission(
             value = Math.round(
               TKCompute(
                 Number(submissionItem[rule.computed.field1]),
-                rule.computed.operator,
+                rule.computed.operator as TKOperatorComputation,
                 Number(submissionItem[rule.computed.field2])
               )
             ).toString();

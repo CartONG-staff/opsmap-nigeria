@@ -33,12 +33,12 @@ export interface TKFDFSubmissionRule {
   chartData: string;
   displayCondition?: {
     field: string;
-    operator: TKOperatorComparison;
+    operator: string;
     value: string;
   };
   computed?: {
     field1: string;
-    operator: TKOperatorComputation;
+    operator: string;
     field2: string;
   };
 }
@@ -73,7 +73,7 @@ export async function TKReadSubmissionsRulesCollection(
         if (condition.length === 3) {
           displayCondition = {
             field: condition[0],
-            operator: condition[1] as TKOperatorComparison,
+            operator: condition[1],
             value: condition[2]
           };
         }
@@ -86,7 +86,7 @@ export async function TKReadSubmissionsRulesCollection(
       if (rule.length === 3) {
         computedRule = {
           field1: rule[0],
-          operator: rule[1] as TKOperatorComputation,
+          operator: rule[1],
           field2: rule[2]
         };
       }
@@ -99,8 +99,20 @@ export async function TKReadSubmissionsRulesCollection(
       trafficLightName: item.traffic_light_name,
       chartId: item.chart_id,
       chartData: item.chart_data,
-      displayCondition: displayCondition,
+      displayCondition: displayCondition
+        ? {
+            field: displayCondition.field,
+            value: displayCondition.value,
+            operator: displayCondition.operator as TKOperatorComparison
+          }
+        : undefined,
       computed: computedRule
+        ? {
+            field1: computedRule.field1,
+            field2: computedRule.field2,
+            operator: computedRule.operator as TKOperatorComputation
+          }
+        : undefined
     };
   });
   return submissionsRules;
