@@ -17,7 +17,7 @@
       <TKFooterLogoItem
         v-for="(item, key) in appConfig.footerLogos"
         :key="key"
-        :logoDescription="item"
+        :logoGroup="item"
       />
     </div>
   </div>

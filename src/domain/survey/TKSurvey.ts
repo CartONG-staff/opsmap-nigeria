@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { TKCampTypesValues } from "./TKCamp";
-import { TKBoundariesCollection } from "./TKBoundariesCollection";
+import { TKCampType } from "./TKCamp";
+import { TKBoundaries } from "./TKBoundaries";
 import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
 import { TKIndicator } from "./TKIndicator";
 import { TKFDF } from "@/domain/fdf/TKFDF";
@@ -23,7 +23,10 @@ export interface TKSurveyOptions {
 
 export interface TKSurvey {
   name: string;
-  boundariesList: TKBoundariesCollection;
+  boundaries: {
+    admin1: TKBoundaries[];
+    admin2: TKBoundaries[];
+  };
   indicators: [TKIndicator, TKIndicator, TKIndicator];
   fdf: TKFDF;
   camps: TKCamp[];
@@ -132,7 +135,10 @@ export function TKCreateSurvey(
 ): TKSurvey {
   const camps: TKCamp[] = [];
 
-  const boundariesList: TKBoundariesCollection = {
+  const boundariesList: {
+    admin1: TKBoundaries[];
+    admin2: TKBoundaries[];
+  } = {
     admin1: [],
     admin2: []
   };
@@ -149,49 +155,44 @@ export function TKCreateSurvey(
 
     // Check if new camp
     let camp = camps.find(
-      camp => camp.infos.id === submission[fdf.spatialDescription.siteIDField]
+      camp => camp.id === submission[fdf.spatialDescription.siteIDField]
     );
 
     // Doesn't exist in camps list
     if (!camp) {
       camp = {
-        infos: {
-          id: submission[fdf.spatialDescription.siteIDField],
-          name: submission[fdf.spatialDescription.siteNameField],
-          type: fdf.terminology[
-            submission[fdf.spatialDescription.siteTypeField]
-          ] as TKCampTypesValues,
-          lat: Number(
-            submission[fdf.spatialDescription.siteLatitudeField].replace(
-              ",",
-              "."
-            )
-          ),
-          lng: Number(
-            submission[fdf.spatialDescription.siteLongitudeField].replace(
-              ",",
-              "."
-            )
-          ),
-          admin1: {
-            pcode: submission[fdf.spatialDescription.adm1Pcode],
-            name: submission[fdf.spatialDescription.adm1Name]
-          },
-          admin2: {
-            pcode: submission[fdf.spatialDescription.adm2Pcode],
-            name: submission[fdf.spatialDescription.adm2Name]
-          },
-          admin3: {
-            pcode: submission[fdf.spatialDescription.adm3Pcode],
-            name: submission[fdf.spatialDescription.adm3Name]
-          },
-          managedBy: {
-            en: submission[options.manageByField]
-              ? submission[options.manageByField]
-              : options.manageByAltValue
-              ? options.manageByAltValue
-              : "-"
-          }
+        id: submission[fdf.spatialDescription.siteIDField],
+        name: submission[fdf.spatialDescription.siteNameField],
+        type: fdf.terminology[
+          submission[fdf.spatialDescription.siteTypeField]
+        ] as TKCampType,
+        lat: Number(
+          submission[fdf.spatialDescription.siteLatitudeField].replace(",", ".")
+        ),
+        lng: Number(
+          submission[fdf.spatialDescription.siteLongitudeField].replace(
+            ",",
+            "."
+          )
+        ),
+        admin1: {
+          pcode: submission[fdf.spatialDescription.adm1Pcode],
+          name: submission[fdf.spatialDescription.adm1Name]
+        },
+        admin2: {
+          pcode: submission[fdf.spatialDescription.adm2Pcode],
+          name: submission[fdf.spatialDescription.adm2Name]
+        },
+        admin3: {
+          pcode: submission[fdf.spatialDescription.adm3Pcode],
+          name: submission[fdf.spatialDescription.adm3Name]
+        },
+        managedBy: {
+          en: submission[options.manageByField]
+            ? submission[options.manageByField]
+            : options.manageByAltValue
+            ? options.manageByAltValue
+            : "-"
         },
         submissions: [computedSubmission]
       };
@@ -238,7 +239,7 @@ export function TKCreateSurvey(
   return {
     name: fdf.name,
     camps: camps,
-    boundariesList: boundariesList,
+    boundaries: boundariesList,
     indicators: [
       computeSurveyIndicator(fdf.indicators.home[0], camps),
       computeSurveyIndicator(fdf.indicators.home[1], camps),

@@ -1,5 +1,5 @@
 import { TKLabel } from "@/domain/utils/TKLabel";
-import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogosDescription";
+import { TKLogoGroup } from "@/domain/utils/TKLogo";
 
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKLogo } from "@/domain/utils/TKLogo";
@@ -43,7 +43,7 @@ export interface TKOpsmapConfiguration {
   readonly iso3: string;
   readonly opsmapDescr: TKLabel;
   readonly indicators: TKFDFIndicators;
-  readonly footerLogos: TKFooterLogosDescription[];
+  readonly footerLogos: TKLogoGroup[];
   readonly iframe?: TKIFrameDescription;
   readonly surveys: TKSurveyInfos[];
   readonly spatial: TKFDFSpatialDescription;

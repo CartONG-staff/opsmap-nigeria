@@ -1,5 +1,5 @@
-import { TKCampTypesValues } from "@/domain/survey/TKCamp";
-import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
+import { TKCampType } from "@/domain/survey/TKCamp";
+import { TKBoundaries } from "@/domain/survey/TKBoundaries";
 import { TKSubmission } from "./TKSubmission";
 import { TKCamp } from "@/domain/survey/TKCamp";
 import {
@@ -43,13 +43,13 @@ export class TKDataset {
   private _currentSurvey!: TKSurvey; // ! --> Disable'not defined in ctor error'
 
   // Selection state
-  private _currentAdmin1: TKBoundarieDescription | null = null;
-  private _currentAdmin2: TKBoundarieDescription | null = null;
+  private _currentAdmin1: TKBoundaries | null = null;
+  private _currentAdmin2: TKBoundaries | null = null;
   private _currentCamp: TKCamp | null = null;
   private _currentSubmission: TKSubmission | null = null;
 
-  private _filteredAdmin1List: TKBoundarieDescription[] = [];
-  private _filteredAdmin2List: TKBoundarieDescription[] = [];
+  private _filteredAdmin1List: TKBoundaries[] = [];
+  private _filteredAdmin2List: TKBoundaries[] = [];
   private _filteredCampsList: TKCamp[] = [];
   private _filters: { [key in TKFilters]: TKFiltersTypes } = {
     survey: null,
@@ -86,10 +86,10 @@ export class TKDataset {
     return this._lastModification;
   }
 
-  public get filteredAdmin1List(): TKBoundarieDescription[] {
+  public get filteredAdmin1List(): TKBoundaries[] {
     return this._filteredAdmin1List;
   }
-  public get filteredAdmin2List(): TKBoundarieDescription[] {
+  public get filteredAdmin2List(): TKBoundaries[] {
     return this._filteredAdmin2List;
   }
   public get filteredCampsList(): TKCamp[] {
@@ -152,7 +152,7 @@ export class TKDataset {
         if (
           this._currentCamp &&
           value === false &&
-          this._currentCamp.infos.type === TKCampTypesValues.PLANNED
+          this._currentCamp.type === TKCampType.PLANNED
         ) {
           this._levelToZoom = this._currentAdmin2
             ? TKFilters.ADMIN2
@@ -170,7 +170,7 @@ export class TKDataset {
         if (
           this._currentCamp &&
           value === false &&
-          this._currentCamp.infos.type === TKCampTypesValues.SPONTANEOUS
+          this._currentCamp.type === TKCampType.SPONTANEOUS
         ) {
           this._levelToZoom = this._currentAdmin2
             ? TKFilters.ADMIN2
@@ -218,11 +218,11 @@ export class TKDataset {
   // Change Admin1
   // ////////////////////////////////////////////////////////////////////////////
 
-  public get currentAdmin1(): TKBoundarieDescription | null {
+  public get currentAdmin1(): TKBoundaries | null {
     return this._currentAdmin1;
   }
 
-  public set currentAdmin1(admin1: TKBoundarieDescription | null) {
+  public set currentAdmin1(admin1: TKBoundaries | null) {
     if (admin1) {
       if (admin1 !== this._currentAdmin1) {
         this._currentAdmin1 = admin1;
@@ -260,7 +260,7 @@ export class TKDataset {
   }
 
   setCurrentAdmin1ByName(admin1Name: string) {
-    const admin1 = this._currentSurvey.boundariesList.admin1.find(
+    const admin1 = this._currentSurvey.boundaries.admin1.find(
       admin1 => admin1.name === admin1Name
     );
     this.currentAdmin1 = admin1 ?? null;
@@ -270,11 +270,11 @@ export class TKDataset {
   // Change Admin2
   // ////////////////////////////////////////////////////////////////////////////
 
-  public get currentAdmin2(): TKBoundarieDescription | null {
+  public get currentAdmin2(): TKBoundaries | null {
     return this._currentAdmin2;
   }
 
-  public set currentAdmin2(admin2: TKBoundarieDescription | null) {
+  public set currentAdmin2(admin2: TKBoundaries | null) {
     if (admin2) {
       if (admin2 !== this._currentAdmin2) {
         this._currentAdmin2 = admin2;
@@ -288,10 +288,10 @@ export class TKDataset {
         // New admin2
         this._levelToZoom = TKFilters.ADMIN2;
         const campAdmin2 = this._currentSurvey.camps.find(
-          camp => camp.infos.admin2.pcode === this._currentAdmin2?.pcode
+          camp => camp.admin2.pcode === this._currentAdmin2?.pcode
         );
         if (campAdmin2) {
-          this._currentAdmin1 = campAdmin2.infos.admin1;
+          this._currentAdmin1 = campAdmin2.admin1;
         }
         this._filters[TKFilters.ADMIN1] = this._currentAdmin1
           ? this._currentAdmin1.pcode
@@ -324,7 +324,7 @@ export class TKDataset {
   }
 
   setCurrentAdmin2ByName(admin2Name: string) {
-    const admin2 = this._currentSurvey.boundariesList.admin2.find(
+    const admin2 = this._currentSurvey.boundaries.admin2.find(
       admin2 => admin2.name === admin2Name
     );
     this.currentAdmin2 = admin2 ?? null;
@@ -334,10 +334,8 @@ export class TKDataset {
   // Change Camp
   // ////////////////////////////////////////////////////////////////////////////
 
-  setCurrentCampByName(campName: string) {
-    const camp = this._currentSurvey.camps.find(
-      camp => camp.infos.name === campName
-    );
+  setcurrentCampByName(campName: string) {
+    const camp = this._currentSurvey.camps.find(camp => camp.name === campName);
     this.currentCamp = camp ?? null;
   }
 
@@ -350,22 +348,22 @@ export class TKDataset {
       if (this._currentCamp !== camp) {
         this._currentCamp = camp;
 
-        this._filters[TKFilters.CAMP] = this._currentCamp.infos.id;
+        this._filters[TKFilters.CAMP] = this._currentCamp.id;
         this._levelToZoom = TKFilters.CAMP;
         if (this._currentCamp && this._currentSurvey) {
-          if (this._currentCamp.infos.admin1 !== this._currentAdmin1) {
-            this._currentAdmin1 = this._currentCamp.infos.admin1;
+          if (this._currentCamp.admin1 !== this._currentAdmin1) {
+            this._currentAdmin1 = this._currentCamp.admin1;
             this._filters[TKFilters.ADMIN1] = this._currentAdmin1.pcode;
           }
 
-          if (this._currentCamp.infos.admin2 !== this._currentAdmin2) {
-            this._currentAdmin2 = this._currentCamp.infos.admin2;
+          if (this._currentCamp.admin2 !== this._currentAdmin2) {
+            this._currentAdmin2 = this._currentCamp.admin2;
             this._filters[TKFilters.ADMIN2] = this._currentAdmin2.pcode;
           }
 
           this._currentSubmission = this._currentCamp.submissions[0];
 
-          this._lastModification = `camp=${this._currentCamp.infos.id}`;
+          this._lastModification = `camp=${this._currentCamp.id}`;
         }
         this.updateFiltering();
       }
@@ -392,7 +390,7 @@ export class TKDataset {
   filterAdmin1BaseOnFilteredCamp(): void {
     // Filter Admin1 based on filtered Camp List //////////////////////////////
     const validAdmin1 = new Set(
-      this._filteredCampsList.map(camp => camp.infos.admin1.pcode)
+      this._filteredCampsList.map(camp => camp.admin1.pcode)
     );
     this._filteredAdmin1List = this._filteredAdmin1List.filter(item =>
       validAdmin1.has(item.pcode)
@@ -408,7 +406,7 @@ export class TKDataset {
   filterAdmin2BaseOnFilteredCamp(): void {
     // Filter Admin2 based on filtered Camp List //////////////////////////////
     const validAdmin2 = new Set(
-      this._filteredCampsList.map(camp => camp.infos.admin2.pcode)
+      this._filteredCampsList.map(camp => camp.admin2.pcode)
     );
     this._filteredAdmin2List = this._filteredAdmin2List.filter(item =>
       validAdmin2.has(item.pcode)
@@ -423,13 +421,13 @@ export class TKDataset {
   updateFiltering() {
     // Reset camp list ////////////////////////////////////////////////////////
     this._filteredCampsList = this._currentSurvey.camps;
-    this._filteredAdmin1List = this._currentSurvey.boundariesList.admin1;
-    this._filteredAdmin2List = this._currentSurvey.boundariesList.admin2;
+    this._filteredAdmin1List = this._currentSurvey.boundaries.admin1;
+    this._filteredAdmin2List = this._currentSurvey.boundaries.admin2;
 
     // Camp filtering base on Admin1 //////////////////////////////////////////
     if (this._filters[TKFilters.ADMIN1]) {
       this._filteredCampsList = this._filteredCampsList.filter(
-        camp => camp.infos.admin1.pcode === this._filters[TKFilters.ADMIN1]
+        camp => camp.admin1.pcode === this._filters[TKFilters.ADMIN1]
       );
       this.filterAdmin2BaseOnFilteredCamp();
     }
@@ -437,14 +435,14 @@ export class TKDataset {
     // Camp filtering base on Admin2 //////////////////////////////////////////
     if (this._filters[TKFilters.ADMIN2]) {
       this._filteredCampsList = this._filteredCampsList.filter(
-        camp => camp.infos.admin2.pcode === this._filters[TKFilters.ADMIN2]
+        camp => camp.admin2.pcode === this._filters[TKFilters.ADMIN2]
       );
     }
 
     // Remove planned if needed ///////////////////////////////////////////////
     if (!this._filters[TKFilters.PLANNED_SITE]) {
       this._filteredCampsList = this._filteredCampsList.filter(
-        camp => camp.infos.type !== TKCampTypesValues.PLANNED
+        camp => camp.type !== TKCampType.PLANNED
       );
 
       this.filterAdmin1BaseOnFilteredCamp();
@@ -454,7 +452,7 @@ export class TKDataset {
     // Remove spontaneous if needed ///////////////////////////////////////////
     if (!this._filters[TKFilters.SPONTANEOUS_SITE]) {
       this._filteredCampsList = this._filteredCampsList.filter(
-        camp => camp.infos.type !== TKCampTypesValues.SPONTANEOUS
+        camp => camp.type !== TKCampType.SPONTANEOUS
       );
       this.filterAdmin1BaseOnFilteredCamp();
       this.filterAdmin2BaseOnFilteredCamp();

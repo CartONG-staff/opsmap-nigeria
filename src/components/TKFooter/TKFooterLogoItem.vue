@@ -6,7 +6,7 @@
       </div>
     </transition>
     <div class="tk-footer-logos-item-logos">
-      <div v-for="item in logoDescription.logos" :key="item.name">
+      <div v-for="item in logoGroup.logos" :key="item.name">
         <a :href="item.urlRedirection" target="_blank">
           <img
             :src="item.urlLogo"
@@ -21,22 +21,22 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogosDescription";
+import { TKLogoGroup } from "@/domain/utils/TKLogo";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 
 @Component
 export default class TKFooterLogoItem extends Vue {
   @Prop()
-  readonly logoDescription!: TKFooterLogosDescription;
+  readonly logoGroup!: TKLogoGroup;
 
   title = "";
 
-  @Watch("logoDescription", { immediate: true })
+  @Watch("logoGroup", { immediate: true })
   @Watch("$root.$i18n.locale")
   handeLocale() {
-    if (this.logoDescription) {
+    if (this.logoGroup) {
       this.title = TKGetLocalValue(
-        this.logoDescription.title,
+        this.logoGroup.title,
         this.$root.$i18n.locale
       );
     }

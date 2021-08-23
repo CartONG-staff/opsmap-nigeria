@@ -85,7 +85,7 @@
 </template>
 
 <script lang="ts">
-import { TKCampTypesValues } from "@/domain/survey/TKCamp";
+import { TKCampType } from "@/domain/survey/TKCamp";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
@@ -108,16 +108,14 @@ export default class TKCampInfos extends Vue {
   onChange() {
     if (this.dataset) {
       this.admin1 = this.dataset.currentCamp
-        ? this.dataset.currentCamp.infos.admin1.name
+        ? this.dataset.currentCamp.admin1.name
         : "-";
       this.admin2 = this.dataset.currentCamp
-        ? this.dataset.currentCamp.infos.admin2.name
+        ? this.dataset.currentCamp.admin2.name
         : "-";
 
       this.coordinates = this.dataset.currentCamp
-        ? this.dataset.currentCamp.infos.lat +
-          "," +
-          this.dataset.currentCamp.infos.lng
+        ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
         : "-";
       this.handeLocale();
     }
@@ -126,7 +124,7 @@ export default class TKCampInfos extends Vue {
   @Watch("dataset.currentSubmission", { immediate: true })
   onSubmissionChange() {
     this.manageByLabel = this.dataset.currentCamp
-      ? this.dataset.currentCamp?.infos.managedBy
+      ? this.dataset.currentCamp?.managedBy
       : { en: "-" };
 
     if (this.dataset && this.dataset.currentSurvey) {
@@ -150,7 +148,7 @@ export default class TKCampInfos extends Vue {
         this.manageByLabel,
         this.$root.$i18n.locale
       );
-      if (this.dataset.currentCamp.infos.type === TKCampTypesValues.PLANNED) {
+      if (this.dataset.currentCamp.type === TKCampType.PLANNED) {
         this.siteType = this.$root.$i18n
           .t("infosSitePlanned")
           .toString()

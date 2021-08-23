@@ -57,7 +57,7 @@
 
 <script lang="ts">
 import { TKOpsmapConfiguration } from "@/domain";
-import { TKCampTypesValues } from "@/domain/survey/TKCamp";
+import { TKCampType } from "@/domain/survey/TKCamp";
 
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKIconUrl } from "@/domain/utils/TKIcons";
@@ -92,12 +92,12 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
     if (this.dataset && this.dataset.currentCamp) {
       this.manageBy = TKGetLocalValue(
         this.dataset.currentCamp
-          ? this.dataset.currentCamp?.infos.managedBy
+          ? this.dataset.currentCamp?.managedBy
           : { en: "-" },
         this.$root.$i18n.locale
       );
 
-      if (this.dataset.currentCamp.infos.type === TKCampTypesValues.PLANNED) {
+      if (this.dataset.currentCamp.type === TKCampType.PLANNED) {
         this.siteType = this.$root.$i18n
           .t("infosSitePlanned")
           .toString()
@@ -114,15 +114,11 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   @Watch("dataset.currentCamp", { immediate: true })
   campChanged() {
     if (this.appConfig && this.dataset && this.dataset.currentCamp) {
-      this.siteName = toTitleCase(
-        this.dataset.currentCamp.infos.name.toUpperCase()
-      );
-      this.admin1 = this.dataset.currentCamp.infos.admin1.name;
-      this.admin2 = this.dataset.currentCamp.infos.admin2.name;
+      this.siteName = toTitleCase(this.dataset.currentCamp.name.toUpperCase());
+      this.admin1 = this.dataset.currentCamp.admin1.name;
+      this.admin2 = this.dataset.currentCamp.admin2.name;
       this.coordinates =
-        this.dataset.currentCamp.infos.lat +
-        "," +
-        this.dataset.currentCamp.infos.lng;
+        this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng;
 
       this.handleLocale();
 
@@ -154,17 +150,17 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
       // Marker
       // TODO: magic value : automate icon file name with CampTypesValues
       let markerUrl = "";
-      if (this.dataset.currentCamp.infos.type === TKCampTypesValues.PLANNED) {
+      if (this.dataset.currentCamp.type === TKCampType.PLANNED) {
         markerUrl = encodeURIComponent(TKIconUrl("planned_site_selected"));
       } else {
         markerUrl = encodeURIComponent(TKIconUrl("spontaneous_site_selected"));
       }
-      staticMapUrl += `url-${markerUrl}(${this.dataset.currentCamp.infos.lng},${this.dataset.currentCamp.infos.lat})/`;
+      staticMapUrl += `url-${markerUrl}(${this.dataset.currentCamp.lng},${this.dataset.currentCamp.lat})/`;
 
       // Bounds
       const bounds = new LngLat(
-        this.dataset.currentCamp.infos.lng,
-        this.dataset.currentCamp.infos.lat
+        this.dataset.currentCamp.lng,
+        this.dataset.currentCamp.lat
       )
         .toBounds(5000)
         .toArray();

@@ -6,8 +6,8 @@ import { TKDataset } from "@/domain/survey/TKDataset";
 
 function computeExportFileBasename(dataset: TKDataset): string {
   if (dataset) {
-    const campId = dataset.currentCamp?.infos.id ?? "";
-    const campName = dataset.currentCamp?.infos.name ?? "";
+    const campId = dataset.currentCamp?.id ?? "";
+    const campName = dataset.currentCamp?.name ?? "";
     const submissionId = dataset.currentSubmission?.date.replaceAll("/", "-");
 
     const filename = campId + "_" + campName + "_" + submissionId;

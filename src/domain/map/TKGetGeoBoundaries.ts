@@ -24,7 +24,7 @@ export async function TKGetGeoBoundaries(
   // Get Admin2 from unhcr server
   let admin1List: string[] = [];
   for (const survey of dataset.surveys) {
-    survey.boundariesList.admin1.map(x => admin1List.push(x.pcode));
+    survey.boundaries.admin1.map(x => admin1List.push(x.pcode));
   }
 
   admin1List = [...new Set(admin1List)];

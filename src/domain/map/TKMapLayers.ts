@@ -1,4 +1,4 @@
-import { TKCampTypesValues } from "@/domain/survey/TKCamp";
+import { TKCampType } from "@/domain/survey/TKCamp";
 
 export enum TKMapLayers {
   ADMIN1SOURCE = "admin1Source",
@@ -164,9 +164,9 @@ export const TKMapLayersStyle = {
       "icon-image": [
         "match",
         ["get", "type"],
-        TKCampTypesValues.PLANNED,
+        TKCampType.PLANNED,
         "planned_site",
-        TKCampTypesValues.SPONTANEOUS,
+        TKCampType.SPONTANEOUS,
         "spontaneous_site",
         "planned_site" // everything else
       ],
@@ -181,9 +181,9 @@ export const TKMapLayersStyle = {
       "icon-image": [
         "match",
         ["get", "type"],
-        TKCampTypesValues.PLANNED,
+        TKCampType.PLANNED,
         "planned_site_selected",
-        TKCampTypesValues.SPONTANEOUS,
+        TKCampType.SPONTANEOUS,
         "spontaneous_site_selected",
         "planned_site_selected" // everything else
       ],
