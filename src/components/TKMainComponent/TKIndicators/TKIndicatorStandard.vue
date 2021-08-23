@@ -104,6 +104,7 @@ export default class TKIndicatorStandard extends Vue {
   flex-flow: column nowrap;
   font-size: 40px;
   padding-top: 13px;
+  padding-bottom: 13px;
   line-height: 1.25;
   justify-content: flex-start;
   height: 100%;
@@ -123,8 +124,6 @@ export default class TKIndicatorStandard extends Vue {
   font-weight: bolder;
   font-size: 16px;
   line-height: 17px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 }
 </style>
