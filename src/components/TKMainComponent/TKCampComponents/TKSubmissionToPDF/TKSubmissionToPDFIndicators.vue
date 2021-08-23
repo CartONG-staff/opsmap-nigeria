@@ -148,7 +148,6 @@ export default class TKSubmissionToPDFIndicator extends Vue {
 .indicator {
   height: 20mm;
   width: 60mm;
-  border-radius: 15px;
 }
 
 .indicator-container {
@@ -156,17 +155,8 @@ export default class TKSubmissionToPDFIndicator extends Vue {
   flex-flow: row nowrap;
   justify-content: space-between;
   column-gap: 5mm;
-  padding: 5mm;
-  align-items: left;
-  width: 100%;
-  height: 100%;
-}
-
-.indicator-container-occupation {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  padding: 5mm;
+  padding-top: 5mm;
+  padding-left: 5mm;
   align-items: left;
   width: 100%;
   height: 100%;
@@ -175,7 +165,7 @@ export default class TKSubmissionToPDFIndicator extends Vue {
 .indicator-value {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: left;
   height: 100%;
   width: 100%;
@@ -195,9 +185,7 @@ export default class TKSubmissionToPDFIndicator extends Vue {
   font-weight: bold;
   color: #999;
   letter-spacing: 0.86;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .indicator-icon-container {
