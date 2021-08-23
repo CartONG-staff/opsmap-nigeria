@@ -1,10 +1,10 @@
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods
 // ////////////////////////////////////////////////////////////////////////////
 
-function computeExportFileBasename(dataset: TKDatasetFilterer): string {
+function computeExportFileBasename(dataset: TKDataset): string {
   if (dataset) {
     const campId = dataset.currentCamp?.infos.id ?? "";
     const campName = dataset.currentCamp?.infos.name ?? "";
@@ -18,7 +18,7 @@ function computeExportFileBasename(dataset: TKDatasetFilterer): string {
 }
 
 export function TKComputeExportFilename(
-  dataset: TKDatasetFilterer,
+  dataset: TKDataset,
   extension: string
 ): string {
   let name = computeExportFileBasename(dataset);

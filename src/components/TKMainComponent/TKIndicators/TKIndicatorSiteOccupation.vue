@@ -32,7 +32,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
-import { TKIndicator } from "@/domain/utils/TKIndicator";
+import { TKIndicator } from "@/domain/survey/TKIndicator";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKIndicatorType } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 

@@ -1,22 +1,13 @@
 import { TKLabel } from "@/domain/utils/TKLabel";
+import { TKIndicatorType } from "@/domain/survey/TKIndicator";
 
-export enum TKIndicatorComputationType {
-  SUM,
-  MEAN
-}
-
-export enum TKIndicatorType {
-  STANDARD = "standard",
-  OCCUPATION = "site_occupation"
-}
-
-export interface TKIndicatorDescription {
+export interface TKFDFIndicatorStandard {
   readonly type: TKIndicatorType.STANDARD;
   readonly name: TKLabel;
   readonly entryCode: string;
   readonly iconOchaName: string;
 }
-export interface TKIndicatorDescriptionSiteOccupation {
+export interface TKFDFIndicatorSiteOccupation {
   // In the case of occupation:
   // - entryCode is supposed to be Site max capicity
   // - entryCodeSecond is supposed to be People
@@ -28,15 +19,15 @@ export interface TKIndicatorDescriptionSiteOccupation {
   readonly entryCodeMaxPeopleCount: string;
 }
 
-export interface TKIndicatorsDescription {
+export interface TKFDFIndicators {
   home: [
-    TKIndicatorDescription,
-    TKIndicatorDescription,
-    TKIndicatorDescription
+    TKFDFIndicatorStandard,
+    TKFDFIndicatorStandard,
+    TKFDFIndicatorStandard
   ];
   site: [
-    TKIndicatorDescription | TKIndicatorDescriptionSiteOccupation,
-    TKIndicatorDescription | TKIndicatorDescriptionSiteOccupation,
-    TKIndicatorDescription | TKIndicatorDescriptionSiteOccupation
+    TKFDFIndicatorStandard | TKFDFIndicatorSiteOccupation,
+    TKFDFIndicatorStandard | TKFDFIndicatorSiteOccupation,
+    TKFDFIndicatorStandard | TKFDFIndicatorSiteOccupation
   ];
 }

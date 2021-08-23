@@ -7,14 +7,14 @@
 </template>
 
 <script lang="ts">
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKDateCompare } from "@/domain/utils/TKDateCompare";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKHomeSubtitle extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   lastUpdate = "";
 

@@ -32,7 +32,7 @@ import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { Point } from "geojson";
 
@@ -48,7 +48,7 @@ export default class TKMap extends Vue {
   readonly appConfig!: TKOpsmapConfiguration;
 
   @Prop({ default: () => [] })
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   @Prop()
   readonly geoDataset!: TKGeoDataset;

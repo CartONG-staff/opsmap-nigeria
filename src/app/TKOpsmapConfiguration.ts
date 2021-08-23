@@ -1,9 +1,10 @@
 import { TKLabel } from "@/domain/utils/TKLabel";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogosDescription";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
-import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKLogo } from "@/domain/utils/TKLogo";
+
+import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
 
 // ////////////////////////////////////////////////////////////////////////////
 // JSON format
@@ -27,6 +28,11 @@ interface TKMapboxConfiguration {
 }
 
 // ////////////////////////////////////////////////////////////////////////////
+// This file host some infos that could be in the FDF.
+// Therefore, specific FDF types are used
+// ////////////////////////////////////////////////////////////////////////////
+
+// ////////////////////////////////////////////////////////////////////////////
 // Global Opsmap configuration
 // ////////////////////////////////////////////////////////////////////////////
 
@@ -35,7 +41,7 @@ export interface TKOpsmapConfiguration {
   readonly languages: string[];
   readonly iso3: string;
   readonly opsmapDescr: TKLabel;
-  readonly indicators: TKIndicatorsDescription;
+  readonly indicators: TKFDFIndicators;
   readonly footerLogos: TKFooterLogosDescription[];
   readonly iframe?: TKIFrameDescription;
   readonly surveys: TKSurveyInfos[];

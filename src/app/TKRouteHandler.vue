@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import Vue from "vue";
 import { headerLogoBus } from "@/components/TKHeaderLogoBus";
 import { Component, Prop, Watch } from "vue-property-decorator";
@@ -11,7 +11,7 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class TKRouteHandler extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   currentRoute = "/";
 

@@ -23,6 +23,7 @@ import {
   TKReadFDFTerminologyCollection
 } from "./TKFDFTerminology";
 import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
+import { TKFDFIndicators } from "./TKFDFIndicators";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the FDF object
@@ -38,12 +39,16 @@ export interface TKFDF {
   answersLabels: TKFDFLabelCollection;
   submissionsRules: TKFDFSubmissionsRulesCollection;
   urls: TKFDFUrlsCollection;
+  indicators: TKFDFIndicators;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
 // Method that creates the FDF object from the fdf folder
 // ////////////////////////////////////////////////////////////////////////////
-export async function TKCreateFDF(infos: TKSurveyInfos): Promise<TKFDF> {
+export async function TKCreateFDF(
+  infos: TKSurveyInfos,
+  indicators: TKFDFIndicators
+): Promise<TKFDF> {
   let answersLabels = {};
   if (infos.type === "gsheet") {
     answersLabels = await TKReadFDFLabelCollectionFromGSheet(
@@ -64,6 +69,7 @@ export async function TKCreateFDF(infos: TKSurveyInfos): Promise<TKFDF> {
     fieldsLabels: await TKReadFDFLabelCollection(TKFDFFiles.FIELDS, infos.fdf),
     answersLabels: answersLabels,
     submissionsRules: await TKReadSubmissionsRulesCollection(infos.fdf),
-    urls: await TKReadFDFURLsCollection(infos.fdf)
+    urls: await TKReadFDFURLsCollection(infos.fdf),
+    indicators: indicators
   };
 }

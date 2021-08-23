@@ -60,7 +60,7 @@
 <script lang="ts">
 import TKSubmissionToPDF from "./TKSubmissionToPDF/TKSubmissionToPDF.vue";
 import { TKCSVWrite } from "@/domain/export/TKCSVWriter";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 import { TKOpsmapConfiguration } from "@/domain";
@@ -73,7 +73,7 @@ import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 })
 export default class TKCampToolbarExportButton extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
   @Prop()

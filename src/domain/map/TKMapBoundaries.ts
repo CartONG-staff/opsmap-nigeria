@@ -1,9 +1,6 @@
 import { Feature, FeatureCollection } from "geojson";
 import mapboxgl, { LngLat, LngLatBounds, LngLatLike } from "mapbox-gl";
-import {
-  TKDatasetFilterer,
-  TKFilters
-} from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset, TKFilters } from "@/domain/survey/TKDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKMapLayers } from "./TKMapLayers";
 import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
@@ -27,7 +24,7 @@ export class TKMapBoundaries {
   // //////////////////////////////////////////////////////////////////////////
 
   changeStyle(
-    dataset: TKDatasetFilterer,
+    dataset: TKDataset,
     map: mapboxgl.Map,
     bound: LngLatBounds
   ): void {
@@ -90,7 +87,7 @@ export class TKMapBoundaries {
   //
   // //////////////////////////////////////////////////////////////////////////
 
-  setAdmin1Style(dataset: TKDatasetFilterer) {
+  setAdmin1Style(dataset: TKDataset) {
     let shouldMapZoom = null;
     const currentadmin1List = dataset.filteredAdmin1List.map(
       item => item.pcode
@@ -124,7 +121,7 @@ export class TKMapBoundaries {
   //
   // //////////////////////////////////////////////////////////////////////////
 
-  setAdmin2Style(dataset: TKDatasetFilterer) {
+  setAdmin2Style(dataset: TKDataset) {
     let shouldMapZoom = null;
     const currentadmin2List = dataset.filteredAdmin2List.map(
       item => item.pcode

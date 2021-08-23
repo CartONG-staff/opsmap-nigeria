@@ -88,7 +88,7 @@ import {
   TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
 import { TKOpsmapConfiguration } from "@/domain";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 
@@ -118,7 +118,7 @@ export default class TKMainComponent extends Vue {
   readonly isDatasetInitialized = false;
 
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   @Prop()
   readonly geoData!: TKGeoDataset;

@@ -1,4 +1,4 @@
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKComputeExportFilename } from "./TKExportCommon";
 
 import { jsPDF, jsPDFOptions } from "jspdf";
@@ -7,7 +7,7 @@ import { jsPDF, jsPDFOptions } from "jspdf";
 // Temaplted Read method for csv inputs
 // ////////////////////////////////////////////////////////////////////////////
 
-export function TKPDFWrite(dataset: TKDatasetFilterer, locale: string) {
+export function TKPDFWrite(dataset: TKDataset, locale: string) {
   if (dataset.currentSubmission) {
     const documentTitle = TKComputeExportFilename(dataset, "pdf");
 

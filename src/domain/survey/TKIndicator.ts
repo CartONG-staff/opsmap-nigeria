@@ -1,5 +1,14 @@
-import { TKIndicatorType } from "../opsmapConfig/TKIndicatorsDescription";
-import { TKLabel } from "./TKLabel";
+import { TKLabel } from "@/domain/utils/TKLabel";
+
+export enum TKIndicatorComputationType {
+  SUM,
+  MEAN
+}
+
+export enum TKIndicatorType {
+  STANDARD = "standard",
+  OCCUPATION = "site_occupation"
+}
 
 export interface TKIndicatorStandard {
   readonly type: TKIndicatorType.STANDARD;

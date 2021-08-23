@@ -1,4 +1,4 @@
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKGetLocalValue } from "../utils/TKLabel";
 import { TKComputeExportFilename } from "./TKExportCommon";
@@ -73,7 +73,7 @@ function computeCSVContent(submission: TKSubmission, locale: string): string {
 // Temaplted Read method for csv inputs
 // ////////////////////////////////////////////////////////////////////////////
 
-export function TKCSVWrite(dataset: TKDatasetFilterer, locale: string) {
+export function TKCSVWrite(dataset: TKDataset, locale: string) {
   if (dataset.currentSubmission) {
     const csvContent = computeCSVContent(dataset.currentSubmission, locale);
     const encodedUri = encodeURI(csvContent);

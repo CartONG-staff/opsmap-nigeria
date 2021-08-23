@@ -1,9 +1,16 @@
 import { TKCampTypesValues } from "@/domain/survey/TKCamp";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSubmission } from "./TKSubmission";
-import { TKSurvey } from "./TKSurvey";
 import { TKCamp } from "@/domain/survey/TKCamp";
+import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
+import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
+import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
 
+import { TKGetCSVRawData } from "../csv/TKGetCSVRawData";
+import { TKCreateFDF } from "../fdf/TKFDF";
+import { TKGetGSheetRawData } from "../gsheet/TKGetGSheetRawData";
+import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
+import { TKCreateSurvey, TKSurvey } from "./TKSurvey";
 // ////////////////////////////////////////////////////////////////////////////
 // Filters Concept description. Requires Comments !
 // TODO : work on this : clarity, comments, etc.
@@ -25,7 +32,7 @@ export type TKFiltersTypes = string | boolean | null;
 //
 // ////////////////////////////////////////////////////////////////////////////
 
-export class TKDatasetFilterer {
+export class TKDataset {
   private _lastModification = "";
 
   // Dataset
@@ -450,4 +457,59 @@ export class TKDatasetFilterer {
       this.filterAdmin2BaseOnFilteredCamp();
     }
   }
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Create all the survey based on the surveys infos
+// ////////////////////////////////////////////////////////////////////////////
+
+export async function TKCreateDataset(
+  surveyDescription: TKSurveyInfos[],
+  spatialDescription: TKSpatialDescription,
+  indicators: TKFDFIndicators,
+  languages: Array<string>
+): Promise<TKDataset> {
+  // prepare output
+  const surveys: TKSurvey[] = [];
+
+  // foreach survey info
+  for (const info of surveyDescription) {
+    // Retrieve raw data
+    let rawData;
+    const before = Date.now();
+    if (info.type === "csv") {
+      rawData = await TKGetCSVRawData(info);
+    } else if (info.type === "gsheet") {
+      rawData = await TKGetGSheetRawData(info);
+    } else if (info.type === "kobo") {
+      rawData = await TKGetKoboRawData(info);
+    }
+    console.log(
+      `Raw data ${info.name} retrieved in ${(Date.now() - before) /
+        1000} seconds.`
+    );
+
+    const beforeFDF = Date.now();
+
+    // Retrieve config
+    const fdf = await TKCreateFDF(info, indicators);
+
+    console.log(
+      `FDF  ${info.name} retrieved in ${(Date.now() - beforeFDF) /
+        1000} seconds.`
+    );
+
+    const beforeSurvey = Date.now();
+
+    // Create survey
+    surveys.push(
+      TKCreateSurvey(rawData, fdf, spatialDescription, languages, info.options)
+    );
+
+    console.log(
+      `Survey  ${info.name} computed in ${(Date.now() - beforeSurvey) /
+        1000} seconds.`
+    );
+  }
+  return new TKDataset(surveys);
 }

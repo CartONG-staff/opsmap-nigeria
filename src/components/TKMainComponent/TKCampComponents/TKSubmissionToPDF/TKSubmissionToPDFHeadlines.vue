@@ -59,7 +59,7 @@
 import { TKOpsmapConfiguration } from "@/domain";
 import { TKCampTypesValues } from "@/domain/survey/TKCamp";
 
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKIconUrl } from "@/domain/utils/TKIcons";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { toTitleCase } from "@/domain/utils/TKStringUtils";
@@ -69,7 +69,7 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 @Component({})
 export default class TKSubmissionToPDFHeadlines extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;

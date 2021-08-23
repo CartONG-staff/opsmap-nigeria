@@ -86,14 +86,14 @@
 
 <script lang="ts">
 import { TKCampTypesValues } from "@/domain/survey/TKCamp";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKCampInfos extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   manageByLabel!: TKLabel;
 

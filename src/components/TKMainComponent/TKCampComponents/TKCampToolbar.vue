@@ -86,7 +86,7 @@
 </template>
 
 <script lang="ts">
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 import TKCampToolbarExportButton from "./TKCampToolbarExportButton.vue";
@@ -103,7 +103,7 @@ export default class TKCampToolbar extends Vue {
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
 
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;

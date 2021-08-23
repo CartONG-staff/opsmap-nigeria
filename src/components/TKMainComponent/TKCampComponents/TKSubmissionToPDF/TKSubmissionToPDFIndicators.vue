@@ -59,7 +59,7 @@
 
 <script lang="ts">
 import { TKIndicatorType } from "@/domain/opsmapConfig/TKIndicatorsDescription";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKIconUrl } from "@/domain/utils/TKIcons";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
@@ -69,7 +69,7 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 })
 export default class TKSubmissionToPDFIndicator extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   indicators: Array<
     | {

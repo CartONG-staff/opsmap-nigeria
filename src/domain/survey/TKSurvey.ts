@@ -3,17 +3,21 @@
 import { TKCampTypesValues } from "./TKCamp";
 import { TKBoundariesCollection } from "./TKBoundariesCollection";
 import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
-import { TKIndicator } from "../utils/TKIndicator";
+import { TKIndicator } from "./TKIndicator";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import {
-  TKIndicatorsDescription,
-  TKIndicatorDescription
-} from "@/domain/opsmapConfig/TKIndicatorsDescription";
+// import {
+//   TKIndicatorsDescription as TKFDFIndicators,
+//   TKIndicatorDescription
+// } from "@/domain/fdf/TKFDFIndicators";
 import moment from "moment";
 import { isNumber } from "@turf/turf";
 import { TKCamp } from "@/domain/survey/TKCamp";
-import { TKDateCompare } from "../utils/TKDateCompare";
+import { TKDateCompare } from "@/domain/utils/TKDateCompare";
+import {
+  TKFDFIndicators,
+  TKFDFIndicatorStandard
+} from "../fdf/TKFDFIndicators";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
@@ -52,7 +56,7 @@ function formatDate(date: string, options: TKSurveyOptions): string {
 // ////////////////////////////////////////////////////////////////////////////
 
 function computeSurveyIndicator(
-  descr: TKIndicatorDescription,
+  descr: TKFDFIndicatorStandard,
   camps: TKCamp[]
 ): TKIndicator {
   if (descr.entryCode === "mp_site_id") {
@@ -132,7 +136,6 @@ export function TKCreateSurvey(
   submissions: Record<string, string>[],
   surveyConfig: TKFDF,
   spatialDescription: TKSpatialDescription,
-  indicatorsDescription: TKIndicatorsDescription,
   languages: Array<string>,
   options: TKSurveyOptions
 ): TKSurvey {
@@ -154,7 +157,6 @@ export function TKCreateSurvey(
     const computedSubmission = TKCreateSubmission(
       submission,
       surveyConfig,
-      indicatorsDescription,
       spatialDescription,
       languages
     );
@@ -246,9 +248,9 @@ export function TKCreateSurvey(
     camps: camps,
     boundariesList: boundariesList,
     indicators: [
-      computeSurveyIndicator(indicatorsDescription.home[0], camps),
-      computeSurveyIndicator(indicatorsDescription.home[1], camps),
-      computeSurveyIndicator(indicatorsDescription.home[2], camps)
+      computeSurveyIndicator(surveyConfig.indicators.home[0], camps),
+      computeSurveyIndicator(surveyConfig.indicators.home[1], camps),
+      computeSurveyIndicator(surveyConfig.indicators.home[2], camps)
     ],
     fdf: surveyConfig,
     options: options

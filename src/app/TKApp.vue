@@ -20,9 +20,8 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKCreateDataset, TKDataset } from "@/domain/survey/TKDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
-import { TKDatasetFitlererCreate } from "@/domain/survey/TKDatasetFitlererCreate";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKRouteHandler from "@/app/TKRouteHandler.vue";
@@ -39,12 +38,12 @@ import { TKOpsmapConfiguration } from "@/domain";
 export default class TKApp extends Vue {
   isDatasetInitialized = false;
   appRootConfig: TKOpsmapConfiguration = this.$root.$data.config;
-  dataset: TKDatasetFilterer | null = null;
+  dataset: TKDataset | null = null;
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
     this.handeLocale();
-    TKDatasetFitlererCreate(
+    TKCreateDataset(
       this.appRootConfig.surveys,
       this.appRootConfig.spatial,
       this.appRootConfig.indicators,

@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { TKOpsmapConfiguration } from "@/domain";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import {
@@ -31,7 +31,7 @@ import {
 })
 export default class TKMainComponentLeftHome extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;

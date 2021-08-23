@@ -10,11 +10,11 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
-import { TKIndicator } from "@/domain/utils/TKIndicator";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKIndicator } from "@/domain/survey/TKIndicator";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import {
-  TKIndicatorDescription,
-  TKIndicatorDescriptionSiteOccupation,
+  TKFDFIndicator,
+  TKFDFIndicatorSiteOccupation,
   TKIndicatorType
 } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 
@@ -28,7 +28,7 @@ export default class TKCampIndicators extends Vue {
   readonly appConfig!: TKOpsmapConfiguration;
 
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   indicator1: TKIndicator | null = null;
   indicator2: TKIndicator | null = null;

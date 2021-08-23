@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  TKIndicatorsDescription,
-  TKIndicatorDescription,
-  TKIndicatorDescriptionSiteOccupation
-} from "@/domain/opsmapConfig/TKIndicatorsDescription";
+// import {
+//   TKIndicatorsDescription,
+//   TKIndicatorDescription,
+//   TKIndicatorDescriptionSiteOccupation
+// } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKCreateSubmissionEntryText,
@@ -15,7 +15,7 @@ import {
   TKSubmissionThematic,
   TKCreateSubmissionThematic
 } from "./TKSubmissionThematic";
-import { TKIndicator } from "@/domain/utils/TKIndicator";
+import { TKIndicator } from "@/domain/survey/TKIndicator";
 import { TKLabel } from "../utils/TKLabel";
 import { isNumber } from "@turf/turf";
 import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
@@ -23,6 +23,10 @@ import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
 import { TKCompare, TKCompute } from "../utils/TKOperator";
 import { TKOperatorComputation } from "../utils/TKOperator";
 import { TKOperatorComparison } from "../utils/TKOperator";
+import {
+  TKFDFIndicatorSiteOccupation,
+  TKFDFIndicatorStandard
+} from "../fdf/TKFDFIndicators";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -75,7 +79,7 @@ function getLabelForIndicator(
   return { en: "-" };
 }
 function computeSubmissionIndicator(
-  descr: TKIndicatorDescription | TKIndicatorDescriptionSiteOccupation,
+  descr: TKFDFIndicatorStandard | TKFDFIndicatorSiteOccupation,
   data: Record<string, TKSubmissionThematic>
 ): TKIndicator {
   if (descr.type === "site_occupation") {
@@ -210,17 +214,14 @@ function createChartInSubmission(
 
 export function TKCreateSubmission(
   submissionItem: Record<string, string>,
-  surveyConfiguration: TKFDF,
-  indicatorsDescription: TKIndicatorsDescription,
+  fdf: TKFDF,
   spatialDescription: TKSpatialDescription,
   languages: string[]
 ): TKSubmission {
   // Init all the thematics
   const submission: Record<string, TKSubmissionThematic> = {};
-  for (const thematic in surveyConfiguration.thematics) {
-    submission[thematic] = TKCreateSubmissionThematic(
-      surveyConfiguration.thematics[thematic]
-    );
+  for (const thematic in fdf.thematics) {
+    submission[thematic] = TKCreateSubmissionThematic(fdf.thematics[thematic]);
   }
 
   // Init chart
@@ -230,8 +231,8 @@ export function TKCreateSubmission(
     data: []
   };
 
-  for (const key in surveyConfiguration.submissionsRules) {
-    const rule = surveyConfiguration.submissionsRules[key];
+  for (const key in fdf.submissionsRules) {
+    const rule = fdf.submissionsRules[key];
 
     // Handle display status
     let display = true;
@@ -253,11 +254,7 @@ export function TKCreateSubmission(
 
         // If exists chart
         if (currentChart.id && rule.chartId !== currentChart.id) {
-          createChartInSubmission(
-            currentChart,
-            submission,
-            surveyConfiguration
-          );
+          createChartInSubmission(currentChart, submission, fdf);
 
           // Clear current submission
           currentChart.id = "";
@@ -301,11 +298,7 @@ export function TKCreateSubmission(
         if (value) {
           // If exists chart
           if (currentChart.id) {
-            createChartInSubmission(
-              currentChart,
-              submission,
-              surveyConfiguration
-            );
+            createChartInSubmission(currentChart, submission, fdf);
 
             // Clear current submission
             currentChart.id = "";
@@ -314,12 +307,7 @@ export function TKCreateSubmission(
           }
           // push it before switching to text item
           submission[rule.thematicGroup].data.push(
-            TKCreateSubmissionEntryText(
-              value,
-              rule.fieldName,
-              surveyConfiguration,
-              languages
-            )
+            TKCreateSubmissionEntryText(value, rule.fieldName, fdf, languages)
           );
         }
       }
@@ -328,7 +316,7 @@ export function TKCreateSubmission(
 
   // if a current pyramid is ongoing - push it before ending
   if (currentChart.id) {
-    createChartInSubmission(currentChart, submission, surveyConfiguration);
+    createChartInSubmission(currentChart, submission, fdf);
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
@@ -343,9 +331,9 @@ export function TKCreateSubmission(
     date: submissionItem[spatialDescription.siteLastUpdateField],
     thematics: submissionFiltered,
     indicators: [
-      computeSubmissionIndicator(indicatorsDescription.site[0], submission),
-      computeSubmissionIndicator(indicatorsDescription.site[1], submission),
-      computeSubmissionIndicator(indicatorsDescription.site[2], submission)
+      computeSubmissionIndicator(fdf.indicators.site[0], submission),
+      computeSubmissionIndicator(fdf.indicators.site[1], submission),
+      computeSubmissionIndicator(fdf.indicators.site[2], submission)
     ]
   };
 }
