@@ -24,7 +24,10 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import TKIndicatorStandard from "@/components/TKMainComponent/TKIndicators/TKIndicatorStandard.vue";
 import TKIndicatorSiteOccupation from "@/components/TKMainComponent/TKIndicators/TKIndicatorSiteOccupation.vue";
-import { TKIndicator, TKIndicatorType } from "@/domain/survey/TKIndicator";
+import {
+  TKIndicator as TKIndicatorDefinition,
+  TKIndicatorType
+} from "@/domain/survey/TKIndicator";
 
 @Component({
   components: {
@@ -32,9 +35,9 @@ import { TKIndicator, TKIndicatorType } from "@/domain/survey/TKIndicator";
     TKIndicatorSiteOccupation
   }
 })
-export default class TKIndicatorComponent extends Vue {
+export default class TKIndicator extends Vue {
   @Prop() readonly backgroundType!: number;
-  @Prop() readonly indicator!: TKIndicator;
+  @Prop() readonly indicator!: TKIndicatorDefinition;
   isSiteOccupation = false;
 
   @Watch("indicator", { immediate: true })

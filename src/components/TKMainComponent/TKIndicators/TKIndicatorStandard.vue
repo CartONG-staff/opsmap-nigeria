@@ -30,13 +30,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { TKIndicator } from "@/domain/survey/TKIndicator";
+import { TKIndicatorStandard as TKIndicatorStandardType } from "@/domain/survey/TKIndicator";
 import { TKIconUrl } from "@/domain/utils/TKIcons";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 
 @Component
 export default class TKIndicatorStandard extends Vue {
-  @Prop() readonly indicator!: TKIndicator;
+  @Prop() readonly indicator!: TKIndicatorStandardType;
   iconUrl = "";
   value = "";
   name = "";

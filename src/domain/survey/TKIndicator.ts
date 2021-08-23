@@ -1,5 +1,8 @@
 import { TKLabel } from "@/domain/utils/TKLabel";
-import { TKFDFIndicatorType, TKFDFIndicator } from "@/domain/fdf/TKFDFIndicators";
+import {
+  TKFDFIndicatorType,
+  TKFDFIndicator
+} from "@/domain/fdf/TKFDFIndicators";
 import TKIndicatorType = TKFDFIndicatorType;
 
 export interface TKIndicatorStandard {
@@ -22,23 +25,22 @@ export type TKIndicator = TKIndicatorStandard | TKIndicatorSiteOccupation;
 
 export { TKIndicatorType };
 
-
-export function TKFDFIndicatorDefault(ref: TKFDFIndicator) {
- if (ref.type === TKIndicatorType.OCCUPATION) {
-      return {
-        type: ref.type,
-        valueNumber: -1,
-        valueYesNoLabel: { en: "-" },
-        nameLabel: ref.name,
-        valueLabel: { en: "-" },
-        iconOchaName: ref.iconOchaName
-      };
-    }
-
+export function TKIndicatorDefault(ref: TKFDFIndicator) {
+  if (ref.type === TKIndicatorType.OCCUPATION) {
     return {
       type: ref.type,
+      valueNumber: -1,
+      valueYesNoLabel: { en: "-" },
       nameLabel: ref.name,
       valueLabel: { en: "-" },
       iconOchaName: ref.iconOchaName
-    };)
+    };
+  }
+
+  return {
+    type: ref.type,
+    nameLabel: ref.name,
+    valueLabel: { en: "-" },
+    iconOchaName: ref.iconOchaName
+  };
 }
