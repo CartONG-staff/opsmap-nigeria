@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKIconUrl } from "@/domain/utils/TKIcons";
+import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import TKSubmissionEntryView from "./TKSubmissionEntryView.vue";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";

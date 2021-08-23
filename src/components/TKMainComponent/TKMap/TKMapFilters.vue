@@ -105,7 +105,7 @@
 </template>
 
 <script lang="ts">
-import { TKIconUrl } from "@/domain/utils/TKIcons";
+import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKDataset, TKFilters } from "@/domain/survey/TKDataset";
 import { TKCampType } from "@/domain/survey/TKCamp";

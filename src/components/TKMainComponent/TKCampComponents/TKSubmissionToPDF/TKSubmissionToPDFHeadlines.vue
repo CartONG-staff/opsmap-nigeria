@@ -60,7 +60,7 @@ import { TKOpsmapConfiguration } from "@/domain";
 import { TKCampType } from "@/domain/survey/TKCamp";
 
 import { TKDataset } from "@/domain/survey/TKDataset";
-import { TKIconUrl } from "@/domain/utils/TKIcons";
+import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { toTitleCase } from "@/domain/utils/TKStringUtils";
 import { LngLat } from "mapbox-gl";

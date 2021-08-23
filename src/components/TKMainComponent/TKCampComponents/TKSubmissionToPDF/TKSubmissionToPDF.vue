@@ -32,7 +32,7 @@ import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
 import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
 
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
-import { TKIconUrl } from "@/domain/utils/TKIcons";
+import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";

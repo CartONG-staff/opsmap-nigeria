@@ -60,7 +60,7 @@
 <script lang="ts">
 import { TKIndicatorType } from "@/domain/survey/TKIndicator";
 import { TKDataset } from "@/domain/survey/TKDataset";
-import { TKIconUrl } from "@/domain/utils/TKIcons";
+import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 

@@ -24,7 +24,7 @@ import mapboxgl, {
 } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
-import { TKIconUrl } from "@/domain/utils/TKIcons";
+import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
 import TKMapFilters from "./TKMapFilters.vue";
