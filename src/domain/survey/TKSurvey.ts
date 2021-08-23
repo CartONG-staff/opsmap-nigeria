@@ -13,6 +13,7 @@ import {
 import moment from "moment";
 import { isNumber } from "@turf/turf";
 import { TKCamp } from "@/domain/survey/TKCamp";
+import { TKDateCompare } from "../ui/TKDateCompare";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
@@ -236,24 +237,7 @@ export function TKCreateSurvey(
   // Sort the dates and update last submission date for each camp
   camps.map(camp =>
     camp.submissions.sort((a: TKSubmission, b: TKSubmission) => {
-      const asplitted = a.date.split("/");
-      const bsplitted = b.date.split("/");
-      if (asplitted.length !== 3 || bsplitted.length !== 3) {
-        return 0;
-      }
-      const adated = new Date(
-        parseInt(asplitted[2]),
-        parseInt(asplitted[1]) - 1,
-        parseInt(asplitted[0])
-      );
-      const bdated = new Date(
-        parseInt(bsplitted[2]),
-        parseInt(bsplitted[1]) - 1,
-        parseInt(bsplitted[0])
-      );
-      if (adated < bdated) return 1;
-      else if (adated > bdated) return -1;
-      else return 0;
+      return TKDateCompare(a.date, b.date);
     })
   );
 
