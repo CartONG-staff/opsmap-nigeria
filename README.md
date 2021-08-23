@@ -6,18 +6,22 @@ At this point, it is just a place to drop every infos relatives to the project.
 
 This document is **NOT** a comitment to anything. It is **NOT** an official technical specifications.
 
+The opsmap objective is to provide a generic dashboard solution to visualize field survey results.
+
 Resources:
 
 - [teamwork : task board](https://cartong.teamwork.com/#/projects/500913/tasks/board)
 - [teamwork : old](https://cartong.teamwork.com/#/projects/233096/overview/summary)
 - [nextcloud](https://cloud.cartong.org/s/zgsDFfpjTNHseZS)
-- [gitlab](https://gitlab.cartong.org/HCR/opsmap)
+- [gitlab](https://gitlab.cartong.org/HCR/opsmap-toolkit)
+- [release notes](release-notes.md)
+- [Associated accounts](associated-accounts.md)
 
 People:
 
 - Pole Manager: Sylvie de Laborderie
-- PO: Maelle Aubert
-- Main devs: Olivier Ribiere, Etienne Delclaux
+- PO: Maelle Aubert / Fabien Lezeau
+- Main devs: Etienne Delclaux, Olivier Ribiere
 - Devs: Joaquim Martin, Miguel Moreno
 - Design: Lucile Collignon
 
@@ -34,23 +38,11 @@ The map engine is [Mapbox](https://www.mapbox.com).
 
 > The doc is generated using TypeDoc. It doesn't seems to be ok with vuejs components. We'll see.
 
-## Kobo Management
+## Users
 
-A kobo user for this project has been created. The objective is to have a readonly access to every potential opsmap related survey.
+## Dataset description
 
-For now, it is not valid. It requires pending specific authorization from UNHCR.
-
-> username: cartong_reader
-> passwd: @bitwarden
-
-## Mapbox Account
-
-UNHCR has an unlimited mapbox acounnt. It is used n this project.
-Contact preson in UNHCR is Leo.
-
-> A Mapbox account was initially dedicated for Opsmaps project
-> username: opsmap.basemaps@gmail.com
-> passwd: @bitwarden / Same pwd for gmail account and mapbox account
+The two mains aspects are the computation of the dataset, and the visualization.
 
 ## Project architecture
 
@@ -67,12 +59,6 @@ This code is the generic opsmap code. It is based on the FDF + data system. See 
 ## Current project description
 
 The objective is to provide multiple components and tools to a typical oppsmap, the standard opsmap.
-
-This project holds two differents projects:
-
-- a lib declaration
-  The entry point is entry-point-lib.ts of the lib.
-  This is history
 
 - an app implementation
   The two entry points are `app/TKApp.vue` and `entry-point-app.vue`
