@@ -1,16 +1,35 @@
-import { TKMapboxConfiguration } from "@/domain/opsmapConfig/TKMapboxConfiguration";
 import { TKLabel } from "@/domain/utils/TKLabel";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogosDescription";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
-import { TKAppOptions } from "@/domain/opsmapConfig/TKAppOptions";
 import { TKLogo } from "@/domain/utils/TKLogo";
-import { TKIFrameDescription } from "@/domain/opsmapConfig/TKIFrameDescription";
+
+// ////////////////////////////////////////////////////////////////////////////
+// JSON format
+// ////////////////////////////////////////////////////////////////////////////
+interface TKAppOptions {
+  readonly showCCCMLogo: boolean;
+  readonly dark: boolean;
+  readonly pdfColumnCount: number;
+}
+interface TKIFrameDescription {
+  readonly url: string;
+  readonly display: boolean;
+}
+
+interface TKMapboxConfiguration {
+  readonly token: string;
+  readonly style: string;
+  readonly padding: 100;
+  readonly zoomspeed: 2;
+  readonly bounds: Array<number>;
+}
 
 // ////////////////////////////////////////////////////////////////////////////
 // Global Opsmap configuration
 // ////////////////////////////////////////////////////////////////////////////
+
 export interface TKOpsmapConfiguration {
   readonly name: TKLabel;
   readonly languages: string[];
