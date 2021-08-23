@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function TKDateCompare(date1: string, date2: string): number {
   const asplitted = date1.split("/");
   const bsplitted = date2.split("/");
@@ -17,4 +19,17 @@ export function TKDateCompare(date1: string, date2: string): number {
   if (adated < bdated) return 1;
   else if (adated > bdated) return -1;
   else return 0;
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// sort dates
+// ////////////////////////////////////////////////////////////////////////////
+
+export function TKDateFormat(date: string, format: string): string {
+  if (format) {
+    const day = moment(date, format);
+    return day.format("DD/MM/YYYY");
+  }
+
+  return date;
 }

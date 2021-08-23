@@ -5,10 +5,9 @@ import { TKBoundaries } from "./TKBoundaries";
 import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
 import { TKIndicator } from "./TKIndicator";
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import moment from "moment";
 import { isNumber } from "@turf/turf";
 import { TKCamp } from "@/domain/survey/TKCamp";
-import { TKDateCompare } from "@/domain/utils/TKDateCompare";
+import { TKDateCompare, TKDateFormat } from "@/domain/utils/TKDate";
 import { TKFDFIndicatorStandard } from "../fdf/TKFDFIndicators";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -31,19 +30,6 @@ export interface TKSurvey {
   fdf: TKFDF;
   camps: TKCamp[];
   options: TKSurveyOptions;
-}
-
-// ////////////////////////////////////////////////////////////////////////////
-// sort dates
-// ////////////////////////////////////////////////////////////////////////////
-
-function formatDate(date: string, options: TKSurveyOptions): string {
-  if (options.dateFormat) {
-    const day = moment(date, options.dateFormat);
-    return day.format("DD/MM/YYYY");
-  }
-
-  return date;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -144,9 +130,9 @@ export function TKCreateSurvey(
   };
 
   submissions.map(submission => {
-    submission[fdf.spatialDescription.siteLastUpdateField] = formatDate(
+    submission[fdf.spatialDescription.siteLastUpdateField] = TKDateFormat(
       submission[fdf.spatialDescription.siteLastUpdateField],
-      options
+      options.dateFormat
     );
   });
 
