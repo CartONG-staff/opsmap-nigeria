@@ -17,7 +17,7 @@ import {
 } from "chart.js";
 import { v4 } from "uuid";
 import { TKSubmissionEntryDoughnut } from "@/domain/survey/TKSubmissionEntry";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 
 Chart.register(DoughnutController, ArcElement, Legend, Title, Tooltip);

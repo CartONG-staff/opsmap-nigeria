@@ -1,4 +1,4 @@
-import { TKLabel } from "@/domain/ui/TKLabel";
+import { TKLabel } from "@/domain/utils/TKLabel";
 
 export enum TKIndicatorComputationType {
   SUM,

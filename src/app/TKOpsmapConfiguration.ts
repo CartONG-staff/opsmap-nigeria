@@ -1,11 +1,11 @@
 import { TKMapboxConfiguration } from "@/domain/opsmapConfig/TKMapboxConfiguration";
-import { TKLabel } from "@/domain/ui/TKLabel";
+import { TKLabel } from "@/domain/utils/TKLabel";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogosDescription";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKAppOptions } from "@/domain/opsmapConfig/TKAppOptions";
-import { TKLogo } from "@/domain/ui/TKLogo";
+import { TKLogo } from "@/domain/utils/TKLogo";
 import { TKIFrameDescription } from "@/domain/opsmapConfig/TKIFrameDescription";
 
 // ////////////////////////////////////////////////////////////////////////////

@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { TKOpsmapConfiguration } from "@/domain";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component({})

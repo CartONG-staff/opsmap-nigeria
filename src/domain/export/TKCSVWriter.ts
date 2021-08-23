@@ -1,6 +1,6 @@
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
-import { TKGetLocalValue } from "../ui/TKLabel";
+import { TKGetLocalValue } from "../utils/TKLabel";
 import { TKComputeExportFilename } from "./TKExportCommon";
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods

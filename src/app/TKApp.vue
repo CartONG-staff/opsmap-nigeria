@@ -24,7 +24,7 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKDatasetFitlererCreate } from "@/domain/survey/TKDatasetFitlererCreate";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKRouteHandler from "@/app/TKRouteHandler.vue";
 import { TKOpsmapConfiguration } from "@/domain";
 

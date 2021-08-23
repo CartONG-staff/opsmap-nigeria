@@ -10,7 +10,7 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
-import { TKIndicator } from "@/domain/ui/TKIndicator";
+import { TKIndicator } from "@/domain/utils/TKIndicator";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 import {
   TKIndicatorDescription,

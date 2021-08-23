@@ -105,7 +105,7 @@
 </template>
 
 <script lang="ts">
-import { TKIconUrl } from "@/domain/ui/TKIcons";
+import { TKIconUrl } from "@/domain/utils/TKIcons";
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import {
   TKDatasetFilterer,

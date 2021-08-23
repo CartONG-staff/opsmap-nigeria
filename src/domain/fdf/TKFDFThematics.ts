@@ -1,5 +1,5 @@
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKLabel } from "../ui/TKLabel";
+import { TKLabel } from "../utils/TKLabel";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////

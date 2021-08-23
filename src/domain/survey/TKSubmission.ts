@@ -15,14 +15,14 @@ import {
   TKSubmissionThematic,
   TKCreateSubmissionThematic
 } from "./TKSubmissionThematic";
-import { TKIndicator } from "@/domain/ui/TKIndicator";
-import { TKLabel } from "../ui/TKLabel";
+import { TKIndicator } from "@/domain/utils/TKIndicator";
+import { TKLabel } from "../utils/TKLabel";
 import { isNumber } from "@turf/turf";
 import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
-import { TKCompare, TKCompute } from "../ui/TKOperator";
-import { TKOperatorComputation } from "../ui/TKOperator";
-import { TKOperatorComparison } from "../ui/TKOperator";
+import { TKCompare, TKCompute } from "../utils/TKOperator";
+import { TKOperatorComputation } from "../utils/TKOperator";
+import { TKOperatorComparison } from "../utils/TKOperator";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition

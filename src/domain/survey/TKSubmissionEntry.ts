@@ -5,7 +5,7 @@ import {
   TKFDFTrafficLightTypes
 } from "../fdf/TKFDFTrafficLight";
 import { TKTrafficLightValues } from "../fdf/TKTrafficLightValues";
-import { TKLabel } from "../ui/TKLabel";
+import { TKLabel } from "../utils/TKLabel";
 import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 
 // ////////////////////////////////////////////////////////////////////////////

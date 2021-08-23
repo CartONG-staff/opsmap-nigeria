@@ -1,5 +1,8 @@
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKOperatorComparison, TKOperatorComputation } from "../ui/TKOperator";
+import {
+  TKOperatorComparison,
+  TKOperatorComputation
+} from "../utils/TKOperator";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////

@@ -35,7 +35,7 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 @Component
 export default class TKSubmissionentryView extends Vue {

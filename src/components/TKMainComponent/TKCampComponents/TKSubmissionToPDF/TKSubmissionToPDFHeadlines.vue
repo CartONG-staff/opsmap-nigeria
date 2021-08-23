@@ -60,9 +60,9 @@ import { TKOpsmapConfiguration } from "@/domain";
 import { TKCampTypesValues } from "@/domain/survey/TKCamp";
 
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { TKIconUrl } from "@/domain/ui/TKIcons";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
-import { toTitleCase } from "@/domain/ui/TKStringUtils";
+import { TKIconUrl } from "@/domain/utils/TKIcons";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
+import { toTitleCase } from "@/domain/utils/TKStringUtils";
 import { LngLat } from "mapbox-gl";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 

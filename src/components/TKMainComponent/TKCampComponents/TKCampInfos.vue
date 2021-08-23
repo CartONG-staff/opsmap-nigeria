@@ -87,7 +87,7 @@
 <script lang="ts">
 import { TKCampTypesValues } from "@/domain/survey/TKCamp";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { TKGetLocalValue, TKLabel } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component

@@ -3,7 +3,7 @@
 import { TKCampTypesValues } from "./TKCamp";
 import { TKBoundariesCollection } from "./TKBoundariesCollection";
 import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
-import { TKIndicator } from "../ui/TKIndicator";
+import { TKIndicator } from "../utils/TKIndicator";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
@@ -13,7 +13,7 @@ import {
 import moment from "moment";
 import { isNumber } from "@turf/turf";
 import { TKCamp } from "@/domain/survey/TKCamp";
-import { TKDateCompare } from "../ui/TKDateCompare";
+import { TKDateCompare } from "../utils/TKDateCompare";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition

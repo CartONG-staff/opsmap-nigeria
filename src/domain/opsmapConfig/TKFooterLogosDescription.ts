@@ -1,5 +1,5 @@
-import { TKLabel } from "../ui/TKLabel";
-import { TKLogo } from "../ui/TKLogo";
+import { TKLabel } from "../utils/TKLabel";
+import { TKLogo } from "../utils/TKLogo";
 
 export type TKFooterLogosDescription = {
   title: TKLabel;

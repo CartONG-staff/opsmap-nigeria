@@ -16,8 +16,8 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
-import { toTitleCase } from "@/domain/ui/TKStringUtils";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
+import { toTitleCase } from "@/domain/utils/TKStringUtils";
 
 @Component
 export default class TKTitle extends Vue {

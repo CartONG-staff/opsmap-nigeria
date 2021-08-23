@@ -9,7 +9,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 import { v4 } from "uuid";
 import { TKSubmissionEntryPolar } from "@/domain/survey/TKSubmissionEntry";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 
 import {
   Chart,

@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { TKDateCompare } from "@/domain/ui/TKDateCompare";
+import { TKDateCompare } from "@/domain/utils/TKDateCompare";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component

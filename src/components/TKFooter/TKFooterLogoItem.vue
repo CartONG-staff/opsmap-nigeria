@@ -22,7 +22,7 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogosDescription";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 
 @Component
 export default class TKFooterLogoItem extends Vue {

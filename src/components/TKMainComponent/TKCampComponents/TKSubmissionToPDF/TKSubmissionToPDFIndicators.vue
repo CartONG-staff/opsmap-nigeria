@@ -60,8 +60,8 @@
 <script lang="ts">
 import { TKIndicatorType } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
-import { TKIconUrl } from "@/domain/ui/TKIcons";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKIconUrl } from "@/domain/utils/TKIcons";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component({

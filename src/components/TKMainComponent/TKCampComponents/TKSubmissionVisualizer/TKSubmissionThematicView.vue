@@ -23,12 +23,12 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKIconUrl } from "@/domain/ui/TKIcons";
+import { TKIconUrl } from "@/domain/utils/TKIcons";
 import TKSubmissionEntryView from "./TKSubmissionEntryView.vue";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 
 @Component({

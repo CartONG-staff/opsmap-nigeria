@@ -20,7 +20,7 @@ import {
 import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
 
 import { v4 } from "uuid";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 
 Chart.register(
