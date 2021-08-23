@@ -9,11 +9,11 @@ import {
 import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
 
-import { TKGetCSVRawData } from "../csv/TKGetCSVRawData";
 import { TKCreateFDF } from "../fdf/TKFDF";
-import { TKGetGSheetRawData } from "../gsheet/TKGetGSheetRawData";
 import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
 import { TKCreateSurvey, TKSurvey } from "./TKSurvey";
+import { TKReadRawDataCSV, TKReadRawDataGSheet } from "./TKRawData";
+
 // ////////////////////////////////////////////////////////////////////////////
 // Filters Concept description. Requires Comments !
 // TODO : work on this : clarity, comments, etc.
@@ -479,9 +479,14 @@ export async function TKCreateDataset(
     let rawData;
     const before = Date.now();
     if (info.type === TKSurveyInfosType.CSV) {
-      rawData = await TKGetCSVRawData(info);
+      rawData = await TKReadRawDataCSV(
+        info.submissionsFile,
+        info.submissionsFolder,
+        true
+      );
+      info;
     } else if (info.type === TKSurveyInfosType.GSHEET) {
-      rawData = await TKGetGSheetRawData(info);
+      rawData = await TKReadRawDataGSheet(info.submissionsUrl, true);
     } else if (info.type === TKSurveyInfosType.KOBO) {
       rawData = await TKGetKoboRawData(info);
     }

@@ -76,7 +76,7 @@
               :label="$t('camp')"
               v-model="dataset.currentCamp"
               :items="dataset.filteredCampsList"
-              item-text="infos.name"
+              item-text="name"
               return-object
             ></v-autocomplete>
           </div>

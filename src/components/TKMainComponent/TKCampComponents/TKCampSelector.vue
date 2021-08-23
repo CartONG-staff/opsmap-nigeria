@@ -71,7 +71,7 @@
             v-model="dataset.currentCamp"
             :items="dataset.filteredCampsList"
             :disabled="!dataset.filteredCampsList.length"
-            item-text="infos.name"
+            item-text="name"
             return-object
             clearable
             v-bind="attrs"
