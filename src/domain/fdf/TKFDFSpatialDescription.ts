@@ -3,7 +3,7 @@
 // field name, etc.
 
 // ////////////////////////////////////////////////////////////////////////////
-export interface TKSpatialDescription {
+export interface TKFDFSpatialDescription {
   siteLatitudeField: string;
   siteLongitudeField: string;
   siteNameField: string;

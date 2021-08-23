@@ -3,7 +3,7 @@ import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescrip
 import { TKSubmission } from "./TKSubmission";
 import { TKCamp } from "@/domain/survey/TKCamp";
 import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
-import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
+import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
 
 import { TKGetCSVRawData } from "../csv/TKGetCSVRawData";
@@ -465,7 +465,7 @@ export class TKDataset {
 
 export async function TKCreateDataset(
   surveyDescription: TKSurveyInfos[],
-  spatialDescription: TKSpatialDescription,
+  spatialDescription: TKFDFSpatialDescription,
   indicators: TKFDFIndicators,
   languages: Array<string>
 ): Promise<TKDataset> {
@@ -492,7 +492,7 @@ export async function TKCreateDataset(
     const beforeFDF = Date.now();
 
     // Retrieve config
-    const fdf = await TKCreateFDF(info, indicators);
+    const fdf = await TKCreateFDF(info, indicators, spatialDescription);
 
     console.log(
       `FDF  ${info.name} retrieved in ${(Date.now() - beforeFDF) /
@@ -502,9 +502,7 @@ export async function TKCreateDataset(
     const beforeSurvey = Date.now();
 
     // Create survey
-    surveys.push(
-      TKCreateSurvey(rawData, fdf, spatialDescription, languages, info.options)
-    );
+    surveys.push(TKCreateSurvey(rawData, fdf, languages, info.options));
 
     console.log(
       `Survey  ${info.name} computed in ${(Date.now() - beforeSurvey) /

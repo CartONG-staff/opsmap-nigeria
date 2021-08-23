@@ -3,16 +3,16 @@ import mapboxgl, { LngLat, LngLatBounds, LngLatLike } from "mapbox-gl";
 import { TKDataset, TKFilters } from "@/domain/survey/TKDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKMapLayers } from "./TKMapLayers";
-import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
+import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 
 export class TKMapBoundaries {
   public admin1: FeatureCollection;
   public admin2: FeatureCollection;
-  public spatialDescription: TKSpatialDescription;
+  public spatialDescription: TKFDFSpatialDescription;
 
   constructor(
     geodataset: TKGeoDataset,
-    spatialDescription: TKSpatialDescription
+    spatialDescription: TKFDFSpatialDescription
   ) {
     this.admin1 = geodataset.admin1;
     this.admin2 = geodataset.admin2;

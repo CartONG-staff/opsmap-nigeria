@@ -1,12 +1,12 @@
 import { ArcgisServerDataGetter } from "@/domain/map/TKArcgisServerDataGetter";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { FeatureCollection } from "geojson";
-import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
+import { TKFDFSpatialDescription } from "@/domain//fdf/TKFDFSpatialDescription";
 import { TKDataset } from "../survey/TKDataset";
 
 export async function TKGetGeoBoundaries(
   dataset: TKDataset,
-  spatialDescription: TKSpatialDescription
+  spatialDescription: TKFDFSpatialDescription
 ): Promise<TKGeoDataset> {
   const before = Date.now();
 

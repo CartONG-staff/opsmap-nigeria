@@ -1,6 +1,6 @@
 import { TKLabel } from "@/domain/utils/TKLabel";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogosDescription";
-import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
+import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKLogo } from "@/domain/utils/TKLogo";
 
@@ -45,7 +45,7 @@ export interface TKOpsmapConfiguration {
   readonly footerLogos: TKFooterLogosDescription[];
   readonly iframe?: TKIFrameDescription;
   readonly surveys: TKSurveyInfos[];
-  readonly spatial: TKSpatialDescription;
+  readonly spatial: TKFDFSpatialDescription;
   headerLogos: TKLogo[];
   mapConfig: TKMapboxConfiguration;
   options: TKAppOptions;

@@ -24,6 +24,7 @@ import {
 } from "./TKFDFTerminology";
 import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
 import { TKFDFIndicators } from "./TKFDFIndicators";
+import { TKFDFSpatialDescription } from "./TKFDFSpatialDescription";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the FDF object
@@ -40,6 +41,7 @@ export interface TKFDF {
   submissionsRules: TKFDFSubmissionsRulesCollection;
   urls: TKFDFUrlsCollection;
   indicators: TKFDFIndicators;
+  spatialDescription: TKFDFSpatialDescription;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -47,7 +49,8 @@ export interface TKFDF {
 // ////////////////////////////////////////////////////////////////////////////
 export async function TKCreateFDF(
   infos: TKSurveyInfos,
-  indicators: TKFDFIndicators
+  indicators: TKFDFIndicators,
+  spatialDescription: TKFDFSpatialDescription
 ): Promise<TKFDF> {
   let answersLabels = {};
   if (infos.type === "gsheet") {
@@ -70,6 +73,7 @@ export async function TKCreateFDF(
     answersLabels: answersLabels,
     submissionsRules: await TKReadSubmissionsRulesCollection(infos.fdf),
     urls: await TKReadFDFURLsCollection(infos.fdf),
-    indicators: indicators
+    indicators: indicators,
+    spatialDescription: spatialDescription
   };
 }

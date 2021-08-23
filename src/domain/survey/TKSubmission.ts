@@ -14,7 +14,6 @@ import { TKIndicator } from "@/domain/survey/TKIndicator";
 import { TKLabel } from "../utils/TKLabel";
 import { isNumber } from "@turf/turf";
 import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
-import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
 import { TKCompare, TKCompute } from "../utils/TKOperator";
 import { TKOperatorComputation } from "../utils/TKOperator";
 import { TKOperatorComparison } from "../utils/TKOperator";
@@ -210,7 +209,6 @@ function createChartInSubmission(
 export function TKCreateSubmission(
   submissionItem: Record<string, string>,
   fdf: TKFDF,
-  spatialDescription: TKSpatialDescription,
   languages: string[]
 ): TKSubmission {
   // Init all the thematics
@@ -323,7 +321,7 @@ export function TKCreateSubmission(
   }
 
   return {
-    date: submissionItem[spatialDescription.siteLastUpdateField],
+    date: submissionItem[fdf.spatialDescription.siteLastUpdateField],
     thematics: submissionFiltered,
     indicators: [
       computeSubmissionIndicator(fdf.indicators.site[0], submission),

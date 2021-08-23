@@ -4,7 +4,6 @@ import { TKCampTypesValues } from "./TKCamp";
 import { TKBoundariesCollection } from "./TKBoundariesCollection";
 import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
 import { TKIndicator } from "./TKIndicator";
-import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import moment from "moment";
 import { isNumber } from "@turf/turf";
@@ -127,8 +126,7 @@ function computeSurveyIndicator(
 
 export function TKCreateSurvey(
   submissions: Record<string, string>[],
-  surveyConfig: TKFDF,
-  spatialDescription: TKSpatialDescription,
+  fdf: TKFDF,
   languages: Array<string>,
   options: TKSurveyOptions
 ): TKSurvey {
@@ -140,51 +138,52 @@ export function TKCreateSurvey(
   };
 
   submissions.map(submission => {
-    submission[spatialDescription.siteLastUpdateField] = formatDate(
-      submission[spatialDescription.siteLastUpdateField],
+    submission[fdf.spatialDescription.siteLastUpdateField] = formatDate(
+      submission[fdf.spatialDescription.siteLastUpdateField],
       options
     );
   });
 
   for (const submission of submissions) {
-    const computedSubmission = TKCreateSubmission(
-      submission,
-      surveyConfig,
-      spatialDescription,
-      languages
-    );
+    const computedSubmission = TKCreateSubmission(submission, fdf, languages);
 
     // Check if new camp
     let camp = camps.find(
-      camp => camp.infos.id === submission[spatialDescription.siteIDField]
+      camp => camp.infos.id === submission[fdf.spatialDescription.siteIDField]
     );
 
     // Doesn't exist in camps list
     if (!camp) {
       camp = {
         infos: {
-          id: submission[spatialDescription.siteIDField],
-          name: submission[spatialDescription.siteNameField],
-          type: surveyConfig.terminology[
-            submission[spatialDescription.siteTypeField]
+          id: submission[fdf.spatialDescription.siteIDField],
+          name: submission[fdf.spatialDescription.siteNameField],
+          type: fdf.terminology[
+            submission[fdf.spatialDescription.siteTypeField]
           ] as TKCampTypesValues,
           lat: Number(
-            submission[spatialDescription.siteLatitudeField].replace(",", ".")
+            submission[fdf.spatialDescription.siteLatitudeField].replace(
+              ",",
+              "."
+            )
           ),
           lng: Number(
-            submission[spatialDescription.siteLongitudeField].replace(",", ".")
+            submission[fdf.spatialDescription.siteLongitudeField].replace(
+              ",",
+              "."
+            )
           ),
           admin1: {
-            pcode: submission[spatialDescription.adm1Pcode],
-            name: submission[spatialDescription.adm1Name]
+            pcode: submission[fdf.spatialDescription.adm1Pcode],
+            name: submission[fdf.spatialDescription.adm1Name]
           },
           admin2: {
-            pcode: submission[spatialDescription.adm2Pcode],
-            name: submission[spatialDescription.adm2Name]
+            pcode: submission[fdf.spatialDescription.adm2Pcode],
+            name: submission[fdf.spatialDescription.adm2Name]
           },
           admin3: {
-            pcode: submission[spatialDescription.adm3Pcode],
-            name: submission[spatialDescription.adm3Name]
+            pcode: submission[fdf.spatialDescription.adm3Pcode],
+            name: submission[fdf.spatialDescription.adm3Name]
           },
           managedBy: {
             en: submission[options.manageByField]
@@ -202,11 +201,11 @@ export function TKCreateSurvey(
       if (
         !boundariesList.admin2
           .map(x => x.pcode)
-          .includes(submission[spatialDescription.adm2Pcode])
+          .includes(submission[fdf.spatialDescription.adm2Pcode])
       ) {
         boundariesList.admin2.push({
-          pcode: submission[spatialDescription.adm2Pcode],
-          name: submission[spatialDescription.adm2Name]
+          pcode: submission[fdf.spatialDescription.adm2Pcode],
+          name: submission[fdf.spatialDescription.adm2Name]
         });
       }
 
@@ -214,11 +213,11 @@ export function TKCreateSurvey(
       if (
         !boundariesList.admin1
           .map(x => x.pcode)
-          .includes(submission[spatialDescription.adm1Pcode])
+          .includes(submission[fdf.spatialDescription.adm1Pcode])
       ) {
         boundariesList.admin1.push({
-          pcode: submission[spatialDescription.adm1Pcode],
-          name: submission[spatialDescription.adm1Name]
+          pcode: submission[fdf.spatialDescription.adm1Pcode],
+          name: submission[fdf.spatialDescription.adm1Name]
         });
       }
     }
@@ -237,15 +236,15 @@ export function TKCreateSurvey(
   );
 
   return {
-    name: surveyConfig.name,
+    name: fdf.name,
     camps: camps,
     boundariesList: boundariesList,
     indicators: [
-      computeSurveyIndicator(surveyConfig.indicators.home[0], camps),
-      computeSurveyIndicator(surveyConfig.indicators.home[1], camps),
-      computeSurveyIndicator(surveyConfig.indicators.home[2], camps)
+      computeSurveyIndicator(fdf.indicators.home[0], camps),
+      computeSurveyIndicator(fdf.indicators.home[1], camps),
+      computeSurveyIndicator(fdf.indicators.home[2], camps)
     ],
-    fdf: surveyConfig,
+    fdf: fdf,
     options: options
   };
 }
