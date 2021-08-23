@@ -1,9 +1,10 @@
 import { TKLabel } from "@/domain/utils/TKLabel";
 import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogosDescription";
-import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
+
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKLogo } from "@/domain/utils/TKLogo";
 
+import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
 import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
 
 // ////////////////////////////////////////////////////////////////////////////

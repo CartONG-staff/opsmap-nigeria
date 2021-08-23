@@ -2,7 +2,10 @@ import { TKCampTypesValues } from "@/domain/survey/TKCamp";
 import { TKBoundarieDescription } from "@/domain/opsmapConfig/TKBoundarieDescription";
 import { TKSubmission } from "./TKSubmission";
 import { TKCamp } from "@/domain/survey/TKCamp";
-import { TKSurveyInfos } from "../opsmapConfig/TKSurveyInfos";
+import {
+  TKSurveyInfos,
+  TKSurveyInfosType
+} from "../opsmapConfig/TKSurveyInfos";
 import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
 
@@ -477,11 +480,11 @@ export async function TKCreateDataset(
     // Retrieve raw data
     let rawData;
     const before = Date.now();
-    if (info.type === "csv") {
+    if (info.type === TKSurveyInfosType.CSV) {
       rawData = await TKGetCSVRawData(info);
-    } else if (info.type === "gsheet") {
+    } else if (info.type === TKSurveyInfosType.GSHEET) {
       rawData = await TKGetGSheetRawData(info);
-    } else if (info.type === "kobo") {
+    } else if (info.type === TKSurveyInfosType.KOBO) {
       rawData = await TKGetKoboRawData(info);
     }
     console.log(
