@@ -1,30 +1,9 @@
 <template>
-  <div class="tk-indicator" :style="boxShadowColor">
-    <img
-      v-if="backgroundType === 1"
-      class="tk-indicator-bg"
-      src="@/assets/bg-indicator-1.png"
-    />
-    <img
-      v-if="backgroundType === 2"
-      class="tk-indicator-bg"
-      src="@/assets/bg-indicator-2.png"
-    />
-    <img
-      v-if="backgroundType === 3"
-      class="tk-indicator-bg"
-      src="@/assets/bg-indicator-3.png"
-    />
-
+  <div class="tk-indicator-container">
     <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
-        <div class="tk-indicator-container">
-          <div
-            class="tk-indicator-value"
-            v-bind="attrs"
-            v-on="on"
-            :style="{ fontSize: fontSize + 'px' }"
-          >
+        <div class="tk-indicator-subcontainer">
+          <div class="tk-indicator-value" v-bind="attrs" v-on="on">
             <transition mode="out-in" name="fade-in">
               <div :key="value" class="tk-indicator-value-number">
                 {{ value }}
@@ -51,25 +30,21 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-
 import { TKIndicator } from "@/domain/ui/TKIndicator";
 import { TKIconUrl } from "@/domain/ui/TKIcons";
 import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 
 @Component
-export default class TKIndicatorComponent extends Vue {
-  @Prop()
-  readonly backgroundType!: number;
-  // 1 or 2 or 3. no background if anything else.
-  // Couldn't make enum work with that
-
-  @Prop()
-  readonly indicator!: TKIndicator;
+export default class TKIndicatorStandard extends Vue {
+  @Prop() readonly indicator!: TKIndicator;
   iconUrl = "";
   value = "";
   name = "";
-
-  fontSize = 20;
+  isSiteOccupation = false;
+  siteOccupationValues = {
+    label: "",
+    occupationTreshold: 0
+  };
 
   @Watch("indicator", { immediate: true })
   handleIndicatorChange() {
@@ -88,46 +63,21 @@ export default class TKIndicatorComponent extends Vue {
         this.indicator.valueLabel,
         this.$root.$i18n.locale
       );
-
-      this.computeFont();
     } else {
       this.value = "";
       this.name = "";
     }
   }
-
-  computeFont(): void {
-    // FontSize: 35px ok --> 18 charactères pour 330px;
-    // FontSize: 28px ok --> 23 charactères pour 330px;
-    this.fontSize = 40;
-  }
-
-  get boxShadowColor() {
-    if (this.$vuetify.theme.dark) {
-      return {
-        "--boxShadowColor": "#3a9ed326"
-      };
-    }
-
-    return {
-      "--boxShadowColor": "#123F6226"
-    };
-  }
 }
 </script>
 
 <style scoped>
-.tk-indicator {
-  background-color: var(--v-background-base);
-  position: relative;
-  box-shadow: 0 0 20px 2px var(--boxShadowColor);
-  border-color: transparent;
-  border-radius: 5px;
-  min-height: 100px;
-  min-width: 300px;
-  overflow: hidden;
-}
 .tk-indicator-container {
+  display: flex;
+  width: 100%;
+}
+
+.tk-indicator-subcontainer {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -152,7 +102,9 @@ export default class TKIndicatorComponent extends Vue {
 .tk-indicator-value {
   display: flex;
   flex-flow: column nowrap;
+  font-size: 40px;
   padding-top: 13px;
+  padding-bottom: 13px;
   line-height: 1.25;
   justify-content: flex-start;
   height: 100%;
@@ -172,16 +124,6 @@ export default class TKIndicatorComponent extends Vue {
   font-weight: bolder;
   font-size: 16px;
   line-height: 17px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.tk-indicator-bg {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 129px;
-  height: 63px;
+  white-space: normal;
 }
 </style>

@@ -1,8 +1,7 @@
+import { TKLabel } from "../ui/TKLabel";
 import { TKLogo } from "../ui/TKLogo";
 
-export interface TKFooterLogosDescription {
-  clusterLed: TKLogo[];
-  coordinationAndIMSupport: TKLogo[];
-  Fieldwork: TKLogo[];
-  Webdev: TKLogo[];
-}
+export type TKFooterLogosDescription = {
+  title: TKLabel;
+  logos: TKLogo[];
+};

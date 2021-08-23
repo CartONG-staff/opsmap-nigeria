@@ -20,6 +20,9 @@ import { TKLabel } from "../ui/TKLabel";
 import { isNumber } from "@turf/turf";
 import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
+import { TKCompare, TKCompute } from "../ui/TKOperator";
+import { TKOperatorComputation } from "../ui/TKOperator";
+import { TKOperatorComparison } from "../ui/TKOperator";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -93,28 +96,34 @@ function computeSubmissionIndicator(
       maxPeopleCount !== undefined &&
       maxPeopleCount !== 0
     ) {
-      const percent = Math.round(
-        (peopleCount / maxPeopleCount) * 100
-      ).toString();
+      const percentValue = Math.round((peopleCount / maxPeopleCount) * 100);
+      const percentText = percentValue.toString();
       const valueLabel: TKLabel = {};
       for (const k in labelIsMaxCapacity) {
-        valueLabel[k] = labelIsMaxCapacity[k] + " (" + percent + " %)";
+        valueLabel[k] = labelIsMaxCapacity[k] + " (" + percentText + "%)";
       }
       return {
+        type: descr.type,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: valueLabel
+        valueNumber: percentValue,
+        valueLabel: valueLabel,
+        valueYesNoLabel: labelIsMaxCapacity
       };
     } else {
       return {
+        type: descr.type,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { en: "-" }
+        valueLabel: { en: "-" },
+        valueNumber: -1,
+        valueYesNoLabel: { en: "-" }
       };
     }
   } else {
     const label = getLabelForIndicator(data, descr.entryCode);
     return {
+      type: descr.type,
       iconOchaName: descr.iconOchaName,
       nameLabel: descr.name,
       valueLabel: label
@@ -151,6 +160,7 @@ function createChartInSubmission(
 
     const entry: TKSubmissionEntryAgePyramid = {
       type: "age_pyramid",
+      chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],
       malesEntries: malesEntries.map(item => Number(item.value)),
@@ -166,6 +176,7 @@ function createChartInSubmission(
   } else if (chartData.id.includes("doughnut")) {
     const entry: TKSubmissionEntryDoughnut = {
       type: "doughnut",
+      chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],
       entries: chartData.data.map(item => {
@@ -179,6 +190,7 @@ function createChartInSubmission(
   } else if (chartData.id.includes("polar_area_chart")) {
     const entry: TKSubmissionEntryPolar = {
       type: "polar",
+      chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],
       entries: chartData.data.map(item => {
@@ -225,12 +237,11 @@ export function TKCreateSubmission(
     let display = true;
     if (rule.displayCondition) {
       try {
-        const expressionDisplay = `"${submissionItem[
-          rule.displayCondition.field
-        ].replaceAll('"', "")}" ${
-          rule.displayCondition.operator
-        } "${rule.displayCondition.value.replaceAll('"', "")}"`;
-        display = eval(expressionDisplay);
+        display = TKCompare(
+          submissionItem[rule.displayCondition.field],
+          rule.displayCondition.operator as TKOperatorComparison,
+          rule.displayCondition.value
+        );
       } catch (error) {
         display = false;
       }
@@ -274,10 +285,13 @@ export function TKCreateSubmission(
         let value = undefined;
         try {
           if (rule.type === TKFDFSubmissionItemType.COMPUTED && rule.computed) {
-            const expressionValue = `${submissionItem[rule.computed.field1]} ${
-              rule.computed.operator
-            } ${submissionItem[rule.computed.field2]}`;
-            value = Math.round(eval(expressionValue)).toString();
+            value = Math.round(
+              TKCompute(
+                Number(submissionItem[rule.computed.field1]),
+                rule.computed.operator as TKOperatorComputation,
+                Number(submissionItem[rule.computed.field2])
+              )
+            ).toString();
           } else {
             value = submissionItem[rule.fieldName];
           }

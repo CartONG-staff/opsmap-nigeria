@@ -1,4 +1,5 @@
 import { TKCSVRead } from "@/domain/csv/TKCSVReader";
+import { TKOperatorComparison, TKOperatorComputation } from "../ui/TKOperator";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -98,8 +99,20 @@ export async function TKReadSubmissionsRulesCollection(
       trafficLightName: item.traffic_light_name,
       chartId: item.chart_id,
       chartData: item.chart_data,
-      displayCondition: displayCondition,
+      displayCondition: displayCondition
+        ? {
+            field: displayCondition.field,
+            value: displayCondition.value,
+            operator: displayCondition.operator as TKOperatorComparison
+          }
+        : undefined,
       computed: computedRule
+        ? {
+            field1: computedRule.field1,
+            field2: computedRule.field2,
+            operator: computedRule.operator as TKOperatorComputation
+          }
+        : undefined
     };
   });
   return submissionsRules;

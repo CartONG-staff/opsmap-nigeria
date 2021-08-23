@@ -3,6 +3,7 @@
     <TKSubmissionVisualizer
       :visualizerOptions="visualizerOptions"
       :dataset="dataset"
+      :pdfInfos="pdfInfos"
     />
   </div>
 </template>
@@ -14,6 +15,7 @@ import {
   TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 @Component({
   components: {
     TKSubmissionVisualizer
@@ -25,6 +27,9 @@ export default class TKMainComponentLeftCamp extends Vue {
 
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
+
+  @Prop()
+  readonly pdfInfos!: TKPDFInfos;
 }
 </script>
 

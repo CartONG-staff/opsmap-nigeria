@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import TKIndicatorComponent from "../TKIndicator.vue";
+import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
 import { TKIndicator } from "@/domain/ui/TKIndicator";
 import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 @Component({

@@ -20,6 +20,7 @@ import {
   Title,
   Tooltip
 } from "chart.js";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 
 Chart.register(PolarAreaController, RadialLinearScale, Legend, Title, Tooltip);
 
@@ -27,6 +28,9 @@ Chart.register(PolarAreaController, RadialLinearScale, Legend, Title, Tooltip);
 export default class TKSubmissionItemPolarChart extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryPolar;
+
+  @Prop()
+  readonly pdfInfos!: TKPDFInfos;
 
   // charts
   chart!: Chart;
@@ -111,6 +115,9 @@ export default class TKSubmissionItemPolarChart extends Vue {
                 size: 11
               }
             }
+          },
+          animation: {
+            onComplete: this.updateBase64data
           }
         }
       };
@@ -120,6 +127,12 @@ export default class TKSubmissionItemPolarChart extends Vue {
       }
       this.chart = new Chart(this.ctx, config);
     }
+  }
+
+  updateBase64data() {
+    this.pdfInfos.currentChartsBase64[
+      this.entry.chartid
+    ] = this.chart.toBase64Image("image/png", 1);
   }
 
   @Watch("entry")

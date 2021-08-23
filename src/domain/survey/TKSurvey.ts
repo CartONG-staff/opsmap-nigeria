@@ -13,25 +13,34 @@ import {
 import moment from "moment";
 import { isNumber } from "@turf/turf";
 import { TKCamp } from "@/domain/survey/TKCamp";
+import { TKDateCompare } from "../ui/TKDateCompare";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
 // ////////////////////////////////////////////////////////////////////////////
+
+export interface TKSurveyOptions {
+  dateFormat: string;
+  manageByField: string;
+  manageByAltValue?: string;
+}
+
 export interface TKSurvey {
   name: string;
   boundariesList: TKBoundariesCollection;
   indicators: [TKIndicator, TKIndicator, TKIndicator];
   fdf: TKFDF;
   camps: TKCamp[];
+  options: TKSurveyOptions;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
 // sort dates
 // ////////////////////////////////////////////////////////////////////////////
 
-function formatDate(date: string, fdf: TKFDF): string {
-  if (fdf.terminology.date_format) {
-    const day = moment(date, fdf.terminology.date_format);
+function formatDate(date: string, options: TKSurveyOptions): string {
+  if (options.dateFormat) {
+    const day = moment(date, options.dateFormat);
     return day.format("DD/MM/YYYY");
   }
 
@@ -48,6 +57,7 @@ function computeSurveyIndicator(
 ): TKIndicator {
   if (descr.entryCode === "mp_site_id") {
     return {
+      type: descr.type,
       iconOchaName: descr.iconOchaName,
       nameLabel: descr.name,
       valueLabel: {
@@ -99,6 +109,7 @@ function computeSurveyIndicator(
   }
   if (!foundAtLeastOnce) {
     return {
+      type: descr.type,
       iconOchaName: descr.iconOchaName,
       nameLabel: descr.name,
       valueLabel: { en: "-" }
@@ -106,6 +117,7 @@ function computeSurveyIndicator(
   }
 
   return {
+    type: descr.type,
     iconOchaName: descr.iconOchaName,
     nameLabel: descr.name,
     valueLabel: { en: String(sum) }
@@ -121,7 +133,8 @@ export function TKCreateSurvey(
   surveyConfig: TKFDF,
   spatialDescription: TKSpatialDescription,
   indicatorsDescription: TKIndicatorsDescription,
-  languages: Array<string>
+  languages: Array<string>,
+  options: TKSurveyOptions
 ): TKSurvey {
   const camps: TKCamp[] = [];
 
@@ -133,7 +146,7 @@ export function TKCreateSurvey(
   submissions.map(submission => {
     submission[spatialDescription.siteLastUpdateField] = formatDate(
       submission[spatialDescription.siteLastUpdateField],
-      surveyConfig
+      options
     );
   });
 
@@ -177,6 +190,13 @@ export function TKCreateSurvey(
           admin3: {
             pcode: submission[spatialDescription.adm3Pcode],
             name: submission[spatialDescription.adm3Name]
+          },
+          managedBy: {
+            en: submission[options.manageByField]
+              ? submission[options.manageByField]
+              : options.manageByAltValue
+              ? options.manageByAltValue
+              : "-"
           }
         },
         submissions: [computedSubmission]
@@ -217,24 +237,7 @@ export function TKCreateSurvey(
   // Sort the dates and update last submission date for each camp
   camps.map(camp =>
     camp.submissions.sort((a: TKSubmission, b: TKSubmission) => {
-      const asplitted = a.date.split("/");
-      const bsplitted = b.date.split("/");
-      if (asplitted.length !== 3 || bsplitted.length !== 3) {
-        return 0;
-      }
-      const adated = new Date(
-        parseInt(asplitted[2]),
-        parseInt(asplitted[1]) - 1,
-        parseInt(asplitted[0])
-      );
-      const bdated = new Date(
-        parseInt(bsplitted[2]),
-        parseInt(bsplitted[1]) - 1,
-        parseInt(bsplitted[0])
-      );
-      if (adated < bdated) return 1;
-      else if (adated > bdated) return -1;
-      else return 0;
+      return TKDateCompare(a.date, b.date);
     })
   );
 
@@ -247,6 +250,7 @@ export function TKCreateSurvey(
       computeSurveyIndicator(indicatorsDescription.home[1], camps),
       computeSurveyIndicator(indicatorsDescription.home[2], camps)
     ],
-    fdf: surveyConfig
+    fdf: surveyConfig,
+    options: options
   };
 }

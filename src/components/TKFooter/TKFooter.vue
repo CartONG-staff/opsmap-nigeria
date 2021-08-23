@@ -15,20 +15,9 @@
     <TKCredits :key="$root.$i18n.locale" class="tk-footer-ocha-credits" />
     <div class="tk-footer-logos">
       <TKFooterLogoItem
-        :title="$t('footer.partnerLed')"
-        :logos="appConfig.footerLogos.clusterLed"
-      />
-      <TKFooterLogoItem
-        :title="$t('footer.partnerCoordination')"
-        :logos="appConfig.footerLogos.coordinationAndIMSupport"
-      />
-      <TKFooterLogoItem
-        :title="$t('footer.partnerFieldwork')"
-        :logos="appConfig.footerLogos.Fieldwork"
-      />
-      <TKFooterLogoItem
-        :title="$t('footer.partnerWebdev')"
-        :logos="appConfig.footerLogos.Webdev"
+        v-for="(item, key) in appConfig.footerLogos"
+        :key="key"
+        :logoDescription="item"
       />
     </div>
   </div>
@@ -100,12 +89,9 @@ export default class TKFooter extends Vue {
 .tk-footer-logos {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   vertical-align: middle;
   padding-bottom: var(--padding-large);
   padding-top: var(--padding-large);
-  padding-bottom: var(--padding-large);
-  padding-left: var(--side-padding);
-  padding-right: var(--side-padding);
 }
 </style>

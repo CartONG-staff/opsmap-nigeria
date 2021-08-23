@@ -5,4 +5,5 @@
 export interface TKAppOptions {
   readonly showCCCMLogo: boolean;
   readonly dark: boolean;
+  readonly pdfColumnCount: number;
 }

@@ -2,15 +2,35 @@
 
 ## Development
 
-Road to 1.2.0.
-A priori:
+Road to 1.3. To be defined.
 
-- New Charts possibility
-- Display condition
+## 1.2.0
+
+Toolkit: 1.2
+Brazil: 1.2
+
+Nigeria: 1.2 (Pre Release)
+
+Features:
+
+- Polar Chart added
+- Doughnut Chart added
+- Conditional entries added
 - Computed entries added
-- polar charts NaN fixes : value missing
-- etc.
-- Code published as OpenSource to CartONG github
+- List / Multiples entries added
+- Site Occupation indicator test version
+- Footer logo management improved
+
+Bugfixes:
+
+- Improve NaN handling in chart data
+- "Managed by" support improved
+
+Preview:
+
+- PDF export (alpha version)
+- Dark theme
+- History graph
 
 ## 1.1.0
 

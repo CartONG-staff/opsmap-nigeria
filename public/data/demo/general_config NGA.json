@@ -5,7 +5,7 @@
         "en":"Nigeriaaa"
     },
     "opsmapDescr":{
-        "en": "More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>Currently, Roraima has 13 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than seven thousand refugees, refugee seekers, and migrants. Of these, 11 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>All 13 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces."
+        "en":  "<p>The site tracker tool aims to provide relevant and adequate current situation on the IDP settlements by assessing information and services at site level to improve humanitarian assistance in IDP sites.Site profiles and displayed data are collected by CCCM Partners in Nigeria through key informant interview for each IDP site with the camp managers/site facilitators. The data is collected and updated on a bi-weekly basis. The tool consists of both open and closed-ended questions that were provided by Sector leads.</p><p>For the full datasets or further questions please contact:<br><span class=\"font-weight-medium\">Robert Odhiambo: +234 903 428 3512 || Ibrahim Mahammat: +234 901 066 0575</span><br><span class=\"font-weight-medium\">Email: <a href=\"mailto:cccmshelternga@humanitarianresponse.info\">cccmshelternga@humanitarianresponse.info</a> | Website: <a href=\"https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi\" target=\"_blank\">https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi</a></span></p>"
     },
     "indicators": {
         "home": [{
@@ -57,43 +57,78 @@
             "iconOchaName": "People-in-need"
         }]
     },
-    "footerLogos":{
-        "clusterLed": [{
+    "headerLogos":[],
+    "footerLogos":[
+        {
+            "title": {
+                "en": "Cluster Lead"
+            },
+            "logos": [{
+                "name": "sector_logo",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/sector_logo.png",
+                "urlRedirection": "https://www.sheltercluster.org/response/nigeria"
+            }]
+        },
+        {
+            "title": {
+                "en": "Partners"
+            },
+            "logos": [{
+                "name": "Acted",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/ACTED.jpg",
+                "urlRedirection": "https://www.acted.org/"
+            },
+            {
+                "name": "INTERSOS",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/INTERSOS.png",
+                "urlRedirection": "https://www.intersos.org/"
+            },
+            {
+                "name": "IOM",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/IOM.jpg",
+                "urlRedirection": "https://www.iom.int"
+            },{
+                "name": "LOCDIN",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/LOC-DIN.jpg",
+                "urlRedirection": "https://loc-din.org.ng"
+            },
+            {
+                "name": "NRC",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/NRC.png",
+                "urlRedirection": "https://www.nrc.no"
+            },
+            {
+                "name": "Salient",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/SALINT_HUMANITARIANORGANIZATON.png",
+                "urlRedirection": "https://salientho.org"
+            },
+            {
+                "name": "SHI",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/SMILING_HEARTS_INTERNATIONAL.jpg",
+                "urlRedirection": "https://www.smilingheartsinitiativeinternational.org"
+            },
+            {
+                "name": "Translators",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/TRANSLATORS_WITHOUT_BOARDERS.png",
+                "urlRedirection": "https://translatorswithoutborders.org"
+            },
+            {
                 "name": "UNHCR",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-                "urlRedirection": "https://www.acnur.org.br"
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/UNHCR.jpg",
+                "urlRedirection": "https://www.unhcr.org"
+            }]
+        },
+        {
+            "title": {
+                "en": "Webdev"
             },
-            {
-                "name": "Ministério da Cidadania",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
-                "urlRedirection": "https://www.gov.br/cidadania/pt-br"
-        }],
-        "coordinationAndIMSupport": [{
-            "name": "UNHCR",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-            "urlRedirection": "https://www.acnur.org.br"
-        }],
-        "Fieldwork": [{
-                "name": "FSF",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/FSF.png",
-                "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
-            },
-            {
-                "name": "AVSI",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
-                "urlRedirection": "http://www.avsibrasil.org.br/"
-            },
-            {
-                "name": "FFHI",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/Fraternidade.png",
-                "urlRedirection": "https://www.fraterinternacional.org/"
-        }],
-        "Webdev": [{
-            "name": "CartONG",
-            "urlLogo": "https://www.cartong.org/sites/cartong/files/images/CartONG_logo_long_0_0_0.png",
-            "urlRedirection": "https://www.cartong.org"
-        }]
-    },
+            "logos": [{
+                "name": "CartONG",
+                "urlLogo": "/data/demo/DEMO_nigeria/Logo/CartONG_logo_long_0_0_0.png",
+                "urlRedirection": "https://www.cartong.org"
+            }]
+        }
+    ],
     "spatial":{
         "siteIDField": "group_general_info/site",
         "siteNameField": "group_general_info/site_name",
@@ -120,7 +155,12 @@
         },
         "name": "Last known FDF",
         "url": "https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json",
-        "token": "ab46c724b720d44c4c8d44e86241219ce5cec6d6"
+        "token": "ab46c724b720d44c4c8d44e86241219ce5cec6d6",
+        "options": {
+            "dateFormat": "YYYY-MM-DD",
+            "manageByField": "organisation",
+            "manageByAltValue": "cccm"
+        }
     }],
     "mapConfig": {
         "bounds": [
@@ -128,7 +168,7 @@
         ]
     },
     "options": {
-        "showCCCMLogo": true
+        "showCCCMLogo": true,
+        "pdfColumnCount": 3
     }
 }
-

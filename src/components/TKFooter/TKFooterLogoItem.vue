@@ -6,7 +6,7 @@
       </div>
     </transition>
     <div class="tk-footer-logos-item-logos">
-      <div v-for="item in logos" :key="item.name">
+      <div v-for="item in logoDescription.logos" :key="item.name">
         <a :href="item.urlRedirection" target="_blank">
           <img
             :src="item.urlLogo"
@@ -20,16 +20,27 @@
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component } from "vue-property-decorator";
-import { TKLogo } from "@/domain/ui/TKLogo";
+import { Vue, Prop, Component, Watch } from "vue-property-decorator";
+import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogosDescription";
+import { TKGetLocalValue } from "@/domain/ui/TKLabel";
 
 @Component
 export default class TKFooterLogoItem extends Vue {
   @Prop()
-  readonly title!: string;
+  readonly logoDescription!: TKFooterLogosDescription;
 
-  @Prop()
-  readonly logos!: TKLogo[];
+  title = "";
+
+  @Watch("logoDescription", { immediate: true })
+  @Watch("$root.$i18n.locale")
+  handeLocale() {
+    if (this.logoDescription) {
+      this.title = TKGetLocalValue(
+        this.logoDescription.title,
+        this.$root.$i18n.locale
+      );
+    }
+  }
 }
 </script>
 
@@ -48,11 +59,11 @@ export default class TKFooterLogoItem extends Vue {
   display: flex;
   flex-flow: row nowrap;
   vertical-align: middle;
-  justify-content: left;
-  column-gap: var(--padding-small);
+  justify-content: center;
+  column-gap: var(--padding-logos);
 }
 
 .tk-footer-logos-item-logo {
-  height: 50px;
+  height: 52px;
 }
 </style>

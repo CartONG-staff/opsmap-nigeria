@@ -5,7 +5,6 @@ import { loadLocaleMessages } from "@/i18n";
 import VueI18n, { LocaleMessages } from "vue-i18n";
 import { TKReadGeneralConfiguration } from "./app/TKOpsmapConfiguration";
 import router from "./router";
-import Vuetify from "vuetify/lib";
 
 Vue.config.productionTip = false;
 
