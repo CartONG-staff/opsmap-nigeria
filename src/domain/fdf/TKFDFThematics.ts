@@ -1,4 +1,4 @@
-import { TKReadRawDataCSV } from "../survey/TKRawData";
+import { TKCSVParse } from "../utils/TKCSV";
 import { TKLabel } from "../utils/TKLabel";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
@@ -24,9 +24,11 @@ export type TKTFDFhematicsCollection = Record<string, TKFDFThematic>;
 export async function TKReadFDFThematicsCollection(
   infos: TKFDFInfos
 ): Promise<TKTFDFhematicsCollection> {
-  const rawThematics: TKFDFThematicRaw[] = await TKReadRawDataCSV<
-    TKFDFThematicRaw[]
-  >(TKFDFFiles.THEMATICS, infos.folder, false);
+  const rawThematics: TKFDFThematicRaw[] = await TKCSVParse<TKFDFThematicRaw[]>(
+    TKFDFFiles.THEMATICS,
+    infos.folder,
+    false
+  );
 
   // Parse header to find out coumn - language correspondance
   const header: string[] = Object.values(rawThematics[0]);

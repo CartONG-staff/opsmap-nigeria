@@ -12,7 +12,8 @@ import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
 import { TKCreateFDF } from "../fdf/TKFDF";
 import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
 import { TKCreateSurvey, TKSurvey } from "./TKSurvey";
-import { TKReadRawDataCSV, TKReadRawDataGSheet } from "./TKRawData";
+import { TKReadRawDataGSheet } from "./TKRawData";
+import { TKCSVParse } from "../utils/TKCSV";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Filters Concept description. Requires Comments !
@@ -479,7 +480,7 @@ export async function TKCreateDataset(
     let rawData;
     const before = Date.now();
     if (info.type === TKSurveyInfosType.CSV) {
-      rawData = await TKReadRawDataCSV(
+      rawData = await TKCSVParse(
         info.submissionsFile,
         info.submissionsFolder,
         true

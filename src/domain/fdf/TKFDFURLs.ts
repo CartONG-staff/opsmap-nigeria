@@ -1,4 +1,4 @@
-import { TKReadRawDataCSV } from "../survey/TKRawData";
+import { TKCSVParse } from "../utils/TKCSV";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -19,7 +19,7 @@ export type TKFDFUrlsCollection = Record<TKFDFPartnerName, TKFDFPartnerURL>;
 export async function TKReadFDFURLsCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFUrlsCollection> {
-  const rawUrl: TKFDFUrlRaw[] = await TKReadRawDataCSV<TKFDFUrlRaw[]>(
+  const rawUrl: TKFDFUrlRaw[] = await TKCSVParse<TKFDFUrlRaw[]>(
     TKFDFFiles.URLS,
     infos.folder,
     false

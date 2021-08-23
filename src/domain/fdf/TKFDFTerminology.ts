@@ -1,4 +1,4 @@
-import { TKReadRawDataCSV } from "../survey/TKRawData";
+import { TKCSVParse } from "../utils/TKCSV";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -22,9 +22,11 @@ export type TKFDFTerminologyCollection = Record<
 export async function TKReadFDFTerminologyCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFTerminologyCollection> {
-  const rawUrl: TKFDFTerminologyRaw[] = await TKReadRawDataCSV<
-    TKFDFTerminologyRaw[]
-  >(TKFDFFiles.TERMINOLOGY, infos.folder, false);
+  const rawUrl: TKFDFTerminologyRaw[] = await TKCSVParse<TKFDFTerminologyRaw[]>(
+    TKFDFFiles.TERMINOLOGY,
+    infos.folder,
+    false
+  );
 
   // Parse all the other lines: fill matching label with proper column indexes.
   const terminologyCollection: TKFDFTerminologyCollection = {};

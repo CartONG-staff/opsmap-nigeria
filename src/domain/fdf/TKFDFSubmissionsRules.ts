@@ -1,4 +1,4 @@
-import { TKReadRawDataCSV } from "../survey/TKRawData";
+import { TKCSVParse } from "../utils/TKCSV";
 import {
   TKOperatorComparison,
   TKOperatorComputation
@@ -57,7 +57,7 @@ export interface TKFDFSubmissionsRulesCollection {
 export async function TKReadSubmissionsRulesCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFSubmissionsRulesCollection> {
-  const rawSubmissionsRules: TKFDFSubmissionRuleRaw[] = await TKReadRawDataCSV<
+  const rawSubmissionsRules: TKFDFSubmissionRuleRaw[] = await TKCSVParse<
     TKFDFSubmissionRuleRaw[]
   >(TKFDFFiles.SUBMISSION_RULES, infos.folder, true);
   const submissionsRules: TKFDFSubmissionsRulesCollection = {};

@@ -1,5 +1,6 @@
 import { TKLabel } from "@/domain/utils/TKLabel";
-import { TKReadRawDataCSV, TKReadRawDataGSheet } from "../survey/TKRawData";
+import { TKReadRawDataGSheet } from "../survey/TKRawData";
+import { TKCSVParse } from "../utils/TKCSV";
 import { TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -61,7 +62,7 @@ export async function TKReadFDFLabelCollection(
   file: string,
   infos: TKFDFInfos
 ): Promise<TKFDFLabelCollection> {
-  const rawLabels: TKFDFLabelRaw[] = await TKReadRawDataCSV(
+  const rawLabels: TKFDFLabelRaw[] = await TKCSVParse(
     file,
     infos.folder,
     false
