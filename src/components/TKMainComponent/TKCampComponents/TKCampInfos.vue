@@ -177,7 +177,7 @@ export default class TKCampInfos extends Vue {
 .tk-hseparator {
   height: 1px;
   width: 100%;
-  background-color: #e0e0e0;
+  background-color: var(--v-discrete-base);
 }
 
 .tk-camp-infos-field {
@@ -191,7 +191,7 @@ export default class TKCampInfos extends Vue {
   line-height: 3;
   font-size: 12px;
   font-weight: bold;
-  color: #999;
+  color: var(--v-secondary-base);
   letter-spacing: 0.86;
 }
 
@@ -199,7 +199,7 @@ export default class TKCampInfos extends Vue {
   line-height: 3;
   font-size: 12px;
   font-weight: bold;
-  color: #418fde;
+  color: var(--v-accent-base);
   letter-spacing: 0.86px;
 }
 </style>

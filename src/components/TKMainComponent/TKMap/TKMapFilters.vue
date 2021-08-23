@@ -162,8 +162,8 @@ export default class TKMapFilter extends Vue {
 .tk-map-filters {
   border-radius: 8px;
   overflow: hidden;
-  border: 2px solid #f1f3f3;
-  background-color: #ffffff;
+  border: 2px solid var(--v-border-base);
+  background-color: var(--v-background-base);
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
@@ -211,7 +211,7 @@ export default class TKMapFilter extends Vue {
 
 .tk-map-filter-text-disabled,
 .tk-map-filter-value-disabled {
-  color: #bdbdbd;
+  color: var(--v-disabled-base);
 }
 
 .tk-map-filter-checkbox {
@@ -231,7 +231,7 @@ export default class TKMapFilter extends Vue {
 }
 
 .tk-vseparator {
-  background-color: #f1f3f3;
+  background-color: var(--v-border-base);
   width: 1px;
   height: 100%;
   margin-left: -1px;

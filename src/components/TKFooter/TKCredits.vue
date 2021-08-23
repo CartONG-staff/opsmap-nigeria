@@ -31,7 +31,7 @@ export default class TKCredits extends Vue {
 
 <style scoped>
 .tk-ochacredits {
-  background-color: var(--v-sectionBGSecondary-base);
+  background-color: var(--v-backgroundSecondary-base);
   width: 100%;
   padding-left: var(--side-padding);
   padding-right: var(--side-padding);

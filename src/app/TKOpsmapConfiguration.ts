@@ -104,6 +104,7 @@ export async function TKReadGeneralConfiguration(
   // ////////////////////////////////////////////////////////////////////////////
   const defaultOptions: TKAppOptions = {
     showCCCMLogo: true,
+    dark: false,
     pdfColumnCount: 3
   };
 

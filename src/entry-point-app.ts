@@ -31,6 +31,9 @@ TKReadGeneralConfiguration(
   // Freeze the config
   Object.freeze(config);
 
+  // Update vuetify options.
+  vuetify.framework.theme.dark = config.options.dark;
+
   new Vue({
     router,
     vuetify,

@@ -120,7 +120,7 @@ export default class TKIndicatorStandard extends Vue {
 }
 
 .tk-indicator-value-decription {
-  color: var(--v-quaternary-base);
+  color: var(--v-autocomplete-base);
   font-weight: bolder;
   font-size: 16px;
   line-height: 17px;

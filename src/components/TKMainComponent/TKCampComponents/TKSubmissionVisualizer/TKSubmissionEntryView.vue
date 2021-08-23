@@ -52,7 +52,7 @@ export default class TKSubmissionentryView extends Vue {
 
 <style scoped>
 .tk-hseparator {
-  background-color: #d8d8d8;
+  background-color: var(--v-discrete-base);
   height: 1px;
   width: 100%;
 }

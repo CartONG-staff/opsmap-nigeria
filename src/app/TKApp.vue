@@ -116,54 +116,60 @@ h3 {
 }
 
 .tk-autocomplete input {
-  color: #000 !important;
-  font-family: "Arial";
+  color: var(--v-autocomplete-base) !important;
+  font-family: "Arial" !important;
   font-weight: bold !important;
   font-size: 16px !important;
 }
 
 .tk-autocomplete input::placeholder {
-  color: #00000099 !important;
-  font-family: "Arial";
+  color: var(--v-autocomplete-base) !important;
+  font-family: "Arial" !important;
   font-weight: bold !important;
   font-size: 16px !important;
+  opacity: 0.5 !important;
 }
 
 .tk-autocomplete .v-text-field__prefix {
-  color: rgba(118, 118, 118, 0.5);
-  font-family: "Arial";
+  color: rgba(118, 118, 118) !important;
+  font-family: "Arial" !important;
   font-weight: bold !important;
   font-size: 16px !important;
+  opacity: 0.5 !important;
 }
 
+.tk-autocomplete .theme--dark.v-icon,
 .tk-autocomplete .theme--light.v-icon {
-  color: #d8d8d8 !important;
+  color: var(--v-discrete-base) !important;
 }
 
 .tk-autocomplete .v-input__slot {
-  border-color: #d8d8d8 !important;
+  border-color: var(--v-discrete-base) !important;
   transition: none !important;
 }
 
 .tk-autocomplete .v-input__slot:before {
-  border-color: #d8d8d8 !important;
+  border-color: var(--v-discrete-base) !important;
   transition: none !important;
 }
 
 .tk-autocomplete .v-input__slot:after {
-  border-color: #d8d8d8 !important;
+  border-color: var(--v-discrete-base) !important;
   transition: none !important;
 }
 
+.tk-autocomplete .theme--dark.v-icon.v-icon.v-icon,
 .tk-autocomplete .theme--light.v-icon.v-icon.v-icon {
-  color: #000 !important;
+  color: var(--v-autocomplete-base) !important;
 }
 
+.tk-autocomplete .theme--dark.v-icon.v-icon.v-icon--disabled,
 .tk-autocomplete .theme--light.v-icon.v-icon.v-icon--disabled {
   /* color: rgba(0, 0, 0, 0) !important; */
   opacity: 0.2 !important;
 }
 
+.theme--dark.v-text-field.v-input--is-disabled .v-input__slot::before,
 .theme--light.v-text-field.v-input--is-disabled .v-input__slot::before {
   -o-border-image: none !important;
   border-image: none !important;

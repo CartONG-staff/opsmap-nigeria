@@ -398,7 +398,6 @@ export default class TKMap extends Vue {
   top: 8px;
   right: 8px;
   z-index: 1;
-  background-color: #fff;
 }
 
 .tk-basemap-picker {

@@ -1,6 +1,6 @@
 <template lang="html">
   <transition mode="out-in" name="fade">
-    <div :key="$root.$i18n.locale" class="tk-camp-selector">
+    <div :key="$root.$i18n.locale" class="tk-camp-selector" :style="opacity">
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <v-autocomplete
@@ -92,13 +92,26 @@ import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
 export default class TKCampSelector extends Vue {
   @Prop()
   readonly dataset!: TKDatasetFilterer;
+
+  get opacity() {
+    if (this.$vuetify.theme.dark) {
+      return {
+        "--opacity": 0.9
+      };
+    }
+
+    return {
+      "--opacity": 0.75
+    };
+  }
 }
 </script>
 <style scoped>
 .tk-camp-selector {
   border-radius: 8px;
   align-items: center;
-  background-color: #f0fbffcc;
+  background-color: var(--v-campSelector-base);
+  opacity: var(--opacity);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   box-shadow: 0 0 20px 2px rgba(58, 158, 211, 0.15);
