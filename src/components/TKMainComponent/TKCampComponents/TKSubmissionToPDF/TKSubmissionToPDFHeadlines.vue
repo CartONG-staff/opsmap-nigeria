@@ -1,7 +1,8 @@
 <template>
   <div class="headlines">
     <div class="headlines-left">
-      <div class="headlines-title">{{ siteName }} - {{ date }}</div>
+      <div class="headlines-title">{{ siteName }}</div>
+      <div class="headlines-subtitle">{{ date }}</div>
       <div class="headlines-infos">
         <!-- Site Type -->
         <div class="tk-camp-infos-field">
@@ -195,19 +196,21 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
 .headlines-left {
   display: flex;
   flex-flow: column nowrap;
-  row-gap: 5mm;
   justify-content: flex-start;
+  flex-grow: 2;
 }
 
 .headlines-title {
   color: #333333;
-  font-size: 25px;
+  font-size: 23px;
   font-weight: bold;
   line-height: 1.467;
 }
-
-.headlines-infos {
-  width: 100%;
+.headlines-subtitle {
+  color: #333333;
+  font-size: 20px;
+  font-weight: lighter;
+  line-height: 1.467;
 }
 
 .headlines-map-img {
@@ -225,6 +228,10 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   height: 0;
   border-top: 1px solid #99999922;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.headlines-infos {
+  max-width: 100mm;
 }
 
 .tk-camp-infos-field {
