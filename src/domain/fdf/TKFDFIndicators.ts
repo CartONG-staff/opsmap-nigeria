@@ -1,8 +1,12 @@
 import { TKLabel } from "@/domain/utils/TKLabel";
-import { TKIndicatorType } from "@/domain/survey/TKIndicator";
+
+export enum TKFDFIndicatorType {
+  STANDARD = "standard",
+  OCCUPATION = "site_occupation"
+}
 
 export interface TKFDFIndicatorStandard {
-  readonly type: TKIndicatorType.STANDARD;
+  readonly type: TKFDFIndicatorType.STANDARD;
   readonly name: TKLabel;
   readonly entryCode: string;
   readonly iconOchaName: string;
@@ -11,7 +15,7 @@ export interface TKFDFIndicatorSiteOccupation {
   // In the case of occupation:
   // - entryCode is supposed to be Site max capicity
   // - entryCodeSecond is supposed to be People
-  readonly type: TKIndicatorType.OCCUPATION;
+  readonly type: TKFDFIndicatorType.OCCUPATION;
   readonly name: TKLabel;
   readonly entryCodeMaxCapacity: string;
   readonly iconOchaName: string;
@@ -19,15 +23,15 @@ export interface TKFDFIndicatorSiteOccupation {
   readonly entryCodeMaxPeopleCount: string;
 }
 
+export type TKFDFIndicatorHome = TKFDFIndicatorStandard;
+export type TKFDFIndicatorCamp =
+  | TKFDFIndicatorStandard
+  | TKFDFIndicatorSiteOccupation;
+
+export type TKFDFIndicator =
+  | TKFDFIndicatorStandard
+  | TKFDFIndicatorSiteOccupation;
 export interface TKFDFIndicators {
-  home: [
-    TKFDFIndicatorStandard,
-    TKFDFIndicatorStandard,
-    TKFDFIndicatorStandard
-  ];
-  site: [
-    TKFDFIndicatorStandard | TKFDFIndicatorSiteOccupation,
-    TKFDFIndicatorStandard | TKFDFIndicatorSiteOccupation,
-    TKFDFIndicatorStandard | TKFDFIndicatorSiteOccupation
-  ];
+  home: [TKFDFIndicatorHome, TKFDFIndicatorHome, TKFDFIndicatorHome];
+  site: [TKFDFIndicatorCamp, TKFDFIndicatorCamp, TKFDFIndicatorCamp];
 }

@@ -10,13 +10,11 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
-import { TKIndicator } from "@/domain/survey/TKIndicator";
-import { TKDataset } from "@/domain/survey/TKDataset";
 import {
-  TKFDFIndicator,
-  TKFDFIndicatorSiteOccupation,
-  TKIndicatorType
-} from "@/domain/opsmapConfig/TKIndicatorsDescription";
+  TKFDFIndicatorDefault,
+  TKIndicator
+} from "@/domain/survey/TKIndicator";
+import { TKDataset } from "@/domain/survey/TKDataset";
 
 @Component({
   components: {
@@ -41,38 +39,16 @@ export default class TKCampIndicators extends Vue {
       this.indicator2 = this.dataset.currentSubmission.indicators[1];
       this.indicator3 = this.dataset.currentSubmission.indicators[2];
     } else {
-      this.indicator1 = this.computeDefaultIndicator(
+      this.indicator1 = TKFDFIndicatorDefault(
         this.appConfig.indicators.site[0]
       );
-      this.indicator2 = this.computeDefaultIndicator(
+      this.indicator2 = TKFDFIndicatorDefault(
         this.appConfig.indicators.site[1]
       );
-      this.indicator3 = this.computeDefaultIndicator(
+      this.indicator3 = TKFDFIndicatorDefault(
         this.appConfig.indicators.site[2]
       );
     }
-  }
-
-  computeDefaultIndicator(
-    ref: TKIndicatorDescription | TKIndicatorDescriptionSiteOccupation
-  ): TKIndicator {
-    if (ref.type === TKIndicatorType.OCCUPATION) {
-      return {
-        type: ref.type,
-        valueNumber: -1,
-        valueYesNoLabel: { en: "-" },
-        nameLabel: ref.name,
-        valueLabel: { en: "-" },
-        iconOchaName: ref.iconOchaName
-      };
-    }
-
-    return {
-      type: ref.type,
-      nameLabel: ref.name,
-      valueLabel: { en: "-" },
-      iconOchaName: ref.iconOchaName
-    };
   }
 }
 </script>

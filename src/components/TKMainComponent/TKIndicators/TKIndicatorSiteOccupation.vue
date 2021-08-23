@@ -32,13 +32,13 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
-import { TKIndicator } from "@/domain/survey/TKIndicator";
+import { TKIndicatorSiteOccupation as TKIndicatorSiteOccupationType } from "@/domain/survey/TKIndicator";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
-import { TKIndicatorType } from "@/domain/opsmapConfig/TKIndicatorsDescription";
+import { TKIndicatorType } from "@/domain/survey/TKIndicator";
 
 @Component
 export default class TKIndicatorSiteOccupation extends Vue {
-  @Prop() readonly indicator!: TKIndicator;
+  @Prop() readonly indicator!: TKIndicatorSiteOccupationType;
   value = -1;
   name = "";
   labelCenterOfProgress = "-";

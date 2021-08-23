@@ -6,18 +6,11 @@ import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
 import { TKIndicator } from "./TKIndicator";
 import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
-// import {
-//   TKIndicatorsDescription as TKFDFIndicators,
-//   TKIndicatorDescription
-// } from "@/domain/fdf/TKFDFIndicators";
 import moment from "moment";
 import { isNumber } from "@turf/turf";
 import { TKCamp } from "@/domain/survey/TKCamp";
 import { TKDateCompare } from "@/domain/utils/TKDateCompare";
-import {
-  TKFDFIndicators,
-  TKFDFIndicatorStandard
-} from "../fdf/TKFDFIndicators";
+import { TKFDFIndicatorStandard } from "../fdf/TKFDFIndicators";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition

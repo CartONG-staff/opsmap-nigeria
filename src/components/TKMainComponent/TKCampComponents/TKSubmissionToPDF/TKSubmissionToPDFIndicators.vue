@@ -58,7 +58,7 @@
 </template>
 
 <script lang="ts">
-import { TKIndicatorType } from "@/domain/opsmapConfig/TKIndicatorsDescription";
+import { TKIndicatorType } from "@/domain/survey/TKIndicator";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKIconUrl } from "@/domain/utils/TKIcons";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";

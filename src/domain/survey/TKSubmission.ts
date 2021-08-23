@@ -1,9 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import {
-//   TKIndicatorsDescription,
-//   TKIndicatorDescription,
-//   TKIndicatorDescriptionSiteOccupation
-// } from "@/domain/opsmapConfig/TKIndicatorsDescription";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKCreateSubmissionEntryText,
