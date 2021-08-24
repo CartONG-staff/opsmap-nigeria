@@ -1,7 +1,7 @@
-import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKLabel } from "@/domain//ui/TKLabel";
+import { TKLabel } from "@/domain/utils/TKLabel";
+import { TKReadRawDataGSheet } from "../survey/TKRawData";
+import { TKCSVParse } from "../utils/TKCSV";
 import { TKFDFInfos } from "./TKFDFInfos";
-import { TKGSheetRead } from "../gsheet/TKGSheetReader";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the Answer label object
@@ -54,7 +54,7 @@ async function parseCSVContent(
 export async function TKReadFDFLabelCollectionFromGSheet(
   url: string
 ): Promise<TKFDFLabelCollection> {
-  const rawLabels: TKFDFLabelRaw[] = await TKGSheetRead(url, false);
+  const rawLabels: TKFDFLabelRaw[] = await TKReadRawDataGSheet(url, false);
   return parseCSVContent(rawLabels);
 }
 
@@ -62,6 +62,10 @@ export async function TKReadFDFLabelCollection(
   file: string,
   infos: TKFDFInfos
 ): Promise<TKFDFLabelCollection> {
-  const rawLabels: TKFDFLabelRaw[] = await TKCSVRead(file, infos.folder, false);
+  const rawLabels: TKFDFLabelRaw[] = await TKCSVParse(
+    file,
+    infos.folder,
+    false
+  );
   return parseCSVContent(rawLabels);
 }

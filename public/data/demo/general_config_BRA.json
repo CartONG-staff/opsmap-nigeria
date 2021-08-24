@@ -198,7 +198,8 @@
         ]
     },
     "options": {
-        "showCCCMLogo": false
+        "showCCCMLogo": false,
+        "pdfColumnCount": 3
     }
 }
 

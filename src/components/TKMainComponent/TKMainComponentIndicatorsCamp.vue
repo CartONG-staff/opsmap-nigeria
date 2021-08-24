@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKCampIndicators } from "./TKCampComponents";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKOpsmapConfiguration } from "@/domain";
 @Component({
   components: {
@@ -16,7 +16,7 @@ import { TKOpsmapConfiguration } from "@/domain";
 })
 export default class TKMainComponentIndicatorsCamp extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;

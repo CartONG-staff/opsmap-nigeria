@@ -1,21 +1,18 @@
 import { Feature, FeatureCollection } from "geojson";
 import mapboxgl, { LngLat, LngLatBounds, LngLatLike } from "mapbox-gl";
-import {
-  TKDatasetFilterer,
-  TKFilters
-} from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset, TKFilters } from "@/domain/survey/TKDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKMapLayers } from "./TKMapLayers";
-import { TKSpatialDescription } from "../opsmapConfig/TKSpatialDescription";
+import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 
 export class TKMapBoundaries {
   public admin1: FeatureCollection;
   public admin2: FeatureCollection;
-  public spatialDescription: TKSpatialDescription;
+  public spatialDescription: TKFDFSpatialDescription;
 
   constructor(
     geodataset: TKGeoDataset,
-    spatialDescription: TKSpatialDescription
+    spatialDescription: TKFDFSpatialDescription
   ) {
     this.admin1 = geodataset.admin1;
     this.admin2 = geodataset.admin2;
@@ -27,7 +24,7 @@ export class TKMapBoundaries {
   // //////////////////////////////////////////////////////////////////////////
 
   changeStyle(
-    dataset: TKDatasetFilterer,
+    dataset: TKDataset,
     map: mapboxgl.Map,
     bound: LngLatBounds
   ): void {
@@ -62,10 +59,9 @@ export class TKMapBoundaries {
     }
     if (dataset.currentCamp) {
       this.mapFitBounds(
-        new LngLat(
-          dataset.currentCamp.infos.lng,
-          dataset.currentCamp.infos.lat
-        ).toBounds(100),
+        new LngLat(dataset.currentCamp.lng, dataset.currentCamp.lat).toBounds(
+          100
+        ),
         map
       );
     }
@@ -90,7 +86,7 @@ export class TKMapBoundaries {
   //
   // //////////////////////////////////////////////////////////////////////////
 
-  setAdmin1Style(dataset: TKDatasetFilterer) {
+  setAdmin1Style(dataset: TKDataset) {
     let shouldMapZoom = null;
     const currentadmin1List = dataset.filteredAdmin1List.map(
       item => item.pcode
@@ -124,7 +120,7 @@ export class TKMapBoundaries {
   //
   // //////////////////////////////////////////////////////////////////////////
 
-  setAdmin2Style(dataset: TKDatasetFilterer) {
+  setAdmin2Style(dataset: TKDataset) {
     let shouldMapZoom = null;
     const currentadmin2List = dataset.filteredAdmin2List.map(
       item => item.pcode

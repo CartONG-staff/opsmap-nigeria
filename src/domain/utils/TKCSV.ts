@@ -3,10 +3,10 @@
 import { parse } from "papaparse";
 
 // ////////////////////////////////////////////////////////////////////////////
-// Temaplted Read method for csv inputs
+// Templated Read method for csv inputs
 // ////////////////////////////////////////////////////////////////////////////
 
-export async function TKCSVRead<T>(
+export async function TKCSVParse<T>(
   name: string,
   folder: string,
   header: boolean

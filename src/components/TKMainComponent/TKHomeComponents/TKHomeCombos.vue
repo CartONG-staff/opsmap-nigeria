@@ -76,7 +76,7 @@
               :label="$t('camp')"
               v-model="dataset.currentCamp"
               :items="dataset.filteredCampsList"
-              item-text="infos.name"
+              item-text="name"
               return-object
             ></v-autocomplete>
           </div>
@@ -89,12 +89,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 
 @Component({})
 export default class TKHomeCombos extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 }
 </script>
 

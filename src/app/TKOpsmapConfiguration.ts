@@ -1,26 +1,52 @@
-import { TKMapboxConfiguration } from "@/domain/opsmapConfig/TKMapboxConfiguration";
-import { TKLabel } from "@/domain/ui/TKLabel";
-import { TKFooterLogosDescription } from "@/domain/opsmapConfig/TKFooterLogosDescription";
-import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
-import { TKIndicatorsDescription } from "@/domain/opsmapConfig/TKIndicatorsDescription";
+import { TKLabel } from "@/domain/utils/TKLabel";
+import { TKLogoGroup } from "@/domain/utils/TKLogo";
+
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
-import { TKAppOptions } from "@/domain/opsmapConfig/TKAppOptions";
-import { TKLogo } from "@/domain/ui/TKLogo";
-import { TKIFrameDescription } from "@/domain/opsmapConfig/TKIFrameDescription";
+import { TKLogo } from "@/domain/utils/TKLogo";
+
+import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
+import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
+
+// ////////////////////////////////////////////////////////////////////////////
+// JSON format
+// ////////////////////////////////////////////////////////////////////////////
+interface TKAppOptions {
+  readonly showCCCMLogo: boolean;
+  readonly dark: boolean;
+  readonly pdfColumnCount: number;
+}
+interface TKIFrameDescription {
+  readonly url: string;
+  readonly display: boolean;
+}
+
+interface TKMapboxConfiguration {
+  readonly token: string;
+  readonly style: string;
+  readonly padding: 100;
+  readonly zoomspeed: 2;
+  readonly bounds: Array<number>;
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// This file host some infos that could be in the FDF.
+// Therefore, specific FDF types are used
+// ////////////////////////////////////////////////////////////////////////////
 
 // ////////////////////////////////////////////////////////////////////////////
 // Global Opsmap configuration
 // ////////////////////////////////////////////////////////////////////////////
+
 export interface TKOpsmapConfiguration {
   readonly name: TKLabel;
   readonly languages: string[];
   readonly iso3: string;
   readonly opsmapDescr: TKLabel;
-  readonly indicators: TKIndicatorsDescription;
-  readonly footerLogos: TKFooterLogosDescription[];
+  readonly indicators: TKFDFIndicators;
+  readonly footerLogos: TKLogoGroup[];
   readonly iframe?: TKIFrameDescription;
   readonly surveys: TKSurveyInfos[];
-  readonly spatial: TKSpatialDescription;
+  readonly spatial: TKFDFSpatialDescription;
   headerLogos: TKLogo[];
   mapConfig: TKMapboxConfiguration;
   options: TKAppOptions;
@@ -48,6 +74,11 @@ export async function TKReadGeneralConfiguration(
   // Update urlLogo
   // Could be improved
   // Webdev is not modified, because it isn't a local url.
+
+  // TODO UPDATE ALL OF THIS
+  for (const logo of json.headerLogos) {
+    logo.urlLogo = `${process.env.BASE_URL}/${logo.urlLogo}`;
+  }
 
   // TODO UPDATE ALL OF THIS
   for (const descr of json.footerLogos) {
@@ -98,7 +129,9 @@ export async function TKReadGeneralConfiguration(
   // Options
   // ////////////////////////////////////////////////////////////////////////////
   const defaultOptions: TKAppOptions = {
-    showCCCMLogo: true
+    showCCCMLogo: true,
+    dark: false,
+    pdfColumnCount: 3
   };
 
   // Init with defaultOptions, then replace existing key with options.

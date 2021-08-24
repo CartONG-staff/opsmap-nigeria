@@ -1,6 +1,6 @@
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
-import { TKCSVRead } from "@/domain/csv/TKCSVReader";
+import { TKCSVParse } from "../utils/TKCSV";
 
 // ////////////////////////////////////////////////////////////////////////////
 // TrafficLights collection datatype
@@ -40,7 +40,7 @@ export interface TKFDFTrafficLightsCollection {
 export async function TKReadFDFTrafficLightsCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFTrafficLightsCollection> {
-  const rawTrafficLights: TKFDFTrafficLightItem[] = await TKCSVRead<
+  const rawTrafficLights: TKFDFTrafficLightItem[] = await TKCSVParse<
     TKFDFTrafficLightItem[]
   >(TKFDFFiles.TRAFFIC_LIGHTS, infos.folder, true);
 

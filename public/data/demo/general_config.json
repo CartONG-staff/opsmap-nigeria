@@ -57,6 +57,7 @@
             "iconOchaName": "People-in-need"
         }]
     },
+    "headerLogos":[],
     "footerLogos":[
         {
             "title": {
@@ -157,7 +158,7 @@
         "token": "ab46c724b720d44c4c8d44e86241219ce5cec6d6",
         "options": {
             "dateFormat": "YYYY-MM-DD",
-            "manageByField": "group_general_info/organisation",
+            "manageByField": "organisation",
             "manageByAltValue": "cccm"
         }
     }],
@@ -167,7 +168,8 @@
         ]
     },
     "options": {
-        "showCCCMLogo": true
+        "dark": false,
+        "showCCCMLogo": true,
+        "pdfColumnCount": 3
     }
 }
-

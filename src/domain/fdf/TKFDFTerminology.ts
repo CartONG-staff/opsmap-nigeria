@@ -1,4 +1,4 @@
-import { TKCSVRead } from "@/domain/csv/TKCSVReader";
+import { TKCSVParse } from "../utils/TKCSV";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@ export type TKFDFTerminologyCollection = Record<
 export async function TKReadFDFTerminologyCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFTerminologyCollection> {
-  const rawUrl: TKFDFTerminologyRaw[] = await TKCSVRead<TKFDFTerminologyRaw[]>(
+  const rawUrl: TKFDFTerminologyRaw[] = await TKCSVParse<TKFDFTerminologyRaw[]>(
     TKFDFFiles.TERMINOLOGY,
     infos.folder,
     false

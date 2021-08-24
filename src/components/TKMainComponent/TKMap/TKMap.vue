@@ -24,7 +24,7 @@ import mapboxgl, {
 } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
-import { TKIconUrl } from "@/domain/ui/TKIcons";
+import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
 import TKMapFilters from "./TKMapFilters.vue";
@@ -32,7 +32,7 @@ import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { Point } from "geojson";
 
@@ -48,7 +48,7 @@ export default class TKMap extends Vue {
   readonly appConfig!: TKOpsmapConfiguration;
 
   @Prop({ default: () => [] })
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   @Prop()
   readonly geoDataset!: TKGeoDataset;
@@ -299,7 +299,7 @@ export default class TKMap extends Vue {
     // CAMPS BEHAVIOR
     this.map.on("click", TKMapLayers.NOTSELECTEDCAMPSLAYER, e => {
       if (e !== undefined && e.features && e.features?.length > 0) {
-        this.dataset.setCurrentCampByName(e.features[0].properties?.name);
+        this.dataset.setcurrentCampByName(e.features[0].properties?.name);
       }
     });
     const popup = new mapboxgl.Popup({
@@ -397,22 +397,21 @@ export default class TKMap extends Vue {
   position: absolute;
   top: 8px;
   right: 8px;
-  z-index: 2500;
-  background-color: #fff;
+  z-index: 1;
 }
 
 .tk-basemap-picker {
   position: absolute;
   top: 8px;
   left: 8px;
-  z-index: 2500;
+  z-index: 1;
 }
 
 .tk-map-filters {
   position: absolute;
   bottom: 28px;
   right: 8px;
-  z-index: 2500;
+  z-index: 1;
 }
 </style>
 

@@ -1,5 +1,5 @@
-import { TKCSVRead } from "@/domain/csv/TKCSVReader";
-import { TKLabel } from "../ui/TKLabel";
+import { TKCSVParse } from "../utils/TKCSV";
+import { TKLabel } from "../utils/TKLabel";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -24,7 +24,7 @@ export type TKTFDFhematicsCollection = Record<string, TKFDFThematic>;
 export async function TKReadFDFThematicsCollection(
   infos: TKFDFInfos
 ): Promise<TKTFDFhematicsCollection> {
-  const rawThematics: TKFDFThematicRaw[] = await TKCSVRead<TKFDFThematicRaw[]>(
+  const rawThematics: TKFDFThematicRaw[] = await TKCSVParse<TKFDFThematicRaw[]>(
     TKFDFFiles.THEMATICS,
     infos.folder,
     false

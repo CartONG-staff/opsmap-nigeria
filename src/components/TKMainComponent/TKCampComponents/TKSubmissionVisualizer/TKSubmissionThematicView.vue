@@ -15,7 +15,7 @@
             (visualizerOptions.hideUnanswered && entry.isAnswered)
         "
       >
-        <TKSubmissionEntryView :entry="entry" />
+        <TKSubmissionEntryView :entry="entry" :pdfInfos="pdfInfos" />
       </div>
     </div>
   </div>
@@ -23,12 +23,13 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKIconUrl } from "@/domain/ui/TKIcons";
+import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import TKSubmissionEntryView from "./TKSubmissionEntryView.vue";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 
 @Component({
   components: {
@@ -43,6 +44,9 @@ export default class TKSubmissionThematicView extends Vue {
 
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
+
+  @Prop()
+  readonly pdfInfos!: TKPDFInfos;
 
   title = "";
   iconurl = "";
@@ -89,9 +93,9 @@ export default class TKSubmissionThematicView extends Vue {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  border: 3px solid #f1f3f3;
+  border: 3px solid var(--v-thematicBorder-base);
   width: 100%;
-  background-color: #f1f3f3;
+  background-color: var(--v-thematicBackground-base);
   overflow: hidden;
 }
 
@@ -102,13 +106,12 @@ export default class TKSubmissionThematicView extends Vue {
   justify-content: space-between;
   align-items: center;
   height: 75px;
-  background-color: #fff;
+  background-color: var(--v-thematicHeader-base);
 }
 
 .tk-submission-thematic-title {
   font-size: 16px;
   font-weight: bolder;
-  color: var(--v-quaternary-base);
 }
 
 .tk-submission-chart {

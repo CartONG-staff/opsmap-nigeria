@@ -5,16 +5,19 @@
       class="tk-chart"
       v-else-if="entry.type === 'age_pyramid'"
       :entry="entry"
+      :pdfInfos="pdfInfos"
     />
     <TKSubmissionEntryDoughnutChart
       class="tk-chart"
       v-else-if="entry.type === 'doughnut'"
       :entry="entry"
+      :pdfInfos="pdfInfos"
     />
     <TKSubmissionEntryPolarChart
       class="tk-chart"
       v-else-if="entry.type === 'polar'"
       :entry="entry"
+      :pdfInfos="pdfInfos"
     />
     <div class="tk-hseparator" />
   </div>
@@ -28,6 +31,7 @@ import TKSubmissionEntryAgePyramidChart from "./TKSubmissionEntryAgePyramidChart
 import TKSubmissionEntryDoughnutChart from "./TKSubmissionEntryDoughnutChart.vue";
 import TKSubmissionEntryPolarChart from "./TKSubmissionEntryPolarChart.vue";
 import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 
 @Component({
   components: {
@@ -40,12 +44,15 @@ import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
 export default class TKSubmissionentryView extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntry;
+
+  @Prop()
+  readonly pdfInfos!: TKPDFInfos;
 }
 </script>
 
 <style scoped>
 .tk-hseparator {
-  background-color: #d8d8d8;
+  background-color: var(--v-discrete-base);
   height: 1px;
   width: 100%;
 }

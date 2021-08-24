@@ -1,5 +1,5 @@
 <template>
-  <div class="tk-indicator">
+  <div class="tk-indicator" :style="boxShadowColor">
     <img
       v-if="backgroundType === 1"
       class="tk-indicator-bg"
@@ -24,8 +24,10 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import TKIndicatorStandard from "@/components/TKMainComponent/TKIndicators/TKIndicatorStandard.vue";
 import TKIndicatorSiteOccupation from "@/components/TKMainComponent/TKIndicators/TKIndicatorSiteOccupation.vue";
-import { TKIndicator } from "@/domain/ui/TKIndicator";
-import { TKIndicatorType } from "@/domain/opsmapConfig/TKIndicatorsDescription";
+import {
+  TKIndicator as TKIndicatorDefinition,
+  TKIndicatorType
+} from "@/domain/survey/TKIndicator";
 
 @Component({
   components: {
@@ -33,9 +35,9 @@ import { TKIndicatorType } from "@/domain/opsmapConfig/TKIndicatorsDescription";
     TKIndicatorSiteOccupation
   }
 })
-export default class TKIndicatorComponent extends Vue {
+export default class TKIndicator extends Vue {
   @Prop() readonly backgroundType!: number;
-  @Prop() readonly indicator!: TKIndicator;
+  @Prop() readonly indicator!: TKIndicatorDefinition;
   isSiteOccupation = false;
 
   @Watch("indicator", { immediate: true })
@@ -51,14 +53,33 @@ export default class TKIndicatorComponent extends Vue {
       this.isSiteOccupation = false;
     }
   }
+
+  fontSize = 0;
+  computeFont(): void {
+    // FontSize: 35px ok --> 18 charactères pour 330px;
+    // FontSize: 28px ok --> 23 charactères pour 330px;
+    this.fontSize = 40;
+  }
+
+  get boxShadowColor() {
+    if (this.$vuetify.theme.dark) {
+      return {
+        "--boxShadowColor": "#3a9ed326"
+      };
+    }
+
+    return {
+      "--boxShadowColor": "#123F6226"
+    };
+  }
 }
 </script>
 
 <style scoped>
 .tk-indicator {
   position: relative;
-  box-shadow: 0 0 20px 2px rgba(18, 63, 98, 0.15);
-  background-color: white;
+  box-shadow: 0 0 20px 2px var(--boxShadowColor);
+  background-color: var(--v-background-base);
   border-color: transparent;
   border-radius: 5px;
   min-height: 100px;

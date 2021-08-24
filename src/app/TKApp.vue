@@ -20,11 +20,10 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/components";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKCreateDataset, TKDataset } from "@/domain/survey/TKDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
-import { TKDatasetFitlererCreate } from "@/domain/survey/TKDatasetFitlererCreate";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKRouteHandler from "@/app/TKRouteHandler.vue";
 import { TKOpsmapConfiguration } from "@/domain";
 
@@ -39,25 +38,51 @@ import { TKOpsmapConfiguration } from "@/domain";
 export default class TKApp extends Vue {
   isDatasetInitialized = false;
   appRootConfig: TKOpsmapConfiguration = this.$root.$data.config;
-  dataset: TKDatasetFilterer | null = null;
+  dataset: TKDataset | null = null;
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
     this.handeLocale();
-    TKDatasetFitlererCreate(
+    TKCreateDataset(
       this.appRootConfig.surveys,
       this.appRootConfig.spatial,
       this.appRootConfig.indicators,
       this.appRootConfig.languages
-    ).then(dataset => {
-      this.dataset = dataset;
-      this.isDatasetInitialized = true;
-      TKGetGeoBoundaries(this.dataset, this.appRootConfig.spatial).then(
-        geoDataset => {
-          this.geoDataset = geoDataset;
-        }
-      );
-    });
+    )
+      .then(dataset => {
+        this.dataset = dataset;
+        this.isDatasetInitialized = true;
+        TKGetGeoBoundaries(this.dataset, this.appRootConfig.spatial)
+          .then(geoDataset => {
+            this.geoDataset = geoDataset;
+          })
+          .catch(() => {
+            this.geoDataset = {
+              admin1: {
+                type: "FeatureCollection",
+                features: []
+              },
+              admin2: {
+                type: "FeatureCollection",
+                features: []
+              }
+            };
+          });
+      })
+      .catch(() => {
+        this.dataset = new TKDataset([]);
+        this.isDatasetInitialized = true;
+        this.geoDataset = {
+          admin1: {
+            type: "FeatureCollection",
+            features: []
+          },
+          admin2: {
+            type: "FeatureCollection",
+            features: []
+          }
+        };
+      });
   }
 
   @Watch("$root.$i18n.locale")
@@ -116,54 +141,60 @@ h3 {
 }
 
 .tk-autocomplete input {
-  color: #000 !important;
-  font-family: "Arial";
+  color: var(--v-autocomplete-base) !important;
+  font-family: "Arial" !important;
   font-weight: bold !important;
   font-size: 16px !important;
 }
 
 .tk-autocomplete input::placeholder {
-  color: #00000099 !important;
-  font-family: "Arial";
+  color: var(--v-autocomplete-base) !important;
+  font-family: "Arial" !important;
   font-weight: bold !important;
   font-size: 16px !important;
+  opacity: 0.5 !important;
 }
 
 .tk-autocomplete .v-text-field__prefix {
-  color: rgba(118, 118, 118, 0.5);
-  font-family: "Arial";
+  color: rgba(118, 118, 118) !important;
+  font-family: "Arial" !important;
   font-weight: bold !important;
   font-size: 16px !important;
+  opacity: 0.5 !important;
 }
 
+.tk-autocomplete .theme--dark.v-icon,
 .tk-autocomplete .theme--light.v-icon {
-  color: #d8d8d8 !important;
+  color: var(--v-discrete-base) !important;
 }
 
 .tk-autocomplete .v-input__slot {
-  border-color: #d8d8d8 !important;
+  border-color: var(--v-discrete-base) !important;
   transition: none !important;
 }
 
 .tk-autocomplete .v-input__slot:before {
-  border-color: #d8d8d8 !important;
+  border-color: var(--v-discrete-base) !important;
   transition: none !important;
 }
 
 .tk-autocomplete .v-input__slot:after {
-  border-color: #d8d8d8 !important;
+  border-color: var(--v-discrete-base) !important;
   transition: none !important;
 }
 
+.tk-autocomplete .theme--dark.v-icon.v-icon.v-icon,
 .tk-autocomplete .theme--light.v-icon.v-icon.v-icon {
-  color: #000 !important;
+  color: var(--v-autocomplete-base) !important;
 }
 
+.tk-autocomplete .theme--dark.v-icon.v-icon.v-icon--disabled,
 .tk-autocomplete .theme--light.v-icon.v-icon.v-icon--disabled {
   /* color: rgba(0, 0, 0, 0) !important; */
   opacity: 0.2 !important;
 }
 
+.theme--dark.v-text-field.v-input--is-disabled .v-input__slot::before,
 .theme--light.v-text-field.v-input--is-disabled .v-input__slot::before {
   -o-border-image: none !important;
   border-image: none !important;

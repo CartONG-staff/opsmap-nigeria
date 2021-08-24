@@ -1,6 +1,6 @@
 <template lang="html">
   <transition mode="out-in" name="fade">
-    <div :key="$root.$i18n.locale" class="tk-camp-selector">
+    <div :key="$root.$i18n.locale" class="tk-camp-selector" :style="opacity">
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <v-autocomplete
@@ -71,7 +71,7 @@
             v-model="dataset.currentCamp"
             :items="dataset.filteredCampsList"
             :disabled="!dataset.filteredCampsList.length"
-            item-text="infos.name"
+            item-text="name"
             return-object
             clearable
             v-bind="attrs"
@@ -86,22 +86,34 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 
 @Component
 export default class TKCampSelector extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
+
+  get opacity() {
+    if (this.$vuetify.theme.dark) {
+      return {
+        "--opacity": 0.9
+      };
+    }
+
+    return {
+      "--opacity": 0.75
+    };
+  }
 }
 </script>
 <style scoped>
 .tk-camp-selector {
   border-radius: 8px;
   align-items: center;
-  background-color: #f0fbffcc;
+  background-color: var(--v-campSelector-base);
+  opacity: var(--opacity);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  z-index: 3000;
   box-shadow: 0 0 20px 2px rgba(58, 158, 211, 0.15);
   width: 100%;
   height: 100%;

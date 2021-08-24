@@ -6,7 +6,7 @@ import { parse } from "papaparse";
 // Temaplted Read method for csv inputs
 // ////////////////////////////////////////////////////////////////////////////
 
-export async function TKGSheetRead<T>(
+export async function TKReadRawDataGSheet<T>(
   url: string,
   header: boolean
 ): Promise<T> {

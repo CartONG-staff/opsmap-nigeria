@@ -1,4 +1,8 @@
-import { TKCSVRead } from "@/domain/csv/TKCSVReader";
+import { TKCSVParse } from "../utils/TKCSV";
+import {
+  TKOperatorComparison,
+  TKOperatorComputation
+} from "../utils/TKOperator";
 import { TKFDFFiles, TKFDFInfos } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -53,7 +57,7 @@ export interface TKFDFSubmissionsRulesCollection {
 export async function TKReadSubmissionsRulesCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFSubmissionsRulesCollection> {
-  const rawSubmissionsRules: TKFDFSubmissionRuleRaw[] = await TKCSVRead<
+  const rawSubmissionsRules: TKFDFSubmissionRuleRaw[] = await TKCSVParse<
     TKFDFSubmissionRuleRaw[]
   >(TKFDFFiles.SUBMISSION_RULES, infos.folder, true);
   const submissionsRules: TKFDFSubmissionsRulesCollection = {};
@@ -98,8 +102,20 @@ export async function TKReadSubmissionsRulesCollection(
       trafficLightName: item.traffic_light_name,
       chartId: item.chart_id,
       chartData: item.chart_data,
-      displayCondition: displayCondition,
+      displayCondition: displayCondition
+        ? {
+            field: displayCondition.field,
+            value: displayCondition.value,
+            operator: displayCondition.operator as TKOperatorComparison
+          }
+        : undefined,
       computed: computedRule
+        ? {
+            field1: computedRule.field1,
+            field2: computedRule.field2,
+            operator: computedRule.operator as TKOperatorComputation
+          }
+        : undefined
     };
   });
   return submissionsRules;

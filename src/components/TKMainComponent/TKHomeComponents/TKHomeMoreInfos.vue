@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { TKOpsmapConfiguration } from "@/domain";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
@@ -47,7 +47,7 @@ export default class TKHomeIndicators extends Vue {
   row-gap: 30px;
   justify-content: space-between;
   align-items: top;
-  border: 2px solid #f1f3f3;
+  border: 2px solid var(--v-border-base);
   box-sizing: border-box;
   background-color: var(--v-background-base);
   width: 100%;

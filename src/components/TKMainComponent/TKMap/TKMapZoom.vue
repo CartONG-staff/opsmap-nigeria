@@ -67,10 +67,10 @@ export default class TKMapZoom extends Vue {}
 .tk-map-zoom {
   border-radius: 8px;
   overflow: hidden;
-  border: 2px solid #f1f3f3;
+  border: 2px solid var(--v-border-base);
+  background-color: var(--v-background-base);
   display: flex;
   flex-flow: column nowrap;
-  background-color: #ffffff;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 }
@@ -84,7 +84,7 @@ export default class TKMapZoom extends Vue {}
 }
 
 .tk-hseparator {
-  background-color: #00000011;
+  background-color: var(--v-border-base);
   height: 1px;
   width: 100%;
 }

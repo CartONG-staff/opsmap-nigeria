@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import Vue from "vue";
 import { headerLogoBus } from "@/components/TKHeaderLogoBus";
 import { Component, Prop, Watch } from "vue-property-decorator";
@@ -11,7 +11,7 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class TKRouteHandler extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   currentRoute = "/";
 
@@ -68,7 +68,7 @@ export default class TKRouteHandler extends Vue {
       if (survey) {
         this.dataset.setCurrentSurveyByName(survey);
         if (camp) {
-          this.dataset.setCurrentCampByName(camp);
+          this.dataset.setcurrentCampByName(camp);
           if (date) {
             this.dataset.setSubmissionByDate(date);
           }
@@ -87,9 +87,7 @@ export default class TKRouteHandler extends Vue {
     const surveyE = encodeURIComponent(this.dataset.currentSurvey?.name ?? "");
     const admin1E = encodeURIComponent(this.dataset.currentAdmin1?.name ?? "");
     const admin2E = encodeURIComponent(this.dataset.currentAdmin2?.name ?? "");
-    const campE = encodeURIComponent(
-      this.dataset.currentCamp?.infos.name ?? ""
-    );
+    const campE = encodeURIComponent(this.dataset.currentCamp?.name ?? "");
     const dateE = encodeURIComponent(
       this.dataset.currentSubmission?.date.replaceAll("/", "-") ?? ""
     );

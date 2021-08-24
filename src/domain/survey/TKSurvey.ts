@@ -1,18 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { TKCampTypesValues } from "./TKCamp";
-import { TKBoundariesCollection } from "./TKBoundariesCollection";
+import { TKCampType } from "./TKCamp";
+import { TKBoundaries } from "./TKBoundaries";
 import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
-import { TKIndicator } from "../ui/TKIndicator";
-import { TKSpatialDescription } from "@/domain/opsmapConfig/TKSpatialDescription";
+import { TKIndicator } from "./TKIndicator";
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import {
-  TKIndicatorsDescription,
-  TKIndicatorDescription
-} from "@/domain/opsmapConfig/TKIndicatorsDescription";
-import moment from "moment";
 import { isNumber } from "@turf/turf";
 import { TKCamp } from "@/domain/survey/TKCamp";
+import { TKDateCompare, TKDateFormat } from "@/domain/utils/TKDate";
+import { TKFDFIndicatorStandard } from "../fdf/TKFDFIndicators";
+import { TKSubmissionEntryType } from "./TKSubmissionEntry";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
@@ -26,7 +23,10 @@ export interface TKSurveyOptions {
 
 export interface TKSurvey {
   name: string;
-  boundariesList: TKBoundariesCollection;
+  boundaries: {
+    admin1: TKBoundaries[];
+    admin2: TKBoundaries[];
+  };
   indicators: [TKIndicator, TKIndicator, TKIndicator];
   fdf: TKFDF;
   camps: TKCamp[];
@@ -34,24 +34,11 @@ export interface TKSurvey {
 }
 
 // ////////////////////////////////////////////////////////////////////////////
-// sort dates
-// ////////////////////////////////////////////////////////////////////////////
-
-function formatDate(date: string, options: TKSurveyOptions): string {
-  if (options.dateFormat) {
-    const day = moment(date, options.dateFormat);
-    return day.format("DD/MM/YYYY");
-  }
-
-  return date;
-}
-
-// ////////////////////////////////////////////////////////////////////////////
 // helper method that compute survey indicator
 // ////////////////////////////////////////////////////////////////////////////
 
 function computeSurveyIndicator(
-  descr: TKIndicatorDescription,
+  descr: TKFDFIndicatorStandard,
   camps: TKCamp[]
 ): TKIndicator {
   if (descr.entryCode === "mp_site_id") {
@@ -77,7 +64,9 @@ function computeSurveyIndicator(
         for (const thematic in submission.thematics) {
           const them = submission.thematics[thematic];
           itemIndex = them.data.findIndex(
-            item => item.type === "text" && item.field === descr.entryCode
+            item =>
+              item.type === TKSubmissionEntryType.TEXT &&
+              item.field === descr.entryCode
           );
           if (itemIndex > -1) {
             foundAtLeastOnce = true;
@@ -97,7 +86,7 @@ function computeSurveyIndicator(
         const item = submission.thematics[thematicName].data[itemIndex];
         if (
           item &&
-          item.type === "text" &&
+          item.type === TKSubmissionEntryType.TEXT &&
           item.answerLabel &&
           isNumber(item.answerLabel.en)
         ) {
@@ -129,74 +118,70 @@ function computeSurveyIndicator(
 
 export function TKCreateSurvey(
   submissions: Record<string, string>[],
-  surveyConfig: TKFDF,
-  spatialDescription: TKSpatialDescription,
-  indicatorsDescription: TKIndicatorsDescription,
+  fdf: TKFDF,
   languages: Array<string>,
   options: TKSurveyOptions
 ): TKSurvey {
   const camps: TKCamp[] = [];
 
-  const boundariesList: TKBoundariesCollection = {
+  const boundariesList: {
+    admin1: TKBoundaries[];
+    admin2: TKBoundaries[];
+  } = {
     admin1: [],
     admin2: []
   };
 
   submissions.map(submission => {
-    submission[spatialDescription.siteLastUpdateField] = formatDate(
-      submission[spatialDescription.siteLastUpdateField],
-      options
+    submission[fdf.spatialDescription.siteLastUpdateField] = TKDateFormat(
+      submission[fdf.spatialDescription.siteLastUpdateField],
+      options.dateFormat
     );
   });
 
   for (const submission of submissions) {
-    const computedSubmission = TKCreateSubmission(
-      submission,
-      surveyConfig,
-      indicatorsDescription,
-      spatialDescription,
-      languages
-    );
+    const computedSubmission = TKCreateSubmission(submission, fdf, languages);
 
     // Check if new camp
     let camp = camps.find(
-      camp => camp.infos.id === submission[spatialDescription.siteIDField]
+      camp => camp.id === submission[fdf.spatialDescription.siteIDField]
     );
 
     // Doesn't exist in camps list
     if (!camp) {
       camp = {
-        infos: {
-          id: submission[spatialDescription.siteIDField],
-          name: submission[spatialDescription.siteNameField],
-          type: surveyConfig.terminology[
-            submission[spatialDescription.siteTypeField]
-          ] as TKCampTypesValues,
-          lat: Number(
-            submission[spatialDescription.siteLatitudeField].replace(",", ".")
-          ),
-          lng: Number(
-            submission[spatialDescription.siteLongitudeField].replace(",", ".")
-          ),
-          admin1: {
-            pcode: submission[spatialDescription.adm1Pcode],
-            name: submission[spatialDescription.adm1Name]
-          },
-          admin2: {
-            pcode: submission[spatialDescription.adm2Pcode],
-            name: submission[spatialDescription.adm2Name]
-          },
-          admin3: {
-            pcode: submission[spatialDescription.adm3Pcode],
-            name: submission[spatialDescription.adm3Name]
-          },
-          managedBy: {
-            en: submission[options.manageByField]
-              ? submission[options.manageByField]
-              : options.manageByAltValue
-              ? options.manageByAltValue
-              : "-"
-          }
+        id: submission[fdf.spatialDescription.siteIDField],
+        name: submission[fdf.spatialDescription.siteNameField],
+        type: fdf.terminology[
+          submission[fdf.spatialDescription.siteTypeField]
+        ] as TKCampType,
+        lat: Number(
+          submission[fdf.spatialDescription.siteLatitudeField].replace(",", ".")
+        ),
+        lng: Number(
+          submission[fdf.spatialDescription.siteLongitudeField].replace(
+            ",",
+            "."
+          )
+        ),
+        admin1: {
+          pcode: submission[fdf.spatialDescription.adm1Pcode],
+          name: submission[fdf.spatialDescription.adm1Name]
+        },
+        admin2: {
+          pcode: submission[fdf.spatialDescription.adm2Pcode],
+          name: submission[fdf.spatialDescription.adm2Name]
+        },
+        admin3: {
+          pcode: submission[fdf.spatialDescription.adm3Pcode],
+          name: submission[fdf.spatialDescription.adm3Name]
+        },
+        managedBy: {
+          en: submission[options.manageByField]
+            ? submission[options.manageByField]
+            : options.manageByAltValue
+            ? options.manageByAltValue
+            : "-"
         },
         submissions: [computedSubmission]
       };
@@ -206,11 +191,11 @@ export function TKCreateSurvey(
       if (
         !boundariesList.admin2
           .map(x => x.pcode)
-          .includes(submission[spatialDescription.adm2Pcode])
+          .includes(submission[fdf.spatialDescription.adm2Pcode])
       ) {
         boundariesList.admin2.push({
-          pcode: submission[spatialDescription.adm2Pcode],
-          name: submission[spatialDescription.adm2Name]
+          pcode: submission[fdf.spatialDescription.adm2Pcode],
+          name: submission[fdf.spatialDescription.adm2Name]
         });
       }
 
@@ -218,11 +203,11 @@ export function TKCreateSurvey(
       if (
         !boundariesList.admin1
           .map(x => x.pcode)
-          .includes(submission[spatialDescription.adm1Pcode])
+          .includes(submission[fdf.spatialDescription.adm1Pcode])
       ) {
         boundariesList.admin1.push({
-          pcode: submission[spatialDescription.adm1Pcode],
-          name: submission[spatialDescription.adm1Name]
+          pcode: submission[fdf.spatialDescription.adm1Pcode],
+          name: submission[fdf.spatialDescription.adm1Name]
         });
       }
     }
@@ -236,37 +221,20 @@ export function TKCreateSurvey(
   // Sort the dates and update last submission date for each camp
   camps.map(camp =>
     camp.submissions.sort((a: TKSubmission, b: TKSubmission) => {
-      const asplitted = a.date.split("/");
-      const bsplitted = b.date.split("/");
-      if (asplitted.length !== 3 || bsplitted.length !== 3) {
-        return 0;
-      }
-      const adated = new Date(
-        parseInt(asplitted[2]),
-        parseInt(asplitted[1]) - 1,
-        parseInt(asplitted[0])
-      );
-      const bdated = new Date(
-        parseInt(bsplitted[2]),
-        parseInt(bsplitted[1]) - 1,
-        parseInt(bsplitted[0])
-      );
-      if (adated < bdated) return 1;
-      else if (adated > bdated) return -1;
-      else return 0;
+      return TKDateCompare(a.date, b.date);
     })
   );
 
   return {
-    name: surveyConfig.name,
+    name: fdf.name,
     camps: camps,
-    boundariesList: boundariesList,
+    boundaries: boundariesList,
     indicators: [
-      computeSurveyIndicator(indicatorsDescription.home[0], camps),
-      computeSurveyIndicator(indicatorsDescription.home[1], camps),
-      computeSurveyIndicator(indicatorsDescription.home[2], camps)
+      computeSurveyIndicator(fdf.indicators.home[0], camps),
+      computeSurveyIndicator(fdf.indicators.home[1], camps),
+      computeSurveyIndicator(fdf.indicators.home[2], camps)
     ],
-    fdf: surveyConfig,
+    fdf: fdf,
     options: options
   };
 }

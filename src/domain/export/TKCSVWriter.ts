@@ -1,22 +1,11 @@
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
-import { TKGetLocalValue } from "../ui/TKLabel";
-
+import { TKSubmissionEntryType } from "../survey/TKSubmissionEntry";
+import { TKGetLocalValue } from "../utils/TKLabel";
+import { TKComputeExportFilename } from "./TKExportCommon";
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods
 // ////////////////////////////////////////////////////////////////////////////
-
-function computeExportFilename(dataset: TKDatasetFilterer): string {
-  if (dataset) {
-    const campId = dataset.currentCamp?.infos.id ?? "";
-    const campName = dataset.currentCamp?.infos.name ?? "";
-    const submissionId = dataset.currentSubmission?.date.replaceAll("/", "-");
-
-    const filename = campId + "_" + campName + "_" + submissionId;
-    return filename + ".csv";
-  }
-  return "camp-export.json";
-}
 
 function computeCSVContent(submission: TKSubmission, locale: string): string {
   if (submission) {
@@ -30,13 +19,13 @@ function computeCSVContent(submission: TKSubmission, locale: string): string {
 
       for (const submissionItem in submission.thematics[thematic].data) {
         const item = submission.thematics[thematic].data[submissionItem];
-        if (item.type === "text") {
+        if (item.type === TKSubmissionEntryType.TEXT) {
           const itemName = TKGetLocalValue(item.fieldLabel, locale);
           const answer = TKGetLocalValue(item.answerLabel, locale);
           const trafficlight = item.trafficLight ? item.trafficLightColor : "";
 
           rows.push([thematicName, itemName, answer, trafficlight]);
-        } else if (item.type === "age_pyramid") {
+        } else if (item.type === TKSubmissionEntryType.CHART_PYRAMID) {
           const itemName = "age_pyramid";
           for (const [index, value] of item.malesEntries.entries()) {
             const chartItemName =
@@ -85,13 +74,13 @@ function computeCSVContent(submission: TKSubmission, locale: string): string {
 // Temaplted Read method for csv inputs
 // ////////////////////////////////////////////////////////////////////////////
 
-export function TKCSVWrite(dataset: TKDatasetFilterer, locale: string) {
+export function TKCSVWrite(dataset: TKDataset, locale: string) {
   if (dataset.currentSubmission) {
     const csvContent = computeCSVContent(dataset.currentSubmission, locale);
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", computeExportFilename(dataset)); // filename
+    link.setAttribute("download", TKComputeExportFilename(dataset, "csv")); // filename
     document.body.appendChild(link); // Required for FF ?
     link.click();
   }

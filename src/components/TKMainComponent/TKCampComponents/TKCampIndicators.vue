@@ -10,8 +10,8 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
-import { TKIndicator } from "@/domain/ui/TKIndicator";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKIndicatorDefault, TKIndicator } from "@/domain/survey/TKIndicator";
+import { TKDataset } from "@/domain/survey/TKDataset";
 
 @Component({
   components: {
@@ -23,11 +23,17 @@ export default class TKCampIndicators extends Vue {
   readonly appConfig!: TKOpsmapConfiguration;
 
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
-  indicator1: TKIndicator | null = null;
-  indicator2: TKIndicator | null = null;
-  indicator3: TKIndicator | null = null;
+  indicator1: TKIndicator = TKIndicatorDefault(
+    this.appConfig.indicators.site[0]
+  );
+  indicator2: TKIndicator = TKIndicatorDefault(
+    this.appConfig.indicators.site[1]
+  );
+  indicator3: TKIndicator = TKIndicatorDefault(
+    this.appConfig.indicators.site[2]
+  );
 
   @Watch("dataset.currentSubmission", { immediate: true })
   onSubmissionChanged() {
@@ -36,24 +42,9 @@ export default class TKCampIndicators extends Vue {
       this.indicator2 = this.dataset.currentSubmission.indicators[1];
       this.indicator3 = this.dataset.currentSubmission.indicators[2];
     } else {
-      this.indicator1 = {
-        type: this.appConfig.indicators.site[0].type,
-        nameLabel: this.appConfig.indicators.site[0].name,
-        valueLabel: { en: "-" },
-        iconOchaName: this.appConfig.indicators.site[0].iconOchaName
-      };
-      this.indicator2 = {
-        type: this.appConfig.indicators.site[1].type,
-        nameLabel: this.appConfig.indicators.site[1].name,
-        valueLabel: { en: "-" },
-        iconOchaName: this.appConfig.indicators.site[1].iconOchaName
-      };
-      this.indicator3 = {
-        type: this.appConfig.indicators.site[2].type,
-        nameLabel: this.appConfig.indicators.site[2].name,
-        valueLabel: { en: "-" },
-        iconOchaName: this.appConfig.indicators.site[2].iconOchaName
-      };
+      this.indicator1 = TKIndicatorDefault(this.appConfig.indicators.site[0]);
+      this.indicator2 = TKIndicatorDefault(this.appConfig.indicators.site[1]);
+      this.indicator3 = TKIndicatorDefault(this.appConfig.indicators.site[2]);
     }
   }
 }

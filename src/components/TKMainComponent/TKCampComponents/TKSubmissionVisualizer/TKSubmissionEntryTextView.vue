@@ -35,7 +35,7 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 @Component
 export default class TKSubmissionentryView extends Vue {
@@ -110,14 +110,14 @@ export default class TKSubmissionentryView extends Vue {
 }
 
 .tk-entry-field-name {
-  color: #999;
+  color: var(--v-secondary-base);
   text-align: left;
   flex-grow: 2;
   overflow: auto;
 }
 
 .tk-entry-field-value {
-  color: #333;
+  color: var(--v-primary-base);
   text-align: right;
   flex-grow: 2;
 }

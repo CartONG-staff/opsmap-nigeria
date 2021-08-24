@@ -30,13 +30,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { TKIndicator } from "@/domain/ui/TKIndicator";
-import { TKIconUrl } from "@/domain/ui/TKIcons";
-import { TKGetLocalValue } from "@/domain/ui/TKLabel";
+import { TKIndicatorStandard as TKIndicatorStandardType } from "@/domain/survey/TKIndicator";
+import { TKIconUrl } from "@/domain/utils/TKIconUrl";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 
 @Component
 export default class TKIndicatorStandard extends Vue {
-  @Prop() readonly indicator!: TKIndicator;
+  @Prop() readonly indicator!: TKIndicatorStandardType;
   iconUrl = "";
   value = "";
   name = "";
@@ -104,6 +104,7 @@ export default class TKIndicatorStandard extends Vue {
   flex-flow: column nowrap;
   font-size: 40px;
   padding-top: 13px;
+  padding-bottom: 13px;
   line-height: 1.25;
   justify-content: flex-start;
   height: 100%;
@@ -119,12 +120,10 @@ export default class TKIndicatorStandard extends Vue {
 }
 
 .tk-indicator-value-decription {
-  color: var(--v-quaternary-base);
+  color: var(--v-autocomplete-base);
   font-weight: bolder;
   font-size: 16px;
   line-height: 17px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 }
 </style>

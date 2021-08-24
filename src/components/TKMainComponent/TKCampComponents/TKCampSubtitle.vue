@@ -10,12 +10,12 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 
 @Component
 export default class TKCampSubtitle extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   name = "";
 
@@ -23,7 +23,7 @@ export default class TKCampSubtitle extends Vue {
   @Watch("dataset.currentCamp", { immediate: true })
   onChange() {
     this.name = this.dataset.currentCamp
-      ? this.dataset.currentCamp.infos.name
+      ? this.dataset.currentCamp.name
       : this.$root.$i18n.t("site.subtitlePlaceholder").toString();
   }
 }
@@ -31,13 +31,11 @@ export default class TKCampSubtitle extends Vue {
 
 <style scoped>
 .tk-camp-subtitle {
-  color: var(--v-campTitle-base);
   font-size: 30px;
   line-height: 1.467;
 }
 
 .tk-camp-subtitle-placeholder {
-  color: var(--v-campTitle-base);
   font-size: 30px;
   line-height: 1.467;
 }

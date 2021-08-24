@@ -1,7 +1,7 @@
 <template>
   <div class="tk-maincomponent">
     <div class="tk-maincomponent-decoration">
-      <div class="tk-maincomponent-blur"></div>
+      <div class="tk-maincomponent-blur" :style="cssVars"></div>
       <img class="tk-maincomponent-png" src="@/assets/bg-isoline-custom.png" />
     </div>
     <div class="tk-maincomponent-container">
@@ -22,8 +22,10 @@
             <router-view
               v-else
               name="left"
+              :appConfig="appConfig"
               :dataset="dataset"
               :visualizerOptions="visualizerOptions"
+              :pdfInfos="pdfInfos"
             ></router-view>
           </transition>
         </div>
@@ -58,6 +60,7 @@
             :visualizerOptions="visualizerOptions"
             :appConfig="appConfig"
             :dataset="dataset"
+            :pdfInfos="pdfInfos"
           ></router-view>
         </transition>
       </div>
@@ -85,7 +88,8 @@ import {
   TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
 import { TKOpsmapConfiguration } from "@/domain";
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
+import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
@@ -114,7 +118,7 @@ export default class TKMainComponent extends Vue {
   readonly isDatasetInitialized = false;
 
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 
   @Prop()
   readonly geoData!: TKGeoDataset;
@@ -122,9 +126,28 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly appConfig!: TKOpsmapConfiguration;
 
+  readonly pdfInfos: TKPDFInfos = {
+    currentChartsBase64: {},
+    pdfColumnCount: this.appConfig.options.pdfColumnCount
+  };
+
   visualizerOptions: TKSubmissionVisualizerOptions = {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
   };
+
+  get cssVars() {
+    if (this.$vuetify.theme.dark) {
+      return {
+        "--bg-color-beg": "#3a9ed355",
+        "--bg-color-end": "#3a9ed300"
+      };
+    }
+
+    return {
+      "--bg-color-beg": "#3a9ed3ff",
+      "--bg-color-end": "#3a9ed300"
+    };
+  }
 
   // Trigger when a camp is selected
   @Watch("dataset.lastModification")
@@ -147,7 +170,7 @@ export default class TKMainComponent extends Vue {
   width: 100%;
   height: 365px;
   opacity: 0.21;
-  background: linear-gradient(#3a9ed3ff, #3a9ed300);
+  background: linear-gradient(var(--bg-color-beg), var(--bg-color-end));
 }
 
 .tk-maincomponent-png {
@@ -172,8 +195,8 @@ export default class TKMainComponent extends Vue {
 
 .tk-main-header {
   display: block;
+  z-index: 1;
   min-height: 64px;
-  z-index: 1000;
   align-items: flex-end;
   height: 100%;
   margin-left: -20px;

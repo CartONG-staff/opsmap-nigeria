@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { TKDatasetFilterer } from "@/domain/survey/TKDatasetFilterer";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { TKHomeCombos, TKHomeSubtitle } from "./TKHomeComponents";
 @Component({
@@ -17,7 +17,7 @@ import { TKHomeCombos, TKHomeSubtitle } from "./TKHomeComponents";
 })
 export default class TKMainComponentLeftHome extends Vue {
   @Prop()
-  readonly dataset!: TKDatasetFilterer;
+  readonly dataset!: TKDataset;
 }
 </script>
 
