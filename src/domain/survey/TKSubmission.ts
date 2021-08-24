@@ -4,7 +4,8 @@ import {
   TKCreateSubmissionEntryText,
   TKSubmissionEntryPolar,
   TKSubmissionEntryDoughnut,
-  TKSubmissionEntryAgePyramid
+  TKSubmissionEntryAgePyramid,
+  TKSubmissionEntryType
 } from "./TKSubmissionEntry";
 import {
   TKSubmissionThematic,
@@ -43,11 +44,12 @@ function getValueForIndicator(
   for (const thematic in data) {
     const them = data[thematic];
     const item = them.data.find(
-      item => item.type === "text" && item.field === entryCode
+      item =>
+        item.type === TKSubmissionEntryType.TEXT && item.field === entryCode
     );
     if (
       item &&
-      item.type === "text" &&
+      item.type === TKSubmissionEntryType.TEXT &&
       item.answerLabel &&
       isNumber(item.answerLabel.en)
     ) {
@@ -64,9 +66,10 @@ function getLabelForIndicator(
   for (const thematic in data) {
     const them = data[thematic];
     const item = them.data.find(
-      item => item.type === "text" && item.field === entryCode
+      item =>
+        item.type === TKSubmissionEntryType.TEXT && item.field === entryCode
     );
-    if (item && item.type === "text" && item.answerLabel) {
+    if (item && item.type === TKSubmissionEntryType.TEXT && item.answerLabel) {
       return item.answerLabel;
     }
   }
@@ -157,7 +160,7 @@ function createChartInSubmission(
       .reverse();
 
     const entry: TKSubmissionEntryAgePyramid = {
-      type: "age_pyramid",
+      type: TKSubmissionEntryType.CHART_PYRAMID,
       chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],
@@ -173,7 +176,7 @@ function createChartInSubmission(
     submission[chartData.thematic].data.push(entry);
   } else if (chartData.id.includes("doughnut")) {
     const entry: TKSubmissionEntryDoughnut = {
-      type: "doughnut",
+      type: TKSubmissionEntryType.CHART_DOUGHNUT,
       chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],
@@ -187,7 +190,7 @@ function createChartInSubmission(
     submission[chartData.thematic].data.push(entry);
   } else if (chartData.id.includes("polar_area_chart")) {
     const entry: TKSubmissionEntryPolar = {
-      type: "polar",
+      type: TKSubmissionEntryType.CHART_POLAR,
       chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],

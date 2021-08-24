@@ -1,5 +1,6 @@
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
+import { TKSubmissionEntryType } from "../survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "../utils/TKLabel";
 import { TKComputeExportFilename } from "./TKExportCommon";
 // ////////////////////////////////////////////////////////////////////////////
@@ -18,13 +19,13 @@ function computeCSVContent(submission: TKSubmission, locale: string): string {
 
       for (const submissionItem in submission.thematics[thematic].data) {
         const item = submission.thematics[thematic].data[submissionItem];
-        if (item.type === "text") {
+        if (item.type === TKSubmissionEntryType.TEXT) {
           const itemName = TKGetLocalValue(item.fieldLabel, locale);
           const answer = TKGetLocalValue(item.answerLabel, locale);
           const trafficlight = item.trafficLight ? item.trafficLightColor : "";
 
           rows.push([thematicName, itemName, answer, trafficlight]);
-        } else if (item.type === "age_pyramid") {
+        } else if (item.type === TKSubmissionEntryType.CHART_PYRAMID) {
           const itemName = "age_pyramid";
           for (const [index, value] of item.malesEntries.entries()) {
             const chartItemName =

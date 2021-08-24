@@ -36,6 +36,7 @@ import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
+import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
 
 @Component({
   components: {
@@ -191,7 +192,7 @@ export default class TKSubmissionToPDF extends Vue {
 
     for (let i = 0; i < thematic.data.length; i++) {
       const item = thematic.data[i];
-      if (item.type === "text") {
+      if (item.type === TKSubmissionEntryType.TEXT) {
         let color = "#000000";
         switch (item.trafficLightColor) {
           case TKTrafficLightValues.OK:
@@ -228,9 +229,9 @@ export default class TKSubmissionToPDF extends Vue {
         body.push(row);
       } else {
         if (
-          item.type === "age_pyramid" ||
-          item.type === "doughnut" ||
-          item.type === "polar"
+          item.type === TKSubmissionEntryType.CHART_PYRAMID ||
+          item.type === TKSubmissionEntryType.CHART_DOUGHNUT ||
+          item.type === TKSubmissionEntryType.CHART_POLAR
         ) {
           const props = pdf.getImageProperties(
             this.pdfInfos.currentChartsBase64[item.chartid]

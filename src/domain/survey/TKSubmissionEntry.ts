@@ -11,8 +11,15 @@ import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 // ////////////////////////////////////////////////////////////////////////////
 // Entry abstract concept definition
 // ////////////////////////////////////////////////////////////////////////////
+
+export enum TKSubmissionEntryType {
+  TEXT = "text",
+  CHART_PYRAMID = "age_pyramid",
+  CHART_DOUGHNUT = "doughnut",
+  CHART_POLAR = "polar"
+}
 export interface TKSubmissionEntryText {
-  type: "text";
+  type: TKSubmissionEntryType.TEXT;
   field: string;
   fieldLabel: TKLabel;
   answerLabel: TKLabel;
@@ -21,7 +28,7 @@ export interface TKSubmissionEntryText {
   isAnswered: boolean;
 }
 export interface TKSubmissionEntryAgePyramid {
-  type: "age_pyramid";
+  type: TKSubmissionEntryType.CHART_PYRAMID;
   chartid: string;
   title: TKLabel;
   malesEntries: Array<number>;
@@ -32,14 +39,14 @@ export interface TKSubmissionEntryAgePyramid {
 }
 
 export interface TKSubmissionEntryDoughnut {
-  type: "doughnut";
+  type: TKSubmissionEntryType.CHART_DOUGHNUT;
   chartid: string;
   title: TKLabel;
   isAnswered: true;
   entries: Array<{ value: number; label: TKLabel }>;
 }
 export interface TKSubmissionEntryPolar {
-  type: "polar";
+  type: TKSubmissionEntryType.CHART_POLAR;
   chartid: string;
   title: TKLabel;
   isAnswered: true;
@@ -133,7 +140,7 @@ export function TKCreateSubmissionEntryText(
       : { en: value };
   }
   return {
-    type: "text",
+    type: TKSubmissionEntryType.TEXT,
     field: field,
     fieldLabel: surveyConfiguration.fieldsLabels[field],
     answerLabel: correctedValue,

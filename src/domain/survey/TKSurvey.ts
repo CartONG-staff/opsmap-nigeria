@@ -9,6 +9,7 @@ import { isNumber } from "@turf/turf";
 import { TKCamp } from "@/domain/survey/TKCamp";
 import { TKDateCompare, TKDateFormat } from "@/domain/utils/TKDate";
 import { TKFDFIndicatorStandard } from "../fdf/TKFDFIndicators";
+import { TKSubmissionEntryType } from "./TKSubmissionEntry";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
@@ -63,7 +64,9 @@ function computeSurveyIndicator(
         for (const thematic in submission.thematics) {
           const them = submission.thematics[thematic];
           itemIndex = them.data.findIndex(
-            item => item.type === "text" && item.field === descr.entryCode
+            item =>
+              item.type === TKSubmissionEntryType.TEXT &&
+              item.field === descr.entryCode
           );
           if (itemIndex > -1) {
             foundAtLeastOnce = true;
@@ -83,7 +86,7 @@ function computeSurveyIndicator(
         const item = submission.thematics[thematicName].data[itemIndex];
         if (
           item &&
-          item.type === "text" &&
+          item.type === TKSubmissionEntryType.TEXT &&
           item.answerLabel &&
           isNumber(item.answerLabel.en)
         ) {
