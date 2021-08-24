@@ -56,7 +56,7 @@ export default class TKApp extends Vue {
           .then(geoDataset => {
             this.geoDataset = geoDataset;
           })
-          .catch((reason: any) => {
+          .catch(() => {
             this.geoDataset = {
               admin1: {
                 type: "FeatureCollection",
@@ -69,7 +69,7 @@ export default class TKApp extends Vue {
             };
           });
       })
-      .catch((reason: any) => {
+      .catch(() => {
         this.dataset = new TKDataset([]);
         this.isDatasetInitialized = true;
         this.geoDataset = {
