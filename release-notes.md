@@ -1,8 +1,26 @@
 # Release Notes
 
-## Development
+## 1.3.0
 
-Road to 1.3. To be defined.
+Toolkit: 1.3.0
+Brazil: 1.3.0
+Nigeria: 1.3.0
+
+Features:
+
+- Export PDF added.
+- Gauge type indicator
+- No infinite wait when data are unreachable
+
+Bugfixes:
+
+- Indicators: display full description text
+- HomePage LastUpdate: correct date is displayed
+- Security improved: avoid use of eval
+
+Hosting:
+
+- GitHub public and tokenless version is deployed.
 
 ## 1.2.0
 
