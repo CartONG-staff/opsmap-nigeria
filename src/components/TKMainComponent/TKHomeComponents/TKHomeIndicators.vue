@@ -9,8 +9,9 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
-import { TKIndicator } from "@/domain/survey/TKIndicator";
+import { TKIndicator, TKIndicatorDefault } from "@/domain/survey/TKIndicator";
 import { TKDataset } from "@/domain/survey/TKDataset";
+import { TKOpsmapConfiguration } from "@/domain";
 @Component({
   components: {
     TKIndicatorComponent
@@ -18,22 +19,31 @@ import { TKDataset } from "@/domain/survey/TKDataset";
 })
 export default class TKHomeIndicators extends Vue {
   @Prop()
+  readonly appConfig!: TKOpsmapConfiguration;
+
+  @Prop()
   readonly dataset!: TKDataset;
-  indicator1: TKIndicator | null = null;
-  indicator2: TKIndicator | null = null;
-  indicator3: TKIndicator | null = null;
+  indicator1: TKIndicator = TKIndicatorDefault(
+    this.appConfig.indicators.home[0]
+  );
+  indicator2: TKIndicator = TKIndicatorDefault(
+    this.appConfig.indicators.home[1]
+  );
+  indicator3: TKIndicator = TKIndicatorDefault(
+    this.appConfig.indicators.home[2]
+  );
 
   @Watch("dataset", { immediate: true })
   onSurveyChanged() {
-    this.indicator1 = this.dataset.currentSurvey
-      ? this.dataset.currentSurvey.indicators[0]
-      : null;
-    this.indicator2 = this.dataset.currentSurvey
-      ? this.dataset.currentSurvey.indicators[1]
-      : null;
-    this.indicator3 = this.dataset.currentSurvey
-      ? this.dataset.currentSurvey.indicators[2]
-      : null;
+    if (this.dataset.currentSurvey) {
+      this.indicator1 = this.dataset.currentSurvey.indicators[0];
+      this.indicator2 = this.dataset.currentSurvey.indicators[1];
+      this.indicator3 = this.dataset.currentSurvey.indicators[2];
+    } else {
+      this.indicator1 = TKIndicatorDefault(this.appConfig.indicators.home[0]);
+      this.indicator2 = TKIndicatorDefault(this.appConfig.indicators.home[1]);
+      this.indicator3 = TKIndicatorDefault(this.appConfig.indicators.home[2]);
+    }
   }
 }
 </script>

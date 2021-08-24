@@ -48,15 +48,20 @@ export default class TKApp extends Vue {
       this.appRootConfig.spatial,
       this.appRootConfig.indicators,
       this.appRootConfig.languages
-    ).then(dataset => {
-      this.dataset = dataset;
-      this.isDatasetInitialized = true;
-      TKGetGeoBoundaries(this.dataset, this.appRootConfig.spatial).then(
-        geoDataset => {
-          this.geoDataset = geoDataset;
-        }
-      );
-    });
+    )
+      .then(dataset => {
+        this.dataset = dataset;
+        this.isDatasetInitialized = true;
+        TKGetGeoBoundaries(this.dataset, this.appRootConfig.spatial).then(
+          geoDataset => {
+            this.geoDataset = geoDataset;
+          }
+        );
+      })
+      .catch((reason: any) => {
+        this.dataset = new TKDataset([]);
+        this.isDatasetInitialized = true;
+      });
   }
 
   @Watch("$root.$i18n.locale")

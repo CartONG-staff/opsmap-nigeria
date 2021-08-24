@@ -420,43 +420,45 @@ export class TKDataset {
 
   // Sponateneous
   updateFiltering() {
-    // Reset camp list ////////////////////////////////////////////////////////
-    this._filteredCampsList = this._currentSurvey.camps;
-    this._filteredAdmin1List = this._currentSurvey.boundaries.admin1;
-    this._filteredAdmin2List = this._currentSurvey.boundaries.admin2;
+    if (this._currentSurvey) {
+      // Reset camp list ////////////////////////////////////////////////////////
+      this._filteredCampsList = this._currentSurvey.camps;
+      this._filteredAdmin1List = this._currentSurvey.boundaries.admin1;
+      this._filteredAdmin2List = this._currentSurvey.boundaries.admin2;
 
-    // Camp filtering base on Admin1 //////////////////////////////////////////
-    if (this._filters[TKFilters.ADMIN1]) {
-      this._filteredCampsList = this._filteredCampsList.filter(
-        camp => camp.admin1.pcode === this._filters[TKFilters.ADMIN1]
-      );
-      this.filterAdmin2BaseOnFilteredCamp();
-    }
+      // Camp filtering base on Admin1 //////////////////////////////////////////
+      if (this._filters[TKFilters.ADMIN1]) {
+        this._filteredCampsList = this._filteredCampsList.filter(
+          camp => camp.admin1.pcode === this._filters[TKFilters.ADMIN1]
+        );
+        this.filterAdmin2BaseOnFilteredCamp();
+      }
 
-    // Camp filtering base on Admin2 //////////////////////////////////////////
-    if (this._filters[TKFilters.ADMIN2]) {
-      this._filteredCampsList = this._filteredCampsList.filter(
-        camp => camp.admin2.pcode === this._filters[TKFilters.ADMIN2]
-      );
-    }
+      // Camp filtering base on Admin2 //////////////////////////////////////////
+      if (this._filters[TKFilters.ADMIN2]) {
+        this._filteredCampsList = this._filteredCampsList.filter(
+          camp => camp.admin2.pcode === this._filters[TKFilters.ADMIN2]
+        );
+      }
 
-    // Remove planned if needed ///////////////////////////////////////////////
-    if (!this._filters[TKFilters.PLANNED_SITE]) {
-      this._filteredCampsList = this._filteredCampsList.filter(
-        camp => camp.type !== TKCampType.PLANNED
-      );
+      // Remove planned if needed ///////////////////////////////////////////////
+      if (!this._filters[TKFilters.PLANNED_SITE]) {
+        this._filteredCampsList = this._filteredCampsList.filter(
+          camp => camp.type !== TKCampType.PLANNED
+        );
 
-      this.filterAdmin1BaseOnFilteredCamp();
-      this.filterAdmin2BaseOnFilteredCamp();
-    }
+        this.filterAdmin1BaseOnFilteredCamp();
+        this.filterAdmin2BaseOnFilteredCamp();
+      }
 
-    // Remove spontaneous if needed ///////////////////////////////////////////
-    if (!this._filters[TKFilters.SPONTANEOUS_SITE]) {
-      this._filteredCampsList = this._filteredCampsList.filter(
-        camp => camp.type !== TKCampType.SPONTANEOUS
-      );
-      this.filterAdmin1BaseOnFilteredCamp();
-      this.filterAdmin2BaseOnFilteredCamp();
+      // Remove spontaneous if needed ///////////////////////////////////////////
+      if (!this._filters[TKFilters.SPONTANEOUS_SITE]) {
+        this._filteredCampsList = this._filteredCampsList.filter(
+          camp => camp.type !== TKCampType.SPONTANEOUS
+        );
+        this.filterAdmin1BaseOnFilteredCamp();
+        this.filterAdmin2BaseOnFilteredCamp();
+      }
     }
   }
 }

@@ -25,9 +25,15 @@ export default class TKCampIndicators extends Vue {
   @Prop()
   readonly dataset!: TKDataset;
 
-  indicator1: TKIndicator | null = null;
-  indicator2: TKIndicator | null = null;
-  indicator3: TKIndicator | null = null;
+  indicator1: TKIndicator = TKIndicatorDefault(
+    this.appConfig.indicators.site[0]
+  );
+  indicator2: TKIndicator = TKIndicatorDefault(
+    this.appConfig.indicators.site[1]
+  );
+  indicator3: TKIndicator = TKIndicatorDefault(
+    this.appConfig.indicators.site[2]
+  );
 
   @Watch("dataset.currentSubmission", { immediate: true })
   onSubmissionChanged() {

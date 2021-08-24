@@ -30,7 +30,7 @@ export default class TKHomeSubtitle extends Vue {
         }
       }
     }
-    this.lastUpdate = lastDate;
+    this.lastUpdate = lastDate === "01/01/1970" ? "-" : lastDate;
   }
 }
 </script>
