@@ -52,15 +52,36 @@ export default class TKApp extends Vue {
       .then(dataset => {
         this.dataset = dataset;
         this.isDatasetInitialized = true;
-        TKGetGeoBoundaries(this.dataset, this.appRootConfig.spatial).then(
-          geoDataset => {
+        TKGetGeoBoundaries(this.dataset, this.appRootConfig.spatial)
+          .then(geoDataset => {
             this.geoDataset = geoDataset;
-          }
-        );
+          })
+          .catch((reason: any) => {
+            this.geoDataset = {
+              admin1: {
+                type: "FeatureCollection",
+                features: []
+              },
+              admin2: {
+                type: "FeatureCollection",
+                features: []
+              }
+            };
+          });
       })
       .catch((reason: any) => {
         this.dataset = new TKDataset([]);
         this.isDatasetInitialized = true;
+        this.geoDataset = {
+          admin1: {
+            type: "FeatureCollection",
+            features: []
+          },
+          admin2: {
+            type: "FeatureCollection",
+            features: []
+          }
+        };
       });
   }
 

@@ -261,10 +261,14 @@ export class TKDataset {
   }
 
   setCurrentAdmin1ByName(admin1Name: string) {
-    const admin1 = this._currentSurvey.boundaries.admin1.find(
-      admin1 => admin1.name === admin1Name
-    );
-    this.currentAdmin1 = admin1 ?? null;
+    if (this.currentSurvey) {
+      const admin1 = this._currentSurvey.boundaries.admin1.find(
+        admin1 => admin1.name === admin1Name
+      );
+      this.currentAdmin1 = admin1 ?? null;
+    } else {
+      this.currentAdmin1 = null;
+    }
   }
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -325,10 +329,14 @@ export class TKDataset {
   }
 
   setCurrentAdmin2ByName(admin2Name: string) {
-    const admin2 = this._currentSurvey.boundaries.admin2.find(
-      admin2 => admin2.name === admin2Name
-    );
-    this.currentAdmin2 = admin2 ?? null;
+    if (this._currentSurvey) {
+      const admin2 = this._currentSurvey.boundaries.admin2.find(
+        admin2 => admin2.name === admin2Name
+      );
+      this.currentAdmin2 = admin2 ?? null;
+    } else {
+      this.currentAdmin2 = null;
+    }
   }
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -336,8 +344,14 @@ export class TKDataset {
   // ////////////////////////////////////////////////////////////////////////////
 
   setcurrentCampByName(campName: string) {
-    const camp = this._currentSurvey.camps.find(camp => camp.name === campName);
-    this.currentCamp = camp ?? null;
+    if (this._currentSurvey) {
+      const camp = this._currentSurvey.camps.find(
+        camp => camp.name === campName
+      );
+      this.currentCamp = camp ?? null;
+    } else {
+      this.currentCamp = null;
+    }
   }
 
   public get currentCamp(): TKCamp | null {
