@@ -1,13 +1,7 @@
 <template lang="html">
   <div>
     <div class="basemap-selector-trigger-container">
-      <v-btn
-        icon
-        color="primary"
-        height="40px"
-        small
-        @click="showBasemap = !showBasemap"
-      >
+      <v-btn icon color="primary" small @click="showBasemap = !showBasemap">
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
             <v-icon color="primary" v-bind="attrs" v-on="on">
