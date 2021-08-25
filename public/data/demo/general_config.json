@@ -170,6 +170,6 @@
     "options": {
         "dark": false,
         "showCCCMLogo": true,
-        "pdfColumnCount": 3
+        "pdfColumnCount": 1
     }
 }
