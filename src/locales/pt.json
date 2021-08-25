@@ -21,8 +21,7 @@
     "partnerWebdev": "Desenvolvimento Web"
   },
   "main": {
-    "switchPage": "Interruptor",
-    "title": "Site de Monitoramento"
+    "switchPage": "Interruptor"
   },
   "trafficlight": {
     "ok": "OK",

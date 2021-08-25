@@ -123,6 +123,12 @@ export function TKCreateSubmissionEntryText(
         (correctedValue[lang] = value
           .split(" ")
           .map(x => {
+            if (
+              surveyConfiguration.answersLabels[x] &&
+              surveyConfiguration.answersLabels[x][lang]
+            ) {
+              return surveyConfiguration.answersLabels[x][lang];
+            }
             const lowerCasedValue = x.toLowerCase();
             if (
               surveyConfiguration.answersLabels[lowerCasedValue] &&
