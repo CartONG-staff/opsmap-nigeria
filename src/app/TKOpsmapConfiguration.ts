@@ -39,6 +39,7 @@ interface TKMapboxConfiguration {
 
 export interface TKOpsmapConfiguration {
   readonly name: TKLabel;
+  title: TKLabel;
   readonly languages: string[];
   readonly iso3: string;
   readonly opsmapDescr: TKLabel;
@@ -86,6 +87,19 @@ export async function TKReadGeneralConfiguration(
       logo.urlLogo = `${process.env.BASE_URL}/${logo.urlLogo}`;
     }
   }
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Mapbox configuration - handle default values
+  // ////////////////////////////////////////////////////////////////////////////
+
+  const title: TKLabel = {
+    en: "Site tracker",
+    pt: "Site de Monitoramento"
+  };
+  json.title = {
+    ...title,
+    ...json.title
+  };
 
   // ////////////////////////////////////////////////////////////////////////////
   // Mapbox configuration - handle default values
