@@ -74,16 +74,33 @@
             "iconOchaName": "People-in-need"
         }]
     },
-    "headerLogos":[{
-            "name": "UNHCR",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-            "urlRedirection": "https://www.acnur.org.br"
-        },
+    "headerLogos":[
         {
             "name": "Acolhida",
             "urlLogo": "/data/demo/DEMO_brazil/Logo/Acolhida.jpeg",
             "urlRedirection": "https://www.gov.br/casacivil/pt-br/acolhida/"
         },
+        {
+            "name": "AVSI",
+            "urlLogo": "/data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
+            "urlRedirection": "http://www.avsibrasil.org.br/"
+        },
+        {
+            "name": "FFHI",
+            "urlLogo": "/data/demo/DEMO_brazil/Logo/Fraternidade.png",
+            "urlRedirection": "https://www.fraterinternacional.org/"
+        },
+        {
+            "name": "FSF",
+            "urlLogo": "/data/demo/DEMO_brazil/Logo/FSF.png",
+            "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
+        },
+        {
+            "name": "UNHCR",
+            "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+            "urlRedirection": "https://www.acnur.org.br"
+        },
+
         {
             "name": "Ministério da Cidadania",
             "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
@@ -92,29 +109,13 @@
     "footerLogos": [
         {
             "title": {
-                "en": "Cluster Lead",
-                "pt": "Líder do grupo"
+                "en": "Webdev",
+                "pt": "Desenvolvimento Web"
             },
             "logos": [{
-                "name": "UNHCR",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-                "urlRedirection": "https://www.acnur.org.br"
-            },
-            {
-                "name": "Ministério da Cidadania",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
-                "urlRedirection": "https://www.gov.br/cidadania/pt-br"
-            }]
-        },
-        {
-            "title": {
-                "en": "Coordination and IM support",
-                "pt": "Coordenação e IM apoio"
-            },
-            "logos": [{
-                "name": "UNHCR",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-                "urlRedirection": "https://www.acnur.org.br"
+                "name": "CartONG",
+                "urlLogo": "/data/demo/DEMO_brazil/Logo/CartONG_logo_long_0_0_0.png",
+                "urlRedirection": "https://www.cartong.org"
             }]
         },
         {
@@ -140,13 +141,29 @@
         },
         {
             "title": {
-                "en": "Webdev",
-                "pt": "Desenvolvimento Web"
+                "en": "Coordination and IM support",
+                "pt": "Coordenação e IM apoio"
             },
             "logos": [{
-                "name": "CartONG",
-                "urlLogo": "/data/demo/DEMO_brazil/Logo/CartONG_logo_long_0_0_0.png",
-                "urlRedirection": "https://www.cartong.org"
+                "name": "UNHCR",
+                "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+                "urlRedirection": "https://www.acnur.org.br"
+            }]
+        },
+        {
+            "title": {
+                "en": "Cluster Lead",
+                "pt": "Líder do grupo"
+            },
+            "logos": [{
+                "name": "UNHCR",
+                "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+                "urlRedirection": "https://www.acnur.org.br"
+            },
+            {
+                "name": "Ministério da Cidadania",
+                "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
+                "urlRedirection": "https://www.gov.br/cidadania/pt-br"
             }]
         }
     ],
