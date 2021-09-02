@@ -1,5 +1,25 @@
 # Release Notes
 
+## 1.3.1
+
+Toolkit: 1.3.1
+Brazil: 1.3.1
+Nigeria: 1.3.1
+
+Features:
+
+- App Title configurable
+- PDF Export SIngle column
+
+UI details:
+
+- Brazil description text
+- Brazil logos order updated
+
+Bugfixes:
+
+- Traffic light translations restored
+
 ## 1.3.0
 
 Toolkit: 1.3.0
@@ -8,7 +28,7 @@ Nigeria: 1.3.0
 
 Features:
 
-- Export PDF added.
+- Export PDF added
 - Gauge type indicator
 - No infinite wait when data are unreachable
 
@@ -20,7 +40,7 @@ Bugfixes:
 
 Hosting:
 
-- GitHub public and tokenless version is deployed.
+- GitHub public and tokenless version is deployed
 
 ## 1.2.0
 
