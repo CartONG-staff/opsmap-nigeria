@@ -19,7 +19,7 @@ Resources:
 
 Docs:
 
-- [Setup New Opsmap / Project Administration](docs/setup-new-opsmap_project-administration.md)
+- [Setup New Opsmap / Project Administration](docs/setup-new-opsmap-project-administration.md)
 
 People:
 
