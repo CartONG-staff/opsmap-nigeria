@@ -99,7 +99,7 @@ export default class TKApp extends Vue {
 
 <style>
 body {
-  min-height: 100vh; /* toute la hauteur du viewport (compatible IE9+) */
+  min-height: 100vh; /* toute la hauteur du viewport ((compatible IE9+)) */
   --padding-small: 5px;
   --padding-medium: 10px;
   --padding-large: 15px;
