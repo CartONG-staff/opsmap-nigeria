@@ -18,7 +18,11 @@ Resources:
 - [nextcloud](https://cloud.cartong.org/s/zgsDFfpjTNHseZS)
 - [gitlab](https://gitlab.cartong.org/HCR/opsmap-toolkit)
 - [release notes](release-notes.md)
-- [Associated accounts](associated-accounts.md)
+- [Associated accounts](docs/associated-accounts.md)
+
+Docs:
+
+- [Setup New Opsmap / Project Administration](docs/setup-new-opsmap-project-administration.md)
 
 People:
 
