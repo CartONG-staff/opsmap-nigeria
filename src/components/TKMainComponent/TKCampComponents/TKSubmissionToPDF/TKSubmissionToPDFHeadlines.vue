@@ -1,8 +1,8 @@
 <template>
   <div class="headlines">
     <div class="headlines-left">
-      <div class="headlines-title">{{ siteName }}</div>
-      <div class="headlines-subtitle">{{ date }}</div>
+      <div class="headlines-title">{{ siteName }} - {{ date }}</div>
+      <!-- <div class="headlines-subtitle"></div> -->
       <div class="headlines-infos">
         <!-- Site Type -->
         <div class="tk-camp-infos-field">
@@ -186,7 +186,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  height: 48mm;
+  /* height: 48mm; */
 }
 
 .headlines-left {
@@ -198,20 +198,20 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
 
 .headlines-title {
   color: #333333;
-  font-size: 23px;
+  font-size: 18px;
   font-weight: bold;
   line-height: 1.467;
 }
 .headlines-subtitle {
   color: #333333;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: lighter;
   line-height: 1.467;
 }
 
 .headlines-map-img {
-  width: 64mm;
-  height: 48mm;
+  width: 50mm;
+  height: 33.3mm;
   border-radius: 15px;
   border: solid 1px #999;
   overflow: hidden;
@@ -239,7 +239,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
 
 .tk-camp-infos-field-key {
   line-height: 2;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   color: #999;
   letter-spacing: 0.86;
@@ -247,7 +247,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
 
 .tk-camp-infos-field-value {
   line-height: 2;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   color: #418fde;
   letter-spacing: 0.86px;

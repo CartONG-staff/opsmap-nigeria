@@ -2,13 +2,13 @@
   <div class="pdf-document-container">
     <div class="pdf-document" ref="pdf-document">
       <div class="pdf-document-content">
-        <TKSubmissionToPDFHeader :appConfig="appConfig" />
-        <div class="header-separator"></div>
+        <!-- <TKSubmissionToPDFHeader :appConfig="appConfig" /> -->
+        <!-- <div class="header-separator"></div> -->
         <TKSubmissionToPDFHeadlines :appConfig="appConfig" :dataset="dataset" />
-        <TKSubmissionToPDFIndicators
+        <!-- <TKSubmissionToPDFIndicators
           :appConfig="appConfig"
           :dataset="dataset"
-        />
+        /> -->
       </div>
     </div>
   </div>
@@ -27,9 +27,9 @@ import autoTable, {
 } from "jspdf-autotable";
 
 import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
-import TKSubmissionToPDFHeader from "./TKSubmissionToPDFHeader.vue";
+// import TKSubmissionToPDFHeader from "./TKSubmissionToPDFHeader.vue";
 import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
-import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
+// import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
 
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
@@ -40,9 +40,9 @@ import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
 
 @Component({
   components: {
-    TKSubmissionToPDFHeader,
-    TKSubmissionToPDFHeadlines,
-    TKSubmissionToPDFIndicators
+    // TKSubmissionToPDFHeader,
+    TKSubmissionToPDFHeadlines
+    // TKSubmissionToPDFIndicators
   }
 })
 export default class TKSubmissionToPDF extends Vue {
@@ -99,6 +99,7 @@ export default class TKSubmissionToPDF extends Vue {
             const COLUMN_WIDTH = Math.round(
               (PAGE_WIDTH - TOTAL_SPACING) / this.pdfInfos.pdfColumnCount
             );
+            const NONAUTOTABLECONTENTHEIGHT = 120;
 
             const margins = [];
             for (let i = 0; i < this.pdfInfos.pdfColumnCount; i++) {
@@ -111,7 +112,6 @@ export default class TKSubmissionToPDF extends Vue {
               });
             }
 
-            const NONAUTOTABLECONTENTHEIGHT = 280;
             const drawPosition: Array<{
               startY: number;
               pageNumber: number;
