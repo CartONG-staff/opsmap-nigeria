@@ -2,8 +2,8 @@
   <div class="pdf-document-container">
     <div class="pdf-document" ref="pdf-document">
       <div class="pdf-document-content">
-        <!-- <TKSubmissionToPDFHeader :appConfig="appConfig" /> -->
-        <!-- <div class="header-separator"></div> -->
+        <!-- <TKSubmissionToPDFHeader :appConfig="appConfig" />
+        <div class="header-separator"></div> -->
         <TKSubmissionToPDFHeadlines :appConfig="appConfig" :dataset="dataset" />
         <!-- <TKSubmissionToPDFIndicators
           :appConfig="appConfig"
@@ -276,7 +276,7 @@ export default class TKSubmissionToPDF extends Vue {
               fillColor: "#f9f9f9",
               textColor: "#428fdf",
               minCellHeight: headerHeight,
-              fontSize: 7
+              fontSize: 8
             }
           }
         ]
