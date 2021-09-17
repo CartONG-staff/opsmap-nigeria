@@ -147,10 +147,26 @@ export default class TKSubmissionToPDF extends Vue {
                 (pdf as any).lastAutoTable.startPageNumber +
                 ((pdf as any).lastAutoTable.pageCount - 1);
               p.startY = (pdf as any).lastAutoTable.finalY + 15;
-              indexColumn++;
-              if (indexColumn === this.pdfInfos.pdfColumnCount) {
-                indexColumn = 0;
+
+              // Option 1 - Least Filled Column
+              let min = drawPosition[0];
+              indexColumn = 0;
+              for (let i = 1; i < drawPosition.length; i++) {
+                if (
+                  drawPosition[i].pageNumber < min.pageNumber ||
+                  (drawPosition[i].pageNumber === min.pageNumber &&
+                    drawPosition[i].startY < min.startY)
+                ) {
+                  indexColumn = i;
+                  min = drawPosition[i];
+                }
               }
+
+              // Option 2 - Round Robin
+              // indexColumn++;
+              // if (indexColumn === this.pdfInfos.pdfColumnCount) {
+              //   indexColumn = 0;
+              // }
             }
             pdf.save(documentTitle);
             this.$emit("close-dialog");
