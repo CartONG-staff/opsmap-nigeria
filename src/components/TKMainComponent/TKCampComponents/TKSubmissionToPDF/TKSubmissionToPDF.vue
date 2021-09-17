@@ -21,6 +21,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "../TKSubmissionVisualizer";
 import jsPDF from "jspdf";
 import autoTable, {
+  CellDef,
   MarginPaddingInput,
   RowInput,
   UserOptions
@@ -165,15 +166,11 @@ export default class TKSubmissionToPDF extends Vue {
     thematic: TKSubmissionThematic,
     columnWidth: number
   ): UserOptions {
-    const headerHeight = 35;
-
+    const headerHeight = 15;
     const iconURL = TKIconUrl(thematic.iconFileName);
-
     const iconProps = pdf.getImageProperties(iconURL);
-
     const iconContainerWidth = 35;
-    const iconDisplayHeight = 15;
-
+    const iconDisplayHeight = 10;
     const iconDisplayWidth =
       (iconProps.width / iconProps.height) * iconDisplayHeight;
     const iconDisplayX = iconContainerWidth / 2.0 - iconDisplayWidth / 2.0;
@@ -209,24 +206,31 @@ export default class TKSubmissionToPDF extends Vue {
             break;
         }
 
-        const row: RowInput = [];
-        row.push({
+        const field: CellDef = {
           content: TKGetLocalValue(item.fieldLabel, this.$i18n.locale),
           styles: {
             halign: "left",
-            fontSize: 9
+            fontSize: 7,
+            cellPadding: {
+              top: 3
+            }
           }
-        });
-        row.push({
+        };
+        const answer: CellDef = {
           content: TKGetLocalValue(item.answerLabel, this.$i18n.locale),
           styles: {
-            halign: "right",
+            halign: "left",
             textColor: color,
-            fontSize: 9,
-            fontStyle: "bold"
+            fontSize: 8,
+            fontStyle: "bold",
+            cellPadding: {
+              left: 10
+            }
           }
-        });
-        body.push(row);
+        };
+
+        body.push([field]);
+        body.push([answer]);
       } else {
         if (
           item.type === TKSubmissionEntryType.CHART_PYRAMID ||
@@ -243,7 +247,6 @@ export default class TKSubmissionToPDF extends Vue {
           const row: RowInput = [];
           row.push({
             content: "",
-            colSpan: 2,
             styles: {
               minCellHeight: height
             }
@@ -266,29 +269,27 @@ export default class TKSubmissionToPDF extends Vue {
         [
           {
             content: TKGetLocalValue(thematic.nameLabel, this.$i18n.locale),
-            colSpan: 2,
             styles: {
               valign: "middle",
               halign: "left",
               cellPadding: { left: iconContainerWidth },
-              fillColor: "#f1f3f3",
+              fillColor: "#f9f9f9",
               textColor: "#428fdf",
               minCellHeight: headerHeight,
-              fontSize: 10
+              fontSize: 7
             }
           }
         ]
       ],
       body: body,
+
       // Position in the document
       startY: startY,
       margin: margins,
       rowPageBreak: "avoid",
 
       // Style
-      alternateRowStyles: {
-        fillColor: "#F9F9F9"
-      },
+      theme: "plain",
 
       // Thematic logo inside the header
       didDrawCell: function(data) {
