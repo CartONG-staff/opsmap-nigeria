@@ -212,7 +212,8 @@ export default class TKSubmissionToPDF extends Vue {
             color = "#157815";
             break;
           case TKTrafficLightValues.WARNING:
-            color = "#ffcc00";
+            // color = "#ffcc00";
+            color = "#E6CF01";
             break;
           case TKTrafficLightValues.DANGER:
             color = "#cc7000";
