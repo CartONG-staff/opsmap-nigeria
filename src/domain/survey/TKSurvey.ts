@@ -5,7 +5,6 @@ import { TKBoundaries } from "./TKBoundaries";
 import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
 import { TKIndicator } from "./TKIndicator";
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import { isNumber } from "@turf/turf";
 import { TKCamp } from "@/domain/survey/TKCamp";
 import { TKDateCompare, TKDateFormat } from "@/domain/utils/TKDate";
 import { TKFDFIndicatorStandard } from "../fdf/TKFDFIndicators";
@@ -88,7 +87,7 @@ function computeSurveyIndicator(
           item &&
           item.type === TKSubmissionEntryType.TEXT &&
           item.answerLabel &&
-          isNumber(item.answerLabel.en)
+          !isNaN(parseFloat(item.answerLabel.en))
         ) {
           sum += Number(item.answerLabel.en);
         }

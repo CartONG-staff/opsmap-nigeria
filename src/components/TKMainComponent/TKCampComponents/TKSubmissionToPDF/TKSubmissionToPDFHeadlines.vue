@@ -1,55 +1,58 @@
 <template>
   <div class="headlines">
+    <img src="@/assets/LogoOpsmap.png" class="header-logo" />
     <div class="headlines-left">
-      <div class="headlines-title">{{ siteName }}</div>
-      <div class="headlines-subtitle">{{ date }}</div>
-      <div class="headlines-infos">
-        <!-- Site Type -->
-        <div class="tk-camp-infos-field">
-          <div class="tk-camp-infos-field-key">
-            {{ $t("infosSiteType").toUpperCase() }}
-          </div>
-          <div class="tk-camp-infos-field-value">
-            {{ siteType.toUpperCase() }}
-          </div>
-        </div>
-        <!-- ADMIN1 -->
-        <div class="tk-camp-infos-field">
-          <div class="tk-camp-infos-field-key">
-            {{ $t("infosAdmin1").toUpperCase() }}
-          </div>
-          <div class="tk-camp-infos-field-value">
-            {{ admin1.toUpperCase() }}
-          </div>
-        </div>
-        <!-- ADMIN2 -->
-        <div class="tk-camp-infos-field">
-          <div class="tk-camp-infos-field-key">
-            {{ $t("infosAdmin2").toUpperCase() }}
-          </div>
-          <div class="tk-camp-infos-field-value">
-            {{ admin2.toUpperCase() }}
-          </div>
-        </div>
-        <!-- GPS COORDINATES -->
-        <div class="tk-camp-infos-field">
-          <div class="tk-camp-infos-field-key">
-            {{ $t("site.infosCoordinates").toUpperCase() }}
-          </div>
-          <div class="tk-camp-infos-field-value">
-            {{ coordinates.toUpperCase() }}
-          </div>
-        </div>
-        <!-- MANAGE BY -->
-        <div class="tk-camp-infos-field">
-          <div class="tk-camp-infos-field-key">
-            {{ $t("manageBy").toUpperCase() }}
-          </div>
-          <div class="tk-camp-infos-field-value">
-            {{ manageBy.toUpperCase() }}
-          </div>
-        </div>
-      </div>
+      <div class="headlines-title">{{ siteName }} - {{ date }}</div>
+
+      <table>
+        <tbody>
+          <tr>
+            <td class="headlines-infos-field">
+              {{ $t("infosSiteType").toUpperCase() }}
+            </td>
+            <td class="headlines-infos-answer">
+              {{ siteType.toUpperCase() }}
+            </td>
+            <td class="headlines-infos-spacer"></td>
+          </tr>
+          <tr>
+            <td class="headlines-infos-field">
+              {{ $t("infosAdmin1").toUpperCase() }}
+            </td>
+            <td class="headlines-infos-answer">
+              {{ admin1.toUpperCase() }}
+            </td>
+            <td class="headlines-infos-spacer"></td>
+          </tr>
+          <tr>
+            <td class="headlines-infos-field">
+              {{ $t("infosAdmin2").toUpperCase() }}
+            </td>
+            <td class="headlines-infos-answer">
+              {{ admin2.toUpperCase() }}
+            </td>
+            <td class="headlines-infos-spacer"></td>
+          </tr>
+          <tr>
+            <td class="headlines-infos-field">
+              {{ $t("site.infosCoordinates").toUpperCase() }}
+            </td>
+            <td class="headlines-infos-answer">
+              {{ coordinates.toUpperCase() }}
+            </td>
+            <td class="headlines-infos-spacer"></td>
+          </tr>
+          <tr>
+            <td class="headlines-infos-field">
+              {{ $t("manageBy").toUpperCase() }}
+            </td>
+            <td class="headlines-infos-answer">
+              {{ manageBy.toUpperCase() }}
+            </td>
+            <td class="headlines-infos-spacer"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <img class="headlines-map-img" :src="mapImg" />
   </div>
@@ -186,70 +189,67 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  height: 48mm;
+  column-gap: 3mm;
 }
 
 .headlines-left {
+  flex-grow: 2;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  flex-grow: 2;
+}
+
+.headlines-infos {
+  background-color: coral;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
 }
 
 .headlines-title {
   color: #333333;
-  font-size: 23px;
+  font-size: 18px;
   font-weight: bold;
-  line-height: 1.467;
-}
-.headlines-subtitle {
-  color: #333333;
-  font-size: 20px;
-  font-weight: lighter;
   line-height: 1.467;
 }
 
 .headlines-map-img {
-  width: 64mm;
-  height: 48mm;
+  width: 50mm;
+  height: 33.3mm;
   border-radius: 15px;
   border: solid 1px #999;
   overflow: hidden;
 }
 
+.header-logo {
+  text-decoration: none;
+  height: 100%;
+}
+
 /* HEADLINES *********************************************************/
-.headlines-hseparator {
-  width: 100%;
-  border: 0;
-  height: 0;
-  border-top: 1px solid #99999922;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
 
-.headlines-infos {
-  max-width: 100mm;
-}
-
-.tk-camp-infos-field {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.tk-camp-infos-field-key {
+.headlines-infos-field {
   line-height: 2;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   color: #999;
   letter-spacing: 0.86;
+  white-space: nowrap;
 }
 
-.tk-camp-infos-field-value {
+.headlines-infos-answer {
+  text-align: right;
+  white-space: nowrap;
+  padding-left: 10px;
   line-height: 2;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   color: #418fde;
   letter-spacing: 0.86px;
+  min-width: 60 mm;
+}
+
+.headlines-infos-spacer {
+  width: 99%;
 }
 </style>

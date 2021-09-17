@@ -82,6 +82,7 @@ function getTrafficLightColor(
     let match;
     for (const item of trafficLight.values) {
       const conditions = item.value.split("and");
+      // TODO: remove evaluate. Only depencey to mathjs.
       const result = conditions.map(x => evaluate(Number(value) + x));
       if (!result.includes(false)) {
         match = item.color;

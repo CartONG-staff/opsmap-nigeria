@@ -13,7 +13,6 @@ import {
 } from "./TKSubmissionThematic";
 import { TKIndicator } from "@/domain/survey/TKIndicator";
 import { TKLabel } from "../utils/TKLabel";
-import { isNumber } from "@turf/turf";
 import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 import { TKCompare, TKCompute } from "../utils/TKOperator";
 import { TKOperatorComputation } from "../utils/TKOperator";
@@ -51,7 +50,7 @@ function getValueForIndicator(
       item &&
       item.type === TKSubmissionEntryType.TEXT &&
       item.answerLabel &&
-      isNumber(item.answerLabel.en)
+      !isNaN(parseFloat(item.answerLabel.en))
     ) {
       return Number(item.answerLabel.en);
     }

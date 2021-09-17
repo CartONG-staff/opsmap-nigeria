@@ -2,13 +2,13 @@
   <div class="pdf-document-container">
     <div class="pdf-document" ref="pdf-document">
       <div class="pdf-document-content">
-        <TKSubmissionToPDFHeader :appConfig="appConfig" />
-        <div class="header-separator"></div>
+        <!-- <TKSubmissionToPDFHeader :appConfig="appConfig" />
+        <div class="header-separator"></div> -->
         <TKSubmissionToPDFHeadlines :appConfig="appConfig" :dataset="dataset" />
-        <TKSubmissionToPDFIndicators
+        <!-- <TKSubmissionToPDFIndicators
           :appConfig="appConfig"
           :dataset="dataset"
-        />
+        /> -->
       </div>
     </div>
   </div>
@@ -21,15 +21,16 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "../TKSubmissionVisualizer";
 import jsPDF from "jspdf";
 import autoTable, {
+  CellDef,
   MarginPaddingInput,
   RowInput,
   UserOptions
 } from "jspdf-autotable";
 
 import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
-import TKSubmissionToPDFHeader from "./TKSubmissionToPDFHeader.vue";
+// import TKSubmissionToPDFHeader from "./TKSubmissionToPDFHeader.vue";
 import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
-import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
+// import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
 
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
@@ -40,9 +41,9 @@ import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
 
 @Component({
   components: {
-    TKSubmissionToPDFHeader,
-    TKSubmissionToPDFHeadlines,
-    TKSubmissionToPDFIndicators
+    // TKSubmissionToPDFHeader,
+    TKSubmissionToPDFHeadlines
+    // TKSubmissionToPDFIndicators
   }
 })
 export default class TKSubmissionToPDF extends Vue {
@@ -99,6 +100,7 @@ export default class TKSubmissionToPDF extends Vue {
             const COLUMN_WIDTH = Math.round(
               (PAGE_WIDTH - TOTAL_SPACING) / this.pdfInfos.pdfColumnCount
             );
+            const NONAUTOTABLECONTENTHEIGHT = 120;
 
             const margins = [];
             for (let i = 0; i < this.pdfInfos.pdfColumnCount; i++) {
@@ -111,7 +113,6 @@ export default class TKSubmissionToPDF extends Vue {
               });
             }
 
-            const NONAUTOTABLECONTENTHEIGHT = 280;
             const drawPosition: Array<{
               startY: number;
               pageNumber: number;
@@ -146,10 +147,26 @@ export default class TKSubmissionToPDF extends Vue {
                 (pdf as any).lastAutoTable.startPageNumber +
                 ((pdf as any).lastAutoTable.pageCount - 1);
               p.startY = (pdf as any).lastAutoTable.finalY + 15;
-              indexColumn++;
-              if (indexColumn === this.pdfInfos.pdfColumnCount) {
-                indexColumn = 0;
+
+              // Option 1 - Least Filled Column
+              let min = drawPosition[0];
+              indexColumn = 0;
+              for (let i = 1; i < drawPosition.length; i++) {
+                if (
+                  drawPosition[i].pageNumber < min.pageNumber ||
+                  (drawPosition[i].pageNumber === min.pageNumber &&
+                    drawPosition[i].startY < min.startY)
+                ) {
+                  indexColumn = i;
+                  min = drawPosition[i];
+                }
               }
+
+              // Option 2 - Round Robin
+              // indexColumn++;
+              // if (indexColumn === this.pdfInfos.pdfColumnCount) {
+              //   indexColumn = 0;
+              // }
             }
             pdf.save(documentTitle);
             this.$emit("close-dialog");
@@ -165,15 +182,11 @@ export default class TKSubmissionToPDF extends Vue {
     thematic: TKSubmissionThematic,
     columnWidth: number
   ): UserOptions {
-    const headerHeight = 35;
-
+    const headerHeight = 15;
     const iconURL = TKIconUrl(thematic.iconFileName);
-
     const iconProps = pdf.getImageProperties(iconURL);
-
     const iconContainerWidth = 35;
-    const iconDisplayHeight = 15;
-
+    const iconDisplayHeight = 10;
     const iconDisplayWidth =
       (iconProps.width / iconProps.height) * iconDisplayHeight;
     const iconDisplayX = iconContainerWidth / 2.0 - iconDisplayWidth / 2.0;
@@ -199,7 +212,8 @@ export default class TKSubmissionToPDF extends Vue {
             color = "#157815";
             break;
           case TKTrafficLightValues.WARNING:
-            color = "#ffcc00";
+            // color = "#ffcc00";
+            color = "#E6CF01";
             break;
           case TKTrafficLightValues.DANGER:
             color = "#cc7000";
@@ -209,24 +223,31 @@ export default class TKSubmissionToPDF extends Vue {
             break;
         }
 
-        const row: RowInput = [];
-        row.push({
+        const field: CellDef = {
           content: TKGetLocalValue(item.fieldLabel, this.$i18n.locale),
           styles: {
             halign: "left",
-            fontSize: 9
+            fontSize: 7,
+            cellPadding: {
+              top: 3
+            }
           }
-        });
-        row.push({
+        };
+        const answer: CellDef = {
           content: TKGetLocalValue(item.answerLabel, this.$i18n.locale),
           styles: {
-            halign: "right",
+            halign: "left",
             textColor: color,
-            fontSize: 9,
-            fontStyle: "bold"
+            fontSize: 8,
+            fontStyle: "bold",
+            cellPadding: {
+              left: 10
+            }
           }
-        });
-        body.push(row);
+        };
+
+        body.push([field]);
+        body.push([answer]);
       } else {
         if (
           item.type === TKSubmissionEntryType.CHART_PYRAMID ||
@@ -243,7 +264,6 @@ export default class TKSubmissionToPDF extends Vue {
           const row: RowInput = [];
           row.push({
             content: "",
-            colSpan: 2,
             styles: {
               minCellHeight: height
             }
@@ -266,29 +286,27 @@ export default class TKSubmissionToPDF extends Vue {
         [
           {
             content: TKGetLocalValue(thematic.nameLabel, this.$i18n.locale),
-            colSpan: 2,
             styles: {
               valign: "middle",
               halign: "left",
               cellPadding: { left: iconContainerWidth },
-              fillColor: "#f1f3f3",
+              fillColor: "#f9f9f9",
               textColor: "#428fdf",
               minCellHeight: headerHeight,
-              fontSize: 10
+              fontSize: 8
             }
           }
         ]
       ],
       body: body,
+
       // Position in the document
       startY: startY,
       margin: margins,
       rowPageBreak: "avoid",
 
       // Style
-      alternateRowStyles: {
-        fillColor: "#F9F9F9"
-      },
+      theme: "plain",
 
       // Thematic logo inside the header
       didDrawCell: function(data) {

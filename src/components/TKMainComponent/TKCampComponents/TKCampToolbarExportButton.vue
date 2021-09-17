@@ -17,7 +17,7 @@
               :loading="generatePDF"
             >
               <v-icon dark>
-                mdi-file-pdf-outline
+                mdi-file-pdf-box
               </v-icon>
             </v-btn>
           </template>
