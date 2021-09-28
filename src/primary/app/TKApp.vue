@@ -20,7 +20,8 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/primary/components";
-import { TKCreateDataset, TKDataset } from "@/domain/survey/TKDataset";
+import { TKDataset } from "@/domain/survey/TKDataset";
+import { TKCreateDataset } from "@/domain/survey/TKCreateDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";

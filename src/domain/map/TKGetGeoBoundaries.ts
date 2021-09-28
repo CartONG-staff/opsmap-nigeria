@@ -1,7 +1,7 @@
-import { ArcgisServerDataGetter } from "@/domain/map/TKArcgisServerDataGetter";
+import { ArcgisServerDataGetter } from "@/secondary/arcgis/TKArcgisServerDataGetter";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { FeatureCollection } from "geojson";
-import { TKFDFSpatialDescription } from "@/domain//fdf/TKFDFSpatialDescription";
+import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
 import { TKDataset } from "../survey/TKDataset";
 
 export async function TKGetGeoBoundaries(

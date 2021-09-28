@@ -2,18 +2,7 @@ import { TKCampType } from "@/domain/survey/TKCamp";
 import { TKBoundaries } from "@/domain/survey/TKBoundaries";
 import { TKSubmission } from "./TKSubmission";
 import { TKCamp } from "@/domain/survey/TKCamp";
-import {
-  TKSurveyInfos,
-  TKSurveyInfosType
-} from "../opsmapConfig/TKSurveyInfos";
-import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
-import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
-
-import { TKGetKoboRawData } from "../../secondary/kobo/TKGetKoboRawData";
-import { TKCreateSurvey, TKSurvey } from "./TKSurvey";
-import { TKReadRawDataGSheet } from "./TKRawData";
-import { TKCSVParse } from "../utils/TKCSV";
-import { TKReadFDF } from "@/secondary/fdf/TKFDF";
+import { TKSurvey } from "./TKSurvey";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Filters Concept description. Requires Comments !
@@ -475,62 +464,4 @@ export class TKDataset {
       }
     }
   }
-}
-
-// ////////////////////////////////////////////////////////////////////////////
-// Create all the survey based on the surveys infos
-// ////////////////////////////////////////////////////////////////////////////
-
-export async function TKCreateDataset(
-  surveyDescription: TKSurveyInfos[],
-  spatialDescription: TKFDFSpatialDescription,
-  indicators: TKFDFIndicators,
-  languages: Array<string>
-): Promise<TKDataset> {
-  // prepare output
-  const surveys: TKSurvey[] = [];
-
-  // foreach survey info
-  for (const info of surveyDescription) {
-    // Retrieve raw data
-    let rawData;
-    const before = Date.now();
-    if (info.type === TKSurveyInfosType.CSV) {
-      rawData = await TKCSVParse(
-        info.submissionsFile,
-        info.submissionsFolder,
-        true
-      );
-      info;
-    } else if (info.type === TKSurveyInfosType.GSHEET) {
-      rawData = await TKReadRawDataGSheet(info.submissionsUrl, true);
-    } else if (info.type === TKSurveyInfosType.KOBO) {
-      rawData = await TKGetKoboRawData(info);
-    }
-    console.log(
-      `Raw data ${info.name} retrieved in ${(Date.now() - before) /
-        1000} seconds.`
-    );
-
-    const beforeFDF = Date.now();
-
-    // Retrieve config
-    const fdf = await TKReadFDF(info, indicators, spatialDescription);
-
-    console.log(
-      `FDF  ${info.name} retrieved in ${(Date.now() - beforeFDF) /
-        1000} seconds.`
-    );
-
-    const beforeSurvey = Date.now();
-
-    // Create survey
-    surveys.push(TKCreateSurvey(rawData, fdf, languages, info.options));
-
-    console.log(
-      `Survey  ${info.name} computed in ${(Date.now() - beforeSurvey) /
-        1000} seconds.`
-    );
-  }
-  return new TKDataset(surveys);
 }

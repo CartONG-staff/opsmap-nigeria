@@ -1,6 +1,6 @@
 import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
 import { TKFDFLabelCollection } from "@/domain/fdf/TKFDFParseMultiLang";
-import { TKReadRawDataGSheet } from "@/domain/survey/TKRawData";
+import { TKReadRawDataGSheet } from "@/secondary/gsheet/TKReadRawDataGSheet";
 import { TKCSVParse } from "@/domain/utils/TKCSV";
 
 // ////////////////////////////////////////////////////////////////////////////
