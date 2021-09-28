@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from "vue-property-decorator";
-import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
+import { TKOpsmapConfiguration } from "@/primary/app/TKOpsmapConfiguration";
 import TKFooterLogoItem from "./TKFooterLogoItem.vue";
 import TKCredits from "./TKCredits.vue";
 

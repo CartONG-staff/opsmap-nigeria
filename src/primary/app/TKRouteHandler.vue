@@ -5,7 +5,7 @@
 <script lang="ts">
 import { TKDataset } from "@/domain/survey/TKDataset";
 import Vue from "vue";
-import { headerLogoBus } from "@/components/TKHeaderLogoBus";
+import { headerLogoBus } from "@/primary/components/TKHeaderLogoBus";
 import { Component, Prop, Watch } from "vue-property-decorator";
 
 @Component

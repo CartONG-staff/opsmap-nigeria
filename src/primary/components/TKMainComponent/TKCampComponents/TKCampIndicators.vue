@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
+import { TKOpsmapConfiguration } from "@/primary/app/TKOpsmapConfiguration";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
 import { TKIndicatorDefault, TKIndicator } from "@/domain/survey/TKIndicator";
 import { TKDataset } from "@/domain/survey/TKDataset";

@@ -63,8 +63,8 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKOpsmapConfiguration } from "@/app/TKOpsmapConfiguration";
-import { headerLogoBus } from "@/components/TKHeaderLogoBus";
+import { TKOpsmapConfiguration } from "@/primary/app/TKOpsmapConfiguration";
+import { headerLogoBus } from "@/primary/components/TKHeaderLogoBus";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 
 @Component

@@ -22,8 +22,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import TKIndicatorStandard from "@/components/TKMainComponent/TKIndicators/TKIndicatorStandard.vue";
-import TKIndicatorSiteOccupation from "@/components/TKMainComponent/TKIndicators/TKIndicatorSiteOccupation.vue";
+import TKIndicatorStandard from "@/primary/components/TKMainComponent/TKIndicators/TKIndicatorStandard.vue";
+import TKIndicatorSiteOccupation from "@/primary/components/TKMainComponent/TKIndicators/TKIndicatorSiteOccupation.vue";
 import {
   TKIndicator as TKIndicatorDefinition,
   TKIndicatorType
