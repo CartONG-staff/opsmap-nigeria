@@ -7,9 +7,7 @@ import { TKReadGeneralConfiguration } from "./app/TKOpsmapConfiguration";
 import router from "./router";
 
 // ////////////////////////////////////////////////////////////////////////////
-//
 // MATOMO
-//
 // ////////////////////////////////////////////////////////////////////////////
 
 import VueMatomo from "vue-matomo";
@@ -48,7 +46,7 @@ Vue.use(VueMatomo, {
 
   // Run Matomo without cookies
   // Default: false
-  // disableCookies: false,
+  disableCookies: true,
 
   // Require consent before creating matomo session cookie
   // Default: false
@@ -61,7 +59,7 @@ Vue.use(VueMatomo, {
 
   // Set the heartbeat timer interval
   // Default: 15
-  heartBeatTimerInterval: 15,
+  heartBeatTimerInterval: 15
 
   // Whether or not to log debug information
   // Default: false
@@ -103,7 +101,7 @@ Vue.use(VueMatomo, {
   //    return null
   //   }
   // }
-  trackSiteSearch: false
+  // trackSiteSearch: false
 });
 
 Vue.config.productionTip = false;
