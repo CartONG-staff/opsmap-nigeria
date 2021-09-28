@@ -27,17 +27,16 @@ import autoTable, {
   UserOptions
 } from "jspdf-autotable";
 
-import { TKComputeExportFilename } from "@/domain/export/TKExportCommon";
-// import TKSubmissionToPDFHeader from "./TKSubmissionToPDFHeader.vue";
 import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
 // import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
 
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
-import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
+import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
+import { TKComputeExportFilename } from "@/domain/export/TKDatasetExportToCSV";
 
 @Component({
   components: {

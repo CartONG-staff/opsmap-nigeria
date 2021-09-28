@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKTrafficLightValues } from "@/domain/fdf/TKTrafficLightValues";
+import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 @Component

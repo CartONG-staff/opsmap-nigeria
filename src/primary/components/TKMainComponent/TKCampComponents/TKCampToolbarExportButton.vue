@@ -59,7 +59,7 @@
 
 <script lang="ts">
 import TKSubmissionToPDF from "./TKSubmissionToPDF/TKSubmissionToPDF.vue";
-import { TKCSVWrite } from "@/domain/export/TKCSVWriter";
+import { TKDatasetExportToCSV } from "@/domain/export/TKDatasetExportToCSV";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
@@ -85,7 +85,7 @@ export default class TKCampToolbarExportButton extends Vue {
 
   exportToCSV() {
     if (this.dataset && this.dataset.currentSubmission) {
-      TKCSVWrite(this.dataset, this.$root.$i18n.locale);
+      TKDatasetExportToCSV(this.dataset, this.$root.$i18n.locale);
     }
   }
 

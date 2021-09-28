@@ -2,7 +2,7 @@ import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionEntryType } from "../../domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "../../domain/utils/TKLabel";
-import { TKComputeExportFilename } from "./TKExportCommon";
+
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods
 // ////////////////////////////////////////////////////////////////////////////
@@ -74,13 +74,17 @@ function computeCSVContent(submission: TKSubmission, locale: string): string {
 // Temaplted Read method for csv inputs
 // ////////////////////////////////////////////////////////////////////////////
 
-export function TKCSVWrite(dataset: TKDataset, locale: string) {
+export function TKCSVWrite(
+  dataset: TKDataset,
+  filename: string,
+  locale: string
+) {
   if (dataset.currentSubmission) {
     const csvContent = computeCSVContent(dataset.currentSubmission, locale);
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", TKComputeExportFilename(dataset, "csv")); // filename
+    link.setAttribute("download", filename); // filename
     document.body.appendChild(link); // Required for FF ?
     link.click();
   }

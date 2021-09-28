@@ -9,11 +9,11 @@ import {
 import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
 
-import { TKCreateFDF } from "../fdf/TKFDF";
 import { TKGetKoboRawData } from "../../secondary/kobo/TKGetKoboRawData";
 import { TKCreateSurvey, TKSurvey } from "./TKSurvey";
 import { TKReadRawDataGSheet } from "./TKRawData";
 import { TKCSVParse } from "../utils/TKCSV";
+import { TKReadFDF } from "@/secondary/fdf/TKFDF";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Filters Concept description. Requires Comments !
@@ -515,7 +515,7 @@ export async function TKCreateDataset(
     const beforeFDF = Date.now();
 
     // Retrieve config
-    const fdf = await TKCreateFDF(info, indicators, spatialDescription);
+    const fdf = await TKReadFDF(info, indicators, spatialDescription);
 
     console.log(
       `FDF  ${info.name} retrieved in ${(Date.now() - beforeFDF) /

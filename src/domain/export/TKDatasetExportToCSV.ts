@@ -1,4 +1,5 @@
 import { TKDataset } from "@/domain/survey/TKDataset";
+import { TKCSVWrite } from "@/secondary/export/TKCSVWriter";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods
@@ -26,4 +27,12 @@ export function TKComputeExportFilename(
     name += `.${extension}`;
   }
   return name;
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Write CSV file
+// ////////////////////////////////////////////////////////////////////////////
+
+export function TKDatasetExportToCSV(dataset: TKDataset, locale: string) {
+  TKCSVWrite(dataset, TKComputeExportFilename(dataset, "csv"), locale);
 }
