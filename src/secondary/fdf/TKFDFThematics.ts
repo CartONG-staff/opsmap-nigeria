@@ -3,7 +3,7 @@
 
 import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
 import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
-import { TKCSVParse } from "@/domain/utils/TKCSV";
+import { TKCSVParse } from "@/secondary/csv/TKCSV";
 import { TKFDFFiles } from "./TKFDFInfos";
 
 // ////////////////////////////////////////////////////////////////////////////

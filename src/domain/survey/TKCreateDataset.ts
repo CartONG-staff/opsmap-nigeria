@@ -7,8 +7,8 @@ import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKCreateSurvey, TKSurvey } from "@/domain/survey/TKSurvey";
-import { TKReadFDF } from "../../secondary/fdf/TKFDF";
-import { TKReadRawDataset } from "../../secondary/survey/TKReadRawDataset";
+import { TKReadFDF } from "@/secondary/fdf/TKFDF";
+import { TKReadRawDataset } from "@/secondary/survey/TKReadRawDataset";
 
 export async function TKCreateDataset(
   surveyDescription: TKSurveyInfos[],

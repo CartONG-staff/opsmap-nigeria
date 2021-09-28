@@ -1,7 +1,7 @@
 import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
 import { TKFDFLabelCollection } from "@/domain/fdf/TKFDFParseMultiLang";
 import { TKReadRawDataGSheet } from "@/secondary/gsheet/TKReadRawDataGSheet";
-import { TKCSVParse } from "@/domain/utils/TKCSV";
+import { TKCSVParse } from "@/secondary/csv/TKCSV";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Definition of the Answer label object

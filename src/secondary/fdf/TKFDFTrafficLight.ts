@@ -5,7 +5,7 @@ import {
   TKFDFTrafficLightTypes
 } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
-import { TKCSVParse } from "@/domain/utils/TKCSV";
+import { TKCSVParse } from "@/secondary/csv/TKCSV";
 
 // ////////////////////////////////////////////////////////////////////////////
 // TrafficLights collection datatype

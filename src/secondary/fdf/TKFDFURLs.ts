@@ -1,4 +1,4 @@
-import { TKCSVParse } from "../../domain/utils/TKCSV";
+import { TKCSVParse } from "../csv/TKCSV";
 import { TKFDFFiles } from "./TKFDFInfos";
 import { TKFDFInfos } from "../../domain/fdf/TKFDFInfos";
 import { TKFDFUrlsCollection } from "@/domain/fdf/TKFDFURLs";

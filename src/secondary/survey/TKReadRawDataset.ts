@@ -2,7 +2,7 @@ import {
   TKSurveyInfos,
   TKSurveyInfosType
 } from "@/domain/opsmapConfig/TKSurveyInfos";
-import { TKCSVParse } from "@/domain/utils/TKCSV";
+import { TKCSVParse } from "@/secondary/csv/TKCSV";
 import { TKReadRawDataGSheet } from "../gsheet/TKReadRawDataGSheet";
 import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
 

@@ -3,7 +3,7 @@ import {
   TKFDFSubmissionItemType,
   TKFDFSubmissionsRulesCollection
 } from "@/domain/fdf/TKFDFSubmissionsRules";
-import { TKCSVParse } from "@/domain/utils/TKCSV";
+import { TKCSVParse } from "@/secondary/csv/TKCSV";
 import {
   TKOperatorComparison,
   TKOperatorComputation
