@@ -52,7 +52,8 @@ Vue.use(VueMatomo, {
 
   // Require consent before creating matomo session cookie
   // Default: false
-  // requireCookieConsent: false,
+  // ** AKA disable matomo session cookie
+  requireCookieConsent: true,
 
   // Enable the heartbeat timer (https://developer.matomo.org/guides/tracking-javascript-guide#accurately-measure-the-time-spent-on-each-page)
   // Default: false
