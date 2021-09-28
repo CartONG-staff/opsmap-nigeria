@@ -1,7 +1,7 @@
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
-import { TKSubmissionEntryType } from "../survey/TKSubmissionEntry";
-import { TKGetLocalValue } from "../utils/TKLabel";
+import { TKSubmissionEntryType } from "../../domain/survey/TKSubmissionEntry";
+import { TKGetLocalValue } from "../../domain/utils/TKLabel";
 import { TKComputeExportFilename } from "./TKExportCommon";
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods
