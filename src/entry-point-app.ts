@@ -1,9 +1,9 @@
 import Vue from "vue";
-import TKApp from "@/app/TKApp.vue";
+import TKApp from "@/primary/app/TKApp.vue";
 import vuetify from "@/plugins/vuetify";
 import { loadLocaleMessages } from "@/i18n";
 import VueI18n, { LocaleMessages } from "vue-i18n";
-import { TKReadGeneralConfiguration } from "./app/TKOpsmapConfiguration";
+import { TKReadGeneralConfiguration } from "./primary/app/TKOpsmapConfiguration";
 import router from "./router";
 
 // ////////////////////////////////////////////////////////////////////////////

@@ -1,3 +1,25 @@
+stages:
+  - test
+  - deploy
+
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+
+test:
+  stage: test
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - .npm
+      - cache/Cypress
+      - node_modules
+  script:
+    - npm ci --progress=false
+    - npm run test:unit
+
 pages:
   image: node:latest
   stage: deploy
@@ -9,7 +31,6 @@ pages:
     - cp -r dist/* public
     - cp public/index.html public/404.html
   artifacts:
-    expire_in: 1 day
     paths:
       - public
   tags:
