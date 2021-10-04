@@ -1,30 +1,48 @@
 stages:
+  - install_dependencies
   - test
   - deploy
 
-variables:
-  npm_config_cache: "$CI_PROJECT_DIR/.npm"
-  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+install_dependencies:
+  stage: install_dependencies
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
+    paths:
+      - node_modules/
+  script:
+    - npm ci
+  rules:
+    - changes:
+        - package-lock.json
+    - if: '"True"'
+      when: manual
+      allow_failure: true
 
+# job: test
 test:
   stage: test
   cache:
-    key:
-      files:
-        - package.json
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
     paths:
-      - .npm
-      - cache/Cypress
-      - node_modules
+      - node_modules/
+    policy: pull
   script:
-    - npm ci --progress=false
     - npm run test:unit
+  artifacts:
+    paths:
+      - coverage
 
-pages:
+
+# job: pages
+deploy:
   image: node:latest
   stage: deploy
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
+    paths:
+      - node_modules/
+    policy: pull
   script:
-    - npm install --progress=false
     - npm run build
     - rm -rf public
     - mkdir public
