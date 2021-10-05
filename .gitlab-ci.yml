@@ -1,3 +1,5 @@
+image: node:latest
+
 stages:
   - install_dependencies
   - test
@@ -17,6 +19,9 @@ install_dependencies:
     - if: '"True"'
       when: manual
       allow_failure: true
+  tags:
+  - opsmap
+
 
 # job: test
 test:
@@ -31,11 +36,11 @@ test:
   artifacts:
     paths:
       - coverage
-
+  tags:
+  - opsmap
 
 # job: pages
 deploy:
-  image: node:latest
   stage: deploy
   cache:
     key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
