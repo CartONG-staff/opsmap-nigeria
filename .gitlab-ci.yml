@@ -5,14 +5,28 @@ stages:
   - test
   - deploy
 
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
+    - "**/node_modules/"
+  policy: pull
+
+
 install_dependencies:
   stage: install_dependencies
   cache:
-    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
+    key:
+      files:
+        - package-lock.json
     paths:
       - node_modules/
+      - "**/node_modules/"
+    policy: push
   script:
-    - npm ci
+    - npm ci --no-progress --no-optional --no-audit --ignore-scripts --prefer-offline
   rules:
     - changes:
         - package-lock.json
@@ -22,17 +36,13 @@ install_dependencies:
   tags:
   - opsmap
 
-
 # job: test
 test:
   stage: test
-  cache:
-    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
-    paths:
-      - node_modules/
-    policy: pull
   script:
     - npm run test:unit
+  tags:
+    - opsmap
   artifacts:
     paths:
       - coverage
@@ -42,11 +52,6 @@ test:
 # job: pages
 deploy:
   stage: deploy
-  cache:
-    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
-    paths:
-      - node_modules/
-    policy: pull
   script:
     - npm run build
     - rm -rf public
