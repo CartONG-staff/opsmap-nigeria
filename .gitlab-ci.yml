@@ -1,18 +1,24 @@
-image: opsmap
+image: node:latest
 
 stages:
   - install_dependencies
   - test
-  - deploy
+  - build_and_deploy
+
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  # CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
 
 cache:
   key:
     files:
-      - package-lock.json
+      - package.json
   paths:
-    - node_modules/
-    - "**/node_modules/"
+    - .npm
+    # - cache/Cypress
+    - node_modules
   policy: pull
+
 
 # Install dependencies
 install_dependencies:
@@ -20,21 +26,16 @@ install_dependencies:
   cache:
     key:
       files:
-        - package-lock.json
+        - package.json
     paths:
-      - node_modules/
-      - "**/node_modules/"
+      - .npm
+      # - cache/Cypress
+      - node_modules
     policy: push
   script:
     - npm ci --no-progress --no-optional --no-audit --ignore-scripts --prefer-offline
-  rules:
-    - changes:
-        - package-lock.json
-    - if: '"True"'
-      when: manual
-      allow_failure: true
-  # tags:
-  # - opsmap
+  tags:
+  - opsmap
 
 # Job: test
 test:
@@ -46,12 +47,12 @@ test:
   artifacts:
     paths:
       - coverage
-  # tags:
-  # - opsmap
+  tags:
+  - opsmap
 
-# job: pages
-deploy:
-  stage: deploy
+# job: build_and_deploy
+build_and_deploy:
+  stage: build_and_deploy
   script:
     - npm run build
     - rm -rf public
@@ -61,7 +62,8 @@ deploy:
   artifacts:
     paths:
       - public
-  # tags:
-  #   - opsmap
+  tags:
+    - opsmap
   only:
     - pages
+
