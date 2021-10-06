@@ -1,4 +1,4 @@
-image: node:latest
+image: opsmap
 
 stages:
   - install_dependencies
@@ -14,7 +14,7 @@ cache:
     - "**/node_modules/"
   policy: pull
 
-
+# Install dependencies
 install_dependencies:
   stage: install_dependencies
   cache:
@@ -33,10 +33,10 @@ install_dependencies:
     - if: '"True"'
       when: manual
       allow_failure: true
-  tags:
-  - opsmap
+  # tags:
+  # - opsmap
 
-# job: test
+# Job: test
 test:
   stage: test
   script:
@@ -46,8 +46,8 @@ test:
   artifacts:
     paths:
       - coverage
-  tags:
-  - opsmap
+  # tags:
+  # - opsmap
 
 # job: pages
 deploy:
@@ -61,7 +61,7 @@ deploy:
   artifacts:
     paths:
       - public
-  tags:
-    - opsmap
+  # tags:
+  #   - opsmap
   only:
     - pages
