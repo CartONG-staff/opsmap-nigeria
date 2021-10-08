@@ -54,7 +54,7 @@ test:
 build_and_deploy:
   stage: build_and_deploy
   script:
-    - npm run build
+    - npm run build-gitlab
     - rm -rf public
     - mkdir public
     - cp -r dist/* public
