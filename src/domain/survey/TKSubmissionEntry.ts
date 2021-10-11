@@ -4,7 +4,7 @@ import {
   TKFDFTrafficLightGrouped,
   TKFDFTrafficLightTypes
 } from "../fdf/TKFDFTrafficLight";
-import { TKTrafficLightValues } from "../fdf/TKTrafficLightValues";
+import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKLabel } from "../utils/TKLabel";
 import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 
