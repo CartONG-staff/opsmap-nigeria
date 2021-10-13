@@ -32,7 +32,7 @@ install_dependencies:
       - node_modules
     policy: push
   script:
-    - npm ci --no-progress --no-optional --no-audit --ignore-scripts --prefer-offline
+    - npm ci --no-progress --no-audit
   tags:
   - opsmap
   only:
