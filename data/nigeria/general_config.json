@@ -172,7 +172,7 @@
     },
     "options": {
         "showCCCMLogo": true,
-        "pdfColumnCount": 1
+        "pdfColumnCount": 3
     }
 }
 
