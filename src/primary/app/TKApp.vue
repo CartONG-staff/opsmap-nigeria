@@ -27,6 +27,7 @@ import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKRouteHandler from "@/primary/app/TKRouteHandler.vue";
 import { TKOpsmapConfiguration } from "@/domain";
+import { TKSurveyExportToEsiteCSV } from "@/domain/export/TKSurveyExportToEsiteCSV";
 
 @Component({
   components: {
@@ -51,6 +52,15 @@ export default class TKApp extends Vue {
       this.appRootConfig.languages
     )
       .then(dataset => {
+        // Export for esite
+        if (this.appRootConfig.options.exportForEsite) {
+          TKSurveyExportToEsiteCSV(
+            dataset.surveys[dataset.surveys.length - 1],
+            this.$root.$i18n.locale,
+            TKGetLocalValue(this.appRootConfig.name, this.$root.$i18n.locale)
+          );
+        }
+
         this.dataset = dataset;
         this.isDatasetInitialized = true;
         TKGetGeoBoundaries(this.dataset, this.appRootConfig.spatial)
