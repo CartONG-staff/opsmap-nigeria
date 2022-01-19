@@ -110,7 +110,7 @@
         "adm3Pcode": "",
         "adm3Name": "",
         "admin0LocalURL": "/data/demo/DEMO_syria/map/admin0.geojson",
-        "admin1LocalURL": "/data/demo/DEMO_syria/map/admin1.geojson"
+        "admin1LocalURL": ""
     },
     "surveys":[],
 
