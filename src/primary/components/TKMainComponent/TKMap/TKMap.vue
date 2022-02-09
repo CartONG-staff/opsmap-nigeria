@@ -23,7 +23,6 @@ import mapboxgl, {
   SymbolLayer
 } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { TKOpsmapConfiguration } from "@/primary/app/TKOpsmapConfiguration";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
@@ -35,6 +34,7 @@ import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { Point } from "geojson";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 @Component({
   components: {
@@ -44,9 +44,6 @@ import { Point } from "geojson";
   }
 })
 export default class TKMap extends Vue {
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
-
   @Prop({ default: () => [] })
   readonly dataset!: TKDataset;
 
@@ -118,7 +115,7 @@ export default class TKMap extends Vue {
     if (this.geoDataset) {
       this.mapBoundaries = new TKMapBoundaries(
         this.geoDataset,
-        this.appConfig.spatial
+        TKConfigurationModule.configuration.spatial
       );
     }
   }
@@ -154,12 +151,12 @@ export default class TKMap extends Vue {
       // Init the map - world level
       this.bound = new mapboxgl.LngLatBounds(
         new mapboxgl.LngLat(
-          this.appConfig.mapConfig.bounds[0],
-          this.appConfig.mapConfig.bounds[1]
+          TKConfigurationModule.configuration.mapConfig.bounds[0],
+          TKConfigurationModule.configuration.mapConfig.bounds[1]
         ),
         new mapboxgl.LngLat(
-          this.appConfig.mapConfig.bounds[2],
-          this.appConfig.mapConfig.bounds[3]
+          TKConfigurationModule.configuration.mapConfig.bounds[2],
+          TKConfigurationModule.configuration.mapConfig.bounds[3]
         )
       );
     }
@@ -167,7 +164,7 @@ export default class TKMap extends Vue {
       this.map = new mapboxgl.Map({
         container: "tk-map",
         style: this.basemaps.basemapsList[0].style,
-        accessToken: this.appConfig.mapConfig.token,
+        accessToken: TKConfigurationModule.configuration.mapConfig.token,
         bounds: this.bound
       });
 
@@ -209,7 +206,7 @@ export default class TKMap extends Vue {
     if (!this.map.getSource(TKMapLayers.COUNTRYMASKSOURCE)) {
       this.map.addSource(TKMapLayers.COUNTRYMASKSOURCE, {
         type: "geojson",
-        data: `${process.env.BASE_URL}/${this.appConfig.spatial.admin0LocalURL}`
+        data: `${process.env.BASE_URL}/${TKConfigurationModule.configuration.spatial.admin0LocalURL}`
       });
     }
 
@@ -384,8 +381,8 @@ export default class TKMap extends Vue {
     if (this.map) {
       if (this.bound) {
         this.map.fitBounds(this.bound, {
-          padding: this.appConfig.mapConfig.padding,
-          speed: this.appConfig.mapConfig.zoomspeed
+          padding: TKConfigurationModule.configuration.mapConfig.padding,
+          speed: TKConfigurationModule.configuration.mapConfig.zoomspeed
         });
       }
     }

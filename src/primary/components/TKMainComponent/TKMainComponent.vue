@@ -16,13 +16,12 @@
       </div>
       <div class="tk-main-top">
         <div class="tk-main-left">
-          <TKTitle :appConfig="appConfig" />
+          <TKTitle />
           <transition mode="out-in" name="fade">
             <TKPlaceHolderLeft v-if="!isDatasetInitialized" />
             <router-view
               v-else
               name="left"
-              :appConfig="appConfig"
               :dataset="dataset"
               :visualizerOptions="visualizerOptions"
               :pdfInfos="pdfInfos"
@@ -32,7 +31,6 @@
         <TKMap
           v-if="geoData"
           class="tk-main-map"
-          :appConfig="appConfig"
           :dataset="dataset"
           :geoDataset="geoData"
         />
@@ -49,7 +47,6 @@
             name="indicators"
             v-else
             :visualizerOptions="visualizerOptions"
-            :appConfig="appConfig"
             :dataset="dataset"
           ></router-view>
         </transition>
@@ -58,7 +55,6 @@
             name="content"
             v-if="isDatasetInitialized"
             :visualizerOptions="visualizerOptions"
-            :appConfig="appConfig"
             :dataset="dataset"
             :pdfInfos="pdfInfos"
           ></router-view>
@@ -91,6 +87,7 @@ import { TKOpsmapConfiguration } from "@/domain";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false
@@ -123,12 +120,9 @@ export default class TKMainComponent extends Vue {
   @Prop()
   readonly geoData!: TKGeoDataset;
 
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
-
   readonly pdfInfos: TKPDFInfos = {
     currentChartsBase64: {},
-    pdfColumnCount: this.appConfig.options.pdfColumnCount
+    pdfColumnCount: TKConfigurationModule.configuration.options.pdfColumnCount
   };
 
   visualizerOptions: TKSubmissionVisualizerOptions = {

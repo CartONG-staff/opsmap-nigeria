@@ -4,7 +4,7 @@
       <div class="pdf-document-content">
         <!-- <TKSubmissionToPDFHeader :appConfig="appConfig" />
         <div class="header-separator"></div> -->
-        <TKSubmissionToPDFHeadlines :appConfig="appConfig" :dataset="dataset" />
+        <TKSubmissionToPDFHeadlines :dataset="dataset" />
         <!-- <TKSubmissionToPDFIndicators
           :appConfig="appConfig"
           :dataset="dataset"
@@ -15,7 +15,6 @@
 </template>
 
 <script lang="ts">
-import { TKOpsmapConfiguration } from "@/domain";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "../TKSubmissionVisualizer";
@@ -53,9 +52,6 @@ export default class TKSubmissionToPDF extends Vue {
   readonly dataset!: TKDataset;
 
   @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
-
-  @Prop()
   readonly pdfInfos!: TKPDFInfos;
 
   mounted() {
@@ -68,7 +64,6 @@ export default class TKSubmissionToPDF extends Vue {
   /* eslint-disable @typescript-eslint/no-explicit-any */
   exportToPDF() {
     if (
-      this.appConfig &&
       this.dataset &&
       this.dataset.currentCamp &&
       this.dataset.currentSubmission

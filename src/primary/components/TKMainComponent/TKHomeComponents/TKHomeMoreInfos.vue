@@ -14,28 +14,23 @@
 </template>
 
 <script lang="ts">
-import { TKOpsmapConfiguration } from "@/domain";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKHomeIndicators extends Vue {
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
-
   content = TKGetLocalValue(
-    this.appConfig.opsmapDescr,
+    TKConfigurationModule.configuration.opsmapDescr,
     this.$root.$i18n.locale
   );
 
   @Watch("$root.$i18n.locale", { immediate: true })
   handleLocale() {
-    if (this.appConfig) {
-      this.content = TKGetLocalValue(
-        this.appConfig.opsmapDescr,
-        this.$root.$i18n.locale
-      );
-    }
+    this.content = TKGetLocalValue(
+      TKConfigurationModule.configuration.opsmapDescr,
+      this.$root.$i18n.locale
+    );
   }
 }
 </script>
