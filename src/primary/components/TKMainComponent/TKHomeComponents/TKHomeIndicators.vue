@@ -7,19 +7,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
 import { TKIndicator, TKIndicatorDefault } from "@/domain/survey/TKIndicator";
-import { TKDataset } from "@/domain/survey/TKDataset";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 @Component({
   components: {
     TKIndicatorComponent
   }
 })
 export default class TKHomeIndicators extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
   indicator1: TKIndicator = TKIndicatorDefault(
     TKConfigurationModule.configuration.indicators.home[0]
   );
@@ -29,6 +27,10 @@ export default class TKHomeIndicators extends Vue {
   indicator3: TKIndicator = TKIndicatorDefault(
     TKConfigurationModule.configuration.indicators.home[2]
   );
+
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
 
   @Watch("dataset", { immediate: true })
   onSurveyChanged() {

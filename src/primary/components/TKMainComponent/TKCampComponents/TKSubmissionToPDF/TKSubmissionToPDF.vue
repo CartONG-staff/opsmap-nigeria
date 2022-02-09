@@ -4,7 +4,7 @@
       <div class="pdf-document-content">
         <!-- <TKSubmissionToPDFHeader :appConfig="appConfig" />
         <div class="header-separator"></div> -->
-        <TKSubmissionToPDFHeadlines :dataset="dataset" />
+        <TKSubmissionToPDFHeadlines />
         <!-- <TKSubmissionToPDFIndicators
           :appConfig="appConfig"
           :dataset="dataset"
@@ -15,7 +15,6 @@
 </template>
 
 <script lang="ts">
-import { TKDataset } from "@/domain/survey/TKDataset";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "../TKSubmissionVisualizer";
 import jsPDF from "jspdf";
@@ -36,6 +35,7 @@ import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
 import { TKComputeExportFilename } from "@/domain/export/TKDatasetExportToCSV";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 @Component({
   components: {
@@ -47,9 +47,6 @@ import { TKComputeExportFilename } from "@/domain/export/TKDatasetExportToCSV";
 export default class TKSubmissionToPDF extends Vue {
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-
-  @Prop()
-  readonly dataset!: TKDataset;
 
   @Prop()
   readonly pdfInfos!: TKPDFInfos;
@@ -64,11 +61,14 @@ export default class TKSubmissionToPDF extends Vue {
   /* eslint-disable @typescript-eslint/no-explicit-any */
   exportToPDF() {
     if (
-      this.dataset &&
-      this.dataset.currentCamp &&
-      this.dataset.currentSubmission
+      TKDatasetModule.dataset &&
+      TKDatasetModule.dataset.currentCamp &&
+      TKDatasetModule.dataset.currentSubmission
     ) {
-      const documentTitle = TKComputeExportFilename(this.dataset, "pdf");
+      const documentTitle = TKComputeExportFilename(
+        TKDatasetModule.dataset,
+        "pdf"
+      );
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "pt",
@@ -76,7 +76,7 @@ export default class TKSubmissionToPDF extends Vue {
       });
 
       ///
-      const submission = this.dataset.currentSubmission;
+      const submission = TKDatasetModule.dataset.currentSubmission;
       this.$nextTick(function() {
         const divContent = this.$refs["pdf-document"] as HTMLElement;
         pdf

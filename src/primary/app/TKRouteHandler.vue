@@ -3,22 +3,22 @@
 </template>
 
 <script lang="ts">
-import { TKDataset } from "@/domain/survey/TKDataset";
 import Vue from "vue";
 import { headerLogoBus } from "@/primary/components/TKHeaderLogoBus";
-import { Component, Prop, Watch } from "vue-property-decorator";
+import { Component, Watch } from "vue-property-decorator";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 @Component
 export default class TKRouteHandler extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
-
   currentRoute = "/";
 
   created() {
     headerLogoBus.$on("switchToHomePage", () => {
       if (this.$route.path !== "/") {
-        this.dataset.currentAdmin1 = null;
+        if (TKDatasetModule.dataset) {
+          TKDatasetModule.dataset.currentAdmin1 = null;
+        }
+
         this.currentRoute = "/";
         this.$router.push({
           name: "home",
@@ -30,6 +30,10 @@ export default class TKRouteHandler extends Vue {
         });
       }
     });
+  }
+
+  get dataset() {
+    return TKDatasetModule.dataset;
   }
 
   // Trigger at startup or when the changes comes from the URL
@@ -58,7 +62,7 @@ export default class TKRouteHandler extends Vue {
   // Adjust dataset from a given URL
   updateDatasetFromUrl() {
     if (this.$route.name === "home") {
-      this.dataset.currentAdmin1 = null;
+      TKDatasetModule.dataset.currentAdmin1 = null;
     } else if (this.$route.name === "camp") {
       const survey: string = this.$route.params["survey"] ?? "";
       const admin1: string = this.$route.params["admin1"] ?? "";
@@ -66,16 +70,16 @@ export default class TKRouteHandler extends Vue {
       const camp: string = this.$route.params["camp"] ?? "";
       const date: string = this.$route.params["date"]?.replaceAll("-", "/");
       if (survey) {
-        this.dataset.setCurrentSurveyByName(survey);
+        TKDatasetModule.dataset.setCurrentSurveyByName(survey);
         if (camp) {
-          this.dataset.setcurrentCampByName(camp);
+          TKDatasetModule.dataset.setcurrentCampByName(camp);
           if (date) {
-            this.dataset.setSubmissionByDate(date);
+            TKDatasetModule.dataset.setSubmissionByDate(date);
           }
         } else if (admin2) {
-          this.dataset.setCurrentAdmin2ByName(admin2);
+          TKDatasetModule.dataset.setCurrentAdmin2ByName(admin2);
         } else if (admin1) {
-          this.dataset.setCurrentAdmin1ByName(admin1);
+          TKDatasetModule.dataset.setCurrentAdmin1ByName(admin1);
         }
       }
     }
@@ -84,12 +88,20 @@ export default class TKRouteHandler extends Vue {
   // Adjust URL from a given dataset
   updateUrlFromDataset() {
     // upadte URL
-    const surveyE = encodeURIComponent(this.dataset.currentSurvey?.name ?? "");
-    const admin1E = encodeURIComponent(this.dataset.currentAdmin1?.name ?? "");
-    const admin2E = encodeURIComponent(this.dataset.currentAdmin2?.name ?? "");
-    const campE = encodeURIComponent(this.dataset.currentCamp?.name ?? "");
+    const surveyE = encodeURIComponent(
+      TKDatasetModule.dataset.currentSurvey?.name ?? ""
+    );
+    const admin1E = encodeURIComponent(
+      TKDatasetModule.dataset.currentAdmin1?.name ?? ""
+    );
+    const admin2E = encodeURIComponent(
+      TKDatasetModule.dataset.currentAdmin2?.name ?? ""
+    );
+    const campE = encodeURIComponent(
+      TKDatasetModule.dataset.currentCamp?.name ?? ""
+    );
     const dateE = encodeURIComponent(
-      this.dataset.currentSubmission?.date.replaceAll("/", "-") ?? ""
+      TKDatasetModule.dataset.currentSubmission?.date.replaceAll("/", "-") ?? ""
     );
 
     let path = `/camp`;

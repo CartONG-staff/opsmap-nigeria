@@ -22,8 +22,8 @@ import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
 import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
-import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 @Component({
   components: {
@@ -31,8 +31,10 @@ import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
   }
 })
 export default class TKSubmissionVisualizer extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
+
   thematics!: TKTFDFhematicsCollection;
 
   @Prop()

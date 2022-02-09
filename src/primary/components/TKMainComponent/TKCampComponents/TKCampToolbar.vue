@@ -38,7 +38,6 @@
     </transition>
 
     <TKCampToolbarExportButton
-      :dataset="dataset"
       :visualizerOptions="visualizerOptions"
       :pdfInfos="pdfInfos"
       class="tk-camp-toolbar-container"
@@ -85,11 +84,11 @@
 </template>
 
 <script lang="ts">
-import { TKDataset } from "@/domain/survey/TKDataset";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
 import TKCampToolbarExportButton from "./TKCampToolbarExportButton.vue";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 @Component({
   components: {
@@ -99,11 +98,12 @@ import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 export default class TKCampToolbar extends Vue {
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-
-  @Prop()
-  readonly dataset!: TKDataset;
   @Prop()
   readonly pdfInfos!: TKPDFInfos;
+
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
 }
 </script>
 
