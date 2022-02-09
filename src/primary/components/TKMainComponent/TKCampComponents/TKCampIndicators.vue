@@ -8,10 +8,10 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { TKOpsmapConfiguration } from "@/primary/app/TKOpsmapConfiguration";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
 import { TKIndicatorDefault, TKIndicator } from "@/domain/survey/TKIndicator";
 import { TKDataset } from "@/domain/survey/TKDataset";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 @Component({
   components: {
@@ -20,19 +20,16 @@ import { TKDataset } from "@/domain/survey/TKDataset";
 })
 export default class TKCampIndicators extends Vue {
   @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
-
-  @Prop()
   readonly dataset!: TKDataset;
 
   indicator1: TKIndicator = TKIndicatorDefault(
-    this.appConfig.indicators.site[0]
+    TKConfigurationModule.configuration.indicators.site[0]
   );
   indicator2: TKIndicator = TKIndicatorDefault(
-    this.appConfig.indicators.site[1]
+    TKConfigurationModule.configuration.indicators.site[1]
   );
   indicator3: TKIndicator = TKIndicatorDefault(
-    this.appConfig.indicators.site[2]
+    TKConfigurationModule.configuration.indicators.site[2]
   );
 
   @Watch("dataset.currentSubmission", { immediate: true })
@@ -42,9 +39,15 @@ export default class TKCampIndicators extends Vue {
       this.indicator2 = this.dataset.currentSubmission.indicators[1];
       this.indicator3 = this.dataset.currentSubmission.indicators[2];
     } else {
-      this.indicator1 = TKIndicatorDefault(this.appConfig.indicators.site[0]);
-      this.indicator2 = TKIndicatorDefault(this.appConfig.indicators.site[1]);
-      this.indicator3 = TKIndicatorDefault(this.appConfig.indicators.site[2]);
+      this.indicator1 = TKIndicatorDefault(
+        TKConfigurationModule.configuration.indicators.site[0]
+      );
+      this.indicator2 = TKIndicatorDefault(
+        TKConfigurationModule.configuration.indicators.site[1]
+      );
+      this.indicator3 = TKIndicatorDefault(
+        TKConfigurationModule.configuration.indicators.site[2]
+      );
     }
   }
 }

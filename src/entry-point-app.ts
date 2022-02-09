@@ -3,14 +3,16 @@ import TKApp from "@/primary/app/TKApp.vue";
 import vuetify from "@/plugins/vuetify";
 import { loadLocaleMessages } from "@/i18n";
 import VueI18n, { LocaleMessages } from "vue-i18n";
-import { TKReadGeneralConfiguration } from "./primary/app/TKOpsmapConfiguration";
 import router from "./router";
+import store from "./store";
 
 // ////////////////////////////////////////////////////////////////////////////
 // MATOMO
 // ////////////////////////////////////////////////////////////////////////////
 
 import VueMatomo from "vue-matomo";
+import TKConfigurationModule from "./store/modules/configuration/TKConfigurationModule";
+import { TKReadGeneralConfiguration } from "./domain/opsmapConfig/TKOpsmapConfiguration";
 
 Vue.use(VueMatomo, {
   // Configure your matomo server and site by providing
@@ -109,10 +111,14 @@ Vue.config.productionTip = false;
 TKReadGeneralConfiguration(
   `${process.env.BASE_URL}/data/demo/general_config.json`
 ).then(config => {
+  TKConfigurationModule.setConfiguration(config);
+
   // Filter with config languages field.
   const messagesCandidates = loadLocaleMessages();
   const keys = Object.keys(messagesCandidates).filter(
-    lang => config.languages.includes(lang) || lang === "en"
+    lang =>
+      TKConfigurationModule.configuration.languages.includes(lang) ||
+      lang === "en"
   );
 
   const messages: LocaleMessages = {};
@@ -126,19 +132,15 @@ TKReadGeneralConfiguration(
     messages: messages
   });
 
-  // Freeze the config
-  Object.freeze(config);
-
   // Update vuetify options.
-  vuetify.framework.theme.dark = config.options.dark;
+  vuetify.framework.theme.dark =
+    TKConfigurationModule.configuration.options.dark;
 
   new Vue({
     router,
     vuetify,
     i18n,
-    data: {
-      config: config
-    },
+    store,
     render: h => h(TKApp)
   }).$mount("#app");
 });

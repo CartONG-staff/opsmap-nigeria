@@ -4,7 +4,6 @@
     <TKCampToolbar
       :dataset="dataset"
       :visualizerOptions="visualizerOptions"
-      :appConfig="appConfig"
       :pdfInfos="pdfInfos"
     />
     <TKCampInfos :dataset="dataset" />
@@ -12,7 +11,6 @@
 </template>
 
 <script lang="ts">
-import { TKOpsmapConfiguration } from "@/domain";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { Component, Prop, Vue } from "vue-property-decorator";
@@ -35,9 +33,6 @@ export default class TKMainComponentLeftHome extends Vue {
 
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
 
   @Prop()
   readonly pdfInfos!: TKPDFInfos;

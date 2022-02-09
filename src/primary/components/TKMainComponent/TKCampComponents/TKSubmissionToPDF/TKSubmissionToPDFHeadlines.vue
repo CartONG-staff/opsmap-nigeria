@@ -66,6 +66,7 @@ import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { toTitleCase } from "@/domain/utils/TKStringUtils";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import { LngLat } from "mapbox-gl";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
@@ -74,8 +75,6 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   @Prop()
   readonly dataset!: TKDataset;
 
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
   // Global infos
   siteName = "";
   date = "";
@@ -116,7 +115,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
 
   @Watch("dataset.currentCamp", { immediate: true })
   campChanged() {
-    if (this.appConfig && this.dataset && this.dataset.currentCamp) {
+    if (this.dataset && this.dataset.currentCamp) {
       this.siteName = toTitleCase(this.dataset.currentCamp.name.toUpperCase());
       this.admin1 = this.dataset.currentCamp.admin1.name;
       this.admin2 = this.dataset.currentCamp.admin2.name;
@@ -173,7 +172,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
       staticMapUrl += "640x480@2x";
 
       // Token
-      staticMapUrl += `?access_token=${this.appConfig.mapConfig.token}`;
+      staticMapUrl += `?access_token=${TKConfigurationModule.configuration.mapConfig.token}`;
 
       // Upadte img URL
       this.mapImg = staticMapUrl;

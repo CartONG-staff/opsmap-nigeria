@@ -1,16 +1,15 @@
 <template>
   <v-app>
     <v-main>
-      <div class="tk-main" v-if="appRootConfig">
-        <TKHeader :appConfig="appRootConfig" />
+      <div class="tk-main">
+        <TKHeader />
         <TKMainComponent
           class="tk-main-dashboard"
           :dataset="dataset"
           :geoData="geoDataset"
-          :appConfig="appRootConfig"
           :isDatasetInitialized="isDatasetInitialized"
         />
-        <TKFooter :appConfig="appRootConfig" />
+        <TKFooter />
       </div>
       <TKRouteHandler :dataset="dataset" />
     </v-main>
@@ -26,8 +25,8 @@ import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKRouteHandler from "@/primary/app/TKRouteHandler.vue";
-import { TKOpsmapConfiguration } from "@/domain";
 import { TKSurveyExportToEsiteCSV } from "@/domain/export/TKSurveyExportToEsiteCSV";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 @Component({
   components: {
@@ -39,31 +38,36 @@ import { TKSurveyExportToEsiteCSV } from "@/domain/export/TKSurveyExportToEsiteC
 })
 export default class TKApp extends Vue {
   isDatasetInitialized = false;
-  appRootConfig: TKOpsmapConfiguration = this.$root.$data.config;
   dataset: TKDataset | null = null;
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
     this.handeLocale();
     TKCreateDataset(
-      this.appRootConfig.surveys,
-      this.appRootConfig.spatial,
-      this.appRootConfig.indicators,
-      this.appRootConfig.languages
+      TKConfigurationModule.configuration.surveys,
+      TKConfigurationModule.configuration.spatial,
+      TKConfigurationModule.configuration.indicators,
+      TKConfigurationModule.configuration.languages
     )
       .then(dataset => {
         // Export for esite
-        if (this.appRootConfig.options.exportForEsite) {
+        if (TKConfigurationModule.configuration.options.exportForEsite) {
           TKSurveyExportToEsiteCSV(
             dataset.surveys[dataset.surveys.length - 1],
             this.$root.$i18n.locale,
-            TKGetLocalValue(this.appRootConfig.name, this.$root.$i18n.locale)
+            TKGetLocalValue(
+              TKConfigurationModule.configuration.name,
+              this.$root.$i18n.locale
+            )
           );
         }
 
         this.dataset = dataset;
         this.isDatasetInitialized = true;
-        TKGetGeoBoundaries(this.dataset, this.appRootConfig.spatial)
+        TKGetGeoBoundaries(
+          this.dataset,
+          TKConfigurationModule.configuration.spatial
+        )
           .then(geoDataset => {
             this.geoDataset = geoDataset;
           })
@@ -99,7 +103,7 @@ export default class TKApp extends Vue {
   @Watch("$root.$i18n.locale")
   handeLocale() {
     const name = TKGetLocalValue(
-      this.appRootConfig.name,
+      TKConfigurationModule.configuration.name,
       this.$root.$i18n.locale
     );
     document.title =
