@@ -7,11 +7,7 @@
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
         <transition name="fade">
-          <router-view
-            name="header"
-            v-if="isDatasetInitialized"
-            :dataset="dataset"
-          ></router-view>
+          <router-view name="header" v-if="isDatasetInitialized"></router-view>
         </transition>
       </div>
       <div class="tk-main-top">
@@ -22,18 +18,12 @@
             <router-view
               v-else
               name="left"
-              :dataset="dataset"
               :visualizerOptions="visualizerOptions"
               :pdfInfos="pdfInfos"
             ></router-view>
           </transition>
         </div>
-        <TKMap
-          v-if="geoData"
-          class="tk-main-map"
-          :dataset="dataset"
-          :geoDataset="geoData"
-        />
+        <TKMap v-if="geoData" class="tk-main-map" :geoDataset="geoData" />
         <TKPlaceHolderGeneric class="tk-main-map" v-else />
       </div>
 
@@ -47,7 +37,6 @@
             name="indicators"
             v-else
             :visualizerOptions="visualizerOptions"
-            :dataset="dataset"
           ></router-view>
         </transition>
         <transition mode="out-in" name="fade" appear>
@@ -55,7 +44,6 @@
             name="content"
             v-if="isDatasetInitialized"
             :visualizerOptions="visualizerOptions"
-            :dataset="dataset"
             :pdfInfos="pdfInfos"
           ></router-view>
         </transition>
@@ -83,11 +71,10 @@ import {
   TKSubmissionVisualizer,
   TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
-import { TKOpsmapConfiguration } from "@/domain";
-import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   hideUnanswered: false
@@ -112,13 +99,11 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
 })
 export default class TKMainComponent extends Vue {
   @Prop()
-  readonly isDatasetInitialized = false;
-
-  @Prop()
-  readonly dataset!: TKDataset;
-
-  @Prop()
   readonly geoData!: TKGeoDataset;
+
+  get isDatasetInitialized() {
+    return TKDatasetModule.isDatasetInitialized;
+  }
 
   readonly pdfInfos: TKPDFInfos = {
     currentChartsBase64: {},

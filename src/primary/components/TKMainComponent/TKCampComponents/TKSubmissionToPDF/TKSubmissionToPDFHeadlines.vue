@@ -59,21 +59,20 @@
 </template>
 
 <script lang="ts">
-import { TKOpsmapConfiguration } from "@/domain";
 import { TKCampType } from "@/domain/survey/TKCamp";
-
-import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { toTitleCase } from "@/domain/utils/TKStringUtils";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { LngLat } from "mapbox-gl";
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component({})
 export default class TKSubmissionToPDFHeadlines extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
 
   // Global infos
   siteName = "";

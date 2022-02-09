@@ -9,15 +9,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { TKDataset } from "@/domain/survey/TKDataset";
-
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import { Component, Vue, Watch } from "vue-property-decorator";
 @Component
 export default class TKCampSubtitle extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
-
   name = "";
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
 
   @Watch("$root.$i18n.locale")
   @Watch("dataset.currentCamp", { immediate: true })

@@ -3,15 +3,10 @@
     <v-main>
       <div class="tk-main">
         <TKHeader />
-        <TKMainComponent
-          class="tk-main-dashboard"
-          :dataset="dataset"
-          :geoData="geoDataset"
-          :isDatasetInitialized="isDatasetInitialized"
-        />
+        <TKMainComponent class="tk-main-dashboard" :geoData="geoDataset" />
         <TKFooter />
       </div>
-      <TKRouteHandler :dataset="dataset" />
+      <TKRouteHandler />
     </v-main>
   </v-app>
 </template>
@@ -19,14 +14,14 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/primary/components";
-import { TKDataset } from "@/domain/survey/TKDataset";
-import { TKCreateDataset } from "@/domain/survey/TKCreateDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKRouteHandler from "@/primary/app/TKRouteHandler.vue";
 import { TKSurveyExportToEsiteCSV } from "@/domain/export/TKSurveyExportToEsiteCSV";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import { TKCreateDataset } from "@/domain/survey/TKCreateDataset";
 
 @Component({
   components: {
@@ -37,23 +32,25 @@ import TKConfigurationModule from "@/store/modules/configuration/TKConfiguration
   }
 })
 export default class TKApp extends Vue {
-  isDatasetInitialized = false;
-  dataset: TKDataset | null = null;
   geoDataset: TKGeoDataset | null = null;
 
   async mounted() {
     this.handeLocale();
+
     TKCreateDataset(
       TKConfigurationModule.configuration.surveys,
       TKConfigurationModule.configuration.spatial,
       TKConfigurationModule.configuration.indicators,
       TKConfigurationModule.configuration.languages
-    )
-      .then(dataset => {
-        // Export for esite
+    ).then(dataset => {
+      TKDatasetModule.setDataset(dataset);
+      console.log("---- allez allez allez");
+      if (TKDatasetModule.dataset) {
         if (TKConfigurationModule.configuration.options.exportForEsite) {
           TKSurveyExportToEsiteCSV(
-            dataset.surveys[dataset.surveys.length - 1],
+            TKDatasetModule.dataset.surveys[
+              TKDatasetModule.dataset.surveys.length - 1
+            ],
             this.$root.$i18n.locale,
             TKGetLocalValue(
               TKConfigurationModule.configuration.name,
@@ -62,10 +59,8 @@ export default class TKApp extends Vue {
           );
         }
 
-        this.dataset = dataset;
-        this.isDatasetInitialized = true;
         TKGetGeoBoundaries(
-          this.dataset,
+          TKDatasetModule.dataset,
           TKConfigurationModule.configuration.spatial
         )
           .then(geoDataset => {
@@ -83,21 +78,8 @@ export default class TKApp extends Vue {
               }
             };
           });
-      })
-      .catch(() => {
-        this.dataset = new TKDataset([]);
-        this.isDatasetInitialized = true;
-        this.geoDataset = {
-          admin1: {
-            type: "FeatureCollection",
-            features: []
-          },
-          admin2: {
-            type: "FeatureCollection",
-            features: []
-          }
-        };
-      });
+      }
+    });
   }
 
   @Watch("$root.$i18n.locale")

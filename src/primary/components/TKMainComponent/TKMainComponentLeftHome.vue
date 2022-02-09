@@ -1,13 +1,12 @@
 <template>
   <div class="tk-home-left">
-    <TKHomeSubtitle :dataset="dataset" />
-    <TKHomeCombos :dataset="dataset" />
+    <TKHomeSubtitle />
+    <TKHomeCombos />
   </div>
 </template>
 
 <script lang="ts">
-import { TKDataset } from "@/domain/survey/TKDataset";
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { TKHomeCombos, TKHomeSubtitle } from "./TKHomeComponents";
 @Component({
   components: {
@@ -15,10 +14,7 @@ import { TKHomeCombos, TKHomeSubtitle } from "./TKHomeComponents";
     TKHomeSubtitle
   }
 })
-export default class TKMainComponentLeftHome extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
-}
+export default class TKMainComponentLeftHome extends Vue {}
 </script>
 
 <style scoped>

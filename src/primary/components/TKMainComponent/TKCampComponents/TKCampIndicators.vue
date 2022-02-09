@@ -7,11 +7,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
 import { TKIndicatorDefault, TKIndicator } from "@/domain/survey/TKIndicator";
-import { TKDataset } from "@/domain/survey/TKDataset";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 @Component({
   components: {
@@ -19,8 +19,9 @@ import TKConfigurationModule from "@/store/modules/configuration/TKConfiguration
   }
 })
 export default class TKCampIndicators extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
 
   indicator1: TKIndicator = TKIndicatorDefault(
     TKConfigurationModule.configuration.indicators.site[0]
