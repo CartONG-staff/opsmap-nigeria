@@ -27,7 +27,6 @@
       <TKSubmissionToPDF
         ref="tk-submission-to-pdf"
         :visualizerOptions="visualizerOptions"
-        :pdfInfos="pdfInfos"
         @close-dialog="generatePDF = false"
       />
     </v-dialog>
@@ -60,7 +59,6 @@ import TKSubmissionToPDF from "./TKSubmissionToPDF/TKSubmissionToPDF.vue";
 import { TKDatasetExportToCSV } from "@/domain/export/TKDatasetExportToCSV";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
-import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 @Component({
@@ -71,9 +69,6 @@ import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 export default class TKCampToolbarExportButton extends Vue {
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-
-  @Prop()
-  readonly pdfInfos!: TKPDFInfos;
 
   generatePDF = false;
 

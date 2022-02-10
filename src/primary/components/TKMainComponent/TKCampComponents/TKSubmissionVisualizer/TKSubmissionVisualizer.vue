@@ -10,7 +10,6 @@
         :key="indexthem"
         :visualizerOptions="visualizerOptions"
         :submissionThematic="them"
-        :pdfInfos="pdfInfos"
       />
     </div>
   </div>
@@ -22,7 +21,6 @@ import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
 import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
-import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 @Component({
@@ -36,9 +34,6 @@ export default class TKSubmissionVisualizer extends Vue {
   }
 
   thematics!: TKTFDFhematicsCollection;
-
-  @Prop()
-  readonly pdfInfos!: TKPDFInfos;
 
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;

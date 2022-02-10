@@ -1,16 +1,12 @@
 <template>
   <div class="tk-camp-left">
     <TKCampSubtitle />
-    <TKCampToolbar
-      :visualizerOptions="visualizerOptions"
-      :pdfInfos="pdfInfos"
-    />
+    <TKCampToolbar :visualizerOptions="visualizerOptions" />
     <TKCampInfos />
   </div>
 </template>
 
 <script lang="ts">
-import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import {
   TKCampInfos,
@@ -28,9 +24,6 @@ import {
 export default class TKMainComponentLeftHome extends Vue {
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-
-  @Prop()
-  readonly pdfInfos!: TKPDFInfos;
 }
 </script>
 
