@@ -32,11 +32,12 @@ import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
-import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
 import { TKComputeExportFilename } from "@/domain/export/TKDatasetExportToCSV";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
 
+// import TKSubmissionToPDFIndicator from "./TKSubmissionToPDFIndicators.vue";
 @Component({
   components: {
     // TKSubmissionToPDFHeader,
@@ -47,9 +48,6 @@ import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 export default class TKSubmissionToPDF extends Vue {
   @Prop()
   readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-
-  @Prop()
-  readonly pdfInfos!: TKPDFInfos;
 
   mounted() {
     this.exportToPDF();
@@ -88,16 +86,16 @@ export default class TKSubmissionToPDF extends Vue {
           .then(() => {
             const PAGE_WIDTH = 595;
             const SPACING = 15;
-            const TOTAL_SPACING_COUNT = 2 + this.pdfInfos.pdfColumnCount - 1;
+            const TOTAL_SPACING_COUNT = 2 + TKPDFInfosModule.columnCount - 1;
             const TOTAL_SPACING = TOTAL_SPACING_COUNT * SPACING;
 
             const COLUMN_WIDTH = Math.round(
-              (PAGE_WIDTH - TOTAL_SPACING) / this.pdfInfos.pdfColumnCount
+              (PAGE_WIDTH - TOTAL_SPACING) / TKPDFInfosModule.columnCount
             );
             const NONAUTOTABLECONTENTHEIGHT = 120;
 
             const margins = [];
-            for (let i = 0; i < this.pdfInfos.pdfColumnCount; i++) {
+            for (let i = 0; i < TKPDFInfosModule.columnCount; i++) {
               margins.push({
                 left: SPACING + (COLUMN_WIDTH + SPACING) * i,
                 right:
@@ -112,7 +110,7 @@ export default class TKSubmissionToPDF extends Vue {
               pageNumber: number;
             }> = [];
 
-            for (let i = 0; i < this.pdfInfos.pdfColumnCount; i++) {
+            for (let i = 0; i < TKPDFInfosModule.columnCount; i++) {
               drawPosition.push({
                 startY: NONAUTOTABLECONTENTHEIGHT,
                 pageNumber: (pdf.internal as any).getNumberOfPages()
@@ -158,7 +156,7 @@ export default class TKSubmissionToPDF extends Vue {
 
               // Option 2 - Round Robin
               // indexColumn++;
-              // if (indexColumn === this.pdfInfos.pdfColumnCount) {
+              // if (indexColumn === TKPDFInfosModule.columnCount) {
               //   indexColumn = 0;
               // }
             }
@@ -249,7 +247,7 @@ export default class TKSubmissionToPDF extends Vue {
           item.type === TKSubmissionEntryType.CHART_POLAR
         ) {
           const props = pdf.getImageProperties(
-            this.pdfInfos.currentChartsBase64[item.chartid]
+            TKPDFInfosModule.currentChartsBase64[item.chartid]
           );
           const maxWidth = Math.min(columnWidth - 20, 150);
           const width = props.width > maxWidth ? maxWidth : props.width;
@@ -262,7 +260,7 @@ export default class TKSubmissionToPDF extends Vue {
               minCellHeight: height
             }
           });
-          const str = this.pdfInfos.currentChartsBase64[item.chartid];
+          const str = TKPDFInfosModule.currentChartsBase64[item.chartid];
           charts[body.length] = {
             base64: str,
             width: width,

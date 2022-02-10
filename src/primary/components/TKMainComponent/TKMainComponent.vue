@@ -19,7 +19,6 @@
               v-else
               name="left"
               :visualizerOptions="visualizerOptions"
-              :pdfInfos="pdfInfos"
             ></router-view>
           </transition>
         </div>
@@ -44,7 +43,6 @@
             name="content"
             v-if="isDatasetInitialized"
             :visualizerOptions="visualizerOptions"
-            :pdfInfos="pdfInfos"
           ></router-view>
         </transition>
       </div>
@@ -71,8 +69,7 @@ import {
   TKSubmissionVisualizer,
   TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
-import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
-import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
@@ -100,11 +97,6 @@ export default class TKMainComponent extends Vue {
   get isDatasetInitialized() {
     return TKDatasetModule.isDatasetInitialized;
   }
-
-  readonly pdfInfos: TKPDFInfos = {
-    currentChartsBase64: {},
-    pdfColumnCount: TKConfigurationModule.configuration.options.pdfColumnCount
-  };
 
   visualizerOptions: TKSubmissionVisualizerOptions = {
     hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
