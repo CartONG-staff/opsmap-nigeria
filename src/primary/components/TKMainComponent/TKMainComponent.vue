@@ -23,7 +23,7 @@
             ></router-view>
           </transition>
         </div>
-        <TKMap v-if="geoData" class="tk-main-map" :geoDataset="geoData" />
+        <TKMap v-if="isDatasetInitialized" class="tk-main-map" />
         <TKPlaceHolderGeneric class="tk-main-map" v-else />
       </div>
 
@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import TKPlaceHolderLeft from "./TKPlaceHolders/TKPlaceHolderLeft.vue";
 import TKPlaceHolderIndicators from "./TKPlaceHolders/TKPlaceHolderIndicators.vue";
 import TKPlaceHolderGeneric from "./TKPlaceHolders/TKPlaceHolderGeneric.vue";
@@ -72,7 +72,6 @@ import {
   TKSubmissionVisualizerOptions
 } from "./TKCampComponents";
 import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
-import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
@@ -98,9 +97,6 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   }
 })
 export default class TKMainComponent extends Vue {
-  @Prop()
-  readonly geoData!: TKGeoDataset;
-
   get isDatasetInitialized() {
     return TKDatasetModule.isDatasetInitialized;
   }

@@ -13,7 +13,7 @@
 
 <script lang="ts">
 /* eslint-disable@typescript-eslint/no-non-null-assertion */
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import mapboxgl, {
   CircleLayer,
   FillLayer,
@@ -31,10 +31,10 @@ import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
-import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { Point } from "geojson";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import TKGeoDatasetModule from "@/store/modules/geodataset/TKGeoDatasetModule";
 
 @Component({
   components: {
@@ -44,9 +44,6 @@ import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
   }
 })
 export default class TKMap extends Vue {
-  @Prop()
-  readonly geoDataset!: TKGeoDataset;
-
   map!: mapboxgl.Map;
   bound!: mapboxgl.LngLatBounds;
   mapCamps: TKMapCamps | null = null;
@@ -118,6 +115,10 @@ export default class TKMap extends Vue {
   // //////////////////////////////////////////////////////////////////////////
   //
   // //////////////////////////////////////////////////////////////////////////
+
+  get geoDataset() {
+    return TKGeoDatasetModule.geoDataset;
+  }
 
   @Watch("geoDataset", { immediate: true })
   geoDatasetLoaded() {

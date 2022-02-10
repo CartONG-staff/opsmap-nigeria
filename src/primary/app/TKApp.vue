@@ -3,7 +3,7 @@
     <v-main>
       <div class="tk-main">
         <TKHeader />
-        <TKMainComponent class="tk-main-dashboard" :geoData="geoDataset" />
+        <TKMainComponent class="tk-main-dashboard" />
         <TKFooter />
       </div>
       <TKRouteHandler />
@@ -14,12 +14,12 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { TKFooter, TKMainComponent, TKHeader } from "@/primary/components";
-import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKGetGeoBoundaries } from "@/domain/map/TKGetGeoBoundaries";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKRouteHandler from "@/primary/app/TKRouteHandler.vue";
 import { TKSurveyExportToEsiteCSV } from "@/domain/export/TKSurveyExportToEsiteCSV";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import TKGeoDatasetModule from "@/store/modules/geodataset/TKGeoDatasetModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { TKCreateDataset } from "@/domain/survey/TKCreateDataset";
 
@@ -32,8 +32,6 @@ import { TKCreateDataset } from "@/domain/survey/TKCreateDataset";
   }
 })
 export default class TKApp extends Vue {
-  geoDataset: TKGeoDataset | null = null;
-
   async mounted() {
     this.handeLocale();
 
@@ -44,7 +42,6 @@ export default class TKApp extends Vue {
       TKConfigurationModule.configuration.languages
     ).then(dataset => {
       TKDatasetModule.setDataset(dataset);
-      console.log("---- allez allez allez");
       if (TKDatasetModule.dataset) {
         if (TKConfigurationModule.configuration.options.exportForEsite) {
           TKSurveyExportToEsiteCSV(
@@ -62,22 +59,9 @@ export default class TKApp extends Vue {
         TKGetGeoBoundaries(
           TKDatasetModule.dataset,
           TKConfigurationModule.configuration.spatial
-        )
-          .then(geoDataset => {
-            this.geoDataset = geoDataset;
-          })
-          .catch(() => {
-            this.geoDataset = {
-              admin1: {
-                type: "FeatureCollection",
-                features: []
-              },
-              admin2: {
-                type: "FeatureCollection",
-                features: []
-              }
-            };
-          });
+        ).then(geoDataset => {
+          TKGeoDatasetModule.setGeoDataset(geoDataset);
+        });
       }
     });
   }
