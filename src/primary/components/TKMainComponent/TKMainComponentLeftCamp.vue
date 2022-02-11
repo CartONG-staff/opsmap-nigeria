@@ -1,19 +1,14 @@
 <template>
   <div class="tk-camp-left">
     <TKCampSubtitle />
-    <TKCampToolbar :visualizerOptions="visualizerOptions" />
+    <TKCampToolbar />
     <TKCampInfos />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import {
-  TKCampInfos,
-  TKCampSubtitle,
-  TKCampToolbar,
-  TKSubmissionVisualizerOptions
-} from "./TKCampComponents";
+import { Component, Vue } from "vue-property-decorator";
+import { TKCampInfos, TKCampSubtitle, TKCampToolbar } from "./TKCampComponents";
 @Component({
   components: {
     TKCampInfos,
@@ -21,10 +16,7 @@ import {
     TKCampToolbar
   }
 })
-export default class TKMainComponentLeftHome extends Vue {
-  @Prop()
-  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-}
+export default class TKMainComponentLeftHome extends Vue {}
 </script>
 
 <style scoped>

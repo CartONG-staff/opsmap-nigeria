@@ -15,8 +15,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import { TKSubmissionVisualizerOptions } from "../TKSubmissionVisualizer";
+import { Component, Vue } from "vue-property-decorator";
 import jsPDF from "jspdf";
 import autoTable, {
   CellDef,
@@ -46,9 +45,6 @@ import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
   }
 })
 export default class TKSubmissionToPDF extends Vue {
-  @Prop()
-  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-
   mounted() {
     this.exportToPDF();
   }

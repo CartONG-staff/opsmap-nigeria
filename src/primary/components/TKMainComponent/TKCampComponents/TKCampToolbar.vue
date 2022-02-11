@@ -37,10 +37,7 @@
       </div>
     </transition>
 
-    <TKCampToolbarExportButton
-      :visualizerOptions="visualizerOptions"
-      class="tk-camp-toolbar-container"
-    />
+    <TKCampToolbarExportButton class="tk-camp-toolbar-container" />
 
     <v-menu
       :offset-y="true"
@@ -74,7 +71,7 @@
             :label="$t('site.hideUnanswered')"
             color="accent"
             hide-details
-            v-model="visualizerOptions.hideUnanswered"
+            v-model="hideUnanswered"
           ></v-switch>
         </v-list-item>
       </v-list>
@@ -83,10 +80,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
+import { Component, Vue } from "vue-property-decorator";
 import TKCampToolbarExportButton from "./TKCampToolbarExportButton.vue";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 
 @Component({
   components: {
@@ -94,8 +91,13 @@ import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
   }
 })
 export default class TKCampToolbar extends Vue {
-  @Prop()
-  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
+  get hideUnanswered() {
+    return TKVisualizerOptionsModule.hideUnanswered;
+  }
+
+  set hideUnanswered(value: boolean) {
+    TKVisualizerOptionsModule.setHideUnanswered(value);
+  }
 
   get dataset() {
     return TKDatasetModule.dataset;
