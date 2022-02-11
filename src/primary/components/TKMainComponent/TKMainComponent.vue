@@ -15,11 +15,7 @@
           <TKTitle />
           <transition mode="out-in" name="fade">
             <TKPlaceHolderLeft v-if="!isDatasetInitialized" />
-            <router-view
-              v-else
-              name="left"
-              :visualizerOptions="visualizerOptions"
-            ></router-view>
+            <router-view v-else name="left"></router-view>
           </transition>
         </div>
         <TKMap v-if="isDatasetInitialized" class="tk-main-map" />
@@ -32,18 +28,10 @@
             <TKPlaceHolderIndicators />
             <TKPlaceHolderGeneric class="tk-main-content-placeholder" />
           </div>
-          <router-view
-            name="indicators"
-            v-else
-            :visualizerOptions="visualizerOptions"
-          ></router-view>
+          <router-view name="indicators" v-else></router-view>
         </transition>
         <transition mode="out-in" name="fade" appear>
-          <router-view
-            name="content"
-            v-if="isDatasetInitialized"
-            :visualizerOptions="visualizerOptions"
-          ></router-view>
+          <router-view name="content" v-if="isDatasetInitialized"></router-view>
         </transition>
       </div>
     </div>
@@ -66,15 +54,11 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSubmissionVisualizer,
-  TKSubmissionVisualizerOptions
+  TKSubmissionVisualizer
 } from "./TKCampComponents";
 
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
-
-const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
-  hideUnanswered: false
-};
+import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 
 @Component({
   components: {
@@ -97,11 +81,6 @@ export default class TKMainComponent extends Vue {
   get isDatasetInitialized() {
     return TKDatasetModule.isDatasetInitialized;
   }
-
-  visualizerOptions: TKSubmissionVisualizerOptions = {
-    hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
-  };
-
   get cssVars() {
     if (this.$vuetify.theme.dark) {
       return {
@@ -116,11 +95,14 @@ export default class TKMainComponent extends Vue {
     };
   }
 
+  get lastModification() {
+    return TKDatasetModule.dataset.lastModification;
+  }
+
   // Trigger when a camp is selected
-  @Watch("dataset.lastModification")
+  @Watch("lastModification")
   onLastModificationChange() {
-    this.visualizerOptions.hideUnanswered =
-      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
+    TKVisualizerOptionsModule.resetHideUnanswered();
   }
 }
 </script>

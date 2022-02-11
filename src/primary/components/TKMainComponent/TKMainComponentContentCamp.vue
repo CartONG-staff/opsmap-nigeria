@@ -1,24 +1,18 @@
 <template>
   <div>
-    <TKSubmissionVisualizer :visualizerOptions="visualizerOptions" />
+    <TKSubmissionVisualizer />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import {
-  TKSubmissionVisualizer,
-  TKSubmissionVisualizerOptions
-} from "./TKCampComponents";
+import { Component, Vue } from "vue-property-decorator";
+import { TKSubmissionVisualizer } from "./TKCampComponents";
 @Component({
   components: {
     TKSubmissionVisualizer
   }
 })
-export default class TKMainComponentLeftCamp extends Vue {
-  @Prop()
-  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-}
+export default class TKMainComponentLeftCamp extends Vue {}
 </script>
 
 <style scoped></style>

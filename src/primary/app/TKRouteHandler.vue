@@ -21,12 +21,7 @@ export default class TKRouteHandler extends Vue {
 
         this.currentRoute = "/";
         this.$router.push({
-          name: "home",
-          params: {
-            dataset: "dataset",
-            appConfig: "appConfig",
-            visualizerOptions: "visualizerOptions"
-          }
+          name: "home"
         });
       }
     });

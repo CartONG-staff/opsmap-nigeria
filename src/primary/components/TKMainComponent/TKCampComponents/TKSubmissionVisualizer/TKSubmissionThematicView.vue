@@ -10,10 +10,7 @@
       <div
         v-for="entry in thematicData"
         :key="entry.id"
-        v-show="
-          !visualizerOptions.hideUnanswered ||
-            (visualizerOptions.hideUnanswered && entry.isAnswered)
-        "
+        v-show="!hideUnanswered || (hideUnanswered && entry.isAnswered)"
       >
         <TKSubmissionEntryView :entry="entry" />
       </div>
@@ -27,8 +24,8 @@ import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import TKSubmissionEntryView from "./TKSubmissionEntryView.vue";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
-import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
+import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 
 @Component({
   components: {
@@ -39,10 +36,11 @@ export default class TKSubmissionThematicView extends Vue {
   @Prop()
   readonly submissionThematic!: TKSubmissionThematic;
 
-  thematicData: Array<TKSubmissionEntry> = [];
+  get hideUnanswered() {
+    return TKVisualizerOptionsModule.hideUnanswered;
+  }
 
-  @Prop()
-  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
+  thematicData: Array<TKSubmissionEntry> = [];
 
   title = "";
   iconurl = "";
@@ -69,11 +67,11 @@ export default class TKSubmissionThematicView extends Vue {
     }
   }
 
-  @Watch("visualizerOptions.hideUnanswered", { immediate: true })
+  @Watch("hideUnanswered", { immediate: true })
   applyHideUnansweredOption() {
     // Filter if needed
     if (this.submissionThematic) {
-      this.thematicData = this.visualizerOptions.hideUnanswered
+      this.thematicData = this.hideUnanswered
         ? this.submissionThematic.data
         : this.submissionThematic.data;
     } else {
