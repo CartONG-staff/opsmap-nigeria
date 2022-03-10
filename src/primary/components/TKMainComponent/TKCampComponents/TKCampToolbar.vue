@@ -74,6 +74,14 @@
             v-model="hideUnanswered"
           ></v-switch>
         </v-list-item>
+        <v-list-item>
+          <v-switch
+            :label="$t('site.sortByTrafficLight')"
+            color="accent"
+            hide-details
+            v-model="sortByTrafficLight"
+          ></v-switch>
+        </v-list-item>
       </v-list>
     </v-menu>
   </div>
@@ -97,6 +105,14 @@ export default class TKCampToolbar extends Vue {
 
   set hideUnanswered(value: boolean) {
     TKVisualizerOptionsModule.setHideUnanswered(value);
+  }
+
+  get sortByTrafficLight() {
+    return TKVisualizerOptionsModule.sortByTrafficLigh;
+  }
+
+  set sortByTrafficLight(value: boolean) {
+    TKVisualizerOptionsModule.setSortByTrafficLight(value);
   }
 
   get dataset() {

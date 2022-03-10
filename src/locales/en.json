@@ -38,6 +38,7 @@
         "exportPreffix": "Export as",
         "infosCoordinates": "gps coordinates",
         "hideUnanswered": "Hide unanswered entries",
+        "sortByTrafficLight": "Sort by Traffic Lights",
         "subtitlePlaceholder": "No Site Selected",
         "extraTools": "Extra Tools",
         "datePreffix": "Report"
