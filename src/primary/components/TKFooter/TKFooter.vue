@@ -3,7 +3,7 @@
     <transition mode="out-in" name="fade-in">
       <div :key="$root.$i18n.locale" class="tk-footer-disclaimer">
         <div class="tk-footer-disclaimer-title">
-          <p>{{ ($t("footer.moreInfos") as string).toUpperCase() }}</p>
+          <p>{{ $t("footer.moreInfos").toUpperCase() }}</p>
         </div>
         <div class="tk-footer-disclaimer-text">
           <p>
