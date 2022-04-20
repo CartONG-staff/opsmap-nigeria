@@ -89,7 +89,7 @@ function computeSurveyIndicator(
           item.answerLabel &&
           !isNaN(parseFloat(item.answerLabel.en))
         ) {
-          sum += Number(item.answerLabel.en);
+          sum += Math.floor(parseFloat(item.answerLabel.en));
         }
       }
     }
