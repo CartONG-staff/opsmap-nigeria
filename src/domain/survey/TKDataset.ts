@@ -474,8 +474,9 @@ export class TKDataset {
           camp => camp.type !== TKCampType.PLANNED
         );
 
-        this.filterAdmin1BaseOnFilteredCamp();
-        this.filterAdmin2BaseOnFilteredCamp();
+        // Remove to avoid weird filtering.
+        // this.filterAdmin1BaseOnFilteredCamp();
+        // this.filterAdmin2BaseOnFilteredCamp();
       }
 
       // Remove spontaneous if needed ///////////////////////////////////////////
@@ -483,8 +484,10 @@ export class TKDataset {
         this._filteredCampsList = this._filteredCampsList.filter(
           camp => camp.type !== TKCampType.SPONTANEOUS
         );
-        this.filterAdmin1BaseOnFilteredCamp();
-        this.filterAdmin2BaseOnFilteredCamp();
+
+        // Remove to avoid weird filtering.
+        // this.filterAdmin1BaseOnFilteredCamp();
+        // this.filterAdmin2BaseOnFilteredCamp();
       }
     }
   }
