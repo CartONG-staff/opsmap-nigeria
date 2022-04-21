@@ -7,10 +7,12 @@ import {
 import store from "@/store";
 
 const DEFAULT_HIDE_UNANSWERED = false;
+const DEFAULT_SORT_BY_TRAFFICLIGHT = false;
 
 @Module({ dynamic: true, store, name: "TKVisualizerOptionsModule" })
 class TKVisualizerOptionsModule extends VuexModule {
   _hideUnanswered = DEFAULT_HIDE_UNANSWERED;
+  _sortByTrafficLight = DEFAULT_SORT_BY_TRAFFICLIGHT;
 
   @Mutation
   resetHideUnanswered() {
@@ -24,6 +26,20 @@ class TKVisualizerOptionsModule extends VuexModule {
 
   get hideUnanswered(): boolean {
     return this._hideUnanswered;
+  }
+
+  @Mutation
+  resetSortByTrafficLight() {
+    this._sortByTrafficLight = DEFAULT_SORT_BY_TRAFFICLIGHT;
+  }
+
+  @Mutation
+  setSortByTrafficLight(sort: boolean) {
+    this._sortByTrafficLight = sort;
+  }
+
+  get sortByTrafficLigh(): boolean {
+    return this._sortByTrafficLight;
   }
 }
 
