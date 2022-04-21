@@ -41,7 +41,8 @@
         "sortByTrafficLight": "Sort by Traffic Lights",
         "subtitlePlaceholder": "No Site Selected",
         "extraTools": "Extra Tools",
-        "datePreffix": "Report"
+        "datePreffix": "Report",
+        "filter": "Filter"
     },
     "charts": {
         "agePyramidTitle": "Age Pyramid",

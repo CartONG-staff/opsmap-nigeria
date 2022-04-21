@@ -8,8 +8,8 @@
     </div>
     <div class="tk-submission-thematic-content">
       <div
-        v-for="entry in thematicData"
-        :key="entry.id"
+        v-for="(entry, key) in thematicData"
+        :key="key"
         v-show="!hideUnanswered || (hideUnanswered && entry.isAnswered)"
       >
         <TKSubmissionEntryView :entry="entry" />
@@ -42,6 +42,10 @@ export default class TKSubmissionThematicView extends Vue {
 
   get hideUnanswered() {
     return TKVisualizerOptionsModule.hideUnanswered;
+  }
+
+  get searchFilter() {
+    return TKVisualizerOptionsModule.searchFilter;
   }
 
   get sortByTrafficLight() {
@@ -105,6 +109,7 @@ export default class TKSubmissionThematicView extends Vue {
 
   @Watch("hideUnanswered", { immediate: true })
   @Watch("sortByTrafficLight", { immediate: true })
+  @Watch("searchFilter", { immediate: true })
   updateThematcData() {
     if (this.submissionThematic) {
       if (this.sortByTrafficLight) {
@@ -126,6 +131,28 @@ export default class TKSubmissionThematicView extends Vue {
       }
     } else {
       this.thematicData = [];
+    }
+
+    if (this.searchFilter) {
+      this.thematicData = this.thematicData.filter(
+        (item: TKSubmissionEntry) => {
+          if (item.type !== TKSubmissionEntryType.TEXT) {
+            return true;
+          }
+          for (const value of Object.values(item.answerLabel)) {
+            if (value.toLowerCase().includes(this.searchFilter.toLowerCase())) {
+              return true;
+            }
+          }
+          for (const value of Object.values(item.fieldLabel)) {
+            if (value.toLowerCase().includes(this.searchFilter.toLowerCase())) {
+              return true;
+            }
+          }
+
+          return false;
+        }
+      );
     }
   }
 }
