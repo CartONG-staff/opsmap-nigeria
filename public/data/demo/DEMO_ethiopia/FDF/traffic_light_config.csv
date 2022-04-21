@@ -1,0 +1,8 @@
+﻿traffic_light_name;type;value;color
+yesno;string;Yes;green
+yesno;string;No;red
+noyes;string;Yes;red
+noyes;string;No;green
+status_site_t;string;Open;green
+status_site_t;string;Unknown;orange
+status_site_t;string;Close;red

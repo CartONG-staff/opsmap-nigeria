@@ -85,7 +85,7 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "/data/ethiopia/Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -98,12 +98,12 @@
             "logos": [
                 {
                     "name": "Development Expertise Center",
-                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/DEC.png",
+                    "urlLogo": "/data/ethiopia/Logo/DEC.png",
                     "urlRedirection": "https://decethiopia.org/"
                 },
                 {
                     "name": "Organization for Social Services, Health and Development",
-                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/OSSHD.png",
+                    "urlLogo": "/data/ethiopia/Logo/OSSHD.png",
                     "urlRedirection": "http://osshd-ethiopia.org/"
                 }
             ]
@@ -116,12 +116,12 @@
             "logos": [
                 {
                     "name": "Action for the Needy in Ethiopia",
-                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/ANE.png",
+                    "urlLogo": "/data/ethiopia/Logo/ANE.png",
                     "urlRedirection": "http://www.ane-ethiopia.org "
                 },
                 {
                     "name": "IOM UN Migration",
-                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/IOM.png",
+                    "urlLogo": "/data/ethiopia/Logo/IOM.png",
                     "urlRedirection": "https://ethiopia.iom.int/"
                 }
             ]
@@ -134,7 +134,7 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/CCCM_Cluster_Ethiopia.png",
+                    "urlLogo": "/data/ethiopia/Logo/CCCM_Cluster_Ethiopia.png",
                     "urlRedirection": "https://www.unhcr.org/ethiopia"
                 }
             ]
@@ -156,14 +156,14 @@
         "adm2RefInAdm1": "adm1pcode",
         "adm3Pcode": "ADM3_PCODE",
         "adm3Name": "ADM3_EN",
-        "admin0LocalURL": "/data/demo/DEMO_ethiopia/map/admin0.geojson",
+        "admin0LocalURL": "/data/ethiopia/map/admin0.geojson",
         "admin1LocalURL": ""
     },
     "surveys": [
         {
             "type": "gsheet",
             "fdf": {
-                "folder": "/data/demo/DEMO_ethiopia/FDF"
+                "folder": "/data/ethiopia/FDF"
             },
             "name": "Survey 2022",
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWB--WUoL4kvoVyWJA0pSvrutK2eKTRbKFUkDRJcY5drw52BtBKphuqb8P1_iD23hiBNZIoBSw70Vy/pub?gid=139925868&single=true&output=csv",
