@@ -8,7 +8,7 @@
         color="#919191"
         plain
       >
-        <v-icon left>mdi-file-sign</v-icon>Only answered entries</v-btn
+        <v-icon left>mdi-file-sign</v-icon>Only answered</v-btn
       >
     </v-btn-toggle>
     <v-btn-toggle class="tk-submissionvisualizer-toggle">
@@ -18,9 +18,8 @@
         color="#919191"
         plain
       >
-        <v-icon left>mdi-traffic-light-outline</v-icon>Sort by traffic
-        lights</v-btn
-      >
+        <v-icon left>mdi-traffic-light-outline</v-icon>Sort
+      </v-btn>
     </v-btn-toggle>
   </div>
 </template>
