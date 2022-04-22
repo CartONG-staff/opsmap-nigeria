@@ -45,6 +45,11 @@ class TKVisualizerOptionsModule extends VuexModule {
   }
 
   @Mutation
+  resetSearchFilter() {
+    this._searchFilter = DEFAULT_FILTER_VALUE;
+  }
+
+  @Mutation
   setSearchFilter(searchFilter: string) {
     this._searchFilter = searchFilter;
   }

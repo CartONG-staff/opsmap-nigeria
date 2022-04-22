@@ -1,6 +1,19 @@
 <template>
   <div class="tk-submissionvisualizer-toolbar">
-    <TKSearchfield :label="$t('site.filter')" v-model="search"> </TKSearchfield>
+    <v-text-field
+      class="search-field"
+      :label="$t('site.filter')"
+      solo
+      dense
+      flat
+      single-line
+      hide-details
+      clearable
+      v-model="search"
+      @keydown.enter="setSearchImmediate"
+      prepend-inner-icon="mdi-magnify"
+      height="44"
+    ></v-text-field>
     <v-btn-toggle class="tk-submissionvisualizer-toggle">
       <v-btn
         class="toggle-button"
@@ -26,17 +39,40 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import TKSearchfield from "@/primary/TKSearchField.vue";
 import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 @Component({
-  components: { TKSearchfield }
+  components: {}
 })
 export default class TKSubmissionVisualizerToolbar extends Vue {
+  // search
+  timeOutID = 0;
+  _search = "";
+
   get search(): string {
     return TKVisualizerOptionsModule.searchFilter;
   }
+
   set search(search: string) {
-    TKVisualizerOptionsModule.setSearchFilter(search);
+    this._search = search;
+    window.clearTimeout(this.timeOutID);
+    if (search) {
+      // text is typed
+      this.timeOutID = window.setTimeout(() => {
+        this.triggerSearch();
+      }, 1000);
+    } else {
+      // test is cleared
+      this.triggerSearch();
+    }
+  }
+
+  setSearchImmediate() {
+    window.clearTimeout(this.timeOutID);
+    this.triggerSearch();
+  }
+
+  triggerSearch() {
+    TKVisualizerOptionsModule.setSearchFilter(this._search);
   }
 
   get hideUnanswered() {
@@ -64,6 +100,16 @@ export default class TKSubmissionVisualizerToolbar extends Vue {
 </style>
 
 <style scoped>
+.search-field {
+  border-radius: 8px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  border: 3px solid var(--v-thematicBorder-base);
+  width: 100%;
+  background-color: var(--v-thematicBackground-base);
+  overflow: hidden;
+}
 .tk-submissionvisualizer-toolbar {
   display: flex;
   flex-flow: row nowrap;

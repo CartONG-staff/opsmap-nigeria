@@ -103,6 +103,8 @@ export default class TKMainComponent extends Vue {
   @Watch("lastModification")
   onLastModificationChange() {
     TKVisualizerOptionsModule.resetHideUnanswered();
+    TKVisualizerOptionsModule.resetSearchFilter();
+    TKVisualizerOptionsModule.resetSortByTrafficLight();
   }
 }
 </script>
