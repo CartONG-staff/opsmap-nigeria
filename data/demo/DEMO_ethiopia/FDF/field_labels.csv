@@ -1,0 +1,36 @@
+field_name;field_label_en;field_label_fr
+CCCM-SITE-ID;Site ID;Identifiant du site
+SITE_NAME;Site name;Nom du site
+SITE_ALTERNATE_NAME;Site alternate name;Autre nom du site
+SITE_NAME_SERVICE_MONITORING;Site name service monitoring;Nom du servuce de gestion du site
+Status;Status;Statut
+Site_Open_Date;Site open from;Date d'ouverture du site
+Site_Close_Date;Site closure date;Date de fermeture du site
+last_update;Date of last survey;Date de dernière mise à jour
+Site_Type;Site type;Type de site
+Have_Access;Have access to site;Accès au site
+If_no_Access_Why;Reason if no access;Explication en cas de non accès au site
+Last_accessed_Date;Last accessed date;Dernière date d'accès au site
+REGION;Region;Région
+ZONE;Zone;Zone
+WOREDA;Woreda;Woreda
+KEBELE;Kebele;Kebele
+AOR;Aor;Aor
+GPS_LONGITUDE;GPS (longitude);GPS (longitude)
+GPS_LATITUDE;GPS (latitude);GPS (latitude)
+GPS_SourceVerfication;GPS source verfication;GPS source de la validation
+CCCM-TOTAL_HH;Number of household;Nombre de ménages
+CCCM-TOTAL_IND;Number of individuals;Nombre de personnes
+MALE_0-4;Males (0 - 4);Garçon (0 - 4)
+MALE_5-14;Males (5 - 11);Garçon (5 - 11)
+MALE_YOUTH_15-17;Males (12 - 17);Garçon (12 - 17)
+MALE_ADULTS_18-59;Males (18 - 59);Homme (18 - 59)
+MALE_ELDERLY_60up;Males (60+);Homme (60+)
+FEMALE_0-4;Females (0 - 14);Fille (0 - 14)
+FEMALE_5-14;Females (5 - 14);Fille (5 - 14)
+FEMALE_YOUTH_15-17;Females (15 - 17);Fille (15 - 17)
+FEMALE_18-59;Females (18 - 59);Femme (18 - 59)
+FEMALE_ELDERLY_60up;Females (60+);Femme (60+)
+CCCM_MANAGED;Managed by CCCM ;Gérer par CCCM
+CCCM_AGENCY;CCCM agency;Agence CCCM
+SITE_FOCAL_POINT_NAME;Focal point name;Nom du point focal
