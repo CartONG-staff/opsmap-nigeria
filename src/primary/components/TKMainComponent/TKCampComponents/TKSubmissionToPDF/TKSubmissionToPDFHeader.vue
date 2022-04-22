@@ -19,19 +19,20 @@
 </template>
 
 <script lang="ts">
-import { TKOpsmapConfiguration } from "@/domain";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component({})
 export default class TKSubmissionToPDFHeader extends Vue {
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
-
   appName = "";
 
   mounted() {
     this.updateAppName();
+  }
+
+  get appConfig() {
+    return TKConfigurationModule.configuration;
   }
 
   // Global infos
@@ -39,7 +40,7 @@ export default class TKSubmissionToPDFHeader extends Vue {
   @Watch("$root.$i18n.locale")
   updateAppName() {
     this.appName = TKGetLocalValue(
-      this.appConfig.name,
+      TKConfigurationModule.configuration.name,
       this.$root.$i18n.locale
     ).toUpperCase();
   }

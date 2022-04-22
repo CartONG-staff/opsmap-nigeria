@@ -7,31 +7,30 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
 import { TKIndicator, TKIndicatorDefault } from "@/domain/survey/TKIndicator";
-import { TKDataset } from "@/domain/survey/TKDataset";
-import { TKOpsmapConfiguration } from "@/domain";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 @Component({
   components: {
     TKIndicatorComponent
   }
 })
 export default class TKHomeIndicators extends Vue {
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
-
-  @Prop()
-  readonly dataset!: TKDataset;
   indicator1: TKIndicator = TKIndicatorDefault(
-    this.appConfig.indicators.home[0]
+    TKConfigurationModule.configuration.indicators.home[0]
   );
   indicator2: TKIndicator = TKIndicatorDefault(
-    this.appConfig.indicators.home[1]
+    TKConfigurationModule.configuration.indicators.home[1]
   );
   indicator3: TKIndicator = TKIndicatorDefault(
-    this.appConfig.indicators.home[2]
+    TKConfigurationModule.configuration.indicators.home[2]
   );
+
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
 
   @Watch("dataset", { immediate: true })
   onSurveyChanged() {
@@ -40,9 +39,15 @@ export default class TKHomeIndicators extends Vue {
       this.indicator2 = this.dataset.currentSurvey.indicators[1];
       this.indicator3 = this.dataset.currentSurvey.indicators[2];
     } else {
-      this.indicator1 = TKIndicatorDefault(this.appConfig.indicators.home[0]);
-      this.indicator2 = TKIndicatorDefault(this.appConfig.indicators.home[1]);
-      this.indicator3 = TKIndicatorDefault(this.appConfig.indicators.home[2]);
+      this.indicator1 = TKIndicatorDefault(
+        TKConfigurationModule.configuration.indicators.home[0]
+      );
+      this.indicator2 = TKIndicatorDefault(
+        TKConfigurationModule.configuration.indicators.home[1]
+      );
+      this.indicator3 = TKIndicatorDefault(
+        TKConfigurationModule.configuration.indicators.home[2]
+      );
     }
   }
 }

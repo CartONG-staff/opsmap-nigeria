@@ -51,6 +51,9 @@ export class TKDataset {
   };
   private _levelToZoom: TKFilters = TKFilters.SURVEY;
 
+  private _countPlanned = 0;
+  private _countSpontanneous = 0;
+
   constructor(surveys: TKSurvey[]) {
     const before = Date.now();
 
@@ -79,17 +82,28 @@ export class TKDataset {
   public get filteredAdmin1List(): TKBoundaries[] {
     return this._filteredAdmin1List;
   }
+
   public get filteredAdmin2List(): TKBoundaries[] {
     return this._filteredAdmin2List;
   }
+
   public get filteredCampsList(): TKCamp[] {
     return this._filteredCampsList;
   }
+
   public get filters(): { [key in TKFilters]: TKFiltersTypes } {
     return this._filters;
   }
+
   public get levelToZoom(): TKFilters {
     return this._levelToZoom;
+  }
+
+  public get countPlanned(): number {
+    return this._countPlanned;
+  }
+  public get countSpontanneous(): number {
+    return this._countSpontanneous;
   }
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -130,6 +144,7 @@ export class TKDataset {
   // ////////////////////////////////////////////////////////////////////////////
   // Filter all
   // ////////////////////////////////////////////////////////////////////////////
+
   setFiltersValue(
     filter: TKFilters.PLANNED_SITE | TKFilters.SPONTANEOUS_SITE,
     value: TKFiltersTypes
@@ -152,7 +167,6 @@ export class TKDataset {
           this._currentCamp = null;
           this._currentSubmission = null;
           this._filters[TKFilters.CAMP] = null;
-          this._lastModification = "clearCamp";
         }
         break;
       // Change OF SPONTANEOUS TYPE ///////////////////////////////////////////
@@ -170,10 +184,11 @@ export class TKDataset {
           this._currentCamp = null;
           this._currentSubmission = null;
           this._filters[TKFilters.CAMP] = null;
-          this._lastModification = "clearCamp";
         }
         break;
     }
+
+    this._lastModification = `filter=${filter}x${value}`;
 
     this.updateFiltering();
   }
@@ -181,6 +196,7 @@ export class TKDataset {
   // ////////////////////////////////////////////////////////////////////////////
   // Change date
   // ////////////////////////////////////////////////////////////////////////////
+
   public get currentSubmission(): TKSubmission | null {
     return this._currentSubmission;
   }
@@ -444,14 +460,23 @@ export class TKDataset {
         );
       }
 
+      // Update count ///////////////////////////////////////////////////////////
+      this._countPlanned = this._filteredCampsList.filter(
+        camp => camp.type !== TKCampType.SPONTANEOUS
+      ).length;
+      this._countSpontanneous = this._filteredCampsList.filter(
+        camp => camp.type !== TKCampType.PLANNED
+      ).length;
+
       // Remove planned if needed ///////////////////////////////////////////////
       if (!this._filters[TKFilters.PLANNED_SITE]) {
         this._filteredCampsList = this._filteredCampsList.filter(
           camp => camp.type !== TKCampType.PLANNED
         );
 
-        this.filterAdmin1BaseOnFilteredCamp();
-        this.filterAdmin2BaseOnFilteredCamp();
+        // Remove to avoid weird filtering.
+        // this.filterAdmin1BaseOnFilteredCamp();
+        // this.filterAdmin2BaseOnFilteredCamp();
       }
 
       // Remove spontaneous if needed ///////////////////////////////////////////
@@ -459,8 +484,10 @@ export class TKDataset {
         this._filteredCampsList = this._filteredCampsList.filter(
           camp => camp.type !== TKCampType.SPONTANEOUS
         );
-        this.filterAdmin1BaseOnFilteredCamp();
-        this.filterAdmin2BaseOnFilteredCamp();
+
+        // Remove to avoid weird filtering.
+        // this.filterAdmin1BaseOnFilteredCamp();
+        // this.filterAdmin2BaseOnFilteredCamp();
       }
     }
   }

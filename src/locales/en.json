@@ -37,10 +37,12 @@
     "site": {
         "exportPreffix": "Export as",
         "infosCoordinates": "gps coordinates",
-        "hideUnanswered": "Hide unanswered entries",
+        "hideUnanswered": "With answer only",
+        "sortByTrafficLight": "Sort",
         "subtitlePlaceholder": "No Site Selected",
         "extraTools": "Extra Tools",
-        "datePreffix": "Report"
+        "datePreffix": "Report",
+        "filter": "Filter"
     },
     "charts": {
         "agePyramidTitle": "Age Pyramid",

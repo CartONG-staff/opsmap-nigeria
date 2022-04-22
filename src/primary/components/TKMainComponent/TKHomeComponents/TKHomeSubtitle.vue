@@ -7,30 +7,33 @@
 </template>
 
 <script lang="ts">
-import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKDateCompare } from "@/domain/utils/TKDate";
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class TKHomeSubtitle extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
-
   lastUpdate = "";
+
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
 
   @Watch("dataset", { immediate: true })
   onSurveyChanged() {
-    let lastDate = "01/01/1970";
-    for (const surveyIndex in this.dataset.surveys) {
-      const survey = this.dataset.surveys[surveyIndex];
-      for (const camp of survey.camps) {
-        const dateCandidate = camp.submissions[0].date;
-        if (TKDateCompare(lastDate, dateCandidate) > 0) {
-          lastDate = dateCandidate;
+    if (TKDatasetModule.dataset) {
+      let lastDate = "01/01/1970";
+      for (const surveyIndex in TKDatasetModule.dataset.surveys) {
+        const survey = TKDatasetModule.dataset.surveys[surveyIndex];
+        for (const camp of survey.camps) {
+          const dateCandidate = camp.submissions[0].date;
+          if (TKDateCompare(lastDate, dateCandidate) > 0) {
+            lastDate = dateCandidate;
+          }
         }
       }
+      this.lastUpdate = lastDate === "01/01/1970" ? "-" : lastDate;
     }
-    this.lastUpdate = lastDate === "01/01/1970" ? "-" : lastDate;
   }
 }
 </script>

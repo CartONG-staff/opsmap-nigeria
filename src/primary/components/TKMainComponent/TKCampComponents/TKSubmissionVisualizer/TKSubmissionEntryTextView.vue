@@ -7,7 +7,7 @@
     </transition>
     <transition mode="out-in" name="fade-in">
       <div :key="answer" class="tk-entry-field-value">
-        {{ answer }}
+        {{ isNaN(+answer) ? answer : $n(answer) }}
       </div>
     </transition>
 

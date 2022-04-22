@@ -38,9 +38,11 @@
         "exportPreffix": "Exportar como",
         "infosCoordinates": "coordenadas GPS",
         "hideUnanswered": "Ocultar entradas não respondidas",
+        "sortByTrafficLight": "Ordenar",
         "subtitlePlaceholder": "Nenhum local selecionado",
         "extraTools": "Ferramentas Extras",
-        "datePreffix": "Relatório"
+        "datePreffix": "Relatório",
+        "filter": "Filtro"
     },
     "charts": {
         "agePyramidTitle": "Pirâmide de Idade",

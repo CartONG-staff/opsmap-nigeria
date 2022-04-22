@@ -1,6 +1,6 @@
 <template>
   <div class="tk-home-content-layout">
-    <TKHomeMoreInfos :appConfig="appConfig" />
+    <TKHomeMoreInfos />
     <TKIFrame
       v-if="appConfig.iframe && appConfig.iframe.display"
       :url="appConfig.iframe.url"
@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import TKIFrame from "@/primary/components/TKExtras/TKIFrame.vue";
 import { TKHomeMoreInfos } from "./TKHomeComponents";
-import { TKOpsmapConfiguration } from "@/domain";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 @Component({
   components: {
@@ -21,8 +21,9 @@ import { TKOpsmapConfiguration } from "@/domain";
   }
 })
 export default class TKMainComponentLeftHome extends Vue {
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
+  get appConfig() {
+    return TKConfigurationModule.configuration;
+  }
 }
 </script>
 

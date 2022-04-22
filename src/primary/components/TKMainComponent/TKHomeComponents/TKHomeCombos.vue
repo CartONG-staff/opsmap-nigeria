@@ -88,13 +88,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { TKDataset } from "@/domain/survey/TKDataset";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class TKHomeCombos extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
 }
 </script>
 

@@ -6,7 +6,7 @@
           <div class="tk-indicator-value" v-bind="attrs" v-on="on">
             <transition mode="out-in" name="fade-in">
               <div :key="value" class="tk-indicator-value-number">
-                {{ value }}
+                {{ isNaN(+value) ? value : $n(value) }}
               </div>
             </transition>
             <transition mode="out-in" name="fade-in">
@@ -23,7 +23,7 @@
           </div>
         </div>
       </template>
-      <span>{{ name }} : {{ value }}</span>
+      <span>{{ name }} : {{ isNaN(+value) ? value : $n(value) }}</span>
     </v-tooltip>
   </div>
 </template>

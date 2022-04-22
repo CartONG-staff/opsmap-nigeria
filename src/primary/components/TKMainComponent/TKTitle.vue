@@ -15,28 +15,37 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { TKOpsmapConfiguration } from "@/primary/app/TKOpsmapConfiguration";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { toTitleCase } from "@/domain/utils/TKStringUtils";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 @Component
 export default class TKTitle extends Vue {
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
-
   appName = toTitleCase(
-    TKGetLocalValue(this.appConfig.name, this.$root.$i18n.locale)
+    TKGetLocalValue(
+      TKConfigurationModule.configuration.name,
+      this.$root.$i18n.locale
+    )
   );
 
-  title = TKGetLocalValue(this.appConfig.title, this.$root.$i18n.locale);
+  title = TKGetLocalValue(
+    TKConfigurationModule.configuration.title,
+    this.$root.$i18n.locale
+  );
 
   @Watch("$root.$i18n.locale")
   handeLocale() {
     this.appName = toTitleCase(
-      TKGetLocalValue(this.appConfig.name, this.$root.$i18n.locale)
+      TKGetLocalValue(
+        TKConfigurationModule.configuration.name,
+        this.$root.$i18n.locale
+      )
     );
 
-    this.title = TKGetLocalValue(this.appConfig.title, this.$root.$i18n.locale);
+    this.title = TKGetLocalValue(
+      TKConfigurationModule.configuration.title,
+      this.$root.$i18n.locale
+    );
   }
 }
 </script>

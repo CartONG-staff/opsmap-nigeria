@@ -85,13 +85,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
-import { TKDataset } from "@/domain/survey/TKDataset";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import { Vue, Component } from "vue-property-decorator";
 
 @Component
 export default class TKCampSelector extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
 
   get opacity() {
     if (this.$vuetify.theme.dark) {

@@ -8,14 +8,11 @@
     </div>
     <div class="tk-submission-thematic-content">
       <div
-        v-for="entry in thematicData"
-        :key="entry.id"
-        v-show="
-          !visualizerOptions.hideUnanswered ||
-            (visualizerOptions.hideUnanswered && entry.isAnswered)
-        "
+        v-for="(entry, key) in thematicData"
+        :key="key"
+        v-show="!hideUnanswered || (hideUnanswered && entry.isAnswered)"
       >
-        <TKSubmissionEntryView :entry="entry" :pdfInfos="pdfInfos" />
+        <TKSubmissionEntryView :entry="entry" />
       </div>
     </div>
   </div>
@@ -26,10 +23,13 @@ import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import TKSubmissionEntryView from "./TKSubmissionEntryView.vue";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
-import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
-import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
+import {
+  TKSubmissionEntry,
+  TKSubmissionEntryType
+} from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
-import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
+import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
+import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 
 @Component({
   components: {
@@ -40,13 +40,19 @@ export default class TKSubmissionThematicView extends Vue {
   @Prop()
   readonly submissionThematic!: TKSubmissionThematic;
 
+  get hideUnanswered() {
+    return TKVisualizerOptionsModule.hideUnanswered;
+  }
+
+  get searchFilter() {
+    return TKVisualizerOptionsModule.searchFilter;
+  }
+
+  get sortByTrafficLight() {
+    return TKVisualizerOptionsModule.sortByTrafficLigh;
+  }
+
   thematicData: Array<TKSubmissionEntry> = [];
-
-  @Prop()
-  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-
-  @Prop()
-  readonly pdfInfos!: TKPDFInfos;
 
   title = "";
   iconurl = "";
@@ -58,7 +64,7 @@ export default class TKSubmissionThematicView extends Vue {
     } else {
       this.iconurl = "";
     }
-    this.applyHideUnansweredOption();
+    this.updateThematcData();
   }
 
   @Watch("$root.$i18n.locale")
@@ -73,15 +79,80 @@ export default class TKSubmissionThematicView extends Vue {
     }
   }
 
-  @Watch("visualizerOptions.hideUnanswered", { immediate: true })
-  applyHideUnansweredOption() {
-    // Filter if needed
+  getRankValue(entry: TKSubmissionEntry): number {
+    // rank:
+    //       CRITICAL = 0
+    //       DANGER = 1
+    //       WARNING = 2
+    //       OK = 3
+    //       UNDEFINED = 4
+    //       NOTL = 5
+    if (entry.type === TKSubmissionEntryType.TEXT) {
+      if (entry.trafficLight) {
+        switch (entry.trafficLightColor) {
+          case TKTrafficLightValues.CRITICAL:
+            return 0;
+          case TKTrafficLightValues.DANGER:
+            return 1;
+          case TKTrafficLightValues.WARNING:
+            return 2;
+          case TKTrafficLightValues.OK:
+            return 3;
+          case TKTrafficLightValues.UNDEFINED:
+            return 4;
+        }
+      }
+    }
+
+    return 5;
+  }
+
+  @Watch("hideUnanswered", { immediate: true })
+  @Watch("sortByTrafficLight", { immediate: true })
+  @Watch("searchFilter", { immediate: true })
+  updateThematcData() {
     if (this.submissionThematic) {
-      this.thematicData = this.visualizerOptions.hideUnanswered
-        ? this.submissionThematic.data
-        : this.submissionThematic.data;
+      if (this.sortByTrafficLight) {
+        this.thematicData = [...this.submissionThematic.data].sort(
+          (a: TKSubmissionEntry, b: TKSubmissionEntry): number => {
+            const rankA = this.getRankValue(a);
+            const rankB = this.getRankValue(b);
+            if (rankA < rankB) {
+              return -1;
+            }
+            if (rankA === rankB) {
+              return 0;
+            }
+            return 1;
+          }
+        );
+      } else {
+        this.thematicData = this.submissionThematic.data;
+      }
     } else {
       this.thematicData = [];
+    }
+
+    if (this.searchFilter) {
+      this.thematicData = this.thematicData.filter(
+        (item: TKSubmissionEntry) => {
+          if (item.type !== TKSubmissionEntryType.TEXT) {
+            return true;
+          }
+          for (const value of Object.values(item.answerLabel)) {
+            if (value.toLowerCase().includes(this.searchFilter.toLowerCase())) {
+              return true;
+            }
+          }
+          for (const value of Object.values(item.fieldLabel)) {
+            if (value.toLowerCase().includes(this.searchFilter.toLowerCase())) {
+              return true;
+            }
+          }
+
+          return false;
+        }
+      );
     }
   }
 }

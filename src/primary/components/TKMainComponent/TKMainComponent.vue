@@ -7,35 +7,18 @@
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
         <transition name="fade">
-          <router-view
-            name="header"
-            v-if="isDatasetInitialized"
-            :dataset="dataset"
-          ></router-view>
+          <router-view name="header" v-if="isDatasetInitialized"></router-view>
         </transition>
       </div>
       <div class="tk-main-top">
         <div class="tk-main-left">
-          <TKTitle :appConfig="appConfig" />
+          <TKTitle />
           <transition mode="out-in" name="fade">
             <TKPlaceHolderLeft v-if="!isDatasetInitialized" />
-            <router-view
-              v-else
-              name="left"
-              :appConfig="appConfig"
-              :dataset="dataset"
-              :visualizerOptions="visualizerOptions"
-              :pdfInfos="pdfInfos"
-            ></router-view>
+            <router-view v-else name="left"></router-view>
           </transition>
         </div>
-        <TKMap
-          v-if="geoData"
-          class="tk-main-map"
-          :appConfig="appConfig"
-          :dataset="dataset"
-          :geoDataset="geoData"
-        />
+        <TKMap v-if="isDatasetInitialized" class="tk-main-map" />
         <TKPlaceHolderGeneric class="tk-main-map" v-else />
       </div>
 
@@ -45,23 +28,10 @@
             <TKPlaceHolderIndicators />
             <TKPlaceHolderGeneric class="tk-main-content-placeholder" />
           </div>
-          <router-view
-            name="indicators"
-            v-else
-            :visualizerOptions="visualizerOptions"
-            :appConfig="appConfig"
-            :dataset="dataset"
-          ></router-view>
+          <router-view name="indicators" v-else></router-view>
         </transition>
         <transition mode="out-in" name="fade" appear>
-          <router-view
-            name="content"
-            v-if="isDatasetInitialized"
-            :visualizerOptions="visualizerOptions"
-            :appConfig="appConfig"
-            :dataset="dataset"
-            :pdfInfos="pdfInfos"
-          ></router-view>
+          <router-view name="content" v-if="isDatasetInitialized"></router-view>
         </transition>
       </div>
     </div>
@@ -69,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import TKPlaceHolderLeft from "./TKPlaceHolders/TKPlaceHolderLeft.vue";
 import TKPlaceHolderIndicators from "./TKPlaceHolders/TKPlaceHolderIndicators.vue";
 import TKPlaceHolderGeneric from "./TKPlaceHolders/TKPlaceHolderGeneric.vue";
@@ -84,17 +54,11 @@ import {
   TKCampSelector,
   TKCampToolbar,
   TKCampSubtitle,
-  TKSubmissionVisualizer,
-  TKSubmissionVisualizerOptions
+  TKSubmissionVisualizer
 } from "./TKCampComponents";
-import { TKOpsmapConfiguration } from "@/domain";
-import { TKDataset } from "@/domain/survey/TKDataset";
-import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
-import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 
-const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
-  hideUnanswered: false
-};
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 
 @Component({
   components: {
@@ -114,27 +78,9 @@ const DEFAULT_VISUALIZER_OPTIONS: TKSubmissionVisualizerOptions = {
   }
 })
 export default class TKMainComponent extends Vue {
-  @Prop()
-  readonly isDatasetInitialized = false;
-
-  @Prop()
-  readonly dataset!: TKDataset;
-
-  @Prop()
-  readonly geoData!: TKGeoDataset;
-
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
-
-  readonly pdfInfos: TKPDFInfos = {
-    currentChartsBase64: {},
-    pdfColumnCount: this.appConfig.options.pdfColumnCount
-  };
-
-  visualizerOptions: TKSubmissionVisualizerOptions = {
-    hideUnanswered: DEFAULT_VISUALIZER_OPTIONS.hideUnanswered
-  };
-
+  get isDatasetInitialized() {
+    return TKDatasetModule.isDatasetInitialized;
+  }
   get cssVars() {
     if (this.$vuetify.theme.dark) {
       return {
@@ -149,11 +95,16 @@ export default class TKMainComponent extends Vue {
     };
   }
 
+  get lastModification() {
+    return TKDatasetModule.dataset.lastModification;
+  }
+
   // Trigger when a camp is selected
-  @Watch("dataset.lastModification")
+  @Watch("lastModification")
   onLastModificationChange() {
-    this.visualizerOptions.hideUnanswered =
-      DEFAULT_VISUALIZER_OPTIONS.hideUnanswered;
+    TKVisualizerOptionsModule.resetHideUnanswered();
+    TKVisualizerOptionsModule.resetSearchFilter();
+    TKVisualizerOptionsModule.resetSortByTrafficLight();
   }
 }
 </script>

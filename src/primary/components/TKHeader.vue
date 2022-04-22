@@ -62,24 +62,26 @@
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKOpsmapConfiguration } from "@/primary/app/TKOpsmapConfiguration";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import { headerLogoBus } from "@/primary/components/TKHeaderLogoBus";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 @Component
 export default class TKHeader extends Vue {
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
   locales = this.$root.$i18n.availableLocales;
 
-  appName = this.appConfig.name.en;
+  appName = TKConfigurationModule.configuration.name.en;
   @Watch("$root.$i18n.locale")
   handeLocale() {
     this.appName = TKGetLocalValue(
-      this.appConfig.name,
+      TKConfigurationModule.configuration.name,
       this.$root.$i18n.locale
     );
+  }
+
+  get appConfig() {
+    return TKConfigurationModule.configuration;
   }
 
   language = this.$root.$i18n.locale;

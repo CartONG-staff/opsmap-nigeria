@@ -1,27 +1,14 @@
 <template>
   <div class="tk-camp-left">
-    <TKCampSubtitle :dataset="dataset" />
-    <TKCampToolbar
-      :dataset="dataset"
-      :visualizerOptions="visualizerOptions"
-      :appConfig="appConfig"
-      :pdfInfos="pdfInfos"
-    />
-    <TKCampInfos :dataset="dataset" />
+    <TKCampSubtitle />
+    <TKCampToolbar />
+    <TKCampInfos />
   </div>
 </template>
 
 <script lang="ts">
-import { TKOpsmapConfiguration } from "@/domain";
-import { TKDataset } from "@/domain/survey/TKDataset";
-import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
-import { Component, Prop, Vue } from "vue-property-decorator";
-import {
-  TKCampInfos,
-  TKCampSubtitle,
-  TKCampToolbar,
-  TKSubmissionVisualizerOptions
-} from "./TKCampComponents";
+import { Component, Vue } from "vue-property-decorator";
+import { TKCampInfos, TKCampSubtitle, TKCampToolbar } from "./TKCampComponents";
 @Component({
   components: {
     TKCampInfos,
@@ -29,19 +16,7 @@ import {
     TKCampToolbar
   }
 })
-export default class TKMainComponentLeftHome extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
-
-  @Prop()
-  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
-
-  @Prop()
-  readonly pdfInfos!: TKPDFInfos;
-}
+export default class TKMainComponentLeftHome extends Vue {}
 </script>
 
 <style scoped>
