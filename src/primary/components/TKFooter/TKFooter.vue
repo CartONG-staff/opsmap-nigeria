@@ -24,10 +24,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component } from "vue-property-decorator";
-import { TKOpsmapConfiguration } from "@/primary/app/TKOpsmapConfiguration";
+import { Vue, Component } from "vue-property-decorator";
 import TKFooterLogoItem from "./TKFooterLogoItem.vue";
 import TKCredits from "./TKCredits.vue";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 @Component({
   components: {
@@ -36,8 +36,9 @@ import TKCredits from "./TKCredits.vue";
   }
 })
 export default class TKFooter extends Vue {
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
+  get appConfig() {
+    return TKConfigurationModule.configuration;
+  }
 }
 </script>
 

@@ -6,14 +6,14 @@
       v-on:zoomout="zoomOut"
       v-on:zoomreset="zoomReset"
     />
-    <TKMapFilters class="tk-map-filters" :dataset="dataset" />
+    <TKMapFilters class="tk-map-filters" />
     <TKMapBasemapPicker class="tk-basemap-picker" :basemaps="basemaps" />
   </div>
 </template>
 
 <script lang="ts">
 /* eslint-disable@typescript-eslint/no-non-null-assertion */
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import mapboxgl, {
   CircleLayer,
   FillLayer,
@@ -23,7 +23,6 @@ import mapboxgl, {
   SymbolLayer
 } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { TKOpsmapConfiguration } from "@/primary/app/TKOpsmapConfiguration";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
@@ -32,9 +31,10 @@ import { TKMapCamps } from "@/domain/map/TKMapCamps";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import { TKMapLayers, TKMapLayersStyle } from "@/domain/map/TKMapLayers";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
-import { TKDataset } from "@/domain/survey/TKDataset";
-import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { Point } from "geojson";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import TKGeoDatasetModule from "@/store/modules/geodataset/TKGeoDatasetModule";
 
 @Component({
   components: {
@@ -44,15 +44,6 @@ import { Point } from "geojson";
   }
 })
 export default class TKMap extends Vue {
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
-
-  @Prop({ default: () => [] })
-  readonly dataset!: TKDataset;
-
-  @Prop()
-  readonly geoDataset!: TKGeoDataset;
-
   map!: mapboxgl.Map;
   bound!: mapboxgl.LngLatBounds;
   mapCamps: TKMapCamps | null = null;
@@ -74,16 +65,24 @@ export default class TKMap extends Vue {
   //
   // //////////////////////////////////////////////////////////////////////////
 
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
+
   // Initialisation of component
   @Watch("dataset", { immediate: true })
   datasetLoaded() {
-    if (this.dataset) {
+    if (TKDatasetModule.dataset) {
       this.mapCamps = new TKMapCamps(
-        this.dataset.filteredCampsList,
-        this.dataset.currentCamp
+        TKDatasetModule.dataset.filteredCampsList,
+        TKDatasetModule.dataset.currentCamp
       );
       if (this.mapBoundaries) {
-        this.mapBoundaries.changeStyle(this.dataset, this.map, this.bound);
+        this.mapBoundaries.changeStyle(
+          TKDatasetModule.dataset,
+          this.map,
+          this.bound
+        );
       }
     }
   }
@@ -93,11 +92,15 @@ export default class TKMap extends Vue {
   @Watch("dataset.lastModification")
   currentCampChanged() {
     if (this.mapBoundaries) {
-      this.mapBoundaries.changeStyle(this.dataset, this.map, this.bound);
+      this.mapBoundaries.changeStyle(
+        TKDatasetModule.dataset,
+        this.map,
+        this.bound
+      );
     }
     this.mapCamps = new TKMapCamps(
-      this.dataset.filteredCampsList,
-      this.dataset.currentCamp
+      TKDatasetModule.dataset.filteredCampsList,
+      TKDatasetModule.dataset.currentCamp
     );
     const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(
       TKMapLayers.NOTSELECTEDCAMPSSOURCE
@@ -113,12 +116,16 @@ export default class TKMap extends Vue {
   //
   // //////////////////////////////////////////////////////////////////////////
 
+  get geoDataset() {
+    return TKGeoDatasetModule.geoDataset;
+  }
+
   @Watch("geoDataset", { immediate: true })
   geoDatasetLoaded() {
     if (this.geoDataset) {
       this.mapBoundaries = new TKMapBoundaries(
         this.geoDataset,
-        this.appConfig.spatial
+        TKConfigurationModule.configuration.spatial
       );
     }
   }
@@ -154,12 +161,12 @@ export default class TKMap extends Vue {
       // Init the map - world level
       this.bound = new mapboxgl.LngLatBounds(
         new mapboxgl.LngLat(
-          this.appConfig.mapConfig.bounds[0],
-          this.appConfig.mapConfig.bounds[1]
+          TKConfigurationModule.configuration.mapConfig.bounds[0],
+          TKConfigurationModule.configuration.mapConfig.bounds[1]
         ),
         new mapboxgl.LngLat(
-          this.appConfig.mapConfig.bounds[2],
-          this.appConfig.mapConfig.bounds[3]
+          TKConfigurationModule.configuration.mapConfig.bounds[2],
+          TKConfigurationModule.configuration.mapConfig.bounds[3]
         )
       );
     }
@@ -167,7 +174,7 @@ export default class TKMap extends Vue {
       this.map = new mapboxgl.Map({
         container: "tk-map",
         style: this.basemaps.basemapsList[0].style,
-        accessToken: this.appConfig.mapConfig.token,
+        accessToken: TKConfigurationModule.configuration.mapConfig.token,
         bounds: this.bound
       });
 
@@ -175,7 +182,11 @@ export default class TKMap extends Vue {
         this.addImages();
 
         if (this.mapBoundaries) {
-          this.mapBoundaries.changeStyle(this.dataset, this.map, this.bound);
+          this.mapBoundaries.changeStyle(
+            TKDatasetModule.dataset,
+            this.map,
+            this.bound
+          );
         }
       });
     }
@@ -209,7 +220,7 @@ export default class TKMap extends Vue {
     if (!this.map.getSource(TKMapLayers.COUNTRYMASKSOURCE)) {
       this.map.addSource(TKMapLayers.COUNTRYMASKSOURCE, {
         type: "geojson",
-        data: `${process.env.BASE_URL}/${this.appConfig.spatial.admin0LocalURL}`
+        data: `${process.env.BASE_URL}/${TKConfigurationModule.configuration.spatial.admin0LocalURL}`
       });
     }
 
@@ -299,7 +310,9 @@ export default class TKMap extends Vue {
     // CAMPS BEHAVIOR
     this.map.on("click", TKMapLayers.NOTSELECTEDCAMPSLAYER, e => {
       if (e !== undefined && e.features && e.features?.length > 0) {
-        this.dataset.setcurrentCampByName(e.features[0].properties?.name);
+        TKDatasetModule.dataset.setcurrentCampByName(
+          e.features[0].properties?.name
+        );
       }
     });
     const popup = new mapboxgl.Popup({
@@ -384,8 +397,8 @@ export default class TKMap extends Vue {
     if (this.map) {
       if (this.bound) {
         this.map.fitBounds(this.bound, {
-          padding: this.appConfig.mapConfig.padding,
-          speed: this.appConfig.mapConfig.zoomspeed
+          padding: TKConfigurationModule.configuration.mapConfig.padding,
+          speed: TKConfigurationModule.configuration.mapConfig.zoomspeed
         });
       }
     }

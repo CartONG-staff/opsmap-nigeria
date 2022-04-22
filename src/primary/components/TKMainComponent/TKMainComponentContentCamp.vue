@@ -1,36 +1,27 @@
 <template>
   <div>
-    <TKSubmissionVisualizer
-      :visualizerOptions="visualizerOptions"
-      :dataset="dataset"
-      :pdfInfos="pdfInfos"
-    />
+    <TKSubmissionVisualizerToolbar class="toolbar" />
+    <TKSubmissionVisualizer />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import {
   TKSubmissionVisualizer,
-  TKSubmissionVisualizerOptions
+  TKSubmissionVisualizerToolbar
 } from "./TKCampComponents";
-import { TKDataset } from "@/domain/survey/TKDataset";
-import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
 @Component({
   components: {
-    TKSubmissionVisualizer
+    TKSubmissionVisualizer,
+    TKSubmissionVisualizerToolbar
   }
 })
-export default class TKMainComponentLeftCamp extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
-
-  @Prop()
-  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
-
-  @Prop()
-  readonly pdfInfos!: TKPDFInfos;
-}
+export default class TKMainComponentContentCamp extends Vue {}
 </script>
 
-<style scoped></style>
+<style scoped>
+.toolbar {
+  margin-bottom: 20px;
+}
+</style>

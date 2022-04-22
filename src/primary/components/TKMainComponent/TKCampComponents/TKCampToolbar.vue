@@ -37,13 +37,7 @@
       </div>
     </transition>
 
-    <TKCampToolbarExportButton
-      :appConfig="appConfig"
-      :dataset="dataset"
-      :visualizerOptions="visualizerOptions"
-      :pdfInfos="pdfInfos"
-      class="tk-camp-toolbar-container"
-    />
+    <TKCampToolbarExportButton class="tk-camp-toolbar-container" />
 
     <v-menu
       :offset-y="true"
@@ -77,7 +71,15 @@
             :label="$t('site.hideUnanswered')"
             color="accent"
             hide-details
-            v-model="visualizerOptions.hideUnanswered"
+            v-model="hideUnanswered"
+          ></v-switch>
+        </v-list-item>
+        <v-list-item>
+          <v-switch
+            :label="$t('site.sortByTrafficLight')"
+            color="accent"
+            hide-details
+            v-model="sortByTrafficLight"
           ></v-switch>
         </v-list-item>
       </v-list>
@@ -86,12 +88,10 @@
 </template>
 
 <script lang="ts">
-import { TKDataset } from "@/domain/survey/TKDataset";
-import { Component, Vue, Prop } from "vue-property-decorator";
-import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizer";
+import { Component, Vue } from "vue-property-decorator";
 import TKCampToolbarExportButton from "./TKCampToolbarExportButton.vue";
-import { TKOpsmapConfiguration } from "@/domain";
-import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 
 @Component({
   components: {
@@ -99,17 +99,25 @@ import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
   }
 })
 export default class TKCampToolbar extends Vue {
-  @Prop()
-  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
+  get hideUnanswered() {
+    return TKVisualizerOptionsModule.hideUnanswered;
+  }
 
-  @Prop()
-  readonly dataset!: TKDataset;
+  set hideUnanswered(value: boolean) {
+    TKVisualizerOptionsModule.setHideUnanswered(value);
+  }
 
-  @Prop()
-  readonly appConfig!: TKOpsmapConfiguration;
+  get sortByTrafficLight() {
+    return TKVisualizerOptionsModule.sortByTrafficLigh;
+  }
 
-  @Prop()
-  readonly pdfInfos!: TKPDFInfos;
+  set sortByTrafficLight(value: boolean) {
+    TKVisualizerOptionsModule.setSortByTrafficLight(value);
+  }
+
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
 }
 </script>
 

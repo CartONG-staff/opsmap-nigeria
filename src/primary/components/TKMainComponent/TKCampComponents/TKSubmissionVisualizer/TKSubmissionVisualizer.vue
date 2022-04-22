@@ -8,22 +8,18 @@
       <TKSubmissionThematicView
         v-for="(them, indexthem) in col"
         :key="indexthem"
-        :visualizerOptions="visualizerOptions"
         :submissionThematic="them"
-        :pdfInfos="pdfInfos"
       />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
 import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
-import { TKSubmissionVisualizerOptions } from "./TKSubmissionVisualizerOptions";
-import { TKDataset } from "@/domain/survey/TKDataset";
-import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 @Component({
   components: {
@@ -31,15 +27,11 @@ import { TKPDFInfos } from "@/domain/survey/TKPDFInfos";
   }
 })
 export default class TKSubmissionVisualizer extends Vue {
-  @Prop()
-  readonly dataset!: TKDataset;
+  get dataset() {
+    return TKDatasetModule.dataset;
+  }
+
   thematics!: TKTFDFhematicsCollection;
-
-  @Prop()
-  readonly pdfInfos!: TKPDFInfos;
-
-  @Prop()
-  readonly visualizerOptions!: TKSubmissionVisualizerOptions;
 
   columns: [
     Array<TKSubmissionThematic>,
