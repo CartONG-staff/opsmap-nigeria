@@ -1,40 +1,44 @@
 <template>
-  <div class="tk-submissionvisualizer-toolbar">
-    <v-text-field
-      class="search-field"
-      :label="$t('site.filter')"
-      solo
-      dense
-      flat
-      single-line
-      hide-details
-      clearable
-      v-model="search"
-      @keydown.enter="setSearchImmediate"
-      prepend-inner-icon="mdi-magnify"
-      height="44"
-    ></v-text-field>
-    <v-btn-toggle class="tk-submissionvisualizer-toggle">
-      <v-btn
-        class="toggle-button"
-        v-model="hideUnanswered"
-        color="#919191"
-        plain
-      >
-        <v-icon left>mdi-file-sign</v-icon>Only answered</v-btn
-      >
-    </v-btn-toggle>
-    <v-btn-toggle class="tk-submissionvisualizer-toggle">
-      <v-btn
-        class="toggle-button"
-        v-model="sortByTrafficLight"
-        color="#919191"
-        plain
-      >
-        <v-icon left>mdi-traffic-light-outline</v-icon>Sort
-      </v-btn>
-    </v-btn-toggle>
-  </div>
+  <transition mode="out-in" name="fade-in">
+    <div :key="$root.$i18n.locale" class="tk-submissionvisualizer-toolbar">
+      <v-text-field
+        class="search-field"
+        :label="$t('site.filter')"
+        solo
+        dense
+        flat
+        single-line
+        hide-details
+        clearable
+        v-model="search"
+        @keydown.enter="setSearchImmediate"
+        prepend-inner-icon="mdi-magnify"
+        height="44"
+      ></v-text-field>
+      <v-btn-toggle class="tk-submissionvisualizer-toggle">
+        <v-btn
+          class="toggle-button"
+          v-model="hideUnanswered"
+          color="#919191"
+          plain
+        >
+          <v-icon left>mdi-file-sign</v-icon
+          >{{ $t("site.hideUnanswered") }}</v-btn
+        >
+      </v-btn-toggle>
+      <v-btn-toggle class="tk-submissionvisualizer-toggle">
+        <v-btn
+          class="toggle-button"
+          v-model="sortByTrafficLight"
+          color="#919191"
+          plain
+        >
+          <v-icon left>mdi-traffic-light-outline</v-icon
+          >{{ $t("site.sortByTrafficLight") }}
+        </v-btn>
+      </v-btn-toggle>
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">

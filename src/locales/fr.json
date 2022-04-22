@@ -37,10 +37,12 @@
     "site": {
         "exportPreffix": "Export en tant que",
         "infosCoordinates": "coordonnées gps",
-        "hideUnanswered": "Masquer les entrées sans réponse",
+        "hideUnanswered": "Avec réponse seulement",
+        "sortByTrafficLight": "Classer",
         "subtitlePlaceholder": "Aucun site sélectionné",
         "extraTools": "Autres outils",
-        "datePreffix": "Rapport"
+        "datePreffix": "Rapport",
+        "filter": "Filtre"
     },
     "charts": {
         "agePyramidTitle": "Pyramid des âges",
