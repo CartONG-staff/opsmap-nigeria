@@ -3,8 +3,6 @@
     "infosAdmin1": "State",
     "infosAdmin2": "City",
     "infosSiteType": "Site type",
-    "infosSitePlanned": "Planned",
-    "infosSiteSpontanneous": "Spontanneous",
     "manageBy": "Manage By",
     "selectText": "Select a",
     "survey": "Survey",
@@ -54,8 +52,6 @@
         "male": "Male"
     },
     "map": {
-        "legendPlanned": "Planned site",
-        "legendSpontaneous": "Spontaneous site",
         "legendBasemaps": "Select a basemap",
         "legendZoomIn": "Zoom in",
         "legendZoomOut": "Zoom out",

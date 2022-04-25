@@ -1,4 +1,3 @@
-import { TKCampType } from "@/domain/survey/TKCamp";
 import { TKBoundaries } from "@/domain/survey/TKBoundaries";
 import { TKSubmission } from "./TKSubmission";
 import { TKCamp } from "@/domain/survey/TKCamp";
@@ -10,16 +9,15 @@ import { TKSurvey } from "./TKSurvey";
 // ////////////////////////////////////////////////////////////////////////////
 
 // TODO : split level (survey -> camp and filter planned / spontaneous)
-export enum TKFilters {
+
+export enum TKAdminFilters {
   SURVEY = "survey",
   ADMIN1 = "admin1",
   ADMIN2 = "admin2",
-  CAMP = "camp",
-  PLANNED_SITE = "planned",
-  SPONTANEOUS_SITE = "spontaneous"
+  CAMP = "camp"
 }
 
-export type TKFiltersTypes = string | boolean | null;
+export type TKAdminFiltersTypes = string | boolean | null;
 
 // ////////////////////////////////////////////////////////////////////////////
 //
@@ -41,18 +39,26 @@ export class TKDataset {
   private _filteredAdmin1List: TKBoundaries[] = [];
   private _filteredAdmin2List: TKBoundaries[] = [];
   private _filteredCampsList: TKCamp[] = [];
-  private _filters: { [key in TKFilters]: TKFiltersTypes } = {
+
+  private _filteredTypedCampsList: TKCamp[] = [];
+
+  private _typeSite: Record<
+    string,
+    {
+      active: boolean;
+    }
+  > = {};
+
+  private _filters: { [key in TKAdminFilters]: TKAdminFiltersTypes } = {
     survey: null,
     admin1: null,
     admin2: null,
-    camp: null,
-    planned: true,
-    spontaneous: true
+    camp: null
   };
-  private _levelToZoom: TKFilters = TKFilters.SURVEY;
+  private _levelToZoom: TKAdminFilters = TKAdminFilters.SURVEY;
 
-  private _countPlanned = 0;
-  private _countSpontanneous = 0;
+  // private _countPlanned = 0;
+  // private _countSpontanneous = 0;
 
   constructor(surveys: TKSurvey[]) {
     const before = Date.now();
@@ -91,19 +97,22 @@ export class TKDataset {
     return this._filteredCampsList;
   }
 
-  public get filters(): { [key in TKFilters]: TKFiltersTypes } {
+  public get filteredTypedCampsList(): TKCamp[] {
+    return this._filteredTypedCampsList;
+  }
+
+  public get filters(): {
+    [key in TKAdminFilters]: TKAdminFiltersTypes;
+  } {
     return this._filters;
   }
 
-  public get levelToZoom(): TKFilters {
+  public get levelToZoom(): TKAdminFilters {
     return this._levelToZoom;
   }
 
-  public get countPlanned(): number {
-    return this._countPlanned;
-  }
-  public get countSpontanneous(): number {
-    return this._countSpontanneous;
+  public get typeSite() {
+    return this._typeSite;
   }
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -128,12 +137,20 @@ export class TKDataset {
       this._currentSubmission = null;
       this._currentAdmin2 = null;
       this._currentAdmin1 = null;
-      this._filters[TKFilters.CAMP] = null;
-      this._filters[TKFilters.ADMIN2] = null;
-      this._filters[TKFilters.ADMIN1] = null;
-      this._levelToZoom = TKFilters.SURVEY;
+      this._filters[TKAdminFilters.CAMP] = null;
+      this._filters[TKAdminFilters.ADMIN2] = null;
+      this._filters[TKAdminFilters.ADMIN1] = null;
+      this._levelToZoom = TKAdminFilters.SURVEY;
 
       this._currentSurvey = survey;
+
+      this._typeSite = {};
+      Object.keys(this._currentSurvey.fdf.siteTypes).map(index => {
+        const item = this._currentSurvey.fdf.siteTypes[index];
+        this._typeSite[item.formattedName] = {
+          active: true
+        };
+      });
 
       this._lastModification = `survey=${this._currentSurvey.name}`;
 
@@ -145,52 +162,37 @@ export class TKDataset {
   // Filter all
   // ////////////////////////////////////////////////////////////////////////////
 
-  setFiltersValue(
-    filter: TKFilters.PLANNED_SITE | TKFilters.SPONTANEOUS_SITE,
-    value: TKFiltersTypes
-  ) {
-    this._filters[filter] = value;
-
-    switch (filter) {
-      // Change OF PLANNED TYPE ///////////////////////////////////////////////
-      case TKFilters.PLANNED_SITE:
-        if (
-          this._currentCamp &&
-          value === false &&
-          this._currentCamp.type === TKCampType.PLANNED
-        ) {
-          this._levelToZoom = this._currentAdmin2
-            ? TKFilters.ADMIN2
-            : this._currentAdmin1
-            ? TKFilters.ADMIN1
-            : TKFilters.SURVEY;
-          this._currentCamp = null;
-          this._currentSubmission = null;
-          this._filters[TKFilters.CAMP] = null;
-        }
-        break;
-      // Change OF SPONTANEOUS TYPE ///////////////////////////////////////////
-      case TKFilters.SPONTANEOUS_SITE:
-        if (
-          this._currentCamp &&
-          value === false &&
-          this._currentCamp.type === TKCampType.SPONTANEOUS
-        ) {
-          this._levelToZoom = this._currentAdmin2
-            ? TKFilters.ADMIN2
-            : this._currentAdmin1
-            ? TKFilters.ADMIN1
-            : TKFilters.SURVEY;
-          this._currentCamp = null;
-          this._currentSubmission = null;
-          this._filters[TKFilters.CAMP] = null;
-        }
-        break;
+  setTypedFilterValue(siteType: string, value: boolean) {
+    // Update value
+    if (this._typeSite[siteType]) {
+      this._typeSite[siteType].active = value;
     }
 
-    this._lastModification = `filter=${filter}x${value}`;
+    // Update filtered typed camps list
+    this._filteredTypedCampsList = this._filteredCampsList.filter(item => {
+      if (this._typeSite[item.type.formattedName]) {
+        return this._typeSite[item.type.formattedName].active;
+      }
+      return false;
+    });
 
-    this.updateFiltering();
+    // Clear current camp if needed
+    if (
+      this._currentCamp &&
+      !value &&
+      this._currentCamp.type.formattedName === siteType
+    ) {
+      this._levelToZoom = this._currentAdmin2
+        ? TKAdminFilters.ADMIN2
+        : this._currentAdmin1
+        ? TKAdminFilters.ADMIN1
+        : TKAdminFilters.SURVEY;
+      this._currentCamp = null;
+      this._currentSubmission = null;
+      this._filters[TKAdminFilters.CAMP] = null;
+    }
+
+    this._lastModification = `filter=${siteType}x${value}`;
   }
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -232,31 +234,31 @@ export class TKDataset {
     if (admin1) {
       if (admin1 !== this._currentAdmin1) {
         this._currentAdmin1 = admin1;
-        this._filters[TKFilters.ADMIN1] = this._currentAdmin1.pcode;
+        this._filters[TKAdminFilters.ADMIN1] = this._currentAdmin1.pcode;
 
         // Clear Current Admin
-        this._filters[TKFilters.ADMIN2] = null;
+        this._filters[TKAdminFilters.ADMIN2] = null;
         this._currentAdmin2 = null;
         this._currentCamp = null;
         this._currentSubmission = null;
-        this._filters[TKFilters.CAMP] = null;
+        this._filters[TKAdminFilters.CAMP] = null;
 
-        this._levelToZoom = TKFilters.ADMIN1;
+        this._levelToZoom = TKAdminFilters.ADMIN1;
 
         this._lastModification = `admin1=${this._currentAdmin1.pcode}`;
         this.updateFiltering();
       }
     } else {
-      this._levelToZoom = TKFilters.SURVEY;
+      this._levelToZoom = TKAdminFilters.SURVEY;
 
       this._currentAdmin1 = null;
-      this._filters[TKFilters.ADMIN1] = null;
+      this._filters[TKAdminFilters.ADMIN1] = null;
 
       this._currentAdmin2 = null;
-      this._filters[TKFilters.ADMIN2] = null;
+      this._filters[TKAdminFilters.ADMIN2] = null;
 
       this._currentCamp = null;
-      this._filters[TKFilters.CAMP] = null;
+      this._filters[TKAdminFilters.CAMP] = null;
       this._currentSubmission = null;
 
       this._lastModification = `clearAdmin1`;
@@ -288,22 +290,22 @@ export class TKDataset {
     if (admin2) {
       if (admin2 !== this._currentAdmin2) {
         this._currentAdmin2 = admin2;
-        this._filters[TKFilters.ADMIN2] = this._currentAdmin2.pcode;
+        this._filters[TKAdminFilters.ADMIN2] = this._currentAdmin2.pcode;
 
         // Clear camp
         this._currentCamp = null;
         this._currentSubmission = null;
-        this._filters[TKFilters.CAMP] = null;
+        this._filters[TKAdminFilters.CAMP] = null;
 
         // New admin2
-        this._levelToZoom = TKFilters.ADMIN2;
+        this._levelToZoom = TKAdminFilters.ADMIN2;
         const campAdmin2 = this._currentSurvey.camps.find(
           camp => camp.admin2.pcode === this._currentAdmin2?.pcode
         );
         if (campAdmin2) {
           this._currentAdmin1 = campAdmin2.admin1;
         }
-        this._filters[TKFilters.ADMIN1] = this._currentAdmin1
+        this._filters[TKAdminFilters.ADMIN1] = this._currentAdmin1
           ? this._currentAdmin1.pcode
           : null;
 
@@ -313,18 +315,18 @@ export class TKDataset {
       }
     } else {
       this._levelToZoom = this._currentAdmin1
-        ? TKFilters.ADMIN1
-        : TKFilters.SURVEY;
+        ? TKAdminFilters.ADMIN1
+        : TKAdminFilters.SURVEY;
 
-      this._filters[TKFilters.ADMIN1] = this._currentAdmin1
+      this._filters[TKAdminFilters.ADMIN1] = this._currentAdmin1
         ? this._currentAdmin1.pcode
         : null;
 
       this._currentAdmin2 = null;
-      this._filters[TKFilters.ADMIN2] = null;
+      this._filters[TKAdminFilters.ADMIN2] = null;
 
       this._currentCamp = null;
-      this._filters[TKFilters.CAMP] = null;
+      this._filters[TKAdminFilters.CAMP] = null;
       this._currentSubmission = null;
 
       this._lastModification = `clearAdmin2`;
@@ -348,7 +350,7 @@ export class TKDataset {
   // Change Camp
   // ////////////////////////////////////////////////////////////////////////////
 
-  setcurrentCampByName(campName: string) {
+  setCurrentCampByName(campName: string) {
     if (this._currentSurvey) {
       const camp = this._currentSurvey.camps.find(
         camp => camp.name === campName
@@ -368,17 +370,17 @@ export class TKDataset {
       if (this._currentCamp !== camp) {
         this._currentCamp = camp;
 
-        this._filters[TKFilters.CAMP] = this._currentCamp.id;
-        this._levelToZoom = TKFilters.CAMP;
+        this._filters[TKAdminFilters.CAMP] = this._currentCamp.id;
+        this._levelToZoom = TKAdminFilters.CAMP;
         if (this._currentCamp && this._currentSurvey) {
           if (this._currentCamp.admin1 !== this._currentAdmin1) {
             this._currentAdmin1 = this._currentCamp.admin1;
-            this._filters[TKFilters.ADMIN1] = this._currentAdmin1.pcode;
+            this._filters[TKAdminFilters.ADMIN1] = this._currentAdmin1.pcode;
           }
 
           if (this._currentCamp.admin2 !== this._currentAdmin2) {
             this._currentAdmin2 = this._currentCamp.admin2;
-            this._filters[TKFilters.ADMIN2] = this._currentAdmin2.pcode;
+            this._filters[TKAdminFilters.ADMIN2] = this._currentAdmin2.pcode;
           }
 
           this._currentSubmission = this._currentCamp.submissions[0];
@@ -390,13 +392,13 @@ export class TKDataset {
     } else {
       // Clear camp
       this._levelToZoom = this._currentAdmin2
-        ? TKFilters.ADMIN2
+        ? TKAdminFilters.ADMIN2
         : this._currentAdmin1
-        ? TKFilters.ADMIN1
-        : TKFilters.SURVEY;
+        ? TKAdminFilters.ADMIN1
+        : TKAdminFilters.SURVEY;
       this._currentCamp = null;
       this._currentSubmission = null;
-      this._filters[TKFilters.CAMP] = null;
+      this._filters[TKAdminFilters.CAMP] = null;
       this._lastModification = "clearCamp";
       this.updateFiltering();
     }
@@ -418,7 +420,7 @@ export class TKDataset {
 
     if (this._currentAdmin1 && !validAdmin1.has(this._currentAdmin1.pcode)) {
       this._currentAdmin1 = null;
-      this._filters[TKFilters.ADMIN1] = null;
+      this._filters[TKAdminFilters.ADMIN1] = null;
     }
   }
 
@@ -433,7 +435,7 @@ export class TKDataset {
     );
     if (this._currentAdmin2 && !validAdmin2.has(this._currentAdmin2.pcode)) {
       this._currentAdmin2 = null;
-      this._filters[TKFilters.ADMIN2] = null;
+      this._filters[TKAdminFilters.ADMIN2] = null;
     }
   }
 
@@ -446,49 +448,29 @@ export class TKDataset {
       this._filteredAdmin2List = this._currentSurvey.boundaries.admin2;
 
       // Camp filtering base on Admin1 //////////////////////////////////////////
-      if (this._filters[TKFilters.ADMIN1]) {
+      if (this._filters[TKAdminFilters.ADMIN1]) {
         this._filteredCampsList = this._filteredCampsList.filter(
-          camp => camp.admin1.pcode === this._filters[TKFilters.ADMIN1]
+          camp => camp.admin1.pcode === this._filters[TKAdminFilters.ADMIN1]
         );
         this.filterAdmin2BaseOnFilteredCamp();
       }
 
       // Camp filtering base on Admin2 //////////////////////////////////////////
-      if (this._filters[TKFilters.ADMIN2]) {
+      if (this._filters[TKAdminFilters.ADMIN2]) {
         this._filteredCampsList = this._filteredCampsList.filter(
-          camp => camp.admin2.pcode === this._filters[TKFilters.ADMIN2]
+          camp => camp.admin2.pcode === this._filters[TKAdminFilters.ADMIN2]
         );
       }
 
-      // Update count ///////////////////////////////////////////////////////////
-      this._countPlanned = this._filteredCampsList.filter(
-        camp => camp.type !== TKCampType.SPONTANEOUS
-      ).length;
-      this._countSpontanneous = this._filteredCampsList.filter(
-        camp => camp.type !== TKCampType.PLANNED
-      ).length;
+      // Update filtered typed camps list
+      this._filteredTypedCampsList = this._filteredCampsList.filter(item => {
+        if (this._typeSite[item.type.formattedName]) {
+          return this._typeSite[item.type.formattedName].active;
+        }
+        return false;
+      });
 
-      // Remove planned if needed ///////////////////////////////////////////////
-      if (!this._filters[TKFilters.PLANNED_SITE]) {
-        this._filteredCampsList = this._filteredCampsList.filter(
-          camp => camp.type !== TKCampType.PLANNED
-        );
-
-        // Remove to avoid weird filtering.
-        // this.filterAdmin1BaseOnFilteredCamp();
-        // this.filterAdmin2BaseOnFilteredCamp();
-      }
-
-      // Remove spontaneous if needed ///////////////////////////////////////////
-      if (!this._filters[TKFilters.SPONTANEOUS_SITE]) {
-        this._filteredCampsList = this._filteredCampsList.filter(
-          camp => camp.type !== TKCampType.SPONTANEOUS
-        );
-
-        // Remove to avoid weird filtering.
-        // this.filterAdmin1BaseOnFilteredCamp();
-        // this.filterAdmin2BaseOnFilteredCamp();
-      }
+      console.log(this._typeSite);
     }
   }
 }

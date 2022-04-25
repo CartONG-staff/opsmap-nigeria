@@ -2,86 +2,45 @@
   <div class="tk-map-filters">
     <transition name="hide-filters">
       <div v-if="show" class="tk-map-filters-item">
-        <div class="tk-map-filter">
+        <div v-for="(site, key) in sites" :key="key" class="tk-map-filter">
           <img
             :class="
-              campPlannedEnabled
+              site.enabled
                 ? 'tk-indicator-icon'
                 : 'tk-indicator-icon tk-indicator-icon-disabled'
             "
-            :src="plannedImgUrl"
+            :src="site.iconUrl"
           />
           <transition mode="out-in" name="fade-in">
             <div
               :key="$root.$i18n.locale"
               :class="
-                campPlannedEnabled
+                site.enabled
                   ? 'tk-map-filter-text'
                   : 'tk-map-filter-text tk-map-filter-text-disabled'
               "
             >
-              {{ $t("map.legendPlanned") }}
+              {{ text(site.title) }}
             </div>
           </transition>
           <transition mode="out-in" name="fade-in">
             <div
-              :key="countCampPlanned"
+              :key="site.count"
               :class="
-                campPlannedEnabled
+                site.enabled
                   ? 'tk-map-filter-value'
                   : 'tk-map-filter-value tk-map-filter-value-disabled'
               "
             >
-              {{ countCampPlanned }}
+              {{ site.count }}
             </div>
           </transition>
           <v-checkbox
-            v-model="checkboxs.planned"
+            v-model="site.active"
             class="tk-map-filter-checkbox"
-            @change="checkboxChange('planned')"
-            :disabled="!campPlannedEnabled"
             hide-details
-          ></v-checkbox>
-        </div>
-        <div class="tk-map-filter">
-          <img
-            :class="
-              campSpontaneousEnabled
-                ? 'tk-indicator-icon'
-                : 'tk-indicator-icon tk-indicator-icon-disabled'
-            "
-            :src="spontaneousImgUrl"
-          />
-          <transition mode="out-in" name="fade-in">
-            <div
-              :key="$root.$i18n.locale"
-              :class="
-                campSpontaneousEnabled
-                  ? 'tk-map-filter-text'
-                  : 'tk-map-filter-text tk-map-filter-text-disabled'
-              "
-            >
-              {{ $t("map.legendSpontaneous") }}
-            </div>
-          </transition>
-          <transition mode="out-in" name="fade-in">
-            <div
-              :key="countCampSpontaneous"
-              :class="
-                campSpontaneousEnabled
-                  ? 'tk-map-filter-value'
-                  : 'tk-map-filter-value tk-map-filter-value-disabled'
-              "
-            >
-              {{ countCampSpontaneous }}
-            </div>
-          </transition>
-          <v-checkbox
-            v-model="checkboxs.spontaneous"
-            @change="checkboxChange('spontaneous')"
-            class="tk-map-filter-checkbox"
-            :disabled="!campSpontaneousEnabled"
-            hide-details
+            :disabled="!site.enabled"
+            @change="checkboxChange(site.type, site.active)"
           ></v-checkbox>
         </div>
       </div>
@@ -107,8 +66,9 @@
 <script lang="ts">
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { Component, Vue, Watch } from "vue-property-decorator";
-import { TKFilters } from "@/domain/survey/TKDataset";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+
+import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 
 @Component
 export default class TKMapFilter extends Vue {
@@ -116,44 +76,52 @@ export default class TKMapFilter extends Vue {
     return TKDatasetModule.dataset;
   }
 
-  plannedImgUrl = TKIconUrl("planned_site");
-  spontaneousImgUrl = TKIconUrl("spontaneous_site");
+  sites: Array<{
+    type: string;
+    title: TKLabel;
+    iconUrl: string;
+    active: boolean;
+    enabled: boolean;
+    count: number;
+  }> = [];
+
+  checkboxChange(type: string, active: boolean): void {
+    this.dataset.setTypedFilterValue(type, active);
+  }
+
+  @Watch("dataset.currentSurvey", { immediate: true })
+  updateSites() {
+    this.sites = [];
+    if (this.dataset && this.dataset.currentSurvey) {
+      for (const siteKeys of Object.keys(
+        this.dataset.currentSurvey.fdf.siteTypes
+      )) {
+        const site = this.dataset.currentSurvey.fdf.siteTypes[siteKeys];
+        this.sites.push({
+          type: site.formattedName,
+          title: site.thematicLabel,
+          iconUrl: TKIconUrl(site.iconFileName.normal),
+          active: true,
+          enabled: true,
+          count: 0
+        });
+      }
+    }
+  }
+
+  text(label: TKLabel): string {
+    return TKGetLocalValue(label, this.$root.$i18n.locale);
+  }
+
   show = true;
-  checkboxs = {
-    planned: true,
-    spontaneous: true
-  };
-  get countCampPlanned(): number {
-    return this.dataset?.countPlanned;
-  }
-  get countCampSpontaneous(): number {
-    return this.dataset?.countSpontanneous;
-  }
-
-  campPlannedEnabled = true;
-  campSpontaneousEnabled = true;
-
-  checkboxChange(checkbox: string): void {
-    checkbox === "planned"
-      ? this.dataset.setFiltersValue(
-          TKFilters.PLANNED_SITE,
-          this.checkboxs.planned
-        )
-      : this.dataset.setFiltersValue(
-          TKFilters.SPONTANEOUS_SITE,
-          this.checkboxs.spontaneous
-        );
-  }
 
   @Watch("dataset.filteredCampsList", { immediate: true })
   datasetChanged() {
-    // Count camp planned
-    this.campPlannedEnabled =
-      !this.checkboxs.planned || this.countCampPlanned > 0;
-
-    // Spontanneous camp planned
-    this.campSpontaneousEnabled =
-      !this.checkboxs.spontaneous || this.countCampSpontaneous > 0;
+    for (let idx = 0; idx < this.sites.length; idx++) {
+      this.sites[idx].count = this.dataset.filteredCampsList.filter(
+        site => site.type.formattedName === this.sites[idx].type
+      ).length;
+    }
   }
 }
 </script>

@@ -69,8 +69,8 @@
             dense
             :label="$t('camp')"
             v-model="dataset.currentCamp"
-            :items="dataset.filteredCampsList"
-            :disabled="!dataset.filteredCampsList.length"
+            :items="dataset.filteredTypedCampsList"
+            :disabled="!dataset.filteredTypedCampsList.length"
             item-text="name"
             return-object
             clearable

@@ -85,7 +85,6 @@
 </template>
 
 <script lang="ts">
-import { TKCampType } from "@/domain/survey/TKCamp";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Component, Vue, Watch } from "vue-property-decorator";
@@ -149,17 +148,11 @@ export default class TKCampInfos extends Vue {
         this.manageByLabel,
         this.$root.$i18n.locale
       );
-      if (this.dataset.currentCamp.type === TKCampType.PLANNED) {
-        this.siteType = this.$root.$i18n
-          .t("infosSitePlanned")
-          .toString()
-          .toUpperCase();
-      } else {
-        this.siteType = this.$root.$i18n
-          .t("infosSiteSpontanneous")
-          .toString()
-          .toUpperCase();
-      }
+
+      this.siteType = TKGetLocalValue(
+        this.dataset.currentCamp.type.thematicLabel,
+        this.$root.$i18n.locale
+      ).toUpperCase();
     }
   }
 }

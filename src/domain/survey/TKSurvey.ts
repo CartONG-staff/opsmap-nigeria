@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { TKCampType } from "./TKCamp";
 import { TKBoundaries } from "./TKBoundaries";
 import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
 import { TKIndicator } from "./TKIndicator";
@@ -151,9 +150,7 @@ export function TKCreateSurvey(
       camp = {
         id: submission[fdf.spatialDescription.siteIDField],
         name: submission[fdf.spatialDescription.siteNameField],
-        type: fdf.terminology[
-          submission[fdf.spatialDescription.siteTypeField]
-        ] as TKCampType,
+        type: fdf.siteTypes[submission[fdf.spatialDescription.siteTypeField]],
         lat: Number(
           submission[fdf.spatialDescription.siteLatitudeField].replace(",", ".")
         ),
