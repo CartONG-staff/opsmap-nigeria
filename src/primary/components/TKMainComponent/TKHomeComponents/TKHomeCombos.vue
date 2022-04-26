@@ -75,7 +75,7 @@
               clearable
               :label="$t('camp')"
               v-model="dataset.currentCamp"
-              :items="dataset.filteredCampsList"
+              :items="dataset.filteredTypedCampsList"
               item-text="name"
               return-object
             ></v-autocomplete>

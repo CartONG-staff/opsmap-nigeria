@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="tk-map-filters">
+  <div class="tk-map-filters" ref="tk-map-filters">
     <transition name="hide-filters">
       <div v-if="show" class="tk-map-filters-item">
         <div v-for="(site, key) in sites" :key="key" class="tk-map-filter">
@@ -85,6 +85,10 @@ export default class TKMapFilter extends Vue {
     count: number;
   }> = [];
 
+  mounted() {
+    this.updateSites();
+  }
+
   checkboxChange(type: string, active: boolean): void {
     this.dataset.setTypedFilterValue(type, active);
   }
@@ -106,6 +110,11 @@ export default class TKMapFilter extends Vue {
           count: 0
         });
       }
+      this.updateCount();
+    }
+    if (this.$refs["tk-map-filters"]) {
+      (this.$refs["tk-map-filters"] as HTMLBaseElement).style.height = `${this
+        .sites.length * 34}px`;
     }
   }
 
@@ -116,7 +125,7 @@ export default class TKMapFilter extends Vue {
   show = true;
 
   @Watch("dataset.filteredCampsList", { immediate: true })
-  datasetChanged() {
+  updateCount() {
     for (let idx = 0; idx < this.sites.length; idx++) {
       this.sites[idx].count = this.dataset.filteredCampsList.filter(
         site => site.type.formattedName === this.sites[idx].type
@@ -136,7 +145,6 @@ export default class TKMapFilter extends Vue {
   justify-content: flex-start;
   align-items: center;
   row-gap: 10px;
-  height: 75px;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 }

@@ -83,6 +83,8 @@ export default class TKMap extends Vue {
         }
       );
 
+      this.mapMarkersList = [...new Set(this.mapMarkersList)];
+
       this.mapLayerStyle = computeMapLayersStyle(
         TKDatasetModule.dataset.currentSurvey.fdf.siteTypes
       );

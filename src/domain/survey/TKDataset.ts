@@ -469,8 +469,6 @@ export class TKDataset {
         }
         return false;
       });
-
-      console.log(this._typeSite);
     }
   }
 }
