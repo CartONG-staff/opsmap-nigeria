@@ -3,8 +3,6 @@
     "infosAdmin1": "Etat",
     "infosAdmin2": "Ville",
     "infosSiteType": "Type de site",
-    "infosSitePlanned": "Prévu",
-    "infosSiteSpontanneous": "Spontanné",
     "manageBy": "Géré par",
     "selectText": "Choisis un",
     "survey": "Enquête",
@@ -54,8 +52,6 @@
         "male": "Garçon"
     },
     "map": {
-        "legendPlanned": "Site(s) prévus(s)",
-        "legendSpontaneous": "Site (s) spontanné(s)",
         "legendBasemaps": "Sélectionner un fond de carte",
         "legendZoomIn": "Zoomer",
         "legendZoomOut": "Dézoomer",

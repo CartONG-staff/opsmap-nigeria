@@ -41,7 +41,7 @@ function computeEsiteCSVContent(
           camp.lat.toString(),
           camp.lng.toString(),
           camp.name,
-          camp.type,
+          camp.type.formattedName,
           submission.date
         ];
 

@@ -59,7 +59,6 @@
 </template>
 
 <script lang="ts">
-import { TKCampType } from "@/domain/survey/TKCamp";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { toTitleCase } from "@/domain/utils/TKStringUtils";
@@ -98,17 +97,10 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
         this.$root.$i18n.locale
       );
 
-      if (this.dataset.currentCamp.type === TKCampType.PLANNED) {
-        this.siteType = this.$root.$i18n
-          .t("infosSitePlanned")
-          .toString()
-          .toUpperCase();
-      } else {
-        this.siteType = this.$root.$i18n
-          .t("infosSiteSpontanneous")
-          .toString()
-          .toUpperCase();
-      }
+      this.siteType = TKGetLocalValue(
+        this.dataset.currentCamp.type.thematicLabel,
+        this.$root.$i18n.locale
+      ).toUpperCase();
     }
   }
 
@@ -151,11 +143,11 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
       // Marker
       // TODO: magic value : automate icon file name with CampTypesValues
       let markerUrl = "";
-      if (this.dataset.currentCamp.type === TKCampType.PLANNED) {
-        markerUrl = encodeURIComponent(TKIconUrl("planned_site_selected"));
-      } else {
-        markerUrl = encodeURIComponent(TKIconUrl("spontaneous_site_selected"));
-      }
+
+      markerUrl = encodeURIComponent(
+        TKIconUrl(this.dataset.currentCamp.type.iconFileName.selected)
+      );
+
       staticMapUrl += `url-${markerUrl}(${this.dataset.currentCamp.lng},${this.dataset.currentCamp.lat})/`;
 
       // Bounds
