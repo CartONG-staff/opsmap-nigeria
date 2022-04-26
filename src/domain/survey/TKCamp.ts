@@ -1,15 +1,7 @@
+import { TKFDFSiteType } from "../fdf/TKFDFSiteTypes";
 import { TKLabel } from "../utils/TKLabel";
 import { TKBoundaries } from "./TKBoundaries";
 import { TKSubmission } from "./TKSubmission";
-
-// ////////////////////////////////////////////////////////////////////////////
-// Camp Types
-// ////////////////////////////////////////////////////////////////////////////
-
-export enum TKCampType {
-  PLANNED = "site_planned",
-  SPONTANEOUS = "site_spontaneous"
-}
 
 // ////////////////////////////////////////////////////////////////////////////
 // Camp Type definition
@@ -18,7 +10,7 @@ export enum TKCampType {
 export interface TKCamp {
   id: string;
   name: string;
-  type: TKCampType;
+  type: TKFDFSiteType; // from fdf
   lat: number;
   lng: number;
   admin1: TKBoundaries;

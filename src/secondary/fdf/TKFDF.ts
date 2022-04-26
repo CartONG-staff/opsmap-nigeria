@@ -17,6 +17,7 @@ import { TKReadFDFTerminologyCollection } from "@/secondary/fdf/TKFDFTerminology
 import { TKReadFDFThematicsCollection } from "@/secondary/fdf/TKFDFThematics";
 import { TKReadFDFTrafficLightsCollection } from "@/secondary/fdf/TKFDFTrafficLight";
 import { TKReadFDFURLsCollection } from "@/secondary/fdf/TKFDFURLs";
+import { TKReadFDFSiteTypesCollection } from "./TKFDFSiteTypes";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Method that creates the FDF object from the fdf folder
@@ -48,6 +49,7 @@ export async function TKReadFDF(
     submissionsRules: await TKReadSubmissionsRulesCollection(infos.fdf),
     urls: await TKReadFDFURLsCollection(infos.fdf),
     indicators: indicators,
-    spatialDescription: spatialDescription
+    spatialDescription: spatialDescription,
+    siteTypes: await TKReadFDFSiteTypesCollection(infos.fdf)
   };
 }

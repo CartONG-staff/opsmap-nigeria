@@ -67,7 +67,7 @@ export default class TKRouteHandler extends Vue {
       if (survey) {
         TKDatasetModule.dataset.setCurrentSurveyByName(survey);
         if (camp) {
-          TKDatasetModule.dataset.setcurrentCampByName(camp);
+          TKDatasetModule.dataset.setCurrentCampByName(camp);
           if (date) {
             TKDatasetModule.dataset.setSubmissionByDate(date);
           }

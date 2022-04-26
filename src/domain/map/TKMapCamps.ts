@@ -27,7 +27,7 @@ export class TKMapCamps {
           properties: {
             id: camp.id,
             name: camp.name,
-            type: camp.type,
+            type: camp.type.formattedName,
             lastSubmission: camp.submissions[0].date,
             lat: camp.lat,
             lng: camp.lng,

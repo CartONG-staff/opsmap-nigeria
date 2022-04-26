@@ -7,6 +7,7 @@ import { TKFDFIndicators } from "./TKFDFIndicators";
 import { TKFDFLabelCollection } from "./TKFDFParseMultiLang";
 import { TKFDFSpatialDescription } from "./TKFDFSpatialDescription";
 import { TKFDFSubmissionsRulesCollection } from "./TKFDFSubmissionsRules";
+import { TKFDFSiteTypeCollection } from "./TKFDFSiteTypes";
 import { TKFDFTerminologyCollection } from "./TKFDFTerminology";
 import { TKTFDFhematicsCollection } from "./TKFDFThematics";
 import { TKFDFTrafficLightsCollection } from "./TKFDFTrafficLight";
@@ -25,4 +26,5 @@ export interface TKFDF {
   urls: TKFDFUrlsCollection;
   indicators: TKFDFIndicators;
   spatialDescription: TKFDFSpatialDescription;
+  siteTypes: TKFDFSiteTypeCollection;
 }

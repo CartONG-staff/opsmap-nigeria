@@ -3,8 +3,6 @@
     "infosAdmin1": "Estado",
     "infosAdmin2": "Cidade",
     "infosSiteType": "Typo",
-    "infosSitePlanned": "Abrigos",
-    "infosSiteSpontanneous": "Ocupação Espontâ",
     "manageBy": "Gestão do Abrigo",
     "selectText": "Selecione um",
     "survey": "Pesquisa",
@@ -53,8 +51,6 @@
         "polarTitle": "Tipo"
     },
     "map": {
-        "legendPlanned": "Abrigos",
-        "legendSpontaneous": "Ocupação Espontânea",
         "legendBasemaps": "Seleccione um mapa de fundo",
         "legendZoomIn": "Mais Zoom",
         "legendZoomOut": "Reduzir o zoom",

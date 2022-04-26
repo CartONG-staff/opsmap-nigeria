@@ -6,7 +6,6 @@ import { TKLogo } from "@/domain/utils/TKLogo";
 
 import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
 import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
-import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 // ////////////////////////////////////////////////////////////////////////////
 // JSON format

@@ -1,8 +1,8 @@
 import { Feature, FeatureCollection } from "geojson";
 import mapboxgl, { LngLat, LngLatBounds, LngLatLike } from "mapbox-gl";
-import { TKDataset, TKFilters } from "@/domain/survey/TKDataset";
+import { TKDataset, TKAdminFilters } from "@/domain/survey/TKDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
-import { TKMapLayers } from "./TKMapLayers";
+import { TKMapLayers, TKMapLayersSource } from "./TKMapLayers";
 import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 
 export class TKMapBoundaries {
@@ -32,7 +32,7 @@ export class TKMapBoundaries {
     const setZoom1 = this.setAdmin1Style(dataset);
     const setZoom2 = this.setAdmin2Style(dataset);
     switch (dataset.levelToZoom) {
-      case TKFilters.SURVEY:
+      case TKAdminFilters.SURVEY:
         this.mapFitBounds(bound, map);
         for (const item of this.admin1.features) {
           if (item.properties) {
@@ -40,15 +40,15 @@ export class TKMapBoundaries {
           }
         }
         break;
-      case TKFilters.ADMIN1:
+      case TKAdminFilters.ADMIN1:
         setZoom = setZoom1;
         this.setAdmin2Style(dataset);
         if (setZoom) {
           this.mapFitBounds(setZoom, map);
         }
         break;
-      case TKFilters.CAMP:
-      case TKFilters.ADMIN2:
+      case TKAdminFilters.CAMP:
+      case TKAdminFilters.ADMIN2:
         setZoom = setZoom2;
         if (setZoom) {
           this.mapFitBounds(setZoom, map);
@@ -66,10 +66,10 @@ export class TKMapBoundaries {
       );
     }
     (map.getSource(
-      TKMapLayers.ADMIN1SOURCE
+      TKMapLayersSource.ADMIN1SOURCE
     ) as mapboxgl.GeoJSONSource)?.setData(this.admin1);
     (map.getSource(
-      TKMapLayers.ADMIN2SOURCE
+      TKMapLayersSource.ADMIN2SOURCE
     ) as mapboxgl.GeoJSONSource)?.setData(this.admin2);
   }
 
