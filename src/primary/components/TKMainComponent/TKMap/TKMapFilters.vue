@@ -156,7 +156,6 @@ export default class TKMapFilter extends Vue {
   align-items: left;
   row-gap: 10px;
   flex-grow: 1;
-  max-width: 300px;
   opacity: 1;
   overflow: hidden;
 }
@@ -182,6 +181,7 @@ export default class TKMapFilter extends Vue {
 .tk-map-filter-text {
   flex-grow: 1;
   font-size: 13px;
+  white-space: nowrap;
 }
 
 .tk-map-filter-text-disabled,
