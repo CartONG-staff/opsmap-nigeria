@@ -59,7 +59,6 @@ export async function TKReadFDFSiteTypesCollection(
         localesValuesForIndexes[j]
       ] = item[j];
     }
-    console.log(siteTypesCollection);
   }
 
   return siteTypesCollection;

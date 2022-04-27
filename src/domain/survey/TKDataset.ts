@@ -57,9 +57,6 @@ export class TKDataset {
   };
   private _levelToZoom: TKAdminFilters = TKAdminFilters.SURVEY;
 
-  // private _countPlanned = 0;
-  // private _countSpontanneous = 0;
-
   constructor(surveys: TKSurvey[]) {
     const before = Date.now();
 
@@ -464,7 +461,7 @@ export class TKDataset {
 
       // Update filtered typed camps list
       this._filteredTypedCampsList = this._filteredCampsList.filter(item => {
-        if (this._typeSite[item.type.formattedName]) {
+        if (item.type && this._typeSite[item.type.formattedName]) {
           return this._typeSite[item.type.formattedName].active;
         }
         return false;
