@@ -34,7 +34,7 @@ export async function TKReadFDFSiteTypesCollection(
     "ignore-2"
   ]; // ignore first col --> choice name
 
-  for (let i = 2; i < header.length; i++) {
+  for (let i = 3; i < header.length; i++) {
     const split = header[i].split("_");
     const lang = split[split.length - 1] ?? "";
     localesValuesForIndexes.push(lang);
@@ -54,11 +54,12 @@ export async function TKReadFDFSiteTypesCollection(
       thematicLabel: {}
     };
 
-    for (let j = 2; j < Object.keys(item).length; j++) {
+    for (let j = 3; j < Object.keys(item).length; j++) {
       siteTypesCollection[item[FORMATTED_NAME_INDEX]].thematicLabel[
         localesValuesForIndexes[j]
       ] = item[j];
     }
+    console.log(siteTypesCollection);
   }
 
   return siteTypesCollection;
