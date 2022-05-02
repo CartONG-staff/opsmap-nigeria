@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { toTitleCase } from "@/domain/utils/TKStringUtils";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
