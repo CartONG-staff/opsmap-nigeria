@@ -15,6 +15,7 @@ interface TKAppOptions {
   readonly dark: boolean;
   readonly pdfColumnCount: number;
   readonly exportForEsite: boolean;
+  readonly showDemoBanner: boolean;
 }
 interface TKIFrameDescription {
   readonly url: string;
@@ -147,7 +148,8 @@ export async function TKReadGeneralConfiguration(
     showCCCMLogo: true,
     dark: false,
     pdfColumnCount: 3,
-    exportForEsite: false
+    exportForEsite: false,
+    showDemoBanner: false
   };
 
   // Init with defaultOptions, then replace existing key with options.

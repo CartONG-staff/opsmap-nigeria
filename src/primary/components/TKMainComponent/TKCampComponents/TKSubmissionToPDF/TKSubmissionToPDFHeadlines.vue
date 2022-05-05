@@ -1,6 +1,7 @@
 <template>
   <div class="headlines">
     <img src="@/assets/LogoOpsmap.png" class="header-logo" />
+    <div class="headlines-spacer"></div>
     <div class="headlines-left">
       <div class="headlines-title">{{ siteName }} - {{ date }}</div>
 
@@ -182,8 +183,10 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   column-gap: 3mm;
 }
 
-.headlines-left {
+.headlines-spacer {
   flex-grow: 2;
+}
+.headlines-left {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
