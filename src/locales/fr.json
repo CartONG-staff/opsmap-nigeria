@@ -9,6 +9,7 @@
     "camp": "Camp",
     "dashboardCredits": "Le project Opsmap est une solution opensource sous license MIT",
     "ochaCredits": "Les pictogrammes Humanitarian font sontsous licence CC BY 3.0",
+    "appName": "Fiche de site",
     "disclaimer": {
         "text": "Version de démo - toutes les données sont fausses"
     },

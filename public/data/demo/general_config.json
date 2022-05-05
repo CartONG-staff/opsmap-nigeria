@@ -8,10 +8,6 @@
         "en": "Burkina Faso",
         "fr": "Burkina Faso"
     },
-    "title": {
-        "en": "Site tracker",
-        "fr": "Traqueur de site"
-    },
     "opsmapDescr": {
         "en": "Burkina Faso is experiencing a humanitarian crisis of great complexity, characterized by forced, widespread and continuous displacement across the country, particularly in the regions of the Centre Nord, the Sahel, the North, the East and the Boucle du Mouhoun. As of 31 January 2022, the country has 1,741,655  internally displaced persons (IDPs) across 275 host communes, an average monthly increase of 12% over the figure at the beginning of 2018 (when statistics on IDPs were first produced). <br /> Internally displaced persons are settled in host communities, in temporary reception sites (planned and spontaneous sites) and collective centres (schools, public buildings, etc.).  Given the complexity and multidimensional aspects of the crisis, the CCCM/GSAT Cluster, activated in June 2021, has since identified more than 120 IDP sites in the Centre-North, Sahel and North regions alone. The Cluster in collaboration with the government structure (CONASUR) responsible for the coordination of the humanitarian response and the registration of IDPs, the Humanitarian Action Directorates and the GSAT partners are working to map and implement management mechanisms in all SATs and IDP reception areas (ZADs).",
         "fr": "Le Burkina Faso vit une crise humanitaire d’une grande complexité et caractérisée par des déplacements forcés, généralisés et continus à travers le pays, particulièrement dans les régions du Centre Nord, le Sahel, le Nord, l’Est et la Boucle du Mouhoun. En date du 31 janvier 2022, le pays compte 1 741 655 personnes déplacées internes (PDI) réparties à travers 275 communes d’accueil, soit un accroissement mensuel moyen de 12% par rapport au chiffre de début de l’année 2018 (début de production des statistique sur les PDI). <br /> Les personnes déplacées internes sont installées au sein des communautés hôtes, dans les sites d’accueil temporaires (sites aménagés et spontanés) et des centres collectifs (établissement scolaires, bâtiments publics etc.). Au vu de la complexité et des aspects multidimensionnels de la crise, le Cluster gestion des sites d’accueil temporaires – GSAT (CCCM)activé en juin 2021, a dès lors identifié plus de 120 sites de PDI uniquement dans les régions du Centre-Nord, du Sahel et du Nord. Le Cluster en collaboration avec la structure gouvernementale (CONASUR) chargé de la coordination de la réponse humanitaire et de l’enregistrement des PDI, les directions de l’Action Humanitaires et les partenaires GSAT travaillent afin de cartographier et mettre en place des mécanismes de gestion dans l’ensemble des SAT et les zones d’accueil de déplacés (ZAD)."
@@ -85,7 +81,7 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/burkina-faso/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "/data/demo/DEMO_burkina-faso/Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -97,32 +93,32 @@
             "logos": [
                 {
                     "name": "CONASUR",
-                    "urlLogo": "/data/burkina-faso/Logo/CONASUR.png",
+                    "urlLogo": "/data/demo/DEMO_burkina-faso/Logo/CONASUR.png",
                     "urlRedirection": "http://www.conasur.gov.bf/"
                 },
                 {
                     "name": "ACTED",
-                    "urlLogo": "/data/burkina-faso/Logo/ACTED.png",
+                    "urlLogo": "/data/demo/DEMO_burkina-faso/Logo/ACTED.png",
                     "urlRedirection": "https://www.acted.org/en/"
                 },
                 {
                     "name": "NRC",
-                    "urlLogo": "/data/burkina-faso/Logo/NRC.png",
+                    "urlLogo": "/data/demo/DEMO_burkina-faso/Logo/NRC.png",
                     "urlRedirection": "https://www.nrc.no/"
                 },
                 {
                     "name": "TEARFUND",
-                    "urlLogo": "/data/burkina-faso/Logo/tearfund.png",
+                    "urlLogo": "/data/demo/DEMO_burkina-faso/Logo/tearfund.png",
                     "urlRedirection": "https://www.tearfund.org/"
                 },
                 {
                     "name": "WORLD VISON BURKINA",
-                    "urlLogo": "/data/burkina-faso/Logo/worldvision.png",
+                    "urlLogo": "/data/demo/DEMO_burkina-faso/Logo/worldvision.png",
                     "urlRedirection": "https://www.wvi.org/emergency/burkina-faso"
                 },
                 {
                     "name": "REACH IMPACT",
-                    "urlLogo": "/data/burkina-faso/Logo/REACH.png",
+                    "urlLogo": "/data/demo/DEMO_burkina-faso/Logo/REACH.png",
                     "urlRedirection": "https://www.impact-initiatives.org/"
                 }
             ]
@@ -134,12 +130,12 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/burkina-faso/Logo/UNHCR.png",
+                    "urlLogo": "/data/demo/DEMO_burkina-faso/Logo/UNHCR.png",
                     "urlRedirection": "https://www.unhcr.org/"
                 },
                 {
                     "name": "Gestion des Sites d’Accueil Temporaires",
-                    "urlLogo": "/data/burkina-faso/Logo/GSAT.png",
+                    "urlLogo": "/data/demo/DEMO_burkina-faso/Logo/GSAT.png",
                     "urlRedirection": "https://www.humanitarianresponse.info/en/operations/burkina-faso/gestion-des-sites-d%E2%80%99accueil-temporaires"
                 }
             ]
@@ -151,7 +147,7 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/burkina-faso/Logo/UNHCR.png",
+                    "urlLogo": "/data/demo/DEMO_burkina-faso/Logo/UNHCR.png",
                     "urlRedirection": "https://www.unhcr.org/"
                 }
             ]
@@ -173,14 +169,14 @@
         "adm2RefInAdm1": "adm1pcode",
         "adm3Pcode": "adm3pcode",
         "adm3Name": "Comm",
-        "admin0LocalURL": "/data/burkina-faso/map/admin0.geojson",
+        "admin0LocalURL": "/data/demo/DEMO_burkina-faso/map/admin0.geojson",
         "admin1LocalURL": ""
     },
     "surveys": [
         {
             "type": "gsheet",
             "fdf": {
-                "folder": "/data/burkina-faso/FDF"
+                "folder": "/data/demo/DEMO_burkina-faso/FDF"
             },
             "name": "Survey 2022",
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQqHYWvLt3uEfNwicLy4ySHA_DBUOA8XFdinalMD2yVqKyd0qAXT61jZ-6DHZTdTAN7nSyT7NOhF3D0/pub?gid=43995107&single=true&output=csv",

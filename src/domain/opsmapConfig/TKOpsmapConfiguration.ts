@@ -6,6 +6,7 @@ import { TKLogo } from "@/domain/utils/TKLogo";
 
 import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
 import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
+import VueI18n from "vue-i18n";
 
 // ////////////////////////////////////////////////////////////////////////////
 // JSON format
@@ -60,7 +61,8 @@ export interface TKOpsmapConfiguration {
 // ////////////////////////////////////////////////////////////////////////////
 
 export async function TKReadGeneralConfiguration(
-  configFileName: string
+  configFileName: string,
+  translations: VueI18n.LocaleMessages
 ): Promise<TKOpsmapConfiguration> {
   const json: TKOpsmapConfiguration = await fetch(
     configFileName
@@ -94,10 +96,11 @@ export async function TKReadGeneralConfiguration(
   // Mapbox configuration - handle default values
   // ////////////////////////////////////////////////////////////////////////////
 
-  const title: TKLabel = {
-    en: "Site tracker",
-    pt: "Site de Monitoramento"
-  };
+  const title: TKLabel = {};
+  json.languages.map(locale => {
+    title[locale] = translations[locale]["appName"].toString();
+  });
+
   json.title = {
     ...title,
     ...json.title

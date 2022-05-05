@@ -108,13 +108,15 @@ Vue.use(VueMatomo, {
 
 Vue.config.productionTip = false;
 
+const messagesCandidates = loadLocaleMessages();
+console.log(messagesCandidates);
 TKReadGeneralConfiguration(
-  `${process.env.BASE_URL}/data/demo/general_config.json`
+  `${process.env.BASE_URL}/data/demo/general_config.json`,
+  messagesCandidates
 ).then(config => {
   TKConfigurationModule.setConfiguration(config);
 
   // Filter with config languages field.
-  const messagesCandidates = loadLocaleMessages();
   const keys = Object.keys(messagesCandidates).filter(
     lang =>
       TKConfigurationModule.configuration.languages.includes(lang) ||
