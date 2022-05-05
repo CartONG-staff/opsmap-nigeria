@@ -1,5 +1,8 @@
 <template>
   <v-app>
+    <div v-if="showDemoBanner" class="tk-demo-banner">
+      {{ $t("disclaimer.text") }}
+    </div>
     <v-main>
       <div class="tk-main">
         <TKHeader />
@@ -32,6 +35,10 @@ import { TKCreateDataset } from "@/domain/survey/TKCreateDataset";
   }
 })
 export default class TKApp extends Vue {
+  get showDemoBanner(): boolean {
+    return TKConfigurationModule.configuration.options.showDemoBanner;
+  }
+
   async mounted() {
     this.handeLocale();
 
@@ -103,6 +110,19 @@ h3 {
   min-width: 100%;
   justify-content: center;
   align-items: center;
+}
+
+.tk-demo-banner {
+  z-index: 4096;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  background-color: var(--v-primary-base);
+  color: var(--v-accent-base);
+  font-weight: bold;
+  text-align: center;
 }
 
 .tk-main {

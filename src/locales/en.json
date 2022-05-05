@@ -9,6 +9,9 @@
     "camp": "Camp",
     "dashboardCredits": "The OPSMAP dashboard is an opensource solution under the MIT license",
     "ochaCredits": "The Humanitarian font pictograms are licensed under the CC BY 3.0",
+    "disclaimer": {
+        "text": "Demo version - all data are fake ones"
+    },
     "footer": {
         "moreInfos": "About Opsmap",
         "moreInfosText": "OPSMAP aims at providing humanitarian actors essential information on services at site level to improve humanitarian assistance in IDP sites.<br/>Information is collected through key informants at each IDP site using mobile data collection tool based or on using traditional format of survey.<br/>The dashboard permit to quickly gain insights into collected data, by providing a site profile. <br/>Users can get insights, and use them identify items that require urgent action, and properly purposing resources.",
