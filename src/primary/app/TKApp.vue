@@ -119,7 +119,7 @@ h3 {
   width: 100%;
   height: 35px;
   line-height: 35px;
-  background-color: var(--v-primary-base);
+  background-color: #ffea00;
   color: var(--v-accent-base);
   font-weight: bold;
   text-align: center;
