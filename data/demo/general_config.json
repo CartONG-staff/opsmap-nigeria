@@ -240,6 +240,7 @@
     "options": {
         "showCCCMLogo": false,
         "pdfColumnCount": 3,
-        "exportForEsite": false
+        "exportForEsite": false,
+        "showDemoBanner": true
     }
 }
