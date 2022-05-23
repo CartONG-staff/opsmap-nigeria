@@ -119,7 +119,7 @@ h3 {
   width: 100%;
   height: 35px;
   line-height: 35px;
-  background-color: #3EB9BD;
+  background-color: #3eb9bd;
   font-weight: bold;
   text-transform: uppercase;
   color: white;
