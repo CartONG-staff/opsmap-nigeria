@@ -10,6 +10,9 @@
     "dashboardCredits": "O painel de controle OPSMAP é uma solução de código aberto sob a licença do MIT",
     "ochaCredits": "Os pictogramas de fontes humanitárias são licenciados sob a licença CC BY 3.0",
     "appName": "Perfil do sítio",
+    "disclaimer": {
+        "text": "versão beta"
+    },
     "footer": {
         "moreInfos": "Sobre Opsmap",
         "moreInfosText": "O OPSMAP visa fornecer aos agentes humanitários informações essenciais sobre serviços em nível de local para melhorar a assistência humanitária em locais de deslocados internos.<br/>As informações são coletadas através de informantes-chave em cada site de PDI, utilizando ferramentas móveis de coleta de dados baseadas ou utilizando o formato tradicional de pesquisa.<br/>O painel de controle permite obter rapidamente informações sobre os dados coletados, fornecendo um perfil do site.<br/>Os usuários podem obter insights e usá-los para identificar itens que requerem ação urgente, e recursos devidamente direcionados.",
