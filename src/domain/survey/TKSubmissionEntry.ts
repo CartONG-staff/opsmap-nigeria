@@ -114,10 +114,12 @@ export function TKCreateSubmissionEntryText(
   surveyConfiguration: TKFDF,
   languages: string[]
 ): TKSubmissionEntryText {
+  const isAnswered = value !== "";
   let correctedValue: Record<string, string> = {};
   if (
+    isAnswered &&
     surveyConfiguration.submissionsRules[field].type ===
-    TKFDFSubmissionItemType.LIST
+      TKFDFSubmissionItemType.LIST
   ) {
     languages.map(
       lang =>
@@ -142,16 +144,17 @@ export function TKCreateSubmissionEntryText(
           .join(", "))
     );
   } else {
-    correctedValue = surveyConfiguration.answersLabels[value]
-      ? surveyConfiguration.answersLabels[value]
-      : { en: value };
+    correctedValue =
+      isAnswered && surveyConfiguration.answersLabels[value]
+        ? surveyConfiguration.answersLabels[value]
+        : { en: value };
   }
   return {
     type: TKSubmissionEntryType.TEXT,
     field: field,
     fieldLabel: surveyConfiguration.fieldsLabels[field],
     answerLabel: correctedValue,
-    isAnswered: value !== "",
+    isAnswered: isAnswered,
     trafficLight:
       surveyConfiguration.submissionsRules[field].trafficLightName.length > 0,
     trafficLightColor:

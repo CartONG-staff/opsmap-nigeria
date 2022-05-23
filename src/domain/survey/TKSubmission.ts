@@ -288,18 +288,22 @@ export function TKCreateSubmission(
             value = submissionItem[rule.fieldName];
           }
         } catch (error) {
-          value = "-";
+          value = "";
         }
-        if (value) {
-          // If exists chart
-          if (currentChart.id) {
-            createChartInSubmission(currentChart, submission, fdf);
+        if (!value) {
+          value = "";
+        }
 
-            // Clear current submission
-            currentChart.id = "";
-            currentChart.thematic = "";
-            currentChart.data = [];
-          }
+        // If exists chart
+        if (currentChart.id) {
+          createChartInSubmission(currentChart, submission, fdf);
+
+          // Clear current submission
+          currentChart.id = "";
+          currentChart.thematic = "";
+          currentChart.data = [];
+        }
+        if (submission[rule.thematicGroup]) {
           // push it before switching to text item
           submission[rule.thematicGroup].data.push(
             TKCreateSubmissionEntryText(value, rule.fieldName, fdf, languages)
