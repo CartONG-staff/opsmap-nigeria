@@ -9,14 +9,14 @@
       </transition>
       <transition mode="out-in" name="fade-in">
         <div :key="siteType" class="tk-camp-infos-field-value-with-icon">
-          <div class="tk-camp-infos-field-value">
-            {{ siteType.toUpperCase() }}
-          </div>
           <img
             class="tk-camp-infos-field-icon"
             :src="siteTypeIcon"
             v-if="siteTypeIcon"
           />
+          <div class="tk-camp-infos-field-value">
+            {{ siteType.toUpperCase() }}
+          </div>
         </div>
       </transition>
     </div>
