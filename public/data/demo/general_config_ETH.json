@@ -15,22 +15,11 @@
     "indicators": {
         "home": [
             {
-                "type": "standard",
-                "name": {
-                    "en": "Site",
-                    "fr": "Site"
-                },
-                "entryCode": "mp_site_id",
-                "iconOchaName": "IDP-refugee-camp"
+                "type": "site_count"
             },
             {
-                "type": "standard",
-                "name": {
-                    "en": "People",
-                    "fr": "Personnes"
-                },
-                "entryCode": "CCCM-TOTAL_IND",
-                "iconOchaName": "People-in-need"
+                "type": "people_count",
+                "entryCode": "CCCM-TOTAL_IND"
             },
             {
                 "type": "standard",
