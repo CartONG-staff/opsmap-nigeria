@@ -89,7 +89,7 @@ export default class TKFooter extends Vue {
 
 .tk-footer-logos {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-evenly;
   vertical-align: middle;
   padding-bottom: var(--padding-large);

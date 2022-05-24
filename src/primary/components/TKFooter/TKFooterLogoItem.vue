@@ -49,15 +49,17 @@ export default class TKFooterLogoItem extends Vue {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
+  margin: 5px;
 }
 
 .tk-footer-logos-item-title {
   color: var(--v-sectionTitle-base);
+  white-space: nowrap;
 }
 
 .tk-footer-logos-item-logos {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   vertical-align: middle;
   justify-content: center;
   column-gap: var(--padding-logos);
