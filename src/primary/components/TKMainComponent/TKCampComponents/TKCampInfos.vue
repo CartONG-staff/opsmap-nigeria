@@ -7,10 +7,16 @@
           {{ $t("infosSiteType").toUpperCase() }}
         </div>
       </transition>
-
       <transition mode="out-in" name="fade-in">
-        <div :key="siteType" class="tk-camp-infos-field-value">
-          {{ siteType.toUpperCase() }}
+        <div :key="siteType" class="tk-camp-infos-field-value-with-icon">
+          <div class="tk-camp-infos-field-value">
+            {{ siteType.toUpperCase() }}
+          </div>
+          <img
+            class="tk-camp-infos-field-icon"
+            :src="siteTypeIcon"
+            v-if="siteTypeIcon"
+          />
         </div>
       </transition>
     </div>
@@ -85,6 +91,7 @@
 </template>
 
 <script lang="ts">
+import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Component, Vue, Watch } from "vue-property-decorator";
@@ -100,6 +107,7 @@ export default class TKCampInfos extends Vue {
   admin1 = "-";
   admin2 = "-";
   siteType = "-";
+  siteTypeIcon = "-";
   coordinates = "-";
   manageBy = "";
   manageByUrl = "";
@@ -134,6 +142,10 @@ export default class TKCampInfos extends Vue {
     } else {
       this.manageByUrl = "";
     }
+
+    this.siteTypeIcon = this.dataset.currentCamp
+      ? TKIconUrl(this.dataset.currentCamp.type.iconFileName.normal)
+      : "";
 
     this.handeLocale();
   }
@@ -177,6 +189,7 @@ export default class TKCampInfos extends Vue {
   flex-flow: row nowrap;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
 }
 
 .tk-camp-infos-field-key {
@@ -193,5 +206,17 @@ export default class TKCampInfos extends Vue {
   font-weight: bold;
   color: var(--v-accent-base);
   letter-spacing: 0.86px;
+}
+
+.tk-camp-infos-field-value-with-icon {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+  align-items: baseline;
+}
+
+.tk-camp-infos-field-icon {
+  height: 12px;
+  display: block;
 }
 </style>
