@@ -17,7 +17,8 @@ import {
   TKFDFIndicatorPeopleCount,
   TKFDFIndicatorSiteCount,
   TKFDFIndicatorStandard,
-  TKFDFIndicatorType
+  TKFDFIndicatorType,
+  TKFDFIndicatorValueCount
 } from "../fdf/TKFDFIndicators";
 import { TKSubmissionEntryType } from "./TKSubmissionEntry";
 
@@ -51,6 +52,7 @@ function computeSurveyIndicator(
   descr:
     | TKFDFIndicatorSiteCount
     | TKFDFIndicatorPeopleCount
+    | TKFDFIndicatorValueCount
     | TKFDFIndicatorStandard,
   camps: TKCamp[]
 ): TKIndicator {
@@ -64,12 +66,10 @@ function computeSurveyIndicator(
       iconOchaName: SITE_COUNT_ICON
     };
   }
-
   let foundAtLeastOnce = false;
   let thematicName = "";
   let itemIndex = -1;
-  let sum = 0;
-
+  const results = [];
   for (const camp of camps) {
     const submission = camp.submissions[0];
     if (submission) {
@@ -100,15 +100,33 @@ function computeSurveyIndicator(
         if (
           item &&
           item.type === TKSubmissionEntryType.TEXT &&
-          item.answerLabel &&
-          !isNaN(parseFloat(item.answerLabel.en))
+          item.answerLabel
         ) {
-          sum += Math.floor(parseFloat(item.answerLabel.en));
+          results.push(item.answerLabel.en);
         }
       }
     }
   }
-  const result = foundAtLeastOnce ? String(sum) : "-";
+
+  let result = "-";
+  if (foundAtLeastOnce) {
+    if (
+      descr.type === TKFDFIndicatorType.PEOPLE_COUNT ||
+      descr.type === TKFDFIndicatorType.STANDARD
+    ) {
+      // Do the sum of numeric value
+      result = String(
+        results.reduce(
+          (sum, current) =>
+            sum +
+            (!isNaN(parseFloat(current)) ? Math.floor(parseFloat(current)) : 0),
+          0
+        )
+      );
+    } else if (descr.type === TKFDFIndicatorType.VALUE_COUNT) {
+      result = String(results.filter(item => item === descr.refValue).length);
+    }
+  }
 
   if (descr.type === TKFDFIndicatorType.PEOPLE_COUNT) {
     return {
