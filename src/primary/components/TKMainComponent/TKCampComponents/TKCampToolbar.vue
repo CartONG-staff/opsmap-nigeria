@@ -38,8 +38,40 @@
     </transition>
 
     <TKCampToolbarExportButton class="tk-camp-toolbar-container" />
+    <v-tooltip top>
+      <template v-slot:activator="{ on: tooltip, attrs }">
+        <v-btn-toggle rounded class="tk-camp-toolbar-toggle">
+          <v-btn
+            icon
+            height="44"
+            width="44"
+            color="accent"
+            :disabled="!dataset.currentCamp"
+            v-bind="attrs"
+            v-on="tooltip"
+            v-model="showVisualizerOptions"
+            class="tk-camp-toolbar-toggle-button"
+          >
+            <v-icon dark>
+              mdi-tune-vertical-variant
+            </v-icon>
+          </v-btn>
+        </v-btn-toggle>
+      </template>
+      <span>Toggle toolbar </span>
+    </v-tooltip>
+    <!-- <v-btn-toggle class="tk-camp-toolbar-toggle">
+      <v-btn
+        class="toggle-button"
+        v-model="hideUnanswered"
+        color="#919191"
+        plain
+      >
+        <v-icon left></v-icon>
+      </v-btn>
+    </v-btn-toggle> -->
 
-    <v-menu
+    <!-- <v-menu
       :offset-y="true"
       :close-on-content-click="false"
       class="tk-camp-toolbar-kebab"
@@ -83,11 +115,12 @@
           ></v-switch>
         </v-list-item>
       </v-list>
-    </v-menu>
+    </v-menu> -->
   </div>
 </template>
 
 <script lang="ts">
+// TODO: remove commented lines
 import { Component, Vue } from "vue-property-decorator";
 import TKCampToolbarExportButton from "./TKCampToolbarExportButton.vue";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
@@ -113,6 +146,14 @@ export default class TKCampToolbar extends Vue {
 
   set sortByTrafficLight(value: boolean) {
     TKVisualizerOptionsModule.setSortByTrafficLight(value);
+  }
+
+  get showVisualizerOptions() {
+    return TKVisualizerOptionsModule.showVisualizerOptions;
+  }
+
+  set showVisualizerOptions(value: boolean) {
+    TKVisualizerOptionsModule.setShowVisualizerOptions(value);
   }
 
   get dataset() {
@@ -168,5 +209,29 @@ export default class TKCampToolbar extends Vue {
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
+}
+
+.tk-camp-toolbar-toggle {
+  height: 44px !important;
+  width: 44px !important;
+}
+
+.tk-camp-toolbar-toggle .v-btn--active:not(:hover) {
+  color: transparent !important;
+}
+
+.tk-camp-toolbar-toggle .v-btn > .v-btn__content > .v-icon {
+  color: #919191 !important;
+}
+.tk-camp-toolbar-toggle .v-btn--active > .v-btn__content > .v-icon {
+  color: var(--v-accent-base) !important;
+}
+
+.tk-camp-toolbar-toggle-button {
+  height: 44px !important;
+  width: 44px !important;
+  min-width: 44px !important;
+  border: none !important;
+  padding: 0 !important;
 }
 </style>

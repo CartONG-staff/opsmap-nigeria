@@ -1,11 +1,15 @@
 <template>
   <div>
-    <TKSubmissionVisualizerToolbar class="toolbar" />
+    <TKSubmissionVisualizerToolbar
+      v-show="showVisualizerOptions"
+      class="toolbar"
+    />
     <TKSubmissionVisualizer />
   </div>
 </template>
 
 <script lang="ts">
+import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 import { Component, Vue } from "vue-property-decorator";
 import {
   TKSubmissionVisualizer,
@@ -17,7 +21,11 @@ import {
     TKSubmissionVisualizerToolbar
   }
 })
-export default class TKMainComponentContentCamp extends Vue {}
+export default class TKMainComponentContentCamp extends Vue {
+  get showVisualizerOptions() {
+    return TKVisualizerOptionsModule.showVisualizerOptions;
+  }
+}
 </script>
 
 <style scoped>
