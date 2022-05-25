@@ -1,14 +1,34 @@
 import { TKLabel } from "@/domain/utils/TKLabel";
 
 export enum TKFDFIndicatorType {
+  SITE_COUNT = "site_count",
+  PEOPLE_COUNT = "people_count",
   STANDARD = "standard",
-  OCCUPATION = "site_occupation"
+  OCCUPATION = "site_occupation",
+  VALUE_COUNT = "value_count"
 }
 
 export interface TKFDFIndicatorStandard {
   readonly type: TKFDFIndicatorType.STANDARD;
   readonly name: TKLabel;
   readonly entryCode: string;
+  readonly iconOchaName: string;
+}
+
+export interface TKFDFIndicatorSiteCount {
+  readonly type: TKFDFIndicatorType.SITE_COUNT;
+}
+
+export interface TKFDFIndicatorPeopleCount {
+  readonly type: TKFDFIndicatorType.PEOPLE_COUNT;
+  readonly entryCode: string;
+}
+
+export interface TKFDFIndicatorValueCount {
+  readonly type: TKFDFIndicatorType.VALUE_COUNT;
+  readonly name: TKLabel;
+  readonly entryCode: string;
+  readonly refValue: string;
   readonly iconOchaName: string;
 }
 export interface TKFDFIndicatorSiteOccupation {
@@ -23,15 +43,21 @@ export interface TKFDFIndicatorSiteOccupation {
   readonly entryCodeMaxPeopleCount: string;
 }
 
-export type TKFDFIndicatorHome = TKFDFIndicatorStandard;
 export type TKFDFIndicatorCamp =
   | TKFDFIndicatorStandard
   | TKFDFIndicatorSiteOccupation;
 
 export type TKFDFIndicator =
+  | TKFDFIndicatorSiteCount
+  | TKFDFIndicatorPeopleCount
+  | TKFDFIndicatorValueCount
   | TKFDFIndicatorStandard
   | TKFDFIndicatorSiteOccupation;
 export interface TKFDFIndicators {
-  home: [TKFDFIndicatorHome, TKFDFIndicatorHome, TKFDFIndicatorHome];
+  home: [
+    TKFDFIndicatorSiteCount,
+    TKFDFIndicatorPeopleCount,
+    TKFDFIndicatorStandard | TKFDFIndicatorValueCount
+  ];
   site: [TKFDFIndicatorCamp, TKFDFIndicatorCamp, TKFDFIndicatorCamp];
 }

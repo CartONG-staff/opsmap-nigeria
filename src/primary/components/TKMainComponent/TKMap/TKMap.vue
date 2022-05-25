@@ -196,6 +196,10 @@ export default class TKMap extends Vue {
         bounds: this.bound
       });
 
+      this.map.addControl(
+        new mapboxgl.ScaleControl({ maxWidth: 100, unit: "metric" })
+      );
+
       this.map.on("load", () => {
         this.addImages();
 
@@ -450,5 +454,11 @@ export default class TKMap extends Vue {
 <style>
 #tk-map canvas {
   outline: 0 !important;
+}
+
+.mapboxgl-ctrl-scale {
+  text-align: center;
+  border: 1px solid var(--v-primary-base);
+  border-top: none;
 }
 </style>

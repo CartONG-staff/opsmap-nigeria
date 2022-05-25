@@ -1,4 +1,4 @@
-import { TKFDFIndicatorType } from "../fdf/TKFDFIndicators";
+import { TKIndicatorType } from "../survey/TKIndicator";
 import { TKSubmissionEntryType } from "../survey/TKSubmissionEntry";
 import { TKSurvey } from "../survey/TKSurvey";
 import { TKGetLocalValue } from "../utils/TKLabel";
@@ -46,7 +46,7 @@ function computeEsiteCSVContent(
         ];
 
         submission.indicators.map(indicator => {
-          if (indicator.type === TKFDFIndicatorType.OCCUPATION) {
+          if (indicator.type === TKIndicatorType.OCCUPATION) {
             campAsCSVLine.push(indicator.valueNumber.toString());
           } else {
             campAsCSVLine.push(TKGetLocalValue(indicator.valueLabel, locale));

@@ -12,20 +12,11 @@
     "indicators": {
         "home": [
             {
-                "type": "standard",
-                "name": {
-                    "en": "Site"
-                },
-                "entryCode": "mp_site_id",
-                "iconOchaName": "IDP-refugee-camp"
+                "type": "site_count"
             },
             {
-                "type": "standard",
-                "name": {
-                    "en": "People"
-                },
-                "entryCode": "group_pop_change/individualpopulation",
-                "iconOchaName": "People-in-need"
+                "type": "people_count",
+                "entryCode": "group_pop_change/individualpopulation"
             },
             {
                 "type": "standard",
