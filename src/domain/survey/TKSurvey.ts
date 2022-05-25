@@ -2,11 +2,24 @@
 
 import { TKBoundaries } from "./TKBoundaries";
 import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
-import { TKIndicator } from "./TKIndicator";
+import {
+  PEOPLE_COUNT_ICON,
+  PEOPLE_COUNT_LABEL,
+  SITE_COUNT_ICON,
+  SITE_COUNT_LABEL,
+  TKIndicator,
+  TKIndicatorType
+} from "./TKIndicator";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKCamp } from "@/domain/survey/TKCamp";
 import { TKDateCompare, TKDateFormat } from "@/domain/utils/TKDate";
-import { TKFDFIndicatorStandard } from "../fdf/TKFDFIndicators";
+import {
+  TKFDFIndicatorPeopleCount,
+  TKFDFIndicatorSiteCount,
+  TKFDFIndicatorStandard,
+  TKFDFIndicatorType,
+  TKFDFIndicatorValueCount
+} from "../fdf/TKFDFIndicators";
 import { TKSubmissionEntryType } from "./TKSubmissionEntry";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -36,25 +49,27 @@ export interface TKSurvey {
 // ////////////////////////////////////////////////////////////////////////////
 
 function computeSurveyIndicator(
-  descr: TKFDFIndicatorStandard,
+  descr:
+    | TKFDFIndicatorSiteCount
+    | TKFDFIndicatorPeopleCount
+    | TKFDFIndicatorValueCount
+    | TKFDFIndicatorStandard,
   camps: TKCamp[]
 ): TKIndicator {
-  if (descr.entryCode === "mp_site_id") {
+  if (descr.type === TKFDFIndicatorType.SITE_COUNT) {
     return {
-      type: descr.type,
-      iconOchaName: descr.iconOchaName,
-      nameLabel: descr.name,
+      type: TKIndicatorType.STANDARD,
+      nameLabel: SITE_COUNT_LABEL,
       valueLabel: {
         en: String(camps.length)
-      }
+      },
+      iconOchaName: SITE_COUNT_ICON
     };
   }
-
   let foundAtLeastOnce = false;
   let thematicName = "";
   let itemIndex = -1;
-  let sum = 0;
-
+  const results = [];
   for (const camp of camps) {
     const submission = camp.submissions[0];
     if (submission) {
@@ -85,28 +100,48 @@ function computeSurveyIndicator(
         if (
           item &&
           item.type === TKSubmissionEntryType.TEXT &&
-          item.answerLabel &&
-          !isNaN(parseFloat(item.answerLabel.en))
+          item.answerLabel
         ) {
-          sum += Math.floor(parseFloat(item.answerLabel.en));
+          results.push(item.answerLabel.en);
         }
       }
     }
   }
-  if (!foundAtLeastOnce) {
+
+  let result = "-";
+  if (foundAtLeastOnce) {
+    if (
+      descr.type === TKFDFIndicatorType.PEOPLE_COUNT ||
+      descr.type === TKFDFIndicatorType.STANDARD
+    ) {
+      // Do the sum of numeric value
+      result = String(
+        results.reduce(
+          (sum, current) =>
+            sum +
+            (!isNaN(parseFloat(current)) ? Math.floor(parseFloat(current)) : 0),
+          0
+        )
+      );
+    } else if (descr.type === TKFDFIndicatorType.VALUE_COUNT) {
+      result = String(results.filter(item => item === descr.refValue).length);
+    }
+  }
+
+  if (descr.type === TKFDFIndicatorType.PEOPLE_COUNT) {
     return {
-      type: descr.type,
-      iconOchaName: descr.iconOchaName,
-      nameLabel: descr.name,
-      valueLabel: { en: "-" }
+      type: TKIndicatorType.STANDARD,
+      nameLabel: PEOPLE_COUNT_LABEL,
+      valueLabel: { en: result },
+      iconOchaName: PEOPLE_COUNT_ICON
     };
   }
 
   return {
-    type: descr.type,
+    type: TKIndicatorType.STANDARD,
     iconOchaName: descr.iconOchaName,
     nameLabel: descr.name,
-    valueLabel: { en: String(sum) }
+    valueLabel: { en: result }
   };
 }
 

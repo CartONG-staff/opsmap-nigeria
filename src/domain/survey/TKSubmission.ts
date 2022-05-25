@@ -11,7 +11,7 @@ import {
   TKSubmissionThematic,
   TKCreateSubmissionThematic
 } from "./TKSubmissionThematic";
-import { TKIndicator } from "@/domain/survey/TKIndicator";
+import { TKIndicator, TKIndicatorType } from "@/domain/survey/TKIndicator";
 import { TKLabel } from "../utils/TKLabel";
 import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 import { TKCompare, TKCompute } from "../utils/TKOperator";
@@ -103,7 +103,7 @@ function computeSubmissionIndicator(
         valueLabel[k] = labelIsMaxCapacity[k] + " (" + percentText + "%)";
       }
       return {
-        type: descr.type,
+        type: TKIndicatorType.OCCUPATION,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
         valueNumber: percentValue,
@@ -112,7 +112,7 @@ function computeSubmissionIndicator(
       };
     } else {
       return {
-        type: descr.type,
+        type: TKIndicatorType.OCCUPATION,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
         valueLabel: { en: "-" },
@@ -123,7 +123,7 @@ function computeSubmissionIndicator(
   } else {
     const label = getLabelForIndicator(data, descr.entryCode);
     return {
-      type: descr.type,
+      type: TKIndicatorType.STANDARD,
       iconOchaName: descr.iconOchaName,
       nameLabel: descr.name,
       valueLabel: label
@@ -288,18 +288,22 @@ export function TKCreateSubmission(
             value = submissionItem[rule.fieldName];
           }
         } catch (error) {
-          value = "-";
+          value = "";
         }
-        if (value) {
-          // If exists chart
-          if (currentChart.id) {
-            createChartInSubmission(currentChart, submission, fdf);
+        if (!value) {
+          value = "";
+        }
 
-            // Clear current submission
-            currentChart.id = "";
-            currentChart.thematic = "";
-            currentChart.data = [];
-          }
+        // If exists chart
+        if (currentChart.id) {
+          createChartInSubmission(currentChart, submission, fdf);
+
+          // Clear current submission
+          currentChart.id = "";
+          currentChart.thematic = "";
+          currentChart.data = [];
+        }
+        if (submission[rule.thematicGroup]) {
           // push it before switching to text item
           submission[rule.thematicGroup].data.push(
             TKCreateSubmissionEntryText(value, rule.fieldName, fdf, languages)
