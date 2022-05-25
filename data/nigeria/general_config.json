@@ -1,138 +1,139 @@
 {
-    "languages":["en"],
-    "iso3":"NGA",
-    "name":{
-        "en":"Nigeria"
+    "languages": [
+        "en"
+    ],
+    "iso3": "NGA",
+    "name": {
+        "en": "Nigeria"
     },
-    "title":{
-        "en":"Site tracker"
-    },
-    "opsmapDescr":{
-        "en":  "<p>The site tracker tool aims to provide relevant and adequate current situation on the IDP settlements by assessing information and services at site level to improve humanitarian assistance in IDP sites.Site profiles and displayed data are collected by CCCM Partners in Nigeria through key informant interview for each IDP site with the camp managers/site facilitators. The data is collected and updated on a bi-weekly basis. The tool consists of both open and closed-ended questions that were provided by Sector leads.</p><p>For the full datasets or further questions please contact:<br><span class=\"font-weight-medium\">Robert Odhiambo: +234 903 428 3512 || Ibrahim Mahammat: +234 901 066 0575</span><br><span class=\"font-weight-medium\">Email: <a href=\"mailto:cccmshelternga@humanitarianresponse.info\">cccmshelternga@humanitarianresponse.info</a> | Website: <a href=\"https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi\" target=\"_blank\">https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi</a></span></p>"
+    "opsmapDescr": {
+        "en": "<p>The site tracker tool aims to provide relevant and adequate current situation on the IDP settlements by assessing information and services at site level to improve humanitarian assistance in IDP sites.Site profiles and displayed data are collected by CCCM Partners in Nigeria through key informant interview for each IDP site with the camp managers/site facilitators. The data is collected and updated on a bi-weekly basis. The tool consists of both open and closed-ended questions that were provided by Sector leads.</p><p>For the full datasets or further questions please contact:<br><span class=\"font-weight-medium\">Robert Odhiambo: +234 903 428 3512 || Ibrahim Mahammat: +234 901 066 0575</span><br><span class=\"font-weight-medium\">Email: <a href=\"mailto:cccmshelternga@humanitarianresponse.info\">cccmshelternga@humanitarianresponse.info</a> | Website: <a href=\"https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi\" target=\"_blank\">https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi</a></span></p>"
     },
     "indicators": {
-        "home": [{
-            "type": "standard",
-            "name": {
-                "en": "Site"
+        "home": [
+            {
+                "type": "site_count"
             },
-            "entryCode": "mp_site_id",
-            "iconOchaName": "IDP-refugee-camp"
-        },
-        {
-            "type": "standard",
-            "name": {
-                "en": "People"
+            {
+                "type": "people_count",
+                "entryCode": "group_pop_change/individualpopulation"
             },
-            "entryCode": "group_pop_change/individualpopulation",
-            "iconOchaName": "People-in-need"
-        },
-        {
-            "type": "standard",
-            "name": {
-                "en": "Families"
+            {
+                "type": "standard",
+                "name": {
+                    "en": "Families"
+                },
+                "entryCode": "group_pop_change/familiespopulation",
+                "iconOchaName": "Camp-Coordination-and-Camp-Management"
+            }
+        ],
+        "site": [
+            {
+                "type": "standard",
+                "name": {
+                    "en": "Site at Full Capacity"
+                },
+                "iconOchaName": "Camp-Coordination-and-Camp-Management",
+                "entryCode": "group_general_info/crowded"
             },
-            "entryCode": "group_pop_change/familiespopulation",
-            "iconOchaName": "Camp-Coordination-and-Camp-Management"
-        }],
-        "site": [{
-            "type": "standard",
-            "name": {
-                "en": "Site at Full Capacity"
+            {
+                "type": "standard",
+                "name": {
+                    "en": "Managed by a Government Agency"
+                },
+                "entryCode": "group_general_info/camp_management",
+                "iconOchaName": "Government-office"
             },
-            "iconOchaName": "Camp-Coordination-and-Camp-Management",
-            "entryCode": "group_general_info/crowded"
-        },
-        {
-            "type": "standard",
-            "name": {
-                "en": "Managed by a Government Agency"
-            },
-            "entryCode": "group_general_info/camp_management",
-            "iconOchaName": "Government-office"
-        },
-        {
-            "type": "standard",
-            "name": {
-                "en": "No. of Individuals"
-            },
-            "entryCode": "group_pop_change/individualpopulation",
-            "iconOchaName": "People-in-need"
-        }]
+            {
+                "type": "standard",
+                "name": {
+                    "en": "No. of Individuals"
+                },
+                "entryCode": "group_pop_change/individualpopulation",
+                "iconOchaName": "People-in-need"
+            }
+        ]
     },
-    "headerLogos":[],
-    "footerLogos":[
+    "headerLogos": [],
+    "footerLogos": [
         {
             "title": {
                 "en": "Cluster Lead"
             },
-            "logos": [{
-                "name": "sector_logo",
-                "urlLogo": "/data/nigeria/Logo/sector_logo.png",
-                "urlRedirection": "https://www.sheltercluster.org/response/nigeria"
-            }]
+            "logos": [
+                {
+                    "name": "sector_logo",
+                    "urlLogo": "/data/nigeria/Logo/sector_logo.png",
+                    "urlRedirection": "https://www.sheltercluster.org/response/nigeria"
+                }
+            ]
         },
         {
             "title": {
                 "en": "Partners"
             },
-            "logos": [{
-                "name": "Acted",
-                "urlLogo": "/data/nigeria/Logo/ACTED.jpg",
-                "urlRedirection": "https://www.acted.org/"
-            },
-            {
-                "name": "INTERSOS",
-                "urlLogo": "/data/nigeria/Logo/INTERSOS.png",
-                "urlRedirection": "https://www.intersos.org/"
-            },
-            {
-                "name": "IOM",
-                "urlLogo": "/data/nigeria/Logo/IOM.jpg",
-                "urlRedirection": "https://www.iom.int"
-            },{
-                "name": "LOCDIN",
-                "urlLogo": "/data/nigeria/Logo/LOC-DIN.jpg",
-                "urlRedirection": "https://loc-din.org.ng"
-            },
-            {
-                "name": "NRC",
-                "urlLogo": "/data/nigeria/Logo/NRC.png",
-                "urlRedirection": "https://www.nrc.no"
-            },
-            {
-                "name": "Salient",
-                "urlLogo": "/data/nigeria/Logo/SALINT_HUMANITARIANORGANIZATON.png",
-                "urlRedirection": "https://salientho.org"
-            },
-            {
-                "name": "SHI",
-                "urlLogo": "/data/nigeria/Logo/SMILING_HEARTS_INTERNATIONAL.jpg",
-                "urlRedirection": "https://www.smilingheartsinitiativeinternational.org"
-            },
-            {
-                "name": "Translators",
-                "urlLogo": "/data/nigeria/Logo/TRANSLATORS_WITHOUT_BOARDERS.png",
-                "urlRedirection": "https://translatorswithoutborders.org"
-            },
-            {
-                "name": "UNHCR",
-                "urlLogo": "/data/nigeria/Logo/UNHCR.jpg",
-                "urlRedirection": "https://www.unhcr.org"
-            }]
+            "logos": [
+                {
+                    "name": "Acted",
+                    "urlLogo": "/data/nigeria/Logo/ACTED.jpg",
+                    "urlRedirection": "https://www.acted.org/"
+                },
+                {
+                    "name": "INTERSOS",
+                    "urlLogo": "/data/nigeria/Logo/INTERSOS.png",
+                    "urlRedirection": "https://www.intersos.org/"
+                },
+                {
+                    "name": "IOM",
+                    "urlLogo": "/data/nigeria/Logo/IOM.jpg",
+                    "urlRedirection": "https://www.iom.int"
+                },
+                {
+                    "name": "LOCDIN",
+                    "urlLogo": "/data/nigeria/Logo/LOC-DIN.jpg",
+                    "urlRedirection": "https://loc-din.org.ng"
+                },
+                {
+                    "name": "NRC",
+                    "urlLogo": "/data/nigeria/Logo/NRC.png",
+                    "urlRedirection": "https://www.nrc.no"
+                },
+                {
+                    "name": "Salient",
+                    "urlLogo": "/data/nigeria/Logo/SALINT_HUMANITARIANORGANIZATON.png",
+                    "urlRedirection": "https://salientho.org"
+                },
+                {
+                    "name": "SHI",
+                    "urlLogo": "/data/nigeria/Logo/SMILING_HEARTS_INTERNATIONAL.jpg",
+                    "urlRedirection": "https://www.smilingheartsinitiativeinternational.org"
+                },
+                {
+                    "name": "Translators",
+                    "urlLogo": "/data/nigeria/Logo/TRANSLATORS_WITHOUT_BOARDERS.png",
+                    "urlRedirection": "https://translatorswithoutborders.org"
+                },
+                {
+                    "name": "UNHCR",
+                    "urlLogo": "/data/nigeria/Logo/UNHCR.jpg",
+                    "urlRedirection": "https://www.unhcr.org"
+                }
+            ]
         },
         {
             "title": {
                 "en": "Webdev"
             },
-            "logos": [{
-                "name": "CartONG",
-                "urlLogo": "/data/nigeria/Logo/CartONG_logo_long_0_0_0.png",
-                "urlRedirection": "https://www.cartong.org"
-            }]
+            "logos": [
+                {
+                    "name": "CartONG",
+                    "urlLogo": "/data/nigeria/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlRedirection": "https://www.cartong.org"
+                }
+            ]
         }
     ],
-    "spatial":{
+    "spatial": {
         "siteIDField": "group_general_info/site",
         "siteNameField": "group_general_info/site_name",
         "siteTypeField": "group_general_info/site_type",
@@ -151,23 +152,28 @@
         "admin0LocalURL": "/data/nigeria/map/admin0.geojson",
         "admin1LocalURL": "/data/nigeria/map/admin1.geojson"
     },
-    "surveys":[{
-        "type":"kobo",
-        "fdf": {
-            "folder": "/data/nigeria/FDF"
-        },
-        "name": "2020-2021",
-        "url": "https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json",
-        "token": "c6d24e0275d1ca5be2231496a3ceeddd5e78bdc4",
-        "options": {
-            "dateFormat": "YYYY-MM-DD",
-            "manageByField": "organisation",
-            "manageByAltValue": "cccm"
+    "surveys": [
+        {
+            "type": "kobo",
+            "fdf": {
+                "folder": "/data/nigeria/FDF"
+            },
+            "name": "2020-2021",
+            "url": "https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json",
+            "token": "c6d24e0275d1ca5be2231496a3ceeddd5e78bdc4",
+            "options": {
+                "dateFormat": "YYYY-MM-DD",
+                "manageByField": "organisation",
+                "manageByAltValue": "cccm"
+            }
         }
-    }],
+    ],
     "mapConfig": {
         "bounds": [
-            2.460938,3.995781,14.941406,14.221789
+            2.460938,
+            3.995781,
+            14.941406,
+            14.221789
         ]
     },
     "options": {
@@ -175,4 +181,3 @@
         "pdfColumnCount": 3
     }
 }
-

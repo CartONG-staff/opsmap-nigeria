@@ -22,22 +22,11 @@
     "indicators": {
         "home": [
             {
-                "type": "standard",
-                "name": {
-                    "en": "Site",
-                    "pt": "Abrigos"
-                },
-                "entryCode": "mp_site_id",
-                "iconOchaName": "IDP-refugee-camp"
+                "type": "site_count"
             },
             {
-                "type": "standard",
-                "name": {
-                    "en": "People",
-                    "pt": "Indivíduos"
-                },
-                "entryCode": "demo_num_indv",
-                "iconOchaName": "People-in-need"
+                "type": "people_count",
+                "entryCode": "demo_num_indv"
             },
             {
                 "type": "standard",
@@ -240,7 +229,6 @@
     "options": {
         "showCCCMLogo": false,
         "pdfColumnCount": 3,
-        "exportForEsite": false,
-        "showDemoBanner": true
+        "exportForEsite": false
     }
 }
