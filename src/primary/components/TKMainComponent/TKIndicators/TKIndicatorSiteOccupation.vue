@@ -18,13 +18,17 @@
               :key="$root.$i18n.locale"
               class="tk-indicator-value-decription"
             >
-              <span>{{ name }} : </span>
-              <span class="uppercase--text">{{ labelYesNo }}</span>
+              <span>{{ name }}</span>
+              <span class="uppercase--text" v-if="labelYesNo">
+                : {{ labelYesNo }}</span
+              >
             </div>
           </transition>
         </div>
       </template>
-      <span>{{ name }} : {{ labelValue }} </span>
+      <span
+        >{{ name }} <span v-if="labelYesNo">: {{ labelValue }} </span></span
+      >
     </v-tooltip>
   </div>
 </template>
@@ -62,22 +66,24 @@ export default class TKIndicatorSiteOccupation extends Vue {
         this.$root.$i18n.locale
       );
 
-      this.labelYesNo = TKGetLocalValue(
-        this.indicator.valueYesNoLabel,
-        this.$root.$i18n.locale
-      );
+      this.labelYesNo = this.indicator.valueYesNoLabel
+        ? TKGetLocalValue(
+            this.indicator.valueYesNoLabel,
+            this.$root.$i18n.locale
+          )
+        : "";
 
       this.value = this.indicator.valueNumber;
       if (this.value > -1) {
         this.labelCenterOfProgress = `${this.value}%`;
       } else {
         this.labelCenterOfProgress = "";
-        this.labelYesNo = "-";
+        this.labelYesNo = "";
       }
     } else {
       this.value = 0;
       this.name = "-";
-      this.labelYesNo = "-";
+      this.labelYesNo = "";
       this.labelCenterOfProgress = "-";
     }
   }

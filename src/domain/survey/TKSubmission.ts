@@ -79,11 +79,6 @@ function computeSubmissionIndicator(
   data: Record<string, TKSubmissionThematic>
 ): TKIndicator {
   if (descr.type === "site_occupation") {
-    const labelIsMaxCapacity = getLabelForIndicator(
-      data,
-      descr.entryCodeMaxCapacity
-    );
-
     // Should be two integers
     const peopleCount = getValueForIndicator(data, descr.entryCodePeopleCount);
     const maxPeopleCount = getValueForIndicator(
@@ -99,8 +94,18 @@ function computeSubmissionIndicator(
       const percentValue = Math.round((peopleCount / maxPeopleCount) * 100);
       const percentText = percentValue.toString();
       const valueLabel: TKLabel = {};
-      for (const k in labelIsMaxCapacity) {
-        valueLabel[k] = labelIsMaxCapacity[k] + " (" + percentText + "%)";
+      Object.keys(descr.name).map(key => {
+        valueLabel[key] = "";
+      });
+
+      const labelIsMaxCapacity = descr.entryCodeMaxCapacity
+        ? getLabelForIndicator(data, descr.entryCodeMaxCapacity)
+        : null;
+      console.log(valueLabel);
+      for (const k in valueLabel) {
+        valueLabel[k] = labelIsMaxCapacity
+          ? labelIsMaxCapacity[k] + " (" + percentText + "%)"
+          : percentText;
       }
       return {
         type: TKIndicatorType.OCCUPATION,
