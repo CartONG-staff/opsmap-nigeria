@@ -21,7 +21,10 @@ function computeCSVContent(submission: TKSubmission, locale: string): string {
         const item = submission.thematics[thematic].data[submissionItem];
         if (item.type === TKSubmissionEntryType.TEXT) {
           const itemName = TKGetLocalValue(item.fieldLabel, locale);
-          const answer = TKGetLocalValue(item.answerLabel, locale);
+          const answer = TKGetLocalValue(item.answerLabel, locale).replaceAll(
+            ";",
+            ","
+          );
           const trafficlight = item.trafficLight ? item.trafficLightColor : "";
 
           rows.push([thematicName, itemName, answer, trafficlight]);
