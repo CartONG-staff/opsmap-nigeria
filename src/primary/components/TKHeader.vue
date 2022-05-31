@@ -69,7 +69,7 @@ import TKConfigurationModule from "@/store/modules/configuration/TKConfiguration
 
 @Component
 export default class TKHeader extends Vue {
-  locales = this.$root.$i18n.availableLocales;
+  locales = TKConfigurationModule.configuration.languages;
 
   appName = TKConfigurationModule.configuration.name.en;
   @Watch("$root.$i18n.locale")
