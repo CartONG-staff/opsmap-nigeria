@@ -81,7 +81,7 @@ export default class TKSubmissionToPDF extends Vue {
           })
           .then(() => {
             const PAGE_WIDTH = 595;
-            const SPACING = 15;
+            const SPACING = 10;
             const TOTAL_SPACING_COUNT = 2 + TKPDFInfosModule.columnCount - 1;
             const TOTAL_SPACING = TOTAL_SPACING_COUNT * SPACING;
 
@@ -221,7 +221,7 @@ export default class TKSubmissionToPDF extends Vue {
             halign: "left",
             fontSize: 7,
             cellPadding: {
-              top: 3
+              top: 5
             }
           }
         };
@@ -233,7 +233,8 @@ export default class TKSubmissionToPDF extends Vue {
             fontSize: 8,
             fontStyle: "bold",
             cellPadding: {
-              left: 10
+              left: 0,
+              top: 2
             }
           }
         };
