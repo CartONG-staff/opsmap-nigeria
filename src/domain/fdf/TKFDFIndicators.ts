@@ -5,7 +5,8 @@ export enum TKFDFIndicatorType {
   PEOPLE_COUNT = "people_count",
   STANDARD = "standard",
   OCCUPATION = "site_occupation",
-  VALUE_COUNT = "value_count"
+  VALUE_COUNT = "value_count",
+  COMPUTATION = "computation"
 }
 
 export interface TKFDFIndicatorStandard {
@@ -43,15 +44,26 @@ export interface TKFDFIndicatorSiteOccupation {
   readonly entryCodeMaxPeopleCount: string;
 }
 
+export interface TKFDFIndicatorComputation {
+  readonly type: TKFDFIndicatorType.COMPUTATION;
+  readonly name: TKLabel;
+  readonly iconOchaName: string;
+  readonly entryCode1: string;
+  readonly operator: string;
+  readonly entryCode2: string;
+}
+
 export type TKFDFIndicatorCamp =
   | TKFDFIndicatorStandard
-  | TKFDFIndicatorSiteOccupation;
+  | TKFDFIndicatorSiteOccupation
+  | TKFDFIndicatorComputation;
 
 export type TKFDFIndicator =
   | TKFDFIndicatorSiteCount
   | TKFDFIndicatorPeopleCount
   | TKFDFIndicatorValueCount
   | TKFDFIndicatorStandard
+  | TKFDFIndicatorComputation
   | TKFDFIndicatorSiteOccupation;
 export interface TKFDFIndicators {
   home: [
