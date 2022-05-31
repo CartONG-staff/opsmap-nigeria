@@ -88,7 +88,7 @@ export default class TKSubmissionToPDF extends Vue {
             const COLUMN_WIDTH = Math.round(
               (PAGE_WIDTH - TOTAL_SPACING) / TKPDFInfosModule.columnCount
             );
-            const NONAUTOTABLECONTENTHEIGHT = 120;
+            const NONAUTOTABLECONTENTHEIGHT = 120 + SPACING;
 
             const margins = [];
             for (let i = 0; i < TKPDFInfosModule.columnCount; i++) {
