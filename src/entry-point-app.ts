@@ -116,21 +116,17 @@ TKReadGeneralConfiguration(
 ).then(config => {
   TKConfigurationModule.setConfiguration(config);
 
-  // Filter with config languages field.
-  const keys = Object.keys(messagesCandidates).filter(
-    lang =>
-      TKConfigurationModule.configuration.languages.includes(lang) ||
-      lang === "en"
-  );
-
+  // Handle locale definition + default
   const messages: LocaleMessages = {};
-  keys.forEach(key => {
+  TKConfigurationModule.configuration.languages.forEach(key => {
     messages[key] = messagesCandidates[key];
   });
 
+  const defaultLocale = TKConfigurationModule.configuration.languageDefault;
+
   const i18n = new VueI18n({
-    locale: process.env.VUE_APP_I18N_LOCALE || "en",
-    fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
+    locale: defaultLocale,
+    fallbackLocale: "en",
     messages: messages
   });
 

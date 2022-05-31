@@ -44,6 +44,7 @@ export interface TKOpsmapConfiguration {
   readonly name: TKLabel;
   title: TKLabel;
   readonly languages: string[];
+  languageDefault: string;
   readonly iso3: string;
   readonly opsmapDescr: TKLabel;
   readonly indicators: TKFDFIndicators;
@@ -74,6 +75,8 @@ export async function TKReadGeneralConfiguration(
   if (!json.languages.includes("en")) {
     json.languages.push("en");
   }
+
+  json.languageDefault = json.languageDefault ?? "en";
 
   // ////////////////////////////////////////////////////////////////////////////
   // Update urlLogo
