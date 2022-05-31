@@ -85,6 +85,7 @@ function computeCurrentSelectionCSVContent(
   camps: TKCamp[],
   locale: string
 ): string {
+  console.log(locale); // disable unused warning
   const rows = [["name", "admin1", "admin2", "admin3", "submissionDate"]];
   for (const camp of camps) {
     for (const submission of camp.submissions) {
