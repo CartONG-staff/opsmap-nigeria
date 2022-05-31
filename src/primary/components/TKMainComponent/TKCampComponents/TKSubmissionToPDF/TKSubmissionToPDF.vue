@@ -156,7 +156,11 @@ export default class TKSubmissionToPDF extends Vue {
               //   indexColumn = 0;
               // }
             }
-            pdf.save(documentTitle);
+
+            const pdfWindow = pdf.output("pdfobjectnewwindow");
+            if (pdfWindow) {
+              pdfWindow.document.title = documentTitle;
+            }
             this.$emit("close-dialog");
           });
       });
