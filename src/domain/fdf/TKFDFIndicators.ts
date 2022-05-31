@@ -37,7 +37,7 @@ export interface TKFDFIndicatorSiteOccupation {
   // - entryCodeSecond is supposed to be People
   readonly type: TKFDFIndicatorType.OCCUPATION;
   readonly name: TKLabel;
-  readonly entryCodeMaxCapacity: string;
+  readonly entryCodeMaxCapacity?: string;
   readonly iconOchaName: string;
   readonly entryCodePeopleCount: string;
   readonly entryCodeMaxPeopleCount: string;

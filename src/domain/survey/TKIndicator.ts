@@ -21,7 +21,7 @@ export interface TKIndicatorSiteOccupation {
   readonly nameLabel: TKLabel;
   readonly valueNumber: number; // percentage: 12
   readonly valueLabel: TKLabel; // like : Yes (12%)tooltip, displayable, etC.
-  readonly valueYesNoLabel: TKLabel; // Yes or No
+  readonly valueYesNoLabel: TKLabel | null; // Yes or No. nullable
   readonly iconOchaName: string;
 }
 
