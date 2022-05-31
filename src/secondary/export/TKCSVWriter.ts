@@ -1,3 +1,4 @@
+import { TKCamp } from "@/domain/survey/TKCamp";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionEntryType } from "../../domain/survey/TKSubmissionEntry";
@@ -7,7 +8,10 @@ import { TKGetLocalValue } from "../../domain/utils/TKLabel";
 // Helper methods
 // ////////////////////////////////////////////////////////////////////////////
 
-function computeCSVContent(submission: TKSubmission, locale: string): string {
+function computeCurrentCampCSVContent(
+  submission: TKSubmission,
+  locale: string
+): string {
   if (submission) {
     const rows = [["thematic", "label", "value", "trafficlight"]];
 
@@ -74,6 +78,30 @@ function computeCSVContent(submission: TKSubmission, locale: string): string {
 }
 
 // ////////////////////////////////////////////////////////////////////////////
+// Helper methods
+// ////////////////////////////////////////////////////////////////////////////
+
+function computeCurrentSelectionCSVContent(
+  camps: TKCamp[],
+  locale: string
+): string {
+  const rows = [["name", "admin1", "admin2", "admin3", "submissionDate"]];
+  for (const camp of camps) {
+    for (const submission of camp.submissions) {
+      rows.push([
+        camp.name,
+        camp.admin1.name,
+        camp.admin2.name,
+        camp.admin3.name,
+        submission.date.toString()
+      ]);
+    }
+  }
+
+  return "data:text/csv;charset=utf-8," + rows.map(e => e.join(";")).join("\n");
+}
+
+// ////////////////////////////////////////////////////////////////////////////
 // Temaplted Read method for csv inputs
 // ////////////////////////////////////////////////////////////////////////////
 
@@ -83,7 +111,10 @@ export function TKCSVWrite(
   locale: string
 ) {
   if (dataset.currentSubmission) {
-    const csvContent = computeCSVContent(dataset.currentSubmission, locale);
+    const csvContent = computeCurrentCampCSVContent(
+      dataset.currentSubmission,
+      locale
+    );
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -91,4 +122,25 @@ export function TKCSVWrite(
     document.body.appendChild(link); // Required for FF ?
     link.click();
   }
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Temaplted Read method for csv inputs
+// ////////////////////////////////////////////////////////////////////////////
+
+export function TKCSVWriteCurrentSelection(
+  dataset: TKDataset,
+  filename: string,
+  locale: string
+) {
+  const csvContent = computeCurrentSelectionCSVContent(
+    dataset.filteredTypedCampsList,
+    locale
+  );
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", filename); // filename
+  document.body.appendChild(link); // Required for FF ?
+  link.click();
 }

@@ -34,7 +34,8 @@
     "home": {
         "lastUpdate": "Dernière modification",
         "moreInfosTitle": "Plus d'information",
-        "combosTitle": "Zoom sur la carte"
+        "combosTitle": "Zoom sur la carte",
+        "exportToCSV": "Export de la sélection courante en CSV"
     },
     "site": {
         "exportPreffix": "Export en tant que",

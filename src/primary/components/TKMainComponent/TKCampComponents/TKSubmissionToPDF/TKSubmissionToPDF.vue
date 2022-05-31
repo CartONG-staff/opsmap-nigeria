@@ -32,7 +32,7 @@ import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
-import { TKComputeExportFilename } from "@/domain/export/TKDatasetExportToCSV";
+import { TKComputeCampExportFilename } from "@/domain/export/TKDatasetExportToCSV";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
 
@@ -59,7 +59,7 @@ export default class TKSubmissionToPDF extends Vue {
       TKDatasetModule.dataset.currentCamp &&
       TKDatasetModule.dataset.currentSubmission
     ) {
-      const documentTitle = TKComputeExportFilename(
+      const documentTitle = TKComputeCampExportFilename(
         TKDatasetModule.dataset,
         "pdf"
       );
