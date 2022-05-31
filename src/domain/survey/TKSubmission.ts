@@ -17,10 +17,8 @@ import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 import { TKCompare, TKCompute } from "../utils/TKOperator";
 import { TKOperatorComputation } from "../utils/TKOperator";
 import { TKOperatorComparison } from "../utils/TKOperator";
-import {
-  TKFDFIndicatorSiteOccupation,
-  TKFDFIndicatorStandard
-} from "../fdf/TKFDFIndicators";
+import { TKFDFIndicatorCamp, TKFDFIndicatorType } from "../fdf/TKFDFIndicators";
+import { evaluate } from "mathjs";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -75,10 +73,10 @@ function getLabelForIndicator(
   return { en: "-" };
 }
 function computeSubmissionIndicator(
-  descr: TKFDFIndicatorStandard | TKFDFIndicatorSiteOccupation,
+  descr: TKFDFIndicatorCamp,
   data: Record<string, TKSubmissionThematic>
 ): TKIndicator {
-  if (descr.type === "site_occupation") {
+  if (descr.type === TKFDFIndicatorType.OCCUPATION) {
     // Should be two integers
     const peopleCount = getValueForIndicator(data, descr.entryCodePeopleCount);
     const maxPeopleCount = getValueForIndicator(
@@ -101,7 +99,6 @@ function computeSubmissionIndicator(
       const labelIsMaxCapacity = descr.entryCodeMaxCapacity
         ? getLabelForIndicator(data, descr.entryCodeMaxCapacity)
         : null;
-      console.log(valueLabel);
       for (const k in valueLabel) {
         valueLabel[k] = labelIsMaxCapacity
           ? labelIsMaxCapacity[k] + " (" + percentText + "%)"
@@ -126,6 +123,19 @@ function computeSubmissionIndicator(
       };
     }
   } else {
+    if (descr.type === TKFDFIndicatorType.COMPUTATION) {
+      const entry1Value = getValueForIndicator(data, descr.entryCode1) ?? 0;
+      const entry2Value = getValueForIndicator(data, descr.entryCode2) ?? 0;
+      const operation = `${entry1Value} ${descr.operator} ${entry2Value}`;
+      const result = evaluate(operation);
+
+      return {
+        type: TKIndicatorType.STANDARD,
+        iconOchaName: descr.iconOchaName,
+        nameLabel: descr.name,
+        valueLabel: { en: result }
+      };
+    }
     const label = getLabelForIndicator(data, descr.entryCode);
     return {
       type: TKIndicatorType.STANDARD,

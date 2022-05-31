@@ -67,6 +67,8 @@ export function TKIndicatorDefault(ref: TKFDFIndicator): TKIndicator {
         iconOchaName: PEOPLE_COUNT_ICON
       };
     case TKFDFIndicatorType.STANDARD:
+    case TKFDFIndicatorType.VALUE_COUNT:
+    case TKFDFIndicatorType.COMPUTATION:
     default:
       return {
         type: TKIndicatorType.STANDARD,
