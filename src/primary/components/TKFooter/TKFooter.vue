@@ -92,6 +92,6 @@ export default class TKFooter extends Vue {
   flex-flow: row nowrap;
   padding-bottom: var(--padding-large);
   padding-top: var(--padding-large);
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 </style>
