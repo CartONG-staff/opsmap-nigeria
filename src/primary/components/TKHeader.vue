@@ -20,7 +20,7 @@
           <img
             :src="item.urlLogo"
             :alt="item.name"
-            class="tk-header-logo-cccm"
+            class="tk-header-logo-config"
           />
         </a>
       </div>
@@ -154,6 +154,10 @@ export default class TKHeader extends Vue {
 
 .tk-header-logo-cccm {
   height: 52px;
+}
+
+.tk-header-logo-config {
+  max-height: 45px;
 }
 
 .tk-header-right {
