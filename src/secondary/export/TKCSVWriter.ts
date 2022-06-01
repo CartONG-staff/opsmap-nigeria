@@ -85,17 +85,93 @@ function computeCurrentSelectionCSVContent(
   camps: TKCamp[],
   locale: string
 ): string {
-  console.log(locale); // disable unused warning
   const rows = [["name", "admin1", "admin2", "admin3", "submissionDate"]];
+
+  if (camps.length && camps[0].submissions.length) {
+    for (const indicator of camps[0].submissions[0].indicators) {
+      rows[0].push("Indicator/" + TKGetLocalValue(indicator.nameLabel, locale));
+    }
+
+    for (const key of Object.keys(camps[0].submissions[0].thematics)) {
+      const thematicEntries = camps[0].submissions[0].thematics[key].data;
+      for (const entry of thematicEntries) {
+        switch (entry.type) {
+          case TKSubmissionEntryType.TEXT:
+            rows[0].push(
+              TKGetLocalValue(
+                camps[0].submissions[0].thematics[key].nameLabel,
+                locale
+              ) +
+                "/" +
+                TKGetLocalValue(entry.fieldLabel, locale)
+            );
+            break;
+          case TKSubmissionEntryType.CHART_PYRAMID:
+          case TKSubmissionEntryType.CHART_DOUGHNUT:
+          case TKSubmissionEntryType.CHART_POLAR:
+            rows[0].push(
+              TKGetLocalValue(
+                camps[0].submissions[0].thematics[key].nameLabel,
+                locale
+              ) +
+                "/" +
+                TKGetLocalValue(entry.title, locale)
+            );
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }
+
   for (const camp of camps) {
     for (const submission of camp.submissions) {
-      rows.push([
+      const row = [
         camp.name,
         camp.admin1.name,
         camp.admin2.name,
         camp.admin3.name,
         submission.date.toString()
-      ]);
+      ];
+
+      for (const indicator of submission.indicators) {
+        row.push(TKGetLocalValue(indicator.valueLabel, locale));
+      }
+
+      for (const key of Object.keys(submission.thematics)) {
+        const thematicEntries = submission.thematics[key].data;
+        let val = "";
+        for (const entry of thematicEntries) {
+          switch (entry.type) {
+            case TKSubmissionEntryType.TEXT:
+              row.push(TKGetLocalValue(entry.answerLabel, locale));
+              break;
+            case TKSubmissionEntryType.CHART_PYRAMID:
+              val =
+                "females:" +
+                entry.femalesEntries.join(",") +
+                " males:" +
+                entry.malesEntries.join(",");
+              row.push(val);
+              break;
+            case TKSubmissionEntryType.CHART_DOUGHNUT:
+            case TKSubmissionEntryType.CHART_POLAR:
+              row.push(
+                entry.entries
+                  .map(
+                    item =>
+                      TKGetLocalValue(item.label, locale) + ":" + item.value
+                  )
+                  .join(",")
+              );
+              break;
+            default:
+              break;
+          }
+        }
+      }
+      rows.push(row);
     }
   }
 

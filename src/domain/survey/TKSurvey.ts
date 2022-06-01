@@ -155,7 +155,7 @@ export function TKCreateSurvey(
   languages: Array<string>,
   options: TKSurveyOptions
 ): TKSurvey {
-  const camps: TKCamp[] = [];
+  let camps: TKCamp[] = [];
 
   const boundariesList: {
     admin1: TKBoundaries[];
@@ -293,6 +293,40 @@ export function TKCreateSurvey(
       computeSurveyIndicator(fdf.indicators.home[2], campsFiltered)
     ];
   }
+
+  // //////////////////////////////////////////////////////////////////////////
+  // Sort by alphabetical order
+  // //////////////////////////////////////////////////////////////////////////
+
+  camps = camps.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+
+  boundariesList.admin1 = boundariesList.admin1.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+
+  boundariesList.admin2 = boundariesList.admin2.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
 
   return {
     name: fdf.name,
