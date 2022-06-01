@@ -33,14 +33,7 @@ export default class TKSubmissionItemPolarChart extends Vue {
   chart!: Chart;
   readonly ctx = v4();
   readonly height = 300;
-  readonly colors = [
-    "rgba(255, 51, 92, 0.5)",
-    "rgba(18, 191, 206, 0.5)",
-    "rgba(198, 236, 174, 0.5)",
-    "#642b50",
-    "#8b9376",
-    "#b2916c"
-  ];
+  readonly colors = ["#0d3b66", "#A63D40", "#DDDBF1", "#EDAE49", "#9FC490"];
 
   mounted() {
     if (this.entry) {
