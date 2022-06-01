@@ -18,7 +18,7 @@ import { TKCompare, TKCompute } from "../utils/TKOperator";
 import { TKOperatorComputation } from "../utils/TKOperator";
 import { TKOperatorComparison } from "../utils/TKOperator";
 import { TKFDFIndicatorCamp, TKFDFIndicatorType } from "../fdf/TKFDFIndicators";
-import { evaluate } from "mathjs";
+import { evaluate, round } from "mathjs";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -127,7 +127,11 @@ function computeSubmissionIndicator(
       const entry1Value = getValueForIndicator(data, descr.entryCode1) ?? 0;
       const entry2Value = getValueForIndicator(data, descr.entryCode2) ?? 0;
       const operation = `${entry1Value} ${descr.operator} ${entry2Value}`;
-      const result = evaluate(operation);
+      let result = evaluate(operation);
+
+      if (descr.numberStrategy && descr.numberStrategy === "round") {
+        result = round(result);
+      }
 
       return {
         type: TKIndicatorType.STANDARD,
