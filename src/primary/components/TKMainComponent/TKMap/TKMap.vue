@@ -457,8 +457,12 @@ export default class TKMap extends Vue {
 }
 
 .mapboxgl-ctrl-scale {
+  position: absolute;
+  bottom: 0px;
+  left: 90px;
   text-align: center;
   border: 1px solid var(--v-primary-base);
   border-top: none;
+  margin-right: 100px;
 }
 </style>
