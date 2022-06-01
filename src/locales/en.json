@@ -15,7 +15,7 @@
     },
     "footer": {
         "moreInfos": "About Opsmap",
-        "moreInfosText": "OPSMAP aims at providing humanitarian actors essential information on services at site level to improve humanitarian assistance in IDP sites.<br/>Information is collected through key informants at each IDP site using mobile data collection tool based or on using traditional format of survey.<br/>The dashboard permit to quickly gain insights into collected data, by providing a site profile. <br/>Users can get insights, and use them identify items that require urgent action, and properly purposing resources.",
+        "moreInfosText": "OPSMAP aims at providing to humanitarian actors a solution that allows them to summarized the state of services within the various sites hosting displaced persons. By automatically producing \"site profiles\", OPSMAPs allow humanitarian actors to quickly obtain an overview of the information essential for site management. Users can easily obtain information via the web interface (dashboard), and use it to identify points that require urgent action. <br /> Two versions of OPSMAP are available: a \"standard\" version and a \"custom\" version. The standard version is an open source solution, developed by CartONG in 2021, with the support of the UNHCR GDS section (MIT license, current version: {version}). Pictograms used come from the \"Humanitarian icons\" database (Credit OCHA, licensed under CC BY 3.0)",
         "partnerLed": "Cluster Lead",
         "partnerCoordination": "Coordination and IM support",
         "partnerFieldwork": "Fieldwork",

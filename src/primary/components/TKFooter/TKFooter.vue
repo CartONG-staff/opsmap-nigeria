@@ -7,12 +7,13 @@
         </div>
         <div class="tk-footer-disclaimer-text">
           <p>
-            <span v-html="$t('footer.moreInfosText')"></span>
+            <span
+              v-html="$t('footer.moreInfosText', { version: version })"
+            ></span>
           </p>
         </div>
       </div>
     </transition>
-    <TKCredits :key="$root.$i18n.locale" class="tk-footer-ocha-credits" />
     <div class="tk-footer-logos">
       <TKFooterLogoItem
         v-for="(item, key) in appConfig.footerLogos"
@@ -26,16 +27,16 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import TKFooterLogoItem from "./TKFooterLogoItem.vue";
-import TKCredits from "./TKCredits.vue";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 @Component({
   components: {
-    TKFooterLogoItem,
-    TKCredits
+    TKFooterLogoItem
   }
 })
 export default class TKFooter extends Vue {
+  version = process.env.VUE_APP_VERSION;
+
   get appConfig() {
     return TKConfigurationModule.configuration;
   }
