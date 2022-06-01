@@ -94,8 +94,4 @@ export default class TKFooter extends Vue {
   padding-top: var(--padding-large);
   justify-content: space-between;
 }
-
-.tk-footer-logos > div {
-  max-width: 40%;
-}
 </style>
