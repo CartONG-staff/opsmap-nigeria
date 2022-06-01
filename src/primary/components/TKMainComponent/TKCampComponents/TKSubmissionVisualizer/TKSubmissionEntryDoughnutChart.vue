@@ -31,14 +31,7 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
   chart!: Chart;
   readonly ctx = v4();
   readonly height = 300;
-  readonly colors = [
-    "#ff335c",
-    "#12bfce",
-    "#c6ecae",
-    "#642b50",
-    "#8b9376",
-    "#b2916c"
-  ];
+  readonly colors = ["#0d3b66", "#A63D40", "#DDDBF1", "#EDAE49", "#9FC490"];
 
   mounted() {
     if (this.entry) {
