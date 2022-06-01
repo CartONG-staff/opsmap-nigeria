@@ -20,7 +20,7 @@
               </v-icon>
             </v-btn>
           </template>
-          <span>{{ $t("home.exportToCSV") }} CSV</span>
+          <span>{{ $t("home.exportToCSV") }}</span>
         </v-tooltip>
       </div>
     </div>
