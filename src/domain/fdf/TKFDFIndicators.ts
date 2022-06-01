@@ -51,6 +51,7 @@ export interface TKFDFIndicatorComputation {
   readonly entryCode1: string;
   readonly operator: string;
   readonly entryCode2: string;
+  readonly numberStrategy?: "round";
 }
 
 export type TKFDFIndicatorCamp =
