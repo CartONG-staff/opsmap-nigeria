@@ -230,7 +230,7 @@ export default class TKSubmissionToPDF extends Vue {
           styles: {
             halign: "left",
             textColor: color,
-            fontSize: 8,
+            fontSize: 7,
             fontStyle: "bold",
             cellPadding: {
               left: 0,
