@@ -48,7 +48,7 @@
           </v-icon>
         </v-btn>
       </template>
-      <span>{{ $t("site.exportPreffix") }} CSV</span>
+      <span>{{ $t("site.exportPreffix") }} CSV (UTF-8)</span>
     </v-tooltip>
   </div>
 </template>
