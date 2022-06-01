@@ -33,22 +33,40 @@ export default class TKCampIndicators extends Vue {
     TKConfigurationModule.configuration.indicators.site[2]
   );
 
-  @Watch("dataset.currentSubmission", { immediate: true })
-  onSubmissionChanged() {
+  @Watch("dataset.lastModification", { immediate: true })
+  onLastModification() {
     if (this.dataset.currentSubmission) {
       this.indicator1 = this.dataset.currentSubmission.indicators[0];
       this.indicator2 = this.dataset.currentSubmission.indicators[1];
       this.indicator3 = this.dataset.currentSubmission.indicators[2];
     } else {
-      this.indicator1 = TKIndicatorDefault(
-        TKConfigurationModule.configuration.indicators.site[0]
-      );
-      this.indicator2 = TKIndicatorDefault(
-        TKConfigurationModule.configuration.indicators.site[1]
-      );
-      this.indicator3 = TKIndicatorDefault(
-        TKConfigurationModule.configuration.indicators.site[2]
-      );
+      if (this.dataset.currentAdmin2) {
+        this.indicator1 = this.dataset.currentSurvey.indicators[
+          this.dataset.currentAdmin2.pcode
+        ][0];
+        this.indicator2 = this.dataset.currentSurvey.indicators[
+          this.dataset.currentAdmin2.pcode
+        ][1];
+        this.indicator3 = this.dataset.currentSurvey.indicators[
+          this.dataset.currentAdmin2.pcode
+        ][2];
+      } else {
+        if (this.dataset.currentAdmin1) {
+          this.indicator1 = this.dataset.currentSurvey.indicators[
+            this.dataset.currentAdmin1.pcode
+          ][0];
+          this.indicator2 = this.dataset.currentSurvey.indicators[
+            this.dataset.currentAdmin1.pcode
+          ][1];
+          this.indicator3 = this.dataset.currentSurvey.indicators[
+            this.dataset.currentAdmin1.pcode
+          ][2];
+        } else {
+          this.indicator1 = this.dataset.currentSurvey.indicators[""][0];
+          this.indicator2 = this.dataset.currentSurvey.indicators[""][1];
+          this.indicator3 = this.dataset.currentSurvey.indicators[""][2];
+        }
+      }
     }
   }
 }

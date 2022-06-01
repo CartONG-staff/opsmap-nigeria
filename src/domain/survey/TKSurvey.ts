@@ -38,10 +38,10 @@ export interface TKSurvey {
     admin1: TKBoundaries[];
     admin2: TKBoundaries[];
   };
-  indicators: [TKIndicator, TKIndicator, TKIndicator];
   fdf: TKFDF;
   camps: TKCamp[];
   options: TKSurveyOptions;
+  indicators: Record<string, [TKIndicator, TKIndicator, TKIndicator]>; // pcode -> string
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -256,15 +256,49 @@ export function TKCreateSurvey(
     })
   );
 
+  // //////////////////////////////////////////////////////////////////////////
+  // Compute all indicators
+  // //////////////////////////////////////////////////////////////////////////
+
+  const indicators: Record<
+    string,
+    [TKIndicator, TKIndicator, TKIndicator]
+  > = {};
+
+  // Root.
+  indicators[""] = [
+    computeSurveyIndicator(fdf.indicators.home[0], camps),
+    computeSurveyIndicator(fdf.indicators.home[1], camps),
+    computeSurveyIndicator(fdf.indicators.home[2], camps)
+  ];
+
+  // All admin1.
+  for (const admin1 of boundariesList.admin1) {
+    const pcode = admin1.pcode;
+    const campsFiltered = camps.filter(camp => camp.admin1.pcode === pcode);
+    indicators[pcode] = [
+      computeSurveyIndicator(fdf.indicators.home[0], campsFiltered),
+      computeSurveyIndicator(fdf.indicators.home[1], campsFiltered),
+      computeSurveyIndicator(fdf.indicators.home[2], campsFiltered)
+    ];
+  }
+
+  // All admin2.
+  for (const admin2 of boundariesList.admin2) {
+    const pcode = admin2.pcode;
+    const campsFiltered = camps.filter(camp => camp.admin2.pcode === pcode);
+    indicators[pcode] = [
+      computeSurveyIndicator(fdf.indicators.home[0], campsFiltered),
+      computeSurveyIndicator(fdf.indicators.home[1], campsFiltered),
+      computeSurveyIndicator(fdf.indicators.home[2], campsFiltered)
+    ];
+  }
+
   return {
     name: fdf.name,
     camps: camps,
     boundaries: boundariesList,
-    indicators: [
-      computeSurveyIndicator(fdf.indicators.home[0], camps),
-      computeSurveyIndicator(fdf.indicators.home[1], camps),
-      computeSurveyIndicator(fdf.indicators.home[2], camps)
-    ],
+    indicators: indicators,
     fdf: fdf,
     options: options
   };

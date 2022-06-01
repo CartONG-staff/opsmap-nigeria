@@ -10,10 +10,7 @@
               </div>
             </transition>
             <transition mode="out-in" name="fade-in">
-              <div
-                :key="$root.$i18n.locale"
-                class="tk-indicator-value-decription"
-              >
+              <div :key="value" class="tk-indicator-value-decription">
                 {{ name }}
               </div>
             </transition>
