@@ -6,7 +6,6 @@ import {
 } from "../fdf/TKFDFTrafficLight";
 import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKLabel } from "../utils/TKLabel";
-import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Entry abstract concept definition
@@ -14,6 +13,7 @@ import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 
 export enum TKSubmissionEntryType {
   TEXT = "text",
+  BULLET = "bullet",
   CHART_PYRAMID = "age_pyramid",
   CHART_DOUGHNUT = "doughnut",
   CHART_POLAR = "polar"
@@ -23,6 +23,16 @@ export interface TKSubmissionEntryText {
   field: string;
   fieldLabel: TKLabel;
   answerLabel: TKLabel;
+  trafficLight: boolean;
+  trafficLightColor: TKTrafficLightValues;
+  isAnswered: boolean;
+}
+
+export interface TKSubmissionEntryBullet {
+  type: TKSubmissionEntryType.BULLET;
+  field: string;
+  fieldLabel: TKLabel;
+  answersLabels: TKLabel[];
   trafficLight: boolean;
   trafficLightColor: TKTrafficLightValues;
   isAnswered: boolean;
@@ -59,6 +69,7 @@ export interface TKSubmissionEntryPolar {
 
 export type TKSubmissionEntry =
   | TKSubmissionEntryText
+  | TKSubmissionEntryBullet
   | TKSubmissionEntryAgePyramid
   | TKSubmissionEntryDoughnut
   | TKSubmissionEntryPolar;
@@ -110,6 +121,43 @@ function getTrafficLightColor(
 // ////////////////////////////////////////////////////////////////////////////
 // EntryText creation method
 // ////////////////////////////////////////////////////////////////////////////
+
+export function TKCreateSubmissionEntryBullet(
+  value: string,
+  field: string,
+  listSeparator: string,
+  surveyConfiguration: TKFDF
+): TKSubmissionEntryBullet {
+  const isAnswered = value !== "";
+  let correctedValue: Array<TKLabel> = [];
+  if (isAnswered) {
+    correctedValue = value.split(listSeparator).map(x => {
+      x = x.trim();
+      return surveyConfiguration.answersLabels[x]
+        ? surveyConfiguration.answersLabels[x]
+        : { en: x };
+    });
+  }
+
+  return {
+    type: TKSubmissionEntryType.BULLET,
+    field: field,
+    fieldLabel: surveyConfiguration.fieldsLabels[field],
+    answersLabels: correctedValue,
+    isAnswered: isAnswered,
+    trafficLight:
+      surveyConfiguration.submissionsRules[field].trafficLightName.length > 0,
+    trafficLightColor:
+      surveyConfiguration.submissionsRules[field].trafficLightName.length > 0
+        ? getTrafficLightColor(
+            value,
+            surveyConfiguration.trafficLights[
+              surveyConfiguration.submissionsRules[field].trafficLightName
+            ]
+          )
+        : TKTrafficLightValues.UNDEFINED
+  };
+}
 
 export function TKCreateSubmissionEntryList(
   value: string,
@@ -182,9 +230,6 @@ export function TKCreateSubmissionEntryText(
     isAnswered && surveyConfiguration.answersLabels[value]
       ? surveyConfiguration.answersLabels[value]
       : { en: value };
-
-  console.log(field);
-  console.log(value);
 
   return {
     type: TKSubmissionEntryType.TEXT,

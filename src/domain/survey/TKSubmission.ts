@@ -6,7 +6,8 @@ import {
   TKSubmissionEntryDoughnut,
   TKSubmissionEntryAgePyramid,
   TKSubmissionEntryType,
-  TKCreateSubmissionEntryList
+  TKCreateSubmissionEntryList,
+  TKCreateSubmissionEntryBullet
 } from "./TKSubmissionEntry";
 import {
   TKSubmissionThematic,
@@ -329,6 +330,17 @@ export function TKCreateSubmission(
                   options.listSeparator,
                   fdf,
                   languages
+                )
+              );
+              break;
+            case TKFDFSubmissionItemType.BULLET:
+              value = submissionItem[rule.fieldName];
+              submission[rule.thematicGroup].data.push(
+                TKCreateSubmissionEntryBullet(
+                  value,
+                  rule.fieldName,
+                  options.listSeparator,
+                  fdf
                 )
               );
               break;
