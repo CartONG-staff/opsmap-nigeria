@@ -32,6 +32,13 @@ function computeCurrentCampCSVContent(
           const trafficlight = item.trafficLight ? item.trafficLightColor : "";
 
           rows.push([thematicName, itemName, answer, trafficlight]);
+        } else if (item.type === TKSubmissionEntryType.BULLET) {
+          const itemName = TKGetLocalValue(item.fieldLabel, locale);
+          const answer = item.answersLabels
+            .map(label => TKGetLocalValue(label, locale).replaceAll(";", ","))
+            .join(", ");
+          const trafficlight = item.trafficLight ? item.trafficLightColor : "";
+          rows.push([thematicName, itemName, answer, trafficlight]);
         } else if (item.type === TKSubmissionEntryType.CHART_PYRAMID) {
           const itemName = "age_pyramid";
           for (const [index, value] of item.malesEntries.entries()) {
@@ -97,6 +104,7 @@ function computeCurrentSelectionCSVContent(
       for (const entry of thematicEntries) {
         switch (entry.type) {
           case TKSubmissionEntryType.TEXT:
+          case TKSubmissionEntryType.BULLET:
             rows[0].push(
               TKGetLocalValue(
                 camps[0].submissions[0].thematics[key].nameLabel,
@@ -145,7 +153,18 @@ function computeCurrentSelectionCSVContent(
         for (const entry of thematicEntries) {
           switch (entry.type) {
             case TKSubmissionEntryType.TEXT:
-              row.push(TKGetLocalValue(entry.answerLabel, locale));
+              row.push(
+                TKGetLocalValue(entry.answerLabel, locale).replaceAll(";", ",")
+              );
+              break;
+            case TKSubmissionEntryType.BULLET:
+              row.push(
+                entry.answersLabels
+                  .map(label =>
+                    TKGetLocalValue(label, locale).replaceAll(";", ",")
+                  )
+                  .join(", ")
+              );
               break;
             case TKSubmissionEntryType.CHART_PYRAMID:
               val =
