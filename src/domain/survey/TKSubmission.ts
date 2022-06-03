@@ -323,35 +323,41 @@ export function TKCreateSubmission(
               break;
             case TKFDFSubmissionItemType.LIST:
               value = submissionItem[rule.fieldName];
-              submission[rule.thematicGroup].data.push(
-                TKCreateSubmissionEntryList(
-                  value,
-                  rule.fieldName,
-                  options.listSeparator,
-                  fdf,
-                  languages
-                )
-              );
+              if (value !== undefined) {
+                submission[rule.thematicGroup].data.push(
+                  TKCreateSubmissionEntryList(
+                    value,
+                    rule.fieldName,
+                    options.listSeparator,
+                    fdf,
+                    languages
+                  )
+                );
+              }
               break;
             case TKFDFSubmissionItemType.BULLET:
               value = submissionItem[rule.fieldName];
-              submission[rule.thematicGroup].data.push(
-                TKCreateSubmissionEntryBullet(
-                  value,
-                  rule.fieldName,
-                  options.listSeparator,
-                  fdf
-                )
-              );
+              if (value !== undefined) {
+                submission[rule.thematicGroup].data.push(
+                  TKCreateSubmissionEntryBullet(
+                    value,
+                    rule.fieldName,
+                    options.listSeparator,
+                    fdf
+                  )
+                );
+              }
               break;
 
             case TKFDFSubmissionItemType.DATE:
             case TKFDFSubmissionItemType.INTEGER:
             case TKFDFSubmissionItemType.STRING:
               value = submissionItem[rule.fieldName];
-              submission[rule.thematicGroup].data.push(
-                TKCreateSubmissionEntryText(value, rule.fieldName, fdf)
-              );
+              if (value !== undefined) {
+                submission[rule.thematicGroup].data.push(
+                  TKCreateSubmissionEntryText(value, rule.fieldName, fdf)
+                );
+              }
               break;
           }
 
