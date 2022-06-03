@@ -157,10 +157,8 @@ export default class TKSubmissionToPDF extends Vue {
               // }
             }
 
-            const pdfWindow = pdf.output("pdfobjectnewwindow");
-            if (pdfWindow) {
-              pdfWindow.document.title = documentTitle;
-            }
+            const pdfDocument = pdf.output("bloburi");
+            window.open(pdfDocument, "_blank");
             this.$emit("close-dialog");
           });
       });
