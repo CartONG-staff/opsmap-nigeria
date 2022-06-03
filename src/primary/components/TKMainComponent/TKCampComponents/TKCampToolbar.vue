@@ -60,62 +60,6 @@
       </template>
       <span>Toggle toolbar </span>
     </v-tooltip>
-    <!-- <v-btn-toggle class="tk-camp-toolbar-toggle">
-      <v-btn
-        class="toggle-button"
-        v-model="hideUnanswered"
-        color="#919191"
-        plain
-      >
-        <v-icon left></v-icon>
-      </v-btn>
-    </v-btn-toggle> -->
-
-    <!-- <v-menu
-      :offset-y="true"
-      :close-on-content-click="false"
-      class="tk-camp-toolbar-kebab"
-    >
-      <template v-slot:activator="{ on: menu, attrs }">
-        <v-tooltip top>
-          <template v-slot:activator="{ on: tooltip }">
-            <v-btn
-              icon
-              small
-              color="accent"
-              height="44"
-              width="44"
-              :disabled="!dataset.currentCamp"
-              v-bind="attrs"
-              v-on="{ ...tooltip, ...menu }"
-            >
-              <v-icon dark>
-                mdi-dots-vertical
-              </v-icon>
-            </v-btn>
-          </template>
-          <span>{{ $t("site.extraTools") }}</span>
-        </v-tooltip>
-      </template>
-      <v-list>
-        <v-list-item>
-          <v-switch
-            :label="$t('site.hideUnanswered')"
-            color="accent"
-            hide-details
-            v-model="hideUnanswered"
-          ></v-switch>
-        </v-list-item>
-        <v-list-item>
-          <v-switch
-            :label="$t('site.sortByTrafficLight')"
-            color="accent"
-            hide-details
-            v-model="sortByTrafficLight"
-          ></v-switch>
-        </v-list-item>
-      </v-list>
-    </v-menu> -->
   </div>
 </template>
 
@@ -132,22 +76,6 @@ import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisua
   }
 })
 export default class TKCampToolbar extends Vue {
-  get hideUnanswered() {
-    return TKVisualizerOptionsModule.hideUnanswered;
-  }
-
-  set hideUnanswered(value: boolean) {
-    TKVisualizerOptionsModule.setHideUnanswered(value);
-  }
-
-  get sortByTrafficLight() {
-    return TKVisualizerOptionsModule.sortByTrafficLigh;
-  }
-
-  set sortByTrafficLight(value: boolean) {
-    TKVisualizerOptionsModule.setSortByTrafficLight(value);
-  }
-
   get showVisualizerOptions() {
     return TKVisualizerOptionsModule.showVisualizerOptions;
   }
