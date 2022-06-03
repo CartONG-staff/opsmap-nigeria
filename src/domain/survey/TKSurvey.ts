@@ -30,6 +30,7 @@ export interface TKSurveyOptions {
   dateFormat: string;
   manageByField: string;
   manageByAltValue?: string;
+  listSeparator: string;
 }
 
 export interface TKSurvey {
@@ -173,7 +174,12 @@ export function TKCreateSurvey(
   });
 
   for (const submission of submissions) {
-    const computedSubmission = TKCreateSubmission(submission, fdf, languages);
+    const computedSubmission = TKCreateSubmission(
+      submission,
+      fdf,
+      options,
+      languages
+    );
 
     // Check if new camp
     let camp = camps.find(

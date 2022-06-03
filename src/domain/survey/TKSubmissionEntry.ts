@@ -71,6 +71,9 @@ function getTrafficLightColor(
   value: string,
   trafficLight: TKFDFTrafficLightGrouped
 ): TKTrafficLightValues {
+  if (!value) {
+    return TKTrafficLightValues.UNDEFINED;
+  }
   if (trafficLight.type === TKFDFTrafficLightTypes.STRING) {
     const match = trafficLight.values
       .filter(x => x.value.toLowerCase() === value.toLowerCase())
@@ -108,24 +111,22 @@ function getTrafficLightColor(
 // EntryText creation method
 // ////////////////////////////////////////////////////////////////////////////
 
-export function TKCreateSubmissionEntryText(
+export function TKCreateSubmissionEntryList(
   value: string,
   field: string,
+  listSeparator: string,
   surveyConfiguration: TKFDF,
   languages: string[]
 ): TKSubmissionEntryText {
   const isAnswered = value !== "";
   let correctedValue: Record<string, string> = {};
-  if (
-    isAnswered &&
-    surveyConfiguration.submissionsRules[field].type ===
-      TKFDFSubmissionItemType.LIST
-  ) {
+  if (isAnswered) {
     languages.map(
       lang =>
         (correctedValue[lang] = value
-          .split(" ")
+          .split(listSeparator)
           .map(x => {
+            x = x.trim();
             if (
               surveyConfiguration.answersLabels[x] &&
               surveyConfiguration.answersLabels[x][lang]
@@ -149,6 +150,42 @@ export function TKCreateSubmissionEntryText(
         ? surveyConfiguration.answersLabels[value]
         : { en: value };
   }
+
+  return {
+    type: TKSubmissionEntryType.TEXT,
+    field: field,
+    fieldLabel: surveyConfiguration.fieldsLabels[field],
+    answerLabel: correctedValue,
+    isAnswered: isAnswered,
+    trafficLight:
+      surveyConfiguration.submissionsRules[field].trafficLightName.length > 0,
+    trafficLightColor:
+      surveyConfiguration.submissionsRules[field].trafficLightName.length > 0
+        ? getTrafficLightColor(
+            value,
+            surveyConfiguration.trafficLights[
+              surveyConfiguration.submissionsRules[field].trafficLightName
+            ]
+          )
+        : TKTrafficLightValues.UNDEFINED
+  };
+}
+
+export function TKCreateSubmissionEntryText(
+  value: string,
+  field: string,
+  surveyConfiguration: TKFDF
+): TKSubmissionEntryText {
+  const isAnswered = value !== "";
+
+  const correctedValue =
+    isAnswered && surveyConfiguration.answersLabels[value]
+      ? surveyConfiguration.answersLabels[value]
+      : { en: value };
+
+  console.log(field);
+  console.log(value);
+
   return {
     type: TKSubmissionEntryType.TEXT,
     field: field,

@@ -5,7 +5,8 @@ import {
   TKSubmissionEntryPolar,
   TKSubmissionEntryDoughnut,
   TKSubmissionEntryAgePyramid,
-  TKSubmissionEntryType
+  TKSubmissionEntryType,
+  TKCreateSubmissionEntryList
 } from "./TKSubmissionEntry";
 import {
   TKSubmissionThematic,
@@ -19,6 +20,7 @@ import { TKOperatorComputation } from "../utils/TKOperator";
 import { TKOperatorComparison } from "../utils/TKOperator";
 import { TKFDFIndicatorCamp, TKFDFIndicatorType } from "../fdf/TKFDFIndicators";
 import { evaluate, round } from "mathjs";
+import { TKSurveyOptions } from "./TKSurvey";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -230,6 +232,7 @@ function createChartInSubmission(
 export function TKCreateSubmission(
   submissionItem: Record<string, string>,
   fdf: TKFDF,
+  options: TKSurveyOptions,
   languages: string[]
 ): TKSubmission {
   // Init all the thematics
@@ -248,85 +251,107 @@ export function TKCreateSubmission(
   for (const key in fdf.submissionsRules) {
     const rule = fdf.submissionsRules[key];
 
-    // Handle display status
-    let display = true;
-    if (rule.displayCondition) {
-      try {
-        display = TKCompare(
-          submissionItem[rule.displayCondition.field],
-          rule.displayCondition.operator as TKOperatorComparison,
-          rule.displayCondition.value
-        );
-      } catch (error) {
-        display = false;
-      }
-    }
-    if (display) {
-      // If charts
-      if (rule.chartId) {
-        const value = submissionItem[rule.fieldName];
-
-        // If exists chart
-        if (currentChart.id && rule.chartId !== currentChart.id) {
-          createChartInSubmission(currentChart, submission, fdf);
-
-          // Clear current submission
-          currentChart.id = "";
-          currentChart.thematic = "";
-          currentChart.data = [];
-        }
-
-        // Init currentChart
-        if (!currentChart.id) {
-          currentChart.id = rule.chartId;
-          currentChart.thematic = rule.thematicGroup;
-          currentChart.data = [];
-        }
-
-        // Accumulate Chart data
-        currentChart.data.push({
-          field: rule.fieldName,
-          value: value,
-          type: rule.chartData
-        });
-      }
-
-      // If text item
-      else {
-        let value = undefined;
+    if (submission[rule.thematicGroup]) {
+      // Handle display status
+      let display = true;
+      if (rule.displayCondition) {
         try {
-          if (rule.type === TKFDFSubmissionItemType.COMPUTED && rule.computed) {
-            value = Math.round(
-              TKCompute(
-                Number(submissionItem[rule.computed.field1]),
-                rule.computed.operator as TKOperatorComputation,
-                Number(submissionItem[rule.computed.field2])
-              )
-            ).toString();
-          } else {
-            value = submissionItem[rule.fieldName];
-          }
-        } catch (error) {
-          value = "";
-        }
-        if (!value) {
-          value = "";
-        }
-
-        // If exists chart
-        if (currentChart.id) {
-          createChartInSubmission(currentChart, submission, fdf);
-
-          // Clear current submission
-          currentChart.id = "";
-          currentChart.thematic = "";
-          currentChart.data = [];
-        }
-        if (submission[rule.thematicGroup]) {
-          // push it before switching to text item
-          submission[rule.thematicGroup].data.push(
-            TKCreateSubmissionEntryText(value, rule.fieldName, fdf, languages)
+          display = TKCompare(
+            submissionItem[rule.displayCondition.field],
+            rule.displayCondition.operator as TKOperatorComparison,
+            rule.displayCondition.value
           );
+        } catch (error) {
+          display = false;
+        }
+      }
+      if (display) {
+        // If charts
+        if (rule.chartId) {
+          const value = submissionItem[rule.fieldName];
+
+          // If exists chart
+          if (currentChart.id && rule.chartId !== currentChart.id) {
+            createChartInSubmission(currentChart, submission, fdf);
+
+            // Clear current submission
+            currentChart.id = "";
+            currentChart.thematic = "";
+            currentChart.data = [];
+          }
+
+          // Init currentChart
+          if (!currentChart.id) {
+            currentChart.id = rule.chartId;
+            currentChart.thematic = rule.thematicGroup;
+            currentChart.data = [];
+          }
+
+          // Accumulate Chart data
+          currentChart.data.push({
+            field: rule.fieldName,
+            value: value,
+            type: rule.chartData
+          });
+        }
+
+        // If text item
+        else {
+          let value = "";
+          switch (rule.type) {
+            case TKFDFSubmissionItemType.COMPUTED:
+              try {
+                if (rule.computed) {
+                  value = Math.round(
+                    TKCompute(
+                      Number(submissionItem[rule.computed.field1]),
+                      rule.computed.operator as TKOperatorComputation,
+                      Number(submissionItem[rule.computed.field2])
+                    )
+                  ).toString();
+                } else {
+                  value = submissionItem[rule.fieldName];
+                }
+              } catch (error) {
+                value = "";
+              }
+
+              submission[rule.thematicGroup].data.push(
+                TKCreateSubmissionEntryText(value, rule.fieldName, fdf)
+              );
+              break;
+            case TKFDFSubmissionItemType.LIST:
+              value = submissionItem[rule.fieldName];
+              submission[rule.thematicGroup].data.push(
+                TKCreateSubmissionEntryList(
+                  value,
+                  rule.fieldName,
+                  options.listSeparator,
+                  fdf,
+                  languages
+                )
+              );
+              break;
+
+            case TKFDFSubmissionItemType.DATE:
+            case TKFDFSubmissionItemType.INTEGER:
+            case TKFDFSubmissionItemType.STRING:
+              value = submissionItem[rule.fieldName];
+              submission[rule.thematicGroup].data.push(
+                TKCreateSubmissionEntryText(value, rule.fieldName, fdf)
+              );
+              break;
+          }
+
+          // If exists chart
+          if (currentChart.id) {
+            createChartInSubmission(currentChart, submission, fdf);
+
+            // Clear current submission
+            currentChart.id = "";
+            currentChart.thematic = "";
+            currentChart.data = [];
+          }
         }
       }
     }
