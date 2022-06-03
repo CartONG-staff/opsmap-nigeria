@@ -15,7 +15,7 @@
     },
     "footer": {
         "moreInfos": "Sobre Opsmap",
-        "moreInfosText": "O OPSMAP visa fornecer aos agentes humanitários informações essenciais sobre serviços em nível de local para melhorar a assistência humanitária em locais de deslocados internos.<br/>As informações são coletadas através de informantes-chave em cada site de PDI, utilizando ferramentas móveis de coleta de dados baseadas ou utilizando o formato tradicional de pesquisa.<br/>O painel de controle permite obter rapidamente informações sobre os dados coletados, fornecendo um perfil do site.<br/>Os usuários podem obter insights e usá-los para identificar itens que requerem ação urgente, e recursos devidamente direcionados.",
+        "moreInfosText": "O objectivo do OPSMAP é fornecer aos actores humanitários uma solução que lhes permita resumir o estado dos serviços nos vários locais que acolhem as pessoas deslocadas. Ao produzir automaticamente \"perfis de sítios\", os OPSMAPs fornecem uma visão geral rápida de informações essenciais para a gestão de sítios. Os utilizadores podem facilmente obter informações através da interface web (painel de instrumentos), e utilizá-las para identificar questões que exijam uma acção urgente. Estão disponíveis duas versões de OPSMAP: uma versão \"standard\" e uma versão \"personalizada\". <br /> A versão standard é uma solução de código aberto, desenvolvida pela CartONG em 2021, com o apoio da secção SWM do ACNUR (licença MIT, versão actual: {version}). Os pictogramas utilizados provêm da base de dados \"Ícones humanitários\" (Credit OCHA, licenciado sob CC BY 3.0)",
         "partnerLed": "Líder do grupo",
         "partnerCoordination": "Coordenação e IM apoio ",
         "partnerFieldwork": "Trabalho de campo",

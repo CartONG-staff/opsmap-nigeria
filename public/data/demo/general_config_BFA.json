@@ -190,7 +190,8 @@
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQqHYWvLt3uEfNwicLy4ySHA_DBUOA8XFdinalMD2yVqKyd0qAXT61jZ-6DHZTdTAN7nSyT7NOhF3D0/pub?gid=2018622187&single=true&output=csv",
             "options": {
                 "dateFormat": "DD/MM/YYYY",
-                "manageByField": "GestionnaireSiteNom"
+                "manageByField": "GestionnaireSiteNom",
+                "listSeparator": ";"
             }
         }
     ],

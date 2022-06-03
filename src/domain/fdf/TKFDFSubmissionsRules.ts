@@ -6,6 +6,7 @@ export enum TKFDFSubmissionItemType {
   STRING = "string",
   INTEGER = "integer",
   LIST = "list",
+  BULLET = "bullet",
   DATE = "date",
   COMPUTED = "computed"
 }

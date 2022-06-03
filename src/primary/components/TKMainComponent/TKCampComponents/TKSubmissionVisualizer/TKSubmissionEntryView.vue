@@ -1,6 +1,10 @@
 <template lang="html">
   <div class="tk-submission-entry-container">
     <TKSubmissionEntryTextView v-if="entry.type === 'text'" :entry="entry" />
+    <TKSubmissionEntryBulletView
+      v-else-if="entry.type === 'bullet'"
+      :entry="entry"
+    />
     <div class="tk-chart-container" v-else>
       <TKSubmissionEntryAgePyramidChart
         class="tk-chart"
@@ -18,7 +22,10 @@
         :entry="entry"
       />
     </div>
-    <div v-if="entry.type === 'text'" class="tk-hseparator" />
+    <div
+      v-if="entry.type === 'text' || entry.type === 'bullet'"
+      class="tk-hseparator"
+    />
   </div>
 </template>
 
@@ -29,6 +36,7 @@ import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
 import TKSubmissionEntryAgePyramidChart from "./TKSubmissionEntryAgePyramidChart.vue";
 import TKSubmissionEntryDoughnutChart from "./TKSubmissionEntryDoughnutChart.vue";
 import TKSubmissionEntryPolarChart from "./TKSubmissionEntryPolarChart.vue";
+import TKSubmissionEntryBulletView from "./TKSubmissionEntryBulletView.vue";
 import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
 
 @Component({
@@ -36,6 +44,7 @@ import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
     TKSubmissionEntryAgePyramidChart,
     TKSubmissionEntryDoughnutChart,
     TKSubmissionEntryPolarChart,
+    TKSubmissionEntryBulletView,
     TKSubmissionEntryTextView
   }
 })

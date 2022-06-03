@@ -62,7 +62,7 @@ ElectriciteSource;string;group_cccm;;;
 litreEauPersonn;integer;group_wash;;;
 Sourceeau;bullet;group_wash;;;
 eauqualite;string;group_wash;yesno;;
-Disponibilitesavon;string;group_wash;yesno;;
+Disponibilitésavon;string;group_wash;yesno;;
 Inondations;string;group_wash;noyes;;
 eliminationdechets;string;group_wash;;;
 latrines;bullet;group_wash;;;
