@@ -201,7 +201,8 @@
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=1157434408&single=true&output=csv",
             "options": {
                 "dateFormat": "DD/MM/YYYY",
-                "manageByField": "cccm_shelter__mangmt"
+                "manageByField": "cccm_shelter__mangmt",
+                "listSeparator": ";"
             }
         },
         {
@@ -214,7 +215,8 @@
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=1157434408&single=true&output=csv",
             "options": {
                 "dateFormat": "DD/MM/YYYY",
-                "manageByField": "cccm_shelter__mangmt"
+                "manageByField": "cccm_shelter__mangmt",
+                "listSeparator": ";"
             }
         }
     ],

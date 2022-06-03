@@ -164,7 +164,8 @@
             "options": {
                 "dateFormat": "YYYY-MM-DD",
                 "manageByField": "organisation",
-                "manageByAltValue": "cccm"
+                "manageByAltValue": "cccm",
+                "listSeparator": ";"
             }
         }
     ],
