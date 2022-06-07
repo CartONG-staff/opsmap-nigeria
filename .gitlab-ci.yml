@@ -32,7 +32,8 @@ install_dependencies:
       - node_modules
     policy: push
   script:
-    - npm ci --no-progress --no-audit
+    - npm ci --no-progress --no-audit --legacy-peer-deps
+
   tags:
   - opsmap
   only:
