@@ -12,6 +12,7 @@ describe("TKGetLocalValue", () => {
     expect(TKGetLocalValue(labelWithEnglish, "en")).toMatch("english");
     expect(TKGetLocalValue(labelWithEnglish, "fr")).toMatch("french");
     expect(TKGetLocalValue(labelWithEnglish, "FR")).toMatch("english");
+    expect(TKGetLocalValue(labelWithEnglish, "FFFFR")).toMatch("english");
     expect(TKGetLocalValue(labelWithEnglish, "blablabla")).toMatch("english");
 
     const labelWithoutEnglish: TKLabel = {
