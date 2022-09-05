@@ -119,15 +119,19 @@ export default class TKSubmissionentryView extends Vue {
   text-align: left;
   flex-grow: 2;
   overflow: auto;
+  min-width: 30%;
 }
 
 .tk-entry-field-value {
   color: var(--v-primary-base);
   text-align: right;
   list-style: none;
+  flex-grow: 2;
+  min-width: 50%;
+  padding: 0;
 }
 .tk-entry-field-value > li {
-  white-space: nowrap;
+  width: 100%;
 }
 
 .tk-trafficlight-container {
