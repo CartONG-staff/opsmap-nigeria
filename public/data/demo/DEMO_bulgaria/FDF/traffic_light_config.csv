@@ -1,0 +1,9 @@
+traffic_light_name;type;value;color
+yesno;string;Yes;green
+yesno;string;No;red
+noyes;string;Yes;red
+noyes;string;No;green
+boolean_plus_traffic;string;Yes;green
+boolean_plus_traffic;string;No;red
+boolean_plus_traffic;string;Partially;orange
+boolean_plus_traffic;string;Not applicable;green

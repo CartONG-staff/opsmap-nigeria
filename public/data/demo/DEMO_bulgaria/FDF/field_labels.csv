@@ -1,0 +1,63 @@
+field_name;field_label_en
+site_id;ID
+adm1_pcode;adm1 pcode
+adm2_pcode;adm2 pcode
+latitude;Latitude
+longitude;Longitude
+General_Site_Type;General Site Type
+Date_of_the_Monitoring_Visit;Date of the Monitoring Visit
+Province_of_the_monitored_location;Province of the monitored location
+Municipality_of_monitored_location;Municipality of monitored location
+site_name;Site name (as it commonly called)
+Please_enter_the_address_of_the_site;Address of the site
+Record_coordinates_of_the_site_altitude;Altitude
+Record_coordinates_of_the_site_precision;Precision
+Type_of_the_Site;Type of the Site
+"If_other;_please_specify";"If other; please specify:"
+What_type_of_area_is_the_site_location_in;What type of area is the site location in?
+How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site;How many individuals can be hosted at the site (i.e. what is the total sleeping capacity of the site)?
+Does_this_site_have_electricity;Does this site have electricity?
+Does_this_site_has_free_wifi;Does this site has free wifi?
+Is_there_a_child-friendly_area_playground_at_the_site;Is there a child-friendly area/playground at the site?
+Who_is_managing_the_site;Who is managing the site?
+"If_other;_please_specify";"If other; please specify:"
+Ukrainians_accommodated;Ukrainians Accommodated
+Free_beds;Free beds
+What_are_the_population_groups_currently_residing_in_the_site;What are the population groups currently residing in the site?
+How_many_household_are_currently_being_accomodated_at_the_site;How many household are currently being accomodated at the site?
+How_many_of_those_accommodated_are_third_country_nationals_from_Ukriaine;How many of those accommodated are third country nationals from Ukriaine?
+Do_you_know_the_exact_numbers_of_children_adults_and_elderly_by_gender_at_the_site;Do you know the exact numbers of children, adults and elderly by gender at the site?
+How_many_are_Boys_0-4_years;How many are Boys 0-4 years?
+How_many_are_Girls_0-4_years;How many are Girls 0-4 years?
+How_many_are_Boys_5-17_years;How many are Boys 5-17 years?
+How_many_are_Girls_5-17_years;How many are Girls 5-17 years?
+How_many_are_Men_18-59_years;How many are Men 18-59 years?
+How_many_are_Women_18-59_years;How many are Women 18-59 years?
+How_many_are_Elderly_Men_60+;How many are Elderly Men (60+)?
+How_many_are_Elderly_Women_60+;How many are Elderly Women (60+)?
+Which_vulnerable_groups_are_currently_present_at_the_site;Which vulnerable groups are currently present at the site?
+"If_other;_please_specify";"If other; please specify:"
+Total_number_of_PWSNs_accommodated_at_the_site;Total number of PWSNs accommodated at the site
+Number_of_bathing_facilities_at_the_site;Number of bathing facilities at the site
+Are_bathing_facilities_separated_by_gender;Are bathing facilities separated by gender?
+Is_hot_water_available;Is hot water available?
+How_many_functioning_toilets_are_available_in_the_site;How many functioning toilets are available in the site?
+Are_toilets_latrines_separated_by_gender;Are toilets/latrines separated by gender?
+Is_drinking_water_available_at_the_site;Is drinking water available at the site?
+Does_the_site_have_any_of_the_following_issues;Does the site have any of the following issues?
+"If_other;_please_specify";"If other; please specify:"
+Are_basic_primary_medical_care_services_available_at_the_site;Are basic primary medical care services available at the site?
+If_not_what_is_distance_in_kilometers_to_the_nearest_health_facility;If not, what is distance in kilometers to the nearest health facility?
+Do_refugee_chilren_in_the_site_access_formal_education_school;Do refugee chilren in the site access formal education (school)?
+What_is_the_distance_in_kilometers__to_the_nearest_school;What is the distance in kilometers  to the nearest school?
+Are_catering_services_available_at_the_site;Are catering services available at the site?
+Is_kitchen_facility_available_at_the_site;Is kitchen facility available at the site?
+Is_food_provided_to_the_site;Food provided
+How_many_meals_per_day_are_provided;How many meals per day are provided?
+Are__hot_meals_provided;Are  hot meals provided?
+Are_specific_dietary_needs_met;Are specific dietary needs met?
+Do_refugees_have_access_to_humanitarian_aid;Do refugees have access to humanitarian aid?
+Select_type_of_humanitarian_aid_available_provided_at_the_site;Select type of humanitarian aid available/provided at the site
+Specify_other_aid_available_provided;Specify other aid available/provided
+Are_there_any_unmet_needs_at_the_site_Select_from_the_list;Are there any unmet needs at the site? Select from the list
+Specify_other_unmet_needs;Specify other unmet needs

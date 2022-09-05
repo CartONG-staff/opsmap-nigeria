@@ -1,7 +1,6 @@
 {
     "languages": [
-        "en",
-        "ar"
+        "en"
     ],
     "iso3": "BGR",
     "name": {
@@ -64,7 +63,7 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/demo/DEMO_bulgaria/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "/data/bulgaria/Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -76,7 +75,7 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_bulgaria/Logo/unhcr_logo.png",
+                    "urlLogo": "/data/bulgaria/Logo/unhcr_logo.png",
                     "urlRedirection": "https://www.unhcr.org"
                 }
             ]
@@ -88,7 +87,7 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_bulgaria/Logo/unhcr_logo.png",
+                    "urlLogo": "/data/bulgaria/Logo/unhcr_logo.png",
                     "urlRedirection": "https://www.unhcr.org"
                 }
             ]
@@ -100,7 +99,7 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_bulgaria/Logo/unhcr_logo.png",
+                    "urlLogo": "/data/bulgaria/Logo/unhcr_logo.png",
                     "urlRedirection": "https://www.unhcr.org"
                 }
             ]
@@ -120,14 +119,14 @@
         "adm2DBPcode": "pcode",
         "adm2Name": "Municipality_of_monitored_location",
         "adm2RefInAdm1": "adm1pcode",
-        "admin0LocalURL": "/data/demo/DEMO_bulgaria/map/admin0.geojson",
-        "admin1LocalURL": "/data/demo/DEMO_bulgaria/map/admin1.geojson"
+        "admin0LocalURL": "/data/bulgaria/map/admin0.geojson",
+        "admin1LocalURL": "/data/bulgaria/map/admin1.geojson"
     },
     "surveys": [
         {
             "type": "gsheet",
             "fdf": {
-                "folder": "/data/demo/DEMO_bulgaria/FDF"
+                "folder": "/data/bulgaria/FDF"
             },
             "name": "Accommodation",
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=0&single=true&output=csv",
@@ -141,7 +140,7 @@
         {
             "type": "gsheet",
             "fdf": {
-                "folder": "/data/demo/DEMO_bulgaria/FDF2"
+                "folder": "/data/bulgaria/FDF2"
             },
             "name": "Distribution",
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=392014172&single=true&output=csv",
