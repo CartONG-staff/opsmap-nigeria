@@ -41,10 +41,10 @@ export default class TKApp extends Vue {
 
   async mounted() {
     this.handeLocale();
-
+    console.log(TKConfigurationModule)
     TKCreateDataset(
       TKConfigurationModule.configuration.surveys,
-      TKConfigurationModule.configuration.spatial,
+      // TKConfigurationModule.configuration.spatial,
       TKConfigurationModule.configuration.indicators,
       TKConfigurationModule.configuration.languages
     ).then(dataset => {
@@ -62,10 +62,10 @@ export default class TKApp extends Vue {
             )
           );
         }
-
+        console.log(TKDatasetModule)
         TKGetGeoBoundaries(
           TKDatasetModule.dataset,
-          TKConfigurationModule.configuration.spatial
+          TKDatasetModule.dataset.currentSurvey.fdf.spatialDescription
         ).then(geoDataset => {
           TKGeoDatasetModule.setGeoDataset(geoDataset);
         });

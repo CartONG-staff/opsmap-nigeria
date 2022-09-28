@@ -3,7 +3,7 @@
 // ////////////////////////////////////////////////////////////////////////////
 
 import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
-import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
+import { TKSurveySpatialDescription } from "@/domain/survey/TKSurveySpatialDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKCreateSurvey, TKSurvey } from "@/domain/survey/TKSurvey";
@@ -12,7 +12,7 @@ import { TKReadRawDataset } from "@/secondary/survey/TKReadRawDataset";
 
 export async function TKCreateDataset(
   surveyDescription: TKSurveyInfos[],
-  spatialDescription: TKFDFSpatialDescription,
+  // spatialDescription: TKSurveySpatialDescription,
   indicators: TKFDFIndicators,
   languages: Array<string>
 ): Promise<TKDataset> {
@@ -32,13 +32,12 @@ export async function TKCreateDataset(
     const beforeFDF = Date.now();
 
     // Retrieve config
-    const fdf = await TKReadFDF(info, indicators, spatialDescription);
+    const fdf = await TKReadFDF(info, indicators, info.spatial);
 
     console.log(
       `FDF  ${info.name} retrieved in ${(Date.now() - beforeFDF) /
         1000} seconds.`
     );
-
     const beforeSurvey = Date.now();
 
     // Create survey

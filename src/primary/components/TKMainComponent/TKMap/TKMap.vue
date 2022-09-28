@@ -143,7 +143,7 @@ export default class TKMap extends Vue {
     if (this.geoDataset) {
       this.mapBoundaries = new TKMapBoundaries(
         this.geoDataset,
-        TKConfigurationModule.configuration.spatial
+        this.dataset.currentSurvey.fdf.spatialDescription
       );
     }
   }
@@ -242,7 +242,7 @@ export default class TKMap extends Vue {
     if (!this.map.getSource(TKMapLayersSource.COUNTRYMASKSOURCE)) {
       this.map.addSource(TKMapLayersSource.COUNTRYMASKSOURCE, {
         type: "geojson",
-        data: `${process.env.BASE_URL}/${TKConfigurationModule.configuration.spatial.admin0LocalURL}`
+        data: `${process.env.BASE_URL}/${this.dataset.currentSurvey.fdf.spatialDescription.admin0LocalURL}`
       });
     }
 

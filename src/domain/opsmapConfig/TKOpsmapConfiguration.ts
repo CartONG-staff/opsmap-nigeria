@@ -4,7 +4,7 @@ import { TKLogoGroup } from "@/domain/utils/TKLogo";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKLogo } from "@/domain/utils/TKLogo";
 
-import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
+import { TKSurveySpatialDescription } from "@/domain/survey/TKSurveySpatialDescription";
 import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
 import VueI18n from "vue-i18n";
 
@@ -52,7 +52,6 @@ export interface TKOpsmapConfiguration {
   readonly footerLogos: TKLogoGroup[];
   readonly iframe?: TKIFrameDescription;
   readonly surveys: TKSurveyInfos[];
-  readonly spatial: TKFDFSpatialDescription;
   headerLogos: TKLogo[];
   mapConfig: TKMapboxConfiguration;
   options: TKAppOptions;

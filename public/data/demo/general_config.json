@@ -105,22 +105,8 @@
             ]
         }
     ],
-    "spatial": {
-        "siteIDField": "site_id",
-        "siteNameField": "site_name",
-        "siteTypeField": "General_Site_Type",
-        "siteLastUpdateField": "Date_of_the_Monitoring_Visit",
-        "siteLatitudeField": "latitude",
-        "siteLongitudeField": "longitude",
-        "adm1Pcode": "adm1_pcode",
-        "adm1DBPcode": "pcode",
-        "adm1Name": "Province_of_the_monitored_location",
-        "adm2Pcode": "adm2_pcode",
-        "adm2DBPcode": "pcode",
-        "adm2Name": "Municipality_of_monitored_location",
-        "adm2RefInAdm1": "adm1pcode",
-        "admin0LocalURL": "/data/demo/DEMO_bulgaria/map/admin0.geojson",
-        "admin1LocalURL": "/data/demo/DEMO_bulgaria/map/admin1.geojson"
+    "spatialLocalFiles": {
+
     },
     "surveys": [
         {
@@ -135,6 +121,23 @@
                 "dateFormat": "DD/MM/YYYY",
                 "manageByField": "cccm_shelter__mangmt",
                 "listSeparator": ";"
+            },
+            "spatial": {
+                "siteIDField": "site_id",
+                "siteNameField": "site_name",
+                "siteTypeField": "General_Site_Type",
+                "siteLastUpdateField": "Date_of_the_Monitoring_Visit",
+                "siteLatitudeField": "latitude",
+                "siteLongitudeField": "longitude",
+                "adm1Pcode": "adm1_pcode",
+                "adm1DBPcode": "pcode",
+                "adm1Name": "Province_of_the_monitored_location",
+                "adm2Pcode": "adm2_pcode",
+                "adm2DBPcode": "pcode",
+                "adm2Name": "Municipality_of_monitored_location",
+                "adm2RefInAdm1": "adm1pcode",
+                "admin0LocalURL": "/data/demo/DEMO_bulgaria/map/admin0.geojson",
+                "admin1LocalURL": "/data/demo/DEMO_bulgaria/map/admin1.geojson"
             }
         },
         {
@@ -149,6 +152,23 @@
                 "dateFormat": "DD/MM/YYYY",
                 "manageByField": "cccm_shelter__mangmt",
                 "listSeparator": ";"
+            },
+            "spatial": {
+                "siteIDField": "site_id",
+                "siteNameField": "site_name",
+                "siteTypeField": "General_Site_Type",
+                "siteLastUpdateField": "Date_of_the_Monitoring_Visit",
+                "siteLatitudeField": "latitude",
+                "siteLongitudeField": "longitude",
+                "adm1Pcode": "adm1_pcode",
+                "adm1DBPcode": "pcode",
+                "adm1Name": "Province_of_the_monitored_location",
+                "adm2Pcode": "adm2_pcode",
+                "adm2DBPcode": "pcode",
+                "adm2Name": "Municipality_of_monitored_location",
+                "adm2RefInAdm1": "adm1pcode",
+                "admin0LocalURL": "/data/demo/DEMO_bulgaria/map/admin0.geojson",
+                "admin1LocalURL": "/data/demo/DEMO_bulgaria/map/admin1.geojson"
             }
         }
     ],

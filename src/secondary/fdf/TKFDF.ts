@@ -5,7 +5,7 @@
 
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
-import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
+import { TKSurveySpatialDescription } from "@/domain/survey/TKSurveySpatialDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFDFFiles } from "@/secondary/fdf/TKFDFInfos";
 import {
@@ -25,7 +25,7 @@ import { TKReadFDFSiteTypesCollection } from "./TKFDFSiteTypes";
 export async function TKReadFDF(
   infos: TKSurveyInfos,
   indicators: TKFDFIndicators,
-  spatialDescription: TKFDFSpatialDescription
+  spatialDescription: TKSurveySpatialDescription
 ): Promise<TKFDF> {
   let answersLabels = {};
   if (infos.type === "gsheet") {
