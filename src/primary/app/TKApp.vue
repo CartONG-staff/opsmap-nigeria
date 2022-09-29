@@ -41,11 +41,8 @@ export default class TKApp extends Vue {
 
   async mounted() {
     this.handeLocale();
-    console.log(TKConfigurationModule)
     TKCreateDataset(
       TKConfigurationModule.configuration.surveys,
-      // TKConfigurationModule.configuration.spatial,
-      TKConfigurationModule.configuration.indicators,
       TKConfigurationModule.configuration.languages
     ).then(dataset => {
       TKDatasetModule.setDataset(dataset);

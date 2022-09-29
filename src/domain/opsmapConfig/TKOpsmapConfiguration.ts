@@ -48,7 +48,7 @@ export interface TKOpsmapConfiguration {
   languageDefault: string;
   readonly iso3: string;
   readonly opsmapDescr: TKLabel;
-  readonly indicators: TKFDFIndicators;
+  // readonly indicators: TKFDFIndicators;
   readonly footerLogos: TKLogoGroup[];
   readonly iframe?: TKIFrameDescription;
   readonly surveys: TKSurveyInfos[];

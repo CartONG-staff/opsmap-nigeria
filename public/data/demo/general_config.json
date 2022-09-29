@@ -9,51 +9,6 @@
     "opsmapDescr": {
         "en": ""
     },
-    "indicators": {
-        "home": [
-            {
-                "type": "site_count"
-            },
-            {
-                "type": "people_count",
-                "entryCode": "How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site"
-            },
-            {
-                "type": "standard",
-                "name": {
-                    "en": "Household"
-                },
-                "entryCode": "How_many_household_are_currently_being_accomodated_at_the_site",
-                "iconOchaName": "Children"
-            }
-        ],
-        "site": [
-            {
-                "type": "standard",
-                "name": {
-                    "en": "Individuals"
-                },
-                "entryCode": "How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site",
-                "iconOchaName": "People-in-need"
-            },
-            {
-                "type": "standard",
-                "name": {
-                    "en": "Household"
-                },
-                "entryCode": "How_many_household_are_currently_being_accomodated_at_the_site",
-                "iconOchaName": "Children"
-            },
-            {
-                "type": "standard",
-                "name": {
-                    "en": "Food provided"
-                },
-                "entryCode": "Is_food_provided_to_the_site",
-                "iconOchaName": "Food"
-            }
-        ]
-    },
     "headerLogos": [],
     "footerLogos": [
         {
@@ -138,6 +93,51 @@
                 "adm2RefInAdm1": "adm1pcode",
                 "admin0LocalURL": "/data/demo/DEMO_bulgaria/map/admin0.geojson",
                 "admin1LocalURL": "/data/demo/DEMO_bulgaria/map/admin1.geojson"
+            },
+            "indicators": {
+                "home": [
+                    {
+                        "type": "site_count"
+                    },
+                    {
+                        "type": "people_count",
+                        "entryCode": "How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Household"
+                        },
+                        "entryCode": "How_many_household_are_currently_being_accomodated_at_the_site",
+                        "iconOchaName": "Children"
+                    }
+                ],
+                "site": [
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Individuals"
+                        },
+                        "entryCode": "How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site",
+                        "iconOchaName": "People-in-need"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Household"
+                        },
+                        "entryCode": "How_many_household_are_currently_being_accomodated_at_the_site",
+                        "iconOchaName": "Children"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Food provided"
+                        },
+                        "entryCode": "Is_food_provided_to_the_site",
+                        "iconOchaName": "Food"
+                    }
+                ]
             }
         },
         {
@@ -169,6 +169,55 @@
                 "adm2RefInAdm1": "adm1pcode",
                 "admin0LocalURL": "/data/demo/DEMO_bulgaria/map/admin0.geojson",
                 "admin1LocalURL": "/data/demo/DEMO_bulgaria/map/admin1.geojson"
+            },
+            "indicators": {
+                "home": [
+                    {
+                        "type": "site_count"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Number of volunteers"
+                        },
+                        "entryCode": "Number_of_volunteers_mobilised",
+                        "iconOchaName": "Children"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Number of interprets"
+                        },
+                        "entryCode": "Number_of_interpreters_engaged",
+                        "iconOchaName": "Children"
+                    }
+                ],
+                "site": [
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Individuals"
+                        },
+                        "entryCode": "How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site",
+                        "iconOchaName": "People-in-need"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Household"
+                        },
+                        "entryCode": "How_many_household_are_currently_being_accomodated_at_the_site",
+                        "iconOchaName": "Children"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Food provided"
+                        },
+                        "entryCode": "Is_food_provided_to_the_site",
+                        "iconOchaName": "Food"
+                    }
+                ]
             }
         }
     ],

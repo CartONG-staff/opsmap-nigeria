@@ -12,8 +12,6 @@ import { TKReadRawDataset } from "@/secondary/survey/TKReadRawDataset";
 
 export async function TKCreateDataset(
   surveyDescription: TKSurveyInfos[],
-  // spatialDescription: TKSurveySpatialDescription,
-  indicators: TKFDFIndicators,
   languages: Array<string>
 ): Promise<TKDataset> {
   // prepare output
@@ -32,7 +30,7 @@ export async function TKCreateDataset(
     const beforeFDF = Date.now();
 
     // Retrieve config
-    const fdf = await TKReadFDF(info, indicators, info.spatial);
+    const fdf = await TKReadFDF(info);
 
     console.log(
       `FDF  ${info.name} retrieved in ${(Date.now() - beforeFDF) /
