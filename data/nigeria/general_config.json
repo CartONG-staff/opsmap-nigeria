@@ -7,7 +7,7 @@
         "en": "Nigeria"
     },
     "opsmapDescr": {
-        "en": "<p>The site tracker tool aims to provide relevant and adequate current situation on the IDP settlements by assessing information and services at site level to improve humanitarian assistance in IDP sites.Site profiles and displayed data are collected by CCCM Partners in Nigeria through key informant interview for each IDP site with the camp managers/site facilitators. The data is collected and updated on a bi-weekly basis. The tool consists of both open and closed-ended questions that were provided by Sector leads.</p><p>For the full datasets or further questions please contact:<br><span class=\"font-weight-medium\">Robert Odhiambo: +234 903 428 3512 || Ibrahim Mahammat: +234 901 066 0575</span><br><span class=\"font-weight-medium\">Email: <a href=\"mailto:cccmshelternga@humanitarianresponse.info\">cccmshelternga@humanitarianresponse.info</a> | Website: <a href=\"https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi\" target=\"_blank\">https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi</a></span></p>"
+        "en": "<p>The site tracker tool aims to provide relevant and adequate current situation on the IDP settlements by assessing information and services at site level to improve humanitarian assistance in IDP sites.Site profiles and displayed data are collected by CCCM Partners in Nigeria through key informant interview for each IDP site with the camp managers/site facilitators. The data is collected and updated on a bi-weekly basis. The tool consists of both open and closed-ended questions that were provided by Sector leads.</p><p>For the full datasets or further questions please contact:<br><span class=\"font-weight-medium\">Kaur Sukhwant: +234 912 654 0861 || Ibrahim Mahammat: +234 901 066 0575</span><br><span class=\"font-weight-medium\">Email: <a href=\"mailto:cccmshelternga@humanitarianresponse.info\">cccmshelternga@humanitarianresponse.info</a> | Website: <a href=\"https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi\" target=\"_blank\">https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi</a></span></p>"
     },
     "indicators": {
         "home": [
@@ -62,62 +62,109 @@
             },
             "logos": [
                 {
-                    "name": "sector_logo",
-                    "urlLogo": "/data/nigeria/Logo/sector_logo.png",
-                    "urlRedirection": "https://www.sheltercluster.org/response/nigeria"
+                    "name": "iom",
+                    "urlLogo": "/data/nigeria/Logo/iom.png",
+                    "urlRedirection": "https://www.iom.int"
+                },
+                {
+                    "name": "unhcr",
+                    "urlLogo": "/data/nigeria/Logo/unhcr.png",
+                    "urlRedirection": "https://www.unhcr.org"
                 }
             ]
         },
         {
             "title": {
-                "en": "Partners"
+                "en": "Fieldwork"
             },
             "logos": [
                 {
-                    "name": "Acted",
-                    "urlLogo": "/data/nigeria/Logo/ACTED.jpg",
-                    "urlRedirection": "https://www.acted.org/"
+                    "name": "acted",
+                    "urlLogo": "/data/nigeria/Logo/acted.jpg",
+                    "urlRedirection": "https://www.acted.org/en/"
                 },
                 {
-                    "name": "INTERSOS",
-                    "urlLogo": "/data/nigeria/Logo/INTERSOS.png",
-                    "urlRedirection": "https://www.intersos.org/"
+                    "name": "care_aid",
+                    "urlLogo": "/data/nigeria/Logo/care_aid.png",
+                    "urlRedirection": "https://careaidsupportinitiative.org/"
                 },
                 {
-                    "name": "IOM",
-                    "urlLogo": "/data/nigeria/Logo/IOM.jpg",
-                    "urlRedirection": "https://www.iom.int"
+                    "name": "boaid",
+                    "urlLogo": "/data/nigeria/Logo/boaid.jpg",
+                    "urlRedirection":
                 },
                 {
-                    "name": "LOCDIN",
-                    "urlLogo": "/data/nigeria/Logo/LOC-DIN.jpg",
-                    "urlRedirection": "https://loc-din.org.ng"
+                    "name": "ggsi",
+                    "urlLogo": "/data/nigeria/Logo/ggsi.jpg",
+                    "urlRedirection": "http://ggsisuccour.org/"
                 },
                 {
-                    "name": "NRC",
-                    "urlLogo": "/data/nigeria/Logo/NRC.png",
+                    "name": "haraf",
+                    "urlLogo": "/data/nigeria/Logo/haraf.png",
+                    "urlRedirection": "https://www.haraf.org.ng/"
+                },
+                {
+                    "name": "greencode",
+                    "urlLogo": "/data/nigeria/Logo/greencode.png",
+                    "urlRedirection": "https://www.greencodeng.org"
+                },
+                {
+                    "name": "hope_360",
+                    "urlLogo": "/data/nigeria/Logo/hope_360.jpg",
+                    "urlRedirection": "https://www.hope360initiative.org.ng/360"
+                },
+                {
+                    "name": "intersos",
+                    "urlLogo": "/data/nigeria/Logo/intersos.png",
+                    "urlRedirection": "https://www.intersos.org/en/"
+                },
+                {
+                    "name": "loc_din",
+                    "urlLogo": "/data/nigeria/Logo/loc_din.jpg",
+                    "urlRedirection": "https://locdin.org/"
+                },
+                {
+                    "name": "nrc",
+                    "urlLogo": "/data/nigeria/Logo/nrc.jpg",
                     "urlRedirection": "https://www.nrc.no"
                 },
                 {
-                    "name": "Salient",
-                    "urlLogo": "/data/nigeria/Logo/SALINT_HUMANITARIANORGANIZATON.png",
+                    "name": "palri",
+                    "urlLogo": "/data/nigeria/Logo/palri.jpg",
+                    "urlRedirection":
+                },
+                {
+                    "name": "ppgw",
+                    "urlLogo": "/data/nigeria/Logo/ppgw.png",
+                    "urlRedirection":
+                },
+                {
+                    "name": "pride",
+                    "urlLogo": "/data/nigeria/Logo/pride.png",
+                    "urlRedirection": "https://www.pride-ng.org"
+                },
+                {
+                    "name": "sheriff_aid_foundation",
+                    "urlLogo": "/data/nigeria/Logo/sheriff_aid_foundation.jpg",
+                    "urlRedirection": "https://www.sheriffaidfoundation.org/"
+                },
+                {
+                    "name": "salient",
+                    "urlLogo": "/data/nigeria/Logo/salient.png",
                     "urlRedirection": "https://salientho.org"
                 },
                 {
-                    "name": "SHI",
-                    "urlLogo": "/data/nigeria/Logo/SMILING_HEARTS_INTERNATIONAL.jpg",
-                    "urlRedirection": "https://www.smilingheartsinitiativeinternational.org"
+                    "name": "shi",
+                    "urlLogo": "/data/nigeria/Logo/shi.jpg",
+                    "urlRedirection": "https://shiinternational.org/"
                 },
                 {
-                    "name": "Translators",
-                    "urlLogo": "/data/nigeria/Logo/TRANSLATORS_WITHOUT_BOARDERS.png",
-                    "urlRedirection": "https://translatorswithoutborders.org"
-                },
-                {
-                    "name": "UNHCR",
-                    "urlLogo": "/data/nigeria/Logo/UNHCR.jpg",
-                    "urlRedirection": "https://www.unhcr.org"
+                    "name": "ypho",
+                    "urlLogo": "/data/nigeria/Logo/ypho.jpg",
+                    "urlRedirection":
                 }
+
+                
             ]
         },
         {
