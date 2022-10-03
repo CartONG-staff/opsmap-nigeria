@@ -91,7 +91,7 @@
                 {
                     "name": "boaid",
                     "urlLogo": "/data/nigeria/Logo/boaid.jpg",
-                    "urlRedirection":
+                    "urlRedirection": ""
                 },
                 {
                     "name": "ggsi",
@@ -131,12 +131,12 @@
                 {
                     "name": "palri",
                     "urlLogo": "/data/nigeria/Logo/palri.jpg",
-                    "urlRedirection":
+                    "urlRedirection": ""
                 },
                 {
                     "name": "ppgw",
                     "urlLogo": "/data/nigeria/Logo/ppgw.png",
-                    "urlRedirection":
+                    "urlRedirection": ""
                 },
                 {
                     "name": "pride",
@@ -161,10 +161,8 @@
                 {
                     "name": "ypho",
                     "urlLogo": "/data/nigeria/Logo/ypho.jpg",
-                    "urlRedirection":
+                    "urlRedirection": ""
                 }
-
-                
             ]
         },
         {
