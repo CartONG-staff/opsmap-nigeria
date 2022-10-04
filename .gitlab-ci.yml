@@ -18,7 +18,7 @@ cache:
   policy: pull
 
 # Install dependencies
-install_dependencies:
+step_install_dependencies:
   stage: install_dependencies
   cache:
     key:
@@ -35,11 +35,12 @@ install_dependencies:
   rules:
     - if: $CI_COMMIT_BRANCH == "page"
       when: always
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_BRANCH != "page"
       when: manual
 
 # Job: test
-test:
+step_test:
+  needs: ["step_install_dependencies"]
   stage: test
   script:
     - npm run test:unit
@@ -50,7 +51,8 @@ test:
       - coverage
 
 # job: build_and_deploy
-pages:
+step_pages:
+  needs: ["step_test"]
   stage: deploy
   script:
     - npm run build-gitlab
