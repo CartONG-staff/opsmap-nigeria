@@ -7,7 +7,6 @@ stages:
 
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
-  # CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
 
 cache:
   key:
@@ -15,7 +14,6 @@ cache:
       - package.json
   paths:
     - .npm
-    # - cache/Cypress
     - node_modules
   policy: pull
 
@@ -28,7 +26,6 @@ install_dependencies:
         - package.json
     paths:
       - .npm
-      # - cache/Cypress
       - node_modules
     policy: push
   script:
@@ -40,6 +37,7 @@ install_dependencies:
       when: always
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
+
 # Job: test
 test:
   needs: ["install_dependencies"]
