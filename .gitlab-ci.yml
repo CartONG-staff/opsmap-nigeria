@@ -36,11 +36,10 @@ install_dependencies:
   tags:
   - opsmap
   rules:
-    - if: $CI_COMMIT_BRANCH == page
+    - if: $CI_COMMIT_BRANCH == "page"
       when: always
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
-
 # Job: test
 test:
   needs: ["install_dependencies"]
