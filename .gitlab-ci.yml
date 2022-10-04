@@ -33,9 +33,9 @@ step_install_dependencies:
   tags:
     - opsmap
   rules:
-    - if: $CI_COMMIT_BRANCH == "page"
+    - if: $CI_COMMIT_BRANCH == "pages"
       when: always
-    - if: $CI_COMMIT_BRANCH != "page"
+    - if: $CI_COMMIT_BRANCH != "pages"
       when: manual
 
 # Job: test
