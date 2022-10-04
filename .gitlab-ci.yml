@@ -33,14 +33,17 @@ install_dependencies:
     policy: push
   script:
     - npm ci --no-progress --no-audit --legacy-peer-deps
-
   tags:
   - opsmap
-  only:
-  - pages
+  rules:
+    - if: $CI_COMMIT_BRANCH == page
+      when: always
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
+      when: manual
 
 # Job: test
 test:
+  needs: ["install_dependencies"]
   stage: test
   script:
     - npm run test:unit
@@ -49,13 +52,10 @@ test:
   artifacts:
     paths:
       - coverage
-  tags:
-  - opsmap
-  only:
-  - pages
 
 # job: build_and_deploy
 pages:
+  needs: ["test"]
   stage: deploy
   script:
     - npm run build-gitlab
@@ -69,5 +69,3 @@ pages:
       - public
   tags:
     - opsmap
-  only:
-    - pages
