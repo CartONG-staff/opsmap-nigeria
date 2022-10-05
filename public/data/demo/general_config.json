@@ -60,8 +60,20 @@
             ]
         }
     ],
-    "spatialLocalFiles": {
-
+    "spatialConfiguration": {
+        "mapConfig": {
+            "bounds": [
+                22.170410,41.145570,28.674316,44.292401
+            ]
+        },
+        "dbConfig": {
+            "adm1DBPcode": "pcode",
+            "adm2DBPcode": "pcode"
+        },
+        "localFiles": {
+            "admin0LocalURL": "/data/demo/DEMO_bulgaria/map/admin0.geojson",
+            "admin1LocalURL": "/data/demo/DEMO_bulgaria/map/admin1.geojson"
+        }
     },
     "surveys": [
         {
@@ -85,14 +97,10 @@
                 "siteLatitudeField": "latitude",
                 "siteLongitudeField": "longitude",
                 "adm1Pcode": "adm1_pcode",
-                "adm1DBPcode": "pcode",
                 "adm1Name": "Province_of_the_monitored_location",
                 "adm2Pcode": "adm2_pcode",
-                "adm2DBPcode": "pcode",
                 "adm2Name": "Municipality_of_monitored_location",
-                "adm2RefInAdm1": "adm1pcode",
-                "admin0LocalURL": "/data/demo/DEMO_bulgaria/map/admin0.geojson",
-                "admin1LocalURL": "/data/demo/DEMO_bulgaria/map/admin1.geojson"
+                "adm2RefInAdm1": "adm1pcode"
             },
             "indicators": {
                 "home": [
@@ -161,14 +169,10 @@
                 "siteLatitudeField": "latitude",
                 "siteLongitudeField": "longitude",
                 "adm1Pcode": "adm1_pcode",
-                "adm1DBPcode": "pcode",
                 "adm1Name": "Province_of_the_monitored_location",
                 "adm2Pcode": "adm2_pcode",
-                "adm2DBPcode": "pcode",
                 "adm2Name": "Municipality_of_monitored_location",
-                "adm2RefInAdm1": "adm1pcode",
-                "admin0LocalURL": "/data/demo/DEMO_bulgaria/map/admin0.geojson",
-                "admin1LocalURL": "/data/demo/DEMO_bulgaria/map/admin1.geojson"
+                "adm2RefInAdm1": "adm1pcode"
             },
             "indicators": {
                 "home": [
@@ -221,11 +225,6 @@
             }
         }
     ],
-    "mapConfig": {
-        "bounds": [
-            22.170410,41.145570,28.674316,44.292401
-        ]
-    },
     "options": {
         "pdfColumnCount": 3,
         "showDemoBanner": true

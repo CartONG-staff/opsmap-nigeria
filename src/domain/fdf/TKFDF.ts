@@ -5,7 +5,7 @@
 
 import { TKFDFIndicators } from "./TKFDFIndicators";
 import { TKFDFLabelCollection } from "./TKFDFParseMultiLang";
-import { TKSurveySpatialDescription } from "../survey/TKSurveySpatialDescription";
+import { TKFDFSpatialDescription } from "./TKFDFSpatialDescription";
 import { TKFDFSubmissionsRulesCollection } from "./TKFDFSubmissionsRules";
 import { TKFDFSiteTypeCollection } from "./TKFDFSiteTypes";
 import { TKFDFTerminologyCollection } from "./TKFDFTerminology";
@@ -25,6 +25,6 @@ export interface TKFDF {
   submissionsRules: TKFDFSubmissionsRulesCollection;
   urls: TKFDFUrlsCollection;
   indicators: TKFDFIndicators;
-  spatialDescription: TKSurveySpatialDescription;
+  spatialDescription: TKFDFSpatialDescription;
   siteTypes: TKFDFSiteTypeCollection;
 }

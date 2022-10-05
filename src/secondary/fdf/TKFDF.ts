@@ -4,8 +4,6 @@
 // It is needed to create an actual survey
 
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
-import { TKSurveySpatialDescription } from "@/domain/survey/TKSurveySpatialDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFDFFiles } from "@/secondary/fdf/TKFDFInfos";
 import {

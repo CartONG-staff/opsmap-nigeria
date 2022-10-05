@@ -143,6 +143,7 @@ export default class TKMap extends Vue {
     if (this.geoDataset) {
       this.mapBoundaries = new TKMapBoundaries(
         this.geoDataset,
+        TKConfigurationModule.configuration.spatialConfiguration.dbConfig,
         this.dataset.currentSurvey.fdf.spatialDescription
       );
     }
@@ -179,12 +180,12 @@ export default class TKMap extends Vue {
       // Init the map - world level
       this.bound = new mapboxgl.LngLatBounds(
         new mapboxgl.LngLat(
-          TKConfigurationModule.configuration.mapConfig.bounds[0],
-          TKConfigurationModule.configuration.mapConfig.bounds[1]
+          TKConfigurationModule.configuration.spatialConfiguration.mapConfig.bounds[0],
+          TKConfigurationModule.configuration.spatialConfiguration.mapConfig.bounds[1]
         ),
         new mapboxgl.LngLat(
-          TKConfigurationModule.configuration.mapConfig.bounds[2],
-          TKConfigurationModule.configuration.mapConfig.bounds[3]
+          TKConfigurationModule.configuration.spatialConfiguration.mapConfig.bounds[2],
+          TKConfigurationModule.configuration.spatialConfiguration.mapConfig.bounds[3]
         )
       );
     }
@@ -192,7 +193,7 @@ export default class TKMap extends Vue {
       this.map = new mapboxgl.Map({
         container: "tk-map",
         style: this.basemaps.basemapsList[0].style,
-        accessToken: TKConfigurationModule.configuration.mapConfig.token,
+        accessToken: TKConfigurationModule.configuration.spatialConfiguration.mapConfig.token,
         bounds: this.bound
       });
 
@@ -242,7 +243,7 @@ export default class TKMap extends Vue {
     if (!this.map.getSource(TKMapLayersSource.COUNTRYMASKSOURCE)) {
       this.map.addSource(TKMapLayersSource.COUNTRYMASKSOURCE, {
         type: "geojson",
-        data: `${process.env.BASE_URL}/${this.dataset.currentSurvey.fdf.spatialDescription.admin0LocalURL}`
+        data: `${process.env.BASE_URL}/${TKConfigurationModule.configuration.spatialConfiguration.localFiles.admin0LocalURL}`
       });
     }
 
@@ -420,8 +421,8 @@ export default class TKMap extends Vue {
     if (this.map) {
       if (this.bound) {
         this.map.fitBounds(this.bound, {
-          padding: TKConfigurationModule.configuration.mapConfig.padding,
-          speed: TKConfigurationModule.configuration.mapConfig.zoomspeed
+          padding: TKConfigurationModule.configuration.spatialConfiguration.mapConfig.padding,
+          speed: TKConfigurationModule.configuration.spatialConfiguration.mapConfig.zoomspeed
         });
       }
     }

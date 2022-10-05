@@ -1,9 +1,6 @@
 // ////////////////////////////////////////////////////////////////////////////
 // Create all the survey based on the surveys infos
 // ////////////////////////////////////////////////////////////////////////////
-
-import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
-import { TKSurveySpatialDescription } from "@/domain/survey/TKSurveySpatialDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKCreateSurvey, TKSurvey } from "@/domain/survey/TKSurvey";
