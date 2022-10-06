@@ -18,7 +18,7 @@ cache:
   policy: pull
 
 # Install dependencies
-step_install_dependencies:
+install_dependencies:
   stage: install_dependencies
   cache:
     key:
@@ -39,8 +39,8 @@ step_install_dependencies:
       when: manual
 
 # Job: test
-step_test:
-  needs: ["step_install_dependencies"]
+test:
+  needs: ["install_dependencies"]
   stage: test
   script:
     - npm run test:unit
@@ -51,8 +51,8 @@ step_test:
       - coverage
 
 # job: build_and_deploy
-step_pages:
-  needs: ["step_test"]
+pages:
+  needs: ["test"]
   stage: deploy
   script:
     - npm run build-gitlab
