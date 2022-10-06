@@ -1,11 +1,7 @@
 import { TKLabel } from "@/domain/utils/TKLabel";
 import { TKLogoGroup } from "@/domain/utils/TKLogo";
-
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKLogo } from "@/domain/utils/TKLogo";
-
-import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
-import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
 import VueI18n from "vue-i18n";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -32,6 +28,18 @@ interface TKMapboxConfiguration {
   readonly bounds: Array<number>;
 }
 
+export interface TKOpsmapSpatialConfiguration {
+  mapConfig: TKMapboxConfiguration;
+  dbConfig: {
+    adm1DBPcode: string;
+    adm2DBPcode: string;
+  };
+  localFiles: {
+    admin0LocalURL: string;
+    admin1LocalURL: string;
+  }
+}
+
 // ////////////////////////////////////////////////////////////////////////////
 // This file host some infos that could be in the FDF.
 // Therefore, specific FDF types are used
@@ -48,13 +56,11 @@ export interface TKOpsmapConfiguration {
   languageDefault: string;
   readonly iso3: string;
   readonly opsmapDescr: TKLabel;
-  readonly indicators: TKFDFIndicators;
+  readonly spatialConfiguration: TKOpsmapSpatialConfiguration;
   readonly footerLogos: TKLogoGroup[];
   readonly iframe?: TKIFrameDescription;
   readonly surveys: TKSurveyInfos[];
-  readonly spatial: TKFDFSpatialDescription;
   headerLogos: TKLogo[];
-  mapConfig: TKMapboxConfiguration;
   options: TKAppOptions;
 }
 
@@ -133,9 +139,9 @@ export async function TKReadGeneralConfiguration(
 
   // Init with defaultMApBoxConfig, then replace existing key with mapConfig.
   // Order matter !
-  json.mapConfig = {
+  json.spatialConfiguration.mapConfig = {
     ...defaultMapBoxConfig,
-    ...json.mapConfig
+    ...json.spatialConfiguration.mapConfig
   };
 
   // ////////////////////////////////////////////////////////////////////////////

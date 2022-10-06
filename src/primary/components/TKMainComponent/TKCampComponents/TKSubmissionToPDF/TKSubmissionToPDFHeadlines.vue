@@ -164,7 +164,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
       staticMapUrl += "640x480@2x";
 
       // Token
-      staticMapUrl += `?access_token=${TKConfigurationModule.configuration.mapConfig.token}`;
+      staticMapUrl += `?access_token=${TKConfigurationModule.configuration.spatialConfiguration.mapConfig.token}`;
 
       // Upadte img URL
       this.mapImg = staticMapUrl;

@@ -1,5 +1,7 @@
 import { TKFDFInfos } from "../fdf/TKFDFInfos";
+import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 import { TKSurveyOptions } from "../survey/TKSurvey";
+import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
 
 export enum TKSurveyInfosType {
   KOBO = "kobo",
@@ -17,6 +19,8 @@ export interface TKSurveyInfosKobo {
   readonly url: string;
   readonly token: string;
   readonly options: TKSurveyOptions;
+  readonly spatial: TKFDFSpatialDescription;
+  readonly indicators: TKFDFIndicators;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -30,6 +34,8 @@ export interface TKSurveyInfosCSV {
   readonly submissionsFolder: string;
   readonly submissionsFile: string;
   readonly options: TKSurveyOptions;
+  readonly spatial: TKFDFSpatialDescription;
+  readonly indicators: TKFDFIndicators;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -43,6 +49,8 @@ export interface TKSurveyInfosGSheet {
   readonly submissionsUrl: string;
   readonly submissionsTrUrl: string;
   readonly options: TKSurveyOptions;
+  readonly spatial: TKFDFSpatialDescription;
+  readonly indicators: TKFDFIndicators;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
