@@ -1,8 +1,9 @@
 import { ArcgisServerDataGetter } from "@/secondary/arcgis/TKArcgisServerDataGetter";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { FeatureCollection } from "geojson";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
-import { TKDataset } from "../survey/TKDataset";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 export async function TKGetGeoBoundaries(
   dataset: TKDataset,
@@ -15,7 +16,9 @@ export async function TKGetGeoBoundaries(
     type: "FeatureCollection",
     features: []
   };
-  await fetch(`${process.env.BASE_URL}/${spatialDescription.admin1LocalURL}`)
+  await fetch(
+    `${process.env.BASE_URL}/${TKConfigurationModule.configuration.spatialConfiguration.localFiles.admin1LocalURL}`
+  )
     .then(response => response.json())
     .then(json => {
       admin1GeoData = json;

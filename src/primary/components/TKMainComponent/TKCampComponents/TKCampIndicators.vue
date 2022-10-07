@@ -10,7 +10,6 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
 import { TKIndicatorDefault, TKIndicator } from "@/domain/survey/TKIndicator";
-import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 @Component({
@@ -23,15 +22,15 @@ export default class TKCampIndicators extends Vue {
     return TKDatasetModule.dataset;
   }
 
-  indicator1: TKIndicator = TKIndicatorDefault(
-    TKConfigurationModule.configuration.indicators.site[0]
-  );
-  indicator2: TKIndicator = TKIndicatorDefault(
-    TKConfigurationModule.configuration.indicators.site[1]
-  );
-  indicator3: TKIndicator = TKIndicatorDefault(
-    TKConfigurationModule.configuration.indicators.site[2]
-  );
+  indicator1: TKIndicator | null = this.dataset.currentSurvey
+    ? TKIndicatorDefault(this.dataset.currentSurvey.defaultIndicators.site[0])
+    : null;
+  indicator2: TKIndicator | null = this.dataset.currentSurvey
+    ? TKIndicatorDefault(this.dataset.currentSurvey.defaultIndicators.site[1])
+    : null;
+  indicator3: TKIndicator | null = this.dataset.currentSurvey
+    ? TKIndicatorDefault(this.dataset.currentSurvey.defaultIndicators.site[2])
+    : null;
 
   @Watch("dataset.lastModification", { immediate: true })
   onLastModification() {
@@ -41,30 +40,30 @@ export default class TKCampIndicators extends Vue {
       this.indicator3 = this.dataset.currentSubmission.indicators[2];
     } else {
       if (this.dataset.currentAdmin2) {
-        this.indicator1 = this.dataset.currentSurvey.indicators[
+        this.indicator1 = this.dataset.currentSurvey.computedIndicators[
           this.dataset.currentAdmin2.pcode
         ][0];
-        this.indicator2 = this.dataset.currentSurvey.indicators[
+        this.indicator2 = this.dataset.currentSurvey.computedIndicators[
           this.dataset.currentAdmin2.pcode
         ][1];
-        this.indicator3 = this.dataset.currentSurvey.indicators[
+        this.indicator3 = this.dataset.currentSurvey.computedIndicators[
           this.dataset.currentAdmin2.pcode
         ][2];
       } else {
         if (this.dataset.currentAdmin1) {
-          this.indicator1 = this.dataset.currentSurvey.indicators[
+          this.indicator1 = this.dataset.currentSurvey.computedIndicators[
             this.dataset.currentAdmin1.pcode
           ][0];
-          this.indicator2 = this.dataset.currentSurvey.indicators[
+          this.indicator2 = this.dataset.currentSurvey.computedIndicators[
             this.dataset.currentAdmin1.pcode
           ][1];
-          this.indicator3 = this.dataset.currentSurvey.indicators[
+          this.indicator3 = this.dataset.currentSurvey.computedIndicators[
             this.dataset.currentAdmin1.pcode
           ][2];
         } else {
-          this.indicator1 = this.dataset.currentSurvey.indicators[""][0];
-          this.indicator2 = this.dataset.currentSurvey.indicators[""][1];
-          this.indicator3 = this.dataset.currentSurvey.indicators[""][2];
+          this.indicator1 = this.dataset.currentSurvey.computedIndicators[""][0];
+          this.indicator2 = this.dataset.currentSurvey.computedIndicators[""][1];
+          this.indicator3 = this.dataset.currentSurvey.computedIndicators[""][2];
         }
       }
     }
