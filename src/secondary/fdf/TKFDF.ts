@@ -4,8 +4,6 @@
 // It is needed to create an actual survey
 
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
-import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFDFFiles } from "@/secondary/fdf/TKFDFInfos";
 import {
@@ -23,9 +21,7 @@ import { TKReadFDFSiteTypesCollection } from "./TKFDFSiteTypes";
 // Method that creates the FDF object from the fdf folder
 // ////////////////////////////////////////////////////////////////////////////
 export async function TKReadFDF(
-  infos: TKSurveyInfos,
-  indicators: TKFDFIndicators,
-  spatialDescription: TKFDFSpatialDescription
+  infos: TKSurveyInfos
 ): Promise<TKFDF> {
   let answersLabels = {};
   if (infos.type === "gsheet") {
@@ -48,8 +44,8 @@ export async function TKReadFDF(
     answersLabels: answersLabels,
     submissionsRules: await TKReadSubmissionsRulesCollection(infos.fdf),
     urls: await TKReadFDFURLsCollection(infos.fdf),
-    indicators: indicators,
-    spatialDescription: spatialDescription,
+    indicators: infos.indicators,
+    spatialDescription: infos.spatial,
     siteTypes: await TKReadFDFSiteTypesCollection(infos.fdf)
   };
 }

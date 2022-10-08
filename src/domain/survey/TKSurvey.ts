@@ -15,6 +15,7 @@ import { TKCamp } from "@/domain/survey/TKCamp";
 import { TKDateCompare, TKDateFormat } from "@/domain/utils/TKDate";
 import {
   TKFDFIndicatorPeopleCount,
+  TKFDFIndicators,
   TKFDFIndicatorSiteCount,
   TKFDFIndicatorStandard,
   TKFDFIndicatorType,
@@ -42,7 +43,8 @@ export interface TKSurvey {
   fdf: TKFDF;
   camps: TKCamp[];
   options: TKSurveyOptions;
-  indicators: Record<string, [TKIndicator, TKIndicator, TKIndicator]>; // pcode -> string
+  computedIndicators: Record<string, [TKIndicator, TKIndicator, TKIndicator]>; // pcode -> string
+  defaultIndicators: TKFDFIndicators;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -266,13 +268,13 @@ export function TKCreateSurvey(
   // Compute all indicators
   // //////////////////////////////////////////////////////////////////////////
 
-  const indicators: Record<
+  const computedIndicators: Record<
     string,
     [TKIndicator, TKIndicator, TKIndicator]
   > = {};
 
   // Root.
-  indicators[""] = [
+  computedIndicators[""] = [
     computeSurveyIndicator(fdf.indicators.home[0], camps),
     computeSurveyIndicator(fdf.indicators.home[1], camps),
     computeSurveyIndicator(fdf.indicators.home[2], camps)
@@ -282,7 +284,7 @@ export function TKCreateSurvey(
   for (const admin1 of boundariesList.admin1) {
     const pcode = admin1.pcode;
     const campsFiltered = camps.filter(camp => camp.admin1.pcode === pcode);
-    indicators[pcode] = [
+    computedIndicators[pcode] = [
       computeSurveyIndicator(fdf.indicators.home[0], campsFiltered),
       computeSurveyIndicator(fdf.indicators.home[1], campsFiltered),
       computeSurveyIndicator(fdf.indicators.home[2], campsFiltered)
@@ -293,7 +295,7 @@ export function TKCreateSurvey(
   for (const admin2 of boundariesList.admin2) {
     const pcode = admin2.pcode;
     const campsFiltered = camps.filter(camp => camp.admin2.pcode === pcode);
-    indicators[pcode] = [
+    computedIndicators[pcode] = [
       computeSurveyIndicator(fdf.indicators.home[0], campsFiltered),
       computeSurveyIndicator(fdf.indicators.home[1], campsFiltered),
       computeSurveyIndicator(fdf.indicators.home[2], campsFiltered)
@@ -338,7 +340,8 @@ export function TKCreateSurvey(
     name: fdf.name,
     camps: camps,
     boundaries: boundariesList,
-    indicators: indicators,
+    computedIndicators: computedIndicators,
+    defaultIndicators: fdf.indicators,
     fdf: fdf,
     options: options
   };

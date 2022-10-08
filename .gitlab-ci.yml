@@ -7,7 +7,6 @@ stages:
 
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
-  # CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
 
 cache:
   key:
@@ -15,7 +14,6 @@ cache:
       - package.json
   paths:
     - .npm
-    # - cache/Cypress
     - node_modules
   policy: pull
 
@@ -28,19 +26,21 @@ install_dependencies:
         - package.json
     paths:
       - .npm
-      # - cache/Cypress
       - node_modules
     policy: push
   script:
     - npm ci --no-progress --no-audit --legacy-peer-deps
-
   tags:
-  - opsmap
-  only:
-  - pages
+    - opsmap
+  rules:
+    - if: $CI_COMMIT_BRANCH == "pages"
+      when: always
+    - if: $CI_COMMIT_BRANCH != "pages"
+      when: manual
 
 # Job: test
 test:
+  needs: ["install_dependencies"]
   stage: test
   script:
     - npm run test:unit
@@ -49,13 +49,10 @@ test:
   artifacts:
     paths:
       - coverage
-  tags:
-  - opsmap
-  only:
-  - pages
 
 # job: build_and_deploy
 pages:
+  needs: ["test"]
   stage: deploy
   script:
     - npm run build-gitlab
@@ -69,5 +66,3 @@ pages:
       - public
   tags:
     - opsmap
-  only:
-    - pages
