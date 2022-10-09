@@ -1,7 +1,11 @@
 <template lang="html">
   <div class="tk-submission-entry-container">
     <transition mode="out-in" name="fade-in">
-      <div :key="question" class="tk-entry-field-name">
+      <div
+        :key="question"
+        class="tk-entry-field-name"
+        :class="{ 'tk-entry-field-name-arab': language === 'ar' }"
+      >
         {{ question }}
       </div>
     </transition>
@@ -55,6 +59,10 @@ export default class TKSubmissionentryView extends Vue {
   trafficLightColor = {
     backgroundColor: "none"
   };
+
+  get language() {
+    return this.$root.$i18n.locale;
+  }
 
   @Watch("entry", { immediate: true })
   onentryChanged() {
@@ -120,6 +128,10 @@ export default class TKSubmissionentryView extends Vue {
   flex-grow: 2;
   overflow: auto;
   min-width: 30%;
+}
+
+.tk-entry-field-name-arab {
+  text-align: right;
 }
 
 .tk-entry-field-value {

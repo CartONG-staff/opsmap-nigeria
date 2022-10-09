@@ -2,7 +2,11 @@
   <div class="tk-maincomponent">
     <div class="tk-maincomponent-decoration">
       <div class="tk-maincomponent-blur" :style="cssVars"></div>
-      <img class="tk-maincomponent-png" src="@/assets/bg-isoline-custom.png" />
+      <img
+        class="tk-maincomponent-png"
+        src="@/assets/bg-isoline-custom.png"
+        :class="{ 'tk-maincomponent-png-arab': language === 'ar' }"
+      />
     </div>
     <div class="tk-maincomponent-container">
       <div class="tk-main-header">
@@ -78,6 +82,10 @@ import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisua
   }
 })
 export default class TKMainComponent extends Vue {
+  get language() {
+    return this.$root.$i18n.locale;
+  }
+
   get isDatasetInitialized() {
     return TKDatasetModule.isDatasetInitialized;
   }
@@ -130,6 +138,11 @@ export default class TKMainComponent extends Vue {
   min-width: 1732px;
   height: 365px;
   background-size: 100% 365px;
+}
+
+.tk-maincomponent-png-arab {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 .tk-maincomponent-container {
