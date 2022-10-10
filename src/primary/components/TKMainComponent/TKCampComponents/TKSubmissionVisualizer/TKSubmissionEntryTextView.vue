@@ -1,12 +1,20 @@
 <template lang="html">
   <div class="tk-submission-entry-container">
     <transition mode="out-in" name="fade-in">
-      <div :key="question" class="tk-entry-field-name">
+      <div
+        :key="question"
+        class="tk-entry-field-name"
+        :class="{ 'tk-entry-field-name-arab': language === 'ar' }"
+      >
         {{ question }}
       </div>
     </transition>
     <transition mode="out-in" name="fade-in">
-      <div :key="answer" class="tk-entry-field-value">
+      <div
+        :key="answer"
+        class="tk-entry-field-value"
+        :class="{ 'tk-entry-field-value-arab': language === 'ar' }"
+      >
         {{ answer !== "" ? (isNaN(+answer) ? answer : $n(answer)) : answer }}
       </div>
     </transition>
@@ -49,6 +57,10 @@ export default class TKSubmissionentryView extends Vue {
   trafficLightColor = {
     backgroundColor: "none"
   };
+
+  get language() {
+    return this.$root.$i18n.locale;
+  }
 
   @Watch("entry", { immediate: true })
   onentryChanged() {
@@ -112,14 +124,22 @@ export default class TKSubmissionentryView extends Vue {
 .tk-entry-field-name {
   color: var(--v-secondary-base);
   text-align: left;
-  flex-grow: 2;
+  flex-grow: 1;
   overflow: auto;
+}
+
+.tk-entry-field-name-arab {
+  text-align: right;
+  flex-grow: 1;
 }
 
 .tk-entry-field-value {
   color: var(--v-primary-base);
   text-align: right;
-  flex-grow: 2;
+}
+.tk-entry-field-value-arab {
+  margin-left: 16px;
+  text-align: left;
 }
 
 .tk-trafficlight-container {

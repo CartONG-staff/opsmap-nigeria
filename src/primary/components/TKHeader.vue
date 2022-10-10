@@ -89,6 +89,11 @@ export default class TKHeader extends Vue {
   // whenever question changes, this function will run
   onLanguageChanged(val: string) {
     this.$root.$i18n.locale = val;
+    if (val === "ar") {
+      this.$vuetify.rtl = true;
+    } else {
+      this.$vuetify.rtl = false;
+    }
     // This is useless.
   }
 
