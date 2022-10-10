@@ -24,6 +24,11 @@ export async function TKCreateDataset(
         1000} seconds.`
     );
 
+    if (!rawData) {
+      console.log("An issue happend while retrieving rawdata. Skipping.");
+      continue;
+    }
+
     const beforeFDF = Date.now();
 
     // Retrieve config
@@ -36,6 +41,7 @@ export async function TKCreateDataset(
     const beforeSurvey = Date.now();
 
     // Create survey
+    console.log(info);
     surveys.push(TKCreateSurvey(rawData, fdf, languages, info.options));
 
     console.log(
