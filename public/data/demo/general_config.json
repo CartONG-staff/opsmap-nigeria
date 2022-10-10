@@ -2,15 +2,82 @@
     "languages": [
         "en"
     ],
-    "iso3": "BGR",
+    "iso3": "NGA",
     "name": {
-        "en": "Bulgaria"
+        "en": "Nigeriaaa"
+    },
+    "title": {
+        "en": "Site tracker"
     },
     "opsmapDescr": {
-        "en": ""
+        "en": "<p>The site tracker tool aims to provide relevant and adequate current situation on the IDP settlements by assessing information and services at site level to improve humanitarian assistance in IDP sites.Site profiles and displayed data are collected by CCCM Partners in Nigeria through key informant interview for each IDP site with the camp managers/site facilitators. The data is collected and updated on a bi-weekly basis. The tool consists of both open and closed-ended questions that were provided by Sector leads.</p><p>For the full datasets or further questions please contact:<br><span class=\"font-weight-medium\">Robert Odhiambo: +234 903 428 3512 || Ibrahim Mahammat: +234 901 066 0575</span><br><span class=\"font-weight-medium\">Email: <a href=\"mailto:cccmshelternga@humanitarianresponse.info\">cccmshelternga@humanitarianresponse.info</a> | Website: <a href=\"https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi\" target=\"_blank\">https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi</a></span></p>"
     },
     "headerLogos": [],
     "footerLogos": [
+        {
+            "title": {
+                "en": "Cluster Lead"
+            },
+            "logos": [
+                {
+                    "name": "sector_logo",
+                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/sector_logo.png",
+                    "urlRedirection": "https://www.sheltercluster.org/response/nigeria"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Partners"
+            },
+            "logos": [
+                {
+                    "name": "Acted",
+                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/ACTED.jpg",
+                    "urlRedirection": "https://www.acted.org/"
+                },
+                {
+                    "name": "INTERSOS",
+                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/INTERSOS.png",
+                    "urlRedirection": "https://www.intersos.org/"
+                },
+                {
+                    "name": "IOM",
+                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/IOM.jpg",
+                    "urlRedirection": "https://www.iom.int"
+                },
+                {
+                    "name": "LOCDIN",
+                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/LOC-DIN.jpg",
+                    "urlRedirection": "https://loc-din.org.ng"
+                },
+                {
+                    "name": "NRC",
+                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/NRC.png",
+                    "urlRedirection": "https://www.nrc.no"
+                },
+                {
+                    "name": "Salient",
+                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/SALINT_HUMANITARIANORGANIZATON.png",
+                    "urlRedirection": "https://salientho.org"
+                },
+                {
+                    "name": "SHI",
+                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/SMILING_HEARTS_INTERNATIONAL.jpg",
+                    "urlRedirection": "https://www.smilingheartsinitiativeinternational.org"
+                },
+                {
+                    "name": "Translators",
+                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/TRANSLATORS_WITHOUT_BOARDERS.png",
+                    "urlRedirection": "https://translatorswithoutborders.org"
+                },
+                {
+                    "name": "UNHCR",
+                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/UNHCR.jpg",
+                    "urlRedirection": "https://www.unhcr.org"
+                }
+            ]
+        },
         {
             "title": {
                 "en": "Webdev"
@@ -18,44 +85,8 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/demo/DEMO_bulgaria/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
-                }
-            ]
-        },
-        {
-            "title": {
-                "en": "Fieldwork"
-            },
-            "logos": [
-                {
-                    "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_bulgaria/Logo/unhcr_logo.png",
-                    "urlRedirection": "https://www.unhcr.org"
-                }
-            ]
-        },
-        {
-            "title": {
-                "en": "Coordination and IM support"
-            },
-            "logos": [
-                {
-                    "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_bulgaria/Logo/unhcr_logo.png",
-                    "urlRedirection": "https://www.unhcr.org"
-                }
-            ]
-        },
-        {
-            "title": {
-                "en": "Sector Lead"
-            },
-            "logos": [
-                {
-                    "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_bulgaria/Logo/unhcr_logo.png",
-                    "urlRedirection": "https://www.unhcr.org"
                 }
             ]
         }
@@ -63,44 +94,35 @@
     "spatialConfiguration": {
         "mapConfig": {
             "bounds": [
-                22.170410,41.145570,28.674316,44.292401
+                2.460938,
+                3.995781,
+                14.941406,
+                14.221789
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
+            "adm1DBPcode": "dscodeadm1",
+            "adm2DBPcode": "dscodeadm2"
         },
         "localFiles": {
-            "admin0LocalURL": "/data/demo/DEMO_bulgaria/map/admin0.geojson",
-            "admin1LocalURL": "/data/demo/DEMO_bulgaria/map/admin1.geojson"
+            "admin0LocalURL": "/data/demo/DEMO_nigeria/map/admin0.geojson",
+            "admin1LocalURL": "/data/demo/DEMO_nigeria/map/admin1.geojson"
         }
     },
     "surveys": [
         {
-            "type": "gsheet",
+            "type": "kobo",
             "fdf": {
-                "folder": "/data/demo/DEMO_bulgaria/FDF"
+                "folder": "/data/demo/DEMO_nigeria/FDF"
             },
-            "name": "Accommodation",
-            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=0&single=true&output=csv",
-            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=860086775&single=true&output=csv",
+            "name": "Last known FDF",
+            "url": "https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json",
+            "token": "c6d24e0275d1ca5be2231496a3ceeddd5e78bdc4",
             "options": {
-                "dateFormat": "DD/MM/YYYY",
-                "manageByField": "cccm_shelter__mangmt",
+                "dateFormat": "YYYY-MM-DD",
+                "manageByField": "organisation",
+                "manageByAltValue": "cccm",
                 "listSeparator": ";"
-            },
-            "spatial": {
-                "siteIDField": "site_id",
-                "siteNameField": "site_name",
-                "siteTypeField": "General_Site_Type",
-                "siteLastUpdateField": "Date_of_the_Monitoring_Visit",
-                "siteLatitudeField": "latitude",
-                "siteLongitudeField": "longitude",
-                "adm1Pcode": "adm1_pcode",
-                "adm1Name": "Province_of_the_monitored_location",
-                "adm2Pcode": "adm2_pcode",
-                "adm2Name": "Municipality_of_monitored_location",
-                "adm2RefInAdm1": "adm1pcode"
             },
             "indicators": {
                 "home": [
@@ -109,124 +131,64 @@
                     },
                     {
                         "type": "people_count",
-                        "entryCode": "How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site"
+                        "entryCode": "group_pop_change/individualpopulation"
                     },
                     {
                         "type": "standard",
                         "name": {
-                            "en": "Household"
+                            "en": "Families"
                         },
-                        "entryCode": "How_many_household_are_currently_being_accomodated_at_the_site",
-                        "iconOchaName": "Children"
+                        "entryCode": "group_pop_change/familiespopulation",
+                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
                     }
                 ],
                 "site": [
                     {
                         "type": "standard",
                         "name": {
-                            "en": "Individuals"
+                            "en": "Site at Full Capacity"
                         },
-                        "entryCode": "How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site",
+                        "iconOchaName": "Camp-Coordination-and-Camp-Management",
+                        "entryCode": "group_general_info/crowded"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Managed by a Government Agency"
+                        },
+                        "entryCode": "group_general_info/camp_management",
+                        "iconOchaName": "Government-office"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "No. of Individuals"
+                        },
+                        "entryCode": "group_pop_change/individualpopulation",
                         "iconOchaName": "People-in-need"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Household"
-                        },
-                        "entryCode": "How_many_household_are_currently_being_accomodated_at_the_site",
-                        "iconOchaName": "Children"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Food provided"
-                        },
-                        "entryCode": "Is_food_provided_to_the_site",
-                        "iconOchaName": "Food"
                     }
                 ]
-            }
-        },
-        {
-            "type": "gsheet",
-            "fdf": {
-                "folder": "/data/demo/DEMO_bulgaria/FDF2"
-            },
-            "name": "Distribution",
-            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=392014172&single=true&output=csv",
-            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=876995416&single=true&output=csv",
-            "options": {
-                "dateFormat": "DD/MM/YYYY",
-                "manageByField": "cccm_shelter__mangmt",
-                "listSeparator": ";"
             },
             "spatial": {
-                "siteIDField": "site_id",
-                "siteNameField": "site_name",
-                "siteTypeField": "General_Site_Type",
-                "siteLastUpdateField": "Date_of_the_Monitoring_Visit",
-                "siteLatitudeField": "latitude",
-                "siteLongitudeField": "longitude",
-                "adm1Pcode": "adm1_pcode",
-                "adm1Name": "Province_of_the_monitored_location",
-                "adm2Pcode": "adm2_pcode",
-                "adm2Name": "Municipality_of_monitored_location",
-                "adm2RefInAdm1": "adm1pcode"
-            },
-            "indicators": {
-                "home": [
-                    {
-                        "type": "site_count"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Number of volunteers"
-                        },
-                        "entryCode": "Number_of_volunteers_mobilised",
-                        "iconOchaName": "Children"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Number of interprets"
-                        },
-                        "entryCode": "Number_of_interpreters_engaged",
-                        "iconOchaName": "Children"
-                    }
-                ],
-                "site": [
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Individuals"
-                        },
-                        "entryCode": "How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site",
-                        "iconOchaName": "People-in-need"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Household"
-                        },
-                        "entryCode": "How_many_household_are_currently_being_accomodated_at_the_site",
-                        "iconOchaName": "Children"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Food provided"
-                        },
-                        "entryCode": "Is_food_provided_to_the_site",
-                        "iconOchaName": "Food"
-                    }
-                ]
+                "siteIDField": "group_general_info/site",
+                "siteNameField": "group_general_info/site_name",
+                "siteTypeField": "group_general_info/site_type",
+                "siteLastUpdateField": "date",
+                "siteLatitudeField": "group_general_info/latitude",
+                "siteLongitudeField": "group_general_info/longitude",
+                "adm1Pcode": "group_general_info/state",
+                "adm1Name": "group_general_info/state_name",
+                "adm2Pcode": "group_general_info/lga",
+                "adm2Name": "group_general_info/lga_name",
+                "adm2RefInAdm1": "dscodeadm1",
+                "adm3Pcode": "group_general_info/ward",
+                "adm3Name": "group_general_info/ward_name"
             }
         }
     ],
     "options": {
+        "showCCCMLogo": true,
         "pdfColumnCount": 3,
-        "showDemoBanner": true
+        "exportForEsite": false
     }
 }
