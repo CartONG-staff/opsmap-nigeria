@@ -1,83 +1,19 @@
 {
     "languages": [
-        "en"
+        "en",
+        "fr"
     ],
-    "iso3": "NGA",
+    "iso3": "ETH",
     "name": {
-        "en": "Nigeriaaa"
-    },
-    "title": {
-        "en": "Site tracker"
+        "en": "ethiopia",
+        "fr": "ethiopie"
     },
     "opsmapDescr": {
-        "en": "<p>The site tracker tool aims to provide relevant and adequate current situation on the IDP settlements by assessing information and services at site level to improve humanitarian assistance in IDP sites.Site profiles and displayed data are collected by CCCM Partners in Nigeria through key informant interview for each IDP site with the camp managers/site facilitators. The data is collected and updated on a bi-weekly basis. The tool consists of both open and closed-ended questions that were provided by Sector leads.</p><p>For the full datasets or further questions please contact:<br><span class=\"font-weight-medium\">Robert Odhiambo: +234 903 428 3512 || Ibrahim Mahammat: +234 901 066 0575</span><br><span class=\"font-weight-medium\">Email: <a href=\"mailto:cccmshelternga@humanitarianresponse.info\">cccmshelternga@humanitarianresponse.info</a> | Website: <a href=\"https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi\" target=\"_blank\">https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi</a></span></p>"
+        "en": "In 2022, the estimated 4.2 million displaced population will continue to need basic life-saving assistance and protection services across all sectors. These would come in the form of strengthening community engagement, the participation of women in decision making processes in the camps, establishing Complaints, Feedback Response Mechanism (CFRM) and the coordination of services at camp level. The CCCM Cluster targets 923,525 individuals who are living in camps, collective centers, and camp-like settings. Women comprising 25% are prone to negative coping mechanism as well as 7% of the displaced population who are living with disabilities will continue to need assistance from lifesaving sectors whilst living in camps. Displacement camps will continue to require adequate basic lifesaving services across all sectors that are well-coordinated at camp level to mitigate protection risks and vulnerabilities of the displaced population. Covid19 infection remains a grave threat in congested camp life and would need continuing intersectoral interventions.<br/>Out of this CCCM cluster need, UNHCR has planned to provide services for care and maintenance of site infrastructure for IDPs living in 42 sites in Tigray, 14 sites in Afar and 1 site in Amhara for at least 230,000 vulnerable IDP children of under 18  (120,000 girls, 110,000 boys) and assisting more than 230,000 adult IDP population (103,000 Adult Men, 107,000 Adult Women(18-59 years), 11,000 Elderly Men and 10,000 Elderly Women (60 and above)  which include 32,000 people with disabilities to ensure protection and assistance while striving for timely and durable solutions.",
+        "fr": "En 2022, la population déplacée, estimée à 4,2 millions de personnes, continuera à avoir besoin d'une assistance vitale de base et de services de protection dans tous les secteurs. Il s'agira de renforcer l'engagement communautaire, la participation des femmes aux processus décisionnels dans les camps, d'établir un mécanisme de réponse aux plaintes et aux commentaires (CFRM) et de coordonner les services au niveau des sites. Le Cluster CCCM cible 923 525 personnes vivant dans des camps, des centres collectifs et des environnements similaires à des camps. Les femmes, dont 25 % sont sujettes à des mécanismes d'adaptation négatifs, ainsi que 7 % de la population déplacée vivant avec un handicap, continueront à avoir besoin de l'aide dans les secteurs vitaux tout en vivant dans des camps. Les camps de déplacés continueront à avoir besoin de services de base adéquats dans tous les secteurs, bien coordonnés au niveau du camp, afin d'atténuer les risques de protection et les vulnérabilités de la population déplacée. L'infection par le virus Covid19 reste une menace grave dans les camps surpeuplés et nécessite des interventions intersectorielles continues.<br/>A partir de ce besoin du cluster CCCM, l'UNHCR a prévu de fournir des services pour l'entretien et la maintenance des infrastructures des sites pour les déplacés internes vivant dans 42 sites à Tigray, 14 sites à Afar et 1 site à Amhara pour au moins 230 000 enfants vulnérables de moins de 18 ans (120 000 filles, 110 000 garçons) et aider plus de 230 000 personnes déplacées adultes (103 000 hommes adultes, 107 000 femmes adultes (18-59 ans), 11 000 hommes âgés et 10 000 femmes âgées (60 ans et plus), dont 32 000 personnes handicapées, afin de leur assurer protection et assistance tout en recherchant des solutions rapides et durables. "
     },
     "headerLogos": [],
     "footerLogos": [
-        {
-            "title": {
-                "en": "Cluster Lead"
-            },
-            "logos": [
-                {
-                    "name": "sector_logo",
-                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/sector_logo.png",
-                    "urlRedirection": "https://www.sheltercluster.org/response/nigeria"
-                }
-            ]
-        },
-        {
-            "title": {
-                "en": "Partners"
-            },
-            "logos": [
-                {
-                    "name": "Acted",
-                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/ACTED.jpg",
-                    "urlRedirection": "https://www.acted.org/"
-                },
-                {
-                    "name": "INTERSOS",
-                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/INTERSOS.png",
-                    "urlRedirection": "https://www.intersos.org/"
-                },
-                {
-                    "name": "IOM",
-                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/IOM.jpg",
-                    "urlRedirection": "https://www.iom.int"
-                },
-                {
-                    "name": "LOCDIN",
-                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/LOC-DIN.jpg",
-                    "urlRedirection": "https://loc-din.org.ng"
-                },
-                {
-                    "name": "NRC",
-                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/NRC.png",
-                    "urlRedirection": "https://www.nrc.no"
-                },
-                {
-                    "name": "Salient",
-                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/SALINT_HUMANITARIANORGANIZATON.png",
-                    "urlRedirection": "https://salientho.org"
-                },
-                {
-                    "name": "SHI",
-                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/SMILING_HEARTS_INTERNATIONAL.jpg",
-                    "urlRedirection": "https://www.smilingheartsinitiativeinternational.org"
-                },
-                {
-                    "name": "Translators",
-                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/TRANSLATORS_WITHOUT_BOARDERS.png",
-                    "urlRedirection": "https://translatorswithoutborders.org"
-                },
-                {
-                    "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/UNHCR.jpg",
-                    "urlRedirection": "https://www.unhcr.org"
-                }
-            ]
-        },
         {
             "title": {
                 "en": "Webdev"
@@ -85,8 +21,57 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/demo/DEMO_nigeria/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Fieldwork",
+                "fr": "Travail de terrain"
+            },
+            "logos": [
+                {
+                    "name": "Development Expertise Center",
+                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/DEC.png",
+                    "urlRedirection": "https://decethiopia.org/"
+                },
+                {
+                    "name": "Organization for Social Services, Health and Development",
+                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/OSSHD.png",
+                    "urlRedirection": "http://osshd-ethiopia.org/"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Coordination and IM support",
+                "fr": "Coordination et support IM"
+            },
+            "logos": [
+                {
+                    "name": "Action for the Needy in Ethiopia",
+                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/ANE.png",
+                    "urlRedirection": "http://www.ane-ethiopia.org "
+                },
+                {
+                    "name": "IOM UN Migration",
+                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/IOM.png",
+                    "urlRedirection": "https://ethiopia.iom.int/"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Cluster Lead",
+                "fr": "Direction du cluster"
+            },
+            "logos": [
+                {
+                    "name": "UNHCR",
+                    "urlLogo": "/data/demo/DEMO_ethiopia/Logo/CCCM_Cluster_Ethiopia.png",
+                    "urlRedirection": "https://www.unhcr.org/ethiopia"
                 }
             ]
         }
@@ -94,34 +79,33 @@
     "spatialConfiguration": {
         "mapConfig": {
             "bounds": [
-                2.460938,
-                3.995781,
-                14.941406,
-                14.221789
+                52.05,
+                15.1,
+                27.26,
+                3.25
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "dscodeadm1",
-            "adm2DBPcode": "dscodeadm2"
+            "adm1DBPcode": "pcode",
+            "adm2DBPcode": "pcode"
         },
         "localFiles": {
-            "admin0LocalURL": "/data/demo/DEMO_nigeria/map/admin0.geojson",
-            "admin1LocalURL": "/data/demo/DEMO_nigeria/map/admin1.geojson"
+            "admin0LocalURL": "/data/demo/DEMO_ethiopia/map/admin0.geojson",
+            "admin1LocalURL": ""
         }
     },
     "surveys": [
         {
-            "type": "kobo",
+            "type": "gsheet",
             "fdf": {
-                "folder": "/data/demo/DEMO_nigeria/FDF"
+                "folder": "/data/demo/DEMO_ethiopia/FDF"
             },
-            "name": "Last known FDF",
-            "url": "https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json",
-            "token": "c6d24e0275d1ca5be2231496a3ceeddd5e78bdc4",
+            "name": "Survey 2022",
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWB--WUoL4kvoVyWJA0pSvrutK2eKTRbKFUkDRJcY5drw52BtBKphuqb8P1_iD23hiBNZIoBSw70Vy/pub?gid=139925868&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWB--WUoL4kvoVyWJA0pSvrutK2eKTRbKFUkDRJcY5drw52BtBKphuqb8P1_iD23hiBNZIoBSw70Vy/pub?gid=471306203&single=true&output=csv",
             "options": {
-                "dateFormat": "YYYY-MM-DD",
-                "manageByField": "organisation",
-                "manageByAltValue": "cccm",
+                "dateFormat": "DD/MM/YY",
+                "manageByField": "CCCM_AGENCY",
                 "listSeparator": ";"
             },
             "indicators": {
@@ -131,58 +115,62 @@
                     },
                     {
                         "type": "people_count",
-                        "entryCode": "group_pop_change/individualpopulation"
+                        "entryCode": "CCCM-TOTAL_IND"
                     },
                     {
                         "type": "standard",
                         "name": {
-                            "en": "Families"
+                            "en": "Household",
+                            "fr": "Familles"
                         },
-                        "entryCode": "group_pop_change/familiespopulation",
-                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
+                        "entryCode": "CCCM-TOTAL_HH",
+                        "iconOchaName": "Children"
                     }
                 ],
                 "site": [
                     {
                         "type": "standard",
                         "name": {
-                            "en": "Site at Full Capacity"
+                            "en": "Number of individuals",
+                            "fr": "Nombre d'invidus"
                         },
-                        "iconOchaName": "Camp-Coordination-and-Camp-Management",
-                        "entryCode": "group_general_info/crowded"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Managed by a Government Agency"
-                        },
-                        "entryCode": "group_general_info/camp_management",
-                        "iconOchaName": "Government-office"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "No. of Individuals"
-                        },
-                        "entryCode": "group_pop_change/individualpopulation",
+                        "entryCode": "CCCM-TOTAL_IND",
                         "iconOchaName": "People-in-need"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Household",
+                            "fr": "Familles"
+                        },
+                        "entryCode": "CCCM-TOTAL_HH",
+                        "iconOchaName": "Children"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Status",
+                            "fr": "Statut"
+                        },
+                        "entryCode": "Status",
+                        "iconOchaName": "Selected"
                     }
                 ]
             },
             "spatial": {
-                "siteIDField": "group_general_info/site",
-                "siteNameField": "group_general_info/site_name",
-                "siteTypeField": "group_general_info/site_type",
-                "siteLastUpdateField": "date",
-                "siteLatitudeField": "group_general_info/latitude",
-                "siteLongitudeField": "group_general_info/longitude",
-                "adm1Pcode": "group_general_info/state",
-                "adm1Name": "group_general_info/state_name",
-                "adm2Pcode": "group_general_info/lga",
-                "adm2Name": "group_general_info/lga_name",
-                "adm2RefInAdm1": "dscodeadm1",
-                "adm3Pcode": "group_general_info/ward",
-                "adm3Name": "group_general_info/ward_name"
+                "siteIDField": "CCCM-SITE-ID",
+                "siteNameField": "SITE_NAME",
+                "siteTypeField": "Site_Type",
+                "siteLastUpdateField": "last_update",
+                "siteLatitudeField": "GPS_LATITUDE",
+                "siteLongitudeField": "GPS_LONGITUDE",
+                "adm1Pcode": "ADM1_PCODE",
+                "adm1Name": "ADM1_EN",
+                "adm2Pcode": "ADM2_PCODE",
+                "adm2Name": "ADM2_EN",
+                "adm2RefInAdm1": "adm1pcode",
+                "adm3Pcode": "ADM3_PCODE",
+                "adm3Name": "ADM3_EN"
             }
         }
     ],
