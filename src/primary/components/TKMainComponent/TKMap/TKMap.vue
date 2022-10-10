@@ -193,7 +193,9 @@ export default class TKMap extends Vue {
       this.map = new mapboxgl.Map({
         container: "tk-map",
         style: this.basemaps.basemapsList[0].style,
-        accessToken: TKConfigurationModule.configuration.spatialConfiguration.mapConfig.token,
+        accessToken:
+          TKConfigurationModule.configuration.spatialConfiguration.mapConfig
+            .token,
         bounds: this.bound
       });
 
@@ -421,8 +423,12 @@ export default class TKMap extends Vue {
     if (this.map) {
       if (this.bound) {
         this.map.fitBounds(this.bound, {
-          padding: TKConfigurationModule.configuration.spatialConfiguration.mapConfig.padding,
-          speed: TKConfigurationModule.configuration.spatialConfiguration.mapConfig.zoomspeed
+          padding:
+            TKConfigurationModule.configuration.spatialConfiguration.mapConfig
+              .padding,
+          speed:
+            TKConfigurationModule.configuration.spatialConfiguration.mapConfig
+              .zoomspeed
         });
       }
     }

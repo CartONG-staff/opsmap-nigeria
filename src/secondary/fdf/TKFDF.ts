@@ -20,9 +20,7 @@ import { TKReadFDFSiteTypesCollection } from "./TKFDFSiteTypes";
 // ////////////////////////////////////////////////////////////////////////////
 // Method that creates the FDF object from the fdf folder
 // ////////////////////////////////////////////////////////////////////////////
-export async function TKReadFDF(
-  infos: TKSurveyInfos
-): Promise<TKFDF> {
+export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
   let answersLabels = {};
   if (infos.type === "gsheet") {
     answersLabels = await TKReadFDFLabelCollectionFromGSheet(

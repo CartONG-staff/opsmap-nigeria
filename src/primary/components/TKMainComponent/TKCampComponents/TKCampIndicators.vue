@@ -61,9 +61,15 @@ export default class TKCampIndicators extends Vue {
             this.dataset.currentAdmin1.pcode
           ][2];
         } else {
-          this.indicator1 = this.dataset.currentSurvey.computedIndicators[""][0];
-          this.indicator2 = this.dataset.currentSurvey.computedIndicators[""][1];
-          this.indicator3 = this.dataset.currentSurvey.computedIndicators[""][2];
+          this.indicator1 = this.dataset.currentSurvey.computedIndicators[
+            ""
+          ][0];
+          this.indicator2 = this.dataset.currentSurvey.computedIndicators[
+            ""
+          ][1];
+          this.indicator3 = this.dataset.currentSurvey.computedIndicators[
+            ""
+          ][2];
         }
       }
     }

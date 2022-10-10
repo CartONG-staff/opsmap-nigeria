@@ -59,7 +59,7 @@ export default class TKApp extends Vue {
             )
           );
         }
-        console.log(TKDatasetModule)
+        console.log(TKDatasetModule);
         TKGetGeoBoundaries(
           TKDatasetModule.dataset,
           TKDatasetModule.dataset.currentSurvey.fdf.spatialDescription
