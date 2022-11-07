@@ -1,57 +1,53 @@
 import { ArcgisServerDataGetter } from "@/secondary/arcgis/TKArcgisServerDataGetter";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKDataset } from "@/domain/survey/TKDataset";
-import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
+import { TKOpsmapSpatialConfiguration } from "../opsmapConfig/TKOpsmapConfiguration";
 
-function computeAdmin1Query(admin1List: string[], adm1Ref: string): string {
-  return admin1List.map(adm1 => `${adm1Ref} = '${adm1}'`).join(" OR ");
-}
+const ADM1_DB_URL = "core_v2/wrl_polbnd_adm1_a_unhcr/FeatureServer/0";
+const ADM2_DB_URL = "core_v2/wrl_polbnd_adm2_a_unhcr/FeatureServer/0";
 
-function computeAdmin2Query(
-  admin1List: string[],
-  adm2RefInAdm1: string
-): string {
-  let admin2WhereClause = "";
-  admin1List.map(x => (admin2WhereClause += `${adm2RefInAdm1} = '${x}' OR `));
-  admin2WhereClause = admin2WhereClause.substring(
-    0,
-    admin2WhereClause.length - 3
-  );
-  return admin2WhereClause;
+async function queryAdmins(
+  dbUrl: string,
+  adminList: string[],
+  primaryKey: string
+) {
+  const adminQuery = adminList
+    .map(adm => `${primaryKey} = '${adm}'`)
+    .join(" OR ");
+
+  return await new ArcgisServerDataGetter(
+    encodeURI(dbUrl),
+    encodeURI(adminQuery),
+    true,
+    "geojson"
+  ).getData();
 }
 
 export async function TKGetGeoBoundaries(
   dataset: TKDataset,
-  spatialDescription: TKFDFSpatialDescription
+  spatialConfiguration: TKOpsmapSpatialConfiguration
 ): Promise<TKGeoDataset> {
   const before = Date.now();
 
-  // Get full admin1 List
-  let admin1List: string[] = [];
-  for (const survey of dataset.surveys) {
-    survey.boundaries.admin1.map(x => admin1List.push(x.pcode));
-  }
-  admin1List = [...new Set(admin1List)];
-
-  const admin1Query = computeAdmin1Query(admin1List, "pcode");
-  const admin1GeoData = await new ArcgisServerDataGetter(
-    encodeURI("core/wrl_adm1_polbnd_a_unhcr/FeatureServer/0"),
-    encodeURI(admin1Query),
-    true,
-    "geojson"
-  ).getData();
-
-  // Get Admin2 from unhcr server
-  const admin2Query = computeAdmin2Query(
-    [...new Set(admin1List)],
-    spatialDescription.adm2RefInAdm1
+  // Admin1
+  const admin1List = dataset.surveys.flatMap(survey =>
+    survey.boundaries.admin1.map(x => x.pcode)
   );
-  const admin2GeoData = await new ArcgisServerDataGetter(
-    encodeURI("core/wrl_adm2_polbnd_a_unhcr/FeatureServer/0"),
-    encodeURI(admin2Query),
-    true,
-    "geojson"
-  ).getData();
+  const admin1GeoData = await queryAdmins(
+    ADM1_DB_URL,
+    admin1List,
+    spatialConfiguration.dbConfig.adm1DBPcode
+  );
+
+  // Admin2
+  const admin2List = dataset.surveys.flatMap(survey =>
+    survey.boundaries.admin2.map(x => x.pcode)
+  );
+  const admin2GeoData = await queryAdmins(
+    ADM2_DB_URL,
+    admin2List,
+    spatialConfiguration.dbConfig.adm2DBPcode
+  );
 
   console.log(
     `GeoBoundaries retrieved in ${(Date.now() - before) / 1000} seconds.`
