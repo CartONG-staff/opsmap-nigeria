@@ -28,6 +28,7 @@ import {
   TKSubmissionEntryType
 } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 const LEFT = 0;
 const MIDDLE = 1;
@@ -117,35 +118,47 @@ export default class TKSubmissionVisualizer extends Vue {
     if (this.dataset) {
       // Adjust to Submission content
       if (this.dataset.currentSubmission) {
-        for (const them in this.dataset.currentSubmission.thematics) {
-          let index = LEFT;
-          if (
-            scores[MIDDLE] < scores[LEFT] &&
-            scores[MIDDLE] <= scores[RIGHT]
-          ) {
-            index = MIDDLE;
-          } else if (
-            scores[RIGHT] < scores[MIDDLE] &&
-            scores[RIGHT] < scores[LEFT]
-          ) {
-            index = RIGHT;
+        // Follow FDF order, line by line
+        if (
+          TKConfigurationModule.configuration.options.keepThematicOrderFromFDF
+        ) {
+          let index = 0;
+          for (const thematic in this.dataset.currentSubmission.thematics) {
+            this.columns[index];
+            this.columns[index].push(
+              this.dataset.currentSubmission.thematics[thematic]
+            );
+            index++;
+            if (index > 2) {
+              index = 0;
+            }
           }
-          this.columns[index].push(
-            this.dataset.currentSubmission.thematics[them]
-          );
+          // Optimize a bit the display
+        } else {
+          for (const thematic in this.dataset.currentSubmission.thematics) {
+            let index = LEFT;
+            if (
+              scores[MIDDLE] < scores[LEFT] &&
+              scores[MIDDLE] <= scores[RIGHT]
+            ) {
+              index = MIDDLE;
+            } else if (
+              scores[RIGHT] < scores[MIDDLE] &&
+              scores[RIGHT] < scores[LEFT]
+            ) {
+              index = RIGHT;
+            }
+            this.columns[index].push(
+              this.dataset.currentSubmission.thematics[thematic]
+            );
 
-          // Increment item count.
-          scores[index] += computeScore(
-            this.dataset.currentSubmission.thematics[them]
-          );
-          console.log(
-            `${
-              this.dataset.currentSubmission.thematics[them].formattedName
-            } --> ${computeScore(
-              this.dataset.currentSubmission.thematics[them]
-            )}`
-          );
+            // Increment item count.
+            scores[index] += computeScore(
+              this.dataset.currentSubmission.thematics[thematic]
+            );
+          }
         }
+
         // Follow descriptiopn order
       } else if (this.thematics) {
         let index = 0;
