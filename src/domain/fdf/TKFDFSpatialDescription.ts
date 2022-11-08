@@ -14,7 +14,6 @@ export interface TKFDFSpatialDescription {
   adm1Name: string;
   adm2Pcode: string; //pcode field in dataset
   adm2Name: string;
-  adm2RefInAdm1: string;
   adm3Pcode: string;
   adm3Name: string;
 }

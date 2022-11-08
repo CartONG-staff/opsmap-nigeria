@@ -36,7 +36,6 @@ export interface TKOpsmapSpatialConfiguration {
   };
   localFiles: {
     admin0LocalURL: string;
-    admin1LocalURL: string;
   };
 }
 
