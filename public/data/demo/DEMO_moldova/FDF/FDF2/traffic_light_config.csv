@@ -1,0 +1,8 @@
+traffic_light_name;type;value;color
+yesno;string;yes;green
+yesno;string;no;red
+noyes;string;yes;red
+noyes;string;no;green
+y_n_ns;string;yes;green
+y_n_ns;string;no;red
+y_n_ns;string;not sure;yellow

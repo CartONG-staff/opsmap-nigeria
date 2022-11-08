@@ -1,0 +1,37 @@
+field_name;field_label_en;field_label_ro
+country;Country;Țară
+raion;Raion;Raionul
+centre_address_correct;Please enter the correct address for this centre;Vă rugăm să introduceți adresa corectă pentru acest centru
+shelter_max_capacity;Maximum capacity;Capacitate maximă
+center_ind;How many people are currently being hosted at the centre?;Cîte persoane sunt găzduite în prezent la Centru?
+site_at_full_capacity;Is the centre at its full capacity?;Centrul este la capacitate maximă?
+child_0_2_number;How many are children 0 - 2 years old?;Cîți copii sunt cu vîrsta cuprinsă între 0-2 ani
+child_2_6_number;How many children are 2-6 (kindergarten age)?;Câți copii au între 2-6 ani (vârsta grădiniței)?
+child_7_11_number;How many children are 7 to 11 (primary school age)?;Câți copii au între 7 și 11 ani (vârsta școlară)?
+child_12_18_number;How many children are 12 to 18 (high school age)?;Câți copii au între 12 și 18 ani (vârsta de liceu)?
+How_many_are_children_2_18_years_old;How many are children 2 - 18 years old?;Câți copii cu vîrsta cuprinsă între 2 - 18 ani?
+demo_elderly;How many are elderly (65+) ?;Cîte persoane sunt în vîrsta(65+)?
+pregnant_breastfeeding;How many pregnant and breastfeeding women?;Femei însărcinate și care alăptează
+How_many_unaccompani_d_children_are_there;How many unaccompanied children are there?;Cîți copii neînsoțiți aveți?
+pwd;How many people with disabilities?;Persoane cu dizabilități
+medical_conditions;How many people with serious medical conditions?;Condiții medicale grave
+special_protection_needs;How many people with specific needs for legal and physical protection?;Persoane cu nevoi specifice de protecție juridică și fizică
+disability_mobility_number;How many have difficulty with mobility?;Câte persoane au dificultăți de mobilitate?
+disability_seeing_number;How many people have difficulty with seeing, even if wearing glasses?;Câte persoane au dificultăți de vedere, chiar dacă poartă ochelari?
+disability_hearing_number;How many people have difficulty hearing, even if using a hearing aid?;Câte persoane au dificultăți de auz, chiar dacă folosesc un aparat auditiv?
+disability_learning_number;How many people have learning difficulties, such as understanding or being understood?;Câte persoane au dificultăți de învățare, cum ar fi să înțeleagă sau să fie înțelese?
+Do_children_hosted_i_o_education_services;Do children hosted in the centre have access to education services?;Copiii găzduiți în centru au acces la servicii educaționale?
+center_need_food;Does this center need food products?;Acest centru are nevoie de produse alimentare?
+center_need_cooking;Does this center need cooking and eating utensils?;Acest centru are nevoie de ustensile de gătit și de mîncat?
+center_need_sleeping;Does this center need sleeping items?;Acest Centru are nevoie de articole de dormit?
+center_need_hygiene;Does this center need hygiene (personal care) items?;Acest Centru are nevoie de articole pentru igienă?
+center_need_cleaning;Does this center need cleaning items?;Acest Centru are nevoie de articole de curățare?
+center_need_baby_children;Does this center need baby and children products?;Acest Centru are nevoie de produse pentru sugari si copii mici (intre 0 la 3 ani)?
+center_need_clothes;Does this center need clothes for children and adults?;Are nevoie acest Centru de articole vestimentare pentru copii și adulți?
+center_need_firstaid;Does this center need first aid supplies?;Acest Centru are nevoie de articole de prim ajutor?
+center_need_appliances;Does this center need other appliances (Microwave, cooler, fridge, oven, speace heaters, boilers, washing machine, vacuum cleaner)?;Acest Centru are nevoie de electrocasnice (Microunde, frigider, cuptor,  încălzitoare, boilere, mașină de spălat, aspirator)
+center_need_education;Does this center need school supplies?;Acest centru are nevoie de rechizite școlare?
+meals_offered;Are people hosted in the centre offered catered hot meals?;Au perosanele gazduitei acces la catering (mese calde)?
+meals_offered_number;How many meals per day are offered to hosted people?;Câte mese pe zi sunt oferite persoanelor găzduite?
+meals_quality;How satisfied are you with the quality of the catering services provided?;Cât de mulțumit sunteți de calitatea serviciilor de catering oferite?
+catering;Does the center need more catering for hot meals?;Centrul are nevoie de mai mult catering pentru mese calde?
