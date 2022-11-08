@@ -31,8 +31,8 @@ export interface TKSurveyInfosCSV {
   readonly type: TKSurveyInfosType.CSV;
   readonly name: string;
   readonly fdf: TKFDFInfos;
-  readonly submissionsFolder: string;
-  readonly submissionsFile: string;
+  readonly submissionsLocalUrl: string;
+  readonly submissionsTrLocalUrl: string;
   readonly options: TKSurveyOptions;
   readonly spatial: TKFDFSpatialDescription;
   readonly indicators: TKFDFIndicators;

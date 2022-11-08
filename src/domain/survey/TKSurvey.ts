@@ -169,12 +169,15 @@ export function TKCreateSurvey(
     admin2: []
   };
 
-  submissions.map(submission => {
-    submission[fdf.spatialDescription.siteLastUpdateField] = TKDateFormat(
-      submission[fdf.spatialDescription.siteLastUpdateField],
-      options.dateFormat
-    );
-  });
+  // Apply formatting to date item
+  if (options.dateFormat) {
+    submissions.map(submission => {
+      submission[fdf.spatialDescription.siteLastUpdateField] = TKDateFormat(
+        submission[fdf.spatialDescription.siteLastUpdateField],
+        options.dateFormat
+      );
+    });
+  }
 
   for (const submission of submissions) {
     const computedSubmission = TKCreateSubmission(
@@ -211,10 +214,6 @@ export function TKCreateSurvey(
         admin2: {
           pcode: submission[fdf.spatialDescription.adm2Pcode],
           name: submission[fdf.spatialDescription.adm2Name]
-        },
-        admin3: {
-          pcode: submission[fdf.spatialDescription.adm3Pcode],
-          name: submission[fdf.spatialDescription.adm3Name]
         },
         managedBy: {
           en: submission[options.manageByField]

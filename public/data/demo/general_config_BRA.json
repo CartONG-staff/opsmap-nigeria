@@ -5,15 +5,15 @@
     ],
     "iso3": "BRA",
     "name": {
-        "en": "demo-brazil",
-        "pt": "demo-brasil"
+        "en": "Brazil",
+        "pt": "Brasil"
     },
     "title": {
         "en": "Profile of the shelters in Roraima"
     },
     "opsmapDescr": {
-        "en": "More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>Currently, Roraima has 13 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than nine thousand refugees, asylum seekers, and migrants. Of these, 12 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>All 14 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces.",
-        "pt": "Mais de 260 mil refugiados e migrantes deslocaram-se ao Brasil em busca de proteção em decorrência da crise política, social e econômica que assola a Venezuela.<br/>Considerando-se as necessidades urgentes de assistência humanitária, como alimentação, abrigamento, saúde e proteção, especialmente para pessoas com vulnerabilidades (crianças, mulheres grávidas, idosos, pessoas com deficiência, etc.), o Governo Federal Brasileiro editou a Lei no. 13.684/2018, prevendo a execução de medidas de assistência emergencial para acolhimento da pessoas afetadas.<br/>Atualmente, Roraima conta com 13 espaços de acolhimento, entre abrigos (entre abrigos indígenas e não-indígenas), com potencial de atender mais de nove mil refugiados, solicitantes de refúgio e migrantes. Desses abrigos, 12 estão na cidade de Boa Vista, 2 cidade de Pacaraima.<br/>Todos os 14 espaços são coordenados pelo ACNUR, por conta do convênio firmado com o Ministério da Cidadania, em parceria com as Forças Armadas."
+        "en": "More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>Currently, Roraima has 9 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than nine thousand refugees, asylum seekers, and migrants. Of these, 7 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>All 9 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces.",
+        "pt": "Mais de 260 mil refugiados e migrantes deslocaram-se ao Brasil em busca de proteção em decorrência da crise política, social e econômica que assola a Venezuela.<br/>Considerando-se as necessidades urgentes de assistência humanitária, como alimentação, abrigamento, saúde e proteção, especialmente para pessoas com vulnerabilidades (crianças, mulheres grávidas, idosos, pessoas com deficiência, etc.), o Governo Federal Brasileiro editou a Lei no. 13.684/2018, prevendo a execução de medidas de assistência emergencial para acolhimento da pessoas afetadas.<br/>Atualmente, Roraima conta com 9 espaços de acolhimento, entre abrigos (entre abrigos indígenas e não-indígenas), com potencial de atender mais de nove mil refugiados, solicitantes de refúgio e migrantes. Desses abrigos, 7 estão na cidade de Boa Vista, 2 cidade de Pacaraima.<br/>Todos os 9 espaços são coordenados pelo ACNUR, por conta do convênio firmado com o Ministério da Cidadania, em parceria com as Forças Armadas."
     },
     "iframe": {
         "url": "https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9",
@@ -31,11 +31,6 @@
             "urlRedirection": "http://www.avsibrasil.org.br/"
         },
         {
-            "name": "FFHI",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/Fraternidade.png",
-            "urlRedirection": "https://www.fraterinternacional.org/"
-        },
-        {
             "name": "FSF",
             "urlLogo": "/data/demo/DEMO_brazil/Logo/FSF.png",
             "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
@@ -49,6 +44,11 @@
             "name": "Ministério da Cidadania",
             "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
             "urlRedirection": "https://www.gov.br/cidadania/pt-br"
+        },
+        {
+            "name": "R4V",
+            "urlLogo": "/data/demo/DEMO_brazil/Logo/R4V.png",
+            "urlRedirection": "https://www.r4v.info/"
         }
     ],
     "footerLogos": [
@@ -80,11 +80,6 @@
                     "name": "AVSI",
                     "urlLogo": "/data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
                     "urlRedirection": "http://www.avsibrasil.org.br/"
-                },
-                {
-                    "name": "FFHI",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/Fraternidade.png",
-                    "urlRedirection": "https://www.fraterinternacional.org/"
                 }
             ]
         },
@@ -103,8 +98,8 @@
         },
         {
             "title": {
-                "en": "Cluster Lead",
-                "pt": "Líder do grupo"
+                "en": "Sector Lead",
+                "pt": "Líder do seto"
             },
             "logos": [
                 {
@@ -134,8 +129,7 @@
             "adm2DBPcode": "pcode"
         },
         "localFiles": {
-            "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson",
-            "admin1LocalURL": "/data/demo/DEMO_brazil/map/admin1.geojson"
+            "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson"
         }
     },
     "surveys": [
@@ -152,21 +146,6 @@
                 "manageByField": "cccm_shelter__mangmt",
                 "listSeparator": ";"
             },
-            "spatial": {
-                "siteIDField": "mp_site_id",
-                "siteNameField": "mp_site_name",
-                "siteTypeField": "mp_shelter_type",
-                "siteLastUpdateField": "mp_last_date",
-                "siteLatitudeField": "mp_latitude",
-                "siteLongitudeField": "mp_longitude",
-                "adm1Pcode": "adm1pcode",
-                "adm1Name": "ggi_state",
-                "adm2Pcode": "adm2pcode",
-                "adm2Name": "ggi_city",
-                "adm2RefInAdm1": "adm1pcode",
-                "adm3Pcode": "adm3pcode",
-                "adm3Name": "ggi_address"
-            },
             "indicators": {
                 "home": [
                     {
@@ -217,20 +196,6 @@
                         "iconOchaName": "People-in-need"
                     }
                 ]
-            }
-        },
-        {
-            "type": "gsheet",
-            "fdf": {
-                "folder": "/data/demo/DEMO_brazil/FDF"
-            },
-            "name": "RealGSheet",
-            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=0&single=true&output=csv",
-            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=1157434408&single=true&output=csv",
-            "options": {
-                "dateFormat": "DD/MM/YYYY",
-                "manageByField": "cccm_shelter__mangmt",
-                "listSeparator": ";"
             },
             "spatial": {
                 "siteIDField": "mp_site_id",
@@ -242,67 +207,12 @@
                 "adm1Pcode": "adm1pcode",
                 "adm1Name": "ggi_state",
                 "adm2Pcode": "adm2pcode",
-                "adm2Name": "ggi_city",
-                "adm2RefInAdm1": "adm1pcode",
-                "adm3Pcode": "adm3pcode",
-                "adm3Name": "ggi_address"
-            },
-            "indicators": {
-                "home": [
-                    {
-                        "type": "site_count"
-                    },
-                    {
-                        "type": "people_count",
-                        "entryCode": "demo_num_indv"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Shelter Max Capacity",
-                            "pt": "Capacidade Máxima dos Abrigos"
-                        },
-                        "entryCode": "cccm_shelter_max_capacity",
-                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
-                    }
-                ],
-                "site": [
-                    {
-                        "type": "site_occupation",
-                        "name": {
-                            "en": "Site at Full Capacity",
-                            "pt": "Abrigo em plena capacidade"
-                        },
-                        "iconOchaName": "Camp-Coordination-and-Camp-Management",
-                        "entryCodeMaxCapacity": "cccm_site_at_full_capacity",
-                        "entryCodePeopleCount": "demo_num_indv",
-                        "entryCodeMaxPeopleCount": "cccm_shelter_max_capacity"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Shelter Type",
-                            "pt": "Tipo de Abrigo"
-                        },
-                        "entryCode": "cccm_shelter_type",
-                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "No. of Individuals",
-                            "pt": "Nº de Indivíduos"
-                        },
-                        "entryCode": "demo_num_indv",
-                        "iconOchaName": "People-in-need"
-                    }
-                ]
+                "adm2Name": "ggi_city"
             }
         }
     ],
     "options": {
         "showCCCMLogo": false,
-        "pdfColumnCount": 3,
-        "exportForEsite": false
+        "pdfColumnCount": 3
     }
 }

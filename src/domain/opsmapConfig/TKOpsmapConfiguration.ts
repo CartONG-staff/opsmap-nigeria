@@ -14,6 +14,7 @@ interface TKAppOptions {
   readonly exportForEsite: boolean;
   readonly showDemoBanner: boolean;
   readonly exportAsCSVonHomePage: boolean;
+  readonly keepThematicOrderFromFDF: boolean;
 }
 interface TKIFrameDescription {
   readonly url: string;
@@ -162,7 +163,8 @@ export async function TKReadGeneralConfiguration(
     pdfColumnCount: 3,
     exportForEsite: false,
     showDemoBanner: false,
-    exportAsCSVonHomePage: false
+    exportAsCSVonHomePage: false,
+    keepThematicOrderFromFDF: false
   };
 
   // Init with defaultOptions, then replace existing key with options.

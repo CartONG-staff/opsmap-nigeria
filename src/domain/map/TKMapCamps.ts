@@ -32,8 +32,7 @@ export class TKMapCamps {
             lat: camp.lat,
             lng: camp.lng,
             admin1: camp.admin1,
-            admin2: camp.admin2,
-            admin3: camp.admin3
+            admin2: camp.admin2
           }
         };
       })

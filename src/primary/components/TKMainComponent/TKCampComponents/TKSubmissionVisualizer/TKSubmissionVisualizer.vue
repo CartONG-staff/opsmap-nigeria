@@ -20,6 +20,74 @@ import TKSubmissionThematicView from "./TKSubmissionThematicView.vue";
 import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import {
+  TKSubmissionEntryAgePyramid,
+  TKSubmissionEntryDoughnut,
+  TKSubmissionEntryPolar,
+  TKSubmissionEntryText,
+  TKSubmissionEntryType
+} from "@/domain/survey/TKSubmissionEntry";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+
+const LEFT = 0;
+const MIDDLE = 1;
+const RIGHT = 2;
+
+function computeChartDoughnutScore(chart: TKSubmissionEntryDoughnut): number {
+  const CHART_DOUGHNUT_BASE = 6;
+  const CHART_DOUGHNUT_LINE_FACTOR = 3;
+  return (
+    chart.entries.length / CHART_DOUGHNUT_LINE_FACTOR + CHART_DOUGHNUT_BASE
+  );
+}
+
+function computeChartPolarScore(chart: TKSubmissionEntryPolar): number {
+  const CHART_POLAR_BASE = 6;
+  const CHART_POLAR_LINE_FACTOR = 3;
+  return chart.entries.length / CHART_POLAR_LINE_FACTOR + CHART_POLAR_BASE;
+}
+
+function computeChartPyramidScore(chart: TKSubmissionEntryAgePyramid): number {
+  const CHART_PYRAMID_BASE = 4;
+  const CHART_PYRAMID_LINE_FACTOR = 3;
+  return (
+    chart.femalesLabels.length / CHART_PYRAMID_LINE_FACTOR + CHART_PYRAMID_BASE
+  );
+}
+
+function computeTextScore(text: TKSubmissionEntryText): number {
+  const AVERAGE_CHAR_COUNT_PER_LINE = 90;
+  return Math.ceil(
+    (TKGetLocalValue(text.fieldLabel, "en").length +
+      TKGetLocalValue(text.answerLabel, "en").length) /
+      AVERAGE_CHAR_COUNT_PER_LINE
+  );
+}
+
+function computeScore(thematic: TKSubmissionThematic): number {
+  return thematic.data.reduce((previousScore, thematicData) => {
+    let score = 1;
+    switch (thematicData.type) {
+      case TKSubmissionEntryType.BULLET:
+        score = thematicData.answersLabels.length;
+        break;
+      case TKSubmissionEntryType.CHART_DOUGHNUT:
+        score = computeChartDoughnutScore(thematicData);
+        break;
+      case TKSubmissionEntryType.CHART_POLAR:
+        score = computeChartPolarScore(thematicData);
+        break;
+      case TKSubmissionEntryType.CHART_PYRAMID:
+        score = computeChartPyramidScore(thematicData);
+        break;
+      case TKSubmissionEntryType.TEXT:
+        score = computeTextScore(thematicData);
+        break;
+    }
+    return previousScore + score;
+  }, 0);
+}
 
 @Component({
   components: {
@@ -41,30 +109,56 @@ export default class TKSubmissionVisualizer extends Vue {
 
   @Watch("dataset.currentSubmission", { immediate: true })
   onSubmissionChanged() {
-    this.columns[0] = [];
-    this.columns[1] = [];
-    this.columns[2] = [];
+    this.columns[LEFT] = [];
+    this.columns[MIDDLE] = [];
+    this.columns[RIGHT] = [];
 
-    const itemsCount = [0, 0, 0];
+    const scores = [0, 0, 0];
     if (this.dataset) {
+      // Adjust to Submission content
       if (this.dataset.currentSubmission) {
-        for (const them in this.dataset.currentSubmission.thematics) {
+        // Follow FDF order, line by line
+        if (
+          TKConfigurationModule.configuration.options.keepThematicOrderFromFDF
+        ) {
           let index = 0;
-          if (itemsCount[1] < itemsCount[0] && itemsCount[1] <= itemsCount[2]) {
-            index = 1;
-          } else if (
-            itemsCount[2] < itemsCount[1] &&
-            itemsCount[2] < itemsCount[0]
-          ) {
-            index = 2;
+          for (const thematic in this.dataset.currentSubmission.thematics) {
+            this.columns[index];
+            this.columns[index].push(
+              this.dataset.currentSubmission.thematics[thematic]
+            );
+            index++;
+            if (index > 2) {
+              index = 0;
+            }
           }
-          this.columns[index].push(
-            this.dataset.currentSubmission.thematics[them]
-          );
-          itemsCount[index] += this.dataset.currentSubmission.thematics[
-            them
-          ].data.length;
+          // Optimize a bit the display
+        } else {
+          for (const thematic in this.dataset.currentSubmission.thematics) {
+            let index = LEFT;
+            if (
+              scores[MIDDLE] < scores[LEFT] &&
+              scores[MIDDLE] <= scores[RIGHT]
+            ) {
+              index = MIDDLE;
+            } else if (
+              scores[RIGHT] < scores[MIDDLE] &&
+              scores[RIGHT] < scores[LEFT]
+            ) {
+              index = RIGHT;
+            }
+            this.columns[index].push(
+              this.dataset.currentSubmission.thematics[thematic]
+            );
+
+            // Increment item count.
+            scores[index] += computeScore(
+              this.dataset.currentSubmission.thematics[thematic]
+            );
+          }
         }
+
+        // Follow descriptiopn order
       } else if (this.thematics) {
         let index = 0;
         for (const i in this.thematics) {
