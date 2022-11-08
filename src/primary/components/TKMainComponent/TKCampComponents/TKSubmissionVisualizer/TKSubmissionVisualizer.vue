@@ -36,7 +36,7 @@ const RIGHT = 2;
 
 function computeChartDoughnutScore(chart: TKSubmissionEntryDoughnut): number {
   const CHART_DOUGHNUT_BASE = 6;
-  const CHART_DOUGHNUT_LINE_FACTOR = 2;
+  const CHART_DOUGHNUT_LINE_FACTOR = 3;
   return (
     chart.entries.length / CHART_DOUGHNUT_LINE_FACTOR + CHART_DOUGHNUT_BASE
   );
@@ -44,13 +44,13 @@ function computeChartDoughnutScore(chart: TKSubmissionEntryDoughnut): number {
 
 function computeChartPolarScore(chart: TKSubmissionEntryPolar): number {
   const CHART_POLAR_BASE = 6;
-  const CHART_POLAR_LINE_FACTOR = 2;
+  const CHART_POLAR_LINE_FACTOR = 3;
   return chart.entries.length / CHART_POLAR_LINE_FACTOR + CHART_POLAR_BASE;
 }
 
 function computeChartPyramidScore(chart: TKSubmissionEntryAgePyramid): number {
   const CHART_PYRAMID_BASE = 4;
-  const CHART_PYRAMID_LINE_FACTOR = 2;
+  const CHART_PYRAMID_LINE_FACTOR = 3;
   return (
     chart.femalesLabels.length / CHART_PYRAMID_LINE_FACTOR + CHART_PYRAMID_BASE
   );
