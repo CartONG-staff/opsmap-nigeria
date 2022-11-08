@@ -1,66 +1,28 @@
 {
     "languages": [
-        "pt",
-        "en"
+        "en",
+        "ro"
     ],
-    "iso3": "BRA",
+    "languageDefault": "en",
+    "iso3": "MD",
     "name": {
-        "en": "Brazil",
-        "pt": "Brasil"
-    },
-    "title": {
-        "en": "Profile of the shelters in Roraima"
+        "en": "Moldova",
+        "ro": "Moldova"
     },
     "opsmapDescr": {
-        "en": "More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>Currently, Roraima has 9 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than nine thousand refugees, asylum seekers, and migrants. Of these, 7 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>All 9 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces.",
-        "pt": "Mais de 260 mil refugiados e migrantes deslocaram-se ao Brasil em busca de proteção em decorrência da crise política, social e econômica que assola a Venezuela.<br/>Considerando-se as necessidades urgentes de assistência humanitária, como alimentação, abrigamento, saúde e proteção, especialmente para pessoas com vulnerabilidades (crianças, mulheres grávidas, idosos, pessoas com deficiência, etc.), o Governo Federal Brasileiro editou a Lei no. 13.684/2018, prevendo a execução de medidas de assistência emergencial para acolhimento da pessoas afetadas.<br/>Atualmente, Roraima conta com 9 espaços de acolhimento, entre abrigos (entre abrigos indígenas e não-indígenas), com potencial de atender mais de nove mil refugiados, solicitantes de refúgio e migrantes. Desses abrigos, 7 estão na cidade de Boa Vista, 2 cidade de Pacaraima.<br/>Todos os 9 espaços são coordenados pelo ACNUR, por conta do convênio firmado com o Ministério da Cidadania, em parceria com as Forças Armadas."
+        "en": "To respond to refugee's needs, the Moldovan authorities have established 69 Refugee Accommodation Centres (RACs) across the country. To understand the needs of these centres, the National Agency for Social Assistance (ANAS), with the support of UNHCR, ACTED, and REACH, conducted key informant interviews (KIIs) with purposefully selected RAC focal points who reported on the situation in the centres. Findings should be considered indicative.",
+        "ro": "Pentru a răspunde la necesitățile de refugiați, autoritățile Republicii Moldova au organizat 69 de centre de plasament temporar pentru refugiați. Agenţia Naţională Asistenţă Socială (ANAS), cu sprijinul UNHCR, ACTED şi REACH, realizează interviuri zilnice cu toate punctele focale ale Centrelor pentru a înțelege necesitățile acestor centre. Constatările ar trebui considerate orientative."
     },
-    "iframe": {
-        "url": "https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9",
-        "display": false
-    },
-    "headerLogos": [
-        {
-            "name": "Acolhida",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/Acolhida.jpeg",
-            "urlRedirection": "https://www.gov.br/casacivil/pt-br/acolhida/"
-        },
-        {
-            "name": "AVSI",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
-            "urlRedirection": "http://www.avsibrasil.org.br/"
-        },
-        {
-            "name": "FSF",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/FSF.png",
-            "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
-        },
-        {
-            "name": "UNHCR",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-            "urlRedirection": "https://www.acnur.org.br"
-        },
-        {
-            "name": "Ministério da Cidadania",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
-            "urlRedirection": "https://www.gov.br/cidadania/pt-br"
-        },
-        {
-            "name": "R4V",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/R4V.png",
-            "urlRedirection": "https://www.r4v.info/"
-        }
-    ],
+    "headerLogos": [],
     "footerLogos": [
         {
             "title": {
-                "en": "Webdev",
-                "pt": "Desenvolvimento Web"
+                "en": "Webdev"
             },
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "/data/demo/DEMO_moldova/Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -68,83 +30,87 @@
         {
             "title": {
                 "en": "Fieldwork",
-                "pt": "Trabalho de campo"
+                "ro": "Muncă de teren"
             },
             "logos": [
                 {
-                    "name": "FSF",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/FSF.png",
-                    "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
-                },
-                {
-                    "name": "AVSI",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
-                    "urlRedirection": "http://www.avsibrasil.org.br/"
+                    "name": "UNHCR Moldova",
+                    "urlLogo": "/data/demo/DEMO_moldova/Logo/unhcr_logo.png",
+                    "urlRedirection": "https://data.unhcr.org/en/situations/ukraine/location/10784"
                 }
             ]
         },
         {
             "title": {
                 "en": "Coordination and IM support",
-                "pt": "Coordenação e IM apoio"
+                "ro":"Coordonarea și sprijinul GI"
             },
             "logos": [
                 {
-                    "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-                    "urlRedirection": "https://www.acnur.org.br"
+                    "name": "REACH",
+                    "urlLogo": "/data/demo/DEMO_moldova/Logo/reach_logo.png",
+                    "urlRedirection": "https://www.reach-initiative.org/"
                 }
             ]
         },
         {
             "title": {
-                "en": "Sector Lead",
-                "pt": "Líder do seto"
+                "en": "Cluster Lead"
             },
             "logos": [
                 {
-                    "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-                    "urlRedirection": "https://www.acnur.org.br"
-                },
-                {
-                    "name": "Ministério da Cidadania",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
-                    "urlRedirection": "https://www.gov.br/cidadania/pt-br"
+                    "name": "ANAS",
+                    "urlLogo": "/data/demo/DEMO_moldova/Logo/anas_logo.png",
+                    "urlRedirection": "https://www.anas.md/"
                 }
             ]
         }
     ],
-    "spatialConfiguration": {
+    "spatialConfiguration":{
         "mapConfig": {
             "bounds": [
-                -74.17,
-                -33.34,
-                -33.57,
-                5.02
+                30.82,
+                48.72,
+                26.64,
+                45.07
             ]
         },
-        "dbConfig": {
+        "dbConfig":{
             "adm1DBPcode": "pcode",
             "adm2DBPcode": "pcode"
         },
-        "localFiles": {
-            "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson"
+        "localFiles":{
+            "admin0LocalURL": "/data/demo/DEMO_moldova/map/admin0.geojson",
+            "admin1LocalURL": "/data/demo/DEMO_moldova/map/admin1.geojson"
         }
     },
     "surveys": [
         {
             "type": "gsheet",
             "fdf": {
-                "folder": "/data/demo/DEMO_brazil/FDF"
+                "folder": "/data/demo/DEMO_moldova/FDF"
             },
-            "name": "2021",
-            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=0&single=true&output=csv",
-            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=1157434408&single=true&output=csv",
+            "name": "Form A",
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmAAIXU5ZaUJ1Jqg_jbXRmeu6Pkt3QlSwMOljUth7FoIVvdLJMKzlDf4PnBDVNDSHMNW8w41CXdhoA/pub?gid=0&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmAAIXU5ZaUJ1Jqg_jbXRmeu6Pkt3QlSwMOljUth7FoIVvdLJMKzlDf4PnBDVNDSHMNW8w41CXdhoA/pub?gid=1444909534&single=true&output=csv",
             "options": {
                 "dateFormat": "DD/MM/YYYY",
-                "manageByField": "cccm_shelter__mangmt",
-                "listSeparator": ";"
+                "manageByField": "GestionnaireSiteNom",
+                "listSeparator": ";",
+                "anonymousMode": "Site Description"
+            },
+            "spatial": {
+                "siteIDField": "site_id",
+                "siteNameField": "site_name",
+                "siteTypeField": "shelter_type",
+                "siteLastUpdateField": "last_update",
+                "siteLatitudeField": "latitude",
+                "siteLongitudeField": "longitude",
+                "adm1Pcode": "adm1_pcode",
+                "adm1Name": "raion",
+                "adm2Pcode": "adm2_pcode",
+                "adm2Name": "city",
+                "adm2RefInAdm1": "adm1pcode"
             },
             "indicators": {
                 "home": [
@@ -153,15 +119,15 @@
                     },
                     {
                         "type": "people_count",
-                        "entryCode": "demo_num_indv"
+                        "entryCode": "center_ind"
                     },
                     {
                         "type": "standard",
                         "name": {
-                            "en": "Shelter Max Capacity",
-                            "pt": "Capacidade Máxima dos Abrigos"
+                            "en": "Maximum capacity",
+                            "ro": "Capacitate maximă"
                         },
-                        "entryCode": "cccm_shelter_max_capacity",
+                        "entryCode": "shelter_max_capacity",
                         "iconOchaName": "Camp-Coordination-and-Camp-Management"
                     }
                 ],
@@ -169,53 +135,40 @@
                     {
                         "type": "site_occupation",
                         "name": {
-                            "en": "Site at Full Capacity",
-                            "pt": "Abrigo em plena capacidade"
+                            "en": "Centre at full capacity",
+                            "ro": "Centrul este capacitate maximă"
                         },
                         "iconOchaName": "Camp-Coordination-and-Camp-Management",
-                        "entryCodeMaxCapacity": "cccm_site_at_full_capacity",
-                        "entryCodePeopleCount": "demo_num_indv",
-                        "entryCodeMaxPeopleCount": "cccm_shelter_max_capacity"
+                        "entryCodePeopleCount": "center_ind",
+                        "entryCodeMaxPeopleCount": "shelter_max_capacity"
                     },
                     {
                         "type": "standard",
                         "name": {
-                            "en": "Shelter Type",
-                            "pt": "Tipo de Abrigo"
+                            "en": "Access to catering (hot meals)?",
+                            "ro": "Acces la catering (mese calde)?"
                         },
-                        "entryCode": "cccm_shelter_type",
-                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
+                        "entryCode": "meals_offered",
+                        "iconOchaName": "Food-Security"
                     },
                     {
                         "type": "standard",
                         "name": {
-                            "en": "No. of Individuals",
-                            "pt": "Nº de Indivíduos"
+                            "en": "Individuals",
+                            "ro": "Persoane"
                         },
-                        "entryCode": "demo_num_indv",
+                        "entryCode": "center_ind",
                         "iconOchaName": "People-in-need"
                     }
                 ]
-            },
-            "spatial": {
-                "siteIDField": "mp_site_id",
-                "siteNameField": "mp_site_name",
-                "siteTypeField": "mp_shelter_type",
-                "siteLastUpdateField": "mp_last_date",
-                "siteLatitudeField": "mp_latitude",
-                "siteLongitudeField": "mp_longitude",
-                "adm1Pcode": "adm1pcode",
-                "adm1Name": "ggi_state",
-                "adm2Pcode": "adm2pcode",
-                "adm2Name": "ggi_city",
-                "adm2RefInAdm1": "adm1pcode",
-                "adm3Pcode": "adm3pcode",
-                "adm3Name": "ggi_address"
             }
         }
     ],
     "options": {
         "showCCCMLogo": false,
-        "pdfColumnCount": 3
+        "pdfColumnCount": 3,
+        "exportForEsite": false,
+        "showDemoBanner": false,
+        "exportAsCSVonHomePage": true
     }
 }

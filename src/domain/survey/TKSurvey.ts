@@ -32,6 +32,7 @@ export interface TKSurveyOptions {
   manageByField: string;
   manageByAltValue?: string;
   listSeparator: string;
+  anonymousMode?: false | "Site Description" | "Global";
 }
 
 export interface TKSurvey {
@@ -335,6 +336,10 @@ export function TKCreateSurvey(
     }
     return 0;
   });
+
+  if (!options.anonymousMode) {
+    options.anonymousMode = false;
+  }
 
   return {
     name: fdf.name,
