@@ -179,10 +179,7 @@
                 "adm1Pcode": "group_general_info/state",
                 "adm1Name": "group_general_info/state_name",
                 "adm2Pcode": "group_general_info/lga",
-                "adm2Name": "group_general_info/lga_name",
-                "adm2RefInAdm1": "dscodeadm1",
-                "adm3Pcode": "group_general_info/ward",
-                "adm3Name": "group_general_info/ward_name"
+                "adm2Name": "group_general_info/lga_name"
             }
         }
     ],

@@ -207,10 +207,7 @@
                 "adm1Pcode": "adm1pcode",
                 "adm1Name": "ggi_state",
                 "adm2Pcode": "adm2pcode",
-                "adm2Name": "ggi_city",
-                "adm2RefInAdm1": "adm1pcode",
-                "adm3Pcode": "adm3pcode",
-                "adm3Name": "ggi_address"
+                "adm2Name": "ggi_city"
             }
         }
     ],

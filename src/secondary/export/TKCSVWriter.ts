@@ -92,7 +92,7 @@ function computeCurrentSelectionCSVContent(
   camps: TKCamp[],
   locale: string
 ): string {
-  const rows = [["name", "admin1", "admin2", "admin3", "submissionDate"]];
+  const rows = [["name", "admin1", "admin2", "submissionDate"]];
 
   if (camps.length && camps[0].submissions.length) {
     for (const indicator of camps[0].submissions[0].indicators) {
@@ -139,7 +139,6 @@ function computeCurrentSelectionCSVContent(
         camp.name,
         camp.admin1.name,
         camp.admin2.name,
-        camp.admin3.name,
         submission.date.toString()
       ];
 

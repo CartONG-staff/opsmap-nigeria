@@ -48,7 +48,7 @@
                     "urlLogo": "/data/demo/DEMO_sudan/Logo/iom_logo.png",
                     "urlRedirection": "https://www.iom.int"
                 }
-                ]
+            ]
         },
         {
             "title": {
@@ -60,22 +60,24 @@
                     "urlLogo": "/data/demo/DEMO_sudan/Logo/unhcr_logo.png",
                     "urlRedirection": "https://www.unhcr.org"
                 }
-                ]
+            ]
         }
     ],
-    "spatialConfiguration":{
+    "spatialConfiguration": {
         "mapConfig": {
             "bounds": [
-                22.412109,8.494105,38.583984,22.836946
+                22.412109,
+                8.494105,
+                38.583984,
+                22.836946
             ]
         },
-        "dbConfig":{
+        "dbConfig": {
             "adm1DBPcode": "pcode",
             "adm2DBPcode": "pcode"
         },
-        "localFiles":{
-            "admin0LocalURL": "/data/demo/DEMO_sudan/map/admin0.geojson",
-            "admin1LocalURL": "/data/demo/DEMO_sudan/map/admin1.geojson"
+        "localFiles": {
+            "admin0LocalURL": "/data/demo/DEMO_sudan/map/admin0.geojson"
         }
     },
     "surveys": [
@@ -102,8 +104,7 @@
                 "adm1Pcode": "adm1pcode",
                 "adm1Name": "STATE",
                 "adm2Pcode": "adm2pcode",
-                "adm2Name": "ZONE",
-                "adm2RefInAdm1": "adm1pcode"
+                "adm2Name": "ZONE"
             },
             "indicators": {
                 "home": [
@@ -118,7 +119,7 @@
                         "type": "standard",
                         "name": {
                             "en": "Households",
-                            "arab":"الأسر"
+                            "arab": "الأسر"
                         },
                         "entryCode": "HOUSEHOLDS",
                         "iconOchaName": "Children"
@@ -129,16 +130,16 @@
                         "type": "standard",
                         "name": {
                             "en": "Individual",
-                            "arab":"الفرد"
+                            "arab": "الفرد"
                         },
                         "entryCode": "INDIVIDUAL",
                         "iconOchaName": "People-in-need"
-                    },            
+                    },
                     {
                         "type": "standard",
                         "name": {
                             "en": "Households",
-                            "arab":"الأسر"
+                            "arab": "الأسر"
                         },
                         "entryCode": "HOUSEHOLDS",
                         "iconOchaName": "Children"
@@ -147,7 +148,7 @@
                         "type": "standard",
                         "name": {
                             "en": "Source of water",
-                            "arab":"مصدر للمياه"
+                            "arab": "مصدر للمياه"
                         },
                         "entryCode": "Is_there_any_source_of_water",
                         "iconOchaName": "Potable-water"

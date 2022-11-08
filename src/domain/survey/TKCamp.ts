@@ -15,7 +15,6 @@ export interface TKCamp {
   lng: number;
   admin1: TKBoundaries;
   admin2: TKBoundaries;
-  admin3: TKBoundaries;
   managedBy: TKLabel;
 
   submissions: [TKSubmission, ...TKSubmission[]]; // At least one element!

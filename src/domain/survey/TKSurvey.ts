@@ -211,10 +211,6 @@ export function TKCreateSurvey(
           pcode: submission[fdf.spatialDescription.adm2Pcode],
           name: submission[fdf.spatialDescription.adm2Name]
         },
-        admin3: {
-          pcode: submission[fdf.spatialDescription.adm3Pcode],
-          name: submission[fdf.spatialDescription.adm3Name]
-        },
         managedBy: {
           en: submission[options.manageByField]
             ? submission[options.manageByField]

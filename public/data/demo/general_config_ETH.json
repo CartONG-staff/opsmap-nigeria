@@ -167,10 +167,7 @@
                 "adm1Pcode": "ADM1_PCODE",
                 "adm1Name": "ADM1_EN",
                 "adm2Pcode": "ADM2_PCODE",
-                "adm2Name": "ADM2_EN",
-                "adm2RefInAdm1": "adm1pcode",
-                "adm3Pcode": "ADM3_PCODE",
-                "adm3Name": "ADM3_EN"
+                "adm2Name": "ADM2_EN"
             }
         }
     ],

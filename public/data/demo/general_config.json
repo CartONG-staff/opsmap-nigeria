@@ -115,6 +115,23 @@
             ]
         }
     ],
+    "spatialConfiguration": {
+        "mapConfig": {
+            "bounds": [
+                -74.17,
+                -33.34,
+                -33.57,
+                5.02
+            ]
+        },
+        "dbConfig": {
+            "adm1DBPcode": "pcode",
+            "adm2DBPcode": "pcode"
+        },
+        "localFiles": {
+            "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson"
+        }
+    },
     "surveys": [
         {
             "type": "gsheet",
@@ -190,108 +207,10 @@
                 "adm1Pcode": "adm1pcode",
                 "adm1Name": "ggi_state",
                 "adm2Pcode": "adm2pcode",
-                "adm2Name": "ggi_city",
-                "adm3Pcode": "adm3pcode",
-                "adm3Name": "ggi_address"
-            }
-        },
-        {
-            "type": "csv",
-            "fdf": {
-                "folder": "/data/demo/DEMO_brazil/FDF"
-            },
-            "name": "2021 - CSV",
-            "submissionsLocalUrl": "/data/demo/DEMO_brazil/DEMO_DATA_brazil.csv",
-            "submissionsTrLocalUrl": "/data/demo/DEMO_brazil/DEMO_DATA_brazil-translations.csv",
-            "options": {
-                "dateFormat": "DD/MM/YYYY",
-                "manageByField": "cccm_shelter__mangmt",
-                "listSeparator": ";"
-            },
-            "indicators": {
-                "home": [
-                    {
-                        "type": "site_count"
-                    },
-                    {
-                        "type": "people_count",
-                        "entryCode": "demo_num_indv"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Shelter Max Capacity",
-                            "pt": "Capacidade Máxima dos Abrigos"
-                        },
-                        "entryCode": "cccm_shelter_max_capacity",
-                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
-                    }
-                ],
-                "site": [
-                    {
-                        "type": "site_occupation",
-                        "name": {
-                            "en": "Site at Full Capacity",
-                            "pt": "Abrigo em plena capacidade"
-                        },
-                        "iconOchaName": "Camp-Coordination-and-Camp-Management",
-                        "entryCodeMaxCapacity": "cccm_site_at_full_capacity",
-                        "entryCodePeopleCount": "demo_num_indv",
-                        "entryCodeMaxPeopleCount": "cccm_shelter_max_capacity"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "Shelter Type",
-                            "pt": "Tipo de Abrigo"
-                        },
-                        "entryCode": "cccm_shelter_type",
-                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
-                    },
-                    {
-                        "type": "standard",
-                        "name": {
-                            "en": "No. of Individuals",
-                            "pt": "Nº de Indivíduos"
-                        },
-                        "entryCode": "demo_num_indv",
-                        "iconOchaName": "People-in-need"
-                    }
-                ]
-            },
-            "spatial": {
-                "siteIDField": "mp_site_id",
-                "siteNameField": "mp_site_name",
-                "siteTypeField": "mp_shelter_type",
-                "siteLastUpdateField": "mp_last_date",
-                "siteLatitudeField": "mp_latitude",
-                "siteLongitudeField": "mp_longitude",
-                "adm1Pcode": "adm1pcode",
-                "adm1Name": "ggi_state",
-                "adm2Pcode": "adm2pcode",
-                "adm2Name": "ggi_city",
-                "adm3Pcode": "adm3pcode",
-                "adm3Name": "ggi_address"
+                "adm2Name": "ggi_city"
             }
         }
     ],
-    "spatialConfiguration": {
-        "mapConfig": {
-            "bounds": [
-                -74.17,
-                -33.34,
-                -33.57,
-                5.02
-            ]
-        },
-        "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
-        },
-        "localFiles": {
-            "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson"
-        }
-    },
     "options": {
         "showCCCMLogo": false,
         "pdfColumnCount": 3
