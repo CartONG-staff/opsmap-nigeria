@@ -58,7 +58,6 @@ function computeChartPyramidScore(chart: TKSubmissionEntryAgePyramid): number {
 
 function computeTextScore(text: TKSubmissionEntryText): number {
   const AVERAGE_CHAR_COUNT_PER_LINE = 90;
-  console.log(TKGetLocalValue(text.fieldLabel, "en").length);
   return Math.ceil(
     (TKGetLocalValue(text.fieldLabel, "en").length +
       TKGetLocalValue(text.answerLabel, "en").length) /
