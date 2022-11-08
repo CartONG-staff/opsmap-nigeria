@@ -3,6 +3,7 @@ import {
   TKFDFIndicator,
   TKFDFIndicatorType
 } from "@/domain/fdf/TKFDFIndicators";
+import { PEOPLE_COUNT_LABEL, SITE_COUNT_LABEL } from "./TKIndicatorLabels";
 
 export enum TKIndicatorType {
   STANDARD = "standard",
@@ -11,7 +12,7 @@ export enum TKIndicatorType {
 
 export interface TKIndicatorStandard {
   readonly type: TKIndicatorType.STANDARD;
-  readonly nameLabel: TKLabel | string;
+  readonly nameLabel: TKLabel;
   readonly valueLabel: TKLabel;
   readonly iconOchaName: string;
 }
@@ -26,10 +27,7 @@ export interface TKIndicatorSiteOccupation {
 }
 
 export const SITE_COUNT_ICON = "IDP-refugee-camp";
-export const SITE_COUNT_LABEL = "indicator.siteCount";
-
 export const PEOPLE_COUNT_ICON = "People-in-need";
-export const PEOPLE_COUNT_LABEL = "indicator.peopleCount";
 
 export type TKIndicator = TKIndicatorStandard | TKIndicatorSiteOccupation;
 
