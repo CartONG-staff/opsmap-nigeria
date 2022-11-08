@@ -109,8 +109,7 @@
                 "adm1Pcode": "adm1_pcode",
                 "adm1Name": "raion",
                 "adm2Pcode": "adm2_pcode",
-                "adm2Name": "city",
-                "adm2RefInAdm1": "adm1pcode"
+                "adm2Name": "city"
             },
             "indicators": {
                 "home": [

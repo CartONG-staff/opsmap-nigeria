@@ -50,7 +50,7 @@
     </div>
     <div class="tk-hseparator" />
     <!-- GPS COORDINATES -->
-    <div class="tk-camp-infos-field">
+    <div class="tk-camp-infos-field" v-if="!dataset.currentSurvey.options.anonymousMode">
       <transition mode="out-in" name="fade-in">
         <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
           {{ $t("site.infosCoordinates").toUpperCase() }}
@@ -99,6 +99,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 @Component
 export default class TKCampInfos extends Vue {
   get dataset() {
+    console.log(TKDatasetModule.dataset)
     return TKDatasetModule.dataset;
   }
 
