@@ -6,10 +6,7 @@
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFDFFiles } from "@/secondary/fdf/TKFDFInfos";
-import {
-  TKReadFDFLabelCollection,
-  TKReadFDFLabelCollectionFromGSheet
-} from "@/secondary/fdf/TKFDFParseMultiLang";
+import { TKReadFDFLabelCollection } from "@/secondary/fdf/TKFDFParseMultiLang";
 import { TKReadSubmissionsRulesCollection } from "@/secondary/fdf/TKFDFSubmissionsRules";
 import { TKReadFDFTerminologyCollection } from "@/secondary/fdf/TKFDFTerminology";
 import { TKReadFDFThematicsCollection } from "@/secondary/fdf/TKFDFThematics";
@@ -22,15 +19,19 @@ import { TKReadFDFSiteTypesCollection } from "./TKFDFSiteTypes";
 // ////////////////////////////////////////////////////////////////////////////
 export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
   let answersLabels = {};
-  if (infos.type === "gsheet") {
-    answersLabels = await TKReadFDFLabelCollectionFromGSheet(
-      infos.submissionsTrUrl
-    );
-  } else {
-    answersLabels = await TKReadFDFLabelCollection(
-      TKFDFFiles.ANSWERS,
-      infos.fdf
-    );
+  switch (infos.type) {
+    case "gsheet":
+      answersLabels = await TKReadFDFLabelCollection(infos.submissionsTrUrl);
+      break;
+    case "csv":
+      answersLabels = await TKReadFDFLabelCollection(
+        `${process.env.BASE_URL}/${infos.submissionsTrLocalUrl}.csv`
+      );
+      break;
+    case "kobo":
+      answersLabels = await TKReadFDFLabelCollection(
+        `${process.env.BASE_URL}/${infos.fdf.folder}/${TKFDFFiles.ANSWERS}.csv`
+      );
   }
 
   return {
@@ -38,7 +39,9 @@ export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
     terminology: await TKReadFDFTerminologyCollection(infos.fdf),
     thematics: await TKReadFDFThematicsCollection(infos.fdf),
     trafficLights: await TKReadFDFTrafficLightsCollection(infos.fdf),
-    fieldsLabels: await TKReadFDFLabelCollection(TKFDFFiles.FIELDS, infos.fdf),
+    fieldsLabels: await TKReadFDFLabelCollection(
+      `${process.env.BASE_URL}/${infos.fdf.folder}/${TKFDFFiles.FIELDS}.csv`
+    ),
     answersLabels: answersLabels,
     submissionsRules: await TKReadSubmissionsRulesCollection(infos.fdf),
     urls: await TKReadFDFURLsCollection(infos.fdf),
