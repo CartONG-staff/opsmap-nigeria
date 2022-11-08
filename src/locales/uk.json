@@ -62,5 +62,9 @@
         "legendZoomOut": "Зменшити",
         "legendBbox": "За замовчуванням Екстенсивність",
         "legendFilters": "Показати / Приховати легенду"
+    },
+    "indicator": {
+        "siteCount": "сайт",
+        "peopleCount": "люди"
     }
 }

@@ -52,10 +52,14 @@ export default class TKIndicatorStandard extends Vue {
   @Watch("$root.$i18n.locale")
   handleLocale() {
     if (this.indicator) {
-      this.name = TKGetLocalValue(
-        this.indicator.nameLabel,
-        this.$root.$i18n.locale
-      );
+      if (typeof this.indicator.nameLabel === "string") {
+        this.name = this.$i18n.t(this.indicator.nameLabel).toString();
+      } else {
+        this.name = TKGetLocalValue(
+          this.indicator.nameLabel,
+          this.$root.$i18n.locale
+        );
+      }
       this.value = TKGetLocalValue(
         this.indicator.valueLabel,
         this.$root.$i18n.locale

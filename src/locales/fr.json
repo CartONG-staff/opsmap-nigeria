@@ -62,5 +62,9 @@
         "legendZoomOut": "Dézoomer",
         "legendBbox": "Etendue par défault",
         "legendFilters": "Montrer / masquer la légende"
+    },
+    "indicator": {
+        "siteCount": "Nombre de sites",
+        "peopleCount": "Nombre de personnes"
     }
 }

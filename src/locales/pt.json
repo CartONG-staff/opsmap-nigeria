@@ -61,5 +61,9 @@
         "legendZoomOut": "Reduzir o zoom",
         "legendBbox": "Extensão padrão",
         "legendFilters": "Mostrar / Ocultar legenda"
+    },
+    "indicator": {
+        "siteCount": "Abrigos",
+        "peopleCount": "Indivíduos"
     }
 }

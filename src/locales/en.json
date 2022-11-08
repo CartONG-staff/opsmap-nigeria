@@ -62,5 +62,9 @@
         "legendZoomOut": "Zoom out",
         "legendBbox": "Default Extent",
         "legendFilters": "Show / Hide legend"
+    },
+    "indicator": {
+        "siteCount": "Sites",
+        "peopleCount": "Peoples"
     }
 }
