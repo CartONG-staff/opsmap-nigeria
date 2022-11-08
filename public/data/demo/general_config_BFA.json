@@ -105,24 +105,6 @@
             ]
         }
     ],
-    "spatialConfiguration": {
-        "mapConfig": {
-            "bounds": [
-                4.81,
-                15.19,
-                -8.36,
-                9.34
-            ]
-        },
-        "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
-        },
-        "localFiles": {
-            "admin0LocalURL": "/data/demo/DEMO_burkina-faso/map/admin0.geojson",
-            "admin1LocalURL": ""
-        }
-    },
     "surveys": [
         {
             "type": "gsheet",
@@ -179,15 +161,12 @@
                         "iconOchaName": "House-destroyed"
                     },
                     {
-                        "type": "computation",
+                        "type": "standard",
                         "name": {
                             "en": "Peoples per latrine",
                             "fr": "Personnes par latrine"
                         },
-                        "entryCode1": "IndividlPopulation",
-                        "entryCode2": "NombreLatrines",
-                        "operator": "/",
-                        "numberStrategy": "round",
+                        "entryCode": "Nb_indiv_par_latrine",
                         "iconOchaName": "Latrine-cabin"
                     }
                 ]
@@ -202,18 +181,32 @@
                 "adm1Pcode": "adm1pcode",
                 "adm1Name": "region",
                 "adm2Pcode": "adm2pcode",
-                "adm2Name": "province",
-                "adm2RefInAdm1": "adm1pcode",
-                "adm3Pcode": "adm3pcode",
-                "adm3Name": "Commune"
+                "adm2Name": "province"
             }
         }
     ],
+    "spatialConfiguration": {
+        "mapConfig": {
+            "bounds": [
+                4.81,
+                15.19,
+                -8.36,
+                9.34
+            ]
+        },
+        "dbConfig": {
+            "adm1DBPcode": "pcode",
+            "adm2DBPcode": "pcode"
+        },
+        "localFiles": {
+            "admin0LocalURL": "/data/demo/DEMO_burkina-faso/map/admin0.geojson"
+        }
+    },
     "options": {
         "showCCCMLogo": true,
         "pdfColumnCount": 3,
         "exportForEsite": false,
-        "showDemoBanner": true,
-        "exportAsCSVonHomePage": true
+        "showDemoBanner": false,
+        "exportAsCSVonHomePage": false
     }
 }
