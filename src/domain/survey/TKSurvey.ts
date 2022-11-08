@@ -168,12 +168,15 @@ export function TKCreateSurvey(
     admin2: []
   };
 
-  submissions.map(submission => {
-    submission[fdf.spatialDescription.siteLastUpdateField] = TKDateFormat(
-      submission[fdf.spatialDescription.siteLastUpdateField],
-      options.dateFormat
-    );
-  });
+  // Apply formatting to date item
+  if (options.dateFormat) {
+    submissions.map(submission => {
+      submission[fdf.spatialDescription.siteLastUpdateField] = TKDateFormat(
+        submission[fdf.spatialDescription.siteLastUpdateField],
+        options.dateFormat
+      );
+    });
+  }
 
   for (const submission of submissions) {
     const computedSubmission = TKCreateSubmission(
