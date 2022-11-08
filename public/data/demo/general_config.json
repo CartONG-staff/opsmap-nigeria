@@ -202,7 +202,7 @@
             },
             "name": "2021 - CSV",
             "submissionsLocalUrl": "/data/demo/DEMO_brazil/DEMO_DATA_brazil.csv",
-            "submissionsLocalTrUrl": "/data/demo/DEMO_brazil/DEMO_DATA_brazil-translations.csv",
+            "submissionsTrLocalUrl": "/data/demo/DEMO_brazil/DEMO_DATA_brazil-translations.csv",
             "options": {
                 "dateFormat": "DD/MM/YYYY",
                 "manageByField": "cccm_shelter__mangmt",
@@ -240,7 +240,7 @@
                         "entryCodeMaxPeopleCount": "cccm_shelter_max_capacity"
                     },
                     {
-                        "type": "computation",
+                        "type": "standard",
                         "name": {
                             "en": "Shelter Type",
                             "pt": "Tipo de Abrigo"
@@ -270,7 +270,6 @@
                 "adm1Name": "ggi_state",
                 "adm2Pcode": "adm2pcode",
                 "adm2Name": "ggi_city",
-                "adm2RefInAdm1": "adm1pcode",
                 "adm3Pcode": "adm3pcode",
                 "adm3Name": "ggi_address"
             }

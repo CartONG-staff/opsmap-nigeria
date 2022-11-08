@@ -25,7 +25,7 @@ export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
       break;
     case "csv":
       answersLabels = await TKReadFDFLabelCollection(
-        `${process.env.BASE_URL}/${infos.submissionsTrLocalUrl}.csv`
+        `${process.env.BASE_URL}/${infos.submissionsTrLocalUrl}`
       );
       break;
     case "kobo":
