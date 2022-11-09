@@ -80,22 +80,22 @@
             "logos": [
                 {
                     "name": "acted",
-                    "urlLogo": "/data/nigeria/Logo/acted.jpg",
+                    "urlLogo": "/data/nigeria/Logo/ACTED.jpg",
                     "urlRedirection": "https://www.acted.org/en/"
                 },
                 {
                     "name": "care_aid",
-                    "urlLogo": "/data/nigeria/Logo/care_aid.png",
+                    "urlLogo": "/data/nigeria/Logo/caire_aid.jpeg",
                     "urlRedirection": "https://careaidsupportinitiative.org/"
                 },
                 {
                     "name": "boaid",
-                    "urlLogo": "/data/nigeria/Logo/boaid.jpg",
+                    "urlLogo": "/data/nigeria/Logo/boaid.png",
                     "urlRedirection": ""
                 },
                 {
                     "name": "ggsi",
-                    "urlLogo": "/data/nigeria/Logo/ggsi.jpg",
+                    "urlLogo": "/data/nigeria/Logo/ggsi.png",
                     "urlRedirection": "http://ggsisuccour.org/"
                 },
                 {
@@ -110,7 +110,7 @@
                 },
                 {
                     "name": "hope_360",
-                    "urlLogo": "/data/nigeria/Logo/hope_360.jpg",
+                    "urlLogo": "/data/nigeria/Logo/hope_360.png",
                     "urlRedirection": "https://www.hope360initiative.org.ng/360"
                 },
                 {
@@ -120,17 +120,17 @@
                 },
                 {
                     "name": "loc_din",
-                    "urlLogo": "/data/nigeria/Logo/loc_din.jpg",
+                    "urlLogo": "/data/nigeria/Logo/locdin.png",
                     "urlRedirection": "https://locdin.org/"
                 },
                 {
                     "name": "nrc",
-                    "urlLogo": "/data/nigeria/Logo/nrc.jpg",
+                    "urlLogo": "/data/nigeria/Logo/NRC.png",
                     "urlRedirection": "https://www.nrc.no"
                 },
                 {
                     "name": "palri",
-                    "urlLogo": "/data/nigeria/Logo/palri.jpg",
+                    "urlLogo": "/data/nigeria/Logo/palri.png",
                     "urlRedirection": ""
                 },
                 {
@@ -145,7 +145,7 @@
                 },
                 {
                     "name": "sheriff_aid_foundation",
-                    "urlLogo": "/data/nigeria/Logo/sheriff_aid_foundation.jpg",
+                    "urlLogo": "/data/nigeria/Logo/sheriff_aid_foundation.png",
                     "urlRedirection": "https://www.sheriffaidfoundation.org/"
                 },
                 {
@@ -155,12 +155,12 @@
                 },
                 {
                     "name": "shi",
-                    "urlLogo": "/data/nigeria/Logo/shi.jpg",
+                    "urlLogo": "/data/nigeria/Logo/shi.png",
                     "urlRedirection": "https://shiinternational.org/"
                 },
                 {
                     "name": "ypho",
-                    "urlLogo": "/data/nigeria/Logo/ypho.jpg",
+                    "urlLogo": "/data/nigeria/Logo/ypho.png",
                     "urlRedirection": ""
                 }
             ]
