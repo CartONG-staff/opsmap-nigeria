@@ -210,7 +210,7 @@
                 "dateFormat": "YYYY-MM-DD",
                 "manageByField": "organisation",
                 "manageByAltValue": "cccm",
-                "listSeparator": ";"
+                "listSeparator": " "
             }
         }
     ],
