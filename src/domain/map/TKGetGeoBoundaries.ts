@@ -53,9 +53,6 @@ export async function TKGetGeoBoundaries(
     `GeoBoundaries retrieved in ${(Date.now() - before) / 1000} seconds.`
   );
 
-  console.log(admin1GeoData)
-  console.log(admin2GeoData)
-
   return {
     admin1: admin1GeoData,
     admin2: admin2GeoData
