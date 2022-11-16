@@ -97,7 +97,7 @@
                 "dateFormat": "DD/MM/YYYY",
                 "manageByField": "GestionnaireSiteNom",
                 "listSeparator": ";",
-                "anonymousMode": "Site Description"
+                "anonymousMode": "Global"
             },
             "spatial": {
                 "siteIDField": "site_id",

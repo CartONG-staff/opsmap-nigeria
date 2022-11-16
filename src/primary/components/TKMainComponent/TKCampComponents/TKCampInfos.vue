@@ -99,7 +99,6 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 @Component
 export default class TKCampInfos extends Vue {
   get dataset() {
-    console.log(TKDatasetModule.dataset)
     return TKDatasetModule.dataset;
   }
 

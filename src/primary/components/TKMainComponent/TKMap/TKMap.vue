@@ -91,7 +91,10 @@ export default class TKMap extends Vue {
 
       this.mapCamps = new TKMapCamps(
         TKDatasetModule.dataset.filteredTypedCampsList,
-        TKDatasetModule.dataset.currentCamp
+        TKDatasetModule.dataset.currentCamp,
+        this.dataset,
+        this.geoDataset,
+        TKConfigurationModule.configuration.spatialConfiguration
       );
       if (this.mapBoundaries) {
         this.mapBoundaries.changeStyle(
@@ -106,7 +109,9 @@ export default class TKMap extends Vue {
   // Change on filtered data -> why rebuild the whole TKMapCamps list ?
   // TODO: improve this !!!!
   @Watch("dataset.lastModification")
+  @Watch("geoDataset")
   currentCampChanged() {
+    console.log(this.dataset)
     if (this.mapBoundaries) {
       this.mapBoundaries.changeStyle(
         TKDatasetModule.dataset,
@@ -116,7 +121,10 @@ export default class TKMap extends Vue {
     }
     this.mapCamps = new TKMapCamps(
       TKDatasetModule.dataset.filteredTypedCampsList,
-      TKDatasetModule.dataset.currentCamp
+      TKDatasetModule.dataset.currentCamp,
+      this.dataset,
+      this.geoDataset,
+      TKConfigurationModule.configuration.spatialConfiguration
     );
 
     const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(

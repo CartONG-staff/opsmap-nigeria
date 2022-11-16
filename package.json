@@ -14,6 +14,7 @@
   },
   "main": "dist/opsmap-toolkit.umd.min.js",
   "dependencies": {
+    "@turf/centroid": "^6.5.0",
     "@types/chart.js": "^2.9.34",
     "@types/geojson": "^7946.0.8",
     "@types/mapbox-gl": "^2.4.0",
