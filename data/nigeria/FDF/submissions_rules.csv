@@ -2,9 +2,9 @@ field_name;type;thematic_group;traffic_light_name;chart_id;chart_data;display_co
 date;date;group_general_info;;;;;
 group_general_info/reporting_week;date;group_general_info;;;;;
 group_general_info/organisation;string;group_general_info;;;;;
-group_general_info/state;string;group_general_info;;;;;
-group_general_info/lga;string;group_general_info;;;;;
-group_general_info/ward;string;group_general_info;;;;;
+group_general_info/state_name;string;group_general_info;;;;;
+group_general_info/lga_name;string;group_general_info;;;;;
+group_general_info/ward_name;string;group_general_info;;;;;
 group_general_info/site_name;string;group_general_info;;;;;
 group_general_info/camp_management;string;group_general_info;;;;;
 group_general_info/crowded;string;group_general_info;noyes;;;;
