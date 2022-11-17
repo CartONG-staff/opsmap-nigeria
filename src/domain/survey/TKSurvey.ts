@@ -38,8 +38,6 @@ export interface TKSurveyOptions {
   anonymousMode: TKSurveyAnonymousType;
   dateFormat: string;
   listSeparator: string;
-  manageByField: string;
-  manageByAltValue?: string;
 }
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
@@ -222,10 +220,10 @@ export function TKCreateSurvey(
           name: submission[fdf.spatialDescription.adm2Name]
         },
         managedBy: {
-          en: submission[options.manageByField]
-            ? submission[options.manageByField]
-            : options.manageByAltValue
-            ? options.manageByAltValue
+          en: submission[fdf.spatialDescription.siteManageByField]
+            ? submission[fdf.spatialDescription.siteManageByField]
+            : fdf.spatialDescription.siteManageByAltValue
+            ? fdf.spatialDescription.siteManageByAltValue
             : "-"
         },
         submissions: [computedSubmission],

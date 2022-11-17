@@ -155,7 +155,7 @@ export default class TKSiteInfos extends Vue {
   @Watch("dataset.currentSubmission", { immediate: true })
   onSubmissionChange() {
     this.manageByLabel = this.dataset.currentSite
-      ? this.dataset.currentSite?.managedBy
+      ? this.dataset.currentSite.managedBy
       : { en: "-" };
 
     if (this.dataset && this.dataset.currentSurvey) {

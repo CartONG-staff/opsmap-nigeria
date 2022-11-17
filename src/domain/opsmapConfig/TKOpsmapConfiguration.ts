@@ -187,7 +187,6 @@ export async function TKReadGeneralConfiguration(
   const defaultSurveyOptions: TKSurveyOptions = {
     dateFormat: "DD/MM/YYYY",
     listSeparator: ";",
-    manageByField: "",
     anonymousMode: TKSurveyAnonymousType.NONE
   };
 
