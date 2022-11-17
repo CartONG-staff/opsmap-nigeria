@@ -108,7 +108,6 @@ export default class TKMap extends Vue {
   @Watch("dataset.lastModification")
   @Watch("geoDataset")
   currentSiteChanged() {
-    console.log(this.dataset);
     if (this.mapBoundaries) {
       this.mapBoundaries.changeStyle(
         TKDatasetModule.dataset,
