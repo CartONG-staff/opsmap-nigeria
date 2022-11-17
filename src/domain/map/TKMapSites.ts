@@ -20,15 +20,8 @@ export function getCenterOfBounds(bounds: number[]): LngLat {
 
 export class TKMapSites {
   public filteredSites: TKFilteredSites;
-  // private currentAdminLevel: null | string = null;
 
-  constructor(
-    private sites: TKSite[],
-    private currentSite: TKSite | null // private dataset: TKDataset, // private geoDataset: TKGeoDataset, // private spatialConfiguration: TKOpsmapSpatialConfiguration
-  ) {
-    // this.dataset = dataset;
-    // this.geoDataset = geoDataset;
-    // this.spatialConfiguration = spatialConfiguration;
+  constructor(private sites: TKSite[], private currentSite: TKSite | null) {
     this.sites = sites;
     this.currentSite = currentSite;
     this.filteredSites = this.filterSites();
@@ -78,9 +71,9 @@ export function computeCentroid(
   geoDataset: TKGeoDataset
 ): TKSiteCoordinates | false {
   // Compute Admin2 Centroid
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const admin2Feature = geoDataset.admin2.features.filter(
     x =>
+      // eslint-disable-next-line
       x.properties![
         TKConfigurationModule.configuration.spatialConfiguration.dbConfig
           .adm2DBPcode
@@ -88,6 +81,7 @@ export function computeCentroid(
   );
 
   if (admin2Feature.length > 0) {
+    // eslint-disable-next-line
     const center = centroid(admin2Feature[0] as any);
     site.coordinates = {
       lng: center.geometry.coordinates[0],
@@ -97,12 +91,14 @@ export function computeCentroid(
     // Compute Admin1 Centroid
     const admin1Feature = geoDataset.admin1.features.filter(
       x =>
+        // eslint-disable-next-line
         x.properties![
           TKConfigurationModule.configuration.spatialConfiguration.dbConfig
             .adm1DBPcode
         ] === site.admin1.pcode
     );
     if (admin1Feature.length > 0) {
+      // eslint-disable-next-line
       const center = centroid(admin1Feature[0] as any);
       site.coordinates = {
         lng: center.geometry.coordinates[0],
