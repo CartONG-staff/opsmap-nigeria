@@ -3,7 +3,11 @@
     <div :key="$root.$i18n.locale" class="tk-home-combos">
       <transition mode="out-in" name="fade-in">
         <p :key="$root.$i18n.locale" class="tk-home-combos-title">
-          {{ $t("home.combosTitle").toUpperCase() }}
+          {{
+            $t("home.combosTitle")
+              .toString()
+              .toUpperCase()
+          }}
         </p>
       </transition>
       <v-tooltip right>

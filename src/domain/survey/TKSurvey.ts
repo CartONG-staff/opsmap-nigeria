@@ -22,18 +22,27 @@ import {
   TKFDFIndicatorValueCount
 } from "../fdf/TKFDFIndicators";
 import { TKSubmissionEntryType } from "./TKSubmissionEntry";
+import { getCenterOfBounds } from "../map/TKMapCamps";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
 // ////////////////////////////////////////////////////////////////////////////
 
+export enum TKSurveyAnonymousType {
+  NONE = "none",
+  GLOBAL = "global"
+}
 export interface TKSurveyOptions {
+  anonymousMode: TKSurveyAnonymousType;
   dateFormat: string;
+  listSeparator: string;
   manageByField: string;
   manageByAltValue?: string;
-  listSeparator: string;
-  anonymousMode?: false | "Site Description" | "Global";
 }
+// ////////////////////////////////////////////////////////////////////////////
+// Survey concept definition
+// ////////////////////////////////////////////////////////////////////////////
 
 export interface TKSurvey {
   name: string;
@@ -169,6 +178,11 @@ export function TKCreateSurvey(
     admin2: []
   };
 
+  // Default bounds
+  const DEFAULT_CAMP_COORDINATES = getCenterOfBounds(
+    TKConfigurationModule.configuration.spatialConfiguration.mapConfig.bounds
+  );
+
   // Apply formatting to date item
   if (options.dateFormat) {
     submissions.map(submission => {
@@ -198,15 +212,6 @@ export function TKCreateSurvey(
         id: submission[fdf.spatialDescription.siteIDField],
         name: submission[fdf.spatialDescription.siteNameField],
         type: fdf.siteTypes[submission[fdf.spatialDescription.siteTypeField]],
-        lat: Number(
-          submission[fdf.spatialDescription.siteLatitudeField].replace(",", ".")
-        ),
-        lng: Number(
-          submission[fdf.spatialDescription.siteLongitudeField].replace(
-            ",",
-            "."
-          )
-        ),
         admin1: {
           pcode: submission[fdf.spatialDescription.adm1Pcode],
           name: submission[fdf.spatialDescription.adm1Name]
@@ -222,8 +227,37 @@ export function TKCreateSurvey(
             ? options.manageByAltValue
             : "-"
         },
-        submissions: [computedSubmission]
+        submissions: [computedSubmission],
+        coordinates: {
+          lat: DEFAULT_CAMP_COORDINATES.lat,
+          lng: DEFAULT_CAMP_COORDINATES.lng
+        }
       };
+
+      // If not anonymisation, set lat long
+      if (
+        options.anonymousMode !== TKSurveyAnonymousType.GLOBAL &&
+        fdf.spatialDescription.siteLatitudeField &&
+        fdf.spatialDescription.siteLongitudeField
+      ) {
+        console.log("here");
+        camp.coordinates = {
+          lat: Number(
+            submission[fdf.spatialDescription.siteLatitudeField].replace(
+              ",",
+              "."
+            )
+          ),
+          lng: Number(
+            submission[fdf.spatialDescription.siteLongitudeField].replace(
+              ",",
+              "."
+            )
+          )
+        };
+      } else {
+        console.log(`not here: ${options.anonymousMode}`);
+      }
       camps.push(camp);
 
       // Add the admin2 if it doesn't exists
@@ -335,10 +369,6 @@ export function TKCreateSurvey(
     }
     return 0;
   });
-
-  if (!options.anonymousMode) {
-    options.anonymousMode = false;
-  }
 
   return {
     name: fdf.name,

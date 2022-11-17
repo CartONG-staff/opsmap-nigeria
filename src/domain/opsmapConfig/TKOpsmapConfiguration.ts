@@ -3,6 +3,10 @@ import { TKLogoGroup } from "@/domain/utils/TKLogo";
 import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKLogo } from "@/domain/utils/TKLogo";
 import VueI18n from "vue-i18n";
+import {
+  TKSurveyAnonymousType,
+  TKSurveyOptions
+} from "@/domain/survey/TKSurvey";
 
 // ////////////////////////////////////////////////////////////////////////////
 // JSON format
@@ -157,7 +161,8 @@ export async function TKReadGeneralConfiguration(
   // ////////////////////////////////////////////////////////////////////////////
   // Options
   // ////////////////////////////////////////////////////////////////////////////
-  const defaultOptions: TKAppOptions = {
+
+  const defaultAppOptions: TKAppOptions = {
     showCCCMLogo: true,
     dark: false,
     pdfColumnCount: 3,
@@ -170,9 +175,36 @@ export async function TKReadGeneralConfiguration(
   // Init with defaultOptions, then replace existing key with options.
   // Order matter !
   json.options = {
-    ...defaultOptions,
+    ...defaultAppOptions,
     ...json.options
   };
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Survey Options
+  // ////////////////////////////////////////////////////////////////////////////
+
+  // TODO: move manage by in another spot. Not an otion, more a description
+  const defaultSurveyOptions: TKSurveyOptions = {
+    dateFormat: "DD/MM/YYYY",
+    listSeparator: ";",
+    manageByField: "",
+    anonymousMode: TKSurveyAnonymousType.NONE
+  };
+
+  for (let i = 0; i < json.surveys.length; i++) {
+    json.surveys[i].options = {
+      ...defaultSurveyOptions,
+      ...json.surveys[i].options
+    };
+
+    // Force to global if lat or long are undefined
+    if (
+      !json.surveys[i].spatial.siteLatitudeField ||
+      !json.surveys[i].spatial.siteLongitudeField
+    ) {
+      json.surveys[i].options.anonymousMode = TKSurveyAnonymousType.GLOBAL;
+    }
+  }
 
   // ////////////////////////////////////////////////////////////////////////////
   // Return final json

@@ -6,13 +6,15 @@ import { TKSubmission } from "./TKSubmission";
 // ////////////////////////////////////////////////////////////////////////////
 // Camp Type definition
 // ////////////////////////////////////////////////////////////////////////////
-
+export interface TKCampCoordinates {
+  lat: number;
+  lng: number;
+}
 export interface TKCamp {
   id: string;
   name: string;
   type: TKFDFSiteType; // from fdf
-  lat: number;
-  lng: number;
+  coordinates: TKCampCoordinates;
   admin1: TKBoundaries;
   admin2: TKBoundaries;
   managedBy: TKLabel;

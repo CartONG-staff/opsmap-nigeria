@@ -4,7 +4,11 @@
     <div class="tk-camp-infos-field">
       <transition mode="out-in" name="fade-in">
         <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
-          {{ $t("infosSiteType").toUpperCase() }}
+          {{
+            $t("infosSiteType")
+              .toString()
+              .toUpperCase()
+          }}
         </div>
       </transition>
       <transition mode="out-in" name="fade-in">
@@ -25,7 +29,11 @@
     <div class="tk-camp-infos-field">
       <transition mode="out-in" name="fade-in">
         <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
-          {{ $t("infosAdmin1").toUpperCase() }}
+          {{
+            $t("infosAdmin1")
+              .toString()
+              .toUpperCase()
+          }}
         </div>
       </transition>
       <transition mode="out-in" name="fade-in">
@@ -39,7 +47,11 @@
     <div class="tk-camp-infos-field">
       <transition mode="out-in" name="fade-in">
         <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
-          {{ $t("infosAdmin2").toUpperCase() }}
+          {{
+            $t("infosAdmin2")
+              .toString()
+              .toUpperCase()
+          }}
         </div>
       </transition>
       <transition mode="out-in" name="fade-in">
@@ -48,12 +60,16 @@
         </div>
       </transition>
     </div>
-    <div class="tk-hseparator" />
+    <div class="tk-hseparator" v-if="displayCampInfos" />
     <!-- GPS COORDINATES -->
-    <div class="tk-camp-infos-field" v-if="!dataset.currentSurvey.options.anonymousMode">
+    <div class="tk-camp-infos-field" v-if="displayCampInfos">
       <transition mode="out-in" name="fade-in">
         <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
-          {{ $t("site.infosCoordinates").toUpperCase() }}
+          {{
+            $t("site.infosCoordinates")
+              .toString()
+              .toUpperCase()
+          }}
         </div>
       </transition>
       <transition mode="out-in" name="fade-in">
@@ -66,7 +82,11 @@
     <div class="tk-camp-infos-field">
       <transition mode="out-in" name="fade-in">
         <div :key="$root.$i18n.locale" class="tk-camp-infos-field-key">
-          {{ $t("manageBy").toUpperCase() }}
+          {{
+            $t("manageBy")
+              .toString()
+              .toUpperCase()
+          }}
         </div>
       </transition>
 
@@ -91,6 +111,7 @@
 </template>
 
 <script lang="ts">
+import { TKSurveyAnonymousType } from "@/domain/survey/TKSurvey";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
@@ -123,7 +144,9 @@ export default class TKCampInfos extends Vue {
         : "-";
 
       this.coordinates = this.dataset.currentCamp
-        ? this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng
+        ? this.dataset.currentCamp.coordinates.lat +
+          "," +
+          this.dataset.currentCamp.coordinates.lng
         : "-";
       this.handeLocale();
     }
@@ -166,6 +189,13 @@ export default class TKCampInfos extends Vue {
         this.$root.$i18n.locale
       ).toUpperCase();
     }
+  }
+
+  get displayCampInfos(): boolean {
+    return (
+      this.dataset.currentSurvey.options.anonymousMode ===
+      TKSurveyAnonymousType.NONE
+    );
   }
 }
 </script>

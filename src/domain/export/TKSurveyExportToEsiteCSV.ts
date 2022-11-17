@@ -38,8 +38,8 @@ function computeEsiteCSVContent(
       const submission = camp.submissions[0];
       if (submission) {
         const campAsCSVLine = [
-          camp.lat.toString(),
-          camp.lng.toString(),
+          camp.coordinates.lat.toString(),
+          camp.coordinates.lng.toString(),
           camp.name,
           camp.type.formattedName,
           submission.date

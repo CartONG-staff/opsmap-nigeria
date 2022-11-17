@@ -91,10 +91,7 @@ export default class TKMap extends Vue {
 
       this.mapCamps = new TKMapCamps(
         TKDatasetModule.dataset.filteredTypedCampsList,
-        TKDatasetModule.dataset.currentCamp,
-        this.dataset,
-        this.geoDataset,
-        TKConfigurationModule.configuration.spatialConfiguration
+        TKDatasetModule.dataset.currentCamp
       );
       if (this.mapBoundaries) {
         this.mapBoundaries.changeStyle(
@@ -111,7 +108,7 @@ export default class TKMap extends Vue {
   @Watch("dataset.lastModification")
   @Watch("geoDataset")
   currentCampChanged() {
-    console.log(this.dataset)
+    console.log(this.dataset);
     if (this.mapBoundaries) {
       this.mapBoundaries.changeStyle(
         TKDatasetModule.dataset,
@@ -121,10 +118,7 @@ export default class TKMap extends Vue {
     }
     this.mapCamps = new TKMapCamps(
       TKDatasetModule.dataset.filteredTypedCampsList,
-      TKDatasetModule.dataset.currentCamp,
-      this.dataset,
-      this.geoDataset,
-      TKConfigurationModule.configuration.spatialConfiguration
+      TKDatasetModule.dataset.currentCamp
     );
 
     const otherCampsSource: mapboxgl.GeoJSONSource = this.map.getSource(

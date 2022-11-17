@@ -8,7 +8,11 @@
         <tbody>
           <tr>
             <td class="headlines-infos-field">
-              {{ $t("infosSiteType").toUpperCase() }}
+              {{
+                $t("infosSiteType")
+                  .toString()
+                  .toUpperCase()
+              }}
             </td>
             <td class="headlines-infos-answer">
               {{ siteType.toUpperCase() }}
@@ -17,7 +21,11 @@
           </tr>
           <tr>
             <td class="headlines-infos-field">
-              {{ $t("infosAdmin1").toUpperCase() }}
+              {{
+                $t("infosAdmin1")
+                  .toString()
+                  .toUpperCase()
+              }}
             </td>
             <td class="headlines-infos-answer">
               {{ admin1.toUpperCase() }}
@@ -26,7 +34,11 @@
           </tr>
           <tr>
             <td class="headlines-infos-field">
-              {{ $t("infosAdmin2").toUpperCase() }}
+              {{
+                $t("infosAdmin2")
+                  .toString()
+                  .toUpperCase()
+              }}
             </td>
             <td class="headlines-infos-answer">
               {{ admin2.toUpperCase() }}
@@ -35,7 +47,11 @@
           </tr>
           <tr>
             <td class="headlines-infos-field">
-              {{ $t("site.infosCoordinates").toUpperCase() }}
+              {{
+                $t("site.infosCoordinates")
+                  .toString()
+                  .toUpperCase()
+              }}
             </td>
             <td class="headlines-infos-answer">
               {{ coordinates.toUpperCase() }}
@@ -44,7 +60,11 @@
           </tr>
           <tr>
             <td class="headlines-infos-field">
-              {{ $t("manageBy").toUpperCase() }}
+              {{
+                $t("manageBy")
+                  .toString()
+                  .toUpperCase()
+              }}
             </td>
             <td class="headlines-infos-answer">
               {{ manageBy.toUpperCase() }}
@@ -112,7 +132,9 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
       this.admin1 = this.dataset.currentCamp.admin1.name;
       this.admin2 = this.dataset.currentCamp.admin2.name;
       this.coordinates =
-        this.dataset.currentCamp.lat + "," + this.dataset.currentCamp.lng;
+        this.dataset.currentCamp.coordinates.lat +
+        "," +
+        this.dataset.currentCamp.coordinates.lng;
 
       this.handleLocale();
 
@@ -149,12 +171,12 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
         TKIconUrl(this.dataset.currentCamp.type.iconFileName.selected)
       );
 
-      staticMapUrl += `url-${markerUrl}(${this.dataset.currentCamp.lng},${this.dataset.currentCamp.lat})/`;
+      staticMapUrl += `url-${markerUrl}(${this.dataset.currentCamp.coordinates.lng},${this.dataset.currentCamp.coordinates.lat})/`;
 
       // Bounds
       const bounds = new LngLat(
-        this.dataset.currentCamp.lng,
-        this.dataset.currentCamp.lat
+        this.dataset.currentCamp.coordinates.lng,
+        this.dataset.currentCamp.coordinates.lat
       )
         .toBounds(5000)
         .toArray();

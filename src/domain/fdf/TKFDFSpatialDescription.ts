@@ -4,8 +4,8 @@
 
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKFDFSpatialDescription {
-  siteLatitudeField: string;
-  siteLongitudeField: string;
+  siteLatitudeField?: string;
+  siteLongitudeField?: string;
   siteNameField: string;
   siteIDField: string;
   siteLastUpdateField: string;
