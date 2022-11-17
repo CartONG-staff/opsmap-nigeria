@@ -1,0 +1,171 @@
+{
+    "languages": [
+        "en",
+        "ro"
+    ],
+    "languageDefault": "en",
+    "iso3": "MD",
+    "name": {
+        "en": "Moldova",
+        "ro": "Moldova"
+    },
+    "opsmapDescr": {
+        "en": "To respond to refugee's needs, the Moldovan authorities have established 69 Refugee Accommodation Centres (RACs) across the country. To understand the needs of these centres, the National Agency for Social Assistance (ANAS), with the support of UNHCR, ACTED, and REACH, conducted key informant interviews (KIIs) with purposefully selected RAC focal points who reported on the situation in the centres. Findings should be considered indicative.",
+        "ro": "Pentru a răspunde la necesitățile de refugiați, autoritățile Republicii Moldova au organizat 69 de centre de plasament temporar pentru refugiați. Agenţia Naţională Asistenţă Socială (ANAS), cu sprijinul UNHCR, ACTED şi REACH, realizează interviuri zilnice cu toate punctele focale ale Centrelor pentru a înțelege necesitățile acestor centre. Constatările ar trebui considerate orientative."
+    },
+    "headerLogos": [],
+    "footerLogos": [
+        {
+            "title": {
+                "en": "Webdev"
+            },
+            "logos": [
+                {
+                    "name": "CartONG",
+                    "urlLogo": "/data/moldova/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlRedirection": "https://www.cartong.org"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Fieldwork",
+                "ro": "Muncă de teren"
+            },
+            "logos": [
+                {
+                    "name": "UNHCR Moldova",
+                    "urlLogo": "/data/moldova/Logo/unhcr_logo.png",
+                    "urlRedirection": "https://data.unhcr.org/en/situations/ukraine/location/10784"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Coordination and IM support",
+                "ro": "Coordonarea și sprijinul GI"
+            },
+            "logos": [
+                {
+                    "name": "REACH",
+                    "urlLogo": "/data/moldova/Logo/reach_logo.png",
+                    "urlRedirection": "https://www.reach-initiative.org/"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Cluster Lead"
+            },
+            "logos": [
+                {
+                    "name": "ANAS",
+                    "urlLogo": "/data/moldova/Logo/anas_logo.png",
+                    "urlRedirection": "https://www.anas.md/"
+                }
+            ]
+        }
+    ],
+    "spatialConfiguration": {
+        "mapConfig": {
+            "bounds": [
+                30.82,
+                48.72,
+                26.64,
+                45.07
+            ]
+        },
+        "dbConfig": {
+            "adm1DBPcode": "pcode",
+            "adm2DBPcode": "pcode"
+        },
+        "localFiles": {
+            "admin0LocalURL": "/data/moldova/map/admin0.geojson"
+        }
+    },
+    "surveys": [
+        {
+            "type": "gsheet",
+            "fdf": {
+                "folder": "/data/moldova/FDF"
+            },
+            "name": "Form A",
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmAAIXU5ZaUJ1Jqg_jbXRmeu6Pkt3QlSwMOljUth7FoIVvdLJMKzlDf4PnBDVNDSHMNW8w41CXdhoA/pub?gid=0&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmAAIXU5ZaUJ1Jqg_jbXRmeu6Pkt3QlSwMOljUth7FoIVvdLJMKzlDf4PnBDVNDSHMNW8w41CXdhoA/pub?gid=1444909534&single=true&output=csv",
+            "options": {
+                "dateFormat": "DD/MM/YYYY",
+                "manageByField": "GestionnaireSiteNom",
+                "listSeparator": ";"
+            },
+            "spatial": {
+                "siteIDField": "site_id",
+                "siteNameField": "site_name",
+                "siteTypeField": "shelter_type",
+                "siteLastUpdateField": "last_update",
+                "siteLatitudeField": "latitude",
+                "siteLongitudeField": "longitude",
+                "adm1Pcode": "adm1_pcode",
+                "adm1Name": "raion",
+                "adm2Pcode": "adm2_pcode",
+                "adm2Name": "city"
+            },
+            "indicators": {
+                "home": [
+                    {
+                        "type": "site_count"
+                    },
+                    {
+                        "type": "people_count",
+                        "entryCode": "center_ind"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Maximum capacity",
+                            "ro": "Capacitate maximă"
+                        },
+                        "entryCode": "shelter_max_capacity",
+                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
+                    }
+                ],
+                "site": [
+                    {
+                        "type": "site_occupation",
+                        "name": {
+                            "en": "Centre at full capacity",
+                            "ro": "Centrul este capacitate maximă"
+                        },
+                        "iconOchaName": "Camp-Coordination-and-Camp-Management",
+                        "entryCodePeopleCount": "center_ind",
+                        "entryCodeMaxPeopleCount": "shelter_max_capacity"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Access to catering (hot meals)?",
+                            "ro": "Acces la catering (mese calde)?"
+                        },
+                        "entryCode": "meals_offered",
+                        "iconOchaName": "Food-Security"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Individuals",
+                            "ro": "Persoane"
+                        },
+                        "entryCode": "center_ind",
+                        "iconOchaName": "People-in-need"
+                    }
+                ]
+            }
+        }
+    ],
+    "options": {
+        "showCCCMLogo": false,
+        "pdfColumnCount": 3,
+        "exportForEsite": false,
+        "showDemoBanner": false,
+        "exportAsCSVonHomePage": true
+    }
+}

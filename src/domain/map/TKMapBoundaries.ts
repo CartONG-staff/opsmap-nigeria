@@ -51,7 +51,7 @@ export class TKMapBoundaries {
           this.mapFitBounds(setZoom, map);
         }
         break;
-      case TKAdminFilters.CAMP:
+      case TKAdminFilters.SITE:
       case TKAdminFilters.ADMIN2:
         setZoom = setZoom2;
         if (setZoom) {
@@ -61,11 +61,12 @@ export class TKMapBoundaries {
       default:
         break;
     }
-    if (dataset.currentCamp) {
+    if (dataset.currentSite) {
       this.mapFitBounds(
-        new LngLat(dataset.currentCamp.lng, dataset.currentCamp.lat).toBounds(
-          100
-        ),
+        new LngLat(
+          dataset.currentSite.coordinates.lng,
+          dataset.currentSite.coordinates.lat
+        ).toBounds(100),
         map
       );
     }

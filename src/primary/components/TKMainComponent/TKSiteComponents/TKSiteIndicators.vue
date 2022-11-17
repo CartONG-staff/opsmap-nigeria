@@ -1,5 +1,5 @@
 <template>
-  <div class="tk-camp-indicators">
+  <div class="tk-site-indicators">
     <TKIndicatorComponent :backgroundType="1" :indicator="indicator1" />
     <TKIndicatorComponent :backgroundType="2" :indicator="indicator2" />
     <TKIndicatorComponent :backgroundType="3" :indicator="indicator3" />
@@ -17,7 +17,7 @@ import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
     TKIndicatorComponent
   }
 })
-export default class TKCampIndicators extends Vue {
+export default class TKSiteIndicators extends Vue {
   get dataset() {
     return TKDatasetModule.dataset;
   }
@@ -78,7 +78,7 @@ export default class TKCampIndicators extends Vue {
 </script>
 
 <style scoped>
-.tk-camp-indicators {
+.tk-site-indicators {
   display: flex;
   flex-flow: row wrap;
   justify-content: left;
@@ -87,7 +87,7 @@ export default class TKCampIndicators extends Vue {
   row-gap: 10px;
 }
 
-.tk-camp-indicators > * {
+.tk-site-indicators > * {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;

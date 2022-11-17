@@ -18,7 +18,7 @@ export interface TKSurveyInfosKobo {
   readonly fdf: TKFDFInfos;
   readonly url: string;
   readonly token: string;
-  readonly options: TKSurveyOptions;
+  options: TKSurveyOptions;
   readonly spatial: TKFDFSpatialDescription;
   readonly indicators: TKFDFIndicators;
 }
@@ -33,7 +33,7 @@ export interface TKSurveyInfosCSV {
   readonly fdf: TKFDFInfos;
   readonly submissionsLocalUrl: string;
   readonly submissionsTrLocalUrl: string;
-  readonly options: TKSurveyOptions;
+  options: TKSurveyOptions;
   readonly spatial: TKFDFSpatialDescription;
   readonly indicators: TKFDFIndicators;
 }
@@ -48,7 +48,7 @@ export interface TKSurveyInfosGSheet {
   readonly fdf: TKFDFInfos;
   readonly submissionsUrl: string;
   readonly submissionsTrUrl: string;
-  readonly options: TKSurveyOptions;
+  options: TKSurveyOptions;
   readonly spatial: TKFDFSpatialDescription;
   readonly indicators: TKFDFIndicators;
 }

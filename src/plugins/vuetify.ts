@@ -47,7 +47,7 @@ export default new Vuetify({
         thematicBackground: "#f1f3f3",
         thematicHeader: "#ffffff",
         thematicBorder: "#f1f3f3",
-        campSelector: "#f0fbff",
+        siteSelector: "#f0fbff",
         placeholder: "#f3f3f3",
         placeholderAccent: "#f6f6f6",
         disabled: "#bdbdbd"
@@ -65,7 +65,7 @@ export default new Vuetify({
         thematicHeader: "#2c2c2c",
         thematicBorder: "#2c2c2c",
         backgroundSecondary: "#171717",
-        campSelector: "#000305",
+        siteSelector: "#000305",
         placeholder: "#171717",
         placeholderAccent: "#1a1a1a",
         disabled: "#717171"

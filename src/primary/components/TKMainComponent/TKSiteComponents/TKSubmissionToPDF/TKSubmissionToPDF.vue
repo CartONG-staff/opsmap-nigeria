@@ -55,7 +55,7 @@ export default class TKSubmissionToPDF extends Vue {
   exportToPDF() {
     if (
       TKDatasetModule.dataset &&
-      TKDatasetModule.dataset.currentCamp &&
+      TKDatasetModule.dataset.currentSite &&
       TKDatasetModule.dataset.currentSubmission
     ) {
       const pdf = new jsPDF({

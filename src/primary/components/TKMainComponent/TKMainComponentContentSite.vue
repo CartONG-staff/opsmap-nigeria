@@ -14,14 +14,14 @@ import { Component, Vue } from "vue-property-decorator";
 import {
   TKSubmissionVisualizer,
   TKSubmissionVisualizerToolbar
-} from "./TKCampComponents";
+} from "./TKSiteComponents";
 @Component({
   components: {
     TKSubmissionVisualizer,
     TKSubmissionVisualizerToolbar
   }
 })
-export default class TKMainComponentContentCamp extends Vue {
+export default class TKMainComponentContentSite extends Vue {
   get showVisualizerOptions() {
     return TKVisualizerOptionsModule.showVisualizerOptions;
   }

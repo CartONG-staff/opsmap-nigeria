@@ -4,15 +4,17 @@ import { TKBoundaries } from "./TKBoundaries";
 import { TKSubmission } from "./TKSubmission";
 
 // ////////////////////////////////////////////////////////////////////////////
-// Camp Type definition
+// Site Type definition
 // ////////////////////////////////////////////////////////////////////////////
-
-export interface TKCamp {
+export interface TKSiteCoordinates {
+  lat: number;
+  lng: number;
+}
+export interface TKSite {
   id: string;
   name: string;
   type: TKFDFSiteType; // from fdf
-  lat: number;
-  lng: number;
+  coordinates: TKSiteCoordinates;
   admin1: TKBoundaries;
   admin2: TKBoundaries;
   managedBy: TKLabel;

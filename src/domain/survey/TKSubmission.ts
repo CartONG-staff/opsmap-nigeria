@@ -19,7 +19,7 @@ import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
 import { TKCompare, TKCompute } from "../utils/TKOperator";
 import { TKOperatorComputation } from "../utils/TKOperator";
 import { TKOperatorComparison } from "../utils/TKOperator";
-import { TKFDFIndicatorCamp, TKFDFIndicatorType } from "../fdf/TKFDFIndicators";
+import { TKFDFIndicatorSite, TKFDFIndicatorType } from "../fdf/TKFDFIndicators";
 import { evaluate, round } from "mathjs";
 import { TKSurveyOptions } from "./TKSurvey";
 
@@ -76,7 +76,7 @@ function getLabelForIndicator(
   return { en: "-" };
 }
 function computeSubmissionIndicator(
-  descr: TKFDFIndicatorCamp,
+  descr: TKFDFIndicatorSite,
   data: Record<string, TKSubmissionThematic>
 ): TKIndicator {
   if (descr.type === TKFDFIndicatorType.OCCUPATION) {

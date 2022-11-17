@@ -1,7 +1,7 @@
 <template>
-  <div class="tk-camp-subtitle">
+  <div class="tk-site-subtitle">
     <transition mode="out-in" name="fade-in">
-      <div :key="name" class="tk-camp-subtitle">
+      <div :key="name" class="tk-site-subtitle">
         {{ name }}
       </div>
     </transition>
@@ -12,29 +12,29 @@
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Component, Vue, Watch } from "vue-property-decorator";
 @Component
-export default class TKCampSubtitle extends Vue {
+export default class TKSiteSubtitle extends Vue {
   name = "";
   get dataset() {
     return TKDatasetModule.dataset;
   }
 
   @Watch("$root.$i18n.locale")
-  @Watch("dataset.currentCamp", { immediate: true })
+  @Watch("dataset.currentSite", { immediate: true })
   onChange() {
-    this.name = this.dataset.currentCamp
-      ? this.dataset.currentCamp.name
+    this.name = this.dataset.currentSite
+      ? this.dataset.currentSite.name
       : this.$root.$i18n.t("site.subtitlePlaceholder").toString();
   }
 }
 </script>
 
 <style scoped>
-.tk-camp-subtitle {
+.tk-site-subtitle {
   font-size: 30px;
   line-height: 1.467;
 }
 
-.tk-camp-subtitle-placeholder {
+.tk-site-subtitle-placeholder {
   font-size: 30px;
   line-height: 1.467;
 }

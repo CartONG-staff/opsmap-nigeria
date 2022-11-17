@@ -2,7 +2,11 @@
   <div class="tk-home-moreinfos">
     <transition mode="out-in" name="fade-in">
       <div :key="$root.$i18n.locale" class="tk-home-moreinfos-title">
-        {{ $t("home.moreInfosTitle").toUpperCase() }}
+        {{
+          $t("home.moreInfosTitle")
+            .toString()
+            .toUpperCase()
+        }}
       </div>
     </transition>
     <transition mode="out-in" name="fade-in">

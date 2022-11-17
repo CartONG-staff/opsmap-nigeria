@@ -1,26 +1,26 @@
 <template>
-  <div class="tk-camp-left">
-    <TKCampSubtitle />
-    <TKCampToolbar />
-    <TKCampInfos />
+  <div class="tk-site-left">
+    <TKSiteSubtitle />
+    <TKSiteToolbar />
+    <TKSiteInfos />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { TKCampInfos, TKCampSubtitle, TKCampToolbar } from "./TKCampComponents";
+import { TKSiteInfos, TKSiteSubtitle, TKSiteToolbar } from "./TKSiteComponents";
 @Component({
   components: {
-    TKCampInfos,
-    TKCampSubtitle,
-    TKCampToolbar
+    TKSiteInfos,
+    TKSiteSubtitle,
+    TKSiteToolbar
   }
 })
 export default class TKMainComponentLeftHome extends Vue {}
 </script>
 
 <style scoped>
-.tk-camp-left {
+.tk-site-left {
   flex-grow: 1;
   display: flex;
   flex-flow: column nowrap;
