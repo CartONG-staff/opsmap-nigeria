@@ -22,7 +22,7 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/moldova/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "/data/demo/DEMO_moldova/Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -35,7 +35,7 @@
             "logos": [
                 {
                     "name": "UNHCR Moldova",
-                    "urlLogo": "/data/moldova/Logo/unhcr_logo.png",
+                    "urlLogo": "/data/demo/DEMO_moldova/Logo/unhcr_logo.png",
                     "urlRedirection": "https://data.unhcr.org/en/situations/ukraine/location/10784"
                 }
             ]
@@ -48,7 +48,7 @@
             "logos": [
                 {
                     "name": "REACH",
-                    "urlLogo": "/data/moldova/Logo/reach_logo.png",
+                    "urlLogo": "/data/demo/DEMO_moldova/Logo/reach_logo.png",
                     "urlRedirection": "https://www.reach-initiative.org/"
                 }
             ]
@@ -60,7 +60,7 @@
             "logos": [
                 {
                     "name": "ANAS",
-                    "urlLogo": "/data/moldova/Logo/anas_logo.png",
+                    "urlLogo": "/data/demo/DEMO_moldova/Logo/anas_logo.png",
                     "urlRedirection": "https://www.anas.md/"
                 }
             ]
@@ -80,30 +80,31 @@
             "adm2DBPcode": "pcode"
         },
         "localFiles": {
-            "admin0LocalURL": "/data/moldova/map/admin0.geojson"
+            "admin0LocalURL": "/data/demo/DEMO_moldova/map/admin0.geojson"
         }
     },
     "surveys": [
         {
             "type": "gsheet",
             "fdf": {
-                "folder": "/data/moldova/FDF"
+                "folder": "/data/demo/DEMO_moldova/FDF"
             },
             "name": "Form A",
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmAAIXU5ZaUJ1Jqg_jbXRmeu6Pkt3QlSwMOljUth7FoIVvdLJMKzlDf4PnBDVNDSHMNW8w41CXdhoA/pub?gid=0&single=true&output=csv",
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmAAIXU5ZaUJ1Jqg_jbXRmeu6Pkt3QlSwMOljUth7FoIVvdLJMKzlDf4PnBDVNDSHMNW8w41CXdhoA/pub?gid=1444909534&single=true&output=csv",
             "options": {
                 "dateFormat": "DD/MM/YYYY",
-                "manageByField": "GestionnaireSiteNom",
-                "listSeparator": ";"
+                "listSeparator": ";",
+                "anonymousMode": "azeazeaze"
             },
             "spatial": {
                 "siteIDField": "site_id",
                 "siteNameField": "site_name",
-                "siteTypeField": "shelter_type",
                 "siteLastUpdateField": "last_update",
                 "siteLatitudeField": "latitude",
                 "siteLongitudeField": "longitude",
+                "siteManageByField": "GestionnaireSiteNom",
+                "siteTypeField": "shelter_type",
                 "adm1Pcode": "adm1_pcode",
                 "adm1Name": "raion",
                 "adm2Pcode": "adm2_pcode",

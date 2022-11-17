@@ -120,8 +120,6 @@
             "token": "c6d24e0275d1ca5be2231496a3ceeddd5e78bdc4",
             "options": {
                 "dateFormat": "YYYY-MM-DD",
-                "manageByField": "organisation",
-                "manageByAltValue": "cccm",
                 "listSeparator": ";"
             },
             "indicators": {
@@ -171,11 +169,13 @@
             },
             "spatial": {
                 "siteIDField": "group_general_info/site",
-                "siteNameField": "group_general_info/site_name",
-                "siteTypeField": "group_general_info/site_type",
                 "siteLastUpdateField": "date",
                 "siteLatitudeField": "group_general_info/latitude",
                 "siteLongitudeField": "group_general_info/longitude",
+                "siteManageByField": "organisation",
+                "siteManageByAltValue": "cccm",
+                "siteNameField": "group_general_info/site_name",
+                "siteTypeField": "group_general_info/site_type",
                 "adm1Pcode": "group_general_info/state",
                 "adm1Name": "group_general_info/state_name",
                 "adm2Pcode": "group_general_info/lga",

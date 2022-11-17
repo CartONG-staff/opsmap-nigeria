@@ -91,16 +91,16 @@
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6ABYLmhxjPRcE9WUYkhcjoIHT5_RL1vP0Gs6sx0BHxsCYnVXmUzOECL6Qf460mBFZM_F2k8yl6CDf/pub?gid=2105275364&single=true&output=csv",
             "options": {
                 "dateFormat": "DD/MM/YYYY",
-                "manageByField": "",
                 "listSeparator": ";"
             },
             "spatial": {
                 "siteIDField": "SITE_CODE",
-                "siteNameField": "SITE_NAME",
-                "siteTypeField": "Site_Typology",
                 "siteLastUpdateField": "assessment_date",
                 "siteLatitudeField": "Latitude",
                 "siteLongitudeField": "Longitude",
+                "siteManageByField": "",
+                "siteNameField": "SITE_NAME",
+                "siteTypeField": "Site_Typology",
                 "adm1Pcode": "adm1pcode",
                 "adm1Name": "STATE",
                 "adm2Pcode": "adm2pcode",

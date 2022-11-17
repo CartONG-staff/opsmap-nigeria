@@ -105,7 +105,6 @@
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWB--WUoL4kvoVyWJA0pSvrutK2eKTRbKFUkDRJcY5drw52BtBKphuqb8P1_iD23hiBNZIoBSw70Vy/pub?gid=471306203&single=true&output=csv",
             "options": {
                 "dateFormat": "DD/MM/YY",
-                "manageByField": "CCCM_AGENCY",
                 "listSeparator": ";"
             },
             "indicators": {
@@ -159,11 +158,12 @@
             },
             "spatial": {
                 "siteIDField": "CCCM-SITE-ID",
-                "siteNameField": "SITE_NAME",
-                "siteTypeField": "Site_Type",
                 "siteLastUpdateField": "last_update",
                 "siteLatitudeField": "GPS_LATITUDE",
                 "siteLongitudeField": "GPS_LONGITUDE",
+                "siteManageByField": "CCCM_AGENCY",
+                "siteNameField": "SITE_NAME",
+                "siteTypeField": "Site_Type",
                 "adm1Pcode": "ADM1_PCODE",
                 "adm1Name": "ADM1_EN",
                 "adm2Pcode": "ADM2_PCODE",

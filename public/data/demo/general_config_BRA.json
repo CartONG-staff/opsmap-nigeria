@@ -143,7 +143,6 @@
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=1157434408&single=true&output=csv",
             "options": {
                 "dateFormat": "DD/MM/YYYY",
-                "manageByField": "cccm_shelter__mangmt",
                 "listSeparator": ";"
             },
             "indicators": {
@@ -199,11 +198,12 @@
             },
             "spatial": {
                 "siteIDField": "mp_site_id",
-                "siteNameField": "mp_site_name",
-                "siteTypeField": "mp_shelter_type",
                 "siteLastUpdateField": "mp_last_date",
                 "siteLatitudeField": "mp_latitude",
                 "siteLongitudeField": "mp_longitude",
+                "siteManageByField": "cccm_shelter__mangmt",
+                "siteNameField": "mp_site_name",
+                "siteTypeField": "mp_shelter_type",
                 "adm1Pcode": "adm1pcode",
                 "adm1Name": "ggi_state",
                 "adm2Pcode": "adm2pcode",

@@ -95,15 +95,15 @@
             "options": {
                 "dateFormat": "DD/MM/YYYY",
                 "listSeparator": ";",
-                "anonymousMode": "azeazeaze"
+                "anonymousMode": "text and map"
             },
             "spatial": {
                 "siteIDField": "site_id",
-                "siteNameField": "site_name",
                 "siteLastUpdateField": "last_update",
                 "siteLatitudeField": "latitude",
                 "siteLongitudeField": "longitude",
                 "siteManageByField": "GestionnaireSiteNom",
+                "siteNameField": "site_name",
                 "siteTypeField": "shelter_type",
                 "adm1Pcode": "adm1_pcode",
                 "adm1Name": "raion",
