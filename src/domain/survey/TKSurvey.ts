@@ -31,7 +31,8 @@ import TKConfigurationModule from "@/store/modules/configuration/TKConfiguration
 
 export enum TKSurveyAnonymousType {
   NONE = "none",
-  GLOBAL = "global"
+  TEXT = "text",
+  TEXT_AND_MAP = "text and map"
 }
 export interface TKSurveyOptions {
   anonymousMode: TKSurveyAnonymousType;
@@ -236,7 +237,7 @@ export function TKCreateSurvey(
 
       // If not anonymisation, set lat long
       if (
-        options.anonymousMode !== TKSurveyAnonymousType.GLOBAL &&
+        options.anonymousMode !== TKSurveyAnonymousType.TEXT_AND_MAP &&
         fdf.spatialDescription.siteLatitudeField &&
         fdf.spatialDescription.siteLongitudeField
       ) {

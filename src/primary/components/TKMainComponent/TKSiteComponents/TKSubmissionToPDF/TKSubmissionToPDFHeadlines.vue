@@ -45,7 +45,7 @@
             </td>
             <td class="headlines-infos-spacer"></td>
           </tr>
-          <tr>
+          <tr v-if="displaySiteInfos">
             <td class="headlines-infos-field">
               {{
                 $t("site.infosCoordinates")
@@ -80,6 +80,7 @@
 </template>
 
 <script lang="ts">
+import { TKSurveyAnonymousType } from "@/domain/survey/TKSurvey";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { toTitleCase } from "@/domain/utils/TKStringUtils";
@@ -191,6 +192,13 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
       // Upadte img URL
       this.mapImg = staticMapUrl;
     }
+  }
+
+  get displaySiteInfos(): boolean {
+    return (
+      this.dataset.currentSurvey.options.anonymousMode ===
+      TKSurveyAnonymousType.NONE
+    );
   }
 }
 </script>

@@ -202,7 +202,8 @@ export async function TKReadGeneralConfiguration(
       !json.surveys[i].spatial.siteLatitudeField ||
       !json.surveys[i].spatial.siteLongitudeField
     ) {
-      json.surveys[i].options.anonymousMode = TKSurveyAnonymousType.GLOBAL;
+      json.surveys[i].options.anonymousMode =
+        TKSurveyAnonymousType.TEXT_AND_MAP;
     }
   }
 
