@@ -239,7 +239,6 @@ export function TKCreateSurvey(
         fdf.spatialDescription.siteLatitudeField &&
         fdf.spatialDescription.siteLongitudeField
       ) {
-        console.log("here");
         site.coordinates = {
           lat: Number(
             submission[fdf.spatialDescription.siteLatitudeField].replace(
@@ -254,8 +253,6 @@ export function TKCreateSurvey(
             )
           )
         };
-      } else {
-        console.log(`not here: ${options.anonymousMode}`);
       }
       sites.push(site);
 
