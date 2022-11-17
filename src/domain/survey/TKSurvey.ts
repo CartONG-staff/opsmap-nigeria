@@ -4,12 +4,12 @@ import { TKBoundaries } from "./TKBoundaries";
 import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
 import {
   PEOPLE_COUNT_ICON,
-  PEOPLE_COUNT_LABEL,
   SITE_COUNT_ICON,
-  SITE_COUNT_LABEL,
   TKIndicator,
   TKIndicatorType
 } from "./TKIndicator";
+import { PEOPLE_COUNT_LABEL, SITE_COUNT_LABEL } from "./TKIndicatorLabels";
+
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKCamp } from "@/domain/survey/TKCamp";
 import { TKDateCompare, TKDateFormat } from "@/domain/utils/TKDate";

@@ -139,6 +139,18 @@ export function TKCreateSubmissionEntryBullet(
     });
   }
 
+  if (
+    surveyConfiguration.submissionsRules[field].trafficLightName &&
+    !(
+      surveyConfiguration.submissionsRules[field].trafficLightName in
+      surveyConfiguration.trafficLights
+    )
+  ) {
+    console.log(
+      `[WARNING] Traffic light category "${surveyConfiguration.submissionsRules[field].trafficLightName}" does not exist`
+    );
+  }
+
   return {
     type: TKSubmissionEntryType.BULLET,
     field: field,
@@ -199,6 +211,18 @@ export function TKCreateSubmissionEntryList(
         : { en: value };
   }
 
+  if (
+    surveyConfiguration.submissionsRules[field].trafficLightName &&
+    !(
+      surveyConfiguration.submissionsRules[field].trafficLightName in
+      surveyConfiguration.trafficLights
+    )
+  ) {
+    console.log(
+      `[WARNING] Traffic light category "${surveyConfiguration.submissionsRules[field].trafficLightName}" does not exist`
+    );
+  }
+
   return {
     type: TKSubmissionEntryType.TEXT,
     field: field,
@@ -230,6 +254,18 @@ export function TKCreateSubmissionEntryText(
     isAnswered && surveyConfiguration.answersLabels[value]
       ? surveyConfiguration.answersLabels[value]
       : { en: value };
+
+  if (
+    surveyConfiguration.submissionsRules[field].trafficLightName &&
+    !(
+      surveyConfiguration.submissionsRules[field].trafficLightName in
+      surveyConfiguration.trafficLights
+    )
+  ) {
+    console.log(
+      `[WARNING] Traffic light category "${surveyConfiguration.submissionsRules[field].trafficLightName}" does not exist`
+    );
+  }
 
   return {
     type: TKSubmissionEntryType.TEXT,
