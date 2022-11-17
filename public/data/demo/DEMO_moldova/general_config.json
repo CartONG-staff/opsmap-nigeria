@@ -43,7 +43,7 @@
         {
             "title": {
                 "en": "Coordination and IM support",
-                "ro":"Coordonarea și sprijinul GI"
+                "ro": "Coordonarea și sprijinul GI"
             },
             "logos": [
                 {
@@ -66,7 +66,7 @@
             ]
         }
     ],
-    "spatialConfiguration":{
+    "spatialConfiguration": {
         "mapConfig": {
             "bounds": [
                 30.82,
@@ -75,13 +75,12 @@
                 45.07
             ]
         },
-        "dbConfig":{
+        "dbConfig": {
             "adm1DBPcode": "pcode",
             "adm2DBPcode": "pcode"
         },
-        "localFiles":{
-            "admin0LocalURL": "/data/moldova/map/admin0.geojson",
-            "admin1LocalURL": "/data/moldova/map/admin1.geojson"
+        "localFiles": {
+            "admin0LocalURL": "/data/moldova/map/admin0.geojson"
         }
     },
     "surveys": [
@@ -108,8 +107,7 @@
                 "adm1Pcode": "adm1_pcode",
                 "adm1Name": "raion",
                 "adm2Pcode": "adm2_pcode",
-                "adm2Name": "city",
-                "adm2RefInAdm1": "adm1_pcode"
+                "adm2Name": "city"
             },
             "indicators": {
                 "home": [
