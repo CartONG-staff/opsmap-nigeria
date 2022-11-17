@@ -1,11 +1,8 @@
 import { FeatureCollection } from "geojson";
 import { TKSite, TKSiteCoordinates } from "@/domain/survey/TKSite";
-// import { TKDataset } from "../survey/TKDataset";
 import { TKGeoDataset } from "./TKGeoDataset";
-// import { TKOpsmapSpatialConfiguration } from "../opsmapConfig/TKOpsmapConfiguration";
 import mapboxgl, { LngLat } from "mapbox-gl";
 import centroid from "@turf/centroid";
-// import { TKSurveyAnonymousType } from "../survey/TKSurvey";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 interface TKFilteredSites {
   selectedSite: FeatureCollection | string;
