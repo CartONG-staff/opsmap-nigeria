@@ -1,18 +1,18 @@
 <template>
   <div>
-    <TKCampIndicators />
+    <TKSiteIndicators />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { TKCampIndicators } from "./TKCampComponents";
+import { TKSiteIndicators } from "./TKSiteComponents";
 @Component({
   components: {
-    TKCampIndicators
+    TKSiteIndicators
   }
 })
-export default class TKMainComponentIndicatorsCamp extends Vue {}
+export default class TKMainComponentIndicatorsSite extends Vue {}
 </script>
 
 <style scoped></style>

@@ -1,6 +1,6 @@
 <template lang="html">
   <transition mode="out-in" name="fade">
-    <div :key="$root.$i18n.locale" class="tk-camp-selector" :style="opacity">
+    <div :key="$root.$i18n.locale" class="tk-site-selector" :style="opacity">
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <v-autocomplete
@@ -17,7 +17,14 @@
             v-on="on"
           ></v-autocomplete>
         </template>
-        <span>{{ $t("selectText") }} {{ $t("survey").toLowerCase() }}</span>
+        <span
+          >{{ $t("selectText") }}
+          {{
+            $t("survey")
+              .toString()
+              .toLowerCase()
+          }}</span
+        >
       </v-tooltip>
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
@@ -37,7 +44,12 @@
           ></v-autocomplete>
         </template>
         <span
-          >{{ $t("selectText") }} {{ $t("infosAdmin1").toLowerCase() }}</span
+          >{{ $t("selectText") }}
+          {{
+            $t("infosAdmin1")
+              .toString()
+              .toLowerCase()
+          }}</span
         >
       </v-tooltip>
       <v-tooltip top>
@@ -58,7 +70,12 @@
           ></v-autocomplete>
         </template>
         <span
-          >{{ $t("selectText") }} {{ $t("infosAdmin2").toLowerCase() }}</span
+          >{{ $t("selectText") }}
+          {{
+            $t("infosAdmin2")
+              .toString()
+              .toLowerCase()
+          }}</span
         >
       </v-tooltip>
       <v-tooltip top>
@@ -67,10 +84,10 @@
             class="tk-autocomplete"
             flat
             dense
-            :label="$t('camp')"
-            v-model="dataset.currentCamp"
-            :items="dataset.filteredTypedCampsList"
-            :disabled="!dataset.filteredTypedCampsList.length"
+            :label="$t('infosSite')"
+            v-model="dataset.currentSite"
+            :items="dataset.filteredTypedSitesList"
+            :disabled="!dataset.filteredTypedSitesList.length"
             item-text="name"
             return-object
             clearable
@@ -78,7 +95,14 @@
             v-on="on"
           ></v-autocomplete>
         </template>
-        <span>{{ $t("selectText") }} {{ $t("camp").toLowerCase() }}</span>
+        <span
+          >{{ $t("selectText") }}
+          {{
+            $t("infosSite")
+              .toString()
+              .toLowerCase()
+          }}</span
+        >
       </v-tooltip>
     </div>
   </transition>
@@ -89,7 +113,7 @@ import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Vue, Component } from "vue-property-decorator";
 
 @Component
-export default class TKCampSelector extends Vue {
+export default class TKSiteSelector extends Vue {
   get dataset() {
     return TKDatasetModule.dataset;
   }
@@ -108,10 +132,10 @@ export default class TKCampSelector extends Vue {
 }
 </script>
 <style scoped>
-.tk-camp-selector {
+.tk-site-selector {
   border-radius: 8px;
   align-items: center;
-  background-color: var(--v-campSelector-base);
+  background-color: var(--v-siteSelector-base);
   opacity: var(--opacity);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);

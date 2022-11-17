@@ -26,7 +26,7 @@ export interface TKIndicatorSiteOccupation {
   readonly iconOchaName: string;
 }
 
-export const SITE_COUNT_ICON = "IDP-refugee-camp";
+export const SITE_COUNT_ICON = "IDP-refugee-site";
 
 export const PEOPLE_COUNT_ICON = "People-in-need";
 

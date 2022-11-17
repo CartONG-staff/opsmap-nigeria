@@ -1,21 +1,21 @@
 <template>
-  <div class="tk-camp-toolbar">
+  <div class="tk-site-toolbar">
     <transition mode="out-in" name="fade-in">
-      <div :key="$root.$i18n.locale" class="tk-camp-toolbar-container">
+      <div :key="$root.$i18n.locale" class="tk-site-toolbar-container">
         <v-autocomplete
-          v-if="dataset.currentCamp"
+          v-if="dataset.currentSite"
           key="1"
-          class="tk-camp-toolbar-item"
+          class="tk-site-toolbar-item"
           background-color="accent"
           color="background"
-          :disabled="dataset.currentCamp.submissions.length < 2"
+          :disabled="dataset.currentSite.submissions.length < 2"
           flat
           filled
           solo
           dense
           height="44"
           v-model="dataset.currentSubmission"
-          :items="dataset.currentCamp.submissions"
+          :items="dataset.currentSite.submissions"
           item-text="date"
           return-object
           :prefix="$t('site.datePreffix').toUpperCase()"
@@ -23,7 +23,7 @@
         <v-autocomplete
           v-else
           key="2"
-          class="tk-camp-toolbar-item-disabled"
+          class="tk-site-toolbar-item-disabled"
           background-color="accent"
           color="background"
           disabled
@@ -37,20 +37,20 @@
       </div>
     </transition>
 
-    <TKCampToolbarExportButton class="tk-camp-toolbar-container" />
+    <TKSiteToolbarExportButton class="tk-site-toolbar-container" />
     <v-tooltip top>
       <template v-slot:activator="{ on: tooltip, attrs }">
-        <v-btn-toggle rounded class="tk-camp-toolbar-toggle">
+        <v-btn-toggle rounded class="tk-site-toolbar-toggle">
           <v-btn
             icon
             height="44"
             width="44"
             color="accent"
-            :disabled="!dataset.currentCamp"
+            :disabled="!dataset.currentSite"
             v-bind="attrs"
             v-on="tooltip"
             v-model="showVisualizerOptions"
-            class="tk-camp-toolbar-toggle-button"
+            class="tk-site-toolbar-toggle-button"
           >
             <v-icon dark>
               mdi-tune-vertical-variant
@@ -66,16 +66,16 @@
 <script lang="ts">
 // TODO: remove commented lines
 import { Component, Vue } from "vue-property-decorator";
-import TKCampToolbarExportButton from "./TKCampToolbarExportButton.vue";
+import TKSiteToolbarExportButton from "./TKSiteToolbarExportButton.vue";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 
 @Component({
   components: {
-    TKCampToolbarExportButton
+    TKSiteToolbarExportButton
   }
 })
-export default class TKCampToolbar extends Vue {
+export default class TKSiteToolbar extends Vue {
   get showVisualizerOptions() {
     return TKVisualizerOptionsModule.showVisualizerOptions;
   }
@@ -91,7 +91,7 @@ export default class TKCampToolbar extends Vue {
 </script>
 
 <style>
-.tk-camp-toolbar {
+.tk-site-toolbar {
   display: flex;
   width: 100%;
   flex-flow: row nowrap;
@@ -99,7 +99,7 @@ export default class TKCampToolbar extends Vue {
   column-gap: 5px;
 }
 
-.tk-camp-toolbar-item.theme--light.v-input input {
+.tk-site-toolbar-item.theme--light.v-input input {
   color: #fff !important;
   font-family: "Arial";
   font-weight: bold !important;
@@ -107,19 +107,19 @@ export default class TKCampToolbar extends Vue {
   letter-spacing: 0.86px !important;
 }
 
-.tk-camp-toolbar-item .v-icon.v-icon {
+.tk-site-toolbar-item .v-icon.v-icon {
   color: #fff !important;
 }
 
-.tk-camp-toolbar-item .theme--light.v-icon.v-icon.v-icon--disabled {
+.tk-site-toolbar-item .theme--light.v-icon.v-icon.v-icon--disabled {
   opacity: 1 !important;
 }
 
-.tk-camp-toolbar-item-disabled.v-input--is-disabled .v-input__slot {
+.tk-site-toolbar-item-disabled.v-input--is-disabled .v-input__slot {
   background-color: rgba(0, 0, 0, 0.12) !important;
 }
 
-.tk-camp-toolbar input::placeholder {
+.tk-site-toolbar input::placeholder {
   color: #f1f3f3 !important;
   font-family: "Arial";
   font-weight: bold !important;
@@ -127,8 +127,8 @@ export default class TKCampToolbar extends Vue {
   letter-spacing: 0.86px !important;
 }
 
-.tk-camp-toolbar .v-text-field__suffix,
-.tk-camp-toolbar .v-text-field__prefix {
+.tk-site-toolbar .v-text-field__suffix,
+.tk-site-toolbar .v-text-field__prefix {
   color: #fff !important;
   font-family: "Arial";
   font-weight: bold !important;
@@ -139,23 +139,23 @@ export default class TKCampToolbar extends Vue {
   text-overflow: ellipsis !important;
 }
 
-.tk-camp-toolbar-toggle {
+.tk-site-toolbar-toggle {
   height: 44px !important;
   width: 44px !important;
 }
 
-.tk-camp-toolbar-toggle .v-btn--active:not(:hover) {
+.tk-site-toolbar-toggle .v-btn--active:not(:hover) {
   color: transparent !important;
 }
 
-.tk-camp-toolbar-toggle .v-btn > .v-btn__content > .v-icon {
+.tk-site-toolbar-toggle .v-btn > .v-btn__content > .v-icon {
   color: #919191 !important;
 }
-.tk-camp-toolbar-toggle .v-btn--active > .v-btn__content > .v-icon {
+.tk-site-toolbar-toggle .v-btn--active > .v-btn__content > .v-icon {
   color: var(--v-accent-base) !important;
 }
 
-.tk-camp-toolbar-toggle-button {
+.tk-site-toolbar-toggle-button {
   height: 44px !important;
   width: 44px !important;
   min-width: 44px !important;

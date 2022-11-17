@@ -53,24 +53,24 @@ import TKMap from "./TKMap";
 import { TKHomeIndicators, TKHomeMoreInfos } from "./TKHomeComponents";
 
 import {
-  TKCampIndicators,
-  TKCampInfos,
-  TKCampSelector,
-  TKCampToolbar,
-  TKCampSubtitle,
+  TKSiteIndicators,
+  TKSiteInfos,
+  TKSiteSelector,
+  TKSiteToolbar,
+  TKSiteSubtitle,
   TKSubmissionVisualizer
-} from "./TKCampComponents";
+} from "./TKSiteComponents";
 
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 
 @Component({
   components: {
-    TKCampIndicators,
-    TKCampInfos,
-    TKCampSelector,
-    TKCampSubtitle,
-    TKCampToolbar,
+    TKSiteIndicators,
+    TKSiteInfos,
+    TKSiteSelector,
+    TKSiteSubtitle,
+    TKSiteToolbar,
     TKSubmissionVisualizer,
     TKHomeIndicators,
     TKHomeMoreInfos,
@@ -107,7 +107,7 @@ export default class TKMainComponent extends Vue {
     return TKDatasetModule.dataset.lastModification;
   }
 
-  // Trigger when a camp is selected
+  // Trigger when a site is selected
   @Watch("lastModification")
   onLastModificationChange() {
     TKVisualizerOptionsModule.resetHideUnanswered();

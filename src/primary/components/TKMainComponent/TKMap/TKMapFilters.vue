@@ -124,10 +124,10 @@ export default class TKMapFilter extends Vue {
 
   show = true;
 
-  @Watch("dataset.filteredCampsList", { immediate: true })
+  @Watch("dataset.filteredSitesList", { immediate: true })
   updateCount() {
     for (let idx = 0; idx < this.sites.length; idx++) {
-      this.sites[idx].count = this.dataset.filteredCampsList.filter(
+      this.sites[idx].count = this.dataset.filteredSitesList.filter(
         site => site.type.formattedName === this.sites[idx].type
       ).length;
     }

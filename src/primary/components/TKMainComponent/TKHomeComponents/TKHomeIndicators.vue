@@ -33,7 +33,7 @@ export default class TKHomeIndicators extends Vue {
 
   @Watch("dataset.lastModification")
   onLastModification() {
-    if (!this.dataset.currentCamp) {
+    if (!this.dataset.currentSite) {
       if (this.dataset.currentAdmin2) {
         this.indicator1 = this.dataset.currentSurvey.computedIndicators[
           this.dataset.currentAdmin2.pcode

@@ -1,5 +1,5 @@
 <template>
-  <div class="tk-camp-toolbar-container">
+  <div class="tk-site-toolbar-container">
     <v-dialog v-model="generatePDF" hide-overlay>
       <template v-slot:activator="{ on: dialog, attrs }">
         <v-tooltip top>
@@ -10,7 +10,7 @@
               color="accent"
               height="44"
               width="44"
-              :disabled="!dataset.currentCamp"
+              :disabled="!dataset.currentSite"
               v-bind="attrs"
               v-on="{ ...tooltip, ...dialog }"
               @click="triggerExportToPDF()"
@@ -38,7 +38,7 @@
           color="accent"
           height="44"
           width="44"
-          :disabled="!dataset.currentCamp"
+          :disabled="!dataset.currentSite"
           @click="exportToCSV()"
           v-bind="attrs"
           v-on="on"
@@ -55,7 +55,7 @@
 
 <script lang="ts">
 import TKSubmissionToPDF from "./TKSubmissionToPDF/TKSubmissionToPDF.vue";
-import { TKDatasetExportCurrentCampToCSV } from "@/domain/export/TKDatasetExportToCSV";
+import { TKDatasetExportCurrentSiteToCSV } from "@/domain/export/TKDatasetExportToCSV";
 import { Component, Vue } from "vue-property-decorator";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
@@ -64,7 +64,7 @@ import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
     TKSubmissionToPDF
   }
 })
-export default class TKCampToolbarExportButton extends Vue {
+export default class TKSiteToolbarExportButton extends Vue {
   generatePDF = false;
 
   get dataset() {
@@ -73,7 +73,7 @@ export default class TKCampToolbarExportButton extends Vue {
 
   exportToCSV() {
     if (TKDatasetModule.dataset && TKDatasetModule.dataset.currentSubmission) {
-      TKDatasetExportCurrentCampToCSV(
+      TKDatasetExportCurrentSiteToCSV(
         TKDatasetModule.dataset,
         this.$root.$i18n.locale
       );
@@ -94,7 +94,7 @@ export default class TKCampToolbarExportButton extends Vue {
 </script>
 
 <style scoped>
-.tk-camp-toolbar-container {
+.tk-site-toolbar-container {
   display: flex;
   flex-flow: row nowrap;
   align-items: top;

@@ -64,7 +64,7 @@ export default class TKApp extends Vue {
           TKConfigurationModule.configuration.spatialConfiguration
         ).then(geoDataset => {
           TKGeoDatasetModule.setGeoDataset(geoDataset);
-          TKDatasetModule.updateCampCoordinates(geoDataset);
+          TKDatasetModule.updateSiteCoordinates(geoDataset);
         });
       }
     });

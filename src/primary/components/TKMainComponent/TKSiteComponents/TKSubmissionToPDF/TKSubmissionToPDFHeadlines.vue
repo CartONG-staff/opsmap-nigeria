@@ -98,7 +98,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   siteName = "";
   date = "";
 
-  // Camp infos
+  // Site infos
   admin1 = "-";
   admin2 = "-";
   siteType = "-";
@@ -110,31 +110,31 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
 
   @Watch("$root.$i18n.locale", { immediate: true })
   handleLocale() {
-    if (this.dataset && this.dataset.currentCamp) {
+    if (this.dataset && this.dataset.currentSite) {
       this.manageBy = TKGetLocalValue(
-        this.dataset.currentCamp
-          ? this.dataset.currentCamp?.managedBy
+        this.dataset.currentSite
+          ? this.dataset.currentSite?.managedBy
           : { en: "-" },
         this.$root.$i18n.locale
       );
 
       this.siteType = TKGetLocalValue(
-        this.dataset.currentCamp.type.thematicLabel,
+        this.dataset.currentSite.type.thematicLabel,
         this.$root.$i18n.locale
       ).toUpperCase();
     }
   }
 
-  @Watch("dataset.currentCamp", { immediate: true })
-  campChanged() {
-    if (this.dataset && this.dataset.currentCamp) {
-      this.siteName = toTitleCase(this.dataset.currentCamp.name.toUpperCase());
-      this.admin1 = this.dataset.currentCamp.admin1.name;
-      this.admin2 = this.dataset.currentCamp.admin2.name;
+  @Watch("dataset.currentSite", { immediate: true })
+  siteChanged() {
+    if (this.dataset && this.dataset.currentSite) {
+      this.siteName = toTitleCase(this.dataset.currentSite.name.toUpperCase());
+      this.admin1 = this.dataset.currentSite.admin1.name;
+      this.admin2 = this.dataset.currentSite.admin2.name;
       this.coordinates =
-        this.dataset.currentCamp.coordinates.lat +
+        this.dataset.currentSite.coordinates.lat +
         "," +
-        this.dataset.currentCamp.coordinates.lng;
+        this.dataset.currentSite.coordinates.lng;
 
       this.handleLocale();
 
@@ -154,7 +154,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   // map object management method
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   initMap(): void {
-    if (this.dataset && this.dataset.currentCamp) {
+    if (this.dataset && this.dataset.currentSite) {
       let staticMapUrl = "https://api.mapbox.com/";
 
       // Style
@@ -164,19 +164,19 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
       staticMapUrl += "static/";
 
       // Marker
-      // TODO: magic value : automate icon file name with CampTypesValues
+      // TODO: magic value : automate icon file name with SiteTypesValues
       let markerUrl = "";
 
       markerUrl = encodeURIComponent(
-        TKIconUrl(this.dataset.currentCamp.type.iconFileName.selected)
+        TKIconUrl(this.dataset.currentSite.type.iconFileName.selected)
       );
 
-      staticMapUrl += `url-${markerUrl}(${this.dataset.currentCamp.coordinates.lng},${this.dataset.currentCamp.coordinates.lat})/`;
+      staticMapUrl += `url-${markerUrl}(${this.dataset.currentSite.coordinates.lng},${this.dataset.currentSite.coordinates.lat})/`;
 
       // Bounds
       const bounds = new LngLat(
-        this.dataset.currentCamp.coordinates.lng,
-        this.dataset.currentCamp.coordinates.lat
+        this.dataset.currentSite.coordinates.lng,
+        this.dataset.currentSite.coordinates.lat
       )
         .toBounds(5000)
         .toArray();

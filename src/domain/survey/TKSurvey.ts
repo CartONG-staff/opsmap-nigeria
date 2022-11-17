@@ -11,7 +11,7 @@ import {
 import { PEOPLE_COUNT_LABEL, SITE_COUNT_LABEL } from "./TKIndicatorLabels";
 
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import { TKCamp } from "@/domain/survey/TKCamp";
+import { TKSite } from "@/domain/survey/TKSite";
 import { TKDateCompare, TKDateFormat } from "@/domain/utils/TKDate";
 import {
   TKFDFIndicatorPeopleCount,
@@ -22,7 +22,7 @@ import {
   TKFDFIndicatorValueCount
 } from "../fdf/TKFDFIndicators";
 import { TKSubmissionEntryType } from "./TKSubmissionEntry";
-import { getCenterOfBounds } from "../map/TKMapCamps";
+import { getCenterOfBounds } from "../map/TKMapSites";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -51,7 +51,7 @@ export interface TKSurvey {
     admin2: TKBoundaries[];
   };
   fdf: TKFDF;
-  camps: TKCamp[];
+  sites: TKSite[];
   options: TKSurveyOptions;
   computedIndicators: Record<string, [TKIndicator, TKIndicator, TKIndicator]>; // pcode -> string
   defaultIndicators: TKFDFIndicators;
@@ -67,14 +67,14 @@ function computeSurveyIndicator(
     | TKFDFIndicatorPeopleCount
     | TKFDFIndicatorValueCount
     | TKFDFIndicatorStandard,
-  camps: TKCamp[]
+  sites: TKSite[]
 ): TKIndicator {
   if (descr.type === TKFDFIndicatorType.SITE_COUNT) {
     return {
       type: TKIndicatorType.STANDARD,
       nameLabel: SITE_COUNT_LABEL,
       valueLabel: {
-        en: String(camps.length)
+        en: String(sites.length)
       },
       iconOchaName: SITE_COUNT_ICON
     };
@@ -83,8 +83,8 @@ function computeSurveyIndicator(
   let thematicName = "";
   let itemIndex = -1;
   const results = [];
-  for (const camp of camps) {
-    const submission = camp.submissions[0];
+  for (const site of sites) {
+    const submission = site.submissions[0];
     if (submission) {
       if (!foundAtLeastOnce) {
         for (const thematic in submission.thematics) {
@@ -168,7 +168,7 @@ export function TKCreateSurvey(
   languages: Array<string>,
   options: TKSurveyOptions
 ): TKSurvey {
-  let camps: TKCamp[] = [];
+  let sites: TKSite[] = [];
 
   const boundariesList: {
     admin1: TKBoundaries[];
@@ -179,7 +179,7 @@ export function TKCreateSurvey(
   };
 
   // Default bounds
-  const DEFAULT_CAMP_COORDINATES = getCenterOfBounds(
+  const DEFAULT_SITE_COORDINATES = getCenterOfBounds(
     TKConfigurationModule.configuration.spatialConfiguration.mapConfig.bounds
   );
 
@@ -201,14 +201,14 @@ export function TKCreateSurvey(
       languages
     );
 
-    // Check if new camp
-    let camp = camps.find(
-      camp => camp.id === submission[fdf.spatialDescription.siteIDField]
+    // Check if new site
+    let site = sites.find(
+      site => site.id === submission[fdf.spatialDescription.siteIDField]
     );
 
-    // Doesn't exist in camps list
-    if (!camp) {
-      camp = {
+    // Doesn't exist in sites list
+    if (!site) {
+      site = {
         id: submission[fdf.spatialDescription.siteIDField],
         name: submission[fdf.spatialDescription.siteNameField],
         type: fdf.siteTypes[submission[fdf.spatialDescription.siteTypeField]],
@@ -229,8 +229,8 @@ export function TKCreateSurvey(
         },
         submissions: [computedSubmission],
         coordinates: {
-          lat: DEFAULT_CAMP_COORDINATES.lat,
-          lng: DEFAULT_CAMP_COORDINATES.lng
+          lat: DEFAULT_SITE_COORDINATES.lat,
+          lng: DEFAULT_SITE_COORDINATES.lng
         }
       };
 
@@ -241,7 +241,7 @@ export function TKCreateSurvey(
         fdf.spatialDescription.siteLongitudeField
       ) {
         console.log("here");
-        camp.coordinates = {
+        site.coordinates = {
           lat: Number(
             submission[fdf.spatialDescription.siteLatitudeField].replace(
               ",",
@@ -258,7 +258,7 @@ export function TKCreateSurvey(
       } else {
         console.log(`not here: ${options.anonymousMode}`);
       }
-      camps.push(camp);
+      sites.push(site);
 
       // Add the admin2 if it doesn't exists
       if (
@@ -284,16 +284,16 @@ export function TKCreateSurvey(
         });
       }
     }
-    // Exist in camps list
+    // Exist in sites list
     else {
       // Add the submissions
-      camp.submissions.push(computedSubmission);
+      site.submissions.push(computedSubmission);
     }
   }
 
-  // Sort the dates and update last submission date for each camp
-  camps.map(camp =>
-    camp.submissions.sort((a: TKSubmission, b: TKSubmission) => {
+  // Sort the dates and update last submission date for each site
+  sites.map(site =>
+    site.submissions.sort((a: TKSubmission, b: TKSubmission) => {
       return TKDateCompare(a.date, b.date);
     })
   );
@@ -309,30 +309,30 @@ export function TKCreateSurvey(
 
   // Root.
   computedIndicators[""] = [
-    computeSurveyIndicator(fdf.indicators.home[0], camps),
-    computeSurveyIndicator(fdf.indicators.home[1], camps),
-    computeSurveyIndicator(fdf.indicators.home[2], camps)
+    computeSurveyIndicator(fdf.indicators.home[0], sites),
+    computeSurveyIndicator(fdf.indicators.home[1], sites),
+    computeSurveyIndicator(fdf.indicators.home[2], sites)
   ];
 
   // All admin1.
   for (const admin1 of boundariesList.admin1) {
     const pcode = admin1.pcode;
-    const campsFiltered = camps.filter(camp => camp.admin1.pcode === pcode);
+    const sitesFiltered = sites.filter(site => site.admin1.pcode === pcode);
     computedIndicators[pcode] = [
-      computeSurveyIndicator(fdf.indicators.home[0], campsFiltered),
-      computeSurveyIndicator(fdf.indicators.home[1], campsFiltered),
-      computeSurveyIndicator(fdf.indicators.home[2], campsFiltered)
+      computeSurveyIndicator(fdf.indicators.home[0], sitesFiltered),
+      computeSurveyIndicator(fdf.indicators.home[1], sitesFiltered),
+      computeSurveyIndicator(fdf.indicators.home[2], sitesFiltered)
     ];
   }
 
   // All admin2.
   for (const admin2 of boundariesList.admin2) {
     const pcode = admin2.pcode;
-    const campsFiltered = camps.filter(camp => camp.admin2.pcode === pcode);
+    const sitesFiltered = sites.filter(site => site.admin2.pcode === pcode);
     computedIndicators[pcode] = [
-      computeSurveyIndicator(fdf.indicators.home[0], campsFiltered),
-      computeSurveyIndicator(fdf.indicators.home[1], campsFiltered),
-      computeSurveyIndicator(fdf.indicators.home[2], campsFiltered)
+      computeSurveyIndicator(fdf.indicators.home[0], sitesFiltered),
+      computeSurveyIndicator(fdf.indicators.home[1], sitesFiltered),
+      computeSurveyIndicator(fdf.indicators.home[2], sitesFiltered)
     ];
   }
 
@@ -340,7 +340,7 @@ export function TKCreateSurvey(
   // Sort by alphabetical order
   // //////////////////////////////////////////////////////////////////////////
 
-  camps = camps.sort((a, b) => {
+  sites = sites.sort((a, b) => {
     if (a.name < b.name) {
       return -1;
     }
@@ -372,7 +372,7 @@ export function TKCreateSurvey(
 
   return {
     name: fdf.name,
-    camps: camps,
+    sites: sites,
     boundaries: boundariesList,
     computedIndicators: computedIndicators,
     defaultIndicators: fdf.indicators,

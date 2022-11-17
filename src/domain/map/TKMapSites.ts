@@ -1,5 +1,5 @@
 import { FeatureCollection } from "geojson";
-import { TKCamp, TKCampCoordinates } from "@/domain/survey/TKCamp";
+import { TKSite, TKSiteCoordinates } from "@/domain/survey/TKSite";
 // import { TKDataset } from "../survey/TKDataset";
 import { TKGeoDataset } from "./TKGeoDataset";
 // import { TKOpsmapSpatialConfiguration } from "../opsmapConfig/TKOpsmapConfiguration";
@@ -7,9 +7,9 @@ import mapboxgl, { LngLat } from "mapbox-gl";
 import centroid from "@turf/centroid";
 // import { TKSurveyAnonymousType } from "../survey/TKSurvey";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
-interface TKFilteredCamps {
-  selectedCamp: FeatureCollection | string;
-  otherCamps: FeatureCollection;
+interface TKFilteredSites {
+  selectedSite: FeatureCollection | string;
+  otherSites: FeatureCollection;
 }
 
 export function getCenterOfBounds(bounds: number[]): LngLat {
@@ -18,65 +18,65 @@ export function getCenterOfBounds(bounds: number[]): LngLat {
   return new mapboxgl.LngLatBounds(sw, ne).getCenter();
 }
 
-export class TKMapCamps {
-  public filteredCamps: TKFilteredCamps;
+export class TKMapSites {
+  public filteredSites: TKFilteredSites;
   // private currentAdminLevel: null | string = null;
 
   constructor(
-    private camps: TKCamp[],
-    private currentCamp: TKCamp | null // private dataset: TKDataset, // private geoDataset: TKGeoDataset, // private spatialConfiguration: TKOpsmapSpatialConfiguration
+    private sites: TKSite[],
+    private currentSite: TKSite | null // private dataset: TKDataset, // private geoDataset: TKGeoDataset, // private spatialConfiguration: TKOpsmapSpatialConfiguration
   ) {
     // this.dataset = dataset;
     // this.geoDataset = geoDataset;
     // this.spatialConfiguration = spatialConfiguration;
-    this.camps = camps;
-    this.currentCamp = currentCamp;
-    this.filteredCamps = this.filterCamps();
+    this.sites = sites;
+    this.currentSite = currentSite;
+    this.filteredSites = this.filterSites();
   }
 
-  toGeoJSON(campsArray: TKCamp[]): FeatureCollection {
+  toGeoJSON(sitesArray: TKSite[]): FeatureCollection {
     return {
       type: "FeatureCollection",
-      features: campsArray.map((camp: TKCamp) => {
+      features: sitesArray.map((site: TKSite) => {
         return {
           type: "Feature",
           geometry: {
             type: "Point",
-            coordinates: [camp.coordinates.lng, camp.coordinates.lat]
+            coordinates: [site.coordinates.lng, site.coordinates.lat]
           },
           properties: {
-            id: camp.id,
-            name: camp.name,
-            type: camp.type.formattedName,
-            lastSubmission: camp.submissions[0].date,
-            lat: camp.coordinates.lat,
-            lng: camp.coordinates.lng,
-            admin1: camp.admin1,
-            admin2: camp.admin2
+            id: site.id,
+            name: site.name,
+            type: site.type.formattedName,
+            lastSubmission: site.submissions[0].date,
+            lat: site.coordinates.lat,
+            lng: site.coordinates.lng,
+            admin1: site.admin1,
+            admin2: site.admin2
           }
         };
       })
     };
   }
 
-  filterCamps(): TKFilteredCamps {
+  filterSites(): TKFilteredSites {
     return {
-      selectedCamp: this.toGeoJSON(
-        this.camps.filter(camp => camp.id === this.currentCamp?.id)
+      selectedSite: this.toGeoJSON(
+        this.sites.filter(site => site.id === this.currentSite?.id)
       ),
-      otherCamps: this.toGeoJSON(
-        this.currentCamp
-          ? this.camps.filter(camp => camp.id !== this.currentCamp?.id)
-          : this.camps
+      otherSites: this.toGeoJSON(
+        this.currentSite
+          ? this.sites.filter(site => site.id !== this.currentSite?.id)
+          : this.sites
       )
     };
   }
 }
 
 export function computeCentroid(
-  camp: TKCamp,
+  site: TKSite,
   geoDataset: TKGeoDataset
-): TKCampCoordinates | false {
+): TKSiteCoordinates | false {
   // Compute Admin2 Centroid
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const admin2Feature = geoDataset.admin2.features.filter(
@@ -84,12 +84,12 @@ export function computeCentroid(
       x.properties![
         TKConfigurationModule.configuration.spatialConfiguration.dbConfig
           .adm2DBPcode
-      ] === camp.admin2.pcode
+      ] === site.admin2.pcode
   );
 
   if (admin2Feature.length > 0) {
     const center = centroid(admin2Feature[0] as any);
-    camp.coordinates = {
+    site.coordinates = {
       lng: center.geometry.coordinates[0],
       lat: center.geometry.coordinates[1]
     };
@@ -100,11 +100,11 @@ export function computeCentroid(
         x.properties![
           TKConfigurationModule.configuration.spatialConfiguration.dbConfig
             .adm1DBPcode
-        ] === camp.admin1.pcode
+        ] === site.admin1.pcode
     );
     if (admin1Feature.length > 0) {
       const center = centroid(admin1Feature[0] as any);
-      camp.coordinates = {
+      site.coordinates = {
         lng: center.geometry.coordinates[0],
         lat: center.geometry.coordinates[1]
       };
