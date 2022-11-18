@@ -11,9 +11,8 @@ async function queryAdmins(
   adminList: string[],
   primaryKey: string
 ) {
-  const adminQuery = adminList
-    .map(adm => `${primaryKey} = '${adm}'`)
-    .join(" OR ");
+  const adminQuery =
+    primaryKey + " in (" + adminList.map(adm => `'${adm}'`).join(", ") + ")";
 
   return await new ArcgisServerDataGetter(
     encodeURI(dbUrl),
