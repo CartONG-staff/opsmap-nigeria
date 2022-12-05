@@ -62,5 +62,9 @@
         "legendZoomOut": "Zoom out",
         "legendBbox": "Extindere implicită",
         "legendFilters": "Afișați / Ascundeți legenda"
+    },
+    "indicator": {
+        "siteCount": "Site-uri",
+        "peopleCount": "Popoare"
     }
 }
