@@ -20,7 +20,7 @@ export async function TKReadFDFThematicsCollection(
   infos: TKFDFInfos
 ): Promise<TKTFDFhematicsCollection> {
   const rawThematics: TKFDFThematicRaw[] = await TKCSVParse<TKFDFThematicRaw[]>(
-    `${process.env.BASE_URL}/${infos.folder}/${TKFDFFiles.THEMATICS}.csv`,
+    `${infos.folder}/${TKFDFFiles.THEMATICS}.csv`,
     false
   );
 

@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div>
-      <img src="@/assets/LogoOpsmap.png" class="header-logo" />
+      <img src="assets/LogoOpsmap.png" class="header-logo" />
       <h3>
         <span class="header-opsmap-title">{{ appName }}</span>
       </h3>
@@ -13,7 +13,7 @@
       />
     </div>
     <div v-show="appConfig.options.showCCCMLogo" class="header-right">
-      <img src="@/assets/LogoCluster.png" class="header-logo" />
+      <img src="assets/LogoCluster.png" class="header-logo" />
     </div>
   </div>
 </template>

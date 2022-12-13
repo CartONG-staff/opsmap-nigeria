@@ -109,9 +109,8 @@ Vue.use(VueMatomo, {
 Vue.config.productionTip = false;
 
 const messagesCandidates = loadLocaleMessages();
-console.log(messagesCandidates);
 TKReadGeneralConfiguration(
-  `${process.env.BASE_URL}/data/demo/general_config.json`,
+  `${process.env.VUE_APP_GENERAL_CONFIG}`,
   messagesCandidates
 ).then(config => {
   TKConfigurationModule.setConfiguration(config);

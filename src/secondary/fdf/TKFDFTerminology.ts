@@ -17,7 +17,7 @@ export async function TKReadFDFTerminologyCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFTerminologyCollection> {
   const rawUrl: TKFDFTerminologyRaw[] = await TKCSVParse<TKFDFTerminologyRaw[]>(
-    `${process.env.BASE_URL}/${infos.folder}/${TKFDFFiles.TERMINOLOGY}.csv`,
+    `${infos.folder}/${TKFDFFiles.TERMINOLOGY}.csv`,
     false
   );
 

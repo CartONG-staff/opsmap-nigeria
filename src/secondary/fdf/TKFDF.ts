@@ -4,7 +4,10 @@
 // It is needed to create an actual survey
 
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import { TKSurveyInfos } from "@/domain/opsmapConfig/TKSurveyInfos";
+import {
+  TKSurveyInfos,
+  TKSurveyInfosType
+} from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKFDFFiles } from "@/secondary/fdf/TKFDFInfos";
 import { TKReadFDFLabelCollection } from "@/secondary/fdf/TKFDFParseMultiLang";
 import { TKReadSubmissionsRulesCollection } from "@/secondary/fdf/TKFDFSubmissionsRules";
@@ -20,17 +23,18 @@ import { TKReadFDFSiteTypesCollection } from "./TKFDFSiteTypes";
 export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
   let answersLabels = {};
   switch (infos.type) {
-    case "gsheet":
+    case TKSurveyInfosType.GSHEET:
       answersLabels = await TKReadFDFLabelCollection(infos.submissionsTrUrl);
       break;
-    case "csv":
+    case TKSurveyInfosType.CSV:
       answersLabels = await TKReadFDFLabelCollection(
-        `${process.env.BASE_URL}/${infos.submissionsTrLocalUrl}`
+        `${infos.submissionsTrLocalUrl}`
       );
       break;
-    case "kobo":
+    case TKSurveyInfosType.KOBO:
+    case TKSurveyInfosType.RIDL:
       answersLabels = await TKReadFDFLabelCollection(
-        `${process.env.BASE_URL}/${infos.fdf.folder}/${TKFDFFiles.ANSWERS}.csv`
+        `${infos.fdf.folder}/${TKFDFFiles.ANSWERS}.csv`
       );
   }
 
@@ -40,7 +44,7 @@ export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
     thematics: await TKReadFDFThematicsCollection(infos.fdf),
     trafficLights: await TKReadFDFTrafficLightsCollection(infos.fdf),
     fieldsLabels: await TKReadFDFLabelCollection(
-      `${process.env.BASE_URL}/${infos.fdf.folder}/${TKFDFFiles.FIELDS}.csv`
+      `${infos.fdf.folder}/${TKFDFFiles.FIELDS}.csv`
     ),
     answersLabels: answersLabels,
     submissionsRules: await TKReadSubmissionsRulesCollection(infos.fdf),

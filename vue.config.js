@@ -1,11 +1,3 @@
-// Ensure "" export behavior : "" === everything.
-// It is needed because the project is a lib.
-// cf: https://cli.vuejs.org/guide/build-targets.html#vue-vs-js-ts-entry-files
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { gitDescribeSync } = require("git-describe");
-const gitInfos = gitDescribeSync();
-process.env.VUE_APP_VERSION = gitInfos.raw ?? `v0.9.${gitInfos.hash}`;
-
 module.exports = {
   configureWebpack: {
     output: {
@@ -34,5 +26,5 @@ module.exports = {
     }
   },
 
-  publicPath: `${process.env.BASE_URL}/`
+  publicPath: process.env.BASE_URL
 };

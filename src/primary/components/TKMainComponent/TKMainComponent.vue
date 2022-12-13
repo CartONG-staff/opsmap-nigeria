@@ -4,7 +4,7 @@
       <div class="tk-maincomponent-blur" :style="cssVars"></div>
       <img
         class="tk-maincomponent-png"
-        src="@/assets/bg-isoline-custom.png"
+        src="assets/bg-isoline-custom.png"
         :class="{ 'tk-maincomponent-png-arab': language === 'ar' }"
       />
     </div>

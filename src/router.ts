@@ -15,8 +15,7 @@ To get rid of the hash, we can use the router’s history mode, which leverages 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
+  mode: "hash",
   routes: [
     {
       path: "/",

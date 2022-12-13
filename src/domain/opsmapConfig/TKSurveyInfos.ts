@@ -6,51 +6,54 @@ import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
 export enum TKSurveyInfosType {
   KOBO = "kobo",
   CSV = "csv",
-  GSHEET = "gsheet"
+  GSHEET = "gsheet",
+  RIDL = "ridl"
+}
+
+interface TKSurveyBase {
+  readonly name: string;
+  readonly fdf: TKFDFInfos;
+  options: TKSurveyOptions;
+  readonly spatial: TKFDFSpatialDescription;
+  readonly indicators: TKFDFIndicators;
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Specialization of TKSurveyInfo for RIDL Inputs
+// ////////////////////////////////////////////////////////////////////////////
+export interface TKSurveyInfosRidl extends TKSurveyBase {
+  readonly type: TKSurveyInfosType.RIDL;
+  readonly url: string;
+  readonly submissionsTrLocalUrl: string;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
 // Specialization of TKSurveyInfo for KOBO Inputs
 // ////////////////////////////////////////////////////////////////////////////
-export interface TKSurveyInfosKobo {
+export interface TKSurveyInfosKobo extends TKSurveyBase {
   readonly type: TKSurveyInfosType.KOBO;
-  readonly name: string;
-  readonly fdf: TKFDFInfos;
   readonly url: string;
   readonly token: string;
-  options: TKSurveyOptions;
-  readonly spatial: TKFDFSpatialDescription;
-  readonly indicators: TKFDFIndicators;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
 // Specialization of TKSurveyInfo for CSV Inputs
 // ////////////////////////////////////////////////////////////////////////////
 
-export interface TKSurveyInfosCSV {
+export interface TKSurveyInfosCSV extends TKSurveyBase {
   readonly type: TKSurveyInfosType.CSV;
-  readonly name: string;
-  readonly fdf: TKFDFInfos;
   readonly submissionsLocalUrl: string;
   readonly submissionsTrLocalUrl: string;
-  options: TKSurveyOptions;
-  readonly spatial: TKFDFSpatialDescription;
-  readonly indicators: TKFDFIndicators;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
 // Specialization of TKSurveyInfo for CSV Inputs
 // ////////////////////////////////////////////////////////////////////////////
 
-export interface TKSurveyInfosGSheet {
+export interface TKSurveyInfosGSheet extends TKSurveyBase {
   readonly type: TKSurveyInfosType.GSHEET;
-  readonly name: string;
-  readonly fdf: TKFDFInfos;
   readonly submissionsUrl: string;
   readonly submissionsTrUrl: string;
-  options: TKSurveyOptions;
-  readonly spatial: TKFDFSpatialDescription;
-  readonly indicators: TKFDFIndicators;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -60,4 +63,5 @@ export interface TKSurveyInfosGSheet {
 export type TKSurveyInfos =
   | TKSurveyInfosKobo
   | TKSurveyInfosGSheet
-  | TKSurveyInfosCSV;
+  | TKSurveyInfosCSV
+  | TKSurveyInfosRidl;

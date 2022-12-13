@@ -21,7 +21,7 @@ export async function TKReadFDFSiteTypesCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFSiteTypeCollection> {
   const rawSiteTypes: TKFDFSiteTypeRaw[] = await TKCSVParse<TKFDFSiteTypeRaw[]>(
-    `${process.env.BASE_URL}/${infos.folder}/${TKFDFFiles.SITE_TYPES}.csv`,
+    `${infos.folder}/${TKFDFFiles.SITE_TYPES}.csv`,
     false
   );
 

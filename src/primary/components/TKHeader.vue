@@ -3,7 +3,7 @@
     <div class="tk-header-left">
       <button class="tk-header-logo-opsmap-container" v-on:click="logoClicked">
         <img
-          src="@/assets/LogoOpsmap.png"
+          src="assets/LogoOpsmap.png"
           alt="Opsmap"
           class="tk-header-logo-cccm"
         />
@@ -32,7 +32,7 @@
       >
         <a href="https://cccmcluster.org" target="_blank">
           <img
-            src="@/assets/LogoCluster.png"
+            src="assets/LogoCluster.png"
             alt="CCCM"
             class="tk-header-logo-cccm"
           />

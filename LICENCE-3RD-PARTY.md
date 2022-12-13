@@ -15,4 +15,3 @@ However, Opsmap-Toolkit includes several third-party Open-Source libraries, whic
   - TypeDoc: doc engine [_Apache 2.0_](https://github.com/TypeStrong/typedoc/blob/master/LICENSE)
   - Jest: [_MIT Licence_](https://pypi.org/project/sphinx-js/)
   - sinonjs: [_BSD Licence_](https://github.com/sinonjs/sinon/blob/master/LICENSE)
-  - Cypress.io test runner: [_MIT Licence_](MIT LIcence)
