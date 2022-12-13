@@ -1,0 +1,272 @@
+field_name;field_label_en;field_label_fr;field_label_pt
+ggi_country;Country;Pays;País
+ggi_state;State;État;Estado
+ggi_city;City;Ville;Cidade
+ggi_address;Address;Adresse;Endereço
+cccm_shelter_max_capacity;Shelter Max Capacity;Maximum de capacité du site;Capacidade Máxima do Abrigo
+cccm_site_at_full_capacity;Site at Full Capacity;Maximum de capacité du site atteinte;Abrigo em plena capacidade
+cccm_possibility_expand_site;Possibility to Expand Site;Possibilité d'extension du site;Possibilidade de expansão do Abrigo
+cccm_shelter_type;Shelter Type;Type de centre d'hébergement;Tipo de Abrigo
+cccm_shelter_opened;Shelter Opened;Ouverture du centre d'hébergement;Abrigo aberto
+cccm_shelter_admin;Shelter Administration;Administration du centre d'hébergement;Administração do Abrigo
+cccm_shelter_coordination;Shelter Coordination;Coordination des abris;Coordenação do Abrigo
+cccm_shelter__mangmt;Shelter Management;Gestion des abris;Gestão do Abrigos
+cccm_num_of_staff;No. of Staff;Nombre d'employés;Nº de Funcionários
+cccm_num_of_RHUs;No. of RHUs;Nombre d'UHR;Nº de RHUs
+cccm_avg_stay_in_shelter_months;Avg stay in shelter (months);Durée moyenne de séjour au foyer (mois);Permanência média em abrigo (meses)
+cccm_num_of_entries_in_last_month;No. of entries in last month;Nombre d'entrées au cours du mois dernier;Nº de entradas no mês passado
+cccm_num_of_exits_in_last_month;No. of exits in last month;Nombre de sorties au cours du mois dernier;Nº de saídas no mês passado
+demo_num_indv;No. of Individuals;Nombre d'individus;Nº de Indivíduos
+demo_num_hh;No. of Families;Nombre de familles;Nº de Famílias
+Demo_F_0-4y;Females (0 - 4);fr;Mulheres (0 - 4)
+Demo_F_5-9y;Females (5 - 9);fr;Mulheres (5 - 9)
+Demo_F_10-14y;Females (10 - 14);fr;Mulheres (10 - 14)
+Demo_F_15-19y;Females (15 - 19);fr;Mulheres (15 - 19)
+Demo_F_20-24y;Females (20 - 24);fr;Mulheres (20 - 24)
+Demo_F_25-29y;Females (25 - 29);fr;Mulheres (25 - 29)
+Demo_F_30-34y;Females (30 - 34);fr;Mulheres (30 - 34)
+Demo_F_35-39y;Females (35 - 39);fr;Mulheres (35 - 39)
+Demo_F_40-44y;Females (40 - 44);fr;Mulheres (40 - 44)
+Demo_F_45-49y;Females (45 - 49);fr;Mulheres (45 - 49)
+Demo_F_50-54y;Females (50 - 54);fr;Mulheres (50 - 54)
+Demo_F_55-59y;Females (55 - 59);fr;Mulheres (55 - 59)
+Demo_F_60-64y;Females (60 - 64);fr;Mulheres (60 - 64)
+Demo_F_65-69y;Females (65 - 69);fr;Mulheres (65 - 69)
+Demo_F_70-74y;Females (70 - 74);fr;Mulheres (70 - 74)
+Demo_F_75-79y;Females (75 - 79);fr;Mulheres (75 - 79)
+Demo_F_80+y;Females (80+);fr;Mulheres (80+)
+Demo_M_0-4y;Males (0 - 4);fr;Homens (0 - 4)
+Demo_M_5-9y;Males (5 - 9);fr;Homens (5 - 9)
+Demo_M_10-14y;Males (10 - 14);fr;Homens (10 - 14)
+Demo_M_15-19y;Males (15 - 19);fr;Homens (15 - 19)
+Demo_M_20-24y;Males (20 - 24);fr;Homens (20 - 24)
+Demo_M_25-29y;Males (25 - 29);fr;Homens (25 - 29)
+Demo_M_30-34y;Males (30 - 34);fr;Homens (30 - 34)
+Demo_M_35-39y;Males (35 - 39);fr;Homens (35 - 39)
+Demo_M_40-44y;Males (40 - 44);fr;Homens (40 - 44)
+Demo_M_45-49y;Males (45 - 49);fr;Homens (45 - 49)
+Demo_M_50-54y;Males (50 - 54);fr;Homens (50 - 54)
+Demo_M_55-59y;Males (55 - 59);fr;Homens (55 - 59)
+Demo_M_60-64y;Males (60 - 64);fr;Homens (60 - 64)
+Demo_M_65-69y;Males (65 - 69);fr;Homens (65 - 69)
+Demo_M_70-74y;Males (70 - 74);fr;Homens (70 - 74)
+Demo_M_75-79y;Males (75 - 79);fr;Homens (75 - 79)
+Demo_M_80+y;Males (80+);fr;Homens (80+)
+age_pyramid#1;Age pyramid;Pyramide des âges;Pirâmide de Idade
+demo_num_indigs;No. of Indigenous;Nombre d'indigènes;Nº de Indígenas
+demo_num_asy;No. of Asylum Seekers;Nombre de demandeurs d'asile;Nº de solicitantes de Refúgio
+demo_num_ref;No. of Refugees;Nombre de réfugiés;Nº de Refugiados
+demo_num_ooc;No. of Others of Concern;Nombre d'autres personnes concernées;Nº de Pessoas de Interesse
+demo_num_temp_resd;No. of Temporary Resident;Nombre de résidents temporaires;Nº de Residentes Temporários
+demo_num_undocud;No. of Undocumented;Nombre de sans-papiers;Nº de indocumentados
+scrity_24_hr_scrity;24 Hour Security ;Sécurité 24 heures sur 24 ;Segurança 24 Horas
+scrity_fire_prevn_plan;Fire Prevention Plan;Plan de prévention des incendies;Plano de Prevenção de Incêndios
+scrity_num_fire_extingrs;No. Fire Extinguishers;Nombre d'extincteurs;Nº de Extintores de incêndio
+scrity_dt_last_fire_fight_train;Date of Last Fire Fighting Training;Date de la dernière formation à la lutte contre l'incendie;Data do último treinamento de combate a incêndios
+scrity_biometric_acss_ctrl;Biometric Access Control;Contrôle d'accès biométrique;Controle de acesso biométrico
+scrity_cctv_camera;CCTV - Security Cameras;CCTV - Caméras de sécurité;CCTV - Câmeras de Segurança
+scrity_num_working_cameras;No. Working Security Cameras;Nombre de caméras de sécurité en service;Nº de Câmeras de Segurança em funcionamento
+scrity_type_extl_wall;Type of External Wall;Type de mur extérieur;Tipo de parede externa
+scrity_public_light;Public Lighting;Éclairage public;Iluminação pública
+scrity_blind_spot;Blind Spots;Points aveugles;Pontos cegos
+scrity_crit_scrity_incdts_last_month;Critical Security Incidents Last Month ;Incidents de sécurité critiques le mois dernier ;Incidentes Críticos de Segurança no Mês passado
+sport_avlbe_sport_field;Available Sports Fields;Terrains de sport disponibles;Campos de esporte disponíveis
+sport_acss_sport_eqpmt;Access to Sports Equipment;Accès aux équipements sportifs;Acesso aos equipamentos esportivos
+sport_type_sport_avlbe;Types of Sports Available;Types de sports disponibles;Tipos de esportes disponíveis
+sport_num_sport_comptn_last_month;No. Sports Competitions Held - Last One Month;Nombre de compétitions sportives organisées au cours du dernier mois;Nº De Competições Esportivas Realizadas - No Mês Anterior
+wash_num_toilets;No. Toilets;Nombre de toilettes;Nº de Banheiros
+wash_num_bthrm;No. Bathrooms;Nombre de salles de bain;Nº de Banheiros
+wash_num_wtr_sources;No. Water Sources;Nombre de points d'eau;Nº de Fontes de água
+wash_avg_wtr_avlbe;Average Water Available;Quantité d'eau disponible en moyenne;Média de água disponível
+comn_num_info_sess_in_period;No. Information Session/Per Period;Nombre de séances d'information par période;Nº de Sessão de informação/por período
+comn_acss_fdbk_cmplats_mechm;Access to Feedback or Complaints Mechanism;Accès à un mécanisme de retour d'information ou de plainte;Acesso ao Mecanismo de Feedback ou Reclamações
+comn_info_board;Information Board;Conseil d'information;Conselho Informativo
+comn_commitees_estbld;Committees Established;Comités établis;Comitês criados
+comn_election_reps_in_place;Election to Select Representative in Place ;Élection d'un représentant en place ;Eleição para selecionar o representante no local
+nfi_cri_type_dstrbd;Core Relief Items (CRI) Types Distributed;Articles de premiers secours (CRI) types distribués;Itens Não Alimenticios/Tipos Distribuídos
+nfi_last_cri_dstrbn_dt;Last CRI Distribution Date;Date de la dernière distribution de CRI;Data da última distribuição de Itens Não Alimenticios
+nfi_num_indvl_benefit_cri_dstrbn;No. Individual Benefit (CRIs Distribution);Nombre d'ndividus bénéficiaires (distribution de CRI);Nº de Benefício individual (Distribuição NFIs)
+nfi_num_hh_benefit_cri_dstrbn;No. HH Benefit (CRIS Distribution);Nombre de ménages bénéficiaires (distribution de CRI);Nº de HH Benefício (Distribuição NFIs)
+nfi_num_cri_dstrbd;No. CRIs Distributed;Nombre de CRI distribués;Nº de NFIs Distribuídos
+nfi_post_dstrbn_mntorng;Post Distribution Monitoring Conducted;Suivi post-distribution effectué;Monitoramento Pós-Distribuição Conduzido
+envrn_envrntl_issues;Environmental Sensitivities and Critical Environmental Issues;Sensibilités environnementales et problèmes environnementaux critiques;Sensibilidades Ambientais e Questões Ambientais Importantes
+envrn_flood_prone_areas;Flood Prone Areas;Zones sujettes aux inondations;Áreas propensas a enchentes
+envrn_active_veg_med_plant_gardens;Active Vegetable Gardens And / Or Medicinal Plant Gardens;Jardins potagers actifs et / ou jardins de plantes médicinales;Hortas Ativas E / Ou Jardins de Plantas Medicinais
+envrn_afforestn_progs;Afforestation Programmes;Programmes de reboisement;Programas de florestamento
+envrn_rnwble_enrgy_gen_sln;Existing Decentralized Renewable Energy Generation Solution;Solution existante de production décentralisée d'énergie renouvelable;Solução de Geração de Energia Renovável Descentralizada Existente
+envrn_prim_enrgy_srce_typ;Additional or Primary Energy Source and Type;Source d'énergie additionelle ou primaire et type;Fonte e tipo de energia adicional ou primária
+envrn_active_envrntl_educ_progs;Active Environmental Education Programme;Programme d'éducation environnementale actif;Programa de Educação Ambiental Ativa
+envrn_active_comnl_kitchen;Active Communal Kitchen;Cuisine collective active;Cozinha Comunal Ativa
+envrn_srce_fuel_cooking;Source of Fuel for Cooking;Source de combustible pour la cuisine;Fonte de combustível para cozinhar
+envrn_active_assmt_wtr_quality;Active Assessment of Water Quality;Évaluation active de la qualité de l'eau;Avaliação Ativa da Qualidade da Água
+envrn_wtr_quality;Water Quality;Qualité de l'eau;Qualidade da água
+envrn_wtr_quality_assmt_dt;Water Quality Assessment Date;Date de l'évaluation de la qualité de l'eau;Data da Avaliação da Qualidade da Água
+envrn_solid_wste_colln;Selective Solid Waste Collection in Place;Collecte sélective des déchets solides en place;Coleta seletiva de resíduos sólidos no local
+envrn_gnrl_sntry_hygiene_behavior;General Sanitary/Hygiene Behaviour;Comportement général en matière de santé et d'hygiène;Comportamento Sanitário Geral/ Higiênico
+envrn_hlth_issues_pollution;Health Issues Associated with Pollution;Problèmes de santé liés à la pollution;Questões de Saúde Associadas à Poluição
+envrn_hlth_issues_sntry_vector-borne_dseas;Health Issues Associated with Sanitary Conditions (Vector-Borne Diseases);Problèmes de santé liés aux conditions sanitaires (maladies à transmission vectorielle);Questões de saúde associadas às condições sanitárias (Doenças transmitidas por vetores)
+intersn_num_indv_leaving_intrisatn;No. Individuals Leaving for Interiorization;Nombre de personnes partant pour l'internalisation;Nº de Indivíduos que saem para a interiorização
+intersn_intrisatn_modalities;Interiorization Modalities;Modalités d'intériorisation;Modalidades de interiorização
+intersn_destn_federal_units;fr;;
+intersn_num_sesss_intrisatn;No. of Sessions of Interiorization;Nombre de sessions d'intériorisation;Nº de sessões de Interiorização
+intersn_num_ongoing_intrisatn_process;No. of Ongoing Interiorization Process;Nombre de processus d'intériorisation en cours;Nº de processo de interiorização em andamento
+educ_num_trains_wrkshp_year;No. Trainings / Workshops Conducted Per Year;Nombre de formations/ateliers organisés par an;Nº de Treinamentos / Workshops Realizados Por Ano
+educ_educ_provided_in_shelter;Education Provided in Shelter;Éducation dispensée dans les abris;Educação ministrada em Abrigo
+educ_num_chldrn_in_frml_schl;No. of Children in Formal School;Nombre d'enfants scolarisés;Nº de Crianças na Escola Formal
+educ_num_adolsct_in_frml_schl;No. of Adolescent in Formal School;Nombre d'adolescents dans des écoles traditionelles;Nº de Adolescente na Escola Formal
+educ_portug_class_avlble;Portuguese Class Available ;Cours de portugais disponibles ;Aula de Português Disponível
+educ_vocnl_course_avlbe;Vocational Course Available;Cours de formation professionnelle disponibles;Curso Vocacional Disponível
+hlth_hlth_facilities;Health Facilities;Centres de santé;Instalações de saúde
+hlth_identified_hlth_issues;Identified Health Issues;Problèmes de santé identifiés;Questões de Saúde Identificadas
+hlth_dseas_outbrk;Disease Outbreaks;Epidémies;Surtos de doenças
+hlth_last_dseas_outbrk;Last Disease Outbreaks;Dernières épidémies;Últimos Surtos de Doenças
+hlth_dseas_outbrk_type;Disease Outbreaks Type;Type d'épidémies;Tipo de Surtos de Doenças
+hlth_ongoing_mntorng_;Ongoing Monitoring ;Surveillance continue ;Monitoramento contínuo
+hlth_num_indv_vaccinated;No. of Individuals Vaccinated;Nombre d'individus vaccinés;Nº de indivíduos vacinados
+hlth_area_isolation_dseas;Area of Isolation Disease ;Zone d'isolement maladie;Área de Isolamento da Doença
+hlth_mental_hlth_provide;Basic Mental Health Service Provide in Shelter ;Service de santé mentale de base fourni dans le centre d'hébergement ;Serviço Básico de Saúde Mental Fornecido em Abrigo
+infras_intrnt_for_pocs;Internet for POCs;Internet pour les POC;Internet para POCs
+infras_painting;Painting;Peinture;Pintura
+infras_weeding;Weeding;Désherbage;Capinagem
+infras_hygiene_promo;Hygiene Promotion;Promotion de l'hygiène;Promoção da Higiene
+infras_leaking_at_wtr_supply_syst;Leaking at Water Supply System;Fuite dans le système d'approvisionnement en eau;Vazamento no Sistema de Abastecimento de Água
+infras_leaking_at_wastewtr_syst;Leaking at Wastewater System;Fuites dans le système de traitement des eaux usées;Vazamento no Sistema de Águas Residuais
+infras_wtr_reservoir_cleaner;Water Reservoir Cleaner;Nettoyage des réservoirs d'eau;Limpador de Reservatório de Água
+infras_septick_tank_cleaner;Septic Tank Cleaner;Nettoyage de la fosse septique;Limpador de tanque séptico
+infras_drinking_fountain_maintc;Drinking Fountain Maintenance;Entretien des fontaines d'eau potable;Manutenção de bebedouros
+infras_clothesline_mantainance;Clothesline Maintenance;Entretien des cordes à linge;Manutenção do varal
+infras_lamps_camera_maintc;Lamps and Security Cameras Maintenance;Entretien des lampes et des caméras de sécurité;Manutenção de lâmpadas e câmeras de segurança
+infras_overleys;Overlays;Superpositions;Sobreposições
+infras_containers_bthrm;Containers Bathroom;Conteneurs Salle de bain;Contêineres Banheiro
+infras_eletrical_power;Electric Power;Électricité;Energia Elétrica
+infras_constructed_bthrm;Constructed Bathroom;Salle de bain construite;Banheiro Construído
+infras_wastewtr_treatment;Wastewater Treatment ;Traitement des eaux usées ;Tratamento de águas residuais
+infras_wtr_supply;Water Supply ;Alimentation en eau ;Abastecimento de água
+infras_gray_wtr_syst;Gray Water System;Système d'eau grise;Sistema de Água Cinza
+infras_stormwtr_syst;Stormwater System;Système d'eau pluviale;Sistema de águas pluviais
+infras_handcap_acessibility;Handicap Accessibility;Accessibilité pour les handicapés;Acessibilidade para deficientes
+infras_clothesline_instlln;Clothesline Installation;Installation de cordes à linge;Instalação de varal
+infras_hammock_hanger;Hammock Hanger;Suspension de hamac;Cabide de rede
+infras_commty_kitchen;Community Kitchen;Cuisine communautaire;Cozinha comunitária
+infras_landscape;Landscape ;Paysage ;Paisagem
+infras_lightning;Lightning ;Paratonnerre ;Relâmpago
+infras_solid_waste_mgt;Solid Waste Management;Gestion des déchets solides;Gerenciamento de resíduos sólidos
+protcn_num_legal_docn;No Legal Documentation;Pas de documents juridiques;Nenhuma documentação legal
+protcn_at_risk_refoulement;At Risk of Refoulement;Risque de refoulement;Em risco de devolução
+protcn_child_risk_not_attending_schl;Child at Risk of Not Attending School;Enfant risquant de ne pas aller à l'école;Criança em risco de não frequentar a escola
+protcn_single_hr_parent;Single HR - Parent;Parent célibataire HR;Pai/Mãe sozinhos
+protcn_lactating;Lactating;Allaitement;Lactante
+protcn_unmet_basic_needs;Unmet Basic Needs;Besoins fondamentaux non satisfaits;Necessidades básicas não atendidas
+protcn_separated_child;Separated Child;Enfant séparé;Criança separada
+protcn_other_med_condition;Other Medical Condition;Autre condition médicale;Outras condições médicas
+protcn_phscl_disblty_modrt;Physical Disability - Moderate;Handicap physique - modéré;Deficiência Física - Moderada
+protcn_difficult_pregnancy;Difficult Pregnancy;Grossesse difficile;Gravidez de risco
+protcn_mental_disblty_modrt;Mental Disability - Moderate;Handicap mental - modéré;Deficiência Mental - Moderado
+protcn_child_spouse;Child Spouse;Conjoint de l'enfant;Cônjuge menor de idade
+protcn_phscl_disblty_severe;Physical Disability - Severe;Handicap physique - grave;Deficiência Física - Grave
+protcn_family_reunfcn_req;Family Reunification Required;Réunification familiale requise;Reunificação Familiar Necessária
+protcn_visual_imprmt_blind;Visual Impairment (Including Blindness);Déficience visuelle (y compris la cécité);Deficiência Visual (Incluindo Cegueira)
+protcn_single_older_person;Single Older Person;Personne âgée seule;Idoso/a sozinho/a
+group_cccm_regprot;Registration protocol;fr;Protocolo de registro
+group_cccm_rhualloc;Housing unit allocation protocol;fr;Protocolo de alocação de unidade habitacional
+group_cccm_coexist;Rules of coexistence in shelter;fr;Regras de convivência do abrigo
+group_cccm_svcinfo;Information about activities and services;fr;Informação sobre as atividades e serviços
+group_cccm_coordn;Coordination of the development of activities;fr;Coordenação do desenvolvimento de atividades
+group_cccm_reports;Receipt and dissemination of activity reports and data collected;fr;Recebimento e divulgação de relatórios de atividades e de dados coletados
+group_cccm_datacollect;Provision of information on activities developed and data collected;fr;Provimento de informações sobre atividades desenvolvidas e dados coletados
+group_cccm_monitor;Monitoring of delivery and access to services and protection;fr;Monitoramento da entrega e do acesso a serviços e proteção
+group_cccm_needsassess;Needs assessment, data collection, gaps/overlaps in provision of protection and assistance;fr;Identificação de necessidades da população do abrigo, coletando dados e identificando lacunas e sobreposições no fornecimento de proteção e assistência
+group_cccm_svcprovide;Guarantee of service provision and protection of beneficiaries;fr;Garantia da prestação de serviços e proteção dos beneficiários
+group_cccm_infodissem;Information dissemination to population and others;fr;Disseminação de informações para a população e todas as demais partes interessadas
+group_cccm_wklymeet;Bi-weekly meetings with all actors;fr;Reuniões quinzenais com todos os atores
+group_cccm_prncpls;Clarification on principles of protection and confidentiality of information;fr;Esclarecimento sobre princípios de proteção e confidencialidade das informações
+group_staff_hdcount;Daily headcount update;fr;É feita a atualização diária do efetivo de beneficiários
+group_staff_bnfcrylst;Regular sharing of beneficiary list;fr;Compartilhamento regular de lista de beneficiários
+group_staff_wklytmmt;Coordinate weekly team meetings;fr;Coordenar reuniões semanais das equipes
+group_staff_teammtpart;Participate in biweekly team meetings;fr;Participar de reuniões quinzenais das equipes
+group_security_extngshrchrg;Fire extinguisher recharge;fr;Recarga de extintores
+group_security_extngshstup;Proper Fire Extinguisher set-up;fr;Instalação adequada de extintores
+group_security_firefghtteam;Creation of firefighting teams;fr;Criação de equipes de combate a incêndio
+group_security_firetrain;Conducting periodic training;fr;Realização periódica de treinamento
+group_security_opticrdr;Optical Reading Implementation;fr;Implementação da Leitura óptica
+group_security_metaldtct;Metal detectors for gate staff;fr;Detectores de metal para equipe de portaria
+group_security_search;Search of belongings at shelter entrance;fr;Revista de pertences na entrada do abrigo
+group_security_reader;Installation of digital reader on computer at the entrance;fr;Instalação do leitor digital no computador da portaria
+group_security_PSEA;Training on PSEA and humanitarian principles;fr;Treinamento sobre PSEA e princípios humanitários
+group_security_Covid;Disclosure of the COVID-19 Protocol for guards and security company;fr;Divulgação do Protocolo COVID-19 da empresa de portaria e segurança
+group_security_guardtrain;Ongoing training for guards and security teams;fr;Realização de treinamento contínuo para equipes de portaria e segurança
+group_security_fence;Barb wire and tile fence for better shelter closure;fr;Concertinas e telas para melhor fechamento do abrigo
+group_security_patrol;Daily security patrol schedule;fr;Cronograma diário de rondas de segurança
+group_security_radios;Acquisition and use of low-frequency radio;fr;Aquisição e cautela de rádio de baixa frequência
+group_security_inspection;Extraordinary shelters inspections;fr;Inspeções extraordinárias nos abrigos
+group_security_scrtyrounds;Conducting security rounds;fr;Realização de rondas de segurança
+group_infrastructure_floorpave;Renovation/paving of the floor of the leisure area;fr;Reforma/pavimentação do piso da área de lazer
+group_infrastructure_awnings;Installation of awnings for protection from rain;fr;Instalação de toldos para proteção de chuva
+group_infrastructure_rcptionpave;Paving the reception area;fr;Pavimentação da área de recepção
+group_infrastructure_ktchn;Kitchen installation;fr;Instalação de cozinhas
+group_infrastructure_btrmaccess;Accessibility structures, including bathrooms;fr;Estruturas de acessibilidade, inclusive em banheiros
+group_infrastructure_entrance;Social pedestrian entrance sidewalk;fr;Calçada da entrada de pedestres social
+group_infrastructure_fans;Fans in the shelters' sleeping area;fr;Ventiladores na área de pernoite dos abrigados
+group_infrastructure_warehouse;Warehouse Organization;fr;Organização dos depósitos
+group_wash_wtranlysis;Water analysis;fr;Análises de água
+group_wash_CAER;Installation of CAER water entry points and/or drilling of wells;fr;Instalação de pontos de entrada de água da CAER e ou perfuração de poços
+group_wash_tanks;Installation and maintenance of elevated water tanks;fr;Instalação e manutenção de caixas dágua elevadas
+group_wash_pumps;Maintenance of water pumps;fr;Manutenção de bombas d'água
+group_wash_toiletbathbuild;Construction of toilets and sanitary facilities with appropriate signage;fr;Construção de banheiros e instalações sanitárias com as devidas sinalizações de público-alvo
+group_wash_bathmaintain;Maintenance of restrooms and sanitary facilities;fr;Manutenção de banheiros e instalações sanitárias
+group_wash_bathdisinfect;Cleaning and disinfection of bathrooms;fr;Limpeza e desinfecção de banheiros
+group_wash_raindrainimprov;Improvements to the rainwater drainage network;fr;Melhorias na rede de drenagem pluvial
+group_wash_swageunblock;Repair and unclogging of sewage system;fr;Conserto e desobstrução da rede de esgoto
+group_wash_dumpster;Expansion of the external dumpster;fr;Ampliação da lixeira externa
+group_wash_trashfence;Concrete flooring and protection fence in trash area;fr;Concretagem de piso e cerca de proteção na área do lixo
+group_wash_weeding;Weeding and pruning trees;fr;Capina e poda de árvores
+group_wash_solidwaste;Collection and appropriate forwarding of solid waste;fr;Recolhimento e encaminhamento adequado dos resíduos sólidos
+group_wash_hygienekit;Distribution of hygiene and cleaning kits (personal use);fr;Distribuição de kits de higiene e limpeza (uso pessoal)
+group_wash_cleankit;Supply of cleaning products and equipment for collective use;fr;Fornecimento de produtos e equipamentos de limpeza de uso coletivo
+group_wash_waterfilter;Supply of products and filters for drinking fountains;fr;Provimento de produtos e filtros para bebedouros
+group_wash_cleanfountain;Cleaning and disinfection of drinking fountains;fr;Limpeza e desinfecção de bebedouros
+group_wash_feederfence;Expansion, fencing and paving of feeders;fr;Expansão, cercamento e pavimentação de comedouros
+group_wash_handwash;Maintenance of hand washing stations at feeders (including constant soap and water);fr;Manutenção de estações de lavagem da mãos nos comedouros (incluindo água e sabão constantes)
+group_wash_washeduc;WASH education activities (currently focusing on covid-19 prevention);fr;Atividades de educação em WASH: promover a conscientização e compreensão do comportamento higiênico (atualmente com foco na prevenção da covid-19)
+group_wash_laundry;Expansion of laundry facilities;fr;Ampliação da lavanderia
+group_com_rules;Shelter rules dissemination actions;fr;Ações contínuas de divulgação das regras dos abrigos
+group_com_participate;Participatory diagnostics with the community regarding access to available facilities and services;fr;Diagnósticos participativos com a comunidade em relação a acesso a instalações e serviços disponíveis
+group_com_violenceprevent;Conducting violence prevention activities;fr;Realização atividades de prevenção de violência
+group_com_schlenrol;Encouraging community participation in school enrollment;fr;Estímulo à participação da comunidade em matrícula escolar
+group_com_projectenrol;Encouraging community participation in enrollment in social projects;fr;Estímulo à participação da comunidade em inscrição em projetos sociais
+group_com_lifeskills;Encouraging community participation in free life skills courses;fr;Estímulo à participação da comunidade em cursos gratuitos de habilidades para a vida
+group_com_wklymeet;Weekly meetings with the sheltered;fr;Reuniões semanais com os abrigados
+group_com_meals;Monitoring and coordination of meal distribution carried out by committees formed by sheltered persons;fr;Monitoramento e coordenação da distribuição de refeições realizada pelo Comitê respectivo formado por abrigados
+group_com_donations;Supply of materials and donations to be distributed to the shelters;fr;Fornecimento de materiais e donativos para serem distribuídos aos abrigados
+group_com_partcipcommties;Creation, consolidation, standardization and support of community participation committees;fr;Criação, consolidação, padronização e apoio a comitês de participação comunitária
+group_com_ties;Promoting the Restoring Family Ties Program through connectivity services and family search;fr;Promoção do Programa Restabelecimento de Laços Familiares por meio de serviços de conectividade e de buscas familiares
+group_protection_document;Facilitating access to document regularization (including unaccompanied and separated children and adolescents));fr;Facilitação de acesso à regularização documental (incluindo crianças e adolescentes desacompanhadas e separadas)
+group_protection_benefits;Guidance for receiving social benefits;fr;Orientação para o recebimento de benefícios sociais
+group_protection_socialspt;Referral to social and welfare support services of the local network (CRAS, CREAS, CAPS);fr;Referenciar pessoas para serviços de apoio socioassistencial da rede local (CRAS, CREAS, CAPS);
+group_protection_rightsaccess;Follow-up for legal procedures to access rights and services;fr;Acompanhamento para procedimentos legais de acesso a direitos e serviços
+group_protection_chldprotmeets;Meetings for shared management of child and adolescent protection cases;fr;Realizar reuniões para gestão compartilhada de casos de proteção de crianças e adolescentes
+group_protection_INSS;Referral of health cases for assistance from the INSS;fr;Encaminhamento dos casos de saúde para recebimento de auxílio do INSS
+group_education_chldlearnspc;Establishment and maintenance of learning and protection spaces for children and adolescents;fr;Estabelecimento e manutenção de espaços de aprendizagem e proteção para crianças e adolescentes
+group_education_portgonline;Implementation of online Portuguese courses;fr;Implementação de cursos de português online
+group_education_proffnlcourse;Implementation of professional courses;fr;Implementação de cursos profissionalizantes
+group_education_entrep;Implementation of Entrepreneurship Courses;fr;Implementação de cursos de empreendedorismo
+group_interiorisation_info;Information on the interiorization process, modalities and possibilities;fr;Informação sobre o processo de interiorização, modalidades e possibilidades
+group_interiorisation_travelauth;Application for Guardianship and Travel Authorization for children and adolescents at the Child and Youth Court;fr;Solicitação de Termo de Guarda e Autorização de Viagem para crianças e adolescentes na Vara da Infância e Juventude
+group_health_healthneedsid;Health demands Identification and referral at time of sheltering;fr;Identificação de demandas de saúde quando do abrigamento e referenciamento para equipe do abrigo
+group_health_fllowup;Follow-up on health cases;fr;Acompanhamento de casos de saúde
+group_health_transport;Provision of transportation to health facilities, in the absence of an ambulance;fr;Em falta de ambulância, prover transporte para sistema de saúde
+group_health_primohealth;Provision of continuous primary health care services (health monitors, nurses and nutritionists);fr;Provisão de serviços contínuos de atenção primária à saúde (monitores de saúde, enfermeiros e nutricionistas)
+group_health_onsitemed;Periodic on-site medical care is provided;fr;É feito atendimento médico periódico in loco
+group_health_assess;Periodic nutritional assessment of children under 5 years, pregnant and breastfeeding women;fr;Avaliação nutricional periódica de crianças menores de 5 anos, gestantes e lactantes
+group_health_supplement;Nutritional supplementation for children under 5 years, pregnant and breastfeeding women;fr;Suplementação nutricional para crianças menores de 5 anos, gestantes e lactantes
+group_health_malnourished;Nutritional supplementation for malnourished children;fr;Complementação nutricional para crianças com desnutrição
+group_health_monitorwomen;Monitoring of pregnant women, postpartum women, women of reproductive age;fr;Acompanhamento de gestantes, puérperas, mulheres em idade reprodutiva
+group_health_STIinfo;Informational sessions on STI/HIV/viral hepatitis;fr;Sessões informativas sobre IST/HIV/Hepatites virais
+group_health_fmlyplan;Facilitating access to contraceptive methods and guidance on family planning;fr;Facilitação de acesso a métodos contraceptivos e orientação sobre planejamento familiar
+group_health_TFD;Support for the management of TFD cases in transit;fr;Suporte para a gestão dos casos de TFD em trânsito
+group_health_pharma;When necessary, activation of the FT Log Hum Pharmacy;fr;Quando necessário, acionamento da Farmácia da FT Log Hum
+group_health_medication;Medication is made available during care;fr;Há a disponibilização de medicamentos durante atendimento
+group_health_epidemio;In case of a compulsorily notifiable disease, inform the Epidemiological Surveillance;fr;Em caso de doença de notificação compulsória, informar a Vigilância Epidemiológica
+group_health_guidance;Guidance to patients and families about care and prevention of contagion;fr;Orientação a pacientes e familiares sobre cuidados e prevenção de contágio
+group_health_vaccine;Vaccine Monitoring;fr;Monitoramento de vacinas
+group_health_psychcare;Psychological care for children and adolescents;fr;Existe atendimento psicológico de crianças e adolescentes
