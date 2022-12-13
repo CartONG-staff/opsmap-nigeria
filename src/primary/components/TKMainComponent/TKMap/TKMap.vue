@@ -75,13 +75,13 @@ export default class TKMap extends Vue {
   datasetLoaded() {
     if (TKDatasetModule.dataset) {
       this.mapMarkersList = [];
-      Object.keys(TKDatasetModule.dataset.currentSurvey.fdf.siteTypes).map(
-        i => {
-          const site = TKDatasetModule.dataset.currentSurvey.fdf.siteTypes[i];
+      TKDatasetModule.dataset.surveys.map(survey => {
+        Object.keys(survey.fdf.siteTypes).map(i => {
+          const site = survey.fdf.siteTypes[i];
           this.mapMarkersList.push(site.iconFileName.normal);
           this.mapMarkersList.push(site.iconFileName.selected);
-        }
-      );
+        });
+      });
 
       this.mapMarkersList = [...new Set(this.mapMarkersList)];
 
