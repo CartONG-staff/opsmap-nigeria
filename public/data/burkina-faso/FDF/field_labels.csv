@@ -1,0 +1,161 @@
+field_name;field_label_en;field_label_fr
+ID;Site ID;ID du site
+latitude;Latitude;Latitude
+longitude;Longitude;Longitude
+type_installation;Settlement type;Type d'installation du site
+region;Region;Région
+province;Province;Province
+Comm;City;Commune
+site;Site name;Nom du SITE
+site_status;Site status;Statut du site
+type_localisation;Location type;Type de localisation
+terre_propriete;Ownership of space;Propriété de l'espace
+DateUpdateShort;Update on;Mois et année de mise à jour
+AgenceSite;SITE Management Agency;Agence de gestion de SITE
+SupportAgence;Is there a support agency?;Existe-t-il une agence de soutien ?
+SupportSiteAgence;SITE Management Support Agency;Agence de soutien à la gestion du SITE
+GestionnaireSiteNom;Full name of SITE manager;Nom complet du gestionnaire du SITE
+GestionnaireSitetel;Telephone number of SITE Manager;Numéro de téléphone du gestionnaire du SITE
+GestionnaireAdjointSiteNom;Deputy SITE Manager's full name;Nom complet du gestionnaire adjoint du SITE
+GestionnaireAdjointSiteTel;Assistant SITE Manager phone number;Numéro de téléphone du gestionnaire adjoint du SITE
+DedicatedOffice;Is there a dedicated office for SITE management?;Existe-t-il un bureau dédié à la gestion du SITE ?
+presencecomite;Are there any committees present on the site?;Y'a t-il des comités présents sur le site?
+siteComit;If yes, select the SITE committees present at this SITE:;Si oui, sélectionnez les comités de SITE présents sur ce SITE :
+reunioncood;Are site management meetings held?;Des reunions de gestion de site sont -elles organisées
+InfoSource;Information channels for support;Canaux d'information pour l'assistance
+mgp;Functional complaint management and feedback mechanism at the site;Mécanisme fonctionnel de gestion de plainte et de retour dans le site
+renCoordination;Coordination meetings (purpose, frequency, actors involved) ;Rencontres de coordination (objets, périodicité, acteurs impliqués) 
+FamillPopulation;Number of households residing in the site;Nombre de famille résidant dans le site
+IndividlPopulation;Number of individuals residing in the site;Nombre díndividu résidant dans le site
+HH0_4;Males (0 - 4);Hommes (0 - 4)
+Femm0_4;Females (0 - 4);Females (0 - 4)
+HH5_17;Males (5 - 17);Hommes (5 - 17)
+Femm5_17;Females (5 - 17);Femmes (5 - 17)
+HH5_35;Males (18 - 35);Hommes (18 - 35)
+Femm5_35;Females (18 - 35);Females (18 - 35)
+HH5_59;Males (36 - 59);Hommes (36 - 59)
+Femm5_59;Females (36 - 59);Females (36 - 59)
+HH5_60;Males (60+);Hommes (60+)
+Femm5_60;Females (60+);Femmes (60+)
+arriv;Situation of arrivals during the month;Situation des arrivées au cours du mois
+arriv;Status of returns during the month;Situation des retours au cours du mois
+Enfnonaccp;Unaccompanied children;Enfant non accompagné
+HandicapPhysiq;Persons with permanent physical disabilities;Personnes souffrant de handicaps physiques permanents
+Besoinsspeciaux;Persons with mental disabilities;Personnes souffrant d'un handicap mental
+Maladiechronique;People with chronic diseases;Personnes souffrant de maladies chroniques
+PersonnAgeeisol;Isolated elderly households (over 60 years old);Ménages âgés isolés (plus de 60 ans)
+HebergementCapacite;Maximum capacity of the SITE (Hectare);Capacité d'accueil maximale du SITE (Hectare)
+TypeAbriVie;Indicate the type of shelter present in the SITE;Indiquez le type d'abri présent dans le SITE
+tentesahelien;"Households in ""Sahelian tent"" type emergency shelters";Ménages dans des abris d'urgence type «tente sahélienne»
+AbrUgenceOssatuePignon;Households in gable-frame emergency shelters;Ménages dans des abris d'urgence ossature à pignon
+AbriSemidurable;Households in semi-durable shelters;Ménages dans des abris semi-durables
+RHU;Households in RHU shelters;Ménage dans des abris RHU
+fortune;Households in makeshift shelters constructed with local materials;Ménages dans des abris de fortune construits avec des matériaux locaux
+abrietat;Occupied shelters requiring *maintenance*.;Abris occupés et nécessitant une *maintenance*.
+abriremplac;Occupied shelters requiring *replacement*.;Abris occupés et nécessitant un *remplacement*.
+AMEPriorite;Priority MEA Needs;Besoins Prioritaires en AME
+CommunityPlot;Condition of community plots;État des parcelles communautaires
+EtatRoute;General condition of roads;État général des routes
+StormWaterSystem;General condition of storm drains;État général des canaux d'évacuation des eaux pluviales
+RisqueInondation;Flooding during the last rainy season/since SITE opened;Inondations lors de la dernière saison des pluies/depuis que le SITE est ouvert
+Nmbrefeu;Number of fires this month;Nombre d'incendies survenus ce mois
+existantenergie;Source of electricity;Source d’électricité
+ElectriciteSource;Main source of electricity;Principale source d'électricité
+litreEauPersonn;Water: Number of liters/person/day;Eau : Nombre de litres/personne/jour
+Sourceeau;Main source of drinking water for the SITE;Principale source d'eau potable pour le SITE
+eauqualite;Quality of the main water source (Is it accessible?);Qualité de la principale source en eau (Elle -t-est accpetable?)
+Disponibilitésavon;Availability of soap for hand washing;Disponibilité de savon pour le lavage des mains
+Inondations;Infrastructure damaged as a result of flooding (during the last 6 months);Infrastructures endommagés à la suite d'inondation  (au cours des 6 derniers mois )
+Éliminationdéchets;Primary method of waste disposal;Principale méthode d'élimination des déchets
+latrines;Types of functional latrines;Types de latrines fonctionnelles
+NombreLatrines;Number of functional latrines;Nombre de latrines fonctionnelles
+Typesdouche;Types of functional showers/baths;Types de douches/bains fonctionnels
+Nombredouches;Number of functional showers/baths;Nombre de douches/bains fonctionnels
+douchesepare;Are showers separated between men and women?;Les douches sont-elles séparées entre les hommes et les femmes?
+latrinevidance;Latrine Emptying;Vidanges des latrines
+latrinevidanceMois;Date of last emptying;Date de la dernière vidange
+LatrinesEclairage;Lighting around latrines/showers at night;Éclairage autour des latrines/douches la nuit
+problemeSante;Health problems experienced by SITE residents in the past 30 days;Problèmes de santé les résidents du SITE ont-ils rencontrés au cours des 30 derniers jours
+SoinSanteFonctionnel;Health care provider functional;Prestataire de soins de santé fonctionnel
+PresenceSite;Health care provider present inside SITE ;Prestataire de soins de santé présent à l'intérieur du SITE 
+Distance;Distance to nearest health post (in km);Distance du poste de santé de le plus proche (en km)
+ServicesUrgences;Emergency services;Services d'urgence
+ServicesChirurgicaux;Surgical services;Services chirurgicaux
+ServicesPediatriq;Pediatric services;Services pédiatriques
+PrenatalServices;Prenatal services;Services prénataux
+Ambulance;Presence of an ambulance;Presence d'une ambulance
+ProblemAccesSante;Main problems in accessing health care;Principaux problèmes pour accéder aux soins de santé
+Vaccination;Children under 5 years of age not vaccinated against polio and measles;Enfants de moins de 5 ans n'ont vaccinés contre la polio et la rougeole
+Accesalimentation;Number of meals per day (on average);Nombre de repas par jour (en moyenne)
+Defisalimentation;Main difficulties encountered by households in accessing food ;Principales difficultés rencontrées par les familles pour accéder à la nourriture 
+stockagemagasin;Food storage facilities;Magasins de stockage des vivres
+RegulariteAssistanceAlimentaire;Regularity of food aid distribution;Régularité de distribution d'aide alimentaire
+MouvementRestrictions;Restrictions on movement in and out of the site ;Restrictions de mouvement à l'intérieur et à l'extérieur du SITE 
+TypeRestrictions;Main restrictions of movement;Principaux restrictions de mouvement
+Tension;Tensions between host community households and site residents;Tensions entre les familles de la communauté d'accueil et les résidents du site
+IncidentSecuritaire;Security incidents on or near the SITE (in the past 30 days);Incidents de sécurité produits sur le SITE ou à proximité (au cours des 30 derniers jours)
+IncidentNature;Nature of incidents;Nature des incidents
+SentiSecurite;Do people feel safe in the SITE area?;Les gens se sentent-ils en sécurité dans la zone du SITE ?
+PasSentiSecurite;Why do people not feel safe in the SITE area?;Pourquoi les gens ne se sentent-ils pas en sécurité dans la zone du SITE ?
+ZoneDangereusefemm;Are there areas where women and girls do not feel safe?;Y a-t-il des zones où les femmes et les filles ne se sentent pas en sécurité ?
+ZoneDangereuseHomm;Are there areas where men and boys do not feel safe?;Existe-t-il des zones où les hommes et les garçons ne se sentent pas en sécurité ?
+faciliteAdequate;Adequate facilities and/or services available for people in SITE with physical, intellectual, or mental disabilities, through government, humanitarian, or private service providers;Installations et/ou des services adéquats disponibles pour les personnes du SITE souffrant de handicaps physiques, intellectuels ou mentaux, par le biais de prestataires de services gouvernementaux, humanitaires ou privés
+TypeSupport;Types of psychosocial support services available for people in SITE, through government, humanitarian, or private service providers;Types de services de soutien psychosocial disponibles pour les personnes du SITE, par le biais de prestataires de services gouvernementaux, humanitaires ou privés
+AbsenceDocuments;Number of households without individual or household identification documents needed for one or more members ;Nombre de familles sans documents d'identité individuelle ou familiale nécessaires pour un ou plusieurs membres 
+CourtsDistace;How far away are the nearest accessible courts and registry offices that your household can use (km)?;À quelle distance se trouvent les tribunaux et les bureaux d'état civil les plus proches et accessibles que votre famille peut utiliser (km) ?
+AccessCourt;Are they accessible to vulnerable displaced persons, considering court fees, distance, etc.?;Sont-ils accessibles aux personnes déplacées vulnérables, compte tenu des frais de justice, de la distance, etc.
+PrimaireEducationPresence;Presence of a functional elementary school within the SITE;Présence d'une école primaire fonctionnelle à l'intérieur du SITE
+PrimaireEducation;Nearest functional primary school (Distance in km);Ecole primaire fonctionnelle la plus proche de chez vous  (Distance en km)
+SecondaireEducationPresence;Presence of a functional secondary school within the SITE;Présence secondaire fonctionnelle à l'intérieur du SITE
+SecondaireEducation;Functional secondary school closest to your place of residence;Ecole secondaire fonctionnelle la plus proche de votre lieu de résidence
+NumbreEleve;Number of children attending school;Nombre d'enfant scolarisés
+EnfanstNonScolarises;Main obstacles to access to formal education;Principaux obstacles à l'accès à l'éducation formelle
+ActiviteInformelle;Availability of informal education activities in or near the SITE and accessible to IDPs;Disponibilité activités d'éducation informelle dans le SITE ou à proximité et accessibles aux personnes déplacées
+EducationInformelle;Number of school-age children with access to informal education activities;Nombre d'enfants en âge scolaire ayant accès à des activités d'éducation informelle
+MarcheInterieurSite;Presence of a market within the SITE ;Présence d'un marché à l'intérieur du SITE 
+marcheDistance;Nearest easily accessible functional market (distance in km);Le marché fonctionnel facilement accessible le plus proche (distance en km)
+SourcesMoyenSubsistance;Main livelihoods of households (03 selections);Principaux moyens de subsistance des familles (03 selections)
+NombreFamilleTravaillant;Approximately how many households have earned income in the last 30 days?;Environ combien de familles ont gagné un revenu au cours des 30 derniers jours ?
+NombreEnfantTravaillant;Approximately how many youth (under 18) worked in the last 30 days?;Environ combien de jeunes (moins de 18 ans) ont travaillé au cours des 30 derniers jours ?
+enclos;Livestock pens;Enclos pour bétail
+covidinfo;Information campaigns on VIDCO-19 (in the last 6 months);Campagnes d'information sur la COVID-19  (au cours des 6 derniers mois)
+covidprevention;Preventive measures against COVID-19;Dispositions de prevention contre la COVID-19
+protection_presence;Presence of a protection service?;Présence d'un service de protection ?
+partner_protection_name;Protection service partners;Partenaires de service de protection
+gbv_presence;Does the site have a GBV service?;Le SITE dispose-t-il d'un service de lutte contre la VBG ?
+partner_gbv_name;GBV partners;Partenaires en matière de VBG
+childprot_presence;Child welfare presence ?;Présence service de protection de l'enfance ?
+partner_childprot_name;Child Protection Partners;Partenaires pour la protection de l'enfance
+education_presence;Presence of an educational service;Présence d'un service d'éducation
+partner_education_name;Educational Partners;Partenaires éducatifs
+shelter_presence;Presence of a shelter & AME service ;Présence d'un service d'hébergement et AME 
+partner_shelter_name;Shelter & AME Partners;Partenaires abris&AME
+water_presence;Presence of water service;Présence d'un service d'approvisionnement en eau
+partner_water_name;Water Partners;Partenaires pour l'eau
+sanitation_presence;Presence of a sanitation service;Présence d'un service d'assainissement
+partner_sanitation_name;Sanitation Partners;Partenaires de l'assainissement
+waste_presence;Presence of a waste management service;Présence d'un service de gestion des déchets
+partner_waste_name;Partners for waste management;Partenaires pour la gestion des déchets
+phc_presence;Presence of a primary health care service;Présence d'un service de soins de santé primaires
+partner_phc_name;Primary health care partners - including mobile;Partenaires de soins de santé primaires - y compris mobiles
+shc_presence;Presence of a secondary health care service;Présence d'un service de soin de santé sécondaire
+partner_shc_name;Secondary Health Partners;Partenaires de santé secondaires
+mhpss_presence;Presence of mental health service and psychosocial support;Présence d'un service de santé mentale et soutien psychosocial
+partner_mhpss_name;Mental health and psychosocial partners;Partenaires de santé mentale et psychosociaux
+nutrition_presence;Presence of a nutrition service;Présence d'un service de nutrition
+partner_nutrition_name;Nutritional partners;Partenaires nutritionnels
+food_presence;Presence of a food service;Présence d'un service de restauration
+partner_food_name;Food partners;Partenaires alimentaires
+socialcohesion_presence;Presence of a social cohesion service;Présence d'un service de cohésion sociale
+partner_socialcohesion_name;Social cohesion partners;Partenaires de cohésion sociale
+livelihood_presence;Presence of a livelihood service;Présence d'un service de subsistance
+partner_livelihood_name;Livelihood partners;Partenaires de moyens de subsistance
+communication_presence;Presence of a communication service;Présence d'un service de communication
+Nom_partenaire_Communication;Communication service stakeholders with communities (mass communication);Partenaires de service de communication avec les communautés (communication de masse)
+NiveauCongestionSite;Level of congestion of the site;Niveau de congestion du site
+Nb_indiv_par_latrine;Number of people per functional latrine;Nombre de personne par latrine fonctionnelle
+Nb_latrine_semi_durable;Number of semi-sustainable latrines;Nombre de latrine semi-durable
+Nb_latrine_urgence;Number of emergency latrines;Nombre de latrine urgence
+Nb_indiv_par_douche;Number of people per functional shower;Nombre de personne par douche fonctionnelle
+Nb_douche_semi_durable;Number of semi-sustainable showers;Nombre de douche semi durable
+Nb_douche_urgence;Number of emergency shower;Nombre de douche urgence

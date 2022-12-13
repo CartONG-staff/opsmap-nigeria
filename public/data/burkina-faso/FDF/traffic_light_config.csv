@@ -1,0 +1,13 @@
+traffic_light_name;type;value;color
+yesno;string;Oui;green
+yesno;string;Non;red
+noyes;string;Oui;red
+noyes;string;Non;green
+niveaucongestionsite;math;>30;red
+niveaucongestionsite;math;>20 and <=30;orange
+niveaucongestionsite;math;>15 and <=20;yellow
+niveaucongestionsite;math;<15;green
+TotallatrineVsIndividu;math;<=50;green
+TotallatrineVsIndividu;math;>50;red
+TotaldoucheVsIndividu;math;<=50;green
+TotaldoucheVsIndividu;math;>50;red
