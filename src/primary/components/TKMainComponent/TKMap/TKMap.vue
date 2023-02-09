@@ -23,7 +23,7 @@ import mapboxgl, {
   SymbolLayer
 } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { TKIconUrl } from "@/domain/utils/TKIconUrl";
+import { IconPosition, TKIconUrl } from "@/domain/utils/TKIconUrl";
 import TKMapZoom from "./TKMapZoom.vue";
 import TKMapBasemapPicker from "./TKMapBasemapPicker.vue";
 import TKMapFilters from "./TKMapFilters.vue";
@@ -197,8 +197,17 @@ export default class TKMap extends Vue {
         accessToken:
           TKConfigurationModule.configuration.spatialConfiguration.mapConfig
             .token,
-        bounds: this.bound
+        bounds: this.bound,
+        attributionControl: false
       });
+
+      this.map.addControl(
+        new mapboxgl.AttributionControl({
+          customAttribution:
+            '<strong>© <a href="https://cartong.org/" target="_blank"> CartONG </a></strong>'
+        }),
+        "bottom-right"
+      );
 
       this.map.addControl(
         new mapboxgl.ScaleControl({ maxWidth: 100, unit: "metric" })
@@ -226,7 +235,7 @@ export default class TKMap extends Vue {
       this.markersLoadedCount = 0;
     }
     this.mapMarkersList.map(img => {
-      this.map.loadImage(TKIconUrl(img), (error, image) => {
+      this.map.loadImage(TKIconUrl(img, IconPosition.MAP), (error, image) => {
         if (!this.map.hasImage(img)) {
           this.markersLoadedCount++;
           this.map.addImage(img, image as ImageBitmap);

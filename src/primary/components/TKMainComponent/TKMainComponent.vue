@@ -1,10 +1,9 @@
 <template>
   <div class="tk-maincomponent">
     <div class="tk-maincomponent-decoration">
-      <div class="tk-maincomponent-blur" :style="cssVars"></div>
       <img
         class="tk-maincomponent-png"
-        src="@/assets/bg-isoline-custom.png"
+        src="@/assets/bg-isoline.png"
         :class="{ 'tk-maincomponent-png-arab': language === 'ar' }"
       />
     </div>
@@ -50,30 +49,11 @@ import TKPlaceHolderGeneric from "./TKPlaceHolders/TKPlaceHolderGeneric.vue";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
 
-import { TKHomeIndicators, TKHomeMoreInfos } from "./TKHomeComponents";
-
-import {
-  TKSiteIndicators,
-  TKSiteInfos,
-  TKSiteSelector,
-  TKSiteToolbar,
-  TKSiteSubtitle,
-  TKSubmissionVisualizer
-} from "./TKSiteComponents";
-
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 
 @Component({
   components: {
-    TKSiteIndicators,
-    TKSiteInfos,
-    TKSiteSelector,
-    TKSiteSubtitle,
-    TKSiteToolbar,
-    TKSubmissionVisualizer,
-    TKHomeIndicators,
-    TKHomeMoreInfos,
     TKMap,
     TKPlaceHolderLeft,
     TKPlaceHolderIndicators,
@@ -88,19 +68,6 @@ export default class TKMainComponent extends Vue {
 
   get isDatasetInitialized() {
     return TKDatasetModule.isDatasetInitialized;
-  }
-  get cssVars() {
-    if (this.$vuetify.theme.dark) {
-      return {
-        "--bg-color-beg": "#3a9ed355",
-        "--bg-color-end": "#3a9ed300"
-      };
-    }
-
-    return {
-      "--bg-color-beg": "#3a9ed3ff",
-      "--bg-color-end": "#3a9ed300"
-    };
   }
 
   get lastModification() {
@@ -118,6 +85,9 @@ export default class TKMainComponent extends Vue {
 </script>
 
 <style scoped>
+.tk-maincomponent {
+  background-color: var(--v-appBackground-base);
+}
 .tk-maincomponent-decoration {
   position: absolute;
   width: 100%;
@@ -137,7 +107,7 @@ export default class TKMainComponent extends Vue {
   width: 100%;
   min-width: 1732px;
   height: 365px;
-  background-size: 100% 365px;
+  background-size: 100%;
 }
 
 .tk-maincomponent-png-arab {
@@ -174,6 +144,7 @@ export default class TKMainComponent extends Vue {
   width: 100%;
   justify-content: space-between;
   row-gap: 10px;
+  z-index: 1;
 }
 
 .tk-main-left {
@@ -191,7 +162,8 @@ export default class TKMainComponent extends Vue {
   width: 65%;
   min-width: 300px;
   height: 450px;
-  border-radius: 15px;
+  border: 1px solid black;
+  border-radius: 4px;
   position: relative;
   overflow: hidden;
 }
@@ -200,7 +172,7 @@ export default class TKMainComponent extends Vue {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  row-gap: 25px;
+  row-gap: 50px;
 }
 
 .tk-main-content-placeholder {

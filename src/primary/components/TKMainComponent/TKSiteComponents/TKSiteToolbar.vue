@@ -6,8 +6,8 @@
           v-if="dataset.currentSite"
           key="1"
           class="tk-site-toolbar-item"
-          background-color="accent"
-          color="background"
+          background-color="backgroundSecondary"
+          color="black"
           :disabled="dataset.currentSite.submissions.length < 2"
           flat
           filled
@@ -45,14 +45,13 @@
             icon
             height="44"
             width="44"
-            color="accent"
             :disabled="!dataset.currentSite"
             v-bind="attrs"
             v-on="tooltip"
             v-model="showVisualizerOptions"
             class="tk-site-toolbar-toggle-button"
           >
-            <v-icon dark>
+            <v-icon>
               mdi-tune-vertical-variant
             </v-icon>
           </v-btn>
@@ -100,15 +99,10 @@ export default class TKSiteToolbar extends Vue {
 }
 
 .tk-site-toolbar-item.theme--light.v-input input {
-  color: #fff !important;
   font-family: "Arial";
   font-weight: bold !important;
   font-size: 12px !important;
   letter-spacing: 0.86px !important;
-}
-
-.tk-site-toolbar-item .v-icon.v-icon {
-  color: #fff !important;
 }
 
 .tk-site-toolbar-item .theme--light.v-icon.v-icon.v-icon--disabled {
@@ -119,17 +113,8 @@ export default class TKSiteToolbar extends Vue {
   background-color: rgba(0, 0, 0, 0.12) !important;
 }
 
-.tk-site-toolbar input::placeholder {
-  color: #f1f3f3 !important;
-  font-family: "Arial";
-  font-weight: bold !important;
-  font-size: 12px !important;
-  letter-spacing: 0.86px !important;
-}
-
 .tk-site-toolbar .v-text-field__suffix,
 .tk-site-toolbar .v-text-field__prefix {
-  color: #fff !important;
   font-family: "Arial";
   font-weight: bold !important;
   font-size: 12px !important;
@@ -149,10 +134,10 @@ export default class TKSiteToolbar extends Vue {
 }
 
 .tk-site-toolbar-toggle .v-btn > .v-btn__content > .v-icon {
-  color: #919191 !important;
+  color: var(--v-notSelectedButton-base) !important;
 }
 .tk-site-toolbar-toggle .v-btn--active > .v-btn__content > .v-icon {
-  color: var(--v-accent-base) !important;
+  color: var(--v-selectedButton-base) !important;
 }
 
 .tk-site-toolbar-toggle-button {

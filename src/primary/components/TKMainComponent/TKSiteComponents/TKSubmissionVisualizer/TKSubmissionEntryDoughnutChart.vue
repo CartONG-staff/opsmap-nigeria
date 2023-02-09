@@ -1,7 +1,5 @@
 <template lang="html">
-  <div>
-    <canvas :id="ctx" :height="height"> </canvas>
-  </div>
+  <canvas :id="ctx" :height="height"> </canvas>
 </template>
 
 <script lang="ts">
@@ -19,6 +17,7 @@ import { v4 } from "uuid";
 import { TKSubmissionEntryDoughnut } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
+import { TKColors } from "@/domain/utils/TKColors";
 
 Chart.register(DoughnutController, ArcElement, Legend, Title, Tooltip);
 
@@ -32,11 +31,11 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
   readonly ctx = v4();
   readonly height = 300;
   readonly colors = [
-    "rgba(13, 59, 102, 0.5)",
-    "rgba(166, 61, 64, 0.5)",
-    "rgba( 	221, 219, 241, 0.5)",
-    "rgba( 	237, 174, 73, 0.5)",
-    "rgba(159, 196, 144, 0.5)"
+    TKColors.CHART_COLOR_6,
+    TKColors.CHART_COLOR_7,
+    TKColors.CHART_COLOR_8,
+    TKColors.CHART_COLOR_4,
+    TKColors.CHART_COLOR_5
   ];
 
   mounted() {
@@ -57,8 +56,8 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
           maintainAspectRatio: false,
           elements: {
             arc: {
-              borderColor: "#d8d8d8",
-              borderWidth: 1
+              borderColor: TKColors.DARK_GREY,
+              borderWidth: 2
             }
           },
           font: {
@@ -66,23 +65,16 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
             size: 11
           },
           layout: {
-            padding: 0
+            padding: 10
           },
           plugins: {
-            title: {
-              display: true,
-              text: TKGetLocalValue(this.entry.title, this.$i18n.locale),
-              font: {
-                family: "Arial",
-                size: 12
-              }
-            },
             legend: {
               position: "bottom",
               align: "start",
               reverse: true,
               labels: {
                 boxWidth: 15,
+                color: TKColors.SECONDARY,
                 font: {
                   family: "Arial",
                   size: 11

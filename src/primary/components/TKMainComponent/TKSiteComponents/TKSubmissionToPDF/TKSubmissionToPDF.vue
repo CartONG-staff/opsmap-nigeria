@@ -2,13 +2,7 @@
   <div class="pdf-document-container">
     <div class="pdf-document" ref="pdf-document">
       <div class="pdf-document-content">
-        <!-- <TKSubmissionToPDFHeader :appConfig="appConfig" />
-        <div class="header-separator"></div> -->
         <TKSubmissionToPDFHeadlines />
-        <!-- <TKSubmissionToPDFIndicators
-          :appConfig="appConfig"
-          :dataset="dataset"
-        /> -->
       </div>
     </div>
   </div>
@@ -25,22 +19,19 @@ import autoTable, {
 } from "jspdf-autotable";
 
 import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
-// import TKSubmissionToPDFIndicators from "./TKSubmissionToPDFIndicators.vue";
 
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
-import { TKIconUrl } from "@/domain/utils/TKIconUrl";
+import { IconPosition, TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
+import { TKColors } from "@/domain/utils/TKColors";
 
-// import TKSubmissionToPDFIndicator from "./TKSubmissionToPDFIndicators.vue";
 @Component({
   components: {
-    // TKSubmissionToPDFHeader,
     TKSubmissionToPDFHeadlines
-    // TKSubmissionToPDFIndicators
   }
 })
 export default class TKSubmissionToPDF extends Vue {
@@ -152,6 +143,19 @@ export default class TKSubmissionToPDF extends Vue {
               // }
             }
 
+            const pageCount = pdf.getNumberOfPages(); //Total Page Number
+            for (let i = 0; i < pageCount; i++) {
+              const pageCurrent = i + 1;
+              pdf.setPage(i + 1);
+              pdf.setFontSize(10);
+              pdf.setTextColor(TKColors.DARK_GREY);
+              pdf.text(
+                pageCurrent + "/" + pageCount,
+                pdf.internal.pageSize.width / 2 - 10,
+                pdf.internal.pageSize.height - 10
+              );
+            }
+
             const pdfDocument = pdf.output("bloburi");
             window.open(pdfDocument.toString(), "_blank");
             this.$emit("close-dialog");
@@ -167,8 +171,8 @@ export default class TKSubmissionToPDF extends Vue {
     thematic: TKSubmissionThematic,
     columnWidth: number
   ): UserOptions {
-    const headerHeight = 15;
-    const iconURL = TKIconUrl(thematic.iconFileName);
+    const headerHeight = 25;
+    const iconURL = TKIconUrl(thematic.iconFileName, IconPosition.MAP);
     const iconProps = pdf.getImageProperties(iconURL);
     const iconContainerWidth = 35;
     const iconDisplayHeight = 10;
@@ -191,21 +195,22 @@ export default class TKSubmissionToPDF extends Vue {
     for (let i = 0; i < thematic.data.length; i++) {
       const item = thematic.data[i];
       if (item.type === TKSubmissionEntryType.TEXT) {
-        let color = "#000000";
+        let color = TKColors.DARK_GREY as string;
         switch (item.trafficLightColor) {
           case TKTrafficLightValues.OK:
-            color = "#157815";
+            color = TKColors.TRAFFICLIGHT_PDF_OK;
             break;
           case TKTrafficLightValues.WARNING:
-            // color = "#ffcc00";
-            color = "#E6CF01";
+            color = TKColors.TRAFFICLIGHT_PDF_WARNING;
             break;
           case TKTrafficLightValues.DANGER:
-            color = "#cc7000";
+            color = TKColors.TRAFFICLIGHT_PDF_DANGER;
             break;
           case TKTrafficLightValues.CRITICAL:
-            color = "#cc0a00";
+            color = TKColors.TRAFFICLIGHT_PDF_CRITICAL;
             break;
+          default:
+            color = TKColors.TRAFFICLIGHT_PDF_UNDEFINED;
         }
 
         const field: CellDef = {
@@ -276,8 +281,10 @@ export default class TKSubmissionToPDF extends Vue {
               valign: "middle",
               halign: "left",
               cellPadding: { left: iconContainerWidth },
-              fillColor: "#f9f9f9",
-              textColor: "#428fdf",
+              fillColor: TKColors.BACKGROUND,
+              textColor: TKColors.DARK_GREY,
+              lineColor: TKColors.DARK_GREY,
+              lineWidth: 1,
               minCellHeight: headerHeight,
               fontSize: 8
             }
@@ -353,13 +360,5 @@ export default class TKSubmissionToPDF extends Vue {
   flex-flow: column nowrap;
   row-gap: 3mm;
   overflow: hidden;
-}
-
-/* SEPARATOR *********************************************************/
-.header-separator {
-  border: 0;
-  height: 0;
-  border-top: 1px solid #428fdf22;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 </style>
