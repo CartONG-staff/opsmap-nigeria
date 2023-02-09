@@ -45,7 +45,7 @@
         "subtitlePlaceholder": "No Site Selected",
         "extraTools": "Extra Tools",
         "datePreffix": "Report",
-        "filter": "Filter"
+        "filter": "Search.."
     },
     "charts": {
         "agePyramidTitle": "Age Pyramid",

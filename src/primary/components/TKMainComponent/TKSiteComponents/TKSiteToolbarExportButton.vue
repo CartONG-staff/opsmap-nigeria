@@ -1,55 +1,60 @@
 <template>
   <div class="tk-site-toolbar-container">
-    <v-dialog v-model="generatePDF" hide-overlay>
-      <template v-slot:activator="{ on: dialog, attrs }">
-        <v-tooltip top>
-          <template v-slot:activator="{ on: tooltip }">
-            <v-btn
-              icon
-              large
-              color="accent"
-              height="44"
-              width="44"
-              :disabled="!dataset.currentSite"
-              v-bind="attrs"
-              v-on="{ ...tooltip, ...dialog }"
-              @click="triggerExportToPDF()"
-              :loading="generatePDF"
-            >
-              <v-icon dark>
-                mdi-file-pdf-box
-              </v-icon>
-            </v-btn>
-          </template>
-          <span>{{ $t("site.exportPreffix") }} PDF</span>
-        </v-tooltip>
-      </template>
-      <TKSubmissionToPDF
-        ref="tk-submission-to-pdf"
-        @close-dialog="generatePDF = false"
-      />
-    </v-dialog>
-
-    <v-tooltip top>
+    <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn
+          :disabled="!dataset.currentSite"
           icon
           large
-          color="accent"
+          color="selectedButton"
           height="44"
           width="44"
-          :disabled="!dataset.currentSite"
-          @click="exportToCSV()"
           v-bind="attrs"
           v-on="on"
+          :loading="generating"
         >
-          <v-icon dark>
+          <v-icon>
             mdi-file-delimited-outline
           </v-icon>
         </v-btn>
       </template>
-      <span>{{ $t("site.exportPreffix") }} CSV (UTF-8)</span>
-    </v-tooltip>
+      <v-list>
+        <v-dialog v-model="generating" hide-overlay>
+          <template v-slot:activator="{ on: dialog, attrs }">
+            <v-list-item
+              @click="triggerExportToPDF()"
+              v-bind="attrs"
+              v-on="{ ...dialog }"
+            >
+              <v-list-item-icon>
+                <v-icon color="selectedButton"
+                  >mdi-file-delimited-outline</v-icon
+                >
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title
+                  >{{ $t("site.exportPreffix") }} PDF</v-list-item-title
+                >
+              </v-list-item-content>
+            </v-list-item>
+          </template>
+          <TKSubmissionToPDF
+            ref="tk-submission-to-pdf"
+            @close-dialog="generating = false"
+          />
+        </v-dialog>
+        <v-list-item @click="exportToCSV()">
+          <v-list-item-icon>
+            <v-icon color="selectedButton">mdi-file-delimited-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title
+              >{{ $t("site.exportPreffix") }} CSV</v-list-item-title
+            >
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </div>
 </template>
 
@@ -65,19 +70,21 @@ import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
   }
 })
 export default class TKSiteToolbarExportButton extends Vue {
-  generatePDF = false;
+  generating = false;
 
   get dataset() {
     return TKDatasetModule.dataset;
   }
 
   exportToCSV() {
+    this.generating = true;
     if (TKDatasetModule.dataset && TKDatasetModule.dataset.currentSubmission) {
       TKDatasetExportCurrentSiteToCSV(
         TKDatasetModule.dataset,
         this.$root.$i18n.locale
       );
     }
+    this.generating = false;
   }
 
   triggerExportToPDF() {

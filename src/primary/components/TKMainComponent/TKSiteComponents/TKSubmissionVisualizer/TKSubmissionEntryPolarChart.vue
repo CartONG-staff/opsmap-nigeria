@@ -1,7 +1,5 @@
 <template lang="html">
-  <div>
-    <canvas :id="ctx" :height="height"> </canvas>
-  </div>
+  <canvas :id="ctx" :height="height"> </canvas>
 </template>
 
 <script lang="ts">
@@ -21,6 +19,7 @@ import {
   Tooltip
 } from "chart.js";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
+import { TKColors } from "@/domain/utils/TKColors";
 
 Chart.register(PolarAreaController, RadialLinearScale, Legend, Title, Tooltip);
 
@@ -35,11 +34,11 @@ export default class TKSubmissionItemPolarChart extends Vue {
   readonly height = 300;
 
   readonly colors = [
-    "rgba(13, 59, 102, 0.5)",
-    "rgba(166, 61, 64, 0.5)",
-    "rgba( 	221, 219, 241, 0.5)",
-    "rgba( 	237, 174, 73, 0.5)",
-    "rgba(159, 196, 144, 0.5)"
+    TKColors.CHART_COLOR_1,
+    TKColors.CHART_COLOR_2,
+    TKColors.CHART_COLOR_3,
+    TKColors.CHART_COLOR_4,
+    TKColors.CHART_COLOR_5
   ];
 
   mounted() {
@@ -60,14 +59,14 @@ export default class TKSubmissionItemPolarChart extends Vue {
           maintainAspectRatio: false,
           elements: {
             arc: {
-              borderColor: "#d8d8d8",
-              borderWidth: 1
+              borderColor: TKColors.DARK_GREY,
+              borderWidth: 2
             }
           },
           scales: {
             r: {
               ticks: {
-                backdropColor: "#f1f3f3"
+                color: TKColors.SECONDARY
               },
               display: true
             }
@@ -91,9 +90,12 @@ export default class TKSubmissionItemPolarChart extends Vue {
             legend: {
               position: "bottom",
               align: "start",
-              reverse: true,
+              maxWidth: 50,
+              // reverse: true,
               labels: {
                 boxWidth: 15,
+
+                color: TKColors.SECONDARY,
                 font: {
                   family: "Arial",
                   size: 11

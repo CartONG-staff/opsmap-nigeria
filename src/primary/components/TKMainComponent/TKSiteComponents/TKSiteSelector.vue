@@ -1,6 +1,6 @@
 <template lang="html">
   <transition mode="out-in" name="fade">
-    <div :key="$root.$i18n.locale" class="tk-site-selector" :style="opacity">
+    <div :key="$root.$i18n.locale" class="tk-site-selector">
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <v-autocomplete
@@ -117,29 +117,13 @@ export default class TKSiteSelector extends Vue {
   get dataset() {
     return TKDatasetModule.dataset;
   }
-
-  get opacity() {
-    if (this.$vuetify.theme.dark) {
-      return {
-        "--opacity": 0.9
-      };
-    }
-
-    return {
-      "--opacity": 0.75
-    };
-  }
 }
 </script>
 <style scoped>
 .tk-site-selector {
   border-radius: 8px;
   align-items: center;
-  background-color: var(--v-siteSelector-base);
-  opacity: var(--opacity);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  box-shadow: 0 0 20px 2px rgba(58, 158, 211, 0.15);
+  background-color: rgba(255, 255, 255, 0.7);
   width: 100%;
   height: 100%;
   align-items: center;
@@ -152,6 +136,7 @@ export default class TKSiteSelector extends Vue {
 }
 
 .tk-autocomplete {
+  opacity: 1 !important;
   width: 20%;
   margin: 0 15px;
   height: 30px;

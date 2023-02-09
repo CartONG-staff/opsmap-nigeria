@@ -12,27 +12,23 @@
         clearable
         v-model="search"
         @keydown.enter="setSearchImmediate"
-        prepend-inner-icon="mdi-magnify"
+        prepend-inner-icon="mdi-chart-timeline-variant"
         height="44"
       ></v-text-field>
-      <v-btn-toggle class="tk-submissionvisualizer-toggle">
-        <v-btn
-          class="toggle-button"
-          v-model="hideUnanswered"
-          color="#919191"
-          plain
-        >
-          <v-icon left>mdi-file-sign</v-icon
+      <v-btn-toggle
+        class="tk-submissionvisualizer-toggle"
+        color="selectedButton"
+      >
+        <v-btn class="toggle-button" v-model="hideUnanswered" plain>
+          <v-icon left>mdi-draw-pen</v-icon
           >{{ $t("site.hideUnanswered") }}</v-btn
         >
       </v-btn-toggle>
-      <v-btn-toggle class="tk-submissionvisualizer-toggle">
-        <v-btn
-          class="toggle-button"
-          v-model="sortByTrafficLight"
-          color="#919191"
-          plain
-        >
+      <v-btn-toggle
+        class="tk-submissionvisualizer-toggle"
+        color="selectedButton"
+      >
+        <v-btn class="toggle-button" v-model="sortByTrafficLight" plain>
           <v-icon left>mdi-traffic-light-outline</v-icon
           >{{ $t("site.sortByTrafficLight") }}
         </v-btn>
@@ -97,11 +93,11 @@ export default class TKSubmissionVisualizerToolbar extends Vue {
 }
 </script>
 
-<style>
+<!-- <style>
 .tk-submissionvisualizer-toggle .v-btn--active > .v-btn__content {
   color: var(--v-accent-base) !important;
 }
-</style>
+</style> -->
 
 <style scoped>
 .search-field {
@@ -109,7 +105,7 @@ export default class TKSubmissionVisualizerToolbar extends Vue {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  border: 3px solid var(--v-thematicBorder-base);
+  border: 1px solid rgba(44, 44, 44, 0.2);
   width: 100%;
   background-color: var(--v-thematicBackground-base);
   overflow: hidden;

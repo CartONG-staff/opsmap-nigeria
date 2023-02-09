@@ -45,6 +45,8 @@ import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
+import { TKColors } from "@/domain/utils/TKColors";
+
 @Component
 export default class TKSubmissionentryView extends Vue {
   @Prop()
@@ -66,23 +68,24 @@ export default class TKSubmissionentryView extends Vue {
   onentryChanged() {
     switch (this.entry.trafficLightColor) {
       case TKTrafficLightValues.OK:
-        this.trafficLightColor.backgroundColor = "green";
+        this.trafficLightColor.backgroundColor = TKColors.TRAFFICLIGHT_OK;
         this.trafficLightCategory = "trafficlight.ok";
         break;
       case TKTrafficLightValues.WARNING:
-        this.trafficLightColor.backgroundColor = "yellow";
+        this.trafficLightColor.backgroundColor = TKColors.TRAFFICLIGHT_WARNING;
         this.trafficLightCategory = "trafficlight.warning";
         break;
       case TKTrafficLightValues.DANGER:
-        this.trafficLightColor.backgroundColor = "orange";
+        this.trafficLightColor.backgroundColor = TKColors.TRAFFICLIGHT_DANGER;
         this.trafficLightCategory = "trafficlight.danger";
         break;
       case TKTrafficLightValues.CRITICAL:
-        this.trafficLightColor.backgroundColor = "#e91d1d";
+        this.trafficLightColor.backgroundColor = TKColors.TRAFFICLIGHT_CRITICAL;
         this.trafficLightCategory = "trafficlight.critical";
         break;
       default:
-        this.trafficLightColor.backgroundColor = "purple";
+        this.trafficLightColor.backgroundColor =
+          TKColors.TRAFFICLIGHT_UNDEFINED;
         this.trafficLightCategory = "trafficlight.other";
         break;
     }
@@ -108,49 +111,3 @@ export default class TKSubmissionentryView extends Vue {
   }
 }
 </script>
-
-<style scoped>
-.tk-submission-entry-container {
-  min-width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  min-height: 30px;
-  column-gap: 2px;
-  font-weight: bold;
-  font-size: 11px;
-}
-
-.tk-entry-field-name {
-  color: var(--v-secondary-base);
-  text-align: left;
-  flex-grow: 1;
-  overflow: auto;
-}
-
-.tk-entry-field-name-arab {
-  text-align: right;
-  flex-grow: 1;
-}
-
-.tk-entry-field-value {
-  color: var(--v-primary-base);
-  text-align: right;
-}
-.tk-entry-field-value-arab {
-  margin-left: 16px;
-  text-align: left;
-}
-
-.tk-trafficlight-container {
-  margin-right: -20px;
-}
-
-.tk-trafficlight {
-  height: 8px;
-  width: 8px;
-  border-radius: 50%;
-  margin: 0 auto;
-  background-color: none;
-}
-</style>

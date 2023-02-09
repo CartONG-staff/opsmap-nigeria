@@ -1,7 +1,5 @@
 <template lang="html">
-  <div>
-    <canvas :id="ctx" :height="height"></canvas>
-  </div>
+  <canvas :id="ctx" :height="height"></canvas>
 </template>
 
 <script lang="ts">
@@ -18,7 +16,7 @@ import {
   Tooltip
 } from "chart.js";
 import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
-
+import { TKColors } from "@/domain/utils/TKColors";
 import { v4 } from "uuid";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
@@ -50,7 +48,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   beforeMount() {
     if (this.entry) {
       this.height =
-        this.entry.malesEntries.length * (this.barthickness - 1) + 140; // This is magic !
+        this.entry.malesEntries.length * (this.barthickness - 1) + 240; // This is magic !
     }
   }
 
@@ -64,16 +62,20 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
             {
               label: this.$root.$i18n.t("charts.female").toString(),
               data: this.generateFemalesDataset(),
-              backgroundColor: "#f37788",
+              backgroundColor: TKColors.CHART_COLOR_1,
               barThickness: this.barthickness,
-              minBarLength: 1
+              minBarLength: 1,
+              borderWidth: 2,
+              borderColor: TKColors.DARK_GREY
             },
             {
               label: this.$root.$i18n.t("charts.male").toString(),
               data: this.generateMalesDataset(),
-              backgroundColor: "#4095cd",
+              backgroundColor: TKColors.CHART_COLOR_2,
               barThickness: this.barthickness,
-              minBarLength: 1
+              minBarLength: 1,
+              borderWidth: 2,
+              borderColor: TKColors.DARK_GREY
             }
           ]
         },
@@ -90,18 +92,11 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           },
           scales: this.generateScales(),
           plugins: {
-            title: {
-              display: true,
-              text: TKGetLocalValue(this.entry.title, this.$i18n.locale),
-              font: {
-                family: "Arial",
-                size: 12
-              }
-            },
             legend: {
-              position: "top",
+              position: "bottom",
               reverse: true,
               labels: {
+                color: TKColors.SECONDARY,
                 font: {
                   family: "Arial",
                   size: 11
@@ -242,19 +237,29 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
             }
             mynumber = mynumber < 0 ? 0 - mynumber : mynumber;
             return mynumber.toString();
-          }
+          },
+          color: TKColors.SECONDARY
         },
         title: {
+          align: "end",
+          color: TKColors.DARK_GREY,
           display: true,
           text: this.$root.$i18n.t("charts.titleX").toString()
         }
       },
       y: {
         beginAtZero: true,
+        grid: {
+          display: false
+        },
         stacked: true,
+        ticks: {
+          color: TKColors.SECONDARY
+        },
         title: {
+          align: "end",
+          color: TKColors.DARK_GREY,
           display: true,
-
           text: this.$root.$i18n.t("charts.titleY").toString()
         }
       }

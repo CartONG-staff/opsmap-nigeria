@@ -192,7 +192,7 @@ export default class TKSubmissionVisualizer extends Vue {
 }
 </script>
 
-<style scoped>
+<style>
 .tk-submission-visualizer {
   display: flex;
   flex-flow: row wrap;
