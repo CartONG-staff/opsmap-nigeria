@@ -50,7 +50,7 @@ test:
     paths:
       - coverage
 
-# job: build_and_deploy
+# Job: build_and_deploy
 pages:
   needs: ["test"]
   stage: deploy
