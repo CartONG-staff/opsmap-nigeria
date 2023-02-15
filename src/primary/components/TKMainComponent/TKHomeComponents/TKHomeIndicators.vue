@@ -101,6 +101,5 @@ export default class TKHomeIndicators extends Vue {
   justify-content: space-between;
   align-items: top;
   width: 30%;
-  border-radius: 15px;
 }
 </style>

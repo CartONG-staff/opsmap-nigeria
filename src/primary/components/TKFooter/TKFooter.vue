@@ -82,14 +82,14 @@ export default class TKFooter extends Vue {
   color: var(--v-secondary-base);
   letter-spacing: 0.86px;
   min-width: 100px;
-  width: 10%;
+  width: 30%;
 }
 
 .tk-footer-disclaimer-text {
   font-size: 16px;
   color: var(--v-primary-base);
   line-height: 1.375;
-  width: 85%;
+  width: 65%;
   text-align: justify;
   text-justify: inter-word;
 }

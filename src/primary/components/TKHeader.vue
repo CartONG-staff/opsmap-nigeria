@@ -105,7 +105,13 @@ export default class TKHeader extends Vue {
 
 <style>
 .tk-header-buttons .v-btn--active > .v-btn__content {
-  color: var(--v-accent-base) !important;
+  color: var(--v-selectedLanguage-base) !important;
+}
+
+.tk-header-buttons
+  .v-btn--plain:not(.v-btn--active):not(.v-btn--loading):not(:focus):not(:hover)
+  .v-btn__content {
+  opacity: 1 !important;
 }
 </style>
 
@@ -152,7 +158,6 @@ export default class TKHeader extends Vue {
 .tk-header-logo-cccm-container {
   display: block;
   height: 52px;
-  width: 172px;
   border-radius: 8px;
   outline: hidden;
 }
@@ -169,7 +174,7 @@ export default class TKHeader extends Vue {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
-  align-items: center;
+  align-items: right;
   column-gap: 10px;
   row-gap: 8px;
 }
@@ -187,7 +192,6 @@ export default class TKHeader extends Vue {
   justify-content: flex-end;
   align-items: center;
   column-gap: 0px;
-  color: #919191;
   font-size: 13px;
   font-weight: bold;
 }
@@ -195,7 +199,7 @@ export default class TKHeader extends Vue {
 .tk-header-buttons-sep {
   height: 10px;
   width: 2px;
-  background-color: #7d7d7d;
+  background-color: var(--v-notSelectedLanguage-base);
 }
 
 button:active {

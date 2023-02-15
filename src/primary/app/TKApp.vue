@@ -156,7 +156,7 @@ h3 {
 }
 
 .tk-autocomplete .v-text-field__prefix {
-  color: rgba(118, 118, 118) !important;
+  color: var(--v-autocomplete-base) !important;
   font-family: "Arial" !important;
   font-weight: bold !important;
   font-size: 16px !important;
@@ -165,21 +165,21 @@ h3 {
 
 .tk-autocomplete .theme--dark.v-icon,
 .tk-autocomplete .theme--light.v-icon {
-  color: var(--v-discrete-base) !important;
+  color: var(--v-autocomplete-base) !important;
 }
 
 .tk-autocomplete .v-input__slot {
-  border-color: var(--v-discrete-base) !important;
+  border-color: var(--v-autocomplete-base) !important;
   transition: none !important;
 }
 
 .tk-autocomplete .v-input__slot:before {
-  border-color: var(--v-discrete-base) !important;
+  border-color: var(--v-autocomplete-base) !important;
   transition: none !important;
 }
 
 .tk-autocomplete .v-input__slot:after {
-  border-color: var(--v-discrete-base) !important;
+  border-color: var(--v-autocomplete-base) !important;
   transition: none !important;
 }
 
@@ -190,7 +190,6 @@ h3 {
 
 .tk-autocomplete .theme--dark.v-icon.v-icon.v-icon--disabled,
 .tk-autocomplete .theme--light.v-icon.v-icon.v-icon--disabled {
-  /* color: rgba(0, 0, 0, 0) !important; */
   opacity: 0.2 !important;
 }
 

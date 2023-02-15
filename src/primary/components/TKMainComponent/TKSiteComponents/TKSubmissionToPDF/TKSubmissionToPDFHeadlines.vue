@@ -81,7 +81,7 @@
 
 <script lang="ts">
 import { TKSurveyAnonymousType } from "@/domain/survey/TKSurvey";
-import { TKIconUrl } from "@/domain/utils/TKIconUrl";
+import { IconPosition, TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { toTitleCase } from "@/domain/utils/TKStringUtils";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
@@ -169,7 +169,10 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
       let markerUrl = "";
 
       markerUrl = encodeURIComponent(
-        TKIconUrl(this.dataset.currentSite.type.iconFileName.selected)
+        TKIconUrl(
+          this.dataset.currentSite.type.iconFileName.selected,
+          IconPosition.MAP
+        )
       );
 
       staticMapUrl += `url-${markerUrl}(${this.dataset.currentSite.coordinates.lng},${this.dataset.currentSite.coordinates.lat})/`;
@@ -223,14 +226,13 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
 }
 
 .headlines-infos {
-  background-color: coral;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
 }
 
 .headlines-title {
-  color: #333333;
+  color: var(--v-accent-base);
   font-size: 18px;
   font-weight: bold;
   line-height: 1.467;
@@ -240,7 +242,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   width: 50mm;
   height: 33.3mm;
   border-radius: 15px;
-  border: solid 1px #999;
+  border: solid 1px var(--v-border-base);
   overflow: hidden;
 }
 
@@ -255,7 +257,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   line-height: 2;
   font-size: 10px;
   font-weight: bold;
-  color: #999;
+  color: var(--v-secondary-base);
   letter-spacing: 0.86;
   white-space: nowrap;
 }
@@ -267,7 +269,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   line-height: 2;
   font-size: 10px;
   font-weight: bold;
-  color: #418fde;
+  color: var(--v-accent-base);
   letter-spacing: 0.86px;
   min-width: 60 mm;
 }

@@ -160,11 +160,12 @@ export default class TKSubmissionThematicView extends Vue {
 
 <style scoped>
 .tk-submission-thematic-container {
-  border-radius: 15px;
+  border-radius: 4px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  border: 3px solid var(--v-thematicBorder-base);
+  border: 1px solid var(--v-thematicBorder-base);
+  box-shadow: 0 2px 0px 0px var(--v-boxShadow-base);
   width: 100%;
   background-color: var(--v-thematicBackground-base);
   overflow: hidden;
@@ -178,6 +179,7 @@ export default class TKSubmissionThematicView extends Vue {
   align-items: center;
   height: 75px;
   background-color: var(--v-thematicHeader-base);
+  border-bottom: 1px solid var(--v-thematicBorder-base);
 }
 
 .tk-submission-thematic-title {
@@ -196,7 +198,7 @@ export default class TKSubmissionThematicView extends Vue {
 }
 
 .tk-submission-thematic-content {
-  padding: 0px 20px;
+  padding: 10px 30px;
   width: 100%;
   margin-bottom: -1px;
 }

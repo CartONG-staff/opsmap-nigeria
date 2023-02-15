@@ -45,7 +45,7 @@
         "subtitlePlaceholder": "Aucun site sélectionné",
         "extraTools": "Autres outils",
         "datePreffix": "Rapport",
-        "filter": "Filtre"
+        "filter": "Chercher.."
     },
     "charts": {
         "agePyramidTitle": "Pyramid des âges",
