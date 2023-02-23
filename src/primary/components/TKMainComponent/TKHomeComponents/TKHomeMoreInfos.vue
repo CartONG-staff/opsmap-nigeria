@@ -46,7 +46,6 @@ export default class TKHomeIndicators extends Vue {
   row-gap: 30px;
   justify-content: space-between;
   align-items: top;
-  background-color: var(--v-background-base);
   width: 100%;
 }
 
