@@ -16,7 +16,8 @@ export enum TKSubmissionEntryType {
   BULLET = "bullet",
   CHART_PYRAMID = "age_pyramid",
   CHART_DOUGHNUT = "doughnut",
-  CHART_POLAR = "polar"
+  CHART_POLAR = "polar",
+  CHART_RADAR = "radar"
 }
 export interface TKSubmissionEntryText {
   type: TKSubmissionEntryType.TEXT;
@@ -63,6 +64,14 @@ export interface TKSubmissionEntryPolar {
   entries: Array<{ value: number; label: TKLabel }>;
 }
 
+export interface TKSubmissionEntryRadar {
+  type: TKSubmissionEntryType.CHART_RADAR;
+  chartid: string;
+  title: TKLabel;
+  isAnswered: true;
+  entries: Array<{ value: number; label: TKLabel }>;
+}
+
 // ////////////////////////////////////////////////////////////////////////////
 // Alltogether type
 // ////////////////////////////////////////////////////////////////////////////
@@ -72,7 +81,8 @@ export type TKSubmissionEntry =
   | TKSubmissionEntryBullet
   | TKSubmissionEntryAgePyramid
   | TKSubmissionEntryDoughnut
-  | TKSubmissionEntryPolar;
+  | TKSubmissionEntryPolar
+  | TKSubmissionEntryRadar;
 
 // ////////////////////////////////////////////////////////////////////////////
 // helpers method

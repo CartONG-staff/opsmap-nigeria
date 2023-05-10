@@ -243,7 +243,8 @@ export default class TKSubmissionToPDF extends Vue {
         if (
           item.type === TKSubmissionEntryType.CHART_PYRAMID ||
           item.type === TKSubmissionEntryType.CHART_DOUGHNUT ||
-          item.type === TKSubmissionEntryType.CHART_POLAR
+          item.type === TKSubmissionEntryType.CHART_POLAR ||
+          item.type === TKSubmissionEntryType.CHART_RADAR
         ) {
           const props = pdf.getImageProperties(
             TKPDFInfosModule.currentChartsBase64[item.chartid]

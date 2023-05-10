@@ -24,6 +24,7 @@ import {
   TKSubmissionEntryAgePyramid,
   TKSubmissionEntryDoughnut,
   TKSubmissionEntryPolar,
+  TKSubmissionEntryRadar,
   TKSubmissionEntryText,
   TKSubmissionEntryType
 } from "@/domain/survey/TKSubmissionEntry";
@@ -56,6 +57,12 @@ function computeChartPyramidScore(chart: TKSubmissionEntryAgePyramid): number {
   );
 }
 
+function computeChartRadarScore(chart: TKSubmissionEntryRadar): number {
+  const CHART_RADAR_BASE = 6;
+  const CHART_RADAR_LINE_FACTOR = 3;
+  return chart.entries.length / CHART_RADAR_LINE_FACTOR + CHART_RADAR_BASE;
+}
+
 function computeTextScore(text: TKSubmissionEntryText): number {
   const AVERAGE_CHAR_COUNT_PER_LINE = 90;
   return Math.ceil(
@@ -80,6 +87,9 @@ function computeScore(thematic: TKSubmissionThematic): number {
         break;
       case TKSubmissionEntryType.CHART_PYRAMID:
         score = computeChartPyramidScore(thematicData);
+        break;
+      case TKSubmissionEntryType.CHART_RADAR:
+        score = computeChartRadarScore(thematicData);
         break;
       case TKSubmissionEntryType.TEXT:
         score = computeTextScore(thematicData);

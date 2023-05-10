@@ -7,7 +7,8 @@ import {
   TKSubmissionEntryAgePyramid,
   TKSubmissionEntryType,
   TKCreateSubmissionEntryList,
-  TKCreateSubmissionEntryBullet
+  TKCreateSubmissionEntryBullet,
+  TKSubmissionEntryRadar
 } from "./TKSubmissionEntry";
 import {
   TKSubmissionThematic,
@@ -212,6 +213,20 @@ function createChartInSubmission(
   } else if (chartData.id.includes("polar_area_chart")) {
     const entry: TKSubmissionEntryPolar = {
       type: TKSubmissionEntryType.CHART_POLAR,
+      chartid: chartData.id,
+      isAnswered: true,
+      title: surveyConfiguration.fieldsLabels[chartData.id],
+      entries: chartData.data.map(item => {
+        return {
+          value: Number(item.value),
+          label: surveyConfiguration.fieldsLabels[item.field]
+        };
+      })
+    };
+    submission[chartData.thematic].data.push(entry);
+  } else if (chartData.id.includes("radar_chart")) {
+    const entry: TKSubmissionEntryRadar = {
+      type: TKSubmissionEntryType.CHART_RADAR,
       chartid: chartData.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartData.id],

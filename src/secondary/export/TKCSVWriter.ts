@@ -117,6 +117,7 @@ function computeCurrentSelectionCSVContent(
           case TKSubmissionEntryType.CHART_PYRAMID:
           case TKSubmissionEntryType.CHART_DOUGHNUT:
           case TKSubmissionEntryType.CHART_POLAR:
+          case TKSubmissionEntryType.CHART_RADAR:
             rows[0].push(
               TKGetLocalValue(
                 sites[0].submissions[0].thematics[key].nameLabel,
