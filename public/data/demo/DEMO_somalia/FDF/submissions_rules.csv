@@ -1,0 +1,150 @@
+field_name;type;thematic_group;traffic_light_name;chart_id;chart_data
+last_update;date;group_general_info;;;
+localisation_region_label;string;group_general_info;;;
+localisation_district_label;string;group_general_info;;;
+settlement_name;string;group_general_info;;;
+settlement_type;string;group_general_info;;;
+cccm_populationestimates_families;list;group_general_info;;;
+cccm_populationestimates_individuals;list;group_general_info;;;
+cccm_site_capacity;list;group_cccm;yesno;;
+cccm_idps_arrival;string;group_cccm;;;
+duration_site_established_in_months;list;group_cccm;;;
+cccm_management;integer;group_cccm;;;
+cccm_committees;integer;group_cccm;;;
+cccm_committees.residents_committee;integer;group_cccm;;doughnut_chart#1;residents_committee#Residents committee
+cccm_committees.camp_mgmt_committee;list;group_cccm;;doughnut_chart#1;camp_mgmt_committee#Camp management committee
+cccm_committees.women_committee;list;group_cccm;;doughnut_chart#1;women_committee#Women committee
+cccm_committees.elder;integer;group_cccm;;doughnut_chart#1;elder#Elder
+cccm_committees.wash_committee;integer;group_cccm;;doughnut_chart#1;wash_committee#Wash committee
+cccm_committees.health_committee;integer;group_cccm;;doughnut_chart#1;health_committee#Health committee
+cccm_committees.edu_committee;list;group_cccm;;doughnut_chart#1;edu_committee#EduCATION committee
+cccm_committees.food_committee;integer;group_cccm;;doughnut_chart#1;food_committee#Food committee
+cccm_committees.youth_commitee;integer;group_cccm;;doughnut_chart#1;youth_commitee#Youth commitee
+cccm_committees.no_committees;integer;group_cccm;;doughnut_chart#1;no_committees#No committees
+cccm_committees.dnk;integer;group_cccm;;doughnut_chart#1;dnk#Do not know
+cccm_committees.other;integer;group_cccm;;doughnut_chart#1;other#Other
+decision_making_committees;integer;group_cccm;;;
+children_under_5;integer;group_demo;;;
+boys_5-17;integer;group_demo;;age_pyramid#1;m
+girls_5-17;list;group_demo;;age_pyramid#1;f
+men_18-59;list;group_demo;;age_pyramid#1;m
+women_18-59;list;group_demo;;age_pyramid#1;f
+elderly_above_60;list;group_demo;;;
+idps_groups_residing.pwd;string;group_demo;;;
+idps_groups_residing.minority_clan_affiliation;string;group_demo;;;
+belonging_minority_group;integer;group_demo;noyes;;
+cccm_idps_origin_first;integer;group_displacement;;;
+cccm_district_origin_first;integer;group_displacement;;;
+reason_displacement;integer;group_displacement;;;
+displaced_go_back_origin;integer;group_displacement;yesno;;
+difficulty_seeing;integer;group_vulpop;;doughnut_chart#1;difficulty_seeing#Persons with difficulty seeing
+difficulty_hearing;integer;group_vulpop;;doughnut_chart#2;difficulty_hearing#Persons with difficulty hearing
+difficulty_walking;integer;group_vulpop;;doughnut_chart#3;difficulty_walking#Persons with difficulty walking
+diffculty_remembering;integer;group_vulpop;;doughnut_chart#4;diffculty_remembering#Persons with difficulty remembering
+self_care;integer;group_vulpop;;doughnut_chart#5;self_care#Persons with difficulty in self care
+difficulty_communicating;integer;group_vulpop;;doughnut_chart#6;difficulty_communicating#Persons with difficulty in communicating
+evictions_landowner;list;group_protection;;;
+evictions_tenureagreement;list;group_protection;yesno;;
+type_land_agreement;list;group_protection;type_agreement;;
+evictions_tenureagreement_holder;list;group_protection;;;
+evictions_tenureagreement_renewal;list;group_protection;eviction;;
+evictions_tenureagreement_rentpayment;list;group_protection;;;
+evictions_tenureagreement_rentfrequency;list;group_protection;;;
+evictions_notice;list;group_protection;noyes;;
+evictions_notice_leavedate;list;group_protection;noyes;;
+rate_likelihood_eviction;string;group_protection;eviction_risk;;
+factors_contributing_forced_evictions;list;group_protection;;;
+protection_womenspace;list;group_protection;yesno;;
+housing_property_incidences;list;group_protection;;;
+protection_childfriendlyspace;list;group_protection;yesno;;
+protection_incidents;list;group_protection;;;
+protection_restrictions_day;list;group_protection;noyes;;
+protection_restrictions_night;list;group_protection;noyes;;
+insecure_areas;list;group_protection;;;
+support_access_impediments;list;group_protection;;;
+shelter_types;integer;group_shelternfi;;;
+shelter_fire;list;group_shelternfi;noyes;;
+shelter_flood;list;group_shelternfi;noyes;;
+shelter_publiclighting;list;group_shelternfi;yesno;;
+nfi_access;list;group_shelternfi;yesno;;
+nfi_items_available;list;group_shelternfi;yesno;;
+nfi_access_impediments;integer;group_shelternfi;noyes;;
+water_sources_present;integer;group_wash;water_sources_present;;
+water_sources_working;integer;group_wash;water_sources_working;;
+water_sources_functional;list;group_wash;water_sources_working;;
+water_sources_primary;integer;group_wash;;;
+water_sources_domestic;integer;group_wash;;;
+water_treatment_proportion;integer;group_wash;water_sources_working;;
+water_treatment_methods;list;group_wash;;;
+water_collection_responsible;string;group_wash;;;
+water_access_distance_min;list;group_wash;water_access_distance_min;;
+water_access_problem;list;group_wash;noyes;;
+water_access_barriers;list;group_wash;;;
+sanitation_toilets_male;list;group_wash;;;
+sanitation_toilets_female;integer;group_wash;sanitation;;
+sanitation_toilets_nongendered;integer;group_wash;sanitation;;
+sanitation_toilets_total;list;group_wash;sanitation;;
+latrines_accessible_pwd;list;group_wash;eviction_risk;;
+bathing_male;list;group_wash;sanitation;;
+bathing_female;list;group_wash;sanitation;;
+bathing_non_gendered;list;group_wash;sanitation;;
+hygiene_handwashingfacilities;list;group_wash;cccm_cfm;;
+sanitation_lockabletoilets;list;group_wash;cccm_cfm;;
+sanitation_toiletlighting;list;group_wash;cccm_cfm;;
+sanitation_toilet_access_pwd;list;group_wash;cccm_cfm;;
+sanitation_desludging;list;group_wash;sanitation_desludging;;
+sanitation_solidwastedisposal;list;group_wash;;;
+sanitation_access_distance_min;list;group_wash;water_access_distance_min;;
+sanitation_access_impediments;list;group_wash;;;
+problems_sanitation_facilities;list;group_wash;noyes;;
+hygiene_access_impediments;list;group_wash;;;
+health_facilities;list;group_health;;;
+health_services;list;group_health;;;
+male_sickness;list;group_health;;doughnut_chart#2;male_sickness#Male sickness
+male_wounds;list;group_health;;doughnut_chart#2;male_wounds#Male wounds
+male_disabilities;list;group_health;;doughnut_chart#2;male_disabilities#Male disabilities
+male_mental_health;list;group_health;;doughnut_chart#2;male_mental_health#Male mental health
+female_sickness;list;group_health;;doughnut_chart#3;female_sickness#Female sickness
+female_wounds;list;group_health;;doughnut_chart#3;female_wounds#Female wounds
+female_disabilities;list;group_health;;doughnut_chart#3;female_disabilities#Female disabilities
+female_mental_health;list;group_health;;doughnut_chart#3;female_mental_health#Female mental health
+adeqaute_health_men;list;group_health;adeqaute_health_men;;
+adeqaute_health_women;list;group_health;adeqaute_health_men;;
+male_health_problems;string;group_health;;;
+female_health_problems;string;group_health;;;
+health_women_unskilledhealthpersonnel;list;group_health;cccm_cfm;;
+health_access_distance_min;list;group_health;water_access_distance_min;;
+health_barriers;list;group_health;;;
+nutrition_distributions;string;group_nutrition;;;
+nutrition_access_distance_min;list;group_nutrition;water_access_distance_min;;
+nutrition_services;list;group_nutrition;;;
+education_facilities;list;group_education;;;
+education_facilities_furniture;list;group_education;cccm_cfm;;
+education_facilities_segregated;list;group_education;cccm_cfm;;
+education_facilities_washing;list;group_education;cccm_cfm;;
+education_facilities_physical_damages;list;group_education;adeqaute_health_men;;
+education_facilities_latrines_accessible_pwd;list;group_education;cccm_cfm;;
+education_facilities_fences;list;group_education;cccm_cfm;;
+education_access_distance_min;list;group_education;water_access_distance_min;;
+education_barriers_boys;list;group_education;;;
+education_barriers_girls;list;group_education;;;
+foodsecurity_primary;list;group_fs;;;
+foodsecurity_land_livestock;list;group_fs;yesno;;
+foodsecurity_land_agriculture;list;group_fs;yesno;;
+foodsecurity_livelihood;list;group_fs;adeqaute_health_men;;
+residents_no_food;list;group_fs;;;
+foodsecurity_access_barriers;list;group_fs;;;
+foodsecurity_access;list;group_fs;yesno;;
+foodsecurity_access_distance_min;list;group_education;water_access_distance_min;;
+responsible_going_market;list;group_fs;;;
+aap_informationsources;list;group_com;;;
+aap_humanitarianassistanceproblems;list;group_com;;;
+aap_feedbackmechanism;list;group_com;yesno;;
+cccm_cfm;list;group_com;cccm_cfm;;
+reason_nt_using_complaint_mechanisms;list;group_com;;;
+aap_language;list;group_com;;;
+localisation_region;string;group_general_info;;;
+district;string;group_general_info;;;
+idp_code;string;group_general_info;;;
+gps_latitude;float;group_general_info;;;
+gps_longitude;float;group_general_info;;;

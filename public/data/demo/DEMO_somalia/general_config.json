@@ -1,0 +1,188 @@
+{
+    "languages": [
+        "en",
+        "so"
+    ],
+    "languageDefault": "en",
+    "iso3": "SOM",
+    "name": {
+        "en": "Somalia",
+        "so": "Soomaaliya"
+    },
+    "opsmapDescr": {
+        "en": "Detailed Site Assessment (DSA). These site profiles display the data collected by CCCM Cluster partners in Somalia. This tool aims at providing humanitarian actors essential information on services at site level to improve humanitarian assistance in IDP sites (this is currently a beta version of the site profiles website).",
+        "so": "Qiimaynta Goobta oo faahfaahsan ( DSA ). Xog-uruurinta goobtaan ayaa soo bandhigeysa xogta ay soo aruurisay wada-hawlgalayaasha Kooxda CCCM ee Soomaaliya. Qalabkani wuxuu ujeedadiisu tahay inuu siiyo hawl wadeenada samafalka macluumaad muhiim ah oo ku saabsan adeegyada heer goobta si loo wanaajiyo kaalmada bina-aadamnimada ee goobaha barakacayaasha ( tani hadda waa nooc beta ah oo ka mid ah websaydhka bogga )."
+    },
+    "headerLogos": [],
+    "footerLogos": [
+        {
+            "title": {
+                "en": "Webdev",
+                "so": "Webdev"
+            },
+            "logos": [
+                {
+                    "name": "CartONG",
+                    "urlLogo": "/data/somalia/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlRedirection": "https://www.cartong.org"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Fieldwork",
+                "so": "Shaqo goob"
+            },
+            "logos": [
+                {
+                    "name": "REACH",
+                    "urlLogo": "/data/somalia/Logo/reach.png",
+                    "urlRedirection": "https://www.impact-initiatives.org/"
+                },
+                {
+                    "name": "Norwegian Regugee Council",
+                    "urlLogo": "/data/somalia/Logo/nrc.png",
+                    "urlRedirection": "https://www.nrc.no/"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Coordination and IM support",
+                "so": "Isuduwidda iyo taageerada IM"
+            },
+            "logos": [
+                {
+                    "name": "CCCM Somalia Cluster",
+                    "urlLogo": "/data/somalia/Logo/cccm.png",
+                    "urlRedirection": "https://cccmcluster.org/operations/somalia"
+                },
+                {
+                    "name": "REACH",
+                    "urlLogo": "/data/somalia/Logo/reach.png",
+                    "urlRedirection": "https://www.impact-initiatives.org/"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Cluster Lead",
+                "so": "Hogaanka Kooxda"
+            },
+            "logos": [
+                {
+                    "name": "UNHCR",
+                    "urlLogo": "/data/somalia/Logo/unhcr.png",
+                    "urlRedirection": "https://www.unhcr.org/"
+                },
+                {
+                    "name": "IOM",
+                    "urlLogo": "/data/somalia/Logo/iom.png",
+                    "urlRedirection": "https://www.iom.int/"
+                }
+            ]
+        }
+    ],
+    "spatialConfiguration": {
+        "mapConfig": {
+            "bounds": [
+                40.4559,
+                -1.8426,
+                51.720211,
+                12.315137
+            ]
+        },
+        "dbConfig": {
+            "adm1DBPcode": "pcode",
+            "adm2DBPcode": "pcode"
+        },
+        "localFiles": {
+            "admin0LocalURL": "/data/somalia/map/admin0.geojson"
+        }
+    },
+    "surveys": [
+        {
+            "type": "gsheet",
+            "fdf": {
+                "folder": "/data/somalia/FDF"
+            },
+            "name": "Form A",
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSq0vS3rj8y-Y3kHXsnxh150bD0SU7vPT_Dxiabd3IrniTcyD42R_HoduxuH-CDOGGdURFD8dXBeTil/pub?gid=0&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSq0vS3rj8y-Y3kHXsnxh150bD0SU7vPT_Dxiabd3IrniTcyD42R_HoduxuH-CDOGGdURFD8dXBeTil/pub?gid=1908543421&single=true&output=csv",
+            "options": {
+                "dateFormat": "DD/MM/YYYY",
+                "listSeparator": ";",
+                "anonymousMode": "text"
+            },
+            "spatial": {
+                "siteIDField": "idp_code",
+                "siteLastUpdateField": "last_update",
+                "siteLatitudeField": "gps_latitude",
+                "siteLongitudeField": "gps_longitude",
+                "siteManageByField": "cccm_management",
+                "siteNameField": "settlement_name",
+                "siteTypeField": "settlement_type",
+                "adm1Pcode": "localisation_region",
+                "adm1Name": "localisation_region_label",
+                "adm2Pcode": "district",
+                "adm2Name": "localisation_district_label"
+            },
+            "indicators": {
+                "home": [
+                    {
+                        "type": "site_count"
+                    },
+                    {
+                        "type": "people_count",
+                        "entryCode": "cccm_populationestimates_individuals"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site capacity",
+                            "so": "Awoodda goobta"
+                        },
+                        "entryCode": "cccm_site_capacity",
+                        "iconOchaName": "IDP-refugee-camp"
+                    }
+                ],
+                "site": [
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site type",
+                            "so": "Nooca goobta"
+                        },
+                        "entryCode": "settlement_type",
+                        "iconOchaName": "House-not-affected"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Access to a food market",
+                            "so": "Helitaanka suuqa cuntada"
+                        },
+                        "entryCode": "foodsecurity_access",
+                        "iconOchaName": "Food"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site management",
+                            "so": "Maareynta goobta"
+                        },
+                        "entryCode": "cccm_management",
+                        "iconOchaName": "Missing"
+                    }
+                ]
+            }
+        }
+    ],
+    "options": {
+        "showCCCMLogo": true,
+        "pdfColumnCount": 3,
+        "exportForEsite": false,
+        "showDemoBanner": true,
+        "exportAsCSVonHomePage": true
+    }
+}
