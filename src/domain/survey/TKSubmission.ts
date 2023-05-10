@@ -2,14 +2,14 @@
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKCreateSubmissionEntryText,
-  TKSubmissionEntryPolar,
-  TKSubmissionEntryDoughnut,
-  TKSubmissionEntryAgePyramid,
   TKSubmissionEntryType,
   TKCreateSubmissionEntryList,
-  TKCreateSubmissionEntryBullet,
-  TKSubmissionEntryRadar
+  TKCreateSubmissionEntryBullet
 } from "./TKSubmissionEntry";
+import {
+  TKChartData,
+  TKCreateSubmissionChart
+} from "./TKCreateSubmissionChart";
 import {
   TKSubmissionThematic,
   TKCreateSubmissionThematic
@@ -158,89 +158,6 @@ function computeSubmissionIndicator(
 // Create the chart associated to the submission
 // ////////////////////////////////////////////////////////////////////////////
 
-type ChartData = {
-  id: string;
-  thematic: string;
-  data: Array<{
-    field: string;
-    value: string;
-    type: string;
-  }>;
-};
-
-function createChartInSubmission(
-  chartData: ChartData,
-  submission: Record<string, TKSubmissionThematic>,
-  surveyConfiguration: TKFDF
-) {
-  if (chartData.id.includes("age_pyramid")) {
-    const malesEntries = chartData.data
-      .filter(item => item.type === "m")
-      .reverse();
-    const femalesEntries = chartData.data
-      .filter(item => item.type === "f")
-      .reverse();
-
-    const entry: TKSubmissionEntryAgePyramid = {
-      type: TKSubmissionEntryType.CHART_PYRAMID,
-      chartid: chartData.id,
-      isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartData.id],
-      malesEntries: malesEntries.map(item => Number(item.value)),
-      femalesEntries: femalesEntries.map(item => Number(item.value)),
-      malesLabels: malesEntries.map(
-        item => surveyConfiguration.fieldsLabels[item.field]
-      ),
-      femalesLabels: femalesEntries.map(
-        item => surveyConfiguration.fieldsLabels[item.field]
-      )
-    };
-    submission[chartData.thematic].data.push(entry);
-  } else if (chartData.id.includes("doughnut")) {
-    const entry: TKSubmissionEntryDoughnut = {
-      type: TKSubmissionEntryType.CHART_DOUGHNUT,
-      chartid: chartData.id,
-      isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartData.id],
-      entries: chartData.data.map(item => {
-        return {
-          value: Number(item.value),
-          label: surveyConfiguration.fieldsLabels[item.field]
-        };
-      })
-    };
-    submission[chartData.thematic].data.push(entry);
-  } else if (chartData.id.includes("polar_area_chart")) {
-    const entry: TKSubmissionEntryPolar = {
-      type: TKSubmissionEntryType.CHART_POLAR,
-      chartid: chartData.id,
-      isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartData.id],
-      entries: chartData.data.map(item => {
-        return {
-          value: Number(item.value),
-          label: surveyConfiguration.fieldsLabels[item.field]
-        };
-      })
-    };
-    submission[chartData.thematic].data.push(entry);
-  } else if (chartData.id.includes("radar_chart")) {
-    const entry: TKSubmissionEntryRadar = {
-      type: TKSubmissionEntryType.CHART_RADAR,
-      chartid: chartData.id,
-      isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartData.id],
-      entries: chartData.data.map(item => {
-        return {
-          value: Number(item.value),
-          label: surveyConfiguration.fieldsLabels[item.field]
-        };
-      })
-    };
-    submission[chartData.thematic].data.push(entry);
-  }
-}
-
 // ////////////////////////////////////////////////////////////////////////////
 // Create the submission
 // ////////////////////////////////////////////////////////////////////////////
@@ -258,7 +175,7 @@ export function TKCreateSubmission(
   }
 
   // Init chart
-  const charts: Record<string, ChartData> = {};
+  const charts: Record<string, TKChartData> = {};
 
   for (const key in fdf.submissionsRules) {
     const rule = fdf.submissionsRules[key];
@@ -370,7 +287,7 @@ export function TKCreateSubmission(
 
   // if a current pyramid is ongoing - push it before ending
   for (const chart of Object.values(charts)) {
-    createChartInSubmission(chart, submission, fdf);
+    TKCreateSubmissionChart(chart, submission, fdf);
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
