@@ -219,13 +219,17 @@ export function TKCreateSurvey(
           pcode: submission[fdf.spatialDescription.adm2Pcode],
           name: submission[fdf.spatialDescription.adm2Name]
         },
-        managedBy: {
-          en: submission[fdf.spatialDescription.siteManageByField]
-            ? submission[fdf.spatialDescription.siteManageByField]
-            : fdf.spatialDescription.siteManageByAltValue
-            ? fdf.spatialDescription.siteManageByAltValue
-            : "-"
-        },
+
+        managedBy: submission[fdf.spatialDescription.siteManageByField]
+          ? fdf.answersLabels[
+              submission[fdf.spatialDescription.siteManageByField]
+            ] ?? { en: submission[fdf.spatialDescription.siteManageByField] }
+          : fdf.spatialDescription.siteManageByAltValue &&
+            submission[fdf.spatialDescription.siteManageByAltValue]
+          ? fdf.answersLabels[
+              submission[fdf.spatialDescription.siteManageByAltValue]
+            ] ?? { en: submission[fdf.spatialDescription.siteManageByAltValue] }
+          : { en: "-" },
         submissions: [computedSubmission],
         coordinates: {
           lat: DEFAULT_SITE_COORDINATES.lat,
