@@ -258,11 +258,7 @@ export function TKCreateSubmission(
   }
 
   // Init chart
-  const currentChart: ChartData = {
-    id: "",
-    thematic: "",
-    data: []
-  };
+  const charts: Record<string, ChartData> = {};
 
   for (const key in fdf.submissionsRules) {
     const rule = fdf.submissionsRules[key];
@@ -282,29 +278,21 @@ export function TKCreateSubmission(
         }
       }
       if (display) {
-        // If charts
+        // If charts: fill the charts record
         if (rule.chartId) {
           const value = submissionItem[rule.fieldName];
 
-          // If exists chart
-          if (currentChart.id && rule.chartId !== currentChart.id) {
-            createChartInSubmission(currentChart, submission, fdf);
-
-            // Clear current submission
-            currentChart.id = "";
-            currentChart.thematic = "";
-            currentChart.data = [];
-          }
-
-          // Init currentChart
-          if (!currentChart.id) {
-            currentChart.id = rule.chartId;
-            currentChart.thematic = rule.thematicGroup;
-            currentChart.data = [];
+          // // Init currentChart
+          if (!charts[rule.chartId]) {
+            charts[rule.chartId] = {
+              id: rule.chartId,
+              thematic: rule.thematicGroup,
+              data: []
+            };
           }
 
           // Accumulate Chart data
-          currentChart.data.push({
+          charts[rule.chartId].data.push({
             field: rule.fieldName,
             value: value,
             type: rule.chartData
@@ -375,24 +363,14 @@ export function TKCreateSubmission(
               }
               break;
           }
-
-          // If exists chart
-          if (currentChart.id) {
-            createChartInSubmission(currentChart, submission, fdf);
-
-            // Clear current submission
-            currentChart.id = "";
-            currentChart.thematic = "";
-            currentChart.data = [];
-          }
         }
       }
     }
   }
 
   // if a current pyramid is ongoing - push it before ending
-  if (currentChart.id) {
-    createChartInSubmission(currentChart, submission, fdf);
+  for (const chart of Object.values(charts)) {
+    createChartInSubmission(chart, submission, fdf);
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
