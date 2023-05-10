@@ -1,0 +1,90 @@
+field_name;field_label_en;field_label_bg;field_label_ru
+site_id;ID;ID;ID
+adm1_pcode;adm1 pcode;adm1 pcode;пкод адм1
+adm2_pcode;adm2 pcode;adm2 pcode;adm2 pcode
+latitude;Latitude;Географска ширина;Широта
+longitude;Longitude;Дължина;Долгота
+General_Site_Type;General Site type;Общ тип на обекта;Общий тип участка
+Date_of_the_Monitoring_Visit;Date of visit;Дата на посещението;Дата посещения
+Province_of_the_monitored_location;Province;Провинция;Провинция
+Municipality_of_monitored_location;Municipality;Община;Муниципалитет
+Site_Location;Site Location;Местоположение на обекта;Местонахождение объекта
+Other_Location;Other Location;Друго местоположение;Другое местоположение
+site_name;Name of the Site;Име на обекта;Название объекта
+Type_of_the_Site;Type of the Site;Тип на обекта;Тип участка
+Sites_location_coordinates;Sites location coordinates;Координати на местоположението на обекта;Координаты местоположения объекта
+Sites_location_coordinates_altitude;Sites location coordinates_altitude;Sites location coordinates_altitude;Координаты местоположения объекта_высота
+Sites_location_coordinates_precision;Sites location coordinates_precision;Sites location coordinates_precision;Координаты местоположения объекта_точность
+Address_of_the_Site;Address of the Site;Адрес на обекта;Адрес объекта
+Hotline_or_Contact_Number_of_the_Site;Hotline or Contact Number of the Site;Гореща линия или номер за контакт на обекта;Горячая линия или контактный номер сайта
+Other_Type_of_the_Site;Other Type of the Site;Друг тип на обекта;Другой тип сайта
+Does_Site_works_24_7;Does Site works 24/7?;Работи ли обектът 24/7?;Работает ли сайт 24/7?
+Select_working_days;Working days;Работни дни;Рабочие дни
+Indicate_sites_working_Hours;Indicate sites working Hours;Посочете работното време на сайта;Укажите часы работы сайта
+Sites_Capacity;Sites Capacity;Капацитет на обекта;Вместимость сайтов
+Sites_managed_by;Sites managed by;Сайтове, управлявани от;Объекты под управлением
+Name_of_the_Managing_Organisation;Name of the Managing Organisation;Име на управляващата организация;Название управляющей организации
+Are_the_volunteers_engaged;Are the volunteers engaged?;Ангажирани ли са доброволците?;Задействованы ли добровольцы?
+Select_the_sectors_of_volunteers_engagement;Sector(s) of volunteers' engagement;Сектор(и) на ангажираност на доброволците;Сектор(ы) вовлечения добровольцев
+Number_of_volunteers_mobilised;Number of volunteers mobilised;Брой мобилизирани доброволци;Количество мобилизованных добровольцев
+Who_is_managing_volunteers;Who is managing volunteers?;Кой управлява доброволците?;Кто управляет добровольцами?
+Are_there_interpreters_engaged;Are there interpreters engaged?;Има ли ангажирани преводачи?;Привлечены ли переводчики?
+Number_of_interpreters_engaged;Number of interpreters engaged?;Брой ангажирани преводачи?;Количество привлеченных переводчиков?
+Are_procedures_for_identificaiton_and_referral_of_Unaccompanied_and_Separated_Children_in_place;Are procedures for identificaiton and referral of Unaccompanied and Separated Children in place?;Въведени ли са процедури за идентифициране и насочване на непридружени и разделени деца?;Существуют ли процедуры идентификации и направления несопровождаемых и разлученных детей?
+Organizations_involved_in_identification_and_referral_of_UASCs;Organization(s) involved in identification and referral of UASCs;Организация(и), участваща(и) в идентифицирането и насочването на UASC;Организация(и), участвующая(ие) в идентификации и перенаправлении UASCs
+Are_family_tracing_services_available_at_the_site;Are family tracing services available at the site?;Налични ли са услуги за проследяване на семействата на място?;Предоставляются ли на объекте услуги по розыску семей?
+Organization_providing_family_tracing_services;Organization providing family tracing services;Организация, предоставяща услуги за проследяване на семейства;Организация, предоставляющая услуги по поиску семьи
+Is_Child_friendly_space_is_available_at_the_Site;Is Child-friendly space is available at the Site?;Налице ли е място, подходящо за деца, в обекта?;Имеется ли на объекте пространство, дружественное к ребенку?
+Is_there_specific_organization_managing_the_Child_friendly_space_If_yes_name_of_organization;Is there specific organization managing the Child-friendly space? If yes, name of organization;Има ли конкретна организация, която да управлява пространството, подходящо за деца? Ако да, името на организацията;Есть ли конкретная организация, управляющая помещением, доброжелательным к ребенку? Если да, то название организации
+Number_of_staff_volunteers_working_in_the_Child_friendly_space;Number of staff/volunteers working in the Child-friendly space?;Брой на служителите/доброволците, работещи в детското пространство?;Количество сотрудников/волонтеров, работающих в помещении, доброжелательном к ребенку?
+Is_there_registration_for_Temporary_Protection_conducted;Is there registration for Temporary Protection conducted?;Има ли извършена регистрация за временна закрила?;Проводится ли регистрация по программе временной защиты?
+Number_of_staff_conducting_registration_under_TP;Number of staff conducting registration under TP;Брой на служителите, които извършват регистрацията по ТП;Количество сотрудников, осуществляющих регистрацию в рамках ВЗ
+Average_registration_time_processing_per_person;Average registration time processing per person;Средно време за обработка на регистрацията на едно лице;Среднее время обработки регистрации на одного человека
+TP_ID_card_is_issued_on_the_same_day_after_the_registration;TP ID card is issued on the same day after the registration;Личната карта по ТП се издава в същия ден след регистрацията;Удостоверение личности TP выдается в тот же день после регистрации
+Is_registration_for_internaitonal_protection_humanitarian_status_conducted;Is registration for internaitonal protection/humanitarian status conducted?;Извършва ли се регистрация за международна закрила/хуманитарен статут?;Проводится ли регистрация для получения международной защиты/гуманитарного статуса?
+Number_of_SAR_staff_engaged;Number of SAR staff engaged?;Брой ангажирани служители на ДАБ?;Количество задействованных сотрудников ПС?
+Is_accomodation_for_short_rest_overnight_available_within_the_Site;Is accomodation for short rest/overnight available within the Site?;Има ли възможност за настаняване за кратка почивка/нощувка в рамките на обекта?;Имеется ли на территории объекта жилье для кратковременного отдыха/ночевки?
+is_privacy_ensured_at_the_bedroom_area;is privacy ensured at the bedroom area?;Осигурена ли е неприкосновеност на личния живот в зоната за спане?;Обеспечена ли приватность в спальном районе?
+Number_of_beds_available;Number of beds available;Брой налични легла;Количество имеющихся кроватей
+Are_security_measures_in_place_in_the_Site;Are security measures in place in the Site?;Въведени ли са мерки за сигурност в обекта?;Приняты ли меры безопасности на территории объекта?
+Is_there_check_in_system_in_place;Is there check-in system in place?;Има ли въведена система за чекиране?;Имеется ли система регистрации?
+Are_rooms_other_space_allocated_for_private_counseling;Are rooms/other space allocated for private counseling?;Отделени ли са стаи/други пространства за частни консултации?;Выделены ли комнаты/другое пространство для частных консультаций?
+Is_free_internet_available_in_the_Site;Is free internet available in the Site;Налице ли е безплатен интернет в обекта;Имеется ли в центре бесплатный интернет
+Are_there_recreational_activities_organized_in_the_Site;Are there recreational activities organized in the Site?;Има ли организирани развлекателни дейности в обекта?;Организуются ли в центре досуговые мероприятия?
+Organizations_providing_recreational_activities;Organization(s) providing recreational activities;Организация(и), предоставяща(и) развлекателни дейности;Организация(и), предоставляющая(ие) рекреационные мероприятия
+Describe_the_types_of_recreational_activities;Describe the types of recreational activities;Опишете видовете развлекателни дейности;Опишите виды рекреационной деятельности
+Sanitation_Facilities_in_place;Sanitation Facilities in place;Наличие на санитарни съоръжения;Наличие санитарно-гигиенических средств
+Are_hygiene_kits_distributed;Are hygiene kits distributed?;Разпространяват ли се хигиенни комплекти?;Распространяются ли гигиенические наборы?
+Specific_hygiene_kits_are_available_and_accessible_for_women_and_children;Specific hygiene kits are available and accessible for women and children?;Има ли специфични хигиенни комплекти, достъпни за жените и децата?;Имеются ли специальные гигиенические наборы и доступны ли они для женщин и детей?
+List_describe_the_items_included_in_the_hygienic_kit_including_specific;Items included in the hygienic kit (including specific);Елементи, включени в хигиенния комплект (включително специфични);Предметы, входящие в гигиенический набор (включая конкретные)
+Organizations_distributing_hygienic_kits;Organization(s) distributing hygienic kits;Организация(и), разпространяваща(и) хигиенни комплекти;Организация(и), распространяющая(ие) гигиенические наборы
+Is_food_distributed_in_the_Site;Is food distributed in the Site?;Разпространява ли се храна в обекта?;Раздается ли пища на участке?
+Organization_distributing_food;Organization distributing food;Организация, разпространяваща храна;Организация, распределяющая продукты питания
+Are_medical_services_available_in_the_Site;Are medical services available in the Site?;Налични ли са медицински услуги в обекта?;Доступны ли медицинские услуги на участке?
+Organization_providing_medical_services;Organization providing medical services;Организация, предоставяща медицински услуги;Организация, предоставляющая медицинские услуги
+Type_of_medical_services;Type of medical services;Вид на медицинските услуги;Тип медицинских услуг
+is_mental_health_and_psychosocial_support_MHPS_available_at_the_Site;is mental health and psychosocial support (MHPS) available at the Site?;Налице ли е психично здраве и психосоциална подкрепа (ПЗП) в обекта?;Имеется ли в пункте психическое здоровье и психосоциальная поддержка (ППСП)?
+Organization_providing_MHPS_services;Organization providing MHPS services;Организация, предоставяща услуги в сферата на ППЗП;Организация, предоставляющая услуги ПЗПСП
+Is_a_Mother_and_baby_area_available_at_the_Site;Is a Mother-and-baby area available at the Site?;Налице ли е зона за майки и бебета в обекта?;Имеется ли на территории объекта кабинет матери и ребенка?
+Select_types_of_information_provided_in_the_Site;Type(s) of information provided in the Site;Вид(и) информация, предоставяна в обекта;Тип(ы) информации, предоставляемой на площадке
+Organizations_providing_information_on_accomodation;Organization(s) providing information on accomodation;Организация(и), предоставяща(и) информация за настаняване;Организация(и), предоставляющая(ие) информацию об аккомодации
+Organizations_providing_information_on_Child_Services;Organization(s) providing information on Child Services;Организация(и), предоставяща(и) информация за услуги за деца;Организация(и), предоставляющая(ие) информацию об услугах для детей
+Organizations_providing_information_on_Entry_Exit_requirements;Organization(s) providing information on Entry/Exit requirements;Организация(и), предоставяща(и) информация за изискванията за влизане/излизане;Организация(и), предоставляющая(ие) информацию о требованиях к въезду/выезду
+Organizations_providing_information_on_International_Protection_and_Humanitarian_Status;Organization(s) providing information on International Protection and Humanitarian Status;Организация(и), предоставяща(и) информация за международна закрила и хуманитарен статут;Организация(и), предоставляющая(ие) информацию о международной защите и гуманитарном статусе
+Organizations_providing_information_on_Risks_of_Sexual_Exploitation_and_Trafficking;Organization(s) providing information on Risks of Sexual Exploitation and Trafficking;Организация(и), предоставяща(и) информация за рисковете от сексуална експлоатация и трафик на хора;Организация(и), предоставляющая информацию о рисках сексуальной эксплуатации и торговли людьми
+Organizations_providing_information_on_Services_Available;Organization(s) providing information on Services Available;Организация(и), предоставяща(и) информация за наличните услуги;Организация(и), предоставляющая(ие) информацию о доступных услугах
+Organizations_providing_information_on_Temporary_Protection;Organization(s) providing information on Temporary Protection;Организация(и), предоставяща(и) информация за временна закрила;Организация(и), предоставляющая(ие) информацию о временной защите
+Organizations_providing_information_on_Transport_including_for_people_in_transit;Organization(s) providing information on Transport including for people in transit;Организация(и), предоставяща(и) информация за транспорт, включително за транзитно преминаващи лица;Организация(и), предоставляющая(ие) информацию о транспорте, в том числе для транзитных людей
+Legal_counselling_and_assistance_is_available_in_the_Site;Legal counselling and assistance is available in the Site?;Налице ли са правни консултации и помощ в обекта?;Юридические консультации и помощь доступны на территории объекта?
+Organizations_providing_legal_assistance;Organization(s) providing legal assistance;Организация(и), предоставяща(и) правна помощ;Организация(и), предоставляющая(ие) юридическую помощь
+Type_of_staff_providing_legal_assistance;Type of staff providing legal assistance;Вид на персонала, предоставящ правна помощ;Тип персонала, предоставляющего юридическую помощь
+Number_of_staff_providing_legal_information_assistance;Number of staff providing legal information/assistance;Брой на персонала, предоставящ правна информация/помощ;Количество сотрудников, предоставляющих правовую информацию/помощь
+Are_referrals_for_accommodation_provision_established_in_the_Site;Are referrals for accommodation provision established in the Site?;Създадени ли са в обекта направления за предоставяне на настаняване?;Имеются ли в Объекте направления для предоставления жилья?
+Organization_making_referrals_for_accomodation;Organization making referrals for accomodation;Организация, която насочва за настаняване;Организация, выдающая направления для предоставления жилья
+Are_services_for_persons_in_transit_available;Are services for persons in transit available?;Налични ли са услуги за транзитно преминаващи лица?;Имеются ли услуги для транзитных лиц?
+Organization_providing_assistance_to_people_in_tranzit;Organization providing assistance to people in tranzit;Организация, предоставяща помощ на лица в транзит;Организация, предоставляющая помощь лицам, находящимся в транзите
+Is_humanitarian_assistance_provided_at_the_Entry_Point_or_Registration_Hub;Is humanitarian assistance provided at the Entry Point or Registration Hub?;Предоставя ли се хуманитарна помощ в пункта за влизане или в регистрационния център?;Предоставляется ли гуманитарная помощь в пункте въезда или регистрационном центре?
+Are_non_food_items_NFIs_distributed_in_the_Site;Are non-food items (NFIs) distributed in the Site?;Разпределят ли се нехранителни стоки (НХС) в обекта?;Распространяются ли непродовольственные товары (НПТ) в пункте?
+Organizaitons_distributing_NFIs;Organizaiton(s) distributing NFIs;Организация(и), разпространяваща(и) НФП;Организация(и), распределяющая(ие) НПИ
+List_the_NFI_items_distributed;NFI items distributed;Разпределени нефинансови продукти;Распределены предметы НФИ
+COVID_19_Measures_in_place;COVID-19 Measures in place;COVID-19 Въведени мерки;COVID-19 Принятые меры

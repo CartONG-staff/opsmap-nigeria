@@ -7,7 +7,10 @@ region;Region;Région
 province;Province;Province
 Comm;City;Commune
 site;Site name;Nom du SITE
-DateUpdate;Update;Mois et année de mise à jour
+site_status;Site status;Statut du site
+type_localisation;Location type;Type de localisation
+terre_propriete;Ownership of space;Propriété de l'espace
+DateUpdateShort;Update on;Mois et année de mise à jour
 AgenceSite;SITE Management Agency;Agence de gestion de SITE
 SupportAgence;Is there a support agency?;Existe-t-il une agence de soutien ?
 SupportSiteAgence;SITE Management Support Agency;Agence de soutien à la gestion du SITE
@@ -24,16 +27,16 @@ mgp;Functional complaint management and feedback mechanism at the site;Mécanism
 renCoordination;Coordination meetings (purpose, frequency, actors involved) ;Rencontres de coordination (objets, périodicité, acteurs impliqués) 
 FamillPopulation;Number of households residing in the site;Nombre de famille résidant dans le site
 IndividlPopulation;Number of individuals residing in the site;Nombre díndividu résidant dans le site
-HH0_4;Males from 0 to 4 years old;Hommes de 0 à 4 ans
-Femm0_4;Girls 0-4 years old;Filles de 0 à 4 ans
-HH5_17;Men 5 to 17 years old;Hommes de 5 à 17 ans
-Femm5_17;Females 5-17 years old;Femmes de 5 à 17 ans
-HH5_35;Men 18-35 years old;Hommes 18-35 ans
-Femm5_35;Women 18 to 35 years old;Femmes de 18 à 35 ans
-HH5_59;Men 36 to 59 years old;Hommes de 36 à 59 ans
-Femm5_59;Women 36 to 59 years old;Femmes de 36 à 59 ans
-HH5_60;Men 60 years or older;Hommes de 60 ans ou plus
-Femm5_60;Women 60 years or older;Femmes 60 ans ou plus
+HH0_4;Males (0 - 4);Hommes (0 - 4)
+Femm0_4;Females (0 - 4);Females (0 - 4)
+HH5_17;Males (5 - 17);Hommes (5 - 17)
+Femm5_17;Females (5 - 17);Femmes (5 - 17)
+HH5_35;Males (18 - 35);Hommes (18 - 35)
+Femm5_35;Females (18 - 35);Females (18 - 35)
+HH5_59;Males (36 - 59);Hommes (36 - 59)
+Femm5_59;Females (36 - 59);Females (36 - 59)
+HH5_60;Males (60+);Hommes (60+)
+Femm5_60;Females (60+);Femmes (60+)
 arriv;Situation of arrivals during the month;Situation des arrivées au cours du mois
 arriv;Status of returns during the month;Situation des retours au cours du mois
 Enfnonaccp;Unaccompanied children;Enfant non accompagné
@@ -44,7 +47,7 @@ PersonnAgeeisol;Isolated elderly households (over 60 years old);Ménages âgés 
 HebergementCapacite;Maximum capacity of the SITE (Hectare);Capacité d'accueil maximale du SITE (Hectare)
 TypeAbriVie;Indicate the type of shelter present in the SITE;Indiquez le type d'abri présent dans le SITE
 tentesahelien;"Households in ""Sahelian tent"" type emergency shelters";Ménages dans des abris d'urgence type «tente sahélienne»
-AbrUgenceOssatuePignon;Households in gable-frame emergency shelters (double-pitch roof);Ménages dans des abris d'urgence ossature à pignon (toiture à double pente)
+AbrUgenceOssatuePignon;Households in gable-frame emergency shelters;Ménages dans des abris d'urgence ossature à pignon
 AbriSemidurable;Households in semi-durable shelters;Ménages dans des abris semi-durables
 RHU;Households in RHU shelters;Ménage dans des abris RHU
 fortune;Households in makeshift shelters constructed with local materials;Ménages dans des abris de fortune construits avec des matériaux locaux
@@ -62,7 +65,7 @@ litreEauPersonn;Water: Number of liters/person/day;Eau : Nombre de litres/person
 Sourceeau;Main source of drinking water for the SITE;Principale source d'eau potable pour le SITE
 eauqualite;Quality of the main water source (Is it accessible?);Qualité de la principale source en eau (Elle -t-est accpetable?)
 Disponibilitésavon;Availability of soap for hand washing;Disponibilité de savon pour le lavage des mains
-Inondations;Floods that have damaged shelters and infrastructure (in the past 6 months);Inondations qui ont  les abris et les infrastructures endommagé à la suite d'inondation  (au cours des 6 derniers mois )
+Inondations;Infrastructure damaged as a result of flooding (during the last 6 months);Infrastructures endommagés à la suite d'inondation  (au cours des 6 derniers mois )
 Éliminationdéchets;Primary method of waste disposal;Principale méthode d'élimination des déchets
 latrines;Types of functional latrines;Types de latrines fonctionnelles
 NombreLatrines;Number of functional latrines;Nombre de latrines fonctionnelles
@@ -150,13 +153,9 @@ partner_livelihood_name;Livelihood partners;Partenaires de moyens de subsistance
 communication_presence;Presence of a communication service;Présence d'un service de communication
 Nom_partenaire_Communication;Communication service stakeholders with communities (mass communication);Partenaires de service de communication avec les communautés (communication de masse)
 NiveauCongestionSite;Level of congestion of the site;Niveau de congestion du site
-Nb_latrine_par_famille;Number of latrines per household;Nombre de latrine par famille
+Nb_indiv_par_latrine;Number of people per functional latrine;Nombre de personne par latrine fonctionnelle
 Nb_latrine_semi_durable;Number of semi-sustainable latrines;Nombre de latrine semi-durable
-Individl_par_latrine_semi_durable;Number of people per semi-sustainable latrine;Nombre de personne par latrine semi-durable
 Nb_latrine_urgence;Number of emergency latrines;Nombre de latrine urgence
-Individl_par_latrine_urgence;Number of people per emergency latrine;Nombre de personne par latrine d'urgence
-Nb_douche_par_famille;Number of shower per household;Nombre de douche par famille
+Nb_indiv_par_douche;Number of people per functional shower;Nombre de personne par douche fonctionnelle
 Nb_douche_semi_durable;Number of semi-sustainable showers;Nombre de douche semi durable
-Individl_par_douche_semi_durable;Number of people per semi-sustainable shower;Nombre de personne par douche semi-durable
 Nb_douche_urgence;Number of emergency shower;Nombre de douche urgence
-Individl_par_douche_urgence;Number of people per emergency shower;Nombre de personne par douche d'urgence

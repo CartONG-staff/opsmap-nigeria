@@ -6,7 +6,7 @@ settlement_name;Settlement name;Magaca dejinta
 settlement_type;Settlement Setting Type;Nooca Dejinta Dejinta
 cccm_populationestimates_families;No. of Households;Maya. ee guryaha
 cccm_populationestimates_individuals;No. of Individuals;Maya. Shakhsiyaadka
-cccm_site_capacity;Site at full Capacity;Goobta Awoodda buuxda
+cccm_site_capacity;Site ability to accommodate 20% of its capacity as New Arrivals;Awoodda goobta si ay u dejiso 20% awooddeeda sida Imaanshaha Cusub
 cccm_idps_arrival;Date Majority of IDPs arrived at the Site;Taariikhda Aqlabiyadda barakacayaasha ayaa yimid Goobta
 duration_site_established_in_months;How long the site has been established (months);Muddo intee la eg ayaa goobta la aasaasay ( bishii )
 cccm_management;Camp Management by;Maareynta Xerada
@@ -24,12 +24,14 @@ cccm_committees.no_committees;No committees;Guddiyo ma leh
 cccm_committees.dnk;Do not know;Ma ogi
 cccm_committees.other;Other;Kale
 decision_making_committees;Decision Making Committees;Go'aan Go'aan Go'aan Go'aan Go'aan
-children_under_5;Children under 5;Caruurta ka yar 5 sano
-boys_5-17;Boys 5-17;Wiilasha 5-17
-girls_5-17;Girls 5-17;Gabdhaha 5-17
-men_18-59;Men 18-59;Ragga 18-59
-women_18-59;Women 18-59;Haweenka 18-59
-elderly_above_60;Elderly Above 60;Waayeel ka sarreeya 60
+children_under_5;Children (0-4);Caruurta ka yar 5 sano
+boys_5-12;Males (5-12);Wiilasha (5-12)
+girls_5-12;Females (5-12);Gabdhaha (5-12)
+boys_12-18;Males (12-18);Wiilasha (12-18)
+girls_12-18;Females (12-18);Gabdhaha (12-18)
+men_18-59;Males (18-59);Ragga (18-59)
+women_18-59;Females (18-59);Haweenka (18-59)
+elderly_above_60;Elderly (60+);Waayeel ka sarreeya 60
 idps_groups_residing.pwd;PWDs present;PWDs ayaa jooga
 idps_groups_residing.minority_clan_affiliation;Minority Clan Groups present;Kooxaha Clan Yar ayaa jooga
 belonging_minority_group;Belonging to a Minority/Marginalized group;Ku-tiirsanaanta koox laga tirada badan yahay / la-dagaallanka
@@ -70,14 +72,14 @@ nfi_access;Market where NFI/construction materials can be purchased;Suuqa halka 
 nfi_items_available;Are NFI/construction materials available for purchase in the market;Ma jiraan agabyo NFI / dhisme oo laga heli karo iibsashada suuqa
 nfi_access_impediments;Impediments to accessing NFI/construction materials;Saamaynta helitaanka qalabka NFI / dhismaha
 water_sources_present;How many water sources are present;Immisa ilo biyo ah ayaa jira
-water_sources_working;How many are working;Immisa ayaa shaqeynaya
+water_sources_working;Portion of water sources that are working;Qayb ka mid ah ilaha biyaha ee shaqaynaya
 water_sources_functional;Water sources protected from contamination;Ilaha biyaha laga ilaaliyo faddaraynta
 water_sources_primary;Primary water source;Isha biyaha aasaasiga ah
 water_sources_domestic;Main Domestic water source;Isha biyaha gudaha
 water_treatment_proportion;Portion of the residents that treat water;Qayb ka mid ah dadka deggan biyaha
 water_treatment_methods;Water treatment methods;Hababka daaweynta biyaha
 water_collection_responsible;Who is primarily responsible for water collection;Ayaa ugu horreyn mas'uul ka ah ururinta biyaha
-water_access_distance_min;Walking distance to the nearest water point;Masaafada u lugaynta meesha ugu dhow ee biyaha
+water_access_distance_min;Walking time to nearest water point;Waqtiga loo lugeeyo barta biyaha ee kuugu dhow
 water_access_problem;Do residents have problems in accessing water;Dadka deegaanka ma dhibaato ku qabaan helitaanka biyaha
 water_access_barriers;What are the barriers;Maxay yihiin caqabadaha
 sanitation_toilets_male;Male-only latrines;Maraq-kaliya
@@ -148,3 +150,14 @@ district;District pcode;Degmada  pcode
 idp_code; ID; ID
 gps_latitude; lat.;Loolka
 gps_longitude; long.;Longitude
+Score out of 5;Site Prioritization score;Dhibcaha kala hormarinta goobta
+snfi_need;Shelter NFI Severity Score;Heerarka NFI Dhibicda darnaanta
+fs_need;Food Security Severity Score;Dhibcaha darnaanta haqab-beelka cuntada
+health_need;Health Severity Score;Dhibcaha Darnaanta Caafimaadka
+nutrition_need;Nutrition Severity score;Dhibcaha darnaanta nafaqada
+additional_minorities_index;Minorities Facing Barriers;Dadka laga tirada badan yahay ee wajahaya caqabadaha
+additional_pwd_index;PWDs Facing Barriers;Naafada soo food saartay caqabado
+education_need;Education Severity score;Dhibcaha darnaanta waxbarashada
+wash_need;WASH Severity Score;Dhibcaha darnaanta nadaafadda
+protection_need;Protection Severity Score;Dhibcaha darnaanta ilaalinta
+hlp_need;Eviction Likelyhood Score;Dhibcaha Suuragalnimada Ka saarida Dhibcaha Kala hormarinta

@@ -1,0 +1,13 @@
+formatted_name;icon_file_name;thematic_label_en;thematic_label_bg;thematic_label_ru
+group_general_info;About;General;Общ;Общий
+group_winterization;Heatwave;Winterization;Зазимяване;Зимовка
+group_cccm;Camp-Coordination-and-Camp-Management;Camp Management;Управление на лагера;Управление лагерем
+group_demo;People-in-need;Demographic distribution;Демографско разпределение;Демографическое распределение
+group_shelternfi;Shelter;Shelter - NFI;Подслон - НФИ;Укрытие - НФО
+group_wash;Water-Sanitation-and-Hygiene;Water, sanitation and hygiene;санитария и хигиена;Вода, санитария и гигиена
+group_nutrition;Nutrition;Nutrition;Хранене;Питание
+group_health;Health;Health;Здраве;Здоровье
+group_education;Education;Education;Образование;Образование
+group_vulpop;Elderly;Vulnerable population;Уязвимо население;Уязвимое население
+group_gaps;Preparedness;Gaps;Пропуски;Пробелы
+group_needs;Coordination;Needs;Нуждае се от;Требуется

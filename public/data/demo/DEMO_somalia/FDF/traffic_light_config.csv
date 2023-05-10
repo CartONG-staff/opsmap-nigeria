@@ -30,8 +30,8 @@ water_sources_working;string;some;orange
 water_sources_working;string;few;orange
 water_sources_working;string;many;green
 water_access_distance_min;string;less_15;green
-water_access_distance_min;string;1530;orange
-water_access_distance_min;string;3160;orange
+water_access_distance_min;string;15_30;orange
+water_access_distance_min;string;31_60;orange
 water_access_distance_min;string;more_60;red
 water_access_distance_min;string;NC;red
 sanitation_desludging;string;no_desludging;red
@@ -54,3 +54,9 @@ type_agreement;string;dnk;red
 sanitation;math;<= 5;red
 sanitation;math;>5 and <=10;orange
 sanitation;math;> 10;green
+score_g;math;>= 4;red
+score_g;math;>2 and <4;orange
+score_g;math;>= 2;green
+score;math;== 2;red
+score;math;==1;orange
+score;math;==0;green

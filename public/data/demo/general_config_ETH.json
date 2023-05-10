@@ -87,11 +87,10 @@
         },
         "dbConfig": {
             "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
+            "adm2DBPcode": "adm2pcode"
         },
         "localFiles": {
-            "admin0LocalURL": "/data/demo/DEMO_ethiopia/map/admin0.geojson",
-            "admin1LocalURL": ""
+            "admin0LocalURL": "/data/demo/DEMO_ethiopia/map/admin0.geojson"
         }
     },
     "surveys": [
@@ -106,6 +105,19 @@
             "options": {
                 "dateFormat": "DD/MM/YY",
                 "listSeparator": ";"
+            },
+            "spatial": {
+                "siteIDField": "CCCM-SITE-ID",
+                "siteLastUpdateField": "last_update",
+                "siteLatitudeField": "GPS_LATITUDE",
+                "siteLongitudeField": "GPS_LONGITUDE",
+                "siteManageByField": "CCCM_AGENCY",
+                "siteNameField": "SITE_NAME",
+                "siteTypeField": "Site_Type",
+                "adm1Pcode": "ADM1_PCODE",
+                "adm1Name": "ADM1_EN",
+                "adm2Pcode": "ADM2_PCODE",
+                "adm2Name": "ADM2_EN"
             },
             "indicators": {
                 "home": [
@@ -155,25 +167,14 @@
                         "iconOchaName": "Selected"
                     }
                 ]
-            },
-            "spatial": {
-                "siteIDField": "CCCM-SITE-ID",
-                "siteLastUpdateField": "last_update",
-                "siteLatitudeField": "GPS_LATITUDE",
-                "siteLongitudeField": "GPS_LONGITUDE",
-                "siteManageByField": "CCCM_AGENCY",
-                "siteNameField": "SITE_NAME",
-                "siteTypeField": "Site_Type",
-                "adm1Pcode": "ADM1_PCODE",
-                "adm1Name": "ADM1_EN",
-                "adm2Pcode": "ADM2_PCODE",
-                "adm2Name": "ADM2_EN"
             }
         }
     ],
     "options": {
         "showCCCMLogo": true,
         "pdfColumnCount": 3,
-        "exportForEsite": false
+        "exportForEsite": false,
+        "showDemoBanner": false,
+        "exportAsCSVonHomePage": true
     }
 }

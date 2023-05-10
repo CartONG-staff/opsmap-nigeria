@@ -1,0 +1,67 @@
+field_name;field_label_en;field_label_bg;field_label_ru
+site_id;ID;ID;ID
+adm1_pcode;adm1 pcode;adm1 pcode;пкод адм1
+adm2_pcode;adm2 pcode;adm2 pcode;adm2 pcode
+latitude;Latitude;Географска ширина;Широта
+longitude;Longitude;Дължина;Долгота
+General_Site_Type;General Site Type;Общ тип на обекта;Общий тип участка
+Date_of_the_Monitoring_Visit;Date of the Monitoring Visit;Дата на посещението за мониторинг;Дата посещения объекта мониторинга
+Province_of_the_monitored_location;Province of the monitored location;Провинция на наблюдаваното място;Провинция места проведения мониторинга
+Municipality_of_monitored_location;Municipality of monitored location;Община на наблюдаваното място;Муниципалитет места проведения мониторинга
+site_name;Site name (as it commonly called);Име на обекта (както обикновено се нарича);Название объекта (как он обычно называется)
+Please_enter_the_address_of_the_site;Address of the site;Адрес на обекта;Адрес участка
+Record_coordinates_of_the_site_altitude;Altitude;Надморска височина;Высота над уровнем моря
+Record_coordinates_of_the_site_precision;Precision;Прецизност;Точность
+Type_of_the_Site;Type of the Site;Вид на обекта;Тип объекта
+If_other_please_specify;If other specify;Ако е друг посочете;Если другое укажите
+What_type_of_area_is_the_site_location_in;What type of area is the site location in?;В какъв тип район се намира местоположението на обекта?;В каком районе находится объект?
+How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site;How many individuals can be hosted at the site (i.e. what is the total sleeping capacity of the site)?;Колко лица могат да бъдат настанени в обекта (т.е. какъв е общият капацитет за спане на обекта)?;Сколько человек может быть размещено на участке (т.е. какова общая вместимость участка)?
+Does_this_site_have_electricity;Does this site have electricity?;Този обект разполага ли с електричество?;Есть ли в этом месте электричество?
+Does_this_site_has_free_wifi;Does this site has free wifi?;Този обект разполага ли с безплатен безжичен интернет?;Есть ли в этом месте бесплатный wifi?
+Is_there_a_child-friendly_area_playground_at_the_site;Is there a child-friendly area/playground at the site?;Има ли в обекта зона/площадка за игра, подходяща за деца?;Есть ли на территории кемпинга зона/игровая площадка, удобная для детей?
+Who_is_managing_the_site;Who is managing the site?;Кой управлява обекта?;Кто управляет этим местом?
+If_other_please_specify;If other specify;Ако е друг посочете;Если другой укажите
+Ukrainians_accommodated;Ukrainians Accommodated;Настанени украинци;Размещенные украинцы
+Free_beds;Free beds;Свободни легла;Свободные койки
+What_are_the_population_groups_currently_residing_in_the_site;What are the population groups currently residing in the site?;Какви са групите от населението, които понастоящем пребивават в обекта?;Какие группы населения в настоящее время проживают на территории объекта?
+How_many_household_are_currently_being_accomodated_at_the_site;How many household are currently being accomodated at the site?;Колко домакинства са настанени в момента в обекта?;Сколько семей в настоящее время проживает в пункте размещения?
+How_many_of_those_accommodated_are_third_country_nationals_from_Ukriaine;How many of those accommodated are third country nationals from Ukriaine?;Колко от настанените лица са граждани на трети страни от Украйна?;Сколько из размещенных лиц являются гражданами третьих стран из Укрианы?
+Do_you_know_the_exact_numbers_of_children_adults_and_elderly_by_gender_at_the_site;Do you know the exact numbers of children, adults and elderly by gender at the site?;Знаете ли точния брой на децата, възрастните и възрастните хора по пол в обекта?;Знаете ли вы точное количество детей, взрослых и пожилых людей в зависимости от пола в данном месте?
+How_many_are_Boys_0-4_years;Males (0 - 4);Мъже (0 - 4);Мужчины (0 - 4)
+How_many_are_Girls_0-4_years;Females (0 - 4);Жени (0 - 4);Женщины (0 - 4)
+How_many_are_Boys_5-17_years;Males (5 - 17);Мъже (5 - 17);Мужчины (5 - 17)
+How_many_are_Girls_5-17_years;Females (5 - 17);Жени (5 - 17 г.);Женщины (5 - 17)
+How_many_are_Men_18-59_years;Males (18 - 59);Мъже (18 - 59 г.);Мужчины (18 - 59)
+How_many_are_Women_18-59_years;Females (18 - 59);Жени (18 - 59 г.);Женщины (18 - 59)
+How_many_are_Elderly_Men_60+;Males (60+);Мъже (60+);Мужчины (60+)
+How_many_are_Elderly_Women_60+;Females (60+);Жени (60+);Женщины (60+)
+Which_vulnerable_groups_are_currently_present_at_the_site;Which vulnerable groups are currently present at the site?;Кои уязвими групи присъстват в момента в обекта?;Какие уязвимые группы в настоящее время присутствуют на участке?
+If_other_please_specify;If other specify;Ако са други посочете;Если другие укажите
+Total_number_of_PWSNs_accommodated_at_the_site;Total number of PWSNs accommodated at the site;Общ брой на СПИН, настанени в обекта;Общее количество СПСН, размещенных на объекте
+Number_of_bathing_facilities_at_the_site;Number of bathing facilities at the site;Брой на местата за къпане в обекта;Количество мест для купания на объекте
+Are_bathing_facilities_separated_by_gender;Are bathing facilities separated by gender?;Разделени ли са помещенията за къпане по пол?;Разделены ли места для купания по половому признаку?
+Is_hot_water_available;Is hot water available?;Налична ли е топла вода?;Имеется ли горячая вода?
+How_many_functioning_toilets_are_available_in_the_site;How many functioning toilets are available in the site?;Колко функциониращи тоалетни има в обекта?;Сколько функционирующих туалетов имеется на объекте?
+Are_toilets_latrines_separated_by_gender;Are toilets/latrines separated by gender?;Разделени ли са тоалетните/латините по пол?;Разделены ли туалеты/латрины по половому признаку?
+Is_drinking_water_available_at_the_site;Is drinking water available at the site?;Налична ли е питейна вода в обекта?;Имеется ли на участке питьевая вода?
+Does_the_site_have_any_of_the_following_issues;Does the site have any of the following issues?;Има ли обектът някои от следните проблеми?;Имеются ли на участке какие-либо из перечисленных ниже проблем?
+If_other_please_specify;If other specify;Ако е друго посочете;Если другие укажите
+Are_basic_primary_medical_care_services_available_at_the_site;Are basic primary medical care services available at the site?;Налице ли са основни услуги за първична медицинска помощ в обекта?;Доступны ли на участке основные услуги первичной медицинской помощи?
+If_not_what_is_distance_in_kilometers_to_the_nearest_health_facility;If not, what is distance in kilometers to the nearest health facility?;Ако не, какво е разстоянието в километри до най-близкото здравно заведение?;Если нет, то каково расстояние в километрах до ближайшего медицинского учреждения?
+Do_refugee_chilren_in_the_site_access_formal_education_school;Do refugee chilren in the site access formal education (school)?;Имат ли децата на бежанците в обекта достъп до формално образование (училище)?;Имеют ли дети беженцев на участке доступ к формальному образованию (школе)?
+What_is_the_distance_in_kilometers__to_the_nearest_school;What is the distance in kilometers  to the nearest school?;Какво е разстоянието в километри до най-близкото училище?;Каково расстояние в километрах до ближайшей школы?
+Are_catering_services_available_at_the_site;Are catering services available at the site?;Налице ли са услуги за хранене в обекта?;Доступны ли услуги общественного питания на участке?
+Is_kitchen_facility_available_at_the_site;Is kitchen facility available at the site?;Налице ли е кухненско оборудване в обекта?;Имеется ли на участке кухня?
+Is_food_provided_to_the_site;Food provided;Осигурена храна;Предоставляемое питание
+How_many_meals_per_day_are_provided;How many meals per day are provided?;Колко хранения на ден се осигуряват?;Сколько раз в день предоставляется питание?
+Are__hot_meals_provided;Are  hot meals provided?;Осигурява ли се топла храна?;Предоставляется ли горячее питание?
+Are_specific_dietary_needs_met;Are specific dietary needs met?;Задоволяват ли се специфичните диетични нужди?;Удовлетворяются ли особые диетические потребности?
+Do_refugees_have_access_to_humanitarian_aid;Do refugees have access to humanitarian aid?;Имат ли бежанците достъп до хуманитарна помощ?;Имеют ли беженцы доступ к гуманитарной помощи?
+Select_type_of_humanitarian_aid_available_provided_at_the_site;Type of humanitarian aid available/provided at the site;Вид на хуманитарната помощ, налична/предоставена на място;Тип гуманитарной помощи, доступной/предоставляемой на месте
+Specify_other_aid_available_provided;Specify other aid available/provided;Посочете друга налична/предоставена помощ;Укажите другую доступную/предоставляемую помощь
+Are_there_any_unmet_needs_at_the_site_Select_from_the_list;Are there any unmet needs at the site?;Има ли неудовлетворени нужди в обекта?;Есть ли неудовлетворенные потребности в данном месте?
+Specify_other_unmet_needs;Specify other unmet needs;Посочете други неудовлетворени нужди;Укажите другие неудовлетворенные потребности
+Does_the_facility_have_a_heating_system_in_place;Does the facility have a heating system in place ?;Има ли обектът отоплителна система?;Имеется ли в учреждении система отопления?
+What_type_of_heating_is_available_in_the_facility;What type of heating is available in the facility?;Какъв вид отопление е налично в обекта?;Какой тип отопления имеется на объекте?
+Indicate_other_type_of_heating;Indicate other type of heating ?;Посочете друг вид отопление ?;Укажите другой тип отопления ?
+Could_extra_heating_appliances_be_installed_to_make_it_suitable_for_winter;Could extra heating appliances be installed to make it suitable for winter ?;Може ли да се инсталират допълнителни отоплителни уреди, за да се направи обектът подходящ за зимата ?;Можно ли установить дополнительные отопительные приборы, чтобы сделать его пригодным для зимы?
