@@ -1,0 +1,280 @@
+{
+    "languages": [
+        "en",
+        "ar"
+    ],
+    "iso3": "YEM",
+    "name": {
+        "en": "Yemen",
+        "ar": "اليمن"
+    },
+    "opsmapDescr": {
+        "en": "More than 1.5 million displaced Yemenis have spontaneously settled in 2,300+ unplanned sites and camp-like settings. Conflict-related damage to infrastructure, and natural hazards including floods, have further disrupted safe access to a minimum level of services. The CCCM Cluster is working with +20 partners and with the authorities to improve the living conditions and protection of IDPs in sites and ensure equitable access to services and assistance of all persons in need, with a focus on moving towards durable solutions with full participation of the displaced and host communities.",
+        "ar": "استقر أكثر من 1.5 مليون يمني نازح تلقائيًا في أكثر من 2300 موقع غير مخطط وأماكن شبيهة بالمخيمات. أدت الأضرار التي لحقت بالبنية التحتية المرتبطة بالنزاع ، والأخطار الطبيعية بما في ذلك الفيضانات ، إلى مزيد من تعطيل الوصول الآمن إلى الحد الأدنى من الخدمات. تعمل مجموعة تنسيق وإدارة المخيمات مع +20 شريك ومع السلطات لتحسين الظروف المعيشية وحماية النازحين داخليًا في المواقع وضمان الوصول العادل إلى الخدمات والمساعدة لجميع الأشخاص المحتاجين ، مع التركيز على التحرك نحو حلول دائمة بمشاركة كاملة من النازحين والمجتمعات المضيفة."
+    },
+    "headerLogos": [],
+    "footerLogos": [
+        {
+            "title": {
+                "en": "Webdev",
+                "ar": "ويبديف"
+            },
+            "logos": [
+                {
+                    "name": "CartONG",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlRedirection": "https://www.cartong.org"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Fieldwork",
+                "ar": "العمل الميداني"
+            },
+            "logos": [
+                {
+                    "name": "NRC",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/NRC.png",
+                    "urlRedirection": "https://www.nrc.no/countries/middle-east/yemen/"
+                },
+                {
+                    "name": "JAAHD",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/JAAHD.png",
+                    "urlRedirection": "https://jaahd.org"
+                },
+                {
+                    "name": "YGUSSWP",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/YGUSSWP.png",
+                    "urlRedirection": "http://www.ygusswp.org"
+                },
+                {
+                    "name": "BCFHD",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/BCFHD.png",
+                    "urlRedirection": "https://www.benaye.org"
+                },
+                {
+                    "name": "ACTED",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/ACTED.png",
+                    "urlRedirection": "https://www.acted.org"
+                },
+                {
+                    "name": "DRC",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/DRC.png",
+                    "urlRedirection": "https://www.facebook.com/drcyemen"
+                },
+                {
+                    "name": "RADF",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/RADF.png",
+                    "urlRedirection": "http://radf-y.org/"
+                },
+                {
+                    "name": "GWQ",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/GWQ.png",
+                    "urlRedirection": "http://gwq-ye.org"
+                },
+                {
+                    "name": "YCRs",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/YCRs.png",
+                    "urlRedirection": "http://www.yrcamran.org"
+                },
+                {
+                    "name": "TYF",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/TYF.png",
+                    "urlRedirection": "https://www.tamdeen-ye.org"
+                },
+                {
+                    "name": "ACTED",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/ACTED.png",
+                    "urlRedirection": "https://www.acted.org/en/countries/yemen-2/"
+                },
+                {
+                    "name": "SDF",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/SDF.png",
+                    "urlRedirection": "http://sdf-yemen.org/"
+                },
+                {
+                    "name": "Mona Relief",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/Mona.png",
+                    "urlRedirection": "https://www.monarelief.ngo/"
+                },
+                {
+                    "name": "AOBWC",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/AOBWC.png",
+                    "urlRedirection": "https://alaman.org/en/home-2/"
+                },
+                {
+                    "name": "DEEM",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/DEEM.png",
+                    "urlRedirection": "https://deemyemen.org/"
+                },
+                {
+                    "name": "FMF",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/FMF.png",
+                    "urlRedirection": "https://fmfyemen.org/en/"
+                },
+                {
+                    "name": "NMO",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/NMO.png",
+                    "urlRedirection": "https://nahdamakers.org/"
+                },
+                {
+                    "name": "PAH",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/PAH.png",
+                    "urlRedirection": "https://www.pah.org.pl/en/yemen-2/"
+                },
+                {
+                    "name": "SHS",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/SHS.png",
+                    "urlRedirection": "https://shsye.org/en/"
+                },
+                {
+                    "name": "YARD",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/YARD.png",
+                    "urlRedirection": "https://yard-yemen.org/"
+                },
+                {
+                    "name": "YDF",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/YDF.png",
+                    "urlRedirection": "https://ydfy.org/subpages.php?keyID=24"
+                },
+                {
+                    "name": "YFCA",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/YFCA.png",
+                    "urlRedirection": "https://www.yfca.org/en/"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Coordination and IM support",
+                "ar": "التنسيق ودعم الرسائل الفورية"
+            },
+            "logos": [
+                {
+                    "name": "Impact Initiatives",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/impact.png",
+                    "urlRedirection": "https://www.impact-initiatives.org"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Sector Lead",
+                "ar": "قيادة القطاع"
+            },
+            "logos": [
+                {
+                    "name": "UNHCR",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/UNHCR.png",
+                    "urlRedirection": "https://www.unhcr.org"
+                },
+                {
+                    "name": "IOM",
+                    "urlLogo": "/data/demo/DEMO_yemen/Logo/IOM.png",
+                    "urlRedirection": "https://yemen.iom.int/"
+                }
+            ]
+        }
+    ],
+    "spatialConfiguration": {
+        "mapConfig": {
+            "bounds": [
+                43.28,
+                12.401,
+                52.35,
+                19.43
+            ]
+        },
+        "dbConfig": {
+            "adm1DBPcode": "adm1_source_code",
+            "adm2DBPcode": "adm2_source_code"
+        },
+        "localFiles": {
+            "admin0LocalURL": "/data/demo/DEMO_yemen/map/admin0.geojson"
+        }
+    },
+    "surveys": [
+        {
+            "type": "gsheet",
+            "fdf": {
+                "folder": "/data/demo/DEMO_yemen/FDF"
+            },
+            "name": "CCCM Yemen - Site Reporting Tool (SMT)",
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2DKV-aqg-9SZMBBtg7A3bWShMdZPLoT5HLOQY_bjpREMa4cC91YAu-DWsMDNdo5rm71G2uh7b8DBl/pub?gid=0&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2DKV-aqg-9SZMBBtg7A3bWShMdZPLoT5HLOQY_bjpREMa4cC91YAu-DWsMDNdo5rm71G2uh7b8DBl/pub?gid=845458241&single=true&output=csv",
+            "options": {
+                "anonymousMode": "text",
+                "dateFormat": "DD/MM/YYYY",
+                "listSeparator": ";"
+            },
+            "spatial": {
+                "siteIDField": "site",
+                "siteLastUpdateField": "reporting_month",
+                "siteLatitudeField": "latitude",
+                "siteLongitudeField": "longitude",
+                "siteManageByField": "smc_agency",
+                "siteNameField": "site_name",
+                "siteTypeField": "type_of_settlement",
+                "adm1Pcode": "governorate",
+                "adm1Name": "governorate_name",
+                "adm2Pcode": "district",
+                "adm2Name": "district_Name"
+            },
+            "indicators": {
+                "home": [
+                    {
+                        "type": "site_count"
+                    },
+                    {
+                        "type": "people_count",
+                        "entryCode": "nb_site_residents_ind"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "# Shelters",
+                            "ar": "عدد المآوي في الموقع"
+                        },
+                        "entryCode": "nb_shelters",
+                        "iconOchaName": "Shelter"
+                    }
+                ],
+                "site": [
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site Residents",
+                            "ar": "ادخل إجمالي عدد سكان الموقع -  الأفراد"
+                        },
+                        "entryCode": "nb_site_residents_ind",
+                        "iconOchaName": "People-in-need"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site Capacity",
+                            "ar": "سعة الموقع"
+                        },
+                        "entryCode": "site_capacity",
+                        "iconOchaName": "Children"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "# SMC Staff",
+                            "ar": "العدد الكلي لموظفي إدارة وتنسيق الموقع"
+                        },
+                        "entryCode": "smc_total",
+                        "iconOchaName": "Staff-management"
+                    }
+                ]
+            }
+        }
+    ],
+    "options": {
+        "pdfColumnCount": 3,
+        "showDemoBanner": true,
+        "exportAsCSVonHomePage": true
+    }
+}

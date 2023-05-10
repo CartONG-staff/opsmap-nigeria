@@ -1,0 +1,726 @@
+field_name;field_label_en;field_label_ar
+organisation;organisation;منظمة
+reporting_month;Reporting month;شهر الإبلاغ
+data_sources;Data Sources;مصادر البيانات
+data_sources/other;-;-
+data_sources_other;Data Sources;مصادر البيانات
+hub;hub;مَركَز
+Country;Country;دولة
+site_name;Site Name;اسم الموقع
+site;Site ID;معرف الموقع
+governorate_name;governorate;محافظة
+district_Name;District;يصرف
+sub_district_name;Sub district;منطقة فرعية
+site_single_clustered;single or clustered site;موقع واحد أو مجمع
+site_main_subsite;main or subsite site;الموقع الرئيسي أو الفرعي
+number_subsites;Number of subsites;عدد المواقع الفرعية
+name_subsites;Name of subsites;اسم المواقع الفرعية
+type_of_settlement;Type of settlement;نوع التسوية
+degree_of_urbanization;Degree of urbanization;درجة التحضر
+settlement_attributes;Settlement attributes;سمات التسوية
+site_purpose;Site purpose;الغرض من الموقع
+site_occupation_date;Site occupation date;تاريخ احتلال الموقع
+land_ownership;Land ownership;ملكية الارض
+occupancy_agreement;Occupancy agreement;اتفاقية الإشغال
+isolated_location;Is the site in an isolated location;هو الموقع في مكان منعزل
+smc_agency;Site Management & Coordination (SMC) Agency;وكالة إدارة وتنسيق المواقع (SMC)
+smc_physical_space;Adequate physical SMC office space available?;متاح مساحة مكتبية كافية مادية SMC؟
+smc_stationary_mobile;Is SMC team stationary or mobile?;هل فريق SMC ثابت أم متحرك؟
+smc_presence_days;How many days per week is SMC present in the site?;كم يوم في الأسبوع يتواجد SMC في الموقع؟
+smc_female_male;Do you know the Number of Female \ Male SMC Staff?;هل تعرف عدد موظفي SMC من الإناث \ الذكور؟
+smc_female;No. Female Staff;عدد الموظفات
+smc_male;No. Male  Staff;رقم الموظفين الذكور
+smc_total;Total number of SMC Staff;إجمالي عدد موظفي SMC
+smc_code_of_conduct;Do you know How many SMC staff who have signed a Code of Conduct?;هل تعرف كم عدد موظفي SMC الذين وقعوا على مدونة السلوك؟
+smc_code_of_conduct_number;# SMC staff signed a Code of Conduct;وقع موظفو SMC على مدونة قواعد السلوك
+smc_training;Do You Know how many SMC staff who have completed adequate training related to their role (insert value);هل تعرف عدد موظفي SMC الذين أكملوا التدريب المناسب المتعلق بدورهم (أدخل القيمة)
+smc_training_number;# SMC staff  completed adequate training related to their role;# أكمل موظفو SMC التدريب الكافي المتعلق بدورهم
+committees_present/i_dont_know;-;-
+committees_present;-;-
+committees_present/residents_committee_present_at_the_site;-;-
+committees_present/camp_management_committee_present_at_the_site;-;-
+committees_present/womens_committee_present_at_the_site;-;-
+committees_present/elder_committee;-;-
+committees_present/wash_committee;-;-
+committees_present/health_committee;-;-
+committees_present/education_committee;-;-
+committees_present/food_security_agriculture_committee;-;-
+committees_present/livelihoods_business_committee;-;-
+committees_present/youth_education_committee;-;-
+committees_present/care_maintenance_committee;-;-
+committees_present/fire_warden;-;-
+committees_present/representative_for_persons_with_disability;-;-
+committees_present/representative_for_marginalized_groups;-;-
+committees_present/conflict_resolution_leaders;-;-
+committees_present/no_committees_representatives_in_site;-;-
+committees_present/other_committees;-;-
+committees_present_other;-;-
+resident_committee_number;Resident Committee;اللجنة المقيمة
+resident_committee_female;Female;أنثى
+resident_committee_male;Male;ذكر
+resident_committee_total;# Residents committee present at the site Staff;# لجنة المقيمين حاضرة في الموقع العاملين
+resident_committee_frequency_meetings;Frequency of meetings;تواتر الاجتماعات
+resident_committee_frequency_meetings_other;Other (Please Specify);غير ذلك (يرجى التحديد)
+camp_committee_number;Camp Management Committee;لجنة إدارة المخيمات
+camp_committee_female;Female;أنثى
+camp_committee_male;Male;ذكر
+camp_committee_total;# Camp Management Committee present at the site Staff;# لجنة ادارة المخيم حاضرة في الموقع طاقم العمل
+camp_committee_frequency_meetings;Frequency of meetings;تواتر الاجتماعات
+camp_committee_frequency_meetings_other;Other (Please Specify);غير ذلك (يرجى التحديد)
+women_committee_number;Womens committee;لجنة المرأة
+women_committee_female;Female;أنثى
+women_committee_male;Male;ذكر
+women_committee_total;# Womens committee present at the site Staff;# لجنة المرأة حاضرة في طاقم الموقع
+women_committee_frequency_meetings;Frequency of meetings;
+women_committee_frequency_meetings_other;Other (Please Specify);
+elder_committee_number;Elder committee;
+elder_committee_female;Female;
+elder_committee_male;Male;
+elder_committee_total;# Elder committee Staff;
+elder_committee_frequency_meetings;Frequency of meetings;
+elder_committee_frequency_meetings_other;Other (Please Specify);
+wash_committee_number;WASH committee;
+wash_committee_female;Female;
+wash_committee_male;Male;
+wash_committee_total;# WASH committee  Staff;
+wash_committee_frequency_meetings;Frequency of meetings;
+wash_committee_frequency_meetings_other;Other (Please Specify);
+health_committee_number;Health committee;
+health_committee_female;Female;
+health_committee_male;Male;
+health_committee_total;# Health committee Staff;
+health_committee_frequency_meetings;Frequency of meetings;
+health_committee_frequency_meetings_other;Other (Please Specify);
+education_committee_number;Education committee;
+education_committee_female;Female;
+education_committee_male;Male;
+education_committee_total;# Education committee Staff;
+education_committee_frequency_meetings;Frequency of meetings;
+education_committee_frequency_meetings_other;Other (Please Specify);
+fs_agriculture_committee_number;Food security & Agriculture committee;
+fs_agriculture_committee_female;Female;
+fs_agriculture_committee_male;Male;
+fs_agriculture_committee_total;# Food security & Agriculture committee Staff;
+fs_agriculture_committee_frequency_meetings;Frequency of meetings;
+fs_agriculture_committee_frequency_meetings_other;Other (Please Specify);
+livelihoods_committee_number;Livelihoods & business committee;
+livelihoods_committee_female;Female;
+livelihoods_committee_male;Male;
+livelihoods_committee_total;# Livelihoods & business committee Staff;
+livelihoods_committee_frequency_meetings;Frequency of meetings;
+livelihoods_committee_frequency_meetings_other;Other (Please Specify);
+youth_education_committee_number;Youth & Education committee;
+youth_education_committee_female;Female;
+youth_education_committee_male;Male;
+youth_education_committee_total;# Youth & Education committee Staff;
+youth_education_committee_frequency_meetings;Frequency of meetings;
+youth_education_committee_frequency_meetings_other;Other (Please Specify);
+care_maintenance_committee_number;Care & Maintenance committee;
+care_maintenance_committee_female;Female;
+care_maintenance_committee_male;Male;
+care_maintenance_committee_total;# Care & Maintenance committee Staff;
+care_maintenance_committee_frequency_meetings;Frequency of meetings;
+care_maintenance_committee_frequency_meetings_other;Other (Please Specify);
+fire_warden_committee_number;Fire warden;
+fire_warden_committee_female;Female;
+fire_warden_committee_male;Male;
+fire_warden_committee_total;# Fire warden Staff;
+fire_warden_committee_frequency_meetings;Frequency of meetings;
+fire_warden_committee_frequency_meetings_other;Other (Please Specify);
+representative_persons_disability_number;Representative for persons with disability;
+representative_persons_disability_female;Female;
+representative_persons_disability_male;Male;
+representative_persons_disability_total;# Representative for persons with disability Staff;
+representative_persons_disability_frequency_meetings;Frequency of meetings;
+representative_persons_disability_frequency_meetings_other;Other (Please Specify);
+representative_marginalized_grps_number;Representative for marginalized groups;
+representative_marginalized_grps_female;Female;
+representative_marginalized_grps_male;Male;
+representative_marginalized_grps_total;# Representative for marginalized groups Staff;
+representative_marginalized_grps_frequency_meetings;Frequency of meetings;
+representative_marginalized_grps_frequency_meetings_other;Other (Please Specify);
+conflict_resolution_leaders_number;Conflict resolution leaders;
+conflict_resolution_leaders_female;Female;
+conflict_resolution_leaders_male;Male;
+conflict_resolution_leaders_total;# Conflict resolution leaders;
+conflict_resolution_leaders_frequency_meetings;Frequency of meetings;
+conflict_resolution_leaders_frequency_meetings_other;Other (Please Specify);
+committee_meetings_intended_frequency;In the last month, were committee meetings held  as frequently as intended?;
+committee_meetings_intended_frequency_no_explain;Why Not;
+committee_meetings_intended_frequency_no_explain/other;-;
+committee_meetings_intended_frequency_no_explain_other;Other (please specify);
+members_committees_election;Have all members of the committees been elected by the groups they represent in the site population?;
+members_committees_election_no_why;Why Not;
+committee_representating_different_groups;Are the committee’s representative of different groups within the population?;
+committee_representating_different_groups_list;different groups within the population;
+committee_representating_different_groups_list/other;-;
+committee_representating_different_groups_list_other;Other Groups;
+why_committee_rep_not_selected_women;If not selected (Women) Why is this group not included in the committees?;
+why_committee_rep_not_selected_women/other;-;
+why_committee_rep_not_selected_women_other;Other (please specify);
+why_committee_rep_not_selected_marginalised_pep;If not selected (Marginalised people) Why is this group not included in the committees?;
+why_committee_rep_not_selected_marginalised_pep/other;-;
+why_committee_rep_not_selected_marginalised_pep_other;Other (please specify);
+why_committee_rep_not_selected_persons_with_difficulties;If not selected (Persons with a lot of difficulties in seeing, hearing, walking, communicating..etc) Why is this group not included in the committees?;
+why_committee_rep_not_selected_persons_with_difficulties/other;-;
+why_committee_rep_not_selected_persons_with_difficulties_why;Other (please specify);
+why_committee_rep_not_selected_eldery;If not selected (elderly) Why is this group not included in the committees?;
+why_committee_rep_not_selected_eldery/other;-;
+why_committee_rep_not_selected_eldery_other;Other (please specify);
+why_committee_rep_not_selected_young_men;If not selected (Young men) Why is this group not included in the committees?;
+why_committee_rep_not_selected_young_men/other;-;
+why_committee_rep_not_selected_young_men_other;Other (please specify);
+why_committee_rep_not_selected_young_women;If not selected (Young women) Why is this group not included in the committees?;
+why_committee_rep_not_selected_young_women/other;-;
+why_committee_rep_not_selected_young_women_other;Other (please specify);
+cccm_activities_available_in_site;CCCM activities available in site;
+cccm_activities_available_in_site/other;-;
+cccm_activities_available_in_site_other;Other (please specify);
+consultations_with_site_residents;Consultations with site residents about their needs has taken place in the last month to inform programme planning;
+"consultations_with_site_residents_no_why;If no, why did consultations with site residents not take 
+place in the last month?;"
+consultations_with_site_residents_no_why/other;-;
+consultations_with_site_residents_no_why_other;Other (please specify);
+"complaint_fedback_mechanism_available;Functional complaint and feedback mechanism 
+available in site;"
+type_fedback_mechanism;Type of complaint and feedback mechanism in site;
+type_fedback_mechanism/other;-;
+type_fedback_mechanism_other;Other (please specify);
+nb_feedback_complaints_received_last_month_by_type;Do you know the Number of feedback\complaints received in last month by type;
+site_resident_complainants_positive_feedback;# Site resident complainants - Positive feedback;
+community_committee_complainants_positive_feedback;Community committee complainants - Positive feedback;
+site_resident_complainants_request_for_information;Site resident complainants - Request for information;
+community_committee_complainants_request_for_information;Community committee complainants - Request for information;
+site_resident_complainants_request_for_assistance;Site resident complainants - Request for assistance;
+community_committee_complainants_request_for_assistance;Community committee complainants - Request for assistance;
+site_resident_complainants_minor_dissatisfaction;Site resident complainants - Minor dissatisfaction;
+community_committee_complainants_minor_dissatisfaction;Community committee complainants - Minor dissatisfaction;
+site_resident_complainants_major_dissatisfaction;Site resident complainants - Major dissatisfaction;
+community_committee_complainants_major_dissatisfaction;Community committee complainants - Major dissatisfaction;
+site_resident_complainants_major_breaches;Site resident complainants - Major breaches including code of conduct;
+community_committee_complainants_major_breaches;Community committee complainants - Major breaches including code of conduct;
+site_resident_complainants_total_number_of_feedback_complaints_received;# Site resident complainants;
+community_committee_complainants_total_number_of_feedback_complaints_received;# Community committee complainants;
+main_areas_complaints;Main areas of complaints received in last month;
+main_areas_complaints/other;-;
+main_areas_complaints_other;Other (please specify);
+feedback_complaints_resolved_escalated;Do you know Number of feedback\complaints which have been resolved or escalated (ie. RES) and results fed back to the complainant within agreed timeframe the last month;
+site_resident_complainants_anonymous;resolved feedback\complaints for Site resident complainants (anonymous): in last month;
+community_committee_complainants;resolved feedback\complaints for Community committee complainants: in the last month;
+number_feedback_complaints_open;Number feedback\complaints open (from this and previous reporting cycles);
+site_resident_complainants_anonymous_2;Pending feedback\complaints for Site resident complainants (anonymous);
+community_committee_complainants_2;Pending feedback\complaints for Community committee complainants;
+information_board_available;information board available in the site?;
+number_information_campaigns_by_service;Do you know the Number of information campaigns by service\assistance type conducted in the last month;
+nb_info_food;# Food information board;
+nb_info_water;# Water information board;
+nb_info_education;# Education information board;
+nb_info_cash;# Cash assistance information board;
+nb_info_nfi;# NFI information board;
+nb_info_shelter;# Shelter\maintenance information board;
+nb_info_sanitation;# Sanitation\hygiene services information board;
+nb_info_protection;# Protection services information board;
+nb_info_nutrition;# Nutrition services information board;
+nb_info_healthcare;# Healthcare services information board;
+nb_info_livelihood;# Livelihood services information board;
+nb_info_covid_19;# COVID-19 information board;
+nb_info_cfm;# CFM information board;
+nb_info_other;Other (please specify);
+number_community_training_capacity_building_projects;Do you know the number of community trainings and capacity building projects conducted in site the last month?;
+nb_training_security;Security training- in site the last month;
+nb_training_first_aid;First-aid training -in site the last month;
+nb_training_vocational;Vocational training -in site the last month;
+nb_training_hygiene;Hygiene promotion -in site the last month;
+nb_training_teacher;Teacher training - in site the last month;
+nb_training_safe_identification_referral;Safe identification and referrals -in site the last month;
+nb_training_explosive_ordinance_risk_education;Explosive Ordinance Risk Education (EORE) -in site the last month;
+nb_training_safety_awareness_vulnerable_people;Safety awareness training for vulnerable people -in site the last month;
+nb_training_fire_safety;Fire-safety training - in site the last month;
+nb_training_covid_19;COVID-19 - in site the last month;
+site_accessibility_physical_barriers;Site accessibility (physical barriers);
+access_restrictions_humanitarian_aid_providers;Access restrictions for humanitarian aid providers in\out site in the past month;
+reason_access_restrictions;Reason for access restrictions for humanitarian aid providers in the past month;
+reason_access_restrictions/other;-;
+reason_access_restrictions_other;Other (please specify);
+"natural_hazards_site;Natural and endomorphic hazards to site
+Includes both the RISK and previous OCCURANCE of threats to the safety and security of the site;"
+natural_hazards_site/other;-;
+natural_hazards_site_other;Other (please specify);
+"safety_security_threats;Safety \ security threats to site
+Includes both the RISK and previous OCCURANCE of threats to the safety and security of the site.;"
+safety_security_threats/other;-;
+safety_security_threats_other;Other (please specify);
+official_eviction_note;Has the site received an official eviction note?;
+official_eviction_note_when;If yes, when was the official eviction note issued?;
+official_eviction_note_actors;What specific actors trying to evict the site residents?;
+official_eviction_note_actors/other;-;
+official_eviction_note_actors_other;Other (please specify);
+risk_of_eviction_reasons;What are the main reasons the site is at risk of eviction?;
+risk_of_eviction_reasons/other;-;
+risk_of_eviction_reasons_other;Other (please specify);
+exposure_to_flooding;In your opinion, how dangerous is the exposure to flooding in this site for people, shelter and infrastructure?;
+flood_occurrance;In the past month, has flooding occurred in this site;
+number_of_floods;Indicate number of floods;
+flooding_impact_injuries_death;Flood-related injuries\death;
+flooding_impact_shelters;Damage to shelters;
+flooding_impact_roads_access;Damage to access roads;
+flooding_impact_infrastructure;Damage to critical infrastructure;
+main_source_flooding;Main source of flooding;
+main_source_flooding/other;-;
+main_source_flooding_other;Other (please specify);
+flood_contingency_plan;Does this site have any flood contingency plans in place?;
+if_yes_explain;If yes, Please explain;
+fire_occurrance;In the past month, has fire occurred in this site?;
+number_of_fires;If yes, please indicate number of fires;
+fire_impact_injuries_death;impact of the fire on Fire-related injuries\death;
+fire_impact_shelters;Damage to shelters;
+fire_impact_infrastructure;impact of the fire on Damage to critical infrastructure;
+source_fire;Source of for fire;
+source_fire/other;-;
+source_fire_other;Other (please specify);
+fire_safety_measures;Fire safety measures;
+fire_safety_measures/other;-;
+fire_safety_measures_other;Other (please specify);
+dangerous_structures;Are there any dangerous structures in the site?;
+dangerous_structures/other;-;
+dangerous_structures_other;Other (please specify);
+info_site_residents_hh;Do you have information for the following : Total number of site residents - Households;
+nb_site_residents_hh;# site residents - Households;
+info_site_residents_ind;Do you have information for the following : Total number of site residents - individuals;
+nb_site_residents_ind;# site residents - Individuals;
+pop_group_other_id_ps/i_don_t_know;-;
+pop_group_other_id_ps; other Population groups in the site;
+info_id_ps_hh;Do you have information for the following : Number of IDP in site - Households;
+nb_id_ps_hh;# IDP - Households;
+info_id_ps_ind;Do you have information for the following : Number of IDP in site - Individuals;
+nb_id_ps_ind;# IDP - Individuals;
+info_refugees_hh;Do you have information for Number of refugees in site - Households;
+nb_refugees_hh;# refugees - Households;
+info_refugees_ind;Do you have information for Number of refugees in site -Individuals;
+nb_refugees_ind;# refugees - Individuals;
+info_migrants_hh;Do you have information for Number of migrants in site - Households;
+nb_migrants_hh;# migrants - Households;
+info_migrants_ind;Do you have information for Number of migrants in site - Individuals;
+nb_migrants_ind;# migrants - Individuals;
+info_host_comm_hh;Do you have information for the Number of host community members in site- Households;
+nb_host_comm_hh;# host community members  - Households;
+info_host_comm_ind;Do you have information for the Number of host community members in site- Individuals;
+nb_host_comm_ind;# host community members Individuals;
+info_marginalized_hh;Do you have information for the Number of Marginalized groups members in site- Households;
+nb_marginalized_hh;# Marginalized groups members  - Households;
+info_marginalized_ind;Do you have information for the Number of Marginalized groups members in site- Individuals;
+nb_marginalized_ind;# Marginalized groups members  - Individuals;
+x0_5_years_male;0-5 years - Male;
+x0_5_years_female;0-5 years - Female;
+x6_17_years_male;6-17 years - Male;
+x6_17_years_female;6-17 years - Female;
+x18_35_years_male;18-35 years - Male;
+x18_35_years_female;18-35 years - Female;
+x36_64_years_male;36-64 years - Male;
+x36_64_years_female;36-64 years - Female;
+x65_years_male;65 + years - Male;
+x65_years_female;65 + years - Female;
+info_high_risk_group;Do you have information for the Number of people per high-risk group;
+info_child_headed_hh;Do you know the number of child-headed households (0-17 years old)?;
+nb_child_headed_hh;# child-headed households (0-17 years old);
+nb_child_headed_hh_female;Female;
+nb_child_headed_hh_male;Male;
+info_female_headed_hh;Do you know the Number of female- headed households (18+ years old);
+nb_female_headed_hh;# female- headed households (18+ years old);
+nb_female_headed_hh_female;Female;
+nb_female_headed_hh_male;Male;
+info_unaccompanied_separated_children;Do you know the Number of unaccompanied or\and separated children (0-17 years old);
+nb_unaccompanied_separated_children;# unaccompanied or\and separated children (0-17 years old);
+nb_unaccompanied_separated_children_female;Female;
+nb_unaccompanied_separated_children_male;Male;
+info_pregnant_lactating_women;Do you know the Number of pregnant or lactating women;
+nb_pregnant_lactating_women;# pregnant or lactating women;
+info_chronic_diseases_medical_conditions;Do you know the Number of persons with chronic diseases\serious medical conditions (people with immune-suppressing illnesses or taking immunosuppressants, people with chronic illnesses, e.g. diabetes, heart disease, chronic lung disease or moderate to severe asthma);
+nb_chronic_diseases_medical_conditions;# persons with chronic diseases\serious medical conditions (people with immune-suppressing illnesses or taking immunosuppressants, people with chronic illnesseس;
+nb_chronic_diseases_medical_conditions_female;Female;
+nb_chronic_diseases_medical_conditions_male;Male;
+info_marginalized;Do you know the Number of marginalized persons;
+nb_marginalized;# marginalized persons;
+nb_marginalized_female;Female;
+nb_marginalized_male;Male;
+info_physical_disabilities;Do you know the Number of persons with physical disabilities;
+nb_physical_disabilities;# persons with physical disabilities;
+nb_physical_disabilities_female;Female;
+nb_physical_disabilities_male;Male;
+info_conflict_injuries;Do you know the Number of persons with conflict-related injuries;
+nb_conflict_injuries;# persons with conflict-related injuries;
+nb_conflict_injuries_female;Female;
+nb_conflict_injuries_male;Male;
+info_mental_disabilities;Do you know the Number of persons with mental disabilities;
+nb_mental_disabilities;# persons with mental disabilities;
+nb_mental_disabilities_female;Female;
+nb_mental_disabilities_male;Male;
+info_unaccompanied_elderly;Do you know the Number of unaccompanied elderly persons (65+ years old);
+nb_unaccompanied_elderly;# unaccompanied elderly persons (65+ years old);
+nb_unaccompanied_elderly_female;Female;
+nb_unaccompanied_elderly_male;Male;
+info_distressed_emergency_displacement;Do you know the Number of People under distress condition caused by event of emergency\ displacement;
+nb_distressed_emergency_displacement;People under distress condition caused by event of emergency\ displacement;
+nb_distressed_emergency_displacement_female;Female;
+nb_distressed_emergency_displacement_male;Male;
+info_deaths;Do you have information for the Number of deaths on site in the last month;
+nb_deaths_female;Number of deaths on site in the last month - Female;
+nb_deaths_male;Number of deaths on site in the last month - Male;
+reasons_death;Reason for deaths;
+reasons_death/other;-;
+reasons_death_other;Other (please specify);
+info_births;Do you know the Number Of Births On Site In The Last Month;
+nb_births;Number of births on site in the last month;
+site_residents_registered;Proportion of site residents registered;
+site_residents_registration_frequency_update;Frequency of update of site resident registration;
+site_residents_registration_frequency_update_other;Other (please specify);
+methodology_pop_demographics;Methodology to determine population demographics;
+methodology_register_site_population;Methodology to register site population;
+methodology_register_site_population/other;-;
+methodology_register_site_population_other;-;
+source_pop_demographics;Source of population demographics;
+source_pop_demographics_other;Other (please specify);
+pop_groups_outside_site_assistance_in_site;In the past month, were there any population groups that live outside the site, but receive assistance in the site?;
+pop_groups_outside_site_assistance_in_site_select;What population group and how many individuals were receiving assistance?;
+nb_host_comm_outside_site_assistance_in_site;Host community members - number of individuals assisted:;
+nb_id_ps_outside_site_assistance_in_site; IDPs (out of site) - please enter the number of individuals assisted;
+nb_refugees_outside_site_assistance_in_site;Refugees - number of individuals assisted;
+nb_migrants_outside_site_assistance_in_site;Migrants -  number of individuals assisted;
+nb_marginalized_outside_site_assistance_in_site;Marginalized groups - number of individuals assisted;
+info_arrivals;Do you have information for the Number of arrivals in past month;
+nb_arrivals_hh;Number of arrivals in past month - Total IDP Households;
+nb_arrivals_ind_female;Female;
+nb_arrivals_ind_male;Male;
+info_departures;Do you have information for the Number of site departures in the past month;
+nb_departures_hh;Number of  departures in past month - Total IDP Households;
+nb_departures_ind;Number of  departures in past month - Total IDP Individuals;
+reason_departure;Reason for departure;
+reason_departure/other;-;
+reason_departure_other;Other (please specify);
+info_most_common_gov_dist_idp_origin;Do you know the most common governorate / district of IDP origin of newly arrived IDPs ?;
+most_common_gov_idp_origin;Most Common Governorate of IDP origin of newly arrived IDPs;
+most_common_district_idp_origin;Most Common District of IDP origin of newly arrived IDPs;
+info_most_common_gov_dist_idp_origin_2;do you know the Second Most common governorate / district of IDP origin of newly arrived IDPs;
+most_common_gov_idp_origin_2;Second Most Common Governorate of IDP origin of newly arrived IDPs;
+most_common_district_idp_origin_2;Second Most Common District of IDP origin of newly arrived IDPs;
+info_most_common_gov_dist_idp_origin_3;do you know the Third Most common governorate / district of IDP origin of newly arrived IDPs;
+most_common_gov_idp_origin_3;Third \Most Common Governorate of IDP origin of newly arrived IDPs;
+most_common_district_idp_origin_3;Third \Most Common District of IDP origin of newly arrived IDPs;
+most_common_reason_idp_left_place_origin;Most common reason newly displaced IDPs left place of origin;
+most_common_reason_idp_left_place_origin/other;-;
+most_common_reason_idp_left_place_origin_other;Other (please specify);
+most_common_intention;Most common intention for IDP site residents for next month;
+nb_shelters;Number of shelters in the site;
+average_nb_hh_per_shelter;Avrage HHs per shelter;
+site_capacity;Site capacity;
+nb_available_shelters;# available shelters;
+nb_new_shelters_land_for_extension;# new shelters could be built on the available land for extension;
+info_shelter_types;Do you have information for the Number of shelter types in the site;
+nb_public_building;# Public building (school, mosque, etc.);
+nb_makeshift_shelter;# Makeshift shelter;
+nb_emergency_shelter;# Emergency shelter;
+nb_transitional_shelter;# Transitional shelter;
+nb_tents;# Tent;
+nb_unfinished_building;# Unfinished\vacant building;
+nb_open_air;# Open air (no shelter);
+need_repair_maintenance;In need of repair\maintenance (for emergency shelter, transitional shelter, buildings);
+need_replacement;In need of replacement (for emergency shelter, transitional shelter, makeshift shelter, tents);
+need_rehabilitation_reconstruction;In need of rehabilitation\reconstruction (for public buildings, unfinished/vacant building);
+need_extension_new_shelters;In need of extension/new shelter (overcrowded, new HHs);
+proportion_shelters_functional_locks;Percentage of shelters with functional locks;
+proportion_unrelated_families_sharing_one_shelter;Approximately what proportion of unrelated families\individuals are sharing one shelter?;
+blankets;Blankets;
+mattresses;Mattress;
+sleeping_matt;Sleeping matt;
+water_containers_buckets;Water containers  \buckets;
+oven_stoves;Oven\stoves;
+fuel_for_cooking;Fuel for cooking;
+kitchen_items;Kitchen items;
+hygiene_items_pct;Hygiene items;
+feminine_hygiene_items_pct;Feminine hygiene items;
+plastic_sheet;Plastic sheet;
+mosquito_nets;Mosquito nets;
+solar_lamps;Solar lamps;
+primary_latrine_types;Primary latrine types used by majority of the households in the site;
+primary_shower_type;Primary shower type used by majority of the households in the site:;
+primary_shower_type/other;-;
+primary_shower_type_other;Other (please specify);
+nb_latrines;Number of latrines;
+nb_showers;Number of showers;
+pct_hh_access_latrine;Proportion of households with access to a functioning and clean latrine in the last month?;
+pct_hh_access_shower;Proportion of households with access to a functioning and clean shower in the last month?;
+pct_sanitation_gndr_separated_latrines;Proportion of sanitation facilities gender separated - Latrines;
+pct_sanitation_gndr_separated_showers;Proportion of sanitation facilities gender separated - Showers;
+pct_latrines_functional_locks;Proportion of sanitation facilities with functional locks on the inside - latrines;
+pct_showers_functional_locks;Proportion of sanitation facilities with functional locks on the inside - Showers;
+safe_access_latrines_women;Are public\shared latrines safely accessible for women and girls (including during the night)?;
+pct_delegable_used_latrine;What proportion of the latrine types commonly used by the people on site are delegable?;
+frequency_desludging_latrines;How frequently does desludging of latrines occur?;
+primary_water_source;Primary water source for all household purposes for majority of households in the site (drinking, cooking, bathing, washing);
+"nb_water_pts;Number of water points:
+Water points include all potential water sources selected in the previous Question;"
+"nb_litres_available_water;Litres / person / day:
+available through any primary water source in the site:;"
+avg_time_fetch_water;Average time for MOST site residents to fetch water from closest water source with normal mode of transport (return);
+primary_water_source_drinkible;Is the primary water source drinkable;
+drinkable_water_sources;If not, what is the drinkable water source;
+pct_hh_access_water;Approximately what proportion of households in the site have a sufficient quantity of safe and clean water for drinking, cooking, bathing and washing in the last three month?;
+who_collects_water;Who is usually collecting water?;
+water_maintenance_committee_presence;Presence of water maintenance committee;
+nb_communal_wastebins;Number of communal wastebins;
+solid_waste_management;How is solid waste mainly disposed of or managed by residents of this site?;
+solid_waste_management/other;-;
+solid_waste_management_other;Other (please specify);
+frequency_solid_waste_collection;How often is solid waste collected in the site?;
+frequency_solid_waste_collection_other;Other (please specify);
+whois_collecting_solid_waste;Who is collecting solid waste from the site?;
+whois_collecting_solid_waste/other;-;
+whois_collecting_solid_waste_other;Other (please specify);
+main_health_issues;In the last month, what were the main health issues reported in the site?;
+main_health_issues/other;-;
+main_health_issues_other;Other (please specify);
+avg_time_reach_primary_health_facility;Average minutes for MOST site residents to reach a functional, accessible primary health facility with normal mode of local transport;
+avg_time_reach_secondary_health_facility;Average minutes for MOST site residents to reach a functional, accessible secondary health facility with normal mode of local transport;
+health_services_available;In the past month, within or around this site, what types of health services are available?;
+health_services_available/other;-;
+health_services_available_other;Other (please specify);
+challenges_access_healthcare;In the past month, what difficulties, if any, do people in the site most commonly encounter when attempting to access health services or treatment?;
+challenges_access_healthcare/other;-;
+challenges_access_healthcare_other;Other (please specify);
+pct_ind_access_food;In the last month, what was the proportion of site residents able to access food?;
+main_reasons_no_access_food;In the last month, what were the main reasons why residents can’t access enough food in the settlement?;
+main_reasons_no_access_food/dont_know;-;
+main_reasons_no_access_food_other;Other (please specify);
+how_ind_access_food;In the last month, how did site residents access food?;
+how_ind_access_food/other;-;
+how_ind_access_food_other;Other (please specify);
+nb_distribution_centres;Number of distribution centres \ areas in the site;
+challenges_livelihoods;Do site residents face any challenges with pursuing livelihoods \ earning a reasonable income?;
+challenges_livelihoods/other;-;
+challenges_livelihoods_other;Other (please specify);
+lack_birth_certificates;Birth Certificates;
+lack_personal_identity_cards;Personal Identity Cards;
+lack_family_identity_cards;Family Identity Cards;
+available_communal_spaces;What are the available functional communal spaces in the site?;
+available_communal_spaces/other;-;
+available_communal_spaces_other;Other (please specify);
+info_protection_incidents;In the past month, did any protection incidents occur?;
+protection_incidents;Which of the following incidents occurred in or near the site in the past month?;
+protection_incidents/other;-;
+protection_incidents_other;Other (please specify);
+protection_incidents_reported;To whom were the incidents reported?;
+protection_incidents_support;Where do site residents mainly seek support/help in case of protection incidents?;
+protection_incidents_support/other;-;
+protection_incidents_support_other;Other (please specify);
+persons_with_disabilities_food_nfi_distribution_points;Persons with disabilities - Food \ NFI Distribution points;
+persons_with_disabilities_latrines;Persons with disabilities - Latrines;
+persons_with_disabilities_shower;Persons with disabilities - Shower;
+persons_with_disabilities_water_points;Persons with disabilities - Water points;
+boys_food_nfi_distribution_points;Boys - Food \ NFI Distribution points;
+boys_latrines;Boys - Latrines;
+boys_shower;Boys - Shower;
+boys_water_points;Boys - Water points;
+girls_food_nfi_distribution_points;Girls - Food \ NFI Distribution points;
+girls_latrines;Girls - Latrines;
+girls_shower;Girls - Shower;
+girls_water_points;Girls - Water points;
+women_food_nfi_distribution_points;Women - Food \ NFI Distribution points;
+women_latrines;Women - Latrines;
+women_shower;Women - Shower;
+women_water_points;Women - Water points;
+ind_feel_safe;Did Site Residents Feel Safe In The Site Area;
+if_not_why;If not, why not?;
+if_not_why/other;-;
+if_not_why_other;Other (please specify);
+avg_time_reach_primary_school;Average minutes for MOST children of school age to reach a functional primary school with normal mode of local transport;
+avg_time_reach_secondary_school;Average minutes for MOST children of school age to reach a functional secondary school with normal mode of local transport;
+non_formal_education;Non-formal education for children in camp or nearby\accessible (i.e., catch-up, literacy and language classes);
+pct_ind_attend_school;Do you know the information for proportion of boys/girls attending primary / secondary school and non-formal education?;
+pct_girls_primary_school;the % girls in Primary school;
+pct_girls_secondary_school;the % girls in Secondary school;
+pct_girls_non_formal_edu;the % girls in Non formal education;
+pct_boys_primary_school;the % Boys in Primary school;
+pct_boys_secondary_school;the % boys in Sechondary school;
+pct_boys_non_formal_edu;the % Boys in Non formal education;
+top_3_reasons_not_attend_school;Top 3 reasons for boys and girls not attending school;
+top_3_reasons_not_attend_school/other;-;
+top_3_reasons_not_attend_school_other;Other (please specify);
+avg_time_reach_functional_food_market;Average minutes for MOST site residents to reach a functional FOOD market place or grocery store with normal mode of local transport (travelling one way)?;
+avg_time_reach_functional_nfi_market;Average minutes for MOST site residents to reach a functional market for NFIs and construction material with normal mode of local transport (travelling one way);
+items_not_available_affordable_market;In the past month, were there any items that are not available OR not affordable at the market that site residents need?;
+items_not_available_affordable_market/other;-;
+items_not_available_affordable_market_other;Other (please specify);
+basic_food_items;Basic food items -situation In the past month;
+drinking_water;Drinking water-situation In the past month;
+basic_family_items;Basic family items (e.g. mattress, blankets, kitchen utensils) - -situation In the past month;
+tools_hardware_and_construction_materials;Tools, hardware and construction materials -situation In the past month;
+hygiene_items;Hygiene items -situation In the past month;
+feminine_hygiene_items;Feminine hygiene items -situation In the past month;
+basic_medicine;Basic medicine -situation In the past month;
+fuel;Fuel -situation In the past month;
+affordable_items_other;Other - -situation In the past month;
+physical_barrier_access_market;In the past month, did site residents face any physical barriers to consistently accessing markets?;
+physical_barrier_access_market/other;-;
+physical_barrier_access_market_other;Other (please specify);
+social_barrier_access_market;In the past month, did site residents face any social barriers to consistently accessing markets?;
+social_barrier_access_market/other;-;
+social_barrier_access_market_other;Other (please specify);
+barrier_access_cash_for_essential_items;In the last month, did site residents face any barriers to access sufficient cash required to purchase essential items?;
+barrier_access_cash_for_essential_items/other;-;
+barrier_access_cash_for_essential_items_other;Other (please specify);
+main_source_electricity;Main source of electricity in the site;
+main_source_electricity/other;-;
+main_source_electricity_other;Other (please specify);
+info_days_hours_electricity_available;Do you know In the last month, on average, how many days \ hours per day, was electricity available in the camp?;
+nb_hours_per_day;Average hours per day;
+nb_days_per_month;Average days per month with access to electricity;
+proportion_shelters_functional_electrical_connection;What proportion of shelters in the camp have functional electrical connections?;
+proportion_site_residents_functional_internet;Proportion of site residents with access to functional internet;
+proportion_site_residents_functional_mobile_radio_network;Proportion of site residents with access to functional mobile\radio network;
+rrm_distributions;RRM distributions - Proportion of households received assistance in last month;
+food_distributions;Food distributions - Proportion of households received assistance in last month;
+non_food_item_distributions;Non-food item distributions - Proportion of households received assistance in last month;
+nutrition_services;Nutrition services - Proportion of households received assistance in last month;
+shelter_maintenance_services;Shelter/maintenance services - Proportion of households received assistance in last month;
+wash_services;WASH services - Proportion of households received assistance in last month;
+waste_disposal_services;Waste disposal services - Proportion of households received assistance in last month;
+healthcare_services;Healthcare services - Proportion of households received assistance in last month;
+protection_services;Protection services - Proportion of households received assistance in last month;
+education_services;Education services - Proportion of households received assistance in last month;
+livelihoods_services;Livelihoods services - Proportion of households received assistance in last month;
+cash_distributions_multi_purpose;Cash distributions (multi-purpose) Proportion of households received assistance in last month;
+site_maintenance;Site maintenance - Proportion of households received assistance in last month;
+security_safety_drr;Security / safety & DRR - Proportion of households received assistance in last month;
+rrm_distributions_2;RRM distributions - Proportion of households in need inlast month;
+food_distributions_2;Food distributions - Proportion of households in need inlast month;
+non_food_item_distributions_2;Non-food item distributions - Proportion of households in need inlast month;
+nutrition_services_2;Nutrition services - Proportion of households in need inlast month;
+shelter_maintenance_services_2;Shelter/maintenance services - Proportion of households in need inlast month;
+wash_services_2;WASH services - Proportion of households in need inlast month;
+waste_disposal_services_2;Waste disposal services - Proportion of households in need inlast month;
+healthcare_services_2;Healthcare services - Proportion of households in need inlast month;
+protection_services_2;Protection services - Proportion of households in need inlast month;
+education_services_2;Education services - Proportion of households in need inlast month;
+livelihoods_services_2;Livelihoods services - Proportion of households in need inlast month;
+cash_distributions_multi_purpose_2;Cash distributions (multi-purpose) - Proportion of households in need inlast month;
+site_maintenance_2;Site maintenance - Proportion of households in need inlast month;
+security_safety_drr_2;Security / safety & DRR - Proportion of households in need inlast month;
+protection_services_3;Protection services - priority items/services that are missing;
+protection_services_3/other;-;
+protection_services_3_other;Other (please specify);
+rrm_distributions_3;RRM distributions -  priority items/services that are missing;
+rrm_distributions_3/other;-;
+rrm_distributions_3_other;Other (please specify);
+food_distributions_3;Food distributions -  priority items/services that are missing;
+food_distributions_3/other;-;
+food_distributions_3_other;Other (please specify);
+non_food_item_distributions_3;Non-food item distributions -  priority items/services that are missing;
+non_food_item_distributions_3/other;-;
+non_food_item_distributions_3_other;Other (please specify);
+nutrition_services_3;Nutrition services -  priority items/services that are missing;
+nutrition_services_3/other;-;
+nutrition_services_3_other;Other (please specify);
+shelter_maintenance_services_3;Shelter\maintenance services -  priority items/services that are missing;
+shelter_maintenance_services_3/other;-;
+shelter_maintenance_services_3_other;Other (please specify);
+healthcare_services_3;Healthcare services -  priority items/services that are missing;
+healthcare_services_3/other;-;
+healthcare_services_3_other;Other (please specify);
+wash_services_3;WASH services -  priority items/services that are missing;
+wash_services_3/other;-;
+wash_services_3_other;Other (please specify);
+waste_disposal_services_3;Waste disposal services -  priority items/services that are missing;
+waste_disposal_services_3/other;-;
+waste_disposal_services_3_other;Other (please specify);
+education_services_3;Education services -  priority items/services that are missing;
+education_services_3/other;-;
+education_services_3_other;Other (please specify);
+livelihoods_services_3;Livelihoods services -  priority items/services that are missing;
+livelihoods_services_3/other;-;
+livelihoods_services_3_other;Other (please specify);
+site_maintenance_3;Site maintenance -  priority items/services that are missing;
+site_maintenance_3/other;-;
+site_maintenance_3_other;Other (please specify);
+security_safety_drr_3;Security \ Safety & DRR -  priority items/services that are missing;
+security_safety_drr_3/other;-;
+security_safety_drr_3_other;Other (please specify);
+rrm_distributions_orgnization_type;RRM distributions - Service provider;
+food_distributions_orgnization_type;Food distributions - Service provider;
+non_food_item_distributions_orgnization_type;Non-food item distributions  - Service provider;
+nutrition_services_orgnization_type;Nutrition services - Service provider;
+shelter_maintenance_services_orgnization_type;Shelter\maintenance services - Service provider;
+wash_services_orgnization_type;WASH services - Service provider;
+waste_disposal_services_orgnization_type;Waste disposal services - Service provider;
+healthcare_services_orgnization_type;Healthcare services - Service provider;
+protection_services_orgnization_type;Protection services - Service provider;
+education_services_orgnization_type;Education services - Service provider;
+livelihoods_services_orgnization_type;Livelihoods services - Service provider;
+cash_distributions_multi_purpose_orgnization_type;Cash distributions (multi-purpose) - Service provider;
+site_maintenance_orgnization_type;Site maintenance - Service provider;
+security_safety_drr_orgnization_type;Security \ safety & DRR - Service provider;
+rrm_distributions_un_ngo_name;RRM distributions - UN / NGO Name;
+food_distributions_un_ngo_name;Food distributions - UN / NGO Name;
+non_food_item_distributions_un_ngo_name;Non-food item distributions - UN / NGO Name;
+nutrition_services_un_ngo_name;Nutrition services - UN / NGO Name;
+shelter_maintenance_services_un_ngo_name;Shelter\maintenance services - UN / NGO Name;
+wash_services_un_ngo_name;WASH services - UN / NGO Name;
+waste_disposal_services_un_ngo_name;Waste disposal services - UN / NGO Name;
+healthcare_services_un_ngo_name;Healthcare services - UN / NGO Name;
+protection_services_un_ngo_name;Protection services - UN / NGO Name;
+education_services_un_ngo_name;Education services -UN / NGO Name;
+livelihoods_services_un_ngo_name;Livelihoods services - UN / NGO Name;
+cash_distributions_multi_purpose_un_ngo_name;Cash distributions (multi-purpose) - UN / NGO Name;
+site_maintenance_un_ngo_name;Site maintenance - UN / NGO Name;
+security_safety_drr_un_ngo_name;Security \ safety & DRR - UN / NGO Name;
+rrm_distributions_frequency;RRM distributions frequency;
+rrm_distributions_frequency_other;Other (please specify);
+food_distributions_frequency;Food distributions frequency;
+food_distributions_frequency_other;Other (please specify);
+non_food_item_distributions_frequency;Non-food item distributions frequency;
+non_food_item_distributions_frequency_other;Other (please specify);
+nutrition_services_frequency;Nutrition services frequency;
+nutrition_services_frequency_other;Other (please specify) frequency;
+shelter_maintenance_services_frequency;Shelter\maintenance services frequency;
+shelter_maintenance_services_frequency_other;Other (please specify);
+wash_services_frequency;WASH services frequency;
+wash_services_frequency_other;Other (please specify);
+waste_disposal_services_frequency;Waste disposal services frequency;
+waste_disposal_services_frequency_other;Other (please specify);
+healthcare_services_frequency;Healthcare services frequency;
+healthcare_services_frequency_other;Other (please specify);
+protection_services_frequency;Protection services frequency;
+protection_services_frequency_other;Other (please specify);
+education_services_frequency;Education services frequency;
+education_services_frequency_other;Other (please specify);
+livelihoods_services_frequency;Livelihoods services frequency;
+livelihoods_services_frequency_other;Other (please specify);
+cash_distributions_multi_purpose_frequency;Cash distributions (multi-purpose) frequency;
+cash_distributions_multi_purpose_frequency_other;Other (please specify);
+site_maintenance_frequency;Site maintenance frequency;
+site_maintenance_frequency_other;Other (please specify);
+security_safety_drr_frequency;Security \ safety & DRR frequency;
+security_safety_drr_frequency_other;Other (please specify);
+sectoral_response_camp_management;Camp Management;
+sectoral_response_cash_distributions_multi_purpose_4;Cash distributions (multi-purpose);
+sectoral_response_education_2;Education;
+sectoral_response_food;Food;
+sectoral_response_health_2;Health;
+sectoral_response_livelihoods;Livelihoods;
+sectoral_response_non_food_items;Non-Food Items;
+sectoral_response_nutrition;Nutrition;
+sectoral_response_protection_2;Protection;
+sectoral_response_rrrm;RRRM;
+sectoral_response_safety_security;Safety & Security;
+sectoral_response_shelter;Shelter;
+sectoral_response_site_maintenance_5;Site Maintenance;
+sectoral_response_wash_2;WASH;
+pop_groups_impediments_access_hum_activities;For any of the following groups, are there any impediments to accessing humanitarian activities?;
+pop_groups_impediments_access_hum_activities/other;-;
+pop_groups_impediments_access_hum_activities_other;Other (please specify);
+barriers_faced_access_hum_aid;In the past month, what were the barriers that MOST site residents faced when trying to access humanitarian aid, if any?;
+barriers_faced_access_hum_aid/other;-;
+barriers_faced_access_hum_aid_other;Other (please specify);
+fully;In the last month,  site residents were satisfied (Fully) with the humanitarian assistance provided in the site;
+partially;In the last month,  site residents were satisfied (Partially) with the humanitarian assistance provided in the site;
+not_satisfied;In the last month,  site residents were satisfied (Not satisfied) with the humanitarian assistance provided in the site;
+comments;Comments;
