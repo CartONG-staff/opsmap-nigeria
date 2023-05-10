@@ -30,6 +30,8 @@ interface ParsedThemeItem {
   [name: string]: string
 }
 */
+import PDFIcon from "./Icons/PDFIcon.vue";
+import CSVIcon from "./Icons/CSVIcon.vue";
 
 export default new Vuetify({
   theme: {
@@ -57,6 +59,16 @@ export default new Vuetify({
         selectedButton: TKColors.DARK_GREY,
         notSelectedButton: "#919191",
         boxShadow: "#000000"
+      }
+    }
+  },
+  icons: {
+    values: {
+      filePDF: {
+        component: PDFIcon
+      },
+      fileCSV: {
+        component: CSVIcon
       }
     }
   }
