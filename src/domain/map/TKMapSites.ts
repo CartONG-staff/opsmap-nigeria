@@ -4,6 +4,8 @@ import { TKGeoDataset } from "./TKGeoDataset";
 import mapboxgl, { LngLat } from "mapbox-gl";
 import centroid from "@turf/centroid";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
+import { TKBoundaries } from "../survey/TKBoundaries";
 interface TKFilteredSites {
   selectedSite: FeatureCollection | string;
   otherSites: FeatureCollection;
@@ -41,8 +43,12 @@ export class TKMapSites {
             lastSubmission: site.submissions[0].date,
             lat: site.coordinates.lat,
             lng: site.coordinates.lng,
-            admin1: site.admin1,
-            admin2: site.admin2
+            admins: {
+              admin1: site.admins[TKAdminLevel.ADMIN1],
+              admin2: site.admins[TKAdminLevel.ADMIN2],
+              admin3: site.admins[TKAdminLevel.ADMIN3],
+              admin4: site.admins[TKAdminLevel.ADMIN4]
+            }
           }
         };
       })
@@ -72,9 +78,8 @@ export function computeCentroid(
     x =>
       // eslint-disable-next-line
       x.properties![
-        TKConfigurationModule.configuration.spatialConfiguration.dbConfig
-          .adm2DBPcode
-      ] === site.admin2.pcode
+        TKConfigurationModule.configuration.spatialConfiguration.dbConfig.admin2
+      ] === (site.admins[TKAdminLevel.ADMIN2] as TKBoundaries).pcode
   );
 
   if (admin2Feature.length > 0) {
@@ -91,8 +96,8 @@ export function computeCentroid(
         // eslint-disable-next-line
         x.properties![
           TKConfigurationModule.configuration.spatialConfiguration.dbConfig
-            .adm1DBPcode
-        ] === site.admin1.pcode
+            .admin1
+        ] === (site.admins[TKAdminLevel.ADMIN1] as TKBoundaries).pcode
     );
     if (admin1Feature.length > 0) {
       // eslint-disable-next-line

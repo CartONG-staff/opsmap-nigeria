@@ -3,6 +3,8 @@ import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import { TKSubmissionEntryType } from "../../domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "../../domain/utils/TKLabel";
+import { arrayRootToLevel } from "@/domain/opsmapConfig/TKAdminLevel";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods
@@ -92,7 +94,11 @@ function computeCurrentSelectionCSVContent(
   sites: TKSite[],
   locale: string
 ): string {
-  const rows = [["name", "admin1", "admin2", "submissionDate"]];
+  const adminRef: Array<string> = arrayRootToLevel(
+    TKConfigurationModule.configuration.mostGranularAdmin
+  );
+
+  const rows = [["name", ...adminRef, "submissionDate"]];
 
   if (sites.length && sites[0].submissions.length) {
     for (const indicator of sites[0].submissions[0].indicators) {
@@ -133,15 +139,12 @@ function computeCurrentSelectionCSVContent(
       }
     }
   }
-
   for (const site of sites) {
     for (const submission of site.submissions) {
-      const row = [
-        site.name,
-        site.admin1.name,
-        site.admin2.name,
-        submission.date.toString()
-      ];
+      const adminRows: Array<string> = Object.values(site.admins).map(
+        boundaries => boundaries?.name ?? ""
+      );
+      const row = [site.name, ...adminRows, submission.date.toString()];
 
       for (const indicator of submission.indicators) {
         row.push(TKGetLocalValue(indicator.valueLabel, locale));

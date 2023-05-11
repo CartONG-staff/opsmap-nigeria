@@ -44,9 +44,9 @@
               flat
               dense
               :label="$t('infosAdmin1')"
-              :items="dataset.filteredAdmin1List"
+              :items="filteredAdmin1List"
               item-text="name"
-              v-model="dataset.currentAdmin1"
+              v-model="currentAdmin1"
               return-object
               clearable
             ></v-autocomplete>
@@ -69,8 +69,8 @@
               flat
               dense
               :label="$t('infosAdmin2')"
-              v-model="dataset.currentAdmin2"
-              :items="dataset.filteredAdmin2List"
+              v-model="currentAdmin2"
+              :items="filteredAdmin2List"
               item-text="name"
               return-object
               clearable
@@ -116,6 +116,8 @@
 </template>
 
 <script lang="ts">
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
+import { TKBoundaries } from "@/domain/survey/TKBoundaries";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Component, Vue } from "vue-property-decorator";
 
@@ -123,6 +125,27 @@ import { Component, Vue } from "vue-property-decorator";
 export default class TKHomeCombos extends Vue {
   get dataset() {
     return TKDatasetModule.dataset;
+  }
+
+  get currentAdmin1() {
+    return this.dataset.getCurrentAdmin(TKAdminLevel.ADMIN1);
+  }
+  set currentAdmin1(item: TKBoundaries | null) {
+    this.dataset.setCurrentAdmin(TKAdminLevel.ADMIN1, item);
+  }
+
+  get filteredAdmin1List() {
+    return this.dataset.getFilteredAdminList(TKAdminLevel.ADMIN1);
+  }
+
+  get currentAdmin2() {
+    return this.dataset.getCurrentAdmin(TKAdminLevel.ADMIN2);
+  }
+  set currentAdmin2(item: TKBoundaries | null) {
+    this.dataset.setCurrentAdmin(TKAdminLevel.ADMIN2, item);
+  }
+  get filteredAdmin2List() {
+    return this.dataset.getFilteredAdminList(TKAdminLevel.ADMIN2);
   }
 }
 </script>

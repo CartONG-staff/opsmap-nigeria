@@ -7,6 +7,7 @@ import {
   TKSurveyAnonymousType,
   TKSurveyOptions
 } from "@/domain/survey/TKSurvey";
+import { TKAdminLevel } from "./TKAdminLevel";
 
 // ////////////////////////////////////////////////////////////////////////////
 // JSON format
@@ -35,10 +36,7 @@ interface TKMapboxConfiguration {
 
 export interface TKOpsmapSpatialConfiguration {
   mapConfig: TKMapboxConfiguration;
-  dbConfig: {
-    adm1DBPcode: string;
-    adm2DBPcode: string;
-  };
+  dbConfig: Record<TKAdminLevel, string>;
   localFiles: {
     admin0LocalURL: string;
   };
@@ -54,6 +52,7 @@ export interface TKOpsmapSpatialConfiguration {
 // ////////////////////////////////////////////////////////////////////////////
 
 export interface TKOpsmapConfiguration {
+  mostGranularAdmin: TKAdminLevel;
   readonly name: TKLabel;
   title: TKLabel;
   readonly languages: string[];
@@ -119,6 +118,11 @@ export async function TKReadGeneralConfiguration(
     ...title,
     ...json.title
   };
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // admin
+  const mostGranularAdminDefault = TKAdminLevel.ADMIN2;
+  json.mostGranularAdmin = json.mostGranularAdmin ?? mostGranularAdminDefault;
 
   // ////////////////////////////////////////////////////////////////////////////
   // Mapbox configuration - handle default values

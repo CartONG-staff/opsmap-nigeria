@@ -7,6 +7,7 @@ import Vue from "vue";
 import { headerLogoBus } from "@/primary/components/TKHeaderLogoBus";
 import { Component, Watch } from "vue-property-decorator";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 
 @Component
 export default class TKRouteHandler extends Vue {
@@ -16,7 +17,7 @@ export default class TKRouteHandler extends Vue {
     headerLogoBus.$on("switchToHomePage", () => {
       if (this.$route.path !== "/") {
         if (TKDatasetModule.dataset) {
-          TKDatasetModule.dataset.currentAdmin1 = null;
+          TKDatasetModule.dataset.setCurrentAdmin(TKAdminLevel.ADMIN1, null);
         }
 
         this.currentRoute = "/";
@@ -57,11 +58,14 @@ export default class TKRouteHandler extends Vue {
   // Adjust dataset from a given URL
   updateDatasetFromUrl() {
     if (this.$route.name === "home") {
-      TKDatasetModule.dataset.currentAdmin1 = null;
+      TKDatasetModule.dataset.setCurrentAdmin(TKAdminLevel.ADMIN1, null);
     } else if (this.$route.name === "site") {
+      console.log("there");
       const survey: string = this.$route.params["survey"] ?? "";
       const admin1: string = this.$route.params["admin1"] ?? "";
       const admin2: string = this.$route.params["admin2"] ?? "";
+      const admin3: string = this.$route.params["admin3"] ?? "";
+      const admin4: string = this.$route.params["admin4"] ?? "";
       const site: string = this.$route.params["site"] ?? "";
       const date: string = this.$route.params["date"]?.replaceAll("-", "/");
       if (survey) {
@@ -71,10 +75,26 @@ export default class TKRouteHandler extends Vue {
           if (date) {
             TKDatasetModule.dataset.setSubmissionByDate(date);
           }
+        } else if (admin4) {
+          TKDatasetModule.dataset.setCurrentAdminByName(
+            TKAdminLevel.ADMIN4,
+            admin4
+          );
+        } else if (admin3) {
+          TKDatasetModule.dataset.setCurrentAdminByName(
+            TKAdminLevel.ADMIN3,
+            admin3
+          );
         } else if (admin2) {
-          TKDatasetModule.dataset.setCurrentAdmin2ByName(admin2);
+          TKDatasetModule.dataset.setCurrentAdminByName(
+            TKAdminLevel.ADMIN2,
+            admin2
+          );
         } else if (admin1) {
-          TKDatasetModule.dataset.setCurrentAdmin1ByName(admin1);
+          TKDatasetModule.dataset.setCurrentAdminByName(
+            TKAdminLevel.ADMIN1,
+            admin1
+          );
         }
       }
     }
@@ -87,10 +107,16 @@ export default class TKRouteHandler extends Vue {
       TKDatasetModule.dataset.currentSurvey?.name ?? ""
     );
     const admin1E = encodeURIComponent(
-      TKDatasetModule.dataset.currentAdmin1?.name ?? ""
+      TKDatasetModule.dataset.getCurrentAdmin(TKAdminLevel.ADMIN1)?.name ?? ""
     );
     const admin2E = encodeURIComponent(
-      TKDatasetModule.dataset.currentAdmin2?.name ?? ""
+      TKDatasetModule.dataset.getCurrentAdmin(TKAdminLevel.ADMIN2)?.name ?? ""
+    );
+    const admin3E = encodeURIComponent(
+      TKDatasetModule.dataset.getCurrentAdmin(TKAdminLevel.ADMIN3)?.name ?? ""
+    );
+    const admin4E = encodeURIComponent(
+      TKDatasetModule.dataset.getCurrentAdmin(TKAdminLevel.ADMIN4)?.name ?? ""
     );
     const siteE = encodeURIComponent(
       TKDatasetModule.dataset.currentSite?.name ?? ""
@@ -106,6 +132,12 @@ export default class TKRouteHandler extends Vue {
         path += `/${admin1E}`;
         if (admin2E) {
           path += `/${admin2E}`;
+          if (admin3E) {
+            path += `/${admin3E}`;
+          }
+          if (admin4E) {
+            path += `/${admin4E}`;
+          }
           if (siteE) {
             path += `/${siteE}`;
             if (dateE) {

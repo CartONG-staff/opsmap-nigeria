@@ -11,7 +11,7 @@ import {
 import { PEOPLE_COUNT_LABEL, SITE_COUNT_LABEL } from "./TKIndicatorLabels";
 
 import { TKFDF } from "@/domain/fdf/TKFDF";
-import { TKSite } from "@/domain/survey/TKSite";
+import { TKSite, TKSiteBoundaries } from "@/domain/survey/TKSite";
 import { TKDateCompare, TKDateFormat } from "@/domain/utils/TKDate";
 import {
   TKFDFIndicatorPeopleCount,
@@ -24,6 +24,7 @@ import {
 import { TKSubmissionEntryType } from "./TKSubmissionEntry";
 import { getCenterOfBounds } from "../map/TKMapSites";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import { TKAdminLevel, arrayRootToLevel } from "../opsmapConfig/TKAdminLevel";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
@@ -39,16 +40,17 @@ export interface TKSurveyOptions {
   dateFormat: string;
   listSeparator: string;
 }
+export type TKAdminLevelsBoundariesArray = {
+  [key in TKAdminLevel]?: TKBoundaries[];
+};
+
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
 // ////////////////////////////////////////////////////////////////////////////
 
 export interface TKSurvey {
   name: string;
-  boundaries: {
-    admin1: TKBoundaries[];
-    admin2: TKBoundaries[];
-  };
+  boundaries: TKAdminLevelsBoundariesArray;
   fdf: TKFDF;
   sites: TKSite[];
   options: TKSurveyOptions;
@@ -169,13 +171,13 @@ export function TKCreateSurvey(
 ): TKSurvey {
   let sites: TKSite[] = [];
 
-  const boundariesList: {
-    admin1: TKBoundaries[];
-    admin2: TKBoundaries[];
-  } = {
-    admin1: [],
-    admin2: []
-  };
+  const ADMIN_LEVELS_ARRAY = arrayRootToLevel(
+    TKConfigurationModule.configuration.mostGranularAdmin
+  );
+  const boundariesList: TKAdminLevelsBoundariesArray = {};
+  ADMIN_LEVELS_ARRAY.map(level => {
+    boundariesList[level] = [];
+  });
 
   // Default bounds
   const DEFAULT_SITE_COORDINATES = getCenterOfBounds(
@@ -207,28 +209,34 @@ export function TKCreateSurvey(
 
     // Doesn't exist in sites list
     if (!site) {
+      // Generate admins
+      const admins: TKSiteBoundaries = {};
+      ADMIN_LEVELS_ARRAY.map(level => {
+        admins[level] = {
+          pcode: submission[fdf.spatialDescription.admins[level]?.pcode ?? ""],
+          name: submission[fdf.spatialDescription.admins[level]?.name ?? ""]
+        };
+      });
+
       site = {
         id: submission[fdf.spatialDescription.siteIDField],
         name: submission[fdf.spatialDescription.siteNameField],
         type: fdf.siteTypes[submission[fdf.spatialDescription.siteTypeField]],
-        admin1: {
-          pcode: submission[fdf.spatialDescription.adm1Pcode],
-          name: submission[fdf.spatialDescription.adm1Name]
-        },
-        admin2: {
-          pcode: submission[fdf.spatialDescription.adm2Pcode],
-          name: submission[fdf.spatialDescription.adm2Name]
-        },
+        admins: admins,
 
         managedBy: submission[fdf.spatialDescription.siteManageByField]
           ? fdf.answersLabels[
               submission[fdf.spatialDescription.siteManageByField]
-            ] ?? { en: submission[fdf.spatialDescription.siteManageByField] }
+            ] ?? {
+              en: submission[fdf.spatialDescription.siteManageByField]
+            }
           : fdf.spatialDescription.siteManageByAltValue &&
             submission[fdf.spatialDescription.siteManageByAltValue]
           ? fdf.answersLabels[
               submission[fdf.spatialDescription.siteManageByAltValue]
-            ] ?? { en: submission[fdf.spatialDescription.siteManageByAltValue] }
+            ] ?? {
+              en: submission[fdf.spatialDescription.siteManageByAltValue]
+            }
           : { en: "-" },
         submissions: [computedSubmission],
         coordinates: {
@@ -260,29 +268,33 @@ export function TKCreateSurvey(
       }
       sites.push(site);
 
-      // Add the admin2 if it doesn't exists
-      if (
-        !boundariesList.admin2
-          .map(x => x.pcode)
-          .includes(submission[fdf.spatialDescription.adm2Pcode])
-      ) {
-        boundariesList.admin2.push({
-          pcode: submission[fdf.spatialDescription.adm2Pcode],
-          name: submission[fdf.spatialDescription.adm2Name]
-        });
-      }
-
-      // Add the admin1 if it doesn't exists
-      if (
-        !boundariesList.admin1
-          .map(x => x.pcode)
-          .includes(submission[fdf.spatialDescription.adm1Pcode])
-      ) {
-        boundariesList.admin1.push({
-          pcode: submission[fdf.spatialDescription.adm1Pcode],
-          name: submission[fdf.spatialDescription.adm1Name]
-        });
-      }
+      // Add the admins if they doesn't exists
+      ADMIN_LEVELS_ARRAY.map(level => {
+        if (!boundariesList[level]) {
+          boundariesList[level] = [];
+        }
+        if (
+          !(boundariesList[level] as TKBoundaries[])
+            .map(x => x.pcode)
+            .includes(
+              submission[
+                (fdf.spatialDescription.admins[level] as TKBoundaries).pcode
+              ]
+            )
+        ) {
+          (boundariesList[level] as TKBoundaries[]).push({
+            pcode:
+              submission[
+                (fdf.spatialDescription.admins[level] as TKBoundaries).pcode
+              ],
+            name:
+              submission[
+                (fdf.spatialDescription.admins[level] as TKBoundaries).name ??
+                  ""
+              ]
+          });
+        }
+      });
     }
     // Exist in sites list
     else {
@@ -314,26 +326,22 @@ export function TKCreateSurvey(
     computeSurveyIndicator(fdf.indicators.home[2], sites)
   ];
 
-  // All admin1.
-  for (const admin1 of boundariesList.admin1) {
-    const pcode = admin1.pcode;
-    const sitesFiltered = sites.filter(site => site.admin1.pcode === pcode);
-    computedIndicators[pcode] = [
-      computeSurveyIndicator(fdf.indicators.home[0], sitesFiltered),
-      computeSurveyIndicator(fdf.indicators.home[1], sitesFiltered),
-      computeSurveyIndicator(fdf.indicators.home[2], sitesFiltered)
-    ];
-  }
-
-  // All admin2.
-  for (const admin2 of boundariesList.admin2) {
-    const pcode = admin2.pcode;
-    const sitesFiltered = sites.filter(site => site.admin2.pcode === pcode);
-    computedIndicators[pcode] = [
-      computeSurveyIndicator(fdf.indicators.home[0], sitesFiltered),
-      computeSurveyIndicator(fdf.indicators.home[1], sitesFiltered),
-      computeSurveyIndicator(fdf.indicators.home[2], sitesFiltered)
-    ];
+  for (const [levelStr, levelBoundaries] of Object.entries(boundariesList)) {
+    if (!levelBoundaries) {
+      continue;
+    }
+    const levelEnum: TKAdminLevel = levelStr as TKAdminLevel;
+    for (const boundaries of levelBoundaries) {
+      const sitesFiltered = sites.filter(
+        site =>
+          (site.admins[levelEnum] as TKBoundaries).pcode === boundaries.pcode
+      );
+      computedIndicators[boundaries.pcode] = [
+        computeSurveyIndicator(fdf.indicators.home[0], sitesFiltered),
+        computeSurveyIndicator(fdf.indicators.home[1], sitesFiltered),
+        computeSurveyIndicator(fdf.indicators.home[2], sitesFiltered)
+      ];
+    }
   }
 
   // //////////////////////////////////////////////////////////////////////////
@@ -350,25 +358,20 @@ export function TKCreateSurvey(
     return 0;
   });
 
-  boundariesList.admin1 = boundariesList.admin1.sort((a, b) => {
-    if (a.name < b.name) {
-      return -1;
-    }
-    if (a.name > b.name) {
-      return 1;
-    }
-    return 0;
-  });
-
-  boundariesList.admin2 = boundariesList.admin2.sort((a, b) => {
-    if (a.name < b.name) {
-      return -1;
-    }
-    if (a.name > b.name) {
-      return 1;
-    }
-    return 0;
-  });
+  for (const levelStr of Object.keys(boundariesList)) {
+    const levelEnum: TKAdminLevel = levelStr as TKAdminLevel;
+    boundariesList[levelEnum] = (boundariesList[
+      levelEnum
+    ] as TKBoundaries[]).sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    });
+  }
 
   return {
     name: fdf.name,

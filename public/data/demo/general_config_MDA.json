@@ -76,8 +76,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
+            "admin1": "pcode",
+            "admin2": "pcode"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_moldova/map/admin0.geojson"
@@ -105,10 +105,10 @@
                 "siteLongitudeField": "longitude",
                 "siteManageByField": "GestionnaireSiteNom",
                 "siteTypeField": "shelter_type",
-                "adm1Pcode": "adm1_pcode",
-                "adm1Name": "raion",
-                "adm2Pcode": "adm2_pcode",
-                "adm2Name": "city"
+                "admin1Pcode": "adm1_pcode",
+                "admin1Name": "raion",
+                "admin2Pcode": "adm2_pcode",
+                "admin2Name": "city"
             },
             "indicators": {
                 "home": [

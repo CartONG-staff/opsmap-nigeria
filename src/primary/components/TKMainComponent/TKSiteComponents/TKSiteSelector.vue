@@ -33,9 +33,9 @@
             flat
             dense
             :label="$t('infosAdmin1')"
-            v-model="dataset.currentAdmin1"
-            :items="dataset.filteredAdmin1List"
-            :disabled="!dataset.filteredAdmin1List.length"
+            v-model="currentAdmin1"
+            :items="filteredAdmin1List"
+            :disabled="!filteredAdmin1List || !filteredAdmin1List.length"
             item-text="name"
             return-object
             clearable
@@ -59,9 +59,9 @@
             flat
             dense
             :label="$t('infosAdmin2')"
-            v-model="dataset.currentAdmin2"
-            :items="dataset.filteredAdmin2List"
-            :disabled="!dataset.filteredAdmin2List.length"
+            v-model="currentAdmin2"
+            :items="filteredAdmin2List"
+            :disabled="!filteredAdmin2List || !filteredAdmin2List.length"
             item-text="name"
             return-object
             clearable
@@ -109,6 +109,8 @@
 </template>
 
 <script lang="ts">
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
+import { TKBoundaries } from "@/domain/survey/TKBoundaries";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Vue, Component } from "vue-property-decorator";
 
@@ -116,6 +118,27 @@ import { Vue, Component } from "vue-property-decorator";
 export default class TKSiteSelector extends Vue {
   get dataset() {
     return TKDatasetModule.dataset;
+  }
+
+  get currentAdmin1() {
+    return this.dataset.getCurrentAdmin(TKAdminLevel.ADMIN1);
+  }
+  set currentAdmin1(item: TKBoundaries | null) {
+    this.dataset.setCurrentAdmin(TKAdminLevel.ADMIN1, item);
+  }
+
+  get filteredAdmin1List() {
+    return this.dataset.getFilteredAdminList(TKAdminLevel.ADMIN1);
+  }
+
+  get currentAdmin2() {
+    return this.dataset.getCurrentAdmin(TKAdminLevel.ADMIN2);
+  }
+  set currentAdmin2(item: TKBoundaries | null) {
+    this.dataset.setCurrentAdmin(TKAdminLevel.ADMIN2, item);
+  }
+  get filteredAdmin2List() {
+    return this.dataset.getFilteredAdminList(TKAdminLevel.ADMIN2);
   }
 }
 </script>

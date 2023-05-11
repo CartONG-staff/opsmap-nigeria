@@ -73,8 +73,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
+            "admin1": "pcode",
+            "admin2": "pcode"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_sudan/map/admin0.geojson"
@@ -101,10 +101,10 @@
                 "siteManageByField": "",
                 "siteNameField": "SITE_NAME",
                 "siteTypeField": "Site_Typology",
-                "adm1Pcode": "adm1pcode",
-                "adm1Name": "STATE",
-                "adm2Pcode": "adm2pcode",
-                "adm2Name": "ZONE"
+                "admin1Pcode": "admin1Pcode",
+                "admin1Name": "STATE",
+                "admin2Pcode": "admin2Pcode",
+                "admin2Name": "ZONE"
             },
             "indicators": {
                 "home": [

@@ -95,8 +95,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
+            "admin1": "pcode",
+            "admin2": "pcode"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson"
@@ -174,10 +174,16 @@
                 "siteManageByField": "cccm_shelter__mangmt",
                 "siteNameField": "mp_site_name",
                 "siteTypeField": "mp_shelter_type",
-                "adm1Pcode": "adm1pcode",
-                "adm1Name": "ggi_state",
-                "adm2Pcode": "adm2pcode",
-                "adm2Name": "ggi_city"
+                "admins": {
+                    "admin1": {
+                        "pcode": "admin1Pcode",
+                        "name": "ggi_state"
+                    },
+                    "admin2": {
+                        "pcode": "admin2Pcode",
+                        "name": "ggi_city"
+                    }
+                }
             }
         }
     ],

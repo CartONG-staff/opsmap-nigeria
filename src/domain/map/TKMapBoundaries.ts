@@ -5,6 +5,8 @@ import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKMapLayers, TKMapLayersSource } from "./TKMapLayers";
 import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 import { TKOpsmapSpatialConfiguration } from "../opsmapConfig/TKOpsmapConfiguration";
+import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
+import { TKBoundaries } from "../survey/TKBoundaries";
 
 export class TKMapBoundaries {
   public admin1: FeatureCollection;
@@ -93,22 +95,22 @@ export class TKMapBoundaries {
 
   setAdmin1Style(dataset: TKDataset) {
     let shouldMapZoom = null;
-    const currentadmin1List = dataset.filteredAdmin1List.map(
-      item => item.pcode
-    );
+    const currentadmin1List = (dataset.getFilteredAdminList(
+      TKAdminLevel.ADMIN1
+    ) as TKBoundaries[]).map(item => item.pcode);
     for (const item of this.admin1.features) {
       if (item.properties) {
-        if (dataset.currentAdmin2) {
+        if (dataset.getCurrentAdmin(TKAdminLevel.ADMIN2)) {
           item.properties.display = "hide";
         } else if (
-          dataset.currentAdmin1 &&
-          dataset.currentAdmin1.pcode ===
-            item.properties[this.dbConfig.adm1DBPcode]
+          dataset.getCurrentAdmin(TKAdminLevel.ADMIN1) &&
+          (dataset.getCurrentAdmin(TKAdminLevel.ADMIN1) as TKBoundaries)
+            .pcode === item.properties[this.dbConfig.admin1]
         ) {
           shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
           item.properties.display = "focus";
         } else if (
-          currentadmin1List.includes(item.properties[this.dbConfig.adm1DBPcode])
+          currentadmin1List.includes(item.properties[this.dbConfig.admin1])
         ) {
           item.properties.display = "hide";
         } else {
@@ -125,20 +127,20 @@ export class TKMapBoundaries {
 
   setAdmin2Style(dataset: TKDataset) {
     let shouldMapZoom = null;
-    const currentadmin2List = dataset.filteredAdmin2List.map(
-      item => item.pcode
-    );
+    const currentadmin2List = (dataset.getFilteredAdminList(
+      TKAdminLevel.ADMIN2
+    ) as TKBoundaries[]).map(item => item.pcode);
     for (const item of this.admin2.features) {
       if (item.properties) {
         if (
-          dataset.currentAdmin2 &&
-          dataset.currentAdmin2.pcode ===
-            item.properties[this.dbConfig.adm2DBPcode]
+          dataset.getCurrentAdmin(TKAdminLevel.ADMIN2) &&
+          (dataset.getCurrentAdmin(TKAdminLevel.ADMIN2) as TKBoundaries)
+            .pcode === item.properties[this.dbConfig.admin2]
         ) {
           shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
           item.properties.display = "focus";
         } else if (
-          currentadmin2List.includes(item.properties[this.dbConfig.adm2DBPcode])
+          currentadmin2List.includes(item.properties[this.dbConfig.admin1])
         ) {
           item.properties.display = "hide";
         } else {

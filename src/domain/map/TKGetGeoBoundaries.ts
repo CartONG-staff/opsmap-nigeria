@@ -2,6 +2,8 @@ import { ArcgisServerDataGetter } from "@/secondary/arcgis/TKArcgisServerDataGet
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKOpsmapSpatialConfiguration } from "../opsmapConfig/TKOpsmapConfiguration";
+import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
+import { TKBoundaries } from "../survey/TKBoundaries";
 
 const ADM1_DB_URL = "core_v2/wrl_polbnd_adm1_a_unhcr/FeatureServer/0";
 const ADM2_DB_URL = "core_v2/wrl_polbnd_adm2_a_unhcr/FeatureServer/0";
@@ -30,22 +32,22 @@ export async function TKGetGeoBoundaries(
 
   // Admin1
   const admin1List = dataset.surveys.flatMap(survey =>
-    survey.boundaries.admin1.map(x => x.pcode)
+    (survey.boundaries[TKAdminLevel.ADMIN1] as TKBoundaries[]).map(x => x.pcode)
   );
   const admin1GeoData = await queryAdmins(
     ADM1_DB_URL,
     admin1List,
-    spatialConfiguration.dbConfig.adm1DBPcode
+    spatialConfiguration.dbConfig.admin1
   );
 
   // Admin2
   const admin2List = dataset.surveys.flatMap(survey =>
-    survey.boundaries.admin2.map(x => x.pcode)
+    (survey.boundaries.admin2 as TKBoundaries[]).map(x => x.pcode)
   );
   const admin2GeoData = await queryAdmins(
     ADM2_DB_URL,
     admin2List,
-    spatialConfiguration.dbConfig.adm2DBPcode
+    spatialConfiguration.dbConfig.admin2
   );
 
   console.log(

@@ -111,6 +111,7 @@
 </template>
 
 <script lang="ts">
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKSurveyAnonymousType } from "@/domain/survey/TKSurvey";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
@@ -137,10 +138,10 @@ export default class TKSiteInfos extends Vue {
   onChange() {
     if (this.dataset) {
       this.admin1 = this.dataset.currentSite
-        ? this.dataset.currentSite.admin1.name
+        ? this.dataset.currentSite.admins[TKAdminLevel.ADMIN1]?.name ?? "-"
         : "-";
       this.admin2 = this.dataset.currentSite
-        ? this.dataset.currentSite.admin2.name
+        ? this.dataset.currentSite.admins[TKAdminLevel.ADMIN2]?.name ?? "-"
         : "-";
 
       this.coordinates = this.dataset.currentSite

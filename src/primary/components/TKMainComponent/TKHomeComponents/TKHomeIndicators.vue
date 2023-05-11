@@ -11,6 +11,8 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import TKIndicatorComponent from "../TKIndicators/TKIndicator.vue";
 import { TKIndicator, TKIndicatorDefault } from "@/domain/survey/TKIndicator";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import { arrayLevelToRoot } from "@/domain/opsmapConfig/TKAdminLevel";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 @Component({
   components: {
     TKIndicatorComponent
@@ -34,38 +36,33 @@ export default class TKHomeIndicators extends Vue {
   @Watch("dataset.lastModification")
   onLastModification() {
     if (!this.dataset.currentSite) {
-      if (this.dataset.currentAdmin2) {
-        this.indicator1 = this.dataset.currentSurvey.computedIndicators[
-          this.dataset.currentAdmin2.pcode
-        ][0];
-        this.indicator2 = this.dataset.currentSurvey.computedIndicators[
-          this.dataset.currentAdmin2.pcode
-        ][1];
-        this.indicator3 = this.dataset.currentSurvey.computedIndicators[
-          this.dataset.currentAdmin2.pcode
-        ][2];
-      } else {
-        if (this.dataset.currentAdmin1) {
+      const levelToTest = arrayLevelToRoot(
+        TKConfigurationModule.configuration.mostGranularAdmin
+      );
+
+      let found = false;
+      for (const level of levelToTest) {
+        const admin = this.dataset.getCurrentAdmin(level);
+        if (admin) {
           this.indicator1 = this.dataset.currentSurvey.computedIndicators[
-            this.dataset.currentAdmin1.pcode
+            admin.pcode
           ][0];
           this.indicator2 = this.dataset.currentSurvey.computedIndicators[
-            this.dataset.currentAdmin1.pcode
+            admin.pcode
           ][1];
           this.indicator3 = this.dataset.currentSurvey.computedIndicators[
-            this.dataset.currentAdmin1.pcode
+            admin.pcode
           ][2];
-        } else {
-          this.indicator1 = this.dataset.currentSurvey.computedIndicators[
-            ""
-          ][0];
-          this.indicator2 = this.dataset.currentSurvey.computedIndicators[
-            ""
-          ][1];
-          this.indicator3 = this.dataset.currentSurvey.computedIndicators[
-            ""
-          ][2];
+
+          found = true;
+          break;
         }
+      }
+
+      if (!found) {
+        this.indicator1 = this.dataset.currentSurvey.computedIndicators[""][0];
+        this.indicator2 = this.dataset.currentSurvey.computedIndicators[""][1];
+        this.indicator3 = this.dataset.currentSurvey.computedIndicators[""][2];
       }
     }
   }
