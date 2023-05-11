@@ -2,7 +2,15 @@ import { TKBoundaries } from "@/domain/survey/TKBoundaries";
 import { TKSubmission } from "./TKSubmission";
 import { TKSite } from "@/domain/survey/TKSite";
 import { TKAdminLevelsBoundariesArray, TKSurvey } from "./TKSurvey";
-import { TKAdminLevel, child, parent } from "../opsmapConfig/TKAdminLevel";
+import {
+  TKAdminLevel,
+  arrayLevelBelowToLeaf,
+  arrayLevelToLeaf,
+  arrayLevelToRoot,
+  arrayLevelUpToRoot,
+  child,
+  parent
+} from "../opsmapConfig/TKAdminLevel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -48,7 +56,9 @@ export class TKDataset {
   private _currentSurvey!: TKSurvey; // ! --> Disable'not defined in ctor error'
 
   // Selection state
-  private _currentAdmins: { [key in TKAdminLevel]?: TKBoundaries | null } = {};
+  private _currentAdmins: {
+    [key in TKAdminLevel]?: TKBoundaries | null;
+  } = {};
 
   private _currentSite: TKSite | null = null;
   private _currentSubmission: TKSubmission | null = null;
@@ -67,12 +77,12 @@ export class TKDataset {
   > = {};
 
   private _filters: Record<TKAdminFilters, TKAdminFiltersTypes> = {
-    survey: null,
+    [TKAdminFilters.SURVEY]: null,
     [TKAdminLevel.ADMIN1]: null,
     [TKAdminLevel.ADMIN2]: null,
     [TKAdminLevel.ADMIN3]: null,
     [TKAdminLevel.ADMIN4]: null,
-    site: null
+    [TKAdminFilters.SITE]: null
   };
   private _levelToZoom: TKAdminFilters = TKAdminFilters.SURVEY;
 
@@ -101,10 +111,6 @@ export class TKDataset {
     return this._lastModification;
   }
 
-  public getFilteredAdminList(level: TKAdminLevel) {
-    return this._filteredAdminList[level];
-  }
-
   public get filteredSitesList(): TKSite[] {
     return this._filteredSitesList;
   }
@@ -125,6 +131,10 @@ export class TKDataset {
 
   public get typeSite() {
     return this._typeSite;
+  }
+
+  public getFilteredAdminList(level: TKAdminLevel) {
+    return this._filteredAdminList[level];
   }
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -253,23 +263,31 @@ export class TKDataset {
   }
 
   public setCurrentAdmin(level: TKAdminLevel, admin: TKBoundaries | null) {
-    let adminBelow: TKAdminLevel | null;
     if (admin) {
       if (admin !== this._currentAdmins[level]) {
+        // Update current admin
         this._currentAdmins[level] = admin;
         this._filters[level] = this._currentAdmins[level]?.pcode ?? "";
 
-        // Clear Below Admin
-        adminBelow = TKConfigurationModule.configuration.mostGranularAdmin;
-        while (adminBelow && adminBelow !== level) {
-          this._filters[adminBelow] = null;
-          this._currentAdmins[adminBelow] = null;
-          adminBelow = parent(adminBelow);
-        }
+        // Clear Below Admins
+        arrayLevelBelowToLeaf(level).forEach(level => {
+          this._filters[level] = null;
+          this._currentAdmins[level] = null;
+        });
 
+        // Clear site
         this._currentSite = null;
         this._currentSubmission = null;
         this._filters[TKAdminFilters.SITE] = null;
+
+        // Update Upper Admins
+        const siteAdmin = this._currentSurvey.sites.find(
+          site => site.admins[level]?.pcode === admin.pcode
+        );
+        arrayLevelUpToRoot(level).forEach(level => {
+          this._currentAdmins[level] = siteAdmin?.admins[level];
+        });
+
         this._levelToZoom = getAdminFiltersFromAdminLevel(level);
         this._lastModification = `${level}=${this._currentAdmins[level]?.pcode}`;
         this.updateFiltering();
@@ -280,21 +298,17 @@ export class TKDataset {
       this._levelToZoom = parentAdminLevel
         ? getAdminFiltersFromAdminLevel(parentAdminLevel)
         : TKAdminFilters.SURVEY;
-
       // Clear current admin and below
-      adminBelow = TKConfigurationModule.configuration.mostGranularAdmin;
-
-      while (adminBelow && adminBelow !== parentAdminLevel) {
-        this._currentAdmins[adminBelow] = null;
-        this._filters[adminBelow] = null;
-        adminBelow = parent(adminBelow);
-      }
+      arrayLevelToLeaf(level).forEach(level => {
+        this._filters[level] = null;
+        this._currentAdmins[level] = null;
+      });
 
       this._currentSite = null;
       this._filters[TKAdminFilters.SITE] = null;
       this._currentSubmission = null;
 
-      this._lastModification = `clearAdmin1`;
+      this._lastModification = `clear:${level}`;
 
       this.updateFiltering();
     }
@@ -339,21 +353,12 @@ export class TKDataset {
         this._levelToZoom = TKAdminFilters.SITE;
 
         if (this._currentSite && this._currentSurvey) {
-          let admin: TKAdminLevel | null =
-            TKConfigurationModule.configuration.mostGranularAdmin;
-          while (admin) {
-            if (
-              this._currentSite.admins[admin] &&
-              this._currentSite.admins[admin] !== this._currentAdmins[admin]
-            ) {
-              this._currentAdmins[admin] = this._currentSite.admins[admin];
-              this._filters[admin] = (this._currentSite.admins[
-                admin
-              ] as TKBoundaries).pcode;
-            }
-
-            admin = parent(admin);
-          }
+          // Update Upper Admins
+          arrayLevelToRoot(
+            TKConfigurationModule.configuration.mostGranularAdmin
+          ).forEach(level => {
+            this._currentAdmins[level] = this._currentSite?.admins[level];
+          });
 
           this._currentSubmission = this._currentSite.submissions[0];
 

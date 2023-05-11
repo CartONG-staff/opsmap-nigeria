@@ -176,11 +176,11 @@
                 "siteTypeField": "mp_shelter_type",
                 "admins": {
                     "admin1": {
-                        "pcode": "admin1Pcode",
+                        "pcode": "adm1pcode",
                         "name": "ggi_state"
                     },
                     "admin2": {
-                        "pcode": "admin2Pcode",
+                        "pcode": "adm2pcode",
                         "name": "ggi_city"
                     }
                 }

@@ -20,10 +20,8 @@ To get rid of the hash, we can use the router’s history mode, which leverages 
   const adminSubPath = arrayRootToLevel(
     TKConfigurationModule.configuration.mostGranularAdmin
   )
-    .map(level => `:${level}/`)
+    .map(level => `:${level}?/`)
     .join("");
-  console.log(adminSubPath);
-
   return new VueRouter({
     mode: "history",
     base: process.env.BASE_URL,

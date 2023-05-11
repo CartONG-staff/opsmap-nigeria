@@ -95,6 +95,24 @@ export function arrayLevelToLeaf(level: TKAdminLevel): Array<TKAdminLevel> {
   return levels;
 }
 
+export function arrayLevelBelowToLeaf(
+  level: TKAdminLevel
+): Array<TKAdminLevel> {
+  const levelBelow = child(level);
+  if (levelBelow) {
+    return arrayLevelToLeaf(levelBelow);
+  }
+  return [];
+}
+
+export function arrayLevelUpToRoot(level: TKAdminLevel): Array<TKAdminLevel> {
+  const levelUp = parent(level);
+  if (levelUp) {
+    return arrayLevelToRoot(levelUp);
+  }
+  return [];
+}
+
 export function arrayLeafToLevel(level: TKAdminLevel): Array<TKAdminLevel> {
   return arrayLevelToLeaf(level).reverse();
 }

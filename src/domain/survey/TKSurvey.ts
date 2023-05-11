@@ -175,7 +175,7 @@ export function TKCreateSurvey(
     TKConfigurationModule.configuration.mostGranularAdmin
   );
   const boundariesList: TKAdminLevelsBoundariesArray = {};
-  ADMIN_LEVELS_ARRAY.map(level => {
+  ADMIN_LEVELS_ARRAY.forEach(level => {
     boundariesList[level] = [];
   });
 
@@ -211,7 +211,7 @@ export function TKCreateSurvey(
     if (!site) {
       // Generate admins
       const admins: TKSiteBoundaries = {};
-      ADMIN_LEVELS_ARRAY.map(level => {
+      ADMIN_LEVELS_ARRAY.forEach(level => {
         admins[level] = {
           pcode: submission[fdf.spatialDescription.admins[level]?.pcode ?? ""],
           name: submission[fdf.spatialDescription.admins[level]?.name ?? ""]
@@ -269,7 +269,7 @@ export function TKCreateSurvey(
       sites.push(site);
 
       // Add the admins if they doesn't exists
-      ADMIN_LEVELS_ARRAY.map(level => {
+      ADMIN_LEVELS_ARRAY.forEach(level => {
         if (!boundariesList[level]) {
           boundariesList[level] = [];
         }
@@ -372,6 +372,8 @@ export function TKCreateSurvey(
       return 0;
     });
   }
+
+  console.log(sites);
 
   return {
     name: fdf.name,

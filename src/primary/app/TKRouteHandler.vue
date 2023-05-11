@@ -60,7 +60,6 @@ export default class TKRouteHandler extends Vue {
     if (this.$route.name === "home") {
       TKDatasetModule.dataset.setCurrentAdmin(TKAdminLevel.ADMIN1, null);
     } else if (this.$route.name === "site") {
-      console.log("there");
       const survey: string = this.$route.params["survey"] ?? "";
       const admin1: string = this.$route.params["admin1"] ?? "";
       const admin2: string = this.$route.params["admin2"] ?? "";
