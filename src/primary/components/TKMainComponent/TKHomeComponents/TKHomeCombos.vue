@@ -93,10 +93,7 @@
 </template>
 
 <script lang="ts">
-import {
-  arrayRootToLevel,
-  TKAdminLevel
-} from "@/domain/opsmapConfig/TKAdminLevel";
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKBoundaries } from "@/domain/survey/TKBoundaries";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
@@ -109,9 +106,7 @@ export default class TKHomeCombos extends Vue {
   }
 
   get levels(): Array<TKAdminLevel> {
-    return arrayRootToLevel(
-      TKConfigurationModule.configuration.mostGranularAdmin
-    );
+    return TKConfigurationModule.configuration.adminLevels;
   }
 
   get currentAdmins() {

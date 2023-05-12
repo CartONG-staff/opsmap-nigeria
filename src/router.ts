@@ -8,7 +8,6 @@ import TKMainComponentIndicatorsHome from "./primary/components/TKMainComponent/
 import TKMainComponentIndicatorsSite from "./primary/components/TKMainComponent/TKMainComponentIndicatorsSite.vue";
 import { TKSiteSelector } from "./primary/components/TKMainComponent/TKSiteComponents";
 import TKConfigurationModule from "./store/modules/configuration/TKConfigurationModule";
-import { arrayRootToLevel } from "./domain/opsmapConfig/TKAdminLevel";
 
 export function initializeRouter(): VueRouter {
   /*
@@ -17,9 +16,7 @@ To get rid of the hash, we can use the router’s history mode, which leverages 
 */
   Vue.use(VueRouter);
 
-  const adminSubPath = arrayRootToLevel(
-    TKConfigurationModule.configuration.mostGranularAdmin
-  )
+  const adminSubPath = TKConfigurationModule.configuration.adminLevels
     .map(level => `:${level}?/`)
     .join("");
   return new VueRouter({

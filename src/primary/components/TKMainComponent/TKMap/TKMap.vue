@@ -31,8 +31,13 @@ import { TKMapSites } from "@/domain/map/TKMapSites";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import {
   computeMapLayersStyle,
-  TKMapLayers,
-  TKMapLayersSource
+  TKMapSource,
+  TKMapLayerStyles,
+  CLUSTERS_CIRCLE,
+  CLUSTERS_COUNT,
+  NOT_SELECTED_SITES,
+  SELECTED_SITE,
+  COUNTRY_MASK
 } from "@/domain/map/TKMapLayers";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
 import { Point } from "geojson";
@@ -56,7 +61,7 @@ export default class TKMap extends Vue {
   markersLoadedCount = 0;
   basemaps = TKBasemapsLayer;
 
-  mapLayerStyle!: Record<TKMapLayers, {}>;
+  mapLayerStyle!: TKMapLayerStyles;
 
   mounted() {
     this.initMap();
@@ -121,11 +126,11 @@ export default class TKMap extends Vue {
     );
 
     const otherSitesSource: mapboxgl.GeoJSONSource = this.map.getSource(
-      TKMapLayersSource.NOTSELECTEDSITESSOURCE
+      TKMapSource.NOT_SELECTED_SITES
     ) as mapboxgl.GeoJSONSource;
     otherSitesSource?.setData(this.mapSites.filteredSites.otherSites);
     const selectedSiteSource: mapboxgl.GeoJSONSource = this.map.getSource(
-      TKMapLayersSource.SELECTEDSITESOURCE
+      TKMapSource.SELECTED_SITE
     ) as mapboxgl.GeoJSONSource;
 
     selectedSiteSource?.setData(this.mapSites.filteredSites.selectedSite);
@@ -252,32 +257,27 @@ export default class TKMap extends Vue {
   }
   addSources() {
     // Add Geographical boundaries sources
-    if (!this.map.getSource(TKMapLayersSource.COUNTRYMASKSOURCE)) {
-      this.map.addSource(TKMapLayersSource.COUNTRYMASKSOURCE, {
+    if (!this.map.getSource(TKMapSource.COUNTRY_MASK)) {
+      this.map.addSource(TKMapSource.COUNTRY_MASK, {
         type: "geojson",
         data: `${process.env.BASE_URL}/${TKConfigurationModule.configuration.spatialConfiguration.localFiles.admin0LocalURL}`
       });
     }
 
     if (this.mapBoundaries) {
-      if (!this.map.getSource(TKMapLayersSource.ADMIN1SOURCE)) {
-        this.map.addSource(TKMapLayersSource.ADMIN1SOURCE, {
-          type: "geojson",
-          data: this.mapBoundaries?.admin1
-        });
-      }
-
-      if (!this.map.getSource(TKMapLayersSource.ADMIN2SOURCE)) {
-        this.map.addSource(TKMapLayersSource.ADMIN2SOURCE, {
-          type: "geojson",
-          data: this.mapBoundaries?.admin2
-        });
-      }
+      TKConfigurationModule.configuration.adminLevelsMap.forEach(level => {
+        if (!this.map.getSource(level)) {
+          this.map.addSource(level, {
+            type: "geojson",
+            data: this.mapBoundaries?.geodataset[level]
+          });
+        }
+      });
     }
     // Add Sites
     if (this.mapSites) {
-      if (!this.map.getSource(TKMapLayersSource.NOTSELECTEDSITESSOURCE)) {
-        this.map.addSource(TKMapLayersSource.NOTSELECTEDSITESSOURCE, {
+      if (!this.map.getSource(TKMapSource.NOT_SELECTED_SITES)) {
+        this.map.addSource(TKMapSource.NOT_SELECTED_SITES, {
           type: "geojson",
           data: this.mapSites.filteredSites.otherSites,
           cluster: true,
@@ -285,8 +285,8 @@ export default class TKMap extends Vue {
           clusterRadius: 50
         });
       }
-      if (!this.map.getSource(TKMapLayersSource.SELECTEDSITESOURCE)) {
-        this.map.addSource(TKMapLayersSource.SELECTEDSITESOURCE, {
+      if (!this.map.getSource(TKMapSource.SELECTED_SITE)) {
+        this.map.addSource(TKMapSource.SELECTED_SITE, {
           type: "geojson",
           data: this.mapSites.filteredSites.selectedSite
         });
@@ -297,42 +297,29 @@ export default class TKMap extends Vue {
 
   addLayers() {
     // ADD ADMIN BOUNDARIES
-    if (!this.map.getLayer(TKMapLayers.COUNTRYMASKLAYER)) {
-      this.map.addLayer(
-        this.mapLayerStyle[TKMapLayers.COUNTRYMASKLAYER] as FillLayer
-      );
+    if (!this.map.getLayer(COUNTRY_MASK)) {
+      this.map.addLayer(this.mapLayerStyle[COUNTRY_MASK] as FillLayer);
     }
-    this.map.addLayer(this.mapLayerStyle[TKMapLayers.ADMIN1LAYER] as FillLayer);
-    this.map.addLayer(
-      this.mapLayerStyle[TKMapLayers.ADMIN1BORDERLAYER] as LineLayer
-    );
-    this.map.addLayer(this.mapLayerStyle[TKMapLayers.ADMIN2LAYER] as FillLayer);
-    this.map.addLayer(
-      this.mapLayerStyle[TKMapLayers.ADMIN2BORDERLAYER] as LineLayer
-    );
+    TKConfigurationModule.configuration.adminLevelsMap.forEach(level => {
+      this.map.addLayer(this.mapLayerStyle[level]?.fill as FillLayer);
+      this.map.addLayer(this.mapLayerStyle[level]?.border as LineLayer);
+    });
+
     // ADD CLUSTERS
-    this.map.addLayer(
-      this.mapLayerStyle[TKMapLayers.CLUSTERSCIRCLELAYER] as CircleLayer
-    );
-    this.map.addLayer(
-      this.mapLayerStyle[TKMapLayers.CLUSTERSCOUNTLAYER] as SymbolLayer
-    );
-    this.map.addLayer(
-      this.mapLayerStyle[TKMapLayers.NOTSELECTEDSITESLAYER] as SymbolLayer
-    );
-    this.map.addLayer(
-      this.mapLayerStyle[TKMapLayers.SELECTEDSITELAYER] as SymbolLayer
-    );
+    this.map.addLayer(this.mapLayerStyle[CLUSTERS_CIRCLE] as CircleLayer);
+    this.map.addLayer(this.mapLayerStyle[CLUSTERS_COUNT] as SymbolLayer);
+    this.map.addLayer(this.mapLayerStyle[NOT_SELECTED_SITES] as SymbolLayer);
+    this.map.addLayer(this.mapLayerStyle[SELECTED_SITE] as SymbolLayer);
 
     // // CLUSTERS BEHAVIOR
-    this.map.on("click", TKMapLayers.CLUSTERSCOUNTLAYER, e => {
+    this.map.on("click", CLUSTERS_COUNT, e => {
       const features = this.map.queryRenderedFeatures(e.point, {
-        layers: [TKMapLayers.CLUSTERSCOUNTLAYER]
+        layers: [CLUSTERS_COUNT as string]
       });
       const clusterId = features[0].properties?.cluster_id;
 
       const otherSitesSource: mapboxgl.GeoJSONSource = this.map.getSource(
-        TKMapLayersSource.NOTSELECTEDSITESSOURCE
+        TKMapSource.NOT_SELECTED_SITES
       ) as mapboxgl.GeoJSONSource;
       otherSitesSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
         if (err) return;
@@ -344,7 +331,7 @@ export default class TKMap extends Vue {
     });
 
     // SITES BEHAVIOR
-    this.map.on("click", TKMapLayers.NOTSELECTEDSITESLAYER, e => {
+    this.map.on("click", NOT_SELECTED_SITES, e => {
       if (e !== undefined && e.features && e.features?.length > 0) {
         TKDatasetModule.dataset.setCurrentSiteByName(
           e.features[0].properties?.name
@@ -355,7 +342,7 @@ export default class TKMap extends Vue {
       closeButton: false,
       closeOnClick: false
     });
-    this.map.on("mouseenter", TKMapLayers.NOTSELECTEDSITESLAYER, e => {
+    this.map.on("mouseenter", NOT_SELECTED_SITES, e => {
       this.map.getCanvas().style.cursor = "pointer";
       if (e.features) {
         const coordinates: [number, number] = [
@@ -372,11 +359,11 @@ export default class TKMap extends Vue {
           .addTo(this.map);
       }
     });
-    this.map.on("mouseleave", TKMapLayers.SELECTEDSITELAYER, () => {
+    this.map.on("mouseleave", SELECTED_SITE, () => {
       this.map.getCanvas().style.cursor = "";
       popup.remove();
     });
-    this.map.on("mouseenter", TKMapLayers.SELECTEDSITELAYER, e => {
+    this.map.on("mouseenter", SELECTED_SITE, e => {
       this.map.getCanvas().style.cursor = "pointer";
       if (e.features) {
         const coordinates: [number, number] = [
@@ -393,7 +380,7 @@ export default class TKMap extends Vue {
           .addTo(this.map);
       }
     });
-    this.map.on("mouseleave", TKMapLayers.NOTSELECTEDSITESLAYER, () => {
+    this.map.on("mouseleave", NOT_SELECTED_SITES, () => {
       this.map.getCanvas().style.cursor = "";
       popup.remove();
     });

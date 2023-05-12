@@ -3,7 +3,6 @@ import {
   TKCSVWrite as TKCSVWriteCurrentSite,
   TKCSVWriteCurrentSelection
 } from "@/secondary/export/TKCSVWriter";
-import { TKAdminLevel, arrayRootToLevel } from "../opsmapConfig/TKAdminLevel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -26,9 +25,7 @@ function computeSiteExportFileBasename(dataset: TKDataset): string {
 function computeSelectionExportFileBasename(dataset: TKDataset): string {
   if (dataset) {
     let filename = "export";
-    filename += arrayRootToLevel(
-      TKConfigurationModule.configuration.mostGranularAdmin
-    ).map(level => {
+    filename += TKConfigurationModule.configuration.adminLevels.map(level => {
       const admin = dataset.getCurrentAdmin(level);
       if (admin) {
         return "_" + admin.name;

@@ -94,9 +94,8 @@ function computeCurrentSelectionCSVContent(
   sites: TKSite[],
   locale: string
 ): string {
-  const adminRef: Array<string> = arrayRootToLevel(
-    TKConfigurationModule.configuration.mostGranularAdmin
-  );
+  const adminRef: Array<string> =
+    TKConfigurationModule.configuration.adminLevels;
 
   const rows = [["name", ...adminRef, "submissionDate"]];
 

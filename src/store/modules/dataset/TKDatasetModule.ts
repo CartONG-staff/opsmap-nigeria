@@ -29,6 +29,7 @@ class TKDatasetModule extends VuexModule {
         for (let i = 0; i < survey.sites.length; i++) {
           const site = survey.sites[i];
           const centroid = computeCentroid(site, geoDataset);
+          // TODO check that this is useful
           if (centroid) {
             survey.sites[i].coordinates = centroid;
           }

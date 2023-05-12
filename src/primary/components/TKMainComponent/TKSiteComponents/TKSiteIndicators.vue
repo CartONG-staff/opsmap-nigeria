@@ -41,9 +41,7 @@ export default class TKSiteIndicators extends Vue {
       this.indicator2 = this.dataset.currentSubmission.indicators[1];
       this.indicator3 = this.dataset.currentSubmission.indicators[2];
     } else {
-      const levelToTest = arrayLevelToRoot(
-        TKConfigurationModule.configuration.mostGranularAdmin
-      );
+      const levelToTest = TKConfigurationModule.configuration.adminLevels;
       let found = false;
       for (const level of levelToTest) {
         const admin = this.dataset.getCurrentAdmin(level);

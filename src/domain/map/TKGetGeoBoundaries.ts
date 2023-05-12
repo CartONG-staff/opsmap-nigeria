@@ -4,9 +4,12 @@ import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKOpsmapSpatialConfiguration } from "../opsmapConfig/TKOpsmapConfiguration";
 import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
 import { TKBoundaries } from "../survey/TKBoundaries";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
-const ADM1_DB_URL = "core_v2/wrl_polbnd_adm1_a_unhcr/FeatureServer/0";
-const ADM2_DB_URL = "core_v2/wrl_polbnd_adm2_a_unhcr/FeatureServer/0";
+const DB_URL: { [key in TKAdminLevel]?: string } = {
+  [TKAdminLevel.ADMIN1]: "core_v2/wrl_polbnd_adm1_a_unhcr/FeatureServer/0",
+  [TKAdminLevel.ADMIN2]: "core_v2/wrl_polbnd_adm2_a_unhcr/FeatureServer/0"
+};
 
 async function queryAdmins(
   dbUrl: string,
@@ -30,32 +33,24 @@ export async function TKGetGeoBoundaries(
 ): Promise<TKGeoDataset> {
   const before = Date.now();
 
-  // Admin1
-  const admin1List = dataset.surveys.flatMap(survey =>
-    (survey.boundaries[TKAdminLevel.ADMIN1] as TKBoundaries[]).map(x => x.pcode)
-  );
-  const admin1GeoData = await queryAdmins(
-    ADM1_DB_URL,
-    admin1List,
-    spatialConfiguration.dbConfig.admin1
-  );
-
-  // Admin2
-  const admin2List = dataset.surveys.flatMap(survey =>
-    (survey.boundaries.admin2 as TKBoundaries[]).map(x => x.pcode)
-  );
-  const admin2GeoData = await queryAdmins(
-    ADM2_DB_URL,
-    admin2List,
-    spatialConfiguration.dbConfig.admin2
-  );
+  const geodataset: TKGeoDataset = {};
+  TKConfigurationModule.configuration.adminLevelsMap.forEach(async level => {
+    if (DB_URL[level]) {
+      // Admin
+      const adminList = dataset.surveys.flatMap(survey =>
+        (survey.boundaries[level] as TKBoundaries[]).map(x => x.pcode)
+      );
+      geodataset[level] = await queryAdmins(
+        DB_URL[level] as string,
+        adminList,
+        spatialConfiguration.dbConfig[level]
+      );
+    }
+  });
 
   console.log(
     `GeoBoundaries retrieved in ${(Date.now() - before) / 1000} seconds.`
   );
 
-  return {
-    admin1: admin1GeoData,
-    admin2: admin2GeoData
-  };
+  return geodataset;
 }

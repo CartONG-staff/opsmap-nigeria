@@ -100,9 +100,7 @@ export default class TKSiteSelector extends Vue {
   }
 
   get levels(): Array<TKAdminLevel> {
-    return arrayRootToLevel(
-      TKConfigurationModule.configuration.mostGranularAdmin
-    );
+    return TKConfigurationModule.configuration.adminLevels;
   }
 
   get currentAdmins() {

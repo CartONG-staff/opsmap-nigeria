@@ -18,78 +18,58 @@ function isBelow(level1: TKAdminLevel, level2: TKAdminLevel): boolean {
   return TKAdminLevelDepth[level1] > TKAdminLevelDepth[level2];
 }
 
+// Sort root first
+export function sortAdminLevelsRootFirst(
+  levels: Array<TKAdminLevel>
+): Array<TKAdminLevel> {
+  return levels.sort((level1: TKAdminLevel, level2: TKAdminLevel): number => {
+    if (level1 === level2) {
+      return 0;
+    } else {
+      return isBelow(level1, level2) ? 1 : -1;
+    }
+  });
+}
+
 // ////////////////////////////////////////////////////////////////////////////
 // Parent
 // ////////////////////////////////////////////////////////////////////////////
 
-export function hasParent(level: TKAdminLevel): boolean {
-  switch (level) {
-    case TKAdminLevel.ADMIN4:
-    case TKAdminLevel.ADMIN3:
-    case TKAdminLevel.ADMIN2:
-      return true;
-    case TKAdminLevel.ADMIN1:
-      return false;
-  }
-}
-
 export function parent(level: TKAdminLevel): TKAdminLevel | null {
-  switch (level) {
-    case TKAdminLevel.ADMIN4:
-      return TKAdminLevel.ADMIN3;
-    case TKAdminLevel.ADMIN3:
-      return TKAdminLevel.ADMIN2;
-    case TKAdminLevel.ADMIN2:
-      return TKAdminLevel.ADMIN1;
-    case TKAdminLevel.ADMIN1:
-      return null;
-  }
+  const levels = TKConfigurationModule.configuration.adminLevels;
+  const index = levels.findIndex(item => item == level);
+  return index > 0 ? levels[index - 1] : null;
 }
 
-// ////////////////////////////////////////////////////////////////////////////
-// Child
-// ////////////////////////////////////////////////////////////////////////////
-
-export function hasChild(level: TKAdminLevel): boolean {
-  const leaf = TKConfigurationModule.configuration.mostGranularAdmin;
-  switch (level) {
-    case TKAdminLevel.ADMIN1:
-    case TKAdminLevel.ADMIN2:
-    case TKAdminLevel.ADMIN3:
-      return isBelow(leaf, level);
-    case TKAdminLevel.ADMIN4:
-      return false;
-  }
+function child(level: TKAdminLevel): TKAdminLevel | null {
+  const levels = TKConfigurationModule.configuration.adminLevels;
+  const index = levels.findIndex(item => item == level);
+  return index < levels.length - 1 ? levels[index + 1] : null;
 }
 
-export function child(level: TKAdminLevel): TKAdminLevel | null {
-  const leaf = TKConfigurationModule.configuration.mostGranularAdmin;
-
-  switch (level) {
-    case TKAdminLevel.ADMIN1:
-      return isBelow(leaf, level) ? TKAdminLevel.ADMIN2 : null;
-    case TKAdminLevel.ADMIN2:
-      return isBelow(leaf, level) ? TKAdminLevel.ADMIN3 : null;
-    case TKAdminLevel.ADMIN3:
-      return isBelow(leaf, level) ? TKAdminLevel.ADMIN4 : null;
-    case TKAdminLevel.ADMIN4:
-      return null;
-  }
+export function root(): TKAdminLevel | null {
+  const levels = TKConfigurationModule.configuration.adminLevels;
+  return levels.length > 0 ? levels[0] : null;
 }
 
-// ////////////////////////////////////////////////////////////////////////////
-//
-// ////////////////////////////////////////////////////////////////////////////
-
-export function arrayLevelToRoot(level: TKAdminLevel): Array<TKAdminLevel> {
-  const levels: Array<TKAdminLevel> = [];
-  let levelIterator: TKAdminLevel | null = level;
-  while (levelIterator) {
-    levels.push(levelIterator);
-    levelIterator = parent(levelIterator);
+export function isRoot(level: TKAdminLevel): boolean {
+  const rootLevel = root();
+  if (!rootLevel) {
+    return false;
   }
+  return rootLevel === level;
+}
 
-  return levels;
+export function leaf(): TKAdminLevel | null {
+  const levels = TKConfigurationModule.configuration.adminLevels;
+  return levels.length > 0 ? levels[levels.length - 1] : null;
+}
+export function isLeaf(level: TKAdminLevel): boolean {
+  const leafLevel = leaf();
+  if (!leafLevel) {
+    return false;
+  }
+  return leafLevel === level;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -97,18 +77,23 @@ export function arrayLevelToRoot(level: TKAdminLevel): Array<TKAdminLevel> {
 // ////////////////////////////////////////////////////////////////////////////
 
 export function arrayRootToLevel(level: TKAdminLevel): Array<TKAdminLevel> {
-  return arrayLevelToRoot(level).reverse();
+  const levels = TKConfigurationModule.configuration.adminLevels;
+  const index = levels.findIndex(item => item == level);
+  return index > -1 ? levels.slice(undefined, index + 1) : [];
 }
 
-export function arrayLevelToLeaf(level: TKAdminLevel): Array<TKAdminLevel> {
-  const levels: Array<TKAdminLevel> = [];
-  let levelIterator: TKAdminLevel | null = level;
-  while (levelIterator) {
-    levels.push(levelIterator);
-    levelIterator = child(levelIterator);
-  }
+export function arrayLevelToRoot(level: TKAdminLevel): Array<TKAdminLevel> {
+  return arrayRootToLevel(level).reverse();
+}
 
-  return levels;
+// ////////////////////////////////////////////////////////////////////////////
+//
+// ////////////////////////////////////////////////////////////////////////////
+
+export function arrayLevelToLeaf(level: TKAdminLevel): Array<TKAdminLevel> {
+  const levels = TKConfigurationModule.configuration.adminLevels;
+  const index = levels.findIndex(item => item == level);
+  return index > -1 ? levels.slice(index, undefined) : [];
 }
 
 export function arrayLevelBelowToLeaf(

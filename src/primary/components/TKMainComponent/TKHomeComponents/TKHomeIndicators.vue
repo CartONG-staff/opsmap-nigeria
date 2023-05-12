@@ -36,9 +36,7 @@ export default class TKHomeIndicators extends Vue {
   @Watch("dataset.lastModification")
   onLastModification() {
     if (!this.dataset.currentSite) {
-      const levelToTest = arrayLevelToRoot(
-        TKConfigurationModule.configuration.mostGranularAdmin
-      );
+      const levelToTest = TKConfigurationModule.configuration.adminLevels;
 
       let found = false;
       for (const level of levelToTest) {

@@ -171,9 +171,7 @@ export function TKCreateSurvey(
 ): TKSurvey {
   let sites: TKSite[] = [];
 
-  const ADMIN_LEVELS_ARRAY = arrayRootToLevel(
-    TKConfigurationModule.configuration.mostGranularAdmin
-  );
+  const ADMIN_LEVELS_ARRAY = TKConfigurationModule.configuration.adminLevels;
   const boundariesList: TKAdminLevelsBoundariesArray = {};
   ADMIN_LEVELS_ARRAY.forEach(level => {
     boundariesList[level] = [];
@@ -326,15 +324,15 @@ export function TKCreateSurvey(
     computeSurveyIndicator(fdf.indicators.home[2], sites)
   ];
 
-  for (const [levelStr, levelBoundaries] of Object.entries(boundariesList)) {
+  for (const [level, levelBoundaries] of Object.entries(boundariesList)) {
     if (!levelBoundaries) {
       continue;
     }
-    const levelEnum: TKAdminLevel = levelStr as TKAdminLevel;
     for (const boundaries of levelBoundaries) {
       const sitesFiltered = sites.filter(
         site =>
-          (site.admins[levelEnum] as TKBoundaries).pcode === boundaries.pcode
+          (site.admins[level as TKAdminLevel] as TKBoundaries).pcode ===
+          boundaries.pcode
       );
       computedIndicators[boundaries.pcode] = [
         computeSurveyIndicator(fdf.indicators.home[0], sitesFiltered),
@@ -358,10 +356,9 @@ export function TKCreateSurvey(
     return 0;
   });
 
-  for (const levelStr of Object.keys(boundariesList)) {
-    const levelEnum: TKAdminLevel = levelStr as TKAdminLevel;
-    boundariesList[levelEnum] = (boundariesList[
-      levelEnum
+  for (const level of Object.keys(boundariesList)) {
+    boundariesList[level as TKAdminLevel] = (boundariesList[
+      level as TKAdminLevel
     ] as TKBoundaries[]).sort((a, b) => {
       if (a.name < b.name) {
         return -1;
