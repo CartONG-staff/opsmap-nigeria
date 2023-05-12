@@ -1,8 +1,21 @@
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+
 export enum TKAdminLevel {
   ADMIN1 = "admin1",
   ADMIN2 = "admin2",
   ADMIN3 = "admin3",
   ADMIN4 = "admin4"
+}
+
+const TKAdminLevelDepth: Record<TKAdminLevel, number> = {
+  [TKAdminLevel.ADMIN1]: 1,
+  [TKAdminLevel.ADMIN2]: 2,
+  [TKAdminLevel.ADMIN3]: 3,
+  [TKAdminLevel.ADMIN4]: 4
+};
+
+function isBelow(level1: TKAdminLevel, level2: TKAdminLevel): boolean {
+  return TKAdminLevelDepth[level1] > TKAdminLevelDepth[level2];
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -38,24 +51,27 @@ export function parent(level: TKAdminLevel): TKAdminLevel | null {
 // ////////////////////////////////////////////////////////////////////////////
 
 export function hasChild(level: TKAdminLevel): boolean {
+  const leaf = TKConfigurationModule.configuration.mostGranularAdmin;
   switch (level) {
     case TKAdminLevel.ADMIN1:
     case TKAdminLevel.ADMIN2:
     case TKAdminLevel.ADMIN3:
-      return true;
+      return isBelow(leaf, level);
     case TKAdminLevel.ADMIN4:
       return false;
   }
 }
 
 export function child(level: TKAdminLevel): TKAdminLevel | null {
+  const leaf = TKConfigurationModule.configuration.mostGranularAdmin;
+
   switch (level) {
     case TKAdminLevel.ADMIN1:
-      return TKAdminLevel.ADMIN2;
+      return isBelow(leaf, level) ? TKAdminLevel.ADMIN2 : null;
     case TKAdminLevel.ADMIN2:
-      return TKAdminLevel.ADMIN3;
+      return isBelow(leaf, level) ? TKAdminLevel.ADMIN3 : null;
     case TKAdminLevel.ADMIN3:
-      return TKAdminLevel.ADMIN4;
+      return isBelow(leaf, level) ? TKAdminLevel.ADMIN4 : null;
     case TKAdminLevel.ADMIN4:
       return null;
   }

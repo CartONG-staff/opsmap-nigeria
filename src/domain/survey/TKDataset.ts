@@ -8,7 +8,7 @@ import {
   arrayLevelToLeaf,
   arrayLevelToRoot,
   arrayLevelUpToRoot,
-  child,
+  arrayRootToLevel,
   parent
 } from "../opsmapConfig/TKAdminLevel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
@@ -131,6 +131,10 @@ export class TKDataset {
 
   public get typeSite() {
     return this._typeSite;
+  }
+
+  public get filteredAdminList() {
+    return this._filteredAdminList;
   }
 
   public getFilteredAdminList(level: TKAdminLevel) {
@@ -257,6 +261,9 @@ export class TKDataset {
   // ////////////////////////////////////////////////////////////////////////////
   // Change Admin1
   // ////////////////////////////////////////////////////////////////////////////
+  get currentAdmins() {
+    return this._currentAdmins;
+  }
 
   public getCurrentAdmin(level: TKAdminLevel): TKBoundaries | null {
     return this._currentAdmins[level] ?? null;
@@ -392,9 +399,7 @@ export class TKDataset {
   filterAdminBaseOnFilteredSite(level: TKAdminLevel): void {
     // Filter Admin based on filtered Site List //////////////////////////////
     const validAdmin = new Set(
-      this._filteredSitesList.map(
-        site => (site.admins[level] as TKBoundaries).pcode
-      )
+      this._filteredSitesList.map(site => site.admins[level]?.pcode)
     );
     this._filteredAdminList[level] = this._filteredAdminList[
       level
@@ -426,35 +431,25 @@ export class TKDataset {
           TKAdminLevel.ADMIN4
         ]
       };
+      const levels = arrayRootToLevel(
+        TKConfigurationModule.configuration.mostGranularAdmin
+      );
 
-      let level: TKAdminLevel | null = TKAdminLevel.ADMIN1;
-      while (level) {
-        if (level && this._filters[level]) {
+      levels.forEach(level => {
+        if (this._filters[level]) {
           this._filteredSitesList = this._filteredSitesList.filter(
             site =>
-              site.admins[level as TKAdminLevel] &&
-              site.admins[level as TKAdminLevel]?.pcode ===
-                this._filters[level as TKAdminLevel]
+              site.admins[level] &&
+              site.admins[level]?.pcode === this._filters[level]
           );
-          let levelBelow = child(level);
-          while (levelBelow) {
+
+          const levelsBelow = arrayLevelBelowToLeaf(level);
+
+          levelsBelow.forEach(levelBelow => {
             this.filterAdminBaseOnFilteredSite(levelBelow);
-            if (
-              levelBelow ===
-              TKConfigurationModule.configuration.mostGranularAdmin
-            ) {
-              break;
-            }
-
-            levelBelow = child(levelBelow);
-          }
+          });
         }
-
-        if (level === TKConfigurationModule.configuration.mostGranularAdmin) {
-          break;
-        }
-        level = child(level);
-      }
+      });
 
       // Update filtered typed sites list
       this._filteredTypedSitesList = this._filteredSitesList.filter(item => {

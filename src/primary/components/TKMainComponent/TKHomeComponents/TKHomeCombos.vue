@@ -36,51 +36,28 @@
         >
       </v-tooltip>
 
-      <v-tooltip right>
+      <v-tooltip v-for="level in levels" :key="level" top>
         <template v-slot:activator="{ on, attrs }">
-          <div multiple v-on="on" v-bind="attrs">
-            <v-autocomplete
-              class="tk-autocomplete"
-              flat
-              dense
-              :label="$t('infosAdmin1')"
-              :items="filteredAdmin1List"
-              item-text="name"
-              v-model="currentAdmin1"
-              return-object
-              clearable
-            ></v-autocomplete>
-          </div>
+          <v-autocomplete
+            class="tk-autocomplete"
+            flat
+            dense
+            :label="$t(`infosAdmins.${level}`)"
+            :value="currentAdmins[level]"
+            @input="currentAdminsChanged(level, $event)"
+            :items="filteredAdminList[level]"
+            :disabled="!filteredAdminList[level]"
+            item-text="name"
+            return-object
+            clearable
+            v-bind="attrs"
+            v-on="on"
+          ></v-autocomplete>
         </template>
         <span
           >{{ $t("selectText") }}
           {{
-            $t("infosAdmin1")
-              .toString()
-              .toLowerCase()
-          }}</span
-        >
-      </v-tooltip>
-      <v-tooltip right>
-        <template v-slot:activator="{ on, attrs }">
-          <div multiple v-on="on" v-bind="attrs">
-            <v-autocomplete
-              class="tk-autocomplete"
-              flat
-              dense
-              :label="$t('infosAdmin2')"
-              v-model="currentAdmin2"
-              :items="filteredAdmin2List"
-              item-text="name"
-              return-object
-              clearable
-            ></v-autocomplete>
-          </div>
-        </template>
-        <span
-          >{{ $t("selectText") }}
-          {{
-            $t("infosAdmin2")
+            $t(`infosAdmins.${level}`)
               .toString()
               .toLowerCase()
           }}</span
@@ -116,8 +93,12 @@
 </template>
 
 <script lang="ts">
-import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
+import {
+  arrayRootToLevel,
+  TKAdminLevel
+} from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKBoundaries } from "@/domain/survey/TKBoundaries";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Component, Vue } from "vue-property-decorator";
 
@@ -127,25 +108,22 @@ export default class TKHomeCombos extends Vue {
     return TKDatasetModule.dataset;
   }
 
-  get currentAdmin1() {
-    return this.dataset.getCurrentAdmin(TKAdminLevel.ADMIN1);
-  }
-  set currentAdmin1(item: TKBoundaries | null) {
-    this.dataset.setCurrentAdmin(TKAdminLevel.ADMIN1, item);
-  }
-
-  get filteredAdmin1List() {
-    return this.dataset.getFilteredAdminList(TKAdminLevel.ADMIN1);
+  get levels(): Array<TKAdminLevel> {
+    return arrayRootToLevel(
+      TKConfigurationModule.configuration.mostGranularAdmin
+    );
   }
 
-  get currentAdmin2() {
-    return this.dataset.getCurrentAdmin(TKAdminLevel.ADMIN2);
+  get currentAdmins() {
+    return this.dataset.currentAdmins;
   }
-  set currentAdmin2(item: TKBoundaries | null) {
-    this.dataset.setCurrentAdmin(TKAdminLevel.ADMIN2, item);
+
+  currentAdminsChanged(level: TKAdminLevel, value: TKBoundaries | null) {
+    this.dataset.setCurrentAdmin(level, value);
   }
-  get filteredAdmin2List() {
-    return this.dataset.getFilteredAdminList(TKAdminLevel.ADMIN2);
+
+  get filteredAdminList() {
+    return this.dataset.filteredAdminList;
   }
 }
 </script>

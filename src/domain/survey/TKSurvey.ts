@@ -373,8 +373,6 @@ export function TKCreateSurvey(
     });
   }
 
-  console.log(sites);
-
   return {
     name: fdf.name,
     sites: sites,
