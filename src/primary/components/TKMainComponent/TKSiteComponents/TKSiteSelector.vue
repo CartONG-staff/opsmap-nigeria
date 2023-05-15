@@ -84,10 +84,7 @@
 </template>
 
 <script lang="ts">
-import {
-  arrayRootToLevel,
-  TKAdminLevel
-} from "@/domain/opsmapConfig/TKAdminLevel";
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKBoundaries } from "@/domain/survey/TKBoundaries";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";

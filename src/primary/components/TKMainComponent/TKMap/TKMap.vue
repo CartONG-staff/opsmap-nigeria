@@ -265,14 +265,16 @@ export default class TKMap extends Vue {
     }
 
     if (this.mapBoundaries) {
-      TKConfigurationModule.configuration.adminLevelsMap.forEach(level => {
-        if (!this.map.getSource(level)) {
-          this.map.addSource(level, {
-            type: "geojson",
-            data: this.mapBoundaries?.geodataset[level]
-          });
+      TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap.forEach(
+        level => {
+          if (!this.map.getSource(level)) {
+            this.map.addSource(level, {
+              type: "geojson",
+              data: this.mapBoundaries?.geodataset[level]
+            });
+          }
         }
-      });
+      );
     }
     // Add Sites
     if (this.mapSites) {
@@ -300,10 +302,12 @@ export default class TKMap extends Vue {
     if (!this.map.getLayer(COUNTRY_MASK)) {
       this.map.addLayer(this.mapLayerStyle[COUNTRY_MASK] as FillLayer);
     }
-    TKConfigurationModule.configuration.adminLevelsMap.forEach(level => {
-      this.map.addLayer(this.mapLayerStyle[level]?.fill as FillLayer);
-      this.map.addLayer(this.mapLayerStyle[level]?.border as LineLayer);
-    });
+    TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap.forEach(
+      level => {
+        this.map.addLayer(this.mapLayerStyle[level]?.fill as FillLayer);
+        this.map.addLayer(this.mapLayerStyle[level]?.border as LineLayer);
+      }
+    );
 
     // ADD CLUSTERS
     this.map.addLayer(this.mapLayerStyle[CLUSTERS_CIRCLE] as CircleLayer);

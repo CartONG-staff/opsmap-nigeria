@@ -34,19 +34,21 @@ export async function TKGetGeoBoundaries(
   const before = Date.now();
 
   const geodataset: TKGeoDataset = {};
-  TKConfigurationModule.configuration.adminLevelsMap.forEach(async level => {
-    if (DB_URL[level]) {
-      // Admin
-      const adminList = dataset.surveys.flatMap(survey =>
-        (survey.boundaries[level] as TKBoundaries[]).map(x => x.pcode)
-      );
-      geodataset[level] = await queryAdmins(
-        DB_URL[level] as string,
-        adminList,
-        spatialConfiguration.dbConfig[level]
-      );
+  TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap.forEach(
+    async level => {
+      if (DB_URL[level]) {
+        // Admin
+        const adminList = dataset.surveys.flatMap(survey =>
+          (survey.boundaries[level] as TKBoundaries[]).map(x => x.pcode)
+        );
+        geodataset[level] = await queryAdmins(
+          DB_URL[level] as string,
+          adminList,
+          spatialConfiguration.dbConfig[level]
+        );
+      }
     }
-  });
+  );
 
   console.log(
     `GeoBoundaries retrieved in ${(Date.now() - before) / 1000} seconds.`

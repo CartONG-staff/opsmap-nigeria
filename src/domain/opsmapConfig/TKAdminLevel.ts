@@ -117,3 +117,20 @@ export function arrayLevelUpToRoot(level: TKAdminLevel): Array<TKAdminLevel> {
 export function arrayLeafToLevel(level: TKAdminLevel): Array<TKAdminLevel> {
   return arrayLevelToLeaf(level).reverse();
 }
+
+// ////////////////////////////////////////////////////////////////////////////
+// Closets ancester
+// ////////////////////////////////////////////////////////////////////////////
+
+export function closestAncesterInAdminLevelMap(
+  level: TKAdminLevel
+): TKAdminLevel | null {
+  const mapLevels =
+    TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap;
+  for (const localLevel of arrayLevelToRoot(level)) {
+    if (mapLevels.includes(localLevel)) {
+      return localLevel;
+    }
+  }
+  return null;
+}

@@ -40,6 +40,7 @@ export interface TKOpsmapSpatialConfiguration {
   localFiles: {
     admin0LocalURL: string;
   };
+  adminLevelsMap: Array<TKAdminLevel>;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -53,7 +54,6 @@ export interface TKOpsmapSpatialConfiguration {
 
 export interface TKOpsmapConfiguration {
   adminLevels: Array<TKAdminLevel>;
-  adminLevelsMap: Array<TKAdminLevel>;
   readonly name: TKLabel;
   title: TKLabel;
   readonly languages: string[];
@@ -123,12 +123,12 @@ export async function TKReadGeneralConfiguration(
   // ////////////////////////////////////////////////////////////////////////////
   // admin
   const adminLevels = [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2];
-  const adminLevelsMap = [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2];
   json.adminLevels = sortAdminLevelsRootFirst(json.adminLevels ?? adminLevels);
-  json.adminLevelsMap = json.adminLevelsMap
-    ? sortAdminLevelsRootFirst(json.adminLevelsMap)
+  const adminLevelsMap = [TKAdminLevel.ADMIN1];
+  json.spatialConfiguration.adminLevelsMap = json.spatialConfiguration
+    .adminLevelsMap
+    ? sortAdminLevelsRootFirst(json.spatialConfiguration.adminLevelsMap)
     : adminLevelsMap;
-
   // ////////////////////////////////////////////////////////////////////////////
   // Mapbox configuration - handle default values
   // ////////////////////////////////////////////////////////////////////////////

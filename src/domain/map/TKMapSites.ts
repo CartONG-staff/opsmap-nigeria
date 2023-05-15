@@ -33,7 +33,7 @@ export class TKMapSites {
         const adminsProperties: {
           [key in TKAdminLevel]?: TKBoundaries;
         } = {};
-        TKConfigurationModule.configuration.adminLevelsMap.forEach(
+        TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap.forEach(
           level => (adminsProperties[level] = site.admins[level])
         );
 
@@ -75,7 +75,7 @@ export function computeCentroid(
   site: TKSite,
   geoDataset: TKGeoDataset
 ): TKSiteCoordinates | false {
-  TKConfigurationModule.configuration.adminLevelsMap
+  TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap
     .reverse()
     .forEach(level => {
       const feature = geoDataset[level]?.features.filter(

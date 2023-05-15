@@ -3,6 +3,10 @@
         "pt",
         "en"
     ],
+    "adminLevel": [
+        "admin1",
+        "admin2"
+    ],
     "iso3": "BRA",
     "name": {
         "en": "Brazil",
@@ -94,6 +98,10 @@
                 5.02
             ]
         },
+        "adminLevelMap": [
+            "admin1",
+            "admin2"
+        ],
         "dbConfig": {
             "admin1": "pcode",
             "admin2": "pcode"

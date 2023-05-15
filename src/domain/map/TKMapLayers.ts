@@ -133,60 +133,62 @@ export function computeMapLayersStyle(
     }
   };
 
-  TKConfigurationModule.configuration.adminLevelsMap.forEach(level => {
-    styles[level] = {
-      fill: {
-        id: level,
-        type: "fill",
-        source: level,
-        layout: {},
-        paint: {
-          "fill-color": TKColors.ACCENT,
-          "fill-opacity": [
-            "match",
-            ["get", "display"],
-            "hide",
-            0.0,
-            "discrete",
-            0.1,
-            "focus",
-            0.1,
-            0.0
-          ]
+  TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap.forEach(
+    level => {
+      styles[level] = {
+        fill: {
+          id: level,
+          type: "fill",
+          source: level,
+          layout: {},
+          paint: {
+            "fill-color": TKColors.ACCENT,
+            "fill-opacity": [
+              "match",
+              ["get", "display"],
+              "hide",
+              0.0,
+              "discrete",
+              0.1,
+              "focus",
+              0.1,
+              0.0
+            ]
+          }
+        },
+        border: {
+          id: `${level}:border`,
+          type: "line",
+          source: level,
+          layout: {},
+          paint: {
+            "line-color": TKColors.ACCENT,
+            "line-width": [
+              "match",
+              ["get", "display"],
+              "hide",
+              0,
+              "discrete",
+              2,
+              "focus",
+              4,
+              0.0
+            ],
+            "line-opacity": [
+              "match",
+              ["get", "display"],
+              "hide",
+              0.0,
+              "discrete",
+              1.0,
+              "focus",
+              1.0,
+              0.0
+            ]
+          }
         }
-      },
-      border: {
-        id: `${level}:border`,
-        type: "line",
-        source: level,
-        layout: {},
-        paint: {
-          "line-color": TKColors.ACCENT,
-          "line-width": [
-            "match",
-            ["get", "display"],
-            "hide",
-            0,
-            "discrete",
-            2,
-            "focus",
-            4,
-            0.0
-          ],
-          "line-opacity": [
-            "match",
-            ["get", "display"],
-            "hide",
-            0.0,
-            "discrete",
-            1.0,
-            "focus",
-            1.0,
-            0.0
-          ]
-        }
-      }
-    };
-  });
+      };
+    }
+  );
   return styles;
 }
