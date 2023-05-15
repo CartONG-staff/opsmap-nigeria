@@ -112,9 +112,9 @@
                 "siteManageByField": "site_management",
                 "siteNameField": "site_name",
                 "siteTypeField": "site_typology",
-                "admin1Pcode": "admin1Pcode",
+                "admin1Pcode": "adm1Pcode",
                 "admin1Name": "region",
-                "admin2Pcode": "admin2Pcode",
+                "admin2Pcode": "adm2Pcode",
                 "admin2Name": "district"
             },
             "indicators": {

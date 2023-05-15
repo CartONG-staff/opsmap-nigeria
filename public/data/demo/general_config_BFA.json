@@ -162,9 +162,9 @@
                 "siteManageByField": "GestionnaireSiteNom",
                 "siteNameField": "site",
                 "siteTypeField": "type_installation",
-                "admin1Pcode": "admin1Pcode",
+                "admin1Pcode": "adm1pcode",
                 "admin1Name": "region",
-                "admin2Pcode": "admin2Pcode",
+                "admin2Pcode": "adm2pcode",
                 "admin2Name": "province"
             }
         }

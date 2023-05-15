@@ -174,9 +174,9 @@
                 "siteManageByField": "cccm_shelter__mangmt",
                 "siteNameField": "mp_site_name",
                 "siteTypeField": "mp_shelter_type",
-                "admin1Pcode": "admin1Pcode",
+                "admin1Pcode": "adm1Pcode",
                 "admin1Name": "ggi_state",
-                "admin2Pcode": "admin2Pcode",
+                "admin2Pcode": "adm2Pcode",
                 "admin2Name": "ggi_city"
             }
         }
