@@ -58,9 +58,9 @@ export function computeMapLayersStyle(
   const siteSelectedTypes: Array<string> = [];
   for (const siteIndex of Object.keys(siteTypesCollection)) {
     const site = siteTypesCollection[siteIndex];
-    siteTypes.push(site.formattedName);
+    siteTypes.push(site.id);
     siteTypes.push(site.iconFileName.normal);
-    siteSelectedTypes.push(site.formattedName);
+    siteSelectedTypes.push(site.id);
     siteSelectedTypes.push(site.iconFileName.selected);
   }
 

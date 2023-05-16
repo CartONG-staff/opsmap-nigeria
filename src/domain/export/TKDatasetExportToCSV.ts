@@ -1,6 +1,6 @@
 import { TKDataset } from "@/domain/survey/TKDataset";
 import {
-  TKCSVWrite as TKCSVWriteCurrentSite,
+  TKCSVWrite,
   TKCSVWriteCurrentSelection
 } from "@/secondary/export/TKCSVWriter";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
@@ -71,11 +71,7 @@ export function TKDatasetExportCurrentSiteToCSV(
   dataset: TKDataset,
   locale: string
 ) {
-  TKCSVWriteCurrentSite(
-    dataset,
-    TKComputeSiteExportFilename(dataset, "csv"),
-    locale
-  );
+  TKCSVWrite(dataset, TKComputeSiteExportFilename(dataset, "csv"), locale);
 }
 
 // ////////////////////////////////////////////////////////////////////////////

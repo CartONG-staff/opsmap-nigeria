@@ -42,7 +42,15 @@ export async function TKCreateDataset(
 
     // Create survey
     console.log(info);
-    surveys.push(TKCreateSurvey(rawData, fdf, languages, info.options));
+    surveys.push(
+      TKCreateSurvey(
+        rawData,
+        fdf,
+        languages,
+        info.options,
+        info.additionalFiltersDescription
+      )
+    );
 
     console.log(
       `Survey  ${info.name} computed in ${(Date.now() - beforeSurvey) /

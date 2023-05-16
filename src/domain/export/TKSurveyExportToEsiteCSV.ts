@@ -41,7 +41,7 @@ function computeEsiteCSVContent(
           site.coordinates.lat.toString(),
           site.coordinates.lng.toString(),
           site.name,
-          site.type.formattedName,
+          site.type.id,
           submission.date
         ];
 
@@ -56,15 +56,11 @@ function computeEsiteCSVContent(
         for (const ruleKey of Object.keys(survey.fdf.submissionsRules)) {
           const rule = survey.fdf.submissionsRules[ruleKey];
           if (rule.chartId === "") {
-            const item = submission.thematics[rule.thematicGroup]?.data?.find(
-              entry =>
-                entry.type === TKSubmissionEntryType.TEXT &&
-                entry.field === rule.fieldName
-            );
+            const entry = submission.entries[rule.fieldName];
 
-            if (item && item.type === TKSubmissionEntryType.TEXT) {
+            if (entry && entry.type === TKSubmissionEntryType.TEXT) {
               siteAsCSVLine.push(
-                TKGetLocalValue(item.answerLabel, locale).replace("\n", " ")
+                TKGetLocalValue(entry.answerLabel, locale).replace("\n", " ")
               );
             } else {
               siteAsCSVLine.push("");

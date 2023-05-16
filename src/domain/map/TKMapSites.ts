@@ -46,7 +46,7 @@ export class TKMapSites {
           properties: {
             id: site.id,
             name: site.name,
-            type: site.type.formattedName,
+            type: site.type.id,
             lastSubmission: site.submissions[0].date,
             lat: site.coordinates.lat,
             lng: site.coordinates.lng,

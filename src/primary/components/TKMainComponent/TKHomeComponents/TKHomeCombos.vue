@@ -63,6 +63,35 @@
           }}</span
         >
       </v-tooltip>
+      <v-tooltip
+        v-for="filter in additionalFilters"
+        :key="filter.description"
+        right
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <div multiple v-on="on" v-bind="attrs">
+            <v-autocomplete
+              class="tk-autocomplete"
+              flat
+              dense
+              clearable
+              label="Additional Filter"
+              :items="filter.candidates"
+              @input="additionalFilterChanged(filter, $event)"
+              item-text="en"
+              return-object
+            ></v-autocomplete>
+          </div>
+        </template>
+        <span
+          >{{ $t("selectText") }}
+          {{
+            $t("infosSite")
+              .toString()
+              .toLowerCase()
+          }}</span
+        >
+      </v-tooltip>
       <v-tooltip right>
         <template v-slot:activator="{ on, attrs }">
           <div multiple v-on="on" v-bind="attrs">
@@ -94,7 +123,9 @@
 
 <script lang="ts">
 import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
+import { TKAdditionalFilter } from "@/domain/survey/TKAdditionalFilter";
 import { TKBoundaries } from "@/domain/survey/TKBoundaries";
+import { TKLabel } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Component, Vue } from "vue-property-decorator";
@@ -115,6 +146,20 @@ export default class TKHomeCombos extends Vue {
 
   currentAdminsChanged(level: TKAdminLevel, value: TKBoundaries | null) {
     this.dataset.setCurrentAdmin(level, value);
+  }
+
+  get additionalFilters(): TKAdditionalFilter[] {
+    return this.dataset.additionalFilters;
+  }
+
+  additionalFilterChanged(filter: TKAdditionalFilter, value: TKLabel | null) {
+    if (!value) {
+      filter.filterValues = [];
+    } else {
+      filter.filterValues = [value];
+    }
+
+    this.dataset.setAdditionalFilter(filter);
   }
 
   get filteredAdminList() {

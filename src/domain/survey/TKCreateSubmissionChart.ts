@@ -7,12 +7,13 @@ import {
   TKSubmissionEntryDoughnut,
   TKSubmissionEntryPolar
 } from "./TKSubmissionEntry";
-import { TKSubmissionThematic } from "./TKSubmissionThematic";
 import { TKLabel } from "../utils/TKLabel";
+import { TKSubmissionThematic } from "./TKSubmissionThematic";
+import { TKSubmissionEntries } from "./TKSubmissionEntries";
 
 export type TKChartData = {
   id: string;
-  thematic: string;
+  thematic: TKSubmissionThematic;
   data: Array<{
     field: string;
     value: string;
@@ -22,7 +23,7 @@ export type TKChartData = {
 
 export type TKChartDataLabeled = {
   id: string;
-  thematic: string;
+  thematic: TKSubmissionThematic;
   data: Array<{
     field: TKLabel;
     value: string;
@@ -80,8 +81,8 @@ function applyOptions(
 
 export function TKCreateSubmissionChart(
   chartData: TKChartData,
-  submission: Record<string, TKSubmissionThematic>,
-  surveyConfiguration: TKFDF
+  surveyConfiguration: TKFDF,
+  entries: TKSubmissionEntries
 ) {
   const chartDataLabeled = applyOptions(chartData, surveyConfiguration);
   if (chartDataLabeled.id.includes("age_pyramid")) {
@@ -94,6 +95,7 @@ export function TKCreateSubmissionChart(
 
     const entry: TKSubmissionEntryAgePyramid = {
       type: TKSubmissionEntryType.CHART_PYRAMID,
+      thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
@@ -102,10 +104,11 @@ export function TKCreateSubmissionChart(
       malesLabels: malesEntries.map(item => item.field),
       femalesLabels: femalesEntries.map(item => item.field)
     };
-    submission[chartDataLabeled.thematic].data.push(entry);
+    entries[entry.chartid] = entry;
   } else if (chartDataLabeled.id.includes("doughnut")) {
     const entry: TKSubmissionEntryDoughnut = {
       type: TKSubmissionEntryType.CHART_DOUGHNUT,
+      thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
@@ -116,10 +119,11 @@ export function TKCreateSubmissionChart(
         };
       })
     };
-    submission[chartDataLabeled.thematic].data.push(entry);
+    entries[entry.chartid] = entry;
   } else if (chartDataLabeled.id.includes("polar_area_chart")) {
     const entry: TKSubmissionEntryPolar = {
       type: TKSubmissionEntryType.CHART_POLAR,
+      thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
@@ -130,10 +134,11 @@ export function TKCreateSubmissionChart(
         };
       })
     };
-    submission[chartDataLabeled.thematic].data.push(entry);
+    entries[entry.chartid] = entry;
   } else if (chartDataLabeled.id.includes("radar_chart")) {
     const entry: TKSubmissionEntryRadar = {
       type: TKSubmissionEntryType.CHART_RADAR,
+      thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
       title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
@@ -144,6 +149,6 @@ export function TKCreateSubmissionChart(
         };
       })
     };
-    submission[chartDataLabeled.thematic].data.push(entry);
+    entries[entry.chartid] = entry;
   }
 }

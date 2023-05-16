@@ -4,7 +4,7 @@ import { TKLabel } from "../utils/TKLabel";
 // Thematic datatype
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKFDFThematic {
-  formattedName: string;
+  id: string;
   iconFileName: string;
   thematicLabel: TKLabel;
 }

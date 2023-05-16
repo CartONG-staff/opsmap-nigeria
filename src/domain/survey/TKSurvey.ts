@@ -24,7 +24,8 @@ import {
 import { TKSubmissionEntryType } from "./TKSubmissionEntry";
 import { getCenterOfBounds } from "../map/TKMapSites";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
-import { TKAdminLevel, arrayRootToLevel } from "../opsmapConfig/TKAdminLevel";
+import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
+import { TKAdditionalFilterDescription } from "./TKAdditionalFilter";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
@@ -35,11 +36,13 @@ export enum TKSurveyAnonymousType {
   TEXT = "text",
   TEXT_AND_MAP = "text and map"
 }
+
 export interface TKSurveyOptions {
   anonymousMode: TKSurveyAnonymousType;
   dateFormat: string;
   listSeparator: string;
 }
+
 export type TKAdminLevelsBoundariesArray = {
   [key in TKAdminLevel]?: TKBoundaries[];
 };
@@ -54,6 +57,7 @@ export interface TKSurvey {
   fdf: TKFDF;
   sites: TKSite[];
   options: TKSurveyOptions;
+  additionalFiltersDescription: TKAdditionalFilterDescription[];
   computedIndicators: Record<string, [TKIndicator, TKIndicator, TKIndicator]>; // pcode -> string
   defaultIndicators: TKFDFIndicators;
 }
@@ -70,6 +74,7 @@ function computeSurveyIndicator(
     | TKFDFIndicatorStandard,
   sites: TKSite[]
 ): TKIndicator {
+  // Handle Site Count
   if (descr.type === TKFDFIndicatorType.SITE_COUNT) {
     return {
       type: TKIndicatorType.STANDARD,
@@ -80,50 +85,27 @@ function computeSurveyIndicator(
       iconOchaName: SITE_COUNT_ICON
     };
   }
-  let foundAtLeastOnce = false;
-  let thematicName = "";
-  let itemIndex = -1;
+
+  // Accumulate results
   const results = [];
   for (const site of sites) {
-    const submission = site.submissions[0];
-    if (submission) {
-      if (!foundAtLeastOnce) {
-        for (const thematic in submission.thematics) {
-          const them = submission.thematics[thematic];
-          itemIndex = them.data.findIndex(
-            item =>
-              item.type === TKSubmissionEntryType.TEXT &&
-              item.field === descr.entryCode
-          );
-          if (itemIndex > -1) {
-            foundAtLeastOnce = true;
-            thematicName = thematic;
-            break;
-          }
-        }
-      }
+    if (site.submissions.length > 0) {
+      const submission = site.submissions[0];
 
+      const item = submission.entries[descr.entryCode];
       if (
-        foundAtLeastOnce &&
-        submission.thematics &&
-        submission.thematics[thematicName] &&
-        submission.thematics[thematicName].data &&
-        submission.thematics[thematicName].data[itemIndex]
+        item &&
+        item.type === TKSubmissionEntryType.TEXT &&
+        item.answerLabel
       ) {
-        const item = submission.thematics[thematicName].data[itemIndex];
-        if (
-          item &&
-          item.type === TKSubmissionEntryType.TEXT &&
-          item.answerLabel
-        ) {
-          results.push(item.answerLabel.en);
-        }
+        results.push(item.answerLabel.en);
       }
     }
   }
 
+  // Process Results
   let result = "-";
-  if (foundAtLeastOnce) {
+  if (results.length > 0) {
     if (
       descr.type === TKFDFIndicatorType.PEOPLE_COUNT ||
       descr.type === TKFDFIndicatorType.STANDARD
@@ -167,7 +149,8 @@ export function TKCreateSurvey(
   submissions: Record<string, string>[],
   fdf: TKFDF,
   languages: Array<string>,
-  options: TKSurveyOptions
+  options: TKSurveyOptions,
+  additionalFiltersDescription: TKAdditionalFilterDescription[]
 ): TKSurvey {
   let sites: TKSite[] = [];
 
@@ -370,6 +353,10 @@ export function TKCreateSurvey(
     });
   }
 
+  // //////////////////////////////////////////////////////////////////////////
+  //
+  // //////////////////////////////////////////////////////////////////////////
+
   return {
     name: fdf.name,
     sites: sites,
@@ -377,6 +364,7 @@ export function TKCreateSurvey(
     computedIndicators: computedIndicators,
     defaultIndicators: fdf.indicators,
     fdf: fdf,
-    options: options
+    options: options,
+    additionalFiltersDescription: additionalFiltersDescription
   };
 }

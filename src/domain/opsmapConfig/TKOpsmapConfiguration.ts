@@ -8,6 +8,7 @@ import {
   TKSurveyOptions
 } from "@/domain/survey/TKSurvey";
 import { TKAdminLevel, sortAdminLevelsRootFirst } from "./TKAdminLevel";
+import { TKAdditionalFilterDescription } from "../survey/TKAdditionalFilter";
 
 // ////////////////////////////////////////////////////////////////////////////
 // JSON format
@@ -212,6 +213,13 @@ export async function TKReadGeneralConfiguration(
     ) {
       json.surveys[i].options.anonymousMode =
         TKSurveyAnonymousType.TEXT_AND_MAP;
+    }
+  }
+
+  const additionalFilters: TKAdditionalFilterDescription[] = ["ggi_city"];
+  for (let i = 0; i < json.surveys.length; i++) {
+    if (!json.surveys[i].additionalFiltersDescription) {
+      json.surveys[i].additionalFiltersDescription = additionalFilters;
     }
   }
 

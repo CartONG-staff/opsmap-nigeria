@@ -10,6 +10,12 @@ import {
   parent
 } from "../opsmapConfig/TKAdminLevel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import {
+  TKAdditionalFilter,
+  computeAdditionalFilterCandidates
+} from "./TKAdditionalFilter";
+import { TKSubmissionEntryType } from "./TKSubmissionEntry";
+import { TKGetLocalValue } from "../utils/TKLabel";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Filters Concept description. Requires Comments !
@@ -68,6 +74,8 @@ export class TKDataset {
 
   private _filteredTypedSitesList: TKSite[] = [];
 
+  private _additionalFilters: TKAdditionalFilter[] = [];
+
   private _typeSite: Record<
     string,
     {
@@ -83,6 +91,7 @@ export class TKDataset {
     [TKAdminLevel.ADMIN4]: null,
     [TKAdminFilters.SITE]: null
   };
+
   private _levelToZoom: TKAdminFilters = TKAdminFilters.SURVEY;
 
   constructor(surveys: TKSurvey[]) {
@@ -136,6 +145,22 @@ export class TKDataset {
     return this._filteredAdminList;
   }
 
+  public get additionalFilters() {
+    return this._additionalFilters;
+  }
+
+  public setAdditionalFilter(filter: TKAdditionalFilter) {
+    const found = this.additionalFilters.find(
+      item => item.description === filter.description
+    );
+    if (found) {
+      console.log("found");
+      console.log(filter.filterValues);
+      found.filterValues = filter.filterValues;
+      this.updateFiltering();
+    }
+  }
+
   public getFilteredAdminList(level: TKAdminLevel) {
     return this._filteredAdminList[level];
   }
@@ -178,10 +203,20 @@ export class TKDataset {
       this._typeSite = {};
       Object.keys(this._currentSurvey.fdf.siteTypes).map(index => {
         const item = this._currentSurvey.fdf.siteTypes[index];
-        this._typeSite[item.formattedName] = {
+        this._typeSite[item.id] = {
           active: true
         };
       });
+
+      this._additionalFilters = this._currentSurvey.additionalFiltersDescription.map(
+        description => {
+          return {
+            description: description,
+            candidates: [],
+            filterValues: []
+          };
+        }
+      );
 
       this._lastModification = `survey=${this._currentSurvey.name}`;
 
@@ -201,18 +236,14 @@ export class TKDataset {
 
     // Update filtered typed sites list
     this._filteredTypedSitesList = this._filteredSitesList.filter(item => {
-      if (this._typeSite[item.type.formattedName]) {
-        return this._typeSite[item.type.formattedName].active;
+      if (this._typeSite[item.type.id]) {
+        return this._typeSite[item.type.id].active;
       }
       return false;
     });
 
     // Clear current site if needed
-    if (
-      this._currentSite &&
-      !value &&
-      this._currentSite.type.formattedName === siteType
-    ) {
+    if (this._currentSite && !value && this._currentSite.type.id === siteType) {
       this._levelToZoom = this._currentAdmins[TKAdminLevel.ADMIN4]
         ? TKAdminFilters.ADMIN4
         : this._currentAdmins[TKAdminLevel.ADMIN3]
@@ -428,8 +459,9 @@ export class TKDataset {
           TKAdminLevel.ADMIN4
         ]
       };
-      const levels = TKConfigurationModule.configuration.adminLevels;
 
+      const levels = TKConfigurationModule.configuration.adminLevels;
+      // Filter based on admins
       levels.forEach(level => {
         if (this._filters[level]) {
           this._filteredSitesList = this._filteredSitesList.filter(
@@ -437,19 +469,58 @@ export class TKDataset {
               site.admins[level] &&
               site.admins[level]?.pcode === this._filters[level]
           );
+        }
+      });
 
+      // Filter based on advanced
+      for (const filter of this._additionalFilters) {
+        console.log(filter);
+        if (filter.filterValues.length > 0) {
+          this._filteredSitesList = this._filteredSitesList.filter(site => {
+            if (!site.submissions.length) {
+              return false;
+            }
+            const entry = site.submissions[0].entries[filter.description];
+            if (!entry || entry.type !== TKSubmissionEntryType.TEXT) {
+              return false;
+            }
+
+            const answerInEnglish = TKGetLocalValue(entry.answerLabel, "en");
+            if (
+              !filter.filterValues
+                .map(value => TKGetLocalValue(value, "en"))
+                .includes(answerInEnglish)
+            ) {
+              return false;
+            }
+
+            return true;
+          });
+        }
+      }
+
+      levels.forEach(level => {
+        if (this._filters[level]) {
+          // update admins based on sitefiltered
           const levelsBelow = arrayLevelBelowToLeaf(level);
-
           levelsBelow.forEach(levelBelow => {
             this.filterAdminBaseOnFilteredSite(levelBelow);
           });
         }
       });
 
+      // update additionalfilter based on sitefiltered
+      for (const filter of this._additionalFilters) {
+        filter.candidates = computeAdditionalFilterCandidates(
+          this._filteredTypedSitesList,
+          filter.description
+        );
+      }
+
       // Update filtered typed sites list
       this._filteredTypedSitesList = this._filteredSitesList.filter(item => {
-        if (item.type && this._typeSite[item.type.formattedName]) {
-          return this._typeSite[item.type.formattedName].active;
+        if (item.type && this._typeSite[item.type.id]) {
+          return this._typeSite[item.type.id].active;
         }
         return false;
       });

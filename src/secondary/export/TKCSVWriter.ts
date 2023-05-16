@@ -1,10 +1,16 @@
 import { TKSite } from "@/domain/survey/TKSite";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
-import { TKSubmissionEntryType } from "../../domain/survey/TKSubmissionEntry";
+import {
+  TKSubmissionEntry,
+  TKSubmissionEntryType
+} from "../../domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "../../domain/utils/TKLabel";
-import { arrayRootToLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import {
+  applyVisualizerOptions,
+  getEntriesForThematic
+} from "@/domain/survey/TKSubmissionEntries";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods
@@ -17,52 +23,56 @@ function computeCurrentSiteCSVContent(
   if (submission) {
     const rows = [["thematic", "label", "value", "trafficlight"]];
 
-    for (const thematic in submission.thematics) {
-      const thematicName = TKGetLocalValue(
-        submission.thematics[thematic].nameLabel,
-        locale
+    for (const thematic of submission.thematics) {
+      const thematicName = TKGetLocalValue(thematic.nameLabel, locale);
+
+      const entriesForThematic = applyVisualizerOptions(
+        getEntriesForThematic(submission.entries, thematic)
       );
 
-      for (const submissionItem in submission.thematics[thematic].data) {
-        const item = submission.thematics[thematic].data[submissionItem];
-        if (item.type === TKSubmissionEntryType.TEXT) {
-          const itemName = TKGetLocalValue(item.fieldLabel, locale);
-          const answer = TKGetLocalValue(item.answerLabel, locale).replaceAll(
+      for (const entry of entriesForThematic) {
+        if (entry.type === TKSubmissionEntryType.TEXT) {
+          const itemName = TKGetLocalValue(entry.fieldLabel, locale);
+          const answer = TKGetLocalValue(entry.answerLabel, locale).replaceAll(
             ";",
             ","
           );
-          const trafficlight = item.trafficLight ? item.trafficLightColor : "";
+          const trafficlight = entry.trafficLight
+            ? entry.trafficLightColor
+            : "";
 
           rows.push([thematicName, itemName, answer, trafficlight]);
-        } else if (item.type === TKSubmissionEntryType.BULLET) {
-          const itemName = TKGetLocalValue(item.fieldLabel, locale);
-          const answer = item.answersLabels
+        } else if (entry.type === TKSubmissionEntryType.BULLET) {
+          const itemName = TKGetLocalValue(entry.fieldLabel, locale);
+          const answer = entry.answersLabels
             .map(label => TKGetLocalValue(label, locale).replaceAll(";", ","))
             .join(", ");
-          const trafficlight = item.trafficLight ? item.trafficLightColor : "";
+          const trafficlight = entry.trafficLight
+            ? entry.trafficLightColor
+            : "";
           rows.push([thematicName, itemName, answer, trafficlight]);
-        } else if (item.type === TKSubmissionEntryType.CHART_PYRAMID) {
+        } else if (entry.type === TKSubmissionEntryType.CHART_PYRAMID) {
           const itemName = "age_pyramid";
-          for (const [index, value] of item.malesEntries.entries()) {
+          for (const [index, value] of entry.malesEntries.entries()) {
             const chartItemName =
               itemName +
               " -- " +
-              TKGetLocalValue(item.malesLabels[index], locale);
+              TKGetLocalValue(entry.malesLabels[index], locale);
             rows.push([thematicName, chartItemName, value.toString(), ""]);
           }
 
-          for (const [index, value] of item.femalesEntries.entries()) {
+          for (const [index, value] of entry.femalesEntries.entries()) {
             const chartItemName =
               itemName +
               " -- " +
-              TKGetLocalValue(item.femalesLabels[index], locale);
+              TKGetLocalValue(entry.femalesLabels[index], locale);
             rows.push([thematicName, chartItemName, value.toString(), ""]);
           }
         }
       }
 
       // Inser indicators right after group_general_info
-      if (thematic === "group_general_info") {
+      if (thematic.id === "group_general_info") {
         for (const index in submission.indicators) {
           const thematicName = "indicators";
           const field = TKGetLocalValue(
@@ -99,22 +109,27 @@ function computeCurrentSelectionCSVContent(
 
   const rows = [["name", ...adminRef, "submissionDate"]];
 
-  if (sites.length && sites[0].submissions.length) {
-    for (const indicator of sites[0].submissions[0].indicators) {
+  const firstSubmission =
+    sites.length && sites[0].submissions.length
+      ? sites[0].submissions[0]
+      : null;
+
+  if (firstSubmission) {
+    // FILL HEADER
+
+    for (const indicator of firstSubmission.indicators) {
       rows[0].push("Indicator/" + TKGetLocalValue(indicator.nameLabel, locale));
     }
-
-    for (const key of Object.keys(sites[0].submissions[0].thematics)) {
-      const thematicEntries = sites[0].submissions[0].thematics[key].data;
-      for (const entry of thematicEntries) {
+    for (const thematic of firstSubmission.thematics) {
+      const entriesForThematic: Array<TKSubmissionEntry> = Object.values(
+        firstSubmission
+      ).filter(entry => entry.thematic.id === thematic.id);
+      for (const entry of entriesForThematic) {
         switch (entry.type) {
           case TKSubmissionEntryType.TEXT:
           case TKSubmissionEntryType.BULLET:
             rows[0].push(
-              TKGetLocalValue(
-                sites[0].submissions[0].thematics[key].nameLabel,
-                locale
-              ) +
+              TKGetLocalValue(thematic.nameLabel, locale) +
                 "/" +
                 TKGetLocalValue(entry.fieldLabel, locale)
             );
@@ -124,10 +139,7 @@ function computeCurrentSelectionCSVContent(
           case TKSubmissionEntryType.CHART_POLAR:
           case TKSubmissionEntryType.CHART_RADAR:
             rows[0].push(
-              TKGetLocalValue(
-                sites[0].submissions[0].thematics[key].nameLabel,
-                locale
-              ) +
+              TKGetLocalValue(thematic.nameLabel, locale) +
                 "/" +
                 TKGetLocalValue(entry.title, locale)
             );
@@ -149,10 +161,13 @@ function computeCurrentSelectionCSVContent(
         row.push(TKGetLocalValue(indicator.valueLabel, locale));
       }
 
-      for (const key of Object.keys(submission.thematics)) {
-        const thematicEntries = submission.thematics[key].data;
-        let val = "";
-        for (const entry of thematicEntries) {
+      for (const thematic of submission.thematics) {
+        const entriesForThematic = getEntriesForThematic(
+          submission.entries,
+          thematic
+        );
+        for (const entry of entriesForThematic) {
+          let val = "";
           switch (entry.type) {
             case TKSubmissionEntryType.TEXT:
               row.push(
@@ -181,8 +196,8 @@ function computeCurrentSelectionCSVContent(
               row.push(
                 entry.entries
                   .map(
-                    item =>
-                      TKGetLocalValue(item.label, locale) + ":" + item.value
+                    entry =>
+                      TKGetLocalValue(entry.label, locale) + ":" + entry.value
                   )
                   .join(",")
               );
@@ -192,6 +207,7 @@ function computeCurrentSelectionCSVContent(
           }
         }
       }
+
       rows.push(row);
     }
   }

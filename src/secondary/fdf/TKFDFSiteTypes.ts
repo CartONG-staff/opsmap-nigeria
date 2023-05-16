@@ -45,7 +45,7 @@ export async function TKReadFDFSiteTypesCollection(
   for (let i = 1; i < rawSiteTypes.length; i++) {
     const item = rawSiteTypes[i];
     siteTypesCollection[item[FORMATTED_NAME_INDEX]] = {
-      formattedName: item[FORMATTED_NAME_INDEX],
+      id: item[FORMATTED_NAME_INDEX],
       iconFileName: {
         normal: item[ICON_NAME_INDEX],
         selected: item[ICON_SELECTED_NAME_INDEX]

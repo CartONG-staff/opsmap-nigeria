@@ -42,7 +42,7 @@ class TKVisualizerOptionsModule extends VuexModule {
     this._sortByTrafficLight = sort;
   }
 
-  get sortByTrafficLigh(): boolean {
+  get sortByTrafficLight(): boolean {
     return this._sortByTrafficLight;
   }
 

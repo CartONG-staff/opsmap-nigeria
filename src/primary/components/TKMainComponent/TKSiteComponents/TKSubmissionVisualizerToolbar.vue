@@ -84,7 +84,7 @@ export default class TKSubmissionVisualizerToolbar extends Vue {
   }
 
   get sortByTrafficLight() {
-    return TKVisualizerOptionsModule.sortByTrafficLigh;
+    return TKVisualizerOptionsModule.sortByTrafficLight;
   }
 
   set sortByTrafficLight(value: boolean) {
