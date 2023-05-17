@@ -53,6 +53,37 @@
           }}</span
         >
       </v-tooltip>
+      <v-tooltip
+        v-for="filter in additionalFilters"
+        :key="filter.description"
+        right
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <div multiple v-on="on" v-bind="attrs">
+            <v-autocomplete
+              class="tk-autocomplete"
+              flat
+              dense
+              clearable
+              :label="getLocalValue(filter.description.name)"
+              :items="filter.candidates"
+              :value="filter.filterValues"
+              @input="additionalFilterChanged(filter, $event)"
+              :item-text="currentLocale"
+              return-object
+              multiple
+            ></v-autocomplete>
+          </div>
+        </template>
+        <span
+          >{{ $t("selectText") }}
+          {{
+            $t("infosSite")
+              .toString()
+              .toLowerCase()
+          }}</span
+        >
+      </v-tooltip>
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <v-autocomplete
@@ -85,13 +116,23 @@
 
 <script lang="ts">
 import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
+import { TKAdditionalFilter } from "@/domain/survey/TKAdditionalFilter";
 import { TKBoundaries } from "@/domain/survey/TKBoundaries";
+import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Vue, Component } from "vue-property-decorator";
 
 @Component
 export default class TKSiteSelector extends Vue {
+  get currentLocale() {
+    return this.$i18n.locale;
+  }
+
+  getLocalValue(label: TKLabel) {
+    return TKGetLocalValue(label, this.$i18n.locale);
+  }
+
   get dataset() {
     return TKDatasetModule.dataset;
   }
@@ -106,6 +147,20 @@ export default class TKSiteSelector extends Vue {
 
   currentAdminsChanged(level: TKAdminLevel, value: TKBoundaries | null) {
     this.dataset.setCurrentAdmin(level, value);
+  }
+
+  get additionalFilters(): TKAdditionalFilter[] {
+    return this.dataset.additionalFilters;
+  }
+
+  additionalFilterChanged(filter: TKAdditionalFilter, value: TKLabel[] | null) {
+    if (!value) {
+      filter.filterValues = [];
+    } else {
+      filter.filterValues = value;
+    }
+
+    this.dataset.setAdditionalFilter(filter);
   }
 
   get filteredAdminList() {
@@ -131,9 +186,8 @@ export default class TKSiteSelector extends Vue {
 
 .tk-autocomplete {
   opacity: 1 !important;
-  width: 20%;
+
   margin: 0 15px;
   height: 30px;
-  min-width: 200px;
 }
 </style>

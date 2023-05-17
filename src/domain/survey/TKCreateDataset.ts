@@ -41,7 +41,6 @@ export async function TKCreateDataset(
     const beforeSurvey = Date.now();
 
     // Create survey
-    console.log(info);
     surveys.push(
       TKCreateSurvey(
         rawData,

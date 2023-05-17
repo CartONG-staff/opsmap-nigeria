@@ -123,8 +123,17 @@
                 "dateFormat": "DD/MM/YYYY",
                 "listSeparator": ";"
             },
+            "additionalFiltersDescription": [
+                {
+                    "field": "cccm_shelter_type",
+                    "name": {
+                        "en": "Shelter",
+                        "pt": "Abrigo"
+                    }
+                }
+            ],
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },

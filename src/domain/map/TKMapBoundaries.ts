@@ -1,10 +1,6 @@
 import { Feature, FeatureCollection } from "geojson";
 import mapboxgl, { LngLat, LngLatBounds, LngLatLike } from "mapbox-gl";
-import {
-  TKDataset,
-  TKAdminFilters,
-  ADMIN_FILTERS_TO_ADMIN_LEVEL
-} from "@/domain/survey/TKDataset";
+import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 import { TKOpsmapSpatialConfiguration } from "../opsmapConfig/TKOpsmapConfiguration";
@@ -17,6 +13,10 @@ import {
 import { TKBoundaries } from "../survey/TKBoundaries";
 import { COUNTRY_MASK } from "./TKMapLayers";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import {
+  ADMIN_FILTERS_TO_ADMIN_LEVEL,
+  TKAdminFilterType
+} from "../survey/TKAdminFilters";
 
 export class TKMapBoundaries {
   public geodataset: TKGeoDataset;
@@ -43,7 +43,7 @@ export class TKMapBoundaries {
     bound: LngLatBounds
   ): void {
     // If survey level
-    if (dataset.levelToZoom === TKAdminFilters.SURVEY) {
+    if (dataset.levelToZoom === TKAdminFilterType.SURVEY) {
       this.mapFitBounds(bound, map);
       // Clear all levels
       TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap.forEach(
@@ -55,7 +55,7 @@ export class TKMapBoundaries {
     // If other level
     else {
       let boundaryLevel: TKAdminLevel | null = null;
-      if (dataset.levelToZoom === TKAdminFilters.SITE) {
+      if (dataset.levelToZoom === TKAdminFilterType.SITE) {
         const leafLevel = leaf();
         if (leafLevel) {
           boundaryLevel = closestAncesterInAdminLevelMap(leafLevel);

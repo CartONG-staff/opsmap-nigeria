@@ -15,7 +15,11 @@ import {
   TKSubmissionThematic,
   TKCreateSubmissionThematic
 } from "./TKSubmissionThematic";
-import { TKIndicator, TKIndicatorType } from "@/domain/survey/TKIndicator";
+import {
+  TKIndicator,
+  TKIndicatorType,
+  TKIndicators
+} from "@/domain/survey/TKIndicator";
 import { TKLabel } from "../utils/TKLabel";
 import {
   TKFDFSubmissionItemType,
@@ -37,7 +41,7 @@ export interface TKSubmission {
   date: string;
   entries: TKSubmissionEntries;
   thematics: Array<TKSubmissionThematic>;
-  indicators: [TKIndicator, TKIndicator, TKIndicator];
+  indicators: TKIndicators;
 }
 
 // ////////////////////////////////////////////////////////////////////////////

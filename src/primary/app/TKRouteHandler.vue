@@ -76,7 +76,7 @@ export default class TKRouteHandler extends Vue {
             TKDatasetModule.dataset.setSubmissionByDate(date);
           }
         } else {
-          TKConfigurationModule.configuration.adminLevels
+          [...TKConfigurationModule.configuration.adminLevels]
             .reverse()
             .forEach(level => {
               const adminName: string = this.$route.params[level] ?? "";
@@ -126,7 +126,11 @@ export default class TKRouteHandler extends Vue {
       );
       path = "/site/" + pathItems.filter(item => item !== "").join("/");
     }
-    if (this.$route.path !== path && this.$route.path !== path + "/") {
+    if (
+      this.$route.path !== path &&
+      this.$route.path !== path + "/" &&
+      !(!TKDatasetModule.dataset.currentSite && this.$route.name === "home") // Prevent to site page when no site is selected
+    ) {
       this.currentRoute = path;
       this.$router.push({
         path: path

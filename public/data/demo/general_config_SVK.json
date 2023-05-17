@@ -118,7 +118,7 @@
                 "admin2Name": "district"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },

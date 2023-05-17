@@ -2,7 +2,10 @@ import { TKGetLocalValue, TKLabel } from "../utils/TKLabel";
 import { TKSite } from "./TKSite";
 import { TKSubmissionEntryType } from "./TKSubmissionEntry";
 
-export type TKAdditionalFilterDescription = string;
+export interface TKAdditionalFilterDescription {
+  field: string;
+  name: TKLabel;
+}
 
 export interface TKAdditionalFilter {
   description: TKAdditionalFilterDescription;
@@ -19,7 +22,7 @@ export function computeAdditionalFilterCandidates(
   for (const site of sites) {
     for (const submissions of site.submissions) {
       const entries = submissions.entries;
-      const entry = entries[filter];
+      const entry = entries[filter.field];
       if (!entry) {
         continue;
       }
@@ -35,4 +38,30 @@ export function computeAdditionalFilterCandidates(
   }
 
   return labels;
+}
+
+export function applyAdditionalFilter(
+  sites: TKSite[],
+  filter: TKAdditionalFilter
+): TKSite[] {
+  return sites.filter(site => {
+    if (!site.submissions.length) {
+      return false;
+    }
+    const entry = site.submissions[0].entries[filter.description.field];
+    if (!entry || entry.type !== TKSubmissionEntryType.TEXT) {
+      return false;
+    }
+
+    const answerInEnglish = TKGetLocalValue(entry.answerLabel, "en");
+    if (
+      !filter.filterValues
+        .map(value => TKGetLocalValue(value, "en"))
+        .includes(answerInEnglish)
+    ) {
+      return false;
+    }
+
+    return true;
+  });
 }

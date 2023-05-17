@@ -107,7 +107,7 @@
                 "admin2Name": "ZONE"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },

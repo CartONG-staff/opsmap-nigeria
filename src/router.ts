@@ -4,8 +4,6 @@ import TKMainComponentLeftHome from "./primary/components/TKMainComponent/TKMain
 import TKMainComponentLeftSite from "./primary/components/TKMainComponent/TKMainComponentLeftSite.vue";
 import TKMainComponentContentHome from "./primary/components/TKMainComponent/TKMainComponentContentHome.vue";
 import TKMainComponentContentSite from "./primary/components/TKMainComponent/TKMainComponentContentSite.vue";
-import TKMainComponentIndicatorsHome from "./primary/components/TKMainComponent/TKMainComponentIndicatorsHome.vue";
-import TKMainComponentIndicatorsSite from "./primary/components/TKMainComponent/TKMainComponentIndicatorsSite.vue";
 import { TKSiteSelector } from "./primary/components/TKMainComponent/TKSiteComponents";
 import TKConfigurationModule from "./store/modules/configuration/TKConfigurationModule";
 
@@ -28,7 +26,6 @@ To get rid of the hash, we can use the router’s history mode, which leverages 
         name: "home",
         components: {
           left: TKMainComponentLeftHome,
-          indicators: TKMainComponentIndicatorsHome,
           content: TKMainComponentContentHome
         }
       },
@@ -38,7 +35,6 @@ To get rid of the hash, we can use the router’s history mode, which leverages 
         components: {
           header: TKSiteSelector,
           left: TKMainComponentLeftSite,
-          indicators: TKMainComponentIndicatorsSite,
           content: TKMainComponentContentSite
         }
       },

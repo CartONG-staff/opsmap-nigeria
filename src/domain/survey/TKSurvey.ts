@@ -2,26 +2,11 @@
 
 import { TKBoundaries } from "./TKBoundaries";
 import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
-import {
-  PEOPLE_COUNT_ICON,
-  SITE_COUNT_ICON,
-  TKIndicator,
-  TKIndicatorType
-} from "./TKIndicator";
-import { PEOPLE_COUNT_LABEL, SITE_COUNT_LABEL } from "./TKIndicatorLabels";
 
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKSite, TKSiteBoundaries } from "@/domain/survey/TKSite";
 import { TKDateCompare, TKDateFormat } from "@/domain/utils/TKDate";
-import {
-  TKFDFIndicatorPeopleCount,
-  TKFDFIndicators,
-  TKFDFIndicatorSiteCount,
-  TKFDFIndicatorStandard,
-  TKFDFIndicatorType,
-  TKFDFIndicatorValueCount
-} from "../fdf/TKFDFIndicators";
-import { TKSubmissionEntryType } from "./TKSubmissionEntry";
+import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
 import { getCenterOfBounds } from "../map/TKMapSites";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
@@ -58,87 +43,7 @@ export interface TKSurvey {
   sites: TKSite[];
   options: TKSurveyOptions;
   additionalFiltersDescription: TKAdditionalFilterDescription[];
-  computedIndicators: Record<string, [TKIndicator, TKIndicator, TKIndicator]>; // pcode -> string
   defaultIndicators: TKFDFIndicators;
-}
-
-// ////////////////////////////////////////////////////////////////////////////
-// helper method that compute survey indicator
-// ////////////////////////////////////////////////////////////////////////////
-
-function computeSurveyIndicator(
-  descr:
-    | TKFDFIndicatorSiteCount
-    | TKFDFIndicatorPeopleCount
-    | TKFDFIndicatorValueCount
-    | TKFDFIndicatorStandard,
-  sites: TKSite[]
-): TKIndicator {
-  // Handle Site Count
-  if (descr.type === TKFDFIndicatorType.SITE_COUNT) {
-    return {
-      type: TKIndicatorType.STANDARD,
-      nameLabel: SITE_COUNT_LABEL,
-      valueLabel: {
-        en: String(sites.length)
-      },
-      iconOchaName: SITE_COUNT_ICON
-    };
-  }
-
-  // Accumulate results
-  const results = [];
-  for (const site of sites) {
-    if (site.submissions.length > 0) {
-      const submission = site.submissions[0];
-
-      const item = submission.entries[descr.entryCode];
-      if (
-        item &&
-        item.type === TKSubmissionEntryType.TEXT &&
-        item.answerLabel
-      ) {
-        results.push(item.answerLabel.en);
-      }
-    }
-  }
-
-  // Process Results
-  let result = "-";
-  if (results.length > 0) {
-    if (
-      descr.type === TKFDFIndicatorType.PEOPLE_COUNT ||
-      descr.type === TKFDFIndicatorType.STANDARD
-    ) {
-      // Do the sum of numeric value
-      result = String(
-        results.reduce(
-          (sum, current) =>
-            sum +
-            (!isNaN(parseFloat(current)) ? Math.floor(parseFloat(current)) : 0),
-          0
-        )
-      );
-    } else if (descr.type === TKFDFIndicatorType.VALUE_COUNT) {
-      result = String(results.filter(item => item === descr.refValue).length);
-    }
-  }
-
-  if (descr.type === TKFDFIndicatorType.PEOPLE_COUNT) {
-    return {
-      type: TKIndicatorType.STANDARD,
-      nameLabel: PEOPLE_COUNT_LABEL,
-      valueLabel: { en: result },
-      iconOchaName: PEOPLE_COUNT_ICON
-    };
-  }
-
-  return {
-    type: TKIndicatorType.STANDARD,
-    iconOchaName: descr.iconOchaName,
-    nameLabel: descr.name,
-    valueLabel: { en: result }
-  };
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -292,40 +197,6 @@ export function TKCreateSurvey(
   );
 
   // //////////////////////////////////////////////////////////////////////////
-  // Compute all indicators
-  // //////////////////////////////////////////////////////////////////////////
-
-  const computedIndicators: Record<
-    string,
-    [TKIndicator, TKIndicator, TKIndicator]
-  > = {};
-
-  // Root.
-  computedIndicators[""] = [
-    computeSurveyIndicator(fdf.indicators.home[0], sites),
-    computeSurveyIndicator(fdf.indicators.home[1], sites),
-    computeSurveyIndicator(fdf.indicators.home[2], sites)
-  ];
-
-  for (const [level, levelBoundaries] of Object.entries(boundariesList)) {
-    if (!levelBoundaries) {
-      continue;
-    }
-    for (const boundaries of levelBoundaries) {
-      const sitesFiltered = sites.filter(
-        site =>
-          (site.admins[level as TKAdminLevel] as TKBoundaries).pcode ===
-          boundaries.pcode
-      );
-      computedIndicators[boundaries.pcode] = [
-        computeSurveyIndicator(fdf.indicators.home[0], sitesFiltered),
-        computeSurveyIndicator(fdf.indicators.home[1], sitesFiltered),
-        computeSurveyIndicator(fdf.indicators.home[2], sitesFiltered)
-      ];
-    }
-  }
-
-  // //////////////////////////////////////////////////////////////////////////
   // Sort by alphabetical order
   // //////////////////////////////////////////////////////////////////////////
 
@@ -361,7 +232,6 @@ export function TKCreateSurvey(
     name: fdf.name,
     sites: sites,
     boundaries: boundariesList,
-    computedIndicators: computedIndicators,
     defaultIndicators: fdf.indicators,
     fdf: fdf,
     options: options,

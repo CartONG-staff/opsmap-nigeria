@@ -111,7 +111,7 @@
                 "admin2Name": "city"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },

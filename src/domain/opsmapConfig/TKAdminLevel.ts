@@ -118,6 +118,13 @@ export function arrayLeafToLevel(level: TKAdminLevel): Array<TKAdminLevel> {
   return arrayLevelToLeaf(level).reverse();
 }
 
+export function arrayRootToLeaf(): Array<TKAdminLevel> {
+  return [...TKConfigurationModule.configuration.adminLevels];
+}
+
+export function arrayLeafToRoot(): Array<TKAdminLevel> {
+  return arrayRootToLeaf().reverse();
+}
 // ////////////////////////////////////////////////////////////////////////////
 // Closets ancester
 // ////////////////////////////////////////////////////////////////////////////

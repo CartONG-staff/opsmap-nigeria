@@ -6,7 +6,7 @@ import {
 } from "vuex-module-decorators";
 import store from "@/store";
 
-const DEFAULT_HIDE_UNANSWERED = false;
+const DEFAULT_HIDE_UNANSWERED = true;
 const DEFAULT_SORT_BY_TRAFFICLIGHT = false;
 const DEFAULT_FILTER_VALUE = "";
 const DEFAULT_SHOW_VISUALIZER_OPTIONS = false;

@@ -10,7 +10,7 @@
           }}
         </p>
       </transition>
-      <v-tooltip right>
+      <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <div multiple v-on="on" v-bind="attrs">
             <v-autocomplete
@@ -66,7 +66,7 @@
       <v-tooltip
         v-for="filter in additionalFilters"
         :key="filter.description"
-        right
+        top
       >
         <template v-slot:activator="{ on, attrs }">
           <div multiple v-on="on" v-bind="attrs">
@@ -75,11 +75,13 @@
               flat
               dense
               clearable
-              label="Additional Filter"
+              :label="getLocalValue(filter.description.name)"
               :items="filter.candidates"
+              :value="filter.filterValues"
               @input="additionalFilterChanged(filter, $event)"
-              item-text="en"
+              :item-text="currentLocale"
               return-object
+              multiple
             ></v-autocomplete>
           </div>
         </template>
@@ -92,7 +94,7 @@
           }}</span
         >
       </v-tooltip>
-      <v-tooltip right>
+      <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <div multiple v-on="on" v-bind="attrs">
             <v-autocomplete
@@ -125,13 +127,21 @@
 import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKAdditionalFilter } from "@/domain/survey/TKAdditionalFilter";
 import { TKBoundaries } from "@/domain/survey/TKBoundaries";
-import { TKLabel } from "@/domain/utils/TKLabel";
+import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class TKHomeCombos extends Vue {
+  get currentLocale() {
+    return this.$i18n.locale;
+  }
+
+  getLocalValue(label: TKLabel) {
+    return TKGetLocalValue(label, this.$i18n.locale);
+  }
+
   get dataset() {
     return TKDatasetModule.dataset;
   }
@@ -152,11 +162,11 @@ export default class TKHomeCombos extends Vue {
     return this.dataset.additionalFilters;
   }
 
-  additionalFilterChanged(filter: TKAdditionalFilter, value: TKLabel | null) {
+  additionalFilterChanged(filter: TKAdditionalFilter, value: TKLabel[] | null) {
     if (!value) {
       filter.filterValues = [];
     } else {
-      filter.filterValues = [value];
+      filter.filterValues = value;
     }
 
     this.dataset.setAdditionalFilter(filter);

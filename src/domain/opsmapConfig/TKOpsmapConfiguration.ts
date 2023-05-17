@@ -216,7 +216,7 @@ export async function TKReadGeneralConfiguration(
     }
   }
 
-  const additionalFilters: TKAdditionalFilterDescription[] = ["ggi_city"];
+  const additionalFilters: TKAdditionalFilterDescription[] = [];
   for (let i = 0; i < json.surveys.length; i++) {
     if (!json.surveys[i].additionalFiltersDescription) {
       json.surveys[i].additionalFiltersDescription = additionalFilters;

@@ -128,7 +128,7 @@
                 "admin2Name": "localisation_district_label"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },

@@ -103,7 +103,7 @@
                 "listSeparator": ";"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },
