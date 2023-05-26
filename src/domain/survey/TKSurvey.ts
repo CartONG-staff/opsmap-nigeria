@@ -72,7 +72,7 @@ export function TKCreateSurvey(
   );
 
   // Apply formatting to date item
-  if (options.inputDateFormat) {
+  if (options.inputDateFormat && options.displayDateFormat) {
     submissions.map(submission => {
       submission[fdf.spatialDescription.siteLastUpdateField] = TKDateFormat(
         submission[fdf.spatialDescription.siteLastUpdateField],
@@ -194,7 +194,7 @@ export function TKCreateSurvey(
   // Sort the dates and update last submission date for each site
   sites.map(site =>
     site.submissions.sort((a: TKSubmission, b: TKSubmission) => {
-      return TKDateCompare(a.date, b.date);
+      return TKDateCompare(a.date, b.date, options.displayDateFormat);
     })
   );
 
