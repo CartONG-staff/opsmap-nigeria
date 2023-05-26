@@ -205,7 +205,7 @@
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2DKV-aqg-9SZMBBtg7A3bWShMdZPLoT5HLOQY_bjpREMa4cC91YAu-DWsMDNdo5rm71G2uh7b8DBl/pub?gid=845458241&single=true&output=csv",
             "options": {
                 "anonymousMode": "text",
-                "dateFormat": "DD/MM/YYYY",
+                "inputDateFormat": "DD/MM/YYYY",
                 "listSeparator": ";"
             },
             "spatial": {

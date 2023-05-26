@@ -25,10 +25,13 @@ export function TKDateCompare(date1: string, date2: string): number {
 // sort dates
 // ////////////////////////////////////////////////////////////////////////////
 
-export function TKDateFormat(date: string, format: string): string {
-  if (format) {
-    const day = moment(date, format);
-    return day.format("DD/MM/YYYY");
+export function TKDateFormat(
+  date: string,
+  inputFormat: string,
+  outputFormat: string
+): string {
+  if (inputFormat) {
+    return moment(date, inputFormat).format(outputFormat);
   }
 
   return date;
