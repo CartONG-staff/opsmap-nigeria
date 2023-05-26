@@ -1,7 +1,7 @@
 {
     "languages": [
-        "pt",
-        "en"
+        "en",
+        "br"
     ],
     "adminLevel": [
         "admin1",
@@ -117,8 +117,7 @@
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=1157434408&single=true&output=csv",
             "options": {
                 "inputDateFormat": "DD/MM/YYYY",
-                "listSeparator": ";",
-                "anonymousMode": "text and map"
+                "listSeparator": ";"
             },
             "indicators": {
                 "area": [
@@ -179,22 +178,17 @@
                 "siteManageByField": "cccm_shelter__mangmt",
                 "siteNameField": "mp_site_name",
                 "siteTypeField": "mp_shelter_type",
-                "admins": {
-                    "admin1": {
-                        "pcode": "adm1pcode",
-                        "name": "ggi_state"
-                    },
-                    "admin2": {
-                        "pcode": "adm2pcode",
-                        "name": "ggi_city"
-                    }
-                }
+                "admin1Pcode": "adm1Pcode",
+                "admin1Name": "ggi_state",
+                "admin2Pcode": "adm2Pcode",
+                "admin2Name": "ggi_city"
             }
         }
     ],
     "options": {
         "showCCCMLogo": false,
         "pdfColumnCount": 3,
+        "showDemoBanner": false,
         "exportAsCSVonHomePage": true
     }
 }
