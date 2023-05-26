@@ -195,7 +195,8 @@ export async function TKReadGeneralConfiguration(
 
   // TODO: move manage by in another spot. Not an otion, more a description
   const defaultSurveyOptions: TKSurveyOptions = {
-    dateFormat: "DD/MM/YYYY",
+    inputDateFormat: "DD/MM/YYYY",
+    displayDateFormat: "DD/MM/YYYY",
     listSeparator: ";",
     anonymousMode: TKSurveyAnonymousType.NONE
   };

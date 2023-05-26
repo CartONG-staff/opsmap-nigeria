@@ -110,7 +110,7 @@
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSq0vS3rj8y-Y3kHXsnxh150bD0SU7vPT_Dxiabd3IrniTcyD42R_HoduxuH-CDOGGdURFD8dXBeTil/pub?gid=0&single=true&output=csv",
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSq0vS3rj8y-Y3kHXsnxh150bD0SU7vPT_Dxiabd3IrniTcyD42R_HoduxuH-CDOGGdURFD8dXBeTil/pub?gid=1908543421&single=true&output=csv",
             "options": {
-                "dateFormat": "DD/MM/YYYY",
+                "inputDateFormat": "DD/MM/YYYY",
                 "listSeparator": ";",
                 "anonymousMode": "text"
             },

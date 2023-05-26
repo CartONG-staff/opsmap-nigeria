@@ -24,7 +24,8 @@ export enum TKSurveyAnonymousType {
 
 export interface TKSurveyOptions {
   anonymousMode: TKSurveyAnonymousType;
-  dateFormat: string;
+  inputDateFormat: string;
+  displayDateFormat: string;
   listSeparator: string;
 }
 
@@ -71,11 +72,12 @@ export function TKCreateSurvey(
   );
 
   // Apply formatting to date item
-  if (options.dateFormat) {
+  if (options.inputDateFormat) {
     submissions.map(submission => {
       submission[fdf.spatialDescription.siteLastUpdateField] = TKDateFormat(
         submission[fdf.spatialDescription.siteLastUpdateField],
-        options.dateFormat
+        options.inputDateFormat,
+        options.displayDateFormat
       );
     });
   }

@@ -90,7 +90,7 @@
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6ABYLmhxjPRcE9WUYkhcjoIHT5_RL1vP0Gs6sx0BHxsCYnVXmUzOECL6Qf460mBFZM_F2k8yl6CDf/pub?gid=0&single=true&output=csv",
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6ABYLmhxjPRcE9WUYkhcjoIHT5_RL1vP0Gs6sx0BHxsCYnVXmUzOECL6Qf460mBFZM_F2k8yl6CDf/pub?gid=2105275364&single=true&output=csv",
             "options": {
-                "dateFormat": "DD/MM/YYYY",
+                "inputDateFormat": "DD/MM/YYYY",
                 "listSeparator": ";"
             },
             "spatial": {
