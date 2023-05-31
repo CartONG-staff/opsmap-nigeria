@@ -117,19 +117,14 @@
     ],
     // Spatial configuration the app
     // The spatial configuration is MapConfig + DBConfig + LocalFiles
-    // MapConfig: it's mapbox related options:
-    // - token: (default: mapbox token)
-    // - style: (default: first item of TKBasemapsLayer, "mapbox://styles/unhcr/ckvl4xy2mj45z15mpkq6w2nv8")
-    // - padding (default: 100)
-    // - zoomspeed: (default: 2)
-    // - bounds: (default: [-74.17, -33.34, -33.57, 5.02])
-    // MapConfig is optional, but setting the correct bounds is highly recommended
-    // DB Config: it's the fields that contains the the id of the admin on the db side (unhcr side). 
-    // (Mandatory).It is mostly 'pcode', but for some opsmap it has been open to other identification that pcode)
-    // localFiles: it contains the url of the admin0 geojson file. 
-    // - the file is the mask used to highlight the country in the app 
-    // (Mandatory)
     "spatialConfiguration": {
+        // MapConfig: it's mapbox related options:
+        // - token: (default: mapbox token)
+        // - style: (default: first item of TKBasemapsLayer, "mapbox://styles/unhcr/ckvl4xy2mj45z15mpkq6w2nv8")
+        // - padding (default: 100)
+        // - zoomspeed: (default: 2)
+        // - bounds: (default: [-74.17, -33.34, -33.57, 5.02])
+        // (Optional, but setting the correct bounds is highly recommended)
         "mapConfig": {
             "bounds": [
                 -74.17,
@@ -138,10 +133,15 @@
                 5.02
             ]
         },
+        // DB Config: it's the fields that contains the the id of the admin on the db side (unhcr side). 
+        // (Mandatory).It is mostly 'pcode', but for some opsmap it has been open to other identification that pcode)
         "dbConfig": {
             "adm1DBPcode": "pcode",
             "adm2DBPcode": "pcode"
         },
+        // localFiles: it contains the url of the admin0 geojson file. 
+        // - the file is the mask used to highlight the country in the app 
+        // (Mandatory)
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson"
         }
@@ -151,106 +151,55 @@
     // This is the most complex
     // It is a list of surveys, that could be one of 3 differents types: "kobo" | "gsheet" | "csv"
     // All of them have:
-    // - type: "kobo" | "gsheet" | "csv"
-    // - name: string (mandatory)
-    // - indicators: two list -> home (group of surveys) and site (single survey). CF sections below
-    // - fdf: information regarding the fdf associated to this survey
-    //    - folder: string url of the folder that contains the fdf
-    // - spatial: a spatial description:
-    //    - siteIDField: string
-    //    - siteManageByField: string
-    //    - siteManageByAltValue?: string
-    //    - siteNameField: string
-    //    - siteLastUpdateField: string
-    //    - siteLatitudeField?: string
-    //    - siteLongitudeField?: string
-    //    - siteTypeField: string
-    //    - adm1Pcode: string //pcode field in dataset
-    //    - adm1Name: string
-    //    - adm2Pcode: string //pcode field in dataset
-    //    - adm2Name: string
-    // - options (Optional)
-    //    - dateFormat: format of the date in the dataset (default: "DD/MM/YYYY")
-    //    - listSeparator: separator used as separator for list in the dataset (default: ";")
-    //    - anonymousMode: "none" | "text" | "text and map"
     // The others fields are survey type dependant.
-    // Survey Type KOBO
-    // - type: "kobo" 
-    // - url: url of the json exported survey. It should be something like: https://kobo.humanitarianresponse.info/api/v2/assets/{{ASSETS_ID}}/data.json 
-    // - token: token used to access kobo server
-    //
-    // Survey Type GSHEET
-    // - type: "gsheet" 
-    // - submissionsUrl: url of the submissions
-    // - submissionsTrUrl: url of the translation file associated to the submissions
-    //
-    // Survey Type CSV
-    // - type: "csv" 
-    // - submissionsLocalUrl: url of the submissions
-    // - submissionsTrLocalUrl: url of the translation file associated to the submissions
-    //
-    // Indicators - Home (groups)
-    // The first one is "site count"
-    // - type: "site_count"
-    // The second one is "people_count"
-    // - type: "people_count"
-    // - entryCode: "demo_num_indv"
-    // The third one is one of twos: "standard" | "value_count"
-    // - standard: do the sum of a numeric value field
-    //   - type: "standard"
-    //   - name: label
-    //   - iconOchaName: string
-    //   - entryCode: string
-    // - value_count: count the references for a specific value (ex: shelter = "new")
-    //   - type: "value_count"
-    //   - name: TKLabel (name)
-    //   - entryCode: string (field to look at)
-    //   - refValue: string (value of reference)
-    //   - iconOchaName: string
-    // Indicators - Site
-    // Can be one of 3 types: "standard" | "site_occcupation" | "computation"
-    // - standard: display field content
-    //   - type: "standard"
-    //   - name: label
-    //   - iconOchaName: string
-    //   - entryCode: string
-    // - site_occupation: display occupation ratio of site
-    //   - type: "site_occcupation"
-    //   - name: label
-    //   - iconOchaName: string
-    //   - entryCodePeopleCount: field that contains the number of people
-    //   - entryCodeMaxPeopleCount: field that contains the maximum number of people
-    //   - entryCodeMaxCapacity (optional): field that contains a field content to be assocaited to the indicator. default is null
-    // - computation: offer the possibility of a mathematical operation between two fields. 
-    //   - type: "computation"
-    //   - name: label
-    //   - iconOchaName: string
-    //   - entryCode1: field 1 
-    //   - entryCode2: field 2
-    //   - operator: operation between those two fields
-    //   - rnumberStrategy: "round" (optional). Round number in the end if flag is active
     "surveys": [
         {
-            "type": "gsheet",
+            // - fdf: information regarding the fdf associated to this survey
+            //    - folder: string url of the folder that contains the fdf
             "fdf": {
                 "folder": "/data/demo/DEMO_brazil/BR_FDF_s1_080421"
             },
+            // - name: string (mandatory)
             "name": "Form A",
-            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=0&single=true&output=csv",
-            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=1157434408&single=true&output=csv",
+            // - options (Optional)
+            //    - dateFormat: format of the date in the dataset (default: "DD/MM/YYYY")
+            //    - listSeparator: separator used as separator for list in the dataset (default: ";")
+            //    - anonymousMode: "none" | "text" | "text and map"
+            //           "none" --> as it is. no anonymation
+            //           "text" --> sites location are set to their exact location on the map, but gps coordinates are removed from text fields
+            //           "text and map" --> sites location are set to the centroid of the parent admin level (ex admin2) and gps coordinates are removed from text fields
             "options": {
                 "dateFormat": "DD/MM/YYYY",
-                "listSeparator": ";"
+                "listSeparator": ";",
+                "anonymousMode": "none"
             },
+            // - indicators: two list -> home (group of surveys) and site (single survey). CF sections below
             "indicators": {
                 "home": [
+                    // The first one is "site count"
+                    // - type: "site_count"
                     {
                         "type": "site_count"
                     },
+                    // The second one is "people_count"
+                    // - type: "people_count"
+                    // - entryCode: entry of the field that referes to population count
                     {
                         "type": "people_count",
                         "entryCode": "demo_num_indv"
                     },
+                    // The third one is one of twos: "standard" | "value_count"
+                    // - standard: do the sum of a numeric value field
+                    //   - type: "standard"
+                    //   - name: label
+                    //   - iconOchaName: string
+                    //   - entryCode: string
+                    // - value_count: count the references for a specific value (ex: shelter = "new")
+                    //   - type: "value_count"
+                    //   - name: TKLabel (name)
+                    //   - entryCode: string (field to look at)
+                    //   - refValue: string (value of reference)
+                    //   - iconOchaName: string
                     {
                         "type": "standard",
                         "name": {
@@ -261,6 +210,27 @@
                         "iconOchaName": "Camp-Coordination-and-Camp-Management"
                     }
                 ],
+                // Can be one of 3 types: "standard" | "site_occcupation" | "computation"
+                // - standard: display field content
+                //   - type: "standard"
+                //   - name: label
+                //   - iconOchaName: string
+                //   - entryCode: string
+                // - site_occupation: display occupation ratio of site
+                //   - type: "site_occcupation"
+                //   - name: label
+                //   - iconOchaName: string
+                //   - entryCodePeopleCount: field that contains the number of people
+                //   - entryCodeMaxPeopleCount: field that contains the maximum number of people
+                //   - entryCodeMaxCapacity (optional): field that contains a field content to be assocaited to the indicator. default is null
+                // - computation: offer the possibility of a mathematical operation between two fields. 
+                //   - type: "computation"
+                //   - name: label
+                //   - iconOchaName: string
+                //   - entryCode1: field 1 
+                //   - entryCode2: field 2
+                //   - operator: operation between those two fields
+                //   - numberStrategy: "round" (optional). Round number in the end if flag is active
                 "site": [
                     {
                         "type": "site_occupation",
@@ -293,6 +263,19 @@
                     }
                 ]
             },
+            // - spatial: a spatial description:
+            //    - siteIDField: string
+            //    - siteManageByField: string
+            //    - siteManageByAltValue?: string
+            //    - siteNameField: string
+            //    - siteLastUpdateField: string
+            //    - siteLatitudeField?: string
+            //    - siteLongitudeField?: string
+            //    - siteTypeField: string
+            //    - adm1Pcode: string //pcode field in dataset
+            //    - adm1Name: string
+            //    - adm2Pcode: string //pcode field in dataset
+            //    - adm2Name: string
             "spatial": {
                 "siteIDField": "mp_site_id",
                 "siteLastUpdateField": "mp_last_date",
@@ -305,7 +288,22 @@
                 "adm1Name": "ggi_state",
                 "adm2Pcode": "adm2pcode",
                 "adm2Name": "ggi_city"
-            }
+            },
+            // Survey Type KOBO
+            // - type: "kobo" 
+            // - url: url of the json exported survey. It should be something like: https://kobo.humanitarianresponse.info/api/v2/assets/{{ASSETS_ID}}/data.json 
+            // - token: token used to access kobo server
+            // Survey Type GSHEET
+            // - type: "gsheet" 
+            // - submissionsUrl: url of the submissions
+            // - submissionsTrUrl: url of the translation file associated to the submissions
+            // Survey Type CSV
+            // - type: "csv" 
+            // - submissionsLocalUrl: url of the submissions
+            // - submissionsTrLocalUrl: url of the translation file associated to the submissions
+            "type": "gsheet", // - type: "kobo" | "gsheet" | "csv"
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=0&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=1157434408&single=true&output=csv",
         }
     ],
     // Options of the app:
