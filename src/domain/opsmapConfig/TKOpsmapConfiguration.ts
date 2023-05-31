@@ -7,6 +7,7 @@ import {
   TKSurveyAnonymousType,
   TKSurveyOptions
 } from "@/domain/survey/TKSurvey";
+import { TKBasemapsLayer } from "../map/TKBasemaps";
 
 // ////////////////////////////////////////////////////////////////////////////
 // JSON format
@@ -135,7 +136,7 @@ export async function TKReadGeneralConfiguration(
   const defaultMapBoxConfig: TKMapboxConfiguration = {
     token:
       "pk.eyJ1IjoidW5oY3IiLCJhIjoiY2tveWJlcDV5MDVycTJ2and3ZXllcW1leCJ9.Vp5XDh5OhDXxZCZUvgEuDg",
-    style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",
+    style: TKBasemapsLayer.basemapsList[0].style as string,
     padding: 100,
     zoomspeed: 2,
     bounds: [-74.17, -33.34, -33.57, 5.02]
