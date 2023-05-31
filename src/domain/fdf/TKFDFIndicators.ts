@@ -33,9 +33,6 @@ export interface TKFDFIndicatorValueCount {
   readonly iconOchaName: string;
 }
 export interface TKFDFIndicatorSiteOccupation {
-  // In the case of occupation:
-  // - entryCode is supposed to be Site max capicity
-  // - entryCodeSecond is supposed to be People
   readonly type: TKFDFIndicatorType.OCCUPATION;
   readonly name: TKLabel;
   readonly entryCodeMaxCapacity?: string;
