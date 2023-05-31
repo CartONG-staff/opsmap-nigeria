@@ -92,13 +92,6 @@ export default class TKSubmissionVisualizerToolbar extends Vue {
   }
 }
 </script>
-
-<!-- <style>
-.tk-submissionvisualizer-toggle .v-btn--active > .v-btn__content {
-  color: var(--v-accent-base) !important;
-}
-</style> -->
-
 <style scoped>
 .search-field {
   border-radius: 8px;
