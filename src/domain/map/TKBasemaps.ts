@@ -4,7 +4,7 @@ export interface TKBasemapDescription {
   id: number;
   name: string;
   img: string;
-  style: string | Style | undefined;
+  style: string | Style;
 }
 
 export interface TKBaseMapsCollection {
