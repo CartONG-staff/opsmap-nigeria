@@ -8,7 +8,10 @@
     </div>
     <div class="tk-submission-thematic-content">
       <div v-for="(entry, key) in entries" :key="key">
-        <TKSubmissionEntryView :entry="entry" />
+        <TKSubmissionEntryView
+          :entry="entry"
+          v-if="!hideUnanswered || (hideUnanswered && entry.isAnswered)"
+        />
       </div>
     </div>
   </div>

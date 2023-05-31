@@ -28,7 +28,7 @@
     <div class="tk-header-right">
       <div
         class="tk-header-logo-cccm-container"
-        v-show="appConfig.options.showCCCMLogo"
+        v-if="appConfig.options.showCCCMLogo"
       >
         <a href="https://cccmcluster.org" target="_blank">
           <img
