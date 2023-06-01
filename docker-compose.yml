@@ -1,35 +1,25 @@
 version: '3.3'
 
-services:   
-    opsmap-brazil:
-      container_name: opsmap-brazil
-      build:
-        context: .
-        args:
-          opsmap: brazil
-
-      ports:
-        - '8892:8080' 
-
-    opsmap-burkina-faso:
-      container_name: opsmap-burkina-faso
-      build:
-        context: .
-        args:
-          opsmap: burkina-faso
-
-      ports:
-        - '8893:8080'       
-
-    webserver:       
-      links:
-        - opsmap-brazil:opsmap-brazil
-        - opsmap-burkina-faso:opsmap-burkina-faso
-      image: nginx:1.15.12-alpine
-      container_name: webserver-opsmap
-      restart: unless-stopped
-      ports:
-        - "80:80"
-      volumes:
-        - ./config-docker/local-server-nginx/:/etc/nginx/conf.d
+services:
+  opsmaps:
+    container_name: opsmaps
+    build:
+      context: .
+      args:
+        opsmaps: "brazil burkina-faso"
+    ports:
+      - 8891:8891
+      - 8892:8892
+  
+  # webserver:
+    # links:
+    #   - opsmaps:opsmap-brazil
+    #   - opsmap-burkina-faso:opsmap-burkina-faso
+    # image: nginx:1.15.12-alpine
+    # container_name: webserver-opsmap
+    # restart: unless-stopped
+    # ports:
+    #   - "80:80"
+    # volumes:
+    #   - ./config-docker/local-server-nginx/:/etc/nginx/conf.d
 

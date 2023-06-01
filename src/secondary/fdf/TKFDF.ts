@@ -34,7 +34,7 @@ export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
     case TKSurveyInfosType.KOBO:
     case TKSurveyInfosType.RIDL:
       answersLabels = await TKReadFDFLabelCollection(
-        `${infos.fdf.folder}/${TKFDFFiles.ANSWERS}.csv`
+        `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.fdf.folder}/${TKFDFFiles.ANSWERS}.csv`
       );
   }
 
@@ -44,7 +44,7 @@ export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
     thematics: await TKReadFDFThematicsCollection(infos.fdf),
     trafficLights: await TKReadFDFTrafficLightsCollection(infos.fdf),
     fieldsLabels: await TKReadFDFLabelCollection(
-      `${infos.fdf.folder}/${TKFDFFiles.FIELDS}.csv`
+      `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.fdf.folder}/${TKFDFFiles.FIELDS}.csv`
     ),
     answersLabels: answersLabels,
     submissionsRules: await TKReadSubmissionsRulesCollection(infos.fdf),

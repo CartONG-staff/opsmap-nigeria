@@ -3,7 +3,7 @@
     <div class="tk-header-left">
       <button class="tk-header-logo-opsmap-container" v-on:click="logoClicked">
         <img
-          src="assets/LogoOpsmap.png"
+          src="img/LogoOpsmap.png"
           alt="Opsmap"
           class="tk-header-logo-cccm"
         />
@@ -18,7 +18,7 @@
       <div v-for="item in appConfig.headerLogos" :key="item.name">
         <a :href="item.urlRedirection" target="_blank">
           <img
-            :src="item.urlLogo"
+            :src="logoDirectory + item.urlLogo"
             :alt="item.name"
             class="tk-header-logo-config"
           />
@@ -32,7 +32,7 @@
       >
         <a href="https://cccmcluster.org" target="_blank">
           <img
-            src="assets/LogoCluster.png"
+            src="img/LogoCluster.png"
             alt="CCCM"
             class="tk-header-logo-cccm"
           />
@@ -78,6 +78,10 @@ export default class TKHeader extends Vue {
       TKConfigurationModule.configuration.name,
       this.$root.$i18n.locale
     );
+  }
+
+  get logoDirectory() {
+    return process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY;
   }
 
   get appConfig() {

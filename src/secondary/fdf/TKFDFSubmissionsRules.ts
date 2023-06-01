@@ -34,7 +34,10 @@ export async function TKReadSubmissionsRulesCollection(
 ): Promise<TKFDFSubmissionsRulesCollection> {
   const rawSubmissionsRules: TKFDFSubmissionRuleRaw[] = await TKCSVParse<
     TKFDFSubmissionRuleRaw[]
-  >(`${infos.folder}/${TKFDFFiles.SUBMISSION_RULES}.csv`, true);
+  >(
+    `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.folder}/${TKFDFFiles.SUBMISSION_RULES}.csv`,
+    true
+  );
   const submissionsRules: TKFDFSubmissionsRulesCollection = {};
   rawSubmissionsRules.map(item => {
     // Parse computed rule and condition

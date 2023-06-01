@@ -3,7 +3,7 @@
     <div class="tk-maincomponent-decoration">
       <img
         class="tk-maincomponent-png"
-        src="@/assets/bg-isoline.png"
+        src="img/bg-isoline.png"
         :class="{ 'tk-maincomponent-png-arab': language === 'ar' }"
       />
     </div>

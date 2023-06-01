@@ -1,6 +1,6 @@
 <template>
   <div class="headlines">
-    <img src="assets/LogoOpsmap.png" class="header-logo" />
+    <img src="img/LogoOpsmap.png" class="header-logo" />
     <div class="headlines-left">
       <div class="headlines-title">{{ siteName }} - {{ date }}</div>
 

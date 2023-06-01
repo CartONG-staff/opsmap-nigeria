@@ -16,17 +16,17 @@
     "headerLogos": [
         {
             "name": "CONASUR",
-            "urlLogo": "data/burkina-faso/Logo/CONASUR.png",
+            "urlLogo": "Logo/CONASUR.png",
             "urlRedirection": "http://www.conasur.gov.bf/"
         },
         {
             "name": "Gestion des Sites d’Accueil Temporaires",
-            "urlLogo": "data/burkina-faso/Logo/GSAT.png",
+            "urlLogo": "Logo/GSAT.png",
             "urlRedirection": "https://www.humanitarianresponse.info/en/operations/burkina-faso/gestion-des-sites-d%E2%80%99accueil-temporaires"
         },
         {
             "name": "UNHCR",
-            "urlLogo": "data/burkina-faso/Logo/UNHCR.png",
+            "urlLogo": "Logo/UNHCR.png",
             "urlRedirection": "https://www.unhcr.org/"
         }
     ],
@@ -38,7 +38,7 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "data/burkina-faso/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -50,32 +50,32 @@
             "logos": [
                 {
                     "name": "CONASUR",
-                    "urlLogo": "data/burkina-faso/Logo/CONASUR.png",
+                    "urlLogo": "Logo/CONASUR.png",
                     "urlRedirection": "http://www.conasur.gov.bf/"
                 },
                 {
                     "name": "ACTED",
-                    "urlLogo": "data/burkina-faso/Logo/ACTED.png",
+                    "urlLogo": "Logo/ACTED.png",
                     "urlRedirection": "https://www.acted.org/en/"
                 },
                 {
                     "name": "NRC",
-                    "urlLogo": "data/burkina-faso/Logo/NRC.png",
+                    "urlLogo": "Logo/NRC.png",
                     "urlRedirection": "https://www.nrc.no/"
                 },
                 {
                     "name": "TEARFUND",
-                    "urlLogo": "data/burkina-faso/Logo/tearfund.png",
+                    "urlLogo": "Logo/tearfund.png",
                     "urlRedirection": "https://www.tearfund.org/"
                 },
                 {
                     "name": "WORLD VISON BURKINA",
-                    "urlLogo": "data/burkina-faso/Logo/worldvision.png",
+                    "urlLogo": "Logo/worldvision.png",
                     "urlRedirection": "https://www.wvi.org/emergency/burkina-faso"
                 },
                 {
                     "name": "REACH IMPACT",
-                    "urlLogo": "data/burkina-faso/Logo/REACH.png",
+                    "urlLogo": "Logo/REACH.png",
                     "urlRedirection": "https://www.impact-initiatives.org/"
                 }
             ]
@@ -87,7 +87,7 @@
             "logos": [
                 {
                     "name": "Gestion des Sites d’Accueil Temporaires",
-                    "urlLogo": "data/burkina-faso/Logo/GSAT.png",
+                    "urlLogo": "Logo/GSAT.png",
                     "urlRedirection": "https://www.humanitarianresponse.info/en/operations/burkina-faso/gestion-des-sites-d%E2%80%99accueil-temporaires"
                 }
             ]
@@ -99,7 +99,7 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "data/burkina-faso/Logo/UNHCR.png",
+                    "urlLogo": "Logo/UNHCR.png",
                     "urlRedirection": "https://www.unhcr.org/"
                 }
             ]
@@ -109,7 +109,7 @@
         {
             "type": "gsheet",
             "fdf": {
-                "folder": "data/burkina-faso/FDF"
+                "folder": "FDF"
             },
             "name": "Form A",
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQqHYWvLt3uEfNwicLy4ySHA_DBUOA8XFdinalMD2yVqKyd0qAXT61jZ-6DHZTdTAN7nSyT7NOhF3D0/pub?gid=43995107&single=true&output=csv",
@@ -199,7 +199,7 @@
             "adm2DBPcode": "pcode"
         },
         "localFiles": {
-            "admin0LocalURL": "data/burkina-faso/map/admin0.geojson"
+            "admin0LocalURL": "map/admin0.geojson"
         }
     },
     "options": {

@@ -22,32 +22,32 @@
     "headerLogos": [
         {
             "name": "Acolhida",
-            "urlLogo": "data/brazil/BR_Logo/Acolhida.jpeg",
+            "urlLogo": "BR_Logo/Acolhida.jpeg",
             "urlRedirection": "https://www.gov.br/casacivil/pt-br/acolhida/"
         },
         {
             "name": "AVSI",
-            "urlLogo": "data/brazil/BR_Logo/AVSI_BRASIL.png",
+            "urlLogo": "BR_Logo/AVSI_BRASIL.png",
             "urlRedirection": "http://www.avsibrasil.org.br/"
         },
         {
             "name": "FSF",
-            "urlLogo": "data/brazil/BR_Logo/FSF.png",
+            "urlLogo": "BR_Logo/FSF.png",
             "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
         },
         {
             "name": "UNHCR",
-            "urlLogo": "data/brazil/BR_Logo/UNHCR_PT.jpg",
+            "urlLogo": "BR_Logo/UNHCR_PT.jpg",
             "urlRedirection": "https://www.acnur.org.br"
         },
         {
             "name": "Ministério da Cidadania",
-            "urlLogo": "data/brazil/BR_Logo/Ministrerio_da_CIDADANIA.png",
+            "urlLogo": "BR_Logo/Ministrerio_da_CIDADANIA.png",
             "urlRedirection": "https://www.gov.br/cidadania/pt-br"
         },
         {
             "name": "R4V",
-            "urlLogo": "data/brazil/BR_Logo/R4V.png",
+            "urlLogo": "BR_Logo/R4V.png",
             "urlRedirection": "https://www.r4v.info/"
         }
     ],
@@ -60,7 +60,7 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "data/brazil/BR_Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "BR_Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -73,12 +73,12 @@
             "logos": [
                 {
                     "name": "FSF",
-                    "urlLogo": "data/brazil/BR_Logo/FSF.png",
+                    "urlLogo": "BR_Logo/FSF.png",
                     "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
                 },
                 {
                     "name": "AVSI",
-                    "urlLogo": "data/brazil/BR_Logo/AVSI_BRASIL.png",
+                    "urlLogo": "BR_Logo/AVSI_BRASIL.png",
                     "urlRedirection": "http://www.avsibrasil.org.br/"
                 }
             ]
@@ -91,7 +91,7 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "data/brazil/BR_Logo/UNHCR_PT.jpg",
+                    "urlLogo": "BR_Logo/UNHCR_PT.jpg",
                     "urlRedirection": "https://www.acnur.org.br"
                 }
             ]
@@ -104,12 +104,12 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "data/brazil/BR_Logo/UNHCR_PT.jpg",
+                    "urlLogo": "BR_Logo/UNHCR_PT.jpg",
                     "urlRedirection": "https://www.acnur.org.br"
                 },
                 {
                     "name": "Ministério da Cidadania",
-                    "urlLogo": "data/brazil/BR_Logo/Ministrerio_da_CIDADANIA.png",
+                    "urlLogo": "BR_Logo/Ministrerio_da_CIDADANIA.png",
                     "urlRedirection": "https://www.gov.br/cidadania/pt-br"
                 }
             ]
@@ -129,14 +129,14 @@
             "adm2DBPcode": "pcode"
         },
         "localFiles": {
-            "admin0LocalURL": "data/brazil/map/admin0.geojson"
+            "admin0LocalURL": "map/admin0.geojson"
         }
     },
     "surveys": [
         {
             "type": "gsheet",
             "fdf": {
-                "folder": "data/brazil/BR_FDF_s1_080421"
+                "folder": "BR_FDF_s1_080421"
             },
             "name": "Form A",
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=0&single=true&output=csv",
