@@ -100,7 +100,7 @@
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=392014172&single=true&output=csv",
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=876995416&single=true&output=csv",
             "options": {
-                "dateFormat": "DD/MM/YYYY",
+                "inputDateFormat": "DD/MM/YYYY",
                 "listSeparator": ";",
                 "anonymousMode": "text"
             },
@@ -186,7 +186,7 @@
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=0&single=true&output=csv",
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=860086775&single=true&output=csv",
             "options": {
-                "dateFormat": "DD/MM/YYYY",
+                "inputDateFormat": "DD/MM/YYYY",
                 "listSeparator": ";",
                 "anonymousMode": "text"
             },

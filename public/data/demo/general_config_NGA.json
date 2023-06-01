@@ -155,7 +155,7 @@
                 "adm2Name": "group_general_info/lga_name"
             },
             "options": {
-                "dateFormat": "YYYY-MM-DD",
+                "inputDateFormat": "YYYY-MM-DD",
                 "manageByField": "organisation",
                 "manageByAltValue": "cccm",
                 "listSeparator": " "
