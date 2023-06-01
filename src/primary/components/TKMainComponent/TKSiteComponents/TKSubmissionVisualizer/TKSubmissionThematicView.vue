@@ -7,12 +7,11 @@
       <img class="tk-submission-icon" :src="iconurl" />
     </div>
     <div class="tk-submission-thematic-content">
-      <div
-        v-for="(entry, key) in thematicData"
-        :key="key"
-        v-show="!hideUnanswered || (hideUnanswered && entry.isAnswered)"
-      >
-        <TKSubmissionEntryView :entry="entry" />
+      <div v-for="(entry, key) in thematicData" :key="key">
+        <TKSubmissionEntryView
+          :entry="entry"
+          v-if="!hideUnanswered || (hideUnanswered && entry.isAnswered)"
+        />
       </div>
     </div>
   </div>
