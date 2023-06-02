@@ -87,7 +87,7 @@ export class TKDataset {
       this.currentSurvey = this._surveys[0];
     }
 
-    console.log(
+    console.info(
       `Dataset filterer set up ${(Date.now() - before) / 1000} seconds.`
     );
   }

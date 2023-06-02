@@ -77,12 +77,10 @@ export function computeCentroid(
   site: TKSite,
   geoDataset: TKGeoDataset
 ): TKSiteCoordinates | false {
-  console.log("-----------");
   // Loop through parent admins, more specific to more generic
   for (const level of [
     ...TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap
   ].reverse()) {
-    console.log(level);
     const feature = geoDataset[level]?.features.filter(
       x =>
         // eslint-disable-next-line

@@ -167,7 +167,7 @@ export function TKCreateSubmissionEntryBullet(
       surveyConfiguration.trafficLights
     )
   ) {
-    console.log(
+    console.warn(
       `[WARNING] Traffic light category "${
         surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
       }" does not exist`
@@ -246,7 +246,7 @@ export function TKCreateSubmissionEntryList(
       surveyConfiguration.trafficLights
     )
   ) {
-    console.log(
+    console.info(
       `[WARNING] Traffic light category "${
         surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
       }" does not exist`
@@ -297,7 +297,7 @@ export function TKCreateSubmissionEntryText(
       surveyConfiguration.trafficLights
     )
   ) {
-    console.log(
+    console.info(
       `[WARNING] Traffic light category "${
         surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
       }" does not exist`

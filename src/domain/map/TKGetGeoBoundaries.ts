@@ -50,7 +50,7 @@ export async function TKGetGeoBoundaries(
     }
   }
 
-  console.log(
+  console.info(
     `GeoBoundaries retrieved in ${(Date.now() - before) / 1000} seconds.`
   );
 
