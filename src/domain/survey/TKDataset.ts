@@ -305,10 +305,10 @@ export class TKDataset {
         this._filters[level] = this._currentAdmins[level]?.pcode ?? "";
 
         // Clear Below Admins
-        arrayLevelBelowToLeaf(level).forEach(level => {
-          this._filters[level] = null;
-          this._currentAdmins[level] = null;
-        });
+        for (const belowLevel of arrayLevelBelowToLeaf(level)) {
+          this._filters[belowLevel] = null;
+          this._currentAdmins[belowLevel] = null;
+        }
 
         // Clear site
         this._currentSite = null;
@@ -320,11 +320,9 @@ export class TKDataset {
           site => site.admins[level]?.pcode === admin.pcode
         );
 
-        const levels = arrayLevelUpToRoot(level);
-
-        levels.forEach(localLevel => {
-          this._currentAdmins[localLevel] = siteAdmin?.admins[localLevel];
-        });
+        for (const levelUpper of arrayLevelUpToRoot(level)) {
+          this._currentAdmins[levelUpper] = siteAdmin?.admins[levelUpper];
+        }
 
         this._levelToZoom = ADMIN_LEVEL_TO_ADMIN_FILTER[level];
         this._lastModification = `${level}=${this._currentAdmins[level]?.pcode}`;
@@ -338,10 +336,10 @@ export class TKDataset {
         ? ADMIN_LEVEL_TO_ADMIN_FILTER[parentAdminLevel]
         : TKAdminFilterType.SURVEY;
       // Clear current admin and below
-      arrayLevelToLeaf(level).forEach(level => {
-        this._filters[level] = null;
-        this._currentAdmins[level] = null;
-      });
+      for (const belowLevel of arrayLevelToLeaf(level)) {
+        this._filters[belowLevel] = null;
+        this._currentAdmins[belowLevel] = null;
+      }
 
       this._currentSite = null;
       this._filters[TKAdminFilterType.SITE] = null;
@@ -393,9 +391,9 @@ export class TKDataset {
 
         if (this._currentSite && this._currentSurvey) {
           // Update all Admins
-          TKConfigurationModule.configuration.adminLevels.forEach(level => {
+          for (const level of TKConfigurationModule.configuration.adminLevels) {
             this._currentAdmins[level] = this._currentSite?.admins[level];
-          });
+          }
 
           this._currentSubmission = this._currentSite.submissions[0];
 
@@ -502,9 +500,9 @@ export class TKDataset {
           levelsBelow = arrayLevelBelowToLeaf(filterLevelMostGranular);
         }
       }
-      levelsBelow.forEach(levelBelow => {
+      for (const levelBelow of levelsBelow) {
         this.filterAdminBaseOnFilteredSite(levelBelow);
-      });
+      }
 
       // Adjust Current
       if (this._currentSite) {

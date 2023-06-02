@@ -62,9 +62,9 @@ export function TKCreateSurvey(
 
   const ADMIN_LEVELS_ARRAY = TKConfigurationModule.configuration.adminLevels;
   const boundariesList: TKAdminLevelsBoundariesArray = {};
-  ADMIN_LEVELS_ARRAY.forEach(level => {
+  for (const level of ADMIN_LEVELS_ARRAY) {
     boundariesList[level] = [];
-  });
+  }
 
   // Default bounds
   const DEFAULT_SITE_COORDINATES = getCenterOfBounds(
@@ -99,12 +99,12 @@ export function TKCreateSurvey(
     if (!site) {
       // Generate admins
       const admins: TKSiteBoundaries = {};
-      ADMIN_LEVELS_ARRAY.forEach(level => {
+      for (const level of ADMIN_LEVELS_ARRAY) {
         admins[level] = {
           pcode: submission[fdf.spatialDescription.admins[level]?.pcode ?? ""],
           name: submission[fdf.spatialDescription.admins[level]?.name ?? ""]
         };
-      });
+      }
 
       site = {
         id: submission[fdf.spatialDescription.siteIDField],
@@ -157,7 +157,7 @@ export function TKCreateSurvey(
       sites.push(site);
 
       // Add the admins if they doesn't exists
-      ADMIN_LEVELS_ARRAY.forEach(level => {
+      for (const level of ADMIN_LEVELS_ARRAY) {
         if (!boundariesList[level]) {
           boundariesList[level] = [];
         }
@@ -182,7 +182,7 @@ export function TKCreateSurvey(
               ]
           });
         }
-      });
+      }
     }
     // Exist in sites list
     else {

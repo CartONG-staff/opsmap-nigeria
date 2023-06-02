@@ -34,9 +34,10 @@ export class TKMapSites {
           TKAdminLevel,
           TKBoundaries
         >> = {};
-        TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap.forEach(
-          level => (adminsProperties[level] = site.admins[level])
-        );
+        for (const level of TKConfigurationModule.configuration
+          .spatialConfiguration.adminLevelsMap) {
+          adminsProperties[level] = site.admins[level];
+        }
 
         return {
           type: "Feature",
@@ -76,28 +77,31 @@ export function computeCentroid(
   site: TKSite,
   geoDataset: TKGeoDataset
 ): TKSiteCoordinates | false {
-  TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap
-    .reverse()
-    .forEach(level => {
-      const feature = geoDataset[level]?.features.filter(
-        x =>
-          // eslint-disable-next-line
-          x.properties![
-            TKConfigurationModule.configuration.spatialConfiguration.dbConfig[
-              level
-            ]
-          ] === (site.admins[level] as TKBoundaries).pcode
-      );
-      if (feature && feature.length > 0) {
+  console.log("-----------");
+  // Loop through parent admins, more specific to more generic
+  for (const level of [
+    ...TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap
+  ].reverse()) {
+    console.log(level);
+    const feature = geoDataset[level]?.features.filter(
+      x =>
         // eslint-disable-next-line
-        const center = centroid(feature[0] as any);
-        site.coordinates = {
-          lng: center.geometry.coordinates[0],
-          lat: center.geometry.coordinates[1]
-        };
-        return site.coordinates;
-      }
-    });
+        x.properties![
+          TKConfigurationModule.configuration.spatialConfiguration.dbConfig[
+            level
+          ]
+        ] === (site.admins[level] as TKBoundaries).pcode
+    );
+    if (feature && feature.length > 0) {
+      // eslint-disable-next-line
+      const center = centroid(feature[0] as any);
+      site.coordinates = {
+        lng: center.geometry.coordinates[0],
+        lat: center.geometry.coordinates[1]
+      };
+      return site.coordinates;
+    }
+  }
 
   return false;
 }

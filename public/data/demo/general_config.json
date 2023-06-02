@@ -1,7 +1,7 @@
 {
     "languages": [
-        "en",
-        "sk"
+        "pt",
+        "en"
     ],
     "adminLevel": [
         "admin1",
@@ -9,24 +9,32 @@
     ],
     "iso3": "BRA",
     "name": {
-        "en": "Slovakia",
-        "sk": "Slovensko"
+        "en": "Brazil",
+        "pt": "Brasil"
+    },
+    "title": {
+        "en": "Site profile",
+        "pt": "Perfil do site"
     },
     "opsmapDescr": {
-        "en": "As of the 30th of August 2022, more than 7 million refugees had reportedly fled Ukraine, among whom more than 800,000 people had crossed from Ukraine to Slovakia Republic (hereafter, Slovakia) since 24th February; more than 90,000 applied for Temporary Protection in Slovakia, during the same period. To respond to refugee's needs, accommodation sites were established across the country. To better understand the needs of refugees who are being hosted in these centres, UNHCR and IOM in partnership with REACH, conducted between 28-29 July and 22-31 August 2022 key informant interviews (KIIs) with purposefully selected Site focal points who reported on the situation in the centres. Findings should be considered indicative. <br /> <br />  <div style='clear: both;'> <p style ='float: left'> </p> <p style='float: right; white-space: nowrap; font-size: 14px; color: #b3b3b3; line-height: 1.375; text-justify: inter-word;'> <i> Collective centres: <br /> There are areas where existing buildings are used as temporary living accommodations, or so-called Collective Centres, for hosting displaced populations.<br /> The types of buildings used as Collective Centres vary widely. They include schools, hotels, community centres, hospitals, factories, religious buildings,…<br /></i> </p></div>",
-        "sk": "K 30. augustu 2022 údajne z Ukrajiny utieklo viac ako 7 miliónov utečencov, z toho od 24. februára prešlo z Ukrajiny do Slovenskej republiky (ďalej len Slovensku ) viac ako 800 000 osôb; v rovnakom období požiadalo na Slovensku o dočasnú ochranu viac ako 90 000 osôb. S cieľom reagovať na potreby utečencov boli po celej krajine zriadené ubytovacie miesta. S cieľom lepšie pochopiť potreby utečencov, ktorí sú ubytovaní v týchto strediskách, UNHCR a IOM v spolupráci s REACH uskutočnili v dňoch 28. - 29. júla a 22. - 31. augusta 2022 rozhovory s kľúčovými informátormi (KII) s cielene vybranými kontaktnými miestami, ktoré informovali o situácii v strediskách. Zistenia by sa mali považovať za orientačné. <br /> <br />  <div style='clear: both;'> <p style ='float: left'> </p> <p style='float: right; white-space: nowrap; font-size: 14px; color: #b3b3b3; line-height: 1.375; text-justify: inter-word;'> <i> Kolektívne centrá: <br /> Existujú oblasti, kde sa existujúce budovy využívajú ako dočasné ubytovacie zariadenia alebo takzvané kolektívne centrá, ktoré slúžia na ubytovanie vysídleného obyvateľstva.<br /> Typy budov používaných ako kolektívne centrá sa značne líšia. Patria medzi ne školy, hotely, komunitné centrá, nemocnice, továrne, náboženské budovy,...<br /></i> </p></div>"
+        "en": "More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>Currently, Roraima has 9 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than nine thousand refugees, asylum seekers, and migrants. Of these, 7 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>All 9 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces.",
+        "pt": "Mais de 260 mil refugiados e migrantes deslocaram-se ao Brasil em busca de proteção em decorrência da crise política, social e econômica que assola a Venezuela.<br/>Considerando-se as necessidades urgentes de assistência humanitária, como alimentação, abrigamento, saúde e proteção, especialmente para pessoas com vulnerabilidades (crianças, mulheres grávidas, idosos, pessoas com deficiência, etc.), o Governo Federal Brasileiro editou a Lei no. 13.684/2018, prevendo a execução de medidas de assistência emergencial para acolhimento da pessoas afetadas.<br/>Atualmente, Roraima conta com 9 espaços de acolhimento, entre abrigos (entre abrigos indígenas e não-indígenas), com potencial de atender mais de nove mil refugiados, solicitantes de refúgio e migrantes. Desses abrigos, 7 estão na cidade de Boa Vista, 2 cidade de Pacaraima.<br/>Todos os 9 espaços são coordenados pelo ACNUR, por conta do convênio firmado com o Ministério da Cidadania, em parceria com as Forças Armadas."
+    },
+    "iframe": {
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9",
+        "display": true
     },
     "headerLogos": [],
     "footerLogos": [
         {
             "title": {
                 "en": "Webdev",
-                "sk": "Webdev"
+                "pt": "Desenvolvimento Web"
             },
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/demo/DEMO_slovakia/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -34,44 +42,49 @@
         {
             "title": {
                 "en": "Fieldwork",
-                "sk": "Práca v teréne"
+                "pt": "Trabalho de campo"
             },
             "logos": [
                 {
-                    "name": "REACH",
-                    "urlLogo": "/data/demo/DEMO_slovakia/Logo/reach.png",
-                    "urlRedirection": "https://www.reach-initiative.org/"
+                    "name": "FSF",
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/FSF.png",
+                    "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
+                },
+                {
+                    "name": "AVSI",
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/AVSI_BRASIL.png",
+                    "urlRedirection": "http://www.avsibrasil.org.br/"
                 }
             ]
         },
         {
             "title": {
                 "en": "Coordination and IM support",
-                "sk": "Koordinácia a podpora IM"
+                "pt": "Coordenação e IM apoio"
             },
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_slovakia/Logo/unhcr.png",
-                    "urlRedirection": "https://data.unhcr.org/en/situations/ukraine/location/10785"
-                },
-                {
-                    "name": "IOM",
-                    "urlLogo": "/data/demo/DEMO_slovakia/Logo/iom.png",
-                    "urlRedirection": "https://dtm.iom.int/slovakia"
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/UNHCR_PT.jpg",
+                    "urlRedirection": "https://www.acnur.org.br"
                 }
             ]
         },
         {
             "title": {
                 "en": "Sector Lead",
-                "sk": "Vedúci sektora"
+                "pt": "Líder do seto"
             },
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_slovakia/Logo/unhcr.png",
-                    "urlRedirection": "https://data.unhcr.org/en/situations/ukraine/location/10785"
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/UNHCR_PT.jpg",
+                    "urlRedirection": "https://www.acnur.org.br"
+                },
+                {
+                    "name": "Ministério da Cidadania",
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/Ministrerio_da_CIDADANIA.png",
+                    "urlRedirection": "https://www.gov.br/cidadania/pt-br"
                 }
             ]
         }
@@ -79,48 +92,34 @@
     "spatialConfiguration": {
         "mapConfig": {
             "bounds": [
-                17,
-                47.5,
-                22,
-                50
+                -74.17,
+                -33.34,
+                -33.57,
+                5.02
             ]
         },
-        "adminLevelMap": [
-            "admin1",
-            "admin2"
-        ],
         "dbConfig": {
             "admin1": "pcode",
             "admin2": "pcode"
         },
         "localFiles": {
-            "admin0LocalURL": "/data/demo/DEMO_slovakia/map/admin0.geojson"
+            "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson"
         }
     },
     "surveys": [
         {
             "type": "gsheet",
             "fdf": {
-                "folder": "/data/demo/DEMO_slovakia/FDF"
+                "folder": "/data/demo/DEMO_brazil/BR_FDF_s1_080421"
             },
-            "name": "2022",
-            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJJCYz-cJZGdRQH2Mo3eijQvvRHg1d11p3-I3XFKKHKDffPE76FG04q2jKjwp54V4XxhGNGLy6J3Dm/pub?gid=0&single=true&output=csv",
-            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJJCYz-cJZGdRQH2Mo3eijQvvRHg1d11p3-I3XFKKHKDffPE76FG04q2jKjwp54V4XxhGNGLy6J3Dm/pub?gid=1921321003&single=true&output=csv",
+            "name": "Form A",
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=0&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=1157434408&single=true&output=csv",
             "options": {
-                "anonymousMode": "text and map",
                 "inputDateFormat": "DD/MM/YYYY",
-                "displayDateFormat": "MM/YYYY",
-                "listSeparator": ";"
+                "listSeparator": ";",
+                "anonymousMode": "text and map"
             },
-            "additionalFiltersDescription": [
-                {
-                    "field": "cccm_shelter_type",
-                    "name": {
-                        "en": "Shelter",
-                        "pt": "Abrigo"
-                    }
-                }
-            ],
             "indicators": {
                 "area": [
                     {
@@ -128,15 +127,15 @@
                     },
                     {
                         "type": "people_count",
-                        "entryCode": "ind_site"
+                        "entryCode": "demo_num_indv"
                     },
                     {
                         "type": "standard",
                         "name": {
-                            "en": "Site max capacity",
-                            "sk": "Maximálna kapacita lokality"
+                            "en": "Shelter Max Capacity",
+                            "pt": "Capacidade Máxima dos Abrigos"
                         },
-                        "entryCode": "site_capacity",
+                        "entryCode": "cccm_shelter_max_capacity",
                         "iconOchaName": "Camp-Coordination-and-Camp-Management"
                     }
                 ],
@@ -144,30 +143,30 @@
                     {
                         "type": "site_occupation",
                         "name": {
-                            "en": "Site at full capacity",
-                            "sk": "Miesto s plnou kapacitou"
+                            "en": "Site at Full Capacity",
+                            "pt": "Abrigo em plena capacidade"
                         },
                         "iconOchaName": "Camp-Coordination-and-Camp-Management",
-                        "entryCodeMaxCapacity": "site_capacity",
-                        "entryCodePeopleCount": "ind_site",
-                        "entryCodeMaxPeopleCount": "site_capacity"
+                        "entryCodeMaxCapacity": "cccm_site_at_full_capacity",
+                        "entryCodePeopleCount": "demo_num_indv",
+                        "entryCodeMaxPeopleCount": "cccm_shelter_max_capacity"
                     },
                     {
                         "type": "standard",
                         "name": {
-                            "en": "Site type",
-                            "sk": "Typické miesto"
+                            "en": "Shelter Type",
+                            "pt": "Tipo de Abrigo"
                         },
-                        "entryCode": "site_typology",
-                        "iconOchaName": "IDP-refugee-camp"
+                        "entryCode": "cccm_shelter_type",
+                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
                     },
                     {
                         "type": "standard",
                         "name": {
-                            "en": "No. of individuals",
-                            "sk": "Počet osôb"
+                            "en": "No. of Individuals",
+                            "pt": "Nº de Indivíduos"
                         },
-                        "entryCode": "ind_site",
+                        "entryCode": "demo_num_indv",
                         "iconOchaName": "People-in-need"
                     }
                 ]
@@ -196,7 +195,6 @@
     "options": {
         "showCCCMLogo": false,
         "pdfColumnCount": 3,
-        "showDemoBanner": false,
         "exportAsCSVonHomePage": true
     }
 }

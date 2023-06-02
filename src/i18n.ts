@@ -10,13 +10,13 @@ export function loadLocaleMessages(): LocaleMessages {
     /[A-Za-z0-9-_,\s]+\.json$/i
   );
   const messages: LocaleMessages = {};
-  locales.keys().forEach(key => {
+  for (const key of locales.keys()) {
     const matched = key.match(/([A-Za-z0-9-_]+)\./i);
     if (matched && matched.length > 1) {
       const locale = matched[1];
       messages[locale] = locales(key);
     }
-  });
+  }
 
   return messages;
 }

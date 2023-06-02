@@ -26,9 +26,9 @@ TKReadGeneralConfiguration(
   // i18n
   //Handle locale definition + default
   const messages: LocaleMessages = {};
-  TKConfigurationModule.configuration.languages.forEach(key => {
+  for (const key of TKConfigurationModule.configuration.languages) {
     messages[key] = messagesCandidates[key];
-  });
+  }
 
   const defaultLocale = TKConfigurationModule.configuration.languageDefault;
 

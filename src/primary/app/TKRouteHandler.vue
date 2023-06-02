@@ -76,15 +76,15 @@ export default class TKRouteHandler extends Vue {
             TKDatasetModule.dataset.setSubmissionByDate(date);
           }
         } else {
-          [...TKConfigurationModule.configuration.adminLevels]
-            .reverse()
-            .forEach(level => {
-              const adminName: string = this.$route.params[level] ?? "";
-              if (adminName) {
-                TKDatasetModule.dataset.setCurrentAdminByName(level, adminName);
-                return;
-              }
-            });
+          for (const level of [
+            ...TKConfigurationModule.configuration.adminLevels
+          ].reverse()) {
+            const adminName: string = this.$route.params[level] ?? "";
+            if (adminName) {
+              TKDatasetModule.dataset.setCurrentAdminByName(level, adminName);
+              return;
+            }
+          }
         }
       }
     }

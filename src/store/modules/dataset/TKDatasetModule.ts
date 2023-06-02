@@ -24,7 +24,7 @@ class TKDatasetModule extends VuexModule {
 
   @Mutation
   updateSiteCoordinates(geoDataset: TKGeoDataset) {
-    this._dataset.surveys.forEach(survey => {
+    for (const survey of this._dataset.surveys) {
       if (survey.options.anonymousMode === TKSurveyAnonymousType.TEXT_AND_MAP) {
         for (let i = 0; i < survey.sites.length; i++) {
           const site = survey.sites[i];
@@ -35,7 +35,7 @@ class TKDatasetModule extends VuexModule {
           }
         }
       }
-    });
+    }
   }
 
   get dataset() {

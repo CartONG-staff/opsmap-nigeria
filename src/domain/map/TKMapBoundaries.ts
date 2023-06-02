@@ -46,11 +46,10 @@ export class TKMapBoundaries {
     if (dataset.levelToZoom === TKAdminFilterType.SURVEY) {
       this.mapFitBounds(bound, map);
       // Clear all levels
-      TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap.forEach(
-        level => {
-          this.hideLevel(level);
-        }
-      );
+      for (const level of TKConfigurationModule.configuration
+        .spatialConfiguration.adminLevelsMap) {
+        this.hideLevel(level);
+      }
     }
     // If other level
     else {
@@ -68,13 +67,12 @@ export class TKMapBoundaries {
 
       if (boundaryLevel) {
         const setZoom = this.setAdminStyle(boundaryLevel, dataset);
-        TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap.forEach(
-          level => {
-            if (level != boundaryLevel) {
-              this.hideLevel(level);
-            }
+        for (const level of TKConfigurationModule.configuration
+          .spatialConfiguration.adminLevelsMap) {
+          if (level != boundaryLevel) {
+            this.hideLevel(level);
           }
-        );
+        }
 
         if (setZoom) {
           this.mapFitBounds(setZoom, map);
@@ -91,12 +89,11 @@ export class TKMapBoundaries {
         map
       );
     }
-
-    Object.keys(this.geodataset).forEach(level => {
+    for (const level of Object.keys(this.geodataset)) {
       (map.getSource(level) as mapboxgl.GeoJSONSource)?.setData(
         this.geodataset[level as TKAdminLevel] as FeatureCollection
       );
-    });
+    }
   }
 
   // //////////////////////////////////////////////////////////////////////////
@@ -112,11 +109,11 @@ export class TKMapBoundaries {
   //
   // //////////////////////////////////////////////////////////////////////////
   isAdminLowerCurrent(level: TKAdminLevel, dataset: TKDataset): boolean {
-    arrayLevelBelowToLeaf(level).forEach(levelBelow => {
+    for (const levelBelow of arrayLevelBelowToLeaf(level)) {
       if (dataset.getCurrentAdmin(levelBelow)) {
         return true;
       }
-    });
+    }
     return false;
   }
 
