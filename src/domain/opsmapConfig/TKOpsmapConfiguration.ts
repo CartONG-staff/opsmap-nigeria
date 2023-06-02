@@ -125,7 +125,7 @@ export async function TKReadGeneralConfiguration(
   // admin
   const adminLevels = [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2];
   json.adminLevels = sortAdminLevelsRootFirst(json.adminLevels ?? adminLevels);
-  const adminLevelsMap = [TKAdminLevel.ADMIN1];
+  const adminLevelsMap = [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2];
   json.spatialConfiguration.adminLevelsMap = json.spatialConfiguration
     .adminLevelsMap
     ? sortAdminLevelsRootFirst(json.spatialConfiguration.adminLevelsMap)
