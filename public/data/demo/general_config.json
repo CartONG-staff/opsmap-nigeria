@@ -1,7 +1,7 @@
 {
     "languages": [
         "en",
-        "br"
+        "pt"
     ],
     "adminLevel": [
         "admin1",
@@ -178,10 +178,16 @@
                 "siteManageByField": "cccm_shelter__mangmt",
                 "siteNameField": "mp_site_name",
                 "siteTypeField": "mp_shelter_type",
-                "admin1Pcode": "adm1Pcode",
-                "admin1Name": "ggi_state",
-                "admin2Pcode": "adm2Pcode",
-                "admin2Name": "ggi_city"
+                "admins": {
+                    "admin1": {
+                        "pcode": "adm1pcode",
+                        "name": "ggi_state"
+                    },
+                    "admin2": {
+                        "pcode": "adm2pcode",
+                        "name": "ggi_city"
+                    }
+                }
             }
         }
     ],
