@@ -10,16 +10,4 @@ services:
     ports:
       - 8891:8891
       - 8892:8892
-  
-  # webserver:
-    # links:
-    #   - opsmaps:opsmap-brazil
-    #   - opsmap-burkina-faso:opsmap-burkina-faso
-    # image: nginx:1.15.12-alpine
-    # container_name: webserver-opsmap
-    # restart: unless-stopped
-    # ports:
-    #   - "80:80"
-    # volumes:
-    #   - ./config-docker/local-server-nginx/:/etc/nginx/conf.d
 
