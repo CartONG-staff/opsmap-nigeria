@@ -55,7 +55,7 @@
       </v-tooltip>
       <v-tooltip
         v-for="filter in additionalFilters"
-        :key="filter.description"
+        :key="filter.description.field"
         right
       >
         <template v-slot:activator="{ on, attrs }">
