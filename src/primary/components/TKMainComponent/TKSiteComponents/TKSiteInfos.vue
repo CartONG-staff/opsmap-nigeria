@@ -30,7 +30,7 @@
       <transition mode="out-in" name="fade-in">
         <div :key="$root.$i18n.locale" class="tk-site-infos-field-key">
           {{
-            $t("infosAdmin1")
+            $t("infosAdmins.admin1")
               .toString()
               .toUpperCase()
           }}
@@ -48,7 +48,7 @@
       <transition mode="out-in" name="fade-in">
         <div :key="$root.$i18n.locale" class="tk-site-infos-field-key">
           {{
-            $t("infosAdmin2")
+            $t("infosAdmins.admin2")
               .toString()
               .toUpperCase()
           }}

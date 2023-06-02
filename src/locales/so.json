@@ -1,7 +1,9 @@
 {
     "title": "Opsmap",
-    "infosAdmin1": "Gobolka",
-    "infosAdmin2": "Degmo",
+    "infosAdmins": {
+        "admin1": "Gobolka",
+        "admin2": "Degmo"
+    },
     "infosSiteType": "Nooca goobta",
     "manageBy": "Maaree",
     "selectText": "Xulo a",

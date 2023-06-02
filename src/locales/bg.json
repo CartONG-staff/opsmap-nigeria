@@ -1,7 +1,9 @@
 {
     "title": "Opsmap",
-    "infosAdmin1": "Държава",
-    "infosAdmin2": "Град",
+    "infosAdmins": {
+        "admin1": "Държава",
+        "admin2": "Град"
+    },
     "infosSiteType": "Вид на обекта",
     "manageBy": "Управление от",
     "selectText": "Изберете",
