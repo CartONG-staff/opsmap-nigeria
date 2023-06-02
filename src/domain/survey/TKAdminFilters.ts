@@ -2,10 +2,10 @@ import { TKAdminLevel, arrayLeafToRoot } from "../opsmapConfig/TKAdminLevel";
 
 export enum TKAdminFilterType {
   SURVEY = "survey",
-  ADMIN1 = TKAdminLevel.ADMIN1,
-  ADMIN2 = TKAdminLevel.ADMIN2,
-  ADMIN3 = TKAdminLevel.ADMIN3,
-  ADMIN4 = TKAdminLevel.ADMIN4,
+  ADMIN1 = "admin1",
+  ADMIN2 = "admin2",
+  ADMIN3 = "admin3",
+  ADMIN4 = "admin4",
   SITE = "site"
 }
 
@@ -13,7 +13,7 @@ export type TKAdminFilterValue = string | boolean | null;
 
 /*
   This is a small 'hack' that forces typescript compiler to understand the bijection in hte relation between adminlevel related adminfilters field and adminlevel.
-  A the declaration level, it is ensured by:   
+  A the declaration level, it is ensured by:
   export enum TKAdminFilterType {
     ...
     ADMIN1 = TKAdminLevel.ADMIN1,
