@@ -12,9 +12,9 @@ export function TKDateCompare(
     return 0;
   }
   if (date1Moment.isBefore(date2Moment)) {
-    return -1;
+    return 1;
   }
-  return 1;
+  return -1;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
