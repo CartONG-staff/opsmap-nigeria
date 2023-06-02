@@ -29,9 +29,9 @@ export interface TKSurveyOptions {
   listSeparator: string;
 }
 
-export type TKAdminLevelsBoundariesArray = {
-  [key in TKAdminLevel]?: TKBoundaries[];
-};
+export type TKAdminLevelsBoundariesArray = Partial<
+  Record<TKAdminLevel, TKBoundaries[]>
+>;
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition

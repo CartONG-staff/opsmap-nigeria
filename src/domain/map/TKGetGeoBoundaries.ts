@@ -5,8 +5,9 @@ import { TKOpsmapSpatialConfiguration } from "../opsmapConfig/TKOpsmapConfigurat
 import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
 import { TKBoundaries } from "../survey/TKBoundaries";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import { FeatureCollection } from "geojson";
 
-const DB_URL: { [key in TKAdminLevel]?: string } = {
+const DB_URL: Partial<Record<TKAdminLevel, string>> = {
   [TKAdminLevel.ADMIN1]: "core_v2/wrl_polbnd_adm1_a_unhcr/FeatureServer/0",
   [TKAdminLevel.ADMIN2]: "core_v2/wrl_polbnd_adm2_a_unhcr/FeatureServer/0"
 };
@@ -15,7 +16,7 @@ async function queryAdmins(
   dbUrl: string,
   adminList: string[],
   primaryKey: string
-) {
+): Promise<FeatureCollection> {
   const adminQuery =
     primaryKey + " in (" + adminList.map(adm => `'${adm}'`).join(", ") + ")";
 

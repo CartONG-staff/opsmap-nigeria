@@ -43,9 +43,9 @@ export class TKDataset {
   private _currentSurvey!: TKSurvey; // ! --> Disable'not defined in ctor error'
 
   // Selection state
-  private _currentAdmins: {
-    [key in TKAdminLevel]?: TKBoundaries | null;
-  } = {};
+  private _currentAdmins: Partial<
+    Record<TKAdminLevel, TKBoundaries | null>
+  > = {};
 
   private _currentSite: TKSite | null = null;
   private _currentSubmission: TKSubmission | null = null;
@@ -111,9 +111,7 @@ export class TKDataset {
     return this._filteredTypedSitesList;
   }
 
-  public get filters(): {
-    [key in TKAdminFilterType]: TKAdminFilterValue;
-  } {
+  public get filters(): Record<TKAdminFilterType, TKAdminFilterValue> {
     return this._filters;
   }
 

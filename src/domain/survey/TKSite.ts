@@ -12,9 +12,8 @@ export interface TKSiteCoordinates {
   lng: number;
 }
 
-export type TKSiteBoundaries = {
-  [key in TKAdminLevel]?: TKBoundaries;
-};
+export type TKSiteBoundaries = Partial<Record<TKAdminLevel, TKBoundaries>>;
+
 export interface TKSite {
   id: string;
   name: string;

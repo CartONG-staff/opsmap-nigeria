@@ -30,9 +30,10 @@ export class TKMapSites {
     return {
       type: "FeatureCollection",
       features: sitesArray.map((site: TKSite) => {
-        const adminsProperties: {
-          [key in TKAdminLevel]?: TKBoundaries;
-        } = {};
+        const adminsProperties: Partial<Record<
+          TKAdminLevel,
+          TKBoundaries
+        >> = {};
         TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap.forEach(
           level => (adminsProperties[level] = site.admins[level])
         );

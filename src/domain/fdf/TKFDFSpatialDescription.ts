@@ -16,10 +16,5 @@ export interface TKFDFSpatialDescription {
   siteLatitudeField?: string;
   siteLongitudeField?: string;
   siteTypeField: string;
-  admins: {
-    [key in TKAdminLevel]?: {
-      pcode: string;
-      name: string;
-    };
-  };
+  admins: Partial<Record<TKAdminLevel, { pcode: string; name: string }>>;
 }
