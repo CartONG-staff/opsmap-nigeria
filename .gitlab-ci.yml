@@ -55,7 +55,7 @@ pages:
   needs: ["test"]
   stage: deploy
   script:
-    - npm run build-gitlab
+    - npm run build-brazil
     - rm -rf public
     - mkdir public
     - cp -r dist/* public
