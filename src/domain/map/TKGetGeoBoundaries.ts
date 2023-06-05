@@ -30,12 +30,12 @@ async function queryAdmins(
 
 export async function TKGetGeoBoundaries(
   dataset: TKDataset,
-  spatialConfiguration: TKOpsmapSpatialConfiguration
+  spatial: TKOpsmapSpatialConfiguration
 ): Promise<TKGeoDataset> {
   const before = Date.now();
 
   const geodataset: TKGeoDataset = {};
-  for (const level of TKConfigurationModule.configuration.spatialConfiguration
+  for (const level of TKConfigurationModule.configuration.spatial
     .adminLevelsMap) {
     if (DB_URL[level]) {
       // Admin
@@ -45,7 +45,7 @@ export async function TKGetGeoBoundaries(
       geodataset[level] = await queryAdmins(
         DB_URL[level] as string,
         adminList,
-        spatialConfiguration.dbConfig[level]
+        spatial.dbConfig[level]
       );
     }
   }

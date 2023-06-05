@@ -9,7 +9,7 @@ import { TKReadRawDataset } from "@/secondary/survey/TKReadRawDataset";
 
 export async function TKCreateDataset(
   surveyDescription: TKSurveyInfos[],
-  languages: Array<string>
+  locales: Array<string>
 ): Promise<TKDataset> {
   // prepare output
   const surveys: TKSurvey[] = [];
@@ -45,7 +45,7 @@ export async function TKCreateDataset(
       TKCreateSurvey(
         rawData,
         fdf,
-        languages,
+        locales,
         info.options,
         info.additionalFiltersDescription
       )

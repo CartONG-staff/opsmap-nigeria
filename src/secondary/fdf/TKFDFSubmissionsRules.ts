@@ -8,7 +8,7 @@ import {
   TKOperatorComparison,
   TKOperatorComputation
 } from "@/domain/utils/TKOperator";
-import { TKFDFFiles } from "@/secondary/fdf/TKFDFInfos";
+import { TKFDFFiles } from "@/secondary/fdf/TKFDFFiles";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Submission rules datatype

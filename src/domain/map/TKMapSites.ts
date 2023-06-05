@@ -34,8 +34,8 @@ export class TKMapSites {
           TKAdminLevel,
           TKBoundaries
         >> = {};
-        for (const level of TKConfigurationModule.configuration
-          .spatialConfiguration.adminLevelsMap) {
+        for (const level of TKConfigurationModule.configuration.spatial
+          .adminLevelsMap) {
           adminsProperties[level] = site.admins[level];
         }
 
@@ -79,15 +79,13 @@ export function computeCentroid(
 ): TKSiteCoordinates | false {
   // Loop through parent admins, more specific to more generic
   for (const level of [
-    ...TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap
+    ...TKConfigurationModule.configuration.spatial.adminLevelsMap
   ].reverse()) {
     const feature = geoDataset[level]?.features.filter(
       x =>
         // eslint-disable-next-line
         x.properties![
-          TKConfigurationModule.configuration.spatialConfiguration.dbConfig[
-            level
-          ]
+          TKConfigurationModule.configuration.spatial.dbConfig[level]
         ] === (site.admins[level] as TKBoundaries).pcode
     );
     if (feature && feature.length > 0) {

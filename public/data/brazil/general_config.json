@@ -1,20 +1,24 @@
 {
-    "languages": [
-        "pt",
-        "en"
-    ],
-    "iso3": "BRA",
-    "name": {
-        "en": "Brazil",
-        "pt": "Brasil"
+    "textContent": {
+        "name": {
+            "en": "Brazil",
+            "pt": "Brasil"
+        },
+        "opsmapDescr": {
+            "en": "More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>Currently, Roraima has 9 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than nine thousand refugees, asylum seekers, and migrants. Of these, 7 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>All 9 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces.",
+            "pt": "Mais de 260 mil refugiados e migrantes deslocaram-se ao Brasil em busca de proteção em decorrência da crise política, social e econômica que assola a Venezuela.<br/>Considerando-se as necessidades urgentes de assistência humanitária, como alimentação, abrigamento, saúde e proteção, especialmente para pessoas com vulnerabilidades (crianças, mulheres grávidas, idosos, pessoas com deficiência, etc.), o Governo Federal Brasileiro editou a Lei no. 13.684/2018, prevendo a execução de medidas de assistência emergencial para acolhimento da pessoas afetadas.<br/>Atualmente, Roraima conta com 9 espaços de acolhimento, entre abrigos (entre abrigos indígenas e não-indígenas), com potencial de atender mais de nove mil refugiados, solicitantes de refúgio e migrantes. Desses abrigos, 7 estão na cidade de Boa Vista, 2 cidade de Pacaraima.<br/>Todos os 9 espaços são coordenados pelo ACNUR, por conta do convênio firmado com o Ministério da Cidadania, em parceria com as Forças Armadas."
+        },
+        "title": {
+            "en": "Profile of the shelters in Roraima",
+            "pt": "Perfil do site"
+        }
     },
-    "title": {
-        "en": "Profile of the shelters in Roraima",
-        "pt": "Perfil do site"
-    },
-    "opsmapDescr": {
-        "en": "More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>Currently, Roraima has 9 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than nine thousand refugees, asylum seekers, and migrants. Of these, 7 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>All 9 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces.",
-        "pt": "Mais de 260 mil refugiados e migrantes deslocaram-se ao Brasil em busca de proteção em decorrência da crise política, social e econômica que assola a Venezuela.<br/>Considerando-se as necessidades urgentes de assistência humanitária, como alimentação, abrigamento, saúde e proteção, especialmente para pessoas com vulnerabilidades (crianças, mulheres grávidas, idosos, pessoas com deficiência, etc.), o Governo Federal Brasileiro editou a Lei no. 13.684/2018, prevendo a execução de medidas de assistência emergencial para acolhimento da pessoas afetadas.<br/>Atualmente, Roraima conta com 9 espaços de acolhimento, entre abrigos (entre abrigos indígenas e não-indígenas), com potencial de atender mais de nove mil refugiados, solicitantes de refúgio e migrantes. Desses abrigos, 7 estão na cidade de Boa Vista, 2 cidade de Pacaraima.<br/>Todos os 9 espaços são coordenados pelo ACNUR, por conta do convênio firmado com o Ministério da Cidadania, em parceria com as Forças Armadas."
+    "locale": {
+        "locales": [
+            "pt",
+            "en"
+        ],
+        "default": "en"
     },
     "iframe": {
         "url": "https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9",
@@ -116,7 +120,7 @@
             ]
         }
     ],
-    "spatialConfiguration": {
+    "spatial": {
         "mapConfig": {
             "bounds": [
                 -74.17,
@@ -135,10 +139,6 @@
             "name": "Form A",
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=0&single=true&output=csv",
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=1157434408&single=true&output=csv",
-            "options": {
-                "inputDateFormat": "DD/MM/YYYY",
-                "listSeparator": ";"
-            },
             "indicators": {
                 "area": [
                     {
@@ -191,13 +191,15 @@
                 ]
             },
             "spatial": {
-                "siteIDField": "mp_site_id",
-                "siteLastUpdateField": "mp_last_date",
-                "siteLatitudeField": "mp_latitude",
-                "siteLongitudeField": "mp_longitude",
-                "siteManageByField": "cccm_shelter__mangmt",
-                "siteNameField": "mp_site_name",
-                "siteTypeField": "mp_shelter_type",
+                "siteFields": {
+                    "id": "mp_site_id",
+                    "lastUpdate": "mp_last_date",
+                    "latitude": "mp_latitude",
+                    "longitude": "mp_longitude",
+                    "manageBy": "cccm_shelter__mangmt",
+                    "name": "mp_site_name",
+                    "type": "mp_shelter_type"
+                },
                 "admins": {
                     "admin1": {
                         "pcode": "adm1pcode",

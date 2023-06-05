@@ -5,7 +5,7 @@
 import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
 import { TKFDFTerminologyCollection } from "@/domain/fdf/TKFDFTerminology";
 import { TKCSVParse } from "@/secondary/csv/TKCSV";
-import { TKFDFFiles } from "./TKFDFInfos";
+import { TKFDFFiles } from "./TKFDFFiles";
 
 type TKFDFTerminologyRaw = Array<string>;
 

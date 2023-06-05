@@ -147,7 +147,7 @@ export default class TKHomeCombos extends Vue {
   }
 
   get levels(): Array<TKAdminLevel> {
-    return TKConfigurationModule.configuration.adminLevels;
+    return TKConfigurationModule.configuration.spatial.adminLevels;
   }
 
   get currentAdmins() {

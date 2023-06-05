@@ -105,7 +105,7 @@ function computeCurrentSelectionCSVContent(
   locale: string
 ): string {
   const adminRef: Array<string> =
-    TKConfigurationModule.configuration.adminLevels;
+    TKConfigurationModule.configuration.spatial.adminLevels;
 
   const rows = [["name", ...adminRef, "submissionDate"]];
 

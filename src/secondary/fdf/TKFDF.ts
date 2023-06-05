@@ -8,7 +8,7 @@ import {
   TKSurveyInfos,
   TKSurveyInfosType
 } from "@/domain/opsmapConfig/TKSurveyInfos";
-import { TKFDFFiles } from "@/secondary/fdf/TKFDFInfos";
+import { TKFDFFiles } from "@/secondary/fdf/TKFDFFiles";
 import { TKReadFDFLabelCollection } from "@/secondary/fdf/TKFDFParseMultiLang";
 import { TKReadSubmissionsRulesCollection } from "@/secondary/fdf/TKFDFSubmissionsRules";
 import { TKReadFDFTerminologyCollection } from "@/secondary/fdf/TKFDFTerminology";
@@ -50,7 +50,7 @@ export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
     submissionsRules: await TKReadSubmissionsRulesCollection(infos.fdf),
     urls: await TKReadFDFURLsCollection(infos.fdf),
     indicators: infos.indicators,
-    spatialDescription: infos.spatial,
+    spatial: infos.spatial,
     siteTypes: await TKReadFDFSiteTypesCollection(infos.fdf)
   };
 }

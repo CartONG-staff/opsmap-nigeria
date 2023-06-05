@@ -43,7 +43,7 @@ export default class TKApp extends Vue {
     this.handeLocale();
     TKCreateDataset(
       TKConfigurationModule.configuration.surveys,
-      TKConfigurationModule.configuration.languages
+      TKConfigurationModule.configuration.locale.locales
     ).then(dataset => {
       TKDatasetModule.setDataset(dataset);
       if (TKDatasetModule.dataset) {
@@ -54,14 +54,14 @@ export default class TKApp extends Vue {
             ],
             this.$root.$i18n.locale,
             TKGetLocalValue(
-              TKConfigurationModule.configuration.name,
+              TKConfigurationModule.configuration.textContent.name,
               this.$root.$i18n.locale
             )
           );
         }
         TKGetGeoBoundaries(
           TKDatasetModule.dataset,
-          TKConfigurationModule.configuration.spatialConfiguration
+          TKConfigurationModule.configuration.spatial
         ).then(geoDataset => {
           TKGeoDatasetModule.setGeoDataset(geoDataset);
           TKDatasetModule.updateSiteCoordinates(geoDataset);
@@ -73,7 +73,7 @@ export default class TKApp extends Vue {
   @Watch("$root.$i18n.locale")
   handeLocale() {
     const name = TKGetLocalValue(
-      TKConfigurationModule.configuration.name,
+      TKConfigurationModule.configuration.textContent.name,
       this.$root.$i18n.locale
     );
     document.title =

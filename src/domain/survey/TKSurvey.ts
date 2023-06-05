@@ -54,13 +54,14 @@ export interface TKSurvey {
 export function TKCreateSurvey(
   submissions: Record<string, string>[],
   fdf: TKFDF,
-  languages: Array<string>,
+  locales: Array<string>,
   options: TKSurveyOptions,
   additionalFiltersDescription: TKAdditionalFilterDescription[]
 ): TKSurvey {
   let sites: TKSite[] = [];
 
-  const ADMIN_LEVELS_ARRAY = TKConfigurationModule.configuration.adminLevels;
+  const ADMIN_LEVELS_ARRAY =
+    TKConfigurationModule.configuration.spatial.adminLevels;
   const boundariesList: TKAdminLevelsBoundariesArray = {};
   for (const level of ADMIN_LEVELS_ARRAY) {
     boundariesList[level] = [];
@@ -68,14 +69,14 @@ export function TKCreateSurvey(
 
   // Default bounds
   const DEFAULT_SITE_COORDINATES = getCenterOfBounds(
-    TKConfigurationModule.configuration.spatialConfiguration.mapConfig.bounds
+    TKConfigurationModule.configuration.spatial.mapConfig.bounds
   );
 
   // Apply formatting to date item
   if (options.inputDateFormat && options.displayDateFormat) {
     submissions.map(submission => {
-      submission[fdf.spatialDescription.siteLastUpdateField] = TKDateFormat(
-        submission[fdf.spatialDescription.siteLastUpdateField],
+      submission[fdf.spatial.siteFields.lastUpdate] = TKDateFormat(
+        submission[fdf.spatial.siteFields.lastUpdate],
         options.inputDateFormat,
         options.displayDateFormat
       );
@@ -87,12 +88,12 @@ export function TKCreateSurvey(
       submission,
       fdf,
       options,
-      languages
+      locales
     );
 
     // Check if new site
     let site = sites.find(
-      site => site.id === submission[fdf.spatialDescription.siteIDField]
+      site => site.id === submission[fdf.spatial.siteFields.id]
     );
 
     // Doesn't exist in sites list
@@ -101,29 +102,27 @@ export function TKCreateSurvey(
       const admins: TKSiteBoundaries = {};
       for (const level of ADMIN_LEVELS_ARRAY) {
         admins[level] = {
-          pcode: submission[fdf.spatialDescription.admins[level]?.pcode ?? ""],
-          name: submission[fdf.spatialDescription.admins[level]?.name ?? ""]
+          pcode: submission[fdf.spatial.admins[level]?.pcode ?? ""],
+          name: submission[fdf.spatial.admins[level]?.name ?? ""]
         };
       }
 
       site = {
-        id: submission[fdf.spatialDescription.siteIDField],
-        name: submission[fdf.spatialDescription.siteNameField],
-        type: fdf.siteTypes[submission[fdf.spatialDescription.siteTypeField]],
+        id: submission[fdf.spatial.siteFields.id],
+        name: submission[fdf.spatial.siteFields.name],
+        type: fdf.siteTypes[submission[fdf.spatial.siteFields.type]],
         admins: admins,
 
-        managedBy: submission[fdf.spatialDescription.siteManageByField]
-          ? fdf.answersLabels[
-              submission[fdf.spatialDescription.siteManageByField]
-            ] ?? {
-              en: submission[fdf.spatialDescription.siteManageByField]
+        managedBy: submission[fdf.spatial.siteFields.manageBy]
+          ? fdf.answersLabels[submission[fdf.spatial.siteFields.manageBy]] ?? {
+              en: submission[fdf.spatial.siteFields.manageBy]
             }
-          : fdf.spatialDescription.siteManageByAltValue &&
-            submission[fdf.spatialDescription.siteManageByAltValue]
+          : fdf.spatial.siteFields.manageByAlt &&
+            submission[fdf.spatial.siteFields.manageByAlt]
           ? fdf.answersLabels[
-              submission[fdf.spatialDescription.siteManageByAltValue]
+              submission[fdf.spatial.siteFields.manageByAlt]
             ] ?? {
-              en: submission[fdf.spatialDescription.siteManageByAltValue]
+              en: submission[fdf.spatial.siteFields.manageByAlt]
             }
           : { en: "-" },
         submissions: [computedSubmission],
@@ -136,21 +135,15 @@ export function TKCreateSurvey(
       // If not anonymisation, set lat long
       if (
         options.anonymousMode !== TKSurveyAnonymousType.TEXT_AND_MAP &&
-        fdf.spatialDescription.siteLatitudeField &&
-        fdf.spatialDescription.siteLongitudeField
+        fdf.spatial.siteFields.latitude &&
+        fdf.spatial.siteFields.longitude
       ) {
         site.coordinates = {
           lat: Number(
-            submission[fdf.spatialDescription.siteLatitudeField].replace(
-              ",",
-              "."
-            )
+            submission[fdf.spatial.siteFields.latitude].replace(",", ".")
           ),
           lng: Number(
-            submission[fdf.spatialDescription.siteLongitudeField].replace(
-              ",",
-              "."
-            )
+            submission[fdf.spatial.siteFields.longitude].replace(",", ".")
           )
         };
       }
@@ -165,21 +158,14 @@ export function TKCreateSurvey(
           !(boundariesList[level] as TKBoundaries[])
             .map(x => x.pcode)
             .includes(
-              submission[
-                (fdf.spatialDescription.admins[level] as TKBoundaries).pcode
-              ]
+              submission[(fdf.spatial.admins[level] as TKBoundaries).pcode]
             )
         ) {
           (boundariesList[level] as TKBoundaries[]).push({
             pcode:
-              submission[
-                (fdf.spatialDescription.admins[level] as TKBoundaries).pcode
-              ],
+              submission[(fdf.spatial.admins[level] as TKBoundaries).pcode],
             name:
-              submission[
-                (fdf.spatialDescription.admins[level] as TKBoundaries).name ??
-                  ""
-              ]
+              submission[(fdf.spatial.admins[level] as TKBoundaries).name ?? ""]
           });
         }
       }

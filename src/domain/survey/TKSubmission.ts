@@ -184,7 +184,7 @@ export function TKCreateSubmission(
   submissionRawEntries: TKSubmissionRawEntries,
   fdf: TKFDF,
   options: TKSurveyOptions,
-  languages: string[]
+  locale: string[]
 ): TKSubmission {
   // Init all the thematics
   const thematics: Record<
@@ -278,7 +278,7 @@ export function TKCreateSubmission(
                   fdf,
                   thematic.thematic,
                   options.listSeparator,
-                  languages
+                  locale
                 );
               }
               break;
@@ -327,7 +327,7 @@ export function TKCreateSubmission(
     .map(thematic => thematic.thematic);
 
   return {
-    date: submissionRawEntries[fdf.spatialDescription.siteLastUpdateField],
+    date: submissionRawEntries[fdf.spatial.siteFields.lastUpdate],
     entries: entries,
     thematics: thematicsFiltered,
     indicators: [

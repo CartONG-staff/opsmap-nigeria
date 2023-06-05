@@ -204,12 +204,12 @@ export function TKCreateSubmissionEntryList(
   surveyConfiguration: TKFDF,
   thematic: TKSubmissionThematic,
   listSeparator: string,
-  languages: string[]
+  locales: string[]
 ): TKSubmissionEntryText {
   const isAnswered = value !== "";
   let correctedValue: Record<string, string> = {};
   if (isAnswered) {
-    languages.map(
+    locales.map(
       lang =>
         (correctedValue[lang] = value
           .split(listSeparator)

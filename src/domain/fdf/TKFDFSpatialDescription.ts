@@ -8,13 +8,15 @@ import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
 
 // TODO: rename this
 export interface TKFDFSpatialDescription {
-  siteIDField: string;
-  siteManageByField: string;
-  siteManageByAltValue?: string;
-  siteNameField: string;
-  siteLastUpdateField: string;
-  siteLatitudeField?: string;
-  siteLongitudeField?: string;
-  siteTypeField: string;
+  siteFields: {
+    id: string;
+    manageBy: string;
+    manageByAlt?: string;
+    name: string;
+    lastUpdate: string;
+    latitude?: string;
+    longitude?: string;
+    type: string;
+  };
   admins: Partial<Record<TKAdminLevel, { pcode: string; name: string }>>;
 }

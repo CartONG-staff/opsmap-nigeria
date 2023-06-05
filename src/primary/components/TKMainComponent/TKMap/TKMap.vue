@@ -141,8 +141,8 @@ export default class TKMap extends Vue {
     if (this.geoDataset) {
       this.mapBoundaries = new TKMapBoundaries(
         this.geoDataset,
-        TKConfigurationModule.configuration.spatialConfiguration.dbConfig,
-        this.dataset.currentSurvey.fdf.spatialDescription
+        TKConfigurationModule.configuration.spatial.dbConfig,
+        this.dataset.currentSurvey.fdf.spatial
       );
     }
   }
@@ -178,12 +178,12 @@ export default class TKMap extends Vue {
       // Init the map - world level
       this.bound = new mapboxgl.LngLatBounds(
         new mapboxgl.LngLat(
-          TKConfigurationModule.configuration.spatialConfiguration.mapConfig.bounds[0],
-          TKConfigurationModule.configuration.spatialConfiguration.mapConfig.bounds[1]
+          TKConfigurationModule.configuration.spatial.mapConfig.bounds[0],
+          TKConfigurationModule.configuration.spatial.mapConfig.bounds[1]
         ),
         new mapboxgl.LngLat(
-          TKConfigurationModule.configuration.spatialConfiguration.mapConfig.bounds[2],
-          TKConfigurationModule.configuration.spatialConfiguration.mapConfig.bounds[3]
+          TKConfigurationModule.configuration.spatial.mapConfig.bounds[2],
+          TKConfigurationModule.configuration.spatial.mapConfig.bounds[3]
         )
       );
     }
@@ -192,8 +192,7 @@ export default class TKMap extends Vue {
         container: "tk-map",
         style: this.basemaps.basemapsList[0].style,
         accessToken:
-          TKConfigurationModule.configuration.spatialConfiguration.mapConfig
-            .token,
+          TKConfigurationModule.configuration.spatial.mapConfig.token,
         bounds: this.bound,
         attributionControl: false
       });
@@ -248,13 +247,13 @@ export default class TKMap extends Vue {
     if (!this.map.getSource(TKMapSource.COUNTRY_MASK)) {
       this.map.addSource(TKMapSource.COUNTRY_MASK, {
         type: "geojson",
-        data: `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${TKConfigurationModule.configuration.spatialConfiguration.admin0LocalURL}`
+        data: `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${TKConfigurationModule.configuration.spatial.admin0LocalURL}`
       });
     }
 
     if (this.mapBoundaries) {
-      for (const level of TKConfigurationModule.configuration
-        .spatialConfiguration.adminLevelsMap) {
+      for (const level of TKConfigurationModule.configuration.spatial
+        .adminLevelsMap) {
         if (!this.map.getSource(level)) {
           this.map.addSource(level, {
             type: "geojson",
@@ -289,7 +288,7 @@ export default class TKMap extends Vue {
     if (!this.map.getLayer(COUNTRY_MASK)) {
       this.map.addLayer(this.mapLayerStyle[COUNTRY_MASK] as FillLayer);
     }
-    for (const level of TKConfigurationModule.configuration.spatialConfiguration
+    for (const level of TKConfigurationModule.configuration.spatial
       .adminLevelsMap) {
       this.map.addLayer(this.mapLayerStyle[level]?.fill as FillLayer);
       this.map.addLayer(this.mapLayerStyle[level]?.border as LineLayer);
@@ -410,11 +409,8 @@ export default class TKMap extends Vue {
       if (this.bound) {
         this.map.fitBounds(this.bound, {
           padding:
-            TKConfigurationModule.configuration.spatialConfiguration.mapConfig
-              .padding,
-          speed:
-            TKConfigurationModule.configuration.spatialConfiguration.mapConfig
-              .zoomspeed
+            TKConfigurationModule.configuration.spatial.mapConfig.padding,
+          speed: TKConfigurationModule.configuration.spatial.mapConfig.zoomspeed
         });
       }
     }

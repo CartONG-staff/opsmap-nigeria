@@ -348,7 +348,8 @@ export class TKDataset {
 
         if (this._currentSite && this._currentSurvey) {
           // Update all Admins
-          for (const level of TKConfigurationModule.configuration.adminLevels) {
+          for (const level of TKConfigurationModule.configuration.spatial
+            .adminLevels) {
             this._currentAdmins[level] = this._currentSite?.admins[level];
           }
 
@@ -459,7 +460,7 @@ export class TKDataset {
         }
       }
 
-      const levels = TKConfigurationModule.configuration.adminLevels;
+      const levels = TKConfigurationModule.configuration.spatial.adminLevels;
       for (const level of levels) {
         if (this._currentAdmins[level]) {
           if (

@@ -36,19 +36,19 @@ export function sortAdminLevelsRootFirst(
 // ////////////////////////////////////////////////////////////////////////////
 
 export function parent(level: TKAdminLevel): TKAdminLevel | null {
-  const levels = TKConfigurationModule.configuration.adminLevels;
+  const levels = TKConfigurationModule.configuration.spatial.adminLevels;
   const index = levels.findIndex(item => item == level);
   return index > 0 ? levels[index - 1] : null;
 }
 
 function child(level: TKAdminLevel): TKAdminLevel | null {
-  const levels = TKConfigurationModule.configuration.adminLevels;
+  const levels = TKConfigurationModule.configuration.spatial.adminLevels;
   const index = levels.findIndex(item => item == level);
   return index < levels.length - 1 ? levels[index + 1] : null;
 }
 
 export function root(): TKAdminLevel | null {
-  const levels = TKConfigurationModule.configuration.adminLevels;
+  const levels = TKConfigurationModule.configuration.spatial.adminLevels;
   return levels.length > 0 ? levels[0] : null;
 }
 
@@ -61,7 +61,7 @@ export function isRoot(level: TKAdminLevel): boolean {
 }
 
 export function leaf(): TKAdminLevel | null {
-  const levels = TKConfigurationModule.configuration.adminLevels;
+  const levels = TKConfigurationModule.configuration.spatial.adminLevels;
   return levels.length > 0 ? levels[levels.length - 1] : null;
 }
 export function isLeaf(level: TKAdminLevel): boolean {
@@ -77,7 +77,7 @@ export function isLeaf(level: TKAdminLevel): boolean {
 // ////////////////////////////////////////////////////////////////////////////
 
 export function arrayRootToLevel(level: TKAdminLevel): Array<TKAdminLevel> {
-  const levels = TKConfigurationModule.configuration.adminLevels;
+  const levels = TKConfigurationModule.configuration.spatial.adminLevels;
   const index = levels.findIndex(item => item == level);
   return index > -1 ? levels.slice(undefined, index + 1) : [];
 }
@@ -91,7 +91,7 @@ export function arrayLevelToRoot(level: TKAdminLevel): Array<TKAdminLevel> {
 // ////////////////////////////////////////////////////////////////////////////
 
 export function arrayLevelToLeaf(level: TKAdminLevel): Array<TKAdminLevel> {
-  const levels = TKConfigurationModule.configuration.adminLevels;
+  const levels = TKConfigurationModule.configuration.spatial.adminLevels;
   const index = levels.findIndex(item => item == level);
   return index > -1 ? levels.slice(index, undefined) : [];
 }
@@ -119,7 +119,7 @@ export function arrayLeafToLevel(level: TKAdminLevel): Array<TKAdminLevel> {
 }
 
 export function arrayRootToLeaf(): Array<TKAdminLevel> {
-  return [...TKConfigurationModule.configuration.adminLevels];
+  return [...TKConfigurationModule.configuration.spatial.adminLevels];
 }
 
 export function arrayLeafToRoot(): Array<TKAdminLevel> {
@@ -132,8 +132,7 @@ export function arrayLeafToRoot(): Array<TKAdminLevel> {
 export function closestAncesterInAdminLevelMap(
   level: TKAdminLevel
 ): TKAdminLevel | null {
-  const mapLevels =
-    TKConfigurationModule.configuration.spatialConfiguration.adminLevelsMap;
+  const mapLevels = TKConfigurationModule.configuration.spatial.adminLevelsMap;
   for (const localLevel of arrayLevelToRoot(level)) {
     if (mapLevels.includes(localLevel)) {
       return localLevel;

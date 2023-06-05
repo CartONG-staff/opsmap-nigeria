@@ -77,7 +77,7 @@ export default class TKRouteHandler extends Vue {
           }
         } else {
           for (const level of [
-            ...TKConfigurationModule.configuration.adminLevels
+            ...TKConfigurationModule.configuration.spatial.adminLevels
           ].reverse()) {
             const adminName: string = this.$route.params[level] ?? "";
             if (adminName) {
@@ -99,7 +99,7 @@ export default class TKRouteHandler extends Vue {
       encodeURIComponent(TKDatasetModule.dataset.currentSurvey?.name ?? "")
     );
     // add admins subpath
-    const adminsSubpath = TKConfigurationModule.configuration.adminLevels
+    const adminsSubpath = TKConfigurationModule.configuration.spatial.adminLevels
       .map(level =>
         encodeURIComponent(
           TKDatasetModule.dataset.getCurrentAdmin(level)?.name ?? ""

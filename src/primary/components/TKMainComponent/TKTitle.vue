@@ -23,13 +23,13 @@ import TKConfigurationModule from "@/store/modules/configuration/TKConfiguration
 export default class TKTitle extends Vue {
   appName = toTitleCase(
     TKGetLocalValue(
-      TKConfigurationModule.configuration.name,
+      TKConfigurationModule.configuration.textContent.name,
       this.$root.$i18n.locale
     )
   );
 
   title = TKGetLocalValue(
-    TKConfigurationModule.configuration.title,
+    TKConfigurationModule.configuration.textContent.title,
     this.$root.$i18n.locale
   );
 
@@ -37,13 +37,13 @@ export default class TKTitle extends Vue {
   handeLocale() {
     this.appName = toTitleCase(
       TKGetLocalValue(
-        TKConfigurationModule.configuration.name,
+        TKConfigurationModule.configuration.textContent.name,
         this.$root.$i18n.locale
       )
     );
 
     this.title = TKGetLocalValue(
-      TKConfigurationModule.configuration.title,
+      TKConfigurationModule.configuration.textContent.title,
       this.$root.$i18n.locale
     );
   }

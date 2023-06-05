@@ -1,4 +1,4 @@
-import { TKFDFFiles } from "@/secondary/fdf/TKFDFInfos";
+import { TKFDFFiles } from "@/secondary/fdf/TKFDFFiles";
 import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import {
   TKFDFTrafficLightsCollection,

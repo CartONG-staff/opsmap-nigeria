@@ -4,7 +4,7 @@
 import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
 import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 import { TKCSVParse } from "@/secondary/csv/TKCSV";
-import { TKFDFFiles } from "./TKFDFInfos";
+import { TKFDFFiles } from "./TKFDFFiles";
 
 // ////////////////////////////////////////////////////////////////////////////
 const FORMATTED_NAME_INDEX = 0;

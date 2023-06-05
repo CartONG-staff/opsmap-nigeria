@@ -16,16 +16,16 @@ import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 export class TKMapBoundaries {
   public geodataset: TKGeoDataset;
   public dbConfig: TKOpsmapSpatialConfiguration["dbConfig"];
-  public spatialDescription: TKFDFSpatialDescription;
+  public spatial: TKFDFSpatialDescription;
 
   constructor(
     geodataset: TKGeoDataset,
     dbConfig: TKOpsmapSpatialConfiguration["dbConfig"],
-    spatialDescription: TKFDFSpatialDescription
+    spatial: TKFDFSpatialDescription
   ) {
     this.geodataset = geodataset;
     this.dbConfig = dbConfig;
-    this.spatialDescription = spatialDescription;
+    this.spatial = spatial;
   }
 
   // //////////////////////////////////////////////////////////////////////////
@@ -83,8 +83,8 @@ export class TKMapBoundaries {
     // else: survey level
     else {
       map.fitBounds(defaultBound);
-      for (const level of TKConfigurationModule.configuration
-        .spatialConfiguration.adminLevelsMap) {
+      for (const level of TKConfigurationModule.configuration.spatial
+        .adminLevelsMap) {
         this.hideLevel(level);
       }
     }
@@ -103,7 +103,7 @@ export class TKMapBoundaries {
 
   setAdminStyle(level: TKAdminLevel): mapboxgl.LngLatBounds | null {
     // Hide all levls
-    for (const level of TKConfigurationModule.configuration.spatialConfiguration
+    for (const level of TKConfigurationModule.configuration.spatial
       .adminLevelsMap) {
       this.hideLevel(level);
     }

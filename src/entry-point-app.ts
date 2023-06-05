@@ -26,14 +26,12 @@ TKReadGeneralConfiguration(
   // i18n
   //Handle locale definition + default
   const messages: LocaleMessages = {};
-  for (const key of TKConfigurationModule.configuration.languages) {
-    messages[key] = messagesCandidates[key];
+  for (const locale of TKConfigurationModule.configuration.locale.locales) {
+    messages[locale] = messagesCandidates[locale];
   }
 
-  const defaultLocale = TKConfigurationModule.configuration.languageDefault;
-
   const i18n = new VueI18n({
-    locale: defaultLocale,
+    locale: TKConfigurationModule.configuration.locale.default,
     fallbackLocale: "en",
     messages: messages
   });

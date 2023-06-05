@@ -1,10 +1,11 @@
 {
-    "languages": [
-        "en",
-        "fr"
-    ],
-    "languageDefault": "fr",
-    "iso3": "BFA",
+    "locale": {
+        "languages": [
+            "en",
+            "fr"
+        ],
+        "default": "fr"
+    },
     "name": {
         "en": "Burkina Faso",
         "fr": "Burkina Faso"
@@ -171,21 +172,29 @@
                 ]
             },
             "spatial": {
-                "siteIDField": "ID",
-                "siteLastUpdateField": "DateUpdate",
-                "siteLatitudeField": "latitude",
-                "siteLongitudeField": "longitude",
-                "siteManageByField": "GestionnaireSiteNom",
-                "siteNameField": "site",
-                "siteTypeField": "type_installation",
-                "adm1Pcode": "adm1pcode",
-                "adm1Name": "region",
-                "adm2Pcode": "adm2pcode",
-                "adm2Name": "province"
+                "siteFields": {
+                    "id": "ID",
+                    "lastUpdate": "DateUpdate",
+                    "latitude": "latitude",
+                    "longitude": "longitude",
+                    "manageBy": "GestionnaireSiteNom",
+                    "name": "site",
+                    "type": "type_installation"
+                },
+                "admins": {
+                    "admin1": {
+                        "pcode": "adm1pcode",
+                        "name": "region"
+                    },
+                    "admin2": {
+                        "pcode": "adm2pcode",
+                        "name": "province"
+                    }
+                }
             }
         }
     ],
-    "spatialConfiguration": {
+    "spatial": {
         "mapConfig": {
             "bounds": [
                 4.81,

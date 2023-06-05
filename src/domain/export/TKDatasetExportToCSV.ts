@@ -25,12 +25,14 @@ function computeSiteExportFileBasename(dataset: TKDataset): string {
 function computeSelectionExportFileBasename(dataset: TKDataset): string {
   if (dataset) {
     let filename = "export";
-    filename += TKConfigurationModule.configuration.adminLevels.map(level => {
-      const admin = dataset.getCurrentAdmin(level);
-      if (admin) {
-        return "_" + admin.name;
-      } else return "";
-    });
+    filename += TKConfigurationModule.configuration.spatial.adminLevels.map(
+      level => {
+        const admin = dataset.getCurrentAdmin(level);
+        if (admin) {
+          return "_" + admin.name;
+        } else return "";
+      }
+    );
 
     if (dataset.currentSite) {
       filename += "_" + dataset.currentSite.name;

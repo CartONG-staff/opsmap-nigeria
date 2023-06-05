@@ -133,7 +133,7 @@ export function computeMapLayersStyle(
     }
   };
 
-  for (const level of TKConfigurationModule.configuration.spatialConfiguration
+  for (const level of TKConfigurationModule.configuration.spatial
     .adminLevelsMap) {
     styles[level] = {
       fill: {

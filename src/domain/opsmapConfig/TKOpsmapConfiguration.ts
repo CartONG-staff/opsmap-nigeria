@@ -22,6 +22,18 @@ interface TKAppOptions {
   readonly exportAsCSVonHomePage: boolean;
   readonly keepThematicOrderFromFDF: boolean;
 }
+
+interface TKTextContent {
+  readonly name: TKLabel;
+  title: TKLabel;
+  readonly opsmapDescr: TKLabel;
+}
+
+interface TKLocaleDescription {
+  default: string;
+  locales: string[];
+}
+
 interface TKIFrameDescription {
   readonly url: string;
   readonly display: boolean;
@@ -39,6 +51,7 @@ export interface TKOpsmapSpatialConfiguration {
   mapConfig: TKMapboxConfiguration;
   dbConfig: Record<TKAdminLevel, string>;
   admin0LocalURL: string;
+  adminLevels: Array<TKAdminLevel>;
   adminLevelsMap: Array<TKAdminLevel>;
 }
 
@@ -52,14 +65,9 @@ export interface TKOpsmapSpatialConfiguration {
 // ////////////////////////////////////////////////////////////////////////////
 
 export interface TKOpsmapConfiguration {
-  adminLevels: Array<TKAdminLevel>;
-  readonly name: TKLabel;
-  title: TKLabel;
-  readonly languages: string[];
-  languageDefault: string;
-  readonly iso3: string;
-  readonly opsmapDescr: TKLabel;
-  readonly spatialConfiguration: TKOpsmapSpatialConfiguration;
+  readonly textContent: TKTextContent;
+  readonly locale: TKLocaleDescription;
+  readonly spatial: TKOpsmapSpatialConfiguration;
   readonly footerLogos: TKLogoGroup[];
   readonly iframe?: TKIFrameDescription;
   readonly surveys: TKSurveyInfos[];
@@ -80,67 +88,59 @@ export async function TKReadGeneralConfiguration(
   ).then(response => response.json());
 
   // ////////////////////////////////////////////////////////////////////////////
-  // Languages
+  // Locale
   // Always has english, is never empty.
-  if (!json.languages.includes("en")) {
-    json.languages.push("en");
+  if (!json.locale.locales.includes("en")) {
+    json.locale.locales.push("en");
   }
 
-  json.languageDefault = json.languageDefault ?? "en";
+  json.locale.default = json.locale.default ?? "en";
 
   // ////////////////////////////////////////////////////////////////////////////
   // Mapbox configuration - handle default values
   // ////////////////////////////////////////////////////////////////////////////
 
   const title: TKLabel = {};
-  json.languages.map(locale => {
+  json.locale.locales.map(locale => {
     title[locale] = translations[locale]["appName"].toString();
   });
 
-  json.title = {
+  json.textContent.title = {
     ...title,
-    ...json.title
+    ...json.textContent.title
   };
 
   // ////////////////////////////////////////////////////////////////////////////
   // Admin level
   // ////////////////////////////////////////////////////////////////////////////
 
-  const adminLevels = [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2];
-  json.adminLevels = sortAdminLevelsRootFirst(json.adminLevels ?? adminLevels);
-
   // ////////////////////////////////////////////////////////////////////////////
   // Spatial Configuration
   // ////////////////////////////////////////////////////////////////////////////
 
   // admin0 geojson
-  json.spatialConfiguration.admin0LocalURL =
-    json.spatialConfiguration.admin0LocalURL ?? "map/admin0.geojson";
+  json.spatial.admin0LocalURL =
+    json.spatial.admin0LocalURL ?? "map/admin0.geojson";
 
   // dbConfig
-  json.spatialConfiguration.dbConfig = json.spatialConfiguration.dbConfig ?? {
+  json.spatial.dbConfig = json.spatial.dbConfig ?? {
     admin1: "pcode",
     admin2: "pcode"
   };
 
-  // dbConfig
-  const adminLevelsMap = [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2];
-  json.spatialConfiguration.adminLevelsMap = json.spatialConfiguration
-    .adminLevelsMap
-    ? sortAdminLevelsRootFirst(json.spatialConfiguration.adminLevelsMap)
-    : adminLevelsMap;
+  // adminLevels
+  json.spatial.adminLevels = sortAdminLevelsRootFirst(
+    json.spatial.adminLevels ?? [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2]
+  );
+
+  // adminLevelsMap
+  json.spatial.adminLevelsMap = json.spatial.adminLevelsMap
+    ? sortAdminLevelsRootFirst(json.spatial.adminLevelsMap)
+    : json.spatial.adminLevels ?? [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2];
 
   // ////////////////////////////////////////////////////////////////////////////
   // Mapbox configuration - handle default values
   // ////////////////////////////////////////////////////////////////////////////
-  // Provide defaults values to mapbox config
-  // UNHCR account
-  // token: "pk.eyJ1IjoidW5oY3IiLCJhIjoiY2tveWJlcDV5MDVycTJ2and3ZXllcW1leCJ9.Vp5XDh5OhDXxZCZUvgEuDg",
-  // style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",
-
-  // OPSMAP account
-  // token: "pk.eyJ1Ijoib3BzbWFwcGVyIiwiYSI6ImNrbW5xMWFuYzBqejMydnBnN2VjMTBj;cG8ifQ.OtWWd9kzJdJjogrY7gb-sw",
-  // style: "mapbox://styles/opsmapper/ckmnq4jfb12r217o7yon9r383",
 
   const defaultMapBoxConfig: TKMapboxConfiguration = {
     token:
@@ -153,9 +153,9 @@ export async function TKReadGeneralConfiguration(
 
   // Init with defaultMApBoxConfig, then replace existing key with mapConfig.
   // Order matter !
-  json.spatialConfiguration.mapConfig = {
+  json.spatial.mapConfig = {
     ...defaultMapBoxConfig,
-    ...json.spatialConfiguration.mapConfig
+    ...json.spatial.mapConfig
   };
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -207,10 +207,13 @@ export async function TKReadGeneralConfiguration(
       ...json.surveys[i].options
     };
 
+    // fdf folder set to fdf by default
+    json.surveys[i].fdf.folder = json.surveys[i].fdf.folder ?? "FDF";
+
     // Force to global if lat or long are undefined
     if (
-      !json.surveys[i].spatial.siteLatitudeField ||
-      !json.surveys[i].spatial.siteLongitudeField
+      !json.surveys[i].spatial.siteFields.latitude ||
+      !json.surveys[i].spatial.siteFields.longitude
     ) {
       json.surveys[i].options.anonymousMode =
         TKSurveyAnonymousType.TEXT_AND_MAP;
