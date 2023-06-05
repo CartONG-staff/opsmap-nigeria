@@ -83,8 +83,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "adm1_source_code",
-            "adm2DBPcode": "adm2_source_code"
+            "admin1": "adm1_source_code",
+            "admin2": "adm2_source_code"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_slovakia/map/admin0.geojson"
@@ -112,13 +112,13 @@
                 "siteManageByField": "site_management",
                 "siteNameField": "site_name",
                 "siteTypeField": "site_typology",
-                "adm1Pcode": "admin1Pcode",
-                "adm1Name": "region",
-                "adm2Pcode": "admin2Pcode",
-                "adm2Name": "district"
+                "admin1Pcode": "adm1Pcode",
+                "admin1Name": "region",
+                "admin2Pcode": "adm2Pcode",
+                "admin2Name": "district"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },

@@ -7,6 +7,8 @@ import Vue from "vue";
 import { headerLogoBus } from "@/primary/components/TKHeaderLogoBus";
 import { Component, Watch } from "vue-property-decorator";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import { root, TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 @Component
 export default class TKRouteHandler extends Vue {
@@ -16,7 +18,10 @@ export default class TKRouteHandler extends Vue {
     headerLogoBus.$on("switchToHomePage", () => {
       if (this.$route.path !== "/") {
         if (TKDatasetModule.dataset) {
-          TKDatasetModule.dataset.currentAdmin1 = null;
+          const rootLevel = root();
+          if (rootLevel) {
+            TKDatasetModule.dataset.setCurrentAdmin(rootLevel, null);
+          }
         }
 
         this.currentRoute = "/";
@@ -57,11 +62,10 @@ export default class TKRouteHandler extends Vue {
   // Adjust dataset from a given URL
   updateDatasetFromUrl() {
     if (this.$route.name === "home") {
-      TKDatasetModule.dataset.currentAdmin1 = null;
+      TKDatasetModule.dataset.setCurrentAdmin(TKAdminLevel.ADMIN1, null);
     } else if (this.$route.name === "site") {
       const survey: string = this.$route.params["survey"] ?? "";
-      const admin1: string = this.$route.params["admin1"] ?? "";
-      const admin2: string = this.$route.params["admin2"] ?? "";
+
       const site: string = this.$route.params["site"] ?? "";
       const date: string = this.$route.params["date"]?.replaceAll("-", "/");
       if (survey) {
@@ -71,10 +75,16 @@ export default class TKRouteHandler extends Vue {
           if (date) {
             TKDatasetModule.dataset.setSubmissionByDate(date);
           }
-        } else if (admin2) {
-          TKDatasetModule.dataset.setCurrentAdmin2ByName(admin2);
-        } else if (admin1) {
-          TKDatasetModule.dataset.setCurrentAdmin1ByName(admin1);
+        } else {
+          for (const level of [
+            ...TKConfigurationModule.configuration.adminLevels
+          ].reverse()) {
+            const adminName: string = this.$route.params[level] ?? "";
+            if (adminName) {
+              TKDatasetModule.dataset.setCurrentAdminByName(level, adminName);
+              return;
+            }
+          }
         }
       }
     }
@@ -82,45 +92,44 @@ export default class TKRouteHandler extends Vue {
 
   // Adjust URL from a given dataset
   updateUrlFromDataset() {
-    // upadte URL
-    const surveyE = encodeURIComponent(
-      TKDatasetModule.dataset.currentSurvey?.name ?? ""
+    const pathItems: Array<string> = [];
+    let path = "/";
+    // add survey
+    pathItems.push(
+      encodeURIComponent(TKDatasetModule.dataset.currentSurvey?.name ?? "")
     );
-    const admin1E = encodeURIComponent(
-      TKDatasetModule.dataset.currentAdmin1?.name ?? ""
-    );
-    const admin2E = encodeURIComponent(
-      TKDatasetModule.dataset.currentAdmin2?.name ?? ""
-    );
-    const siteE = encodeURIComponent(
-      TKDatasetModule.dataset.currentSite?.name ?? ""
-    );
-    const dateE = encodeURIComponent(
-      TKDatasetModule.dataset.currentSubmission?.date.replaceAll("/", "-") ?? ""
-    );
+    // add admins subpath
+    const adminsSubpath = TKConfigurationModule.configuration.adminLevels
+      .map(level =>
+        encodeURIComponent(
+          TKDatasetModule.dataset.getCurrentAdmin(level)?.name ?? ""
+        )
+      )
+      .filter(item => item !== "");
 
-    let path = `/site`;
-    if (surveyE) {
-      path += `/${surveyE}`;
-      if (admin1E) {
-        path += `/${admin1E}`;
-        if (admin2E) {
-          path += `/${admin2E}`;
-          if (siteE) {
-            path += `/${siteE}`;
-            if (dateE) {
-              path += `/${dateE}`;
-            }
-          }
-        }
-      } else {
-        path = "/";
-      }
+    if (adminsSubpath.length) {
+      pathItems.push(...adminsSubpath);
+
+      // add site subpath
+      pathItems.push(
+        encodeURIComponent(TKDatasetModule.dataset.currentSite?.name ?? "")
+      );
+
+      // add date subpath
+      pathItems.push(
+        encodeURIComponent(
+          TKDatasetModule.dataset.currentSubmission?.date.replaceAll(
+            "/",
+            "-"
+          ) ?? ""
+        )
+      );
+      path = "/site/" + pathItems.filter(item => item !== "").join("/");
     }
     if (
       this.$route.path !== path &&
       this.$route.path !== path + "/" &&
-      !(!siteE && this.$route.name === "home") // Prevent to site page when no site is selected
+      !(!TKDatasetModule.dataset.currentSite && this.$route.name === "home") // Prevent to site page when no site is selected
     ) {
       this.currentRoute = path;
       this.$router.push({

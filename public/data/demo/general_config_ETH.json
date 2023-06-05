@@ -86,8 +86,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "adm2pcode"
+            "admin1": "pcode",
+            "admin2": "admin2Pcode"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_ethiopia/map/admin0.geojson"
@@ -114,13 +114,13 @@
                 "siteManageByField": "CCCM_AGENCY",
                 "siteNameField": "SITE_NAME",
                 "siteTypeField": "Site_Type",
-                "adm1Pcode": "ADM1_PCODE",
-                "adm1Name": "ADM1_EN",
-                "adm2Pcode": "ADM2_PCODE",
-                "adm2Name": "ADM2_EN"
+                "admin1Pcode": "ADM1_PCODE",
+                "admin1Name": "ADM1_EN",
+                "admin2Pcode": "ADM2_PCODE",
+                "admin2Name": "ADM2_EN"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },

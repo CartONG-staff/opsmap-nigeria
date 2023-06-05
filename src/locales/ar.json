@@ -1,7 +1,9 @@
 {
     "title": "Opsmap",
-    "infosAdmin1": "الولاية",
-    "infosAdmin2": "المدينه    ",
+    "infosAdmins": {
+        "admin1": "الولاية",
+        "admin2": "المدينه"
+    },
     "infosSiteType": "نوع الموقع",
     "manageBy": "تتم إدارة الموقع بواسطة",
     "selectText": "اختر",

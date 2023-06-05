@@ -149,10 +149,10 @@
                 "siteLongitudeField": "group_general_info/longitude",
                 "siteNameField": "group_general_info/site_name",
                 "siteTypeField": "group_general_info/site_type",
-                "adm1Pcode": "group_general_info/state",
-                "adm1Name": "group_general_info/state_name",
-                "adm2Pcode": "group_general_info/lga",
-                "adm2Name": "group_general_info/lga_name"
+                "admin1Pcode": "group_general_info/state",
+                "admin1Name": "group_general_info/state_name",
+                "admin2Pcode": "group_general_info/lga",
+                "admin2Name": "group_general_info/lga_name"
             },
             "options": {
                 "inputDateFormat": "YYYY-MM-DD",
@@ -161,7 +161,7 @@
                 "listSeparator": " "
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },
@@ -217,8 +217,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "dscodeadm1",
-            "adm2DBPcode": "dscodeadm2"
+            "admin1": "dscodeadm1",
+            "admin2": "dscodeadm2"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_nigeria/map/admin0.geojson"

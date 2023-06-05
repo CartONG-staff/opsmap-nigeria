@@ -1,7 +1,9 @@
 {
     "title": "Opsmap",
-    "infosAdmin1": "Держава",
-    "infosAdmin2": "Місто",
+    "infosAdmins": {
+        "admin1": "Держава",
+        "admin2": "Місто"
+    },
     "infosSiteType": "Типовий сайт",
     "manageBy": "Керування",
     "selectText": "Виберіть",

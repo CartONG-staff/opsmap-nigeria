@@ -23,11 +23,11 @@ export async function TKReadFDFTerminologyCollection(
 
   // Parse all the other lines: fill matching label with proper column indexes.
   const terminologyCollection: TKFDFTerminologyCollection = {};
-  rawUrl.forEach(el => {
+  for (const el of rawUrl) {
     if (el[0] && el[1]) {
       terminologyCollection[el[0]] = el[1];
     }
-  });
+  }
 
   return terminologyCollection;
 }

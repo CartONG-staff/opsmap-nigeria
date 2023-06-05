@@ -187,8 +187,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "adm1_source_code",
-            "adm2DBPcode": "adm2_source_code"
+            "admin1": "adm1_source_code",
+            "admin2": "adm2_source_code"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_yemen/map/admin0.geojson"
@@ -216,13 +216,13 @@
                 "siteManageByField": "smc_agency",
                 "siteNameField": "site_name",
                 "siteTypeField": "type_of_settlement",
-                "adm1Pcode": "governorate",
-                "adm1Name": "governorate_name",
-                "adm2Pcode": "district",
-                "adm2Name": "district_Name"
+                "admin1Pcode": "governorate",
+                "admin1Name": "governorate_name",
+                "admin2Pcode": "district",
+                "admin2Name": "district_Name"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },

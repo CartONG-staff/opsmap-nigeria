@@ -1,9 +1,13 @@
 import { TKLabel } from "@/domain/utils/TKLabel";
 import {
   TKFDFIndicator,
+  TKFDFIndicatorArea,
   TKFDFIndicatorType
 } from "@/domain/fdf/TKFDFIndicators";
 import { PEOPLE_COUNT_LABEL, SITE_COUNT_LABEL } from "./TKIndicatorLabels";
+import { TKSite } from "./TKSite";
+import { TKSubmissionEntryType } from "./TKSubmissionEntry";
+import { TKSurvey } from "./TKSurvey";
 
 export enum TKIndicatorType {
   STANDARD = "standard",
@@ -30,6 +34,8 @@ export const SITE_COUNT_ICON = "IDP-refugee-camp";
 export const PEOPLE_COUNT_ICON = "People-in-need";
 
 export type TKIndicator = TKIndicatorStandard | TKIndicatorSiteOccupation;
+
+export type TKIndicators = [TKIndicator, TKIndicator, TKIndicator];
 
 export function TKIndicatorDefault(ref: TKFDFIndicator): TKIndicator {
   switch (ref.type) {
@@ -68,4 +74,94 @@ export function TKIndicatorDefault(ref: TKFDFIndicator): TKIndicator {
         iconOchaName: ref.iconOchaName
       };
   }
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Compute Area indicator
+// ////////////////////////////////////////////////////////////////////////////
+
+export function computeAreaIndicator(
+  descr: TKFDFIndicatorArea,
+  sites: TKSite[]
+): TKIndicator {
+  // Handle Site Count
+  if (descr.type === TKFDFIndicatorType.SITE_COUNT) {
+    return {
+      type: TKIndicatorType.STANDARD,
+      nameLabel: SITE_COUNT_LABEL,
+      valueLabel: {
+        en: String(sites.length)
+      },
+      iconOchaName: SITE_COUNT_ICON
+    };
+  }
+
+  // Accumulate results
+  const results = [];
+  for (const site of sites) {
+    if (site.submissions.length > 0) {
+      const submission = site.submissions[0];
+
+      const item = submission.entries[descr.entryCode];
+      if (
+        item &&
+        item.type === TKSubmissionEntryType.TEXT &&
+        item.answerLabel
+      ) {
+        results.push(item.answerLabel.en);
+      }
+    }
+  }
+
+  // Process Results
+  let result = "-";
+  if (results.length > 0) {
+    if (
+      descr.type === TKFDFIndicatorType.PEOPLE_COUNT ||
+      descr.type === TKFDFIndicatorType.STANDARD
+    ) {
+      // Do the sum of numeric value
+      result = String(
+        results.reduce(
+          (sum, current) =>
+            sum +
+            (!isNaN(parseFloat(current)) ? Math.floor(parseFloat(current)) : 0),
+          0
+        )
+      );
+    } else if (descr.type === TKFDFIndicatorType.VALUE_COUNT) {
+      result = String(results.filter(item => item === descr.refValue).length);
+    }
+  }
+
+  if (descr.type === TKFDFIndicatorType.PEOPLE_COUNT) {
+    return {
+      type: TKIndicatorType.STANDARD,
+      nameLabel: PEOPLE_COUNT_LABEL,
+      valueLabel: { en: result },
+      iconOchaName: PEOPLE_COUNT_ICON
+    };
+  }
+
+  return {
+    type: TKIndicatorType.STANDARD,
+    iconOchaName: descr.iconOchaName,
+    nameLabel: descr.name,
+    valueLabel: { en: result }
+  };
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Compute Area indicator
+// ////////////////////////////////////////////////////////////////////////////
+
+export function computeAreaIndicators(
+  survey: TKSurvey,
+  sites: TKSite[]
+): TKIndicators {
+  return [
+    computeAreaIndicator(survey.fdf.indicators.area[0], sites),
+    computeAreaIndicator(survey.fdf.indicators.area[1], sites),
+    computeAreaIndicator(survey.fdf.indicators.area[2], sites)
+  ];
 }

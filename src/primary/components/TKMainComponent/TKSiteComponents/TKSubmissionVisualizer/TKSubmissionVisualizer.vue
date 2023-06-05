@@ -6,9 +6,9 @@
       class="tk-submission-visualizer-col"
     >
       <TKSubmissionThematicView
-        v-for="(them, indexthem) in col"
-        :key="indexthem"
-        :submissionThematic="them"
+        v-for="(thematic, index) in col"
+        :key="index"
+        :submissionThematic="thematic"
       />
     </div>
   </div>
@@ -30,6 +30,7 @@ import {
 } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import { TKSubmissionEntries } from "@/domain/survey/TKSubmissionEntries";
 
 const LEFT = 0;
 const MIDDLE = 1;
@@ -72,31 +73,36 @@ function computeTextScore(text: TKSubmissionEntryText): number {
   );
 }
 
-function computeScore(thematic: TKSubmissionThematic): number {
-  return thematic.data.reduce((previousScore, thematicData) => {
-    let score = 1;
-    switch (thematicData.type) {
-      case TKSubmissionEntryType.BULLET:
-        score = thematicData.answersLabels.length;
-        break;
-      case TKSubmissionEntryType.CHART_DOUGHNUT:
-        score = computeChartDoughnutScore(thematicData);
-        break;
-      case TKSubmissionEntryType.CHART_POLAR:
-        score = computeChartPolarScore(thematicData);
-        break;
-      case TKSubmissionEntryType.CHART_PYRAMID:
-        score = computeChartPyramidScore(thematicData);
-        break;
-      case TKSubmissionEntryType.CHART_RADAR:
-        score = computeChartRadarScore(thematicData);
-        break;
-      case TKSubmissionEntryType.TEXT:
-        score = computeTextScore(thematicData);
-        break;
-    }
-    return previousScore + score;
-  }, 0);
+function computeScore(
+  entries: TKSubmissionEntries,
+  thematic: TKSubmissionThematic
+): number {
+  return Object.values(entries)
+    .filter(entry => entry.thematic.id === thematic.id)
+    .reduce((previousScore, thematicData) => {
+      let score = 1;
+      switch (thematicData.type) {
+        case TKSubmissionEntryType.BULLET:
+          score = thematicData.answersLabels.length;
+          break;
+        case TKSubmissionEntryType.CHART_DOUGHNUT:
+          score = computeChartDoughnutScore(thematicData);
+          break;
+        case TKSubmissionEntryType.CHART_POLAR:
+          score = computeChartPolarScore(thematicData);
+          break;
+        case TKSubmissionEntryType.CHART_PYRAMID:
+          score = computeChartPyramidScore(thematicData);
+          break;
+        case TKSubmissionEntryType.CHART_RADAR:
+          score = computeChartRadarScore(thematicData);
+          break;
+        case TKSubmissionEntryType.TEXT:
+          score = computeTextScore(thematicData);
+          break;
+      }
+      return previousScore + score;
+    }, 0);
 }
 
 @Component({
@@ -132,11 +138,8 @@ export default class TKSubmissionVisualizer extends Vue {
           TKConfigurationModule.configuration.options.keepThematicOrderFromFDF
         ) {
           let index = 0;
-          for (const thematic in this.dataset.currentSubmission.thematics) {
-            this.columns[index];
-            this.columns[index].push(
-              this.dataset.currentSubmission.thematics[thematic]
-            );
+          for (const thematic of this.dataset.currentSubmission.thematics) {
+            this.columns[index].push(thematic);
             index++;
             if (index > 2) {
               index = 0;
@@ -144,7 +147,7 @@ export default class TKSubmissionVisualizer extends Vue {
           }
           // Optimize a bit the display
         } else {
-          for (const thematic in this.dataset.currentSubmission.thematics) {
+          for (const thematic of this.dataset.currentSubmission.thematics) {
             let index = LEFT;
             if (
               scores[MIDDLE] < scores[LEFT] &&
@@ -157,13 +160,12 @@ export default class TKSubmissionVisualizer extends Vue {
             ) {
               index = RIGHT;
             }
-            this.columns[index].push(
-              this.dataset.currentSubmission.thematics[thematic]
-            );
+            this.columns[index].push(thematic);
 
             // Increment item count.
             scores[index] += computeScore(
-              this.dataset.currentSubmission.thematics[thematic]
+              this.dataset.currentSubmission.entries,
+              thematic
             );
           }
         }
@@ -171,12 +173,11 @@ export default class TKSubmissionVisualizer extends Vue {
         // Follow descriptiopn order
       } else if (this.thematics) {
         let index = 0;
-        for (const i in this.thematics) {
-          const thematicsDescr = this.thematics[i];
+        for (const key in this.thematics) {
+          const thematicsDescr = this.thematics[key];
           this.columns[index].push({
-            data: [],
             nameLabel: thematicsDescr.thematicLabel,
-            formattedName: thematicsDescr.formattedName,
+            id: thematicsDescr.id,
             iconFileName: thematicsDescr.iconFileName
           });
 

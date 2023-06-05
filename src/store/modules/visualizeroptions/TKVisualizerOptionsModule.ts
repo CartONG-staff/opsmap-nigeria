@@ -13,10 +13,24 @@ const DEFAULT_SHOW_VISUALIZER_OPTIONS = false;
 
 @Module({ dynamic: true, store, name: "TKVisualizerOptionsModule" })
 class TKVisualizerOptionsModule extends VuexModule {
-  _hideUnanswered = DEFAULT_HIDE_UNANSWERED;
-  _sortByTrafficLight = DEFAULT_SORT_BY_TRAFFICLIGHT;
-  _searchFilter = DEFAULT_FILTER_VALUE;
+  // //////////////////////////////////////////////////////////////////////////
+  // Show options
+  // //////////////////////////////////////////////////////////////////////////
   _showVisualizerOptions = DEFAULT_SHOW_VISUALIZER_OPTIONS;
+
+  @Mutation
+  setShowVisualizerOptions(show: boolean) {
+    this._showVisualizerOptions = show;
+  }
+
+  get showVisualizerOptions(): boolean {
+    return this._showVisualizerOptions;
+  }
+
+  // //////////////////////////////////////////////////////////////////////////
+  // Hide Unanswered
+  // //////////////////////////////////////////////////////////////////////////
+  _hideUnanswered = DEFAULT_HIDE_UNANSWERED;
 
   @Mutation
   resetHideUnanswered() {
@@ -32,6 +46,11 @@ class TKVisualizerOptionsModule extends VuexModule {
     return this._hideUnanswered;
   }
 
+  // //////////////////////////////////////////////////////////////////////////
+  // Sort by Traffic Light
+  // //////////////////////////////////////////////////////////////////////////
+  _sortByTrafficLight = DEFAULT_SORT_BY_TRAFFICLIGHT;
+
   @Mutation
   resetSortByTrafficLight() {
     this._sortByTrafficLight = DEFAULT_SORT_BY_TRAFFICLIGHT;
@@ -42,10 +61,14 @@ class TKVisualizerOptionsModule extends VuexModule {
     this._sortByTrafficLight = sort;
   }
 
-  get sortByTrafficLigh(): boolean {
+  get sortByTrafficLight(): boolean {
     return this._sortByTrafficLight;
   }
 
+  // //////////////////////////////////////////////////////////////////////////
+  // Search Filter
+  // //////////////////////////////////////////////////////////////////////////
+  _searchFilter = DEFAULT_FILTER_VALUE;
   @Mutation
   resetSearchFilter() {
     this._searchFilter = DEFAULT_FILTER_VALUE;
@@ -58,15 +81,6 @@ class TKVisualizerOptionsModule extends VuexModule {
 
   get searchFilter(): string {
     return this._searchFilter;
-  }
-
-  @Mutation
-  setShowVisualizerOptions(show: boolean) {
-    this._showVisualizerOptions = show;
-  }
-
-  get showVisualizerOptions(): boolean {
-    return this._showVisualizerOptions;
   }
 }
 

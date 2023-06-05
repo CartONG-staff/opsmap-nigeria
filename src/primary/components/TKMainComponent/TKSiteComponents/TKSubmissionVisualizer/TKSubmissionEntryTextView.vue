@@ -20,22 +20,24 @@
     </transition>
 
     <div>
-      <div class="tk-trafficlight-container">
-        <div v-if="displayTrafficLight">
-          <v-tooltip right>
-            <template v-slot:activator="{ on, attrs }">
-              <div
-                v-bind="attrs"
-                v-on="on"
-                class="tk-trafficlight"
-                :style="trafficLightColor"
-              ></div>
-            </template>
-            <span>{{ $t(trafficLightCategory) }}</span>
-          </v-tooltip>
+      <transition mode="out-in" name="fade-in">
+        <div class="tk-trafficlight-container" :key="displayTrafficLight">
+          <div v-if="displayTrafficLight">
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <div
+                  v-bind="attrs"
+                  v-on="on"
+                  class="tk-trafficlight"
+                  :style="trafficLightColor"
+                ></div>
+              </template>
+              <span>{{ $t(trafficLightCategory) }}</span>
+            </v-tooltip>
+          </div>
+          <div v-else class="tk-trafficlight"></div>
         </div>
-        <div v-else class="tk-trafficlight"></div>
-      </div>
+      </transition>
     </div>
   </div>
 </template>

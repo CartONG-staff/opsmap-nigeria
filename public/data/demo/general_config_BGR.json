@@ -83,8 +83,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
+            "admin1": "pcode",
+            "admin2": "pcode"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_bulgaria/map/admin0.geojson"
@@ -112,13 +112,13 @@
                 "siteManageByField": "Who_is_managing_the_site",
                 "siteNameField": "site_name",
                 "siteTypeField": "General_Site_Type",
-                "adm1Pcode": "adm1_pcode",
-                "adm1Name": "Province_of_the_monitored_location",
-                "adm2Pcode": "adm2_pcode",
-                "adm2Name": "Municipality_of_monitored_location"
+                "admin1Pcode": "adm1_pcode",
+                "admin1Name": "Province_of_the_monitored_location",
+                "admin2Pcode": "adm2_pcode",
+                "admin2Name": "Municipality_of_monitored_location"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },
@@ -198,13 +198,13 @@
                 "siteManageByField": "Who_is_managing_the_site",
                 "siteNameField": "site_name",
                 "siteTypeField": "General_Site_Type",
-                "adm1Pcode": "adm1_pcode",
-                "adm1Name": "Province_of_the_monitored_location",
-                "adm2Pcode": "adm2_pcode",
-                "adm2Name": "Municipality_of_monitored_location"
+                "admin1Pcode": "adm1_pcode",
+                "admin1Name": "Province_of_the_monitored_location",
+                "admin2Pcode": "adm2_pcode",
+                "admin2Name": "Municipality_of_monitored_location"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },

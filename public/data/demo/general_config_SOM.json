@@ -93,8 +93,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
+            "admin1": "pcode",
+            "admin2": "pcode"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_somalia/map/admin0.geojson"
@@ -122,13 +122,13 @@
                 "siteManageByField": "cccm_management",
                 "siteNameField": "settlement_name",
                 "siteTypeField": "settlement_type",
-                "adm1Pcode": "localisation_region",
-                "adm1Name": "localisation_region_label",
-                "adm2Pcode": "district",
-                "adm2Name": "localisation_district_label"
+                "admin1Pcode": "localisation_region",
+                "admin1Name": "localisation_region_label",
+                "admin2Pcode": "district",
+                "admin2Name": "localisation_district_label"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },

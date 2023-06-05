@@ -1,7 +1,9 @@
 {
     "title": "Opsmap",
-    "infosAdmin1": "Stat",
-    "infosAdmin2": "Oraș",
+    "infosAdmins": {
+        "admin1": "Stat",
+        "admin2": "Oraș"
+    },
     "infosSiteType": "Tipul de sit",
     "manageBy": "Gestionat de",
     "selectText": "Selectați un",
