@@ -1,99 +1,37 @@
 import { Feature, FeatureCollection } from "geojson";
 import mapboxgl, { LngLat, LngLatBounds, LngLatLike } from "mapbox-gl";
-import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 import { TKOpsmapSpatialConfiguration } from "../opsmapConfig/TKOpsmapConfiguration";
 import {
   TKAdminLevel,
-  arrayLevelBelowToLeaf,
   closestAncesterInAdminLevelMap,
   leaf
 } from "../opsmapConfig/TKAdminLevel";
 import { TKBoundaries } from "../survey/TKBoundaries";
 import { COUNTRY_MASK } from "./TKMapLayers";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
-import {
-  ADMIN_FILTERS_TO_ADMIN_LEVEL,
-  TKAdminFilterType
-} from "../survey/TKAdminFilters";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 
 export class TKMapBoundaries {
+  public defaultBound: LngLatBounds;
   public geodataset: TKGeoDataset;
   public dbConfig: TKOpsmapSpatialConfiguration["dbConfig"];
+  public map: mapboxgl.Map;
   public spatialDescription: TKFDFSpatialDescription;
 
   constructor(
     geodataset: TKGeoDataset,
     dbConfig: TKOpsmapSpatialConfiguration["dbConfig"],
-    spatialDescription: TKFDFSpatialDescription
+    spatialDescription: TKFDFSpatialDescription,
+    defaultBound: LngLatBounds,
+    map: mapboxgl.Map
   ) {
     this.geodataset = geodataset;
     this.dbConfig = dbConfig;
     this.spatialDescription = spatialDescription;
-  }
-
-  // //////////////////////////////////////////////////////////////////////////
-  //
-  // //////////////////////////////////////////////////////////////////////////
-
-  changeStyle(
-    dataset: TKDataset,
-    map: mapboxgl.Map,
-    bound: LngLatBounds
-  ): void {
-    // If survey level
-    if (dataset.levelToZoom === TKAdminFilterType.SURVEY) {
-      this.mapFitBounds(bound, map);
-      // Clear all levels
-      for (const level of TKConfigurationModule.configuration
-        .spatialConfiguration.adminLevelsMap) {
-        this.hideLevel(level);
-      }
-    }
-    // If other level
-    else {
-      let boundaryLevel: TKAdminLevel | null = null;
-      if (dataset.levelToZoom === TKAdminFilterType.SITE) {
-        const leafLevel = leaf();
-        if (leafLevel) {
-          boundaryLevel = closestAncesterInAdminLevelMap(leafLevel);
-        }
-      } else {
-        boundaryLevel = closestAncesterInAdminLevelMap(
-          ADMIN_FILTERS_TO_ADMIN_LEVEL[dataset.levelToZoom]
-        );
-      }
-
-      if (boundaryLevel) {
-        const setZoom = this.setAdminStyle(boundaryLevel, dataset);
-        for (const level of TKConfigurationModule.configuration
-          .spatialConfiguration.adminLevelsMap) {
-          if (level != boundaryLevel) {
-            this.hideLevel(level);
-          }
-        }
-
-        if (setZoom) {
-          this.mapFitBounds(setZoom, map);
-        }
-      }
-    }
-
-    if (dataset.currentSite) {
-      this.mapFitBounds(
-        new LngLat(
-          dataset.currentSite.coordinates.lng,
-          dataset.currentSite.coordinates.lat
-        ).toBounds(100),
-        map
-      );
-    }
-    for (const level of Object.keys(this.geodataset)) {
-      (map.getSource(level) as mapboxgl.GeoJSONSource)?.setData(
-        this.geodataset[level as TKAdminLevel] as FeatureCollection
-      );
-    }
+    this.defaultBound = defaultBound;
+    this.map = map;
   }
 
   // //////////////////////////////////////////////////////////////////////////
@@ -108,46 +46,93 @@ export class TKMapBoundaries {
   // //////////////////////////////////////////////////////////////////////////
   //
   // //////////////////////////////////////////////////////////////////////////
-  isAdminLowerCurrent(level: TKAdminLevel, dataset: TKDataset): boolean {
-    for (const levelBelow of arrayLevelBelowToLeaf(level)) {
-      if (dataset.getCurrentAdmin(levelBelow)) {
-        return true;
+
+  updateBoundariesStyle(): void {
+    // Most granular admin level filter
+    let boundaryLevel: TKAdminLevel | null = null;
+
+    // If Current Submission
+    if (TKDatasetModule.dataset.hasCurrentSubmission) {
+      const leafLevel = leaf();
+      if (leafLevel) {
+        boundaryLevel = closestAncesterInAdminLevelMap(leafLevel);
       }
     }
-    return false;
-  }
-
-  setAdminStyle(level: TKAdminLevel, dataset: TKDataset) {
-    let shouldMapZoom = null;
-    const currentadminList = (dataset.getFilteredAdminList(
-      level
-    ) as TKBoundaries[]).map(item => item.pcode);
-
-    // Iterate through features
-    for (const item of this.geodataset[level]?.features ?? []) {
-      if (item.properties) {
-        if (this.isAdminLowerCurrent(level, dataset)) {
-          // Hide if more granular is active
-          item.properties.display = "hide";
-        } else if (
-          // Show
-          dataset.getCurrentAdmin(level) &&
-          (dataset.getCurrentAdmin(level) as TKBoundaries).pcode ===
-            item.properties[this.dbConfig[level]]
-        ) {
-          shouldMapZoom = this.getBoundingBoxFromCoordinatesArray(item);
-          item.properties.display = "focus";
-          // TODO REMOVE THIS
-        } else if (
-          currentadminList.includes(item.properties[this.dbConfig[level]])
-        ) {
-          item.properties.display = "hide";
-        } else {
-          item.properties.display = "hide";
+    // Else: Look for most precise admin
+    else {
+      const ref = TKDatasetModule.dataset.mostGranularAdminLevelFilter;
+      if (ref) {
+        boundaryLevel = closestAncesterInAdminLevelMap(ref);
+      }
+    }
+    console.log("boundary level found: " + boundaryLevel);
+    // If has boundary level
+    if (boundaryLevel) {
+      // Current site: set parent admin boundaries, zoom on site
+      if (TKDatasetModule.dataset.currentSite) {
+        this.setAdminStyle(boundaryLevel);
+        this.map.fitBounds(
+          new LngLat(
+            TKDatasetModule.dataset.currentSite.coordinates.lng,
+            TKDatasetModule.dataset.currentSite.coordinates.lat
+          ).toBounds(100)
+        );
+      }
+      // Current admin: set admin boundaries, zoom on admin
+      else {
+        const boundingBox = this.setAdminStyle(boundaryLevel);
+        if (boundingBox) {
+          this.map.fitBounds(boundingBox);
         }
       }
     }
-    return shouldMapZoom;
+    // else: survey level
+    else {
+      this.map.fitBounds(this.defaultBound);
+      for (const level of TKConfigurationModule.configuration
+        .spatialConfiguration.adminLevelsMap) {
+        this.hideLevel(level);
+      }
+    }
+
+    // ?
+    for (const level of Object.keys(this.geodataset)) {
+      (this.map.getSource(level) as mapboxgl.GeoJSONSource)?.setData(
+        this.geodataset[level as TKAdminLevel] as FeatureCollection
+      );
+    }
+  }
+
+  // //////////////////////////////////////////////////////////////////////////
+  //
+  // //////////////////////////////////////////////////////////////////////////
+
+  setAdminStyle(level: TKAdminLevel): mapboxgl.LngLatBounds | null {
+    // Hide all levls
+    for (const level of TKConfigurationModule.configuration.spatialConfiguration
+      .adminLevelsMap) {
+      this.hideLevel(level);
+    }
+
+    // Iterate through features
+    const currentAdmin = TKDatasetModule.dataset.getCurrentAdmin(level);
+    if (!currentAdmin) {
+      return null;
+    }
+    for (const feature of this.geodataset[level]?.features ?? []) {
+      if (feature.properties) {
+        if (
+          // Show
+          TKDatasetModule.dataset.getCurrentAdmin(level) &&
+          (TKDatasetModule.dataset.getCurrentAdmin(level) as TKBoundaries)
+            .pcode === feature.properties[this.dbConfig[level]]
+        ) {
+          feature.properties.display = "focus";
+          return this.getBoundingBoxFromCoordinatesArray(feature);
+        }
+      }
+    }
+    return null;
   }
 
   hideLevel(level: TKAdminLevel) {
@@ -162,10 +147,6 @@ export class TKMapBoundaries {
   // //////////////////////////////////////////////////////////////////////////
   //
   // //////////////////////////////////////////////////////////////////////////
-
-  mapFitBounds(bounds: LngLatBounds, map: mapboxgl.Map) {
-    map.fitBounds(bounds);
-  }
 
   getBoundingBoxFromCoordinatesArray(item: Feature): LngLatBounds {
     const bounds = { xMin: 180, xMax: -180, yMin: 180, yMax: -180 };

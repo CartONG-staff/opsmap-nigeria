@@ -99,11 +99,7 @@ export default class TKMap extends Vue {
         TKDatasetModule.dataset.currentSite
       );
       if (this.mapBoundaries) {
-        this.mapBoundaries.changeStyle(
-          TKDatasetModule.dataset,
-          this.map,
-          this.bound
-        );
+        this.mapBoundaries.updateBoundariesStyle();
       }
     }
   }
@@ -114,11 +110,7 @@ export default class TKMap extends Vue {
   @Watch("geoDataset")
   currentSiteChanged() {
     if (this.mapBoundaries) {
-      this.mapBoundaries.changeStyle(
-        TKDatasetModule.dataset,
-        this.map,
-        this.bound
-      );
+      this.mapBoundaries.updateBoundariesStyle();
     }
     this.mapSites = new TKMapSites(
       TKDatasetModule.dataset.filteredTypedSitesList,
@@ -150,7 +142,9 @@ export default class TKMap extends Vue {
       this.mapBoundaries = new TKMapBoundaries(
         this.geoDataset,
         TKConfigurationModule.configuration.spatialConfiguration.dbConfig,
-        this.dataset.currentSurvey.fdf.spatialDescription
+        this.dataset.currentSurvey.fdf.spatialDescription,
+        this.bound,
+        this.map
       );
     }
   }
@@ -222,13 +216,13 @@ export default class TKMap extends Vue {
         this.addImages();
 
         if (this.mapBoundaries) {
-          this.mapBoundaries.changeStyle(
-            TKDatasetModule.dataset,
-            this.map,
-            this.bound
-          );
+          this.mapBoundaries.updateBoundariesStyle();
         }
       });
+
+      if (this.mapBoundaries && !this.mapBoundaries.map) {
+        this.mapBoundaries.map = this.map;
+      }
     }
   }
 
