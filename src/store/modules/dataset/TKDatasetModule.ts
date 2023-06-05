@@ -24,17 +24,18 @@ class TKDatasetModule extends VuexModule {
 
   @Mutation
   updateSiteCoordinates(geoDataset: TKGeoDataset) {
-    this._dataset.surveys.forEach(survey => {
+    for (const survey of this._dataset.surveys) {
       if (survey.options.anonymousMode === TKSurveyAnonymousType.TEXT_AND_MAP) {
         for (let i = 0; i < survey.sites.length; i++) {
           const site = survey.sites[i];
           const centroid = computeCentroid(site, geoDataset);
+          // TODO check that this is useful
           if (centroid) {
             survey.sites[i].coordinates = centroid;
           }
         }
       }
-    });
+    }
   }
 
   get dataset() {

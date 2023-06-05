@@ -1,7 +1,11 @@
 {
     "languages": [
-        "pt",
-        "en"
+        "en",
+        "pt"
+    ],
+    "adminLevel": [
+        "admin1",
+        "admin2"
     ],
     "iso3": "BRA",
     "name": {
@@ -9,7 +13,8 @@
         "pt": "Brasil"
     },
     "title": {
-        "en": "Profile of the shelters in Roraima"
+        "en": "Site profile",
+        "pt": "Perfil do site"
     },
     "opsmapDescr": {
         "en": "More than 260,000 refugees and migrants have traveled to Brazil in search of protection as a result of the political, social and economic crisis ravaging Venezuela.<br/>Considering the urgent needs for humanitarian assistance, such as food, shelter, health and protection, especially for people with vulnerabilities (children, pregnant women, the elderly, people with disabilities, etc.), the Brazilian Federal Government edited Law no. 13,684/2018, providing for the execution of emergency assistance measures for the reception of affected people.<br/>Currently, Roraima has 9 reception spaces, including shelters (indigenous and non-indigenous), with the potential to serve more than nine thousand refugees, asylum seekers, and migrants. Of these, 7 are in the city of Boa Vista, 2 in the city of Pacaraima.<br/>All 9 spaces are coordinated by UNHCR, because of the agreement signed with the Ministry of Citizenship, in partnership with the Armed Forces.",
@@ -17,40 +22,9 @@
     },
     "iframe": {
         "url": "https://app.powerbi.com/view?r=eyJrIjoiZTRhOWVlOTgtYTk2MS00YmY3LWEyY2YtMGM1Y2MzODFjMmVjIiwidCI6ImU1YzM3OTgxLTY2NjQtNDEzNC04YTBjLTY1NDNkMmFmODBiZSIsImMiOjh9",
-        "display": false
+        "display": true
     },
-    "headerLogos": [
-        {
-            "name": "Acolhida",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/Acolhida.jpeg",
-            "urlRedirection": "https://www.gov.br/casacivil/pt-br/acolhida/"
-        },
-        {
-            "name": "AVSI",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
-            "urlRedirection": "http://www.avsibrasil.org.br/"
-        },
-        {
-            "name": "FSF",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/FSF.png",
-            "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
-        },
-        {
-            "name": "UNHCR",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
-            "urlRedirection": "https://www.acnur.org.br"
-        },
-        {
-            "name": "Ministério da Cidadania",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
-            "urlRedirection": "https://www.gov.br/cidadania/pt-br"
-        },
-        {
-            "name": "R4V",
-            "urlLogo": "/data/demo/DEMO_brazil/Logo/R4V.png",
-            "urlRedirection": "https://www.r4v.info/"
-        }
-    ],
+    "headerLogos": [],
     "footerLogos": [
         {
             "title": {
@@ -60,7 +34,7 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -73,12 +47,12 @@
             "logos": [
                 {
                     "name": "FSF",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/FSF.png",
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/FSF.png",
                     "urlRedirection": "https://www.fraternidadesemfronteiras.org.br/"
                 },
                 {
                     "name": "AVSI",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/AVSI_BRASIL.png",
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/AVSI_BRASIL.png",
                     "urlRedirection": "http://www.avsibrasil.org.br/"
                 }
             ]
@@ -91,7 +65,7 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/UNHCR_PT.jpg",
                     "urlRedirection": "https://www.acnur.org.br"
                 }
             ]
@@ -104,12 +78,12 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/UNHCR_PT.jpg",
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/UNHCR_PT.jpg",
                     "urlRedirection": "https://www.acnur.org.br"
                 },
                 {
                     "name": "Ministério da Cidadania",
-                    "urlLogo": "/data/demo/DEMO_brazil/Logo/Ministrerio_da_CIDADANIA.png",
+                    "urlLogo": "/data/demo/DEMO_brazil/BR_Logo/Ministrerio_da_CIDADANIA.png",
                     "urlRedirection": "https://www.gov.br/cidadania/pt-br"
                 }
             ]
@@ -125,8 +99,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
+            "admin1": "pcode",
+            "admin2": "pcode"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_brazil/map/admin0.geojson"
@@ -136,17 +110,17 @@
         {
             "type": "gsheet",
             "fdf": {
-                "folder": "/data/demo/DEMO_brazil/FDF"
+                "folder": "/data/demo/DEMO_brazil/BR_FDF_s1_080421"
             },
-            "name": "2021",
-            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=0&single=true&output=csv",
-            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZtDX3BL3X9mXgnvS0hE_jXx_WijzNIp_wEAZNhSp9xOoJg3dFuruhkHd0Z-ol_x4xcYyuPnaFAdbL/pub?gid=1157434408&single=true&output=csv",
+            "name": "Form A",
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=0&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRblO4ExeANFNL0ti5S4d-4x1k9AxCA93lfarcRyrUZMUABV7NwezMAUUmwKKN9AMLywoSTZZRSIfdn/pub?gid=1157434408&single=true&output=csv",
             "options": {
-                "dateFormat": "DD/MM/YYYY",
+                "inputDateFormat": "DD/MM/YYYY",
                 "listSeparator": ";"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },
@@ -204,15 +178,23 @@
                 "siteManageByField": "cccm_shelter__mangmt",
                 "siteNameField": "mp_site_name",
                 "siteTypeField": "mp_shelter_type",
-                "adm1Pcode": "adm1pcode",
-                "adm1Name": "ggi_state",
-                "adm2Pcode": "adm2pcode",
-                "adm2Name": "ggi_city"
+                "admins": {
+                    "admin1": {
+                        "pcode": "adm1pcode",
+                        "name": "ggi_state"
+                    },
+                    "admin2": {
+                        "pcode": "adm2pcode",
+                        "name": "ggi_city"
+                    }
+                }
             }
         }
     ],
     "options": {
         "showCCCMLogo": false,
-        "pdfColumnCount": 3
+        "pdfColumnCount": 3,
+        "showDemoBanner": false,
+        "exportAsCSVonHomePage": true
     }
 }

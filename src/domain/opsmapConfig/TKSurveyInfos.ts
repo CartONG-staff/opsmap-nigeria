@@ -2,6 +2,7 @@ import { TKFDFInfos } from "../fdf/TKFDFInfos";
 import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
 import { TKSurveyOptions } from "../survey/TKSurvey";
 import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
+import { TKAdditionalFilterDescription } from "../survey/TKAdditionalFilter";
 
 export enum TKSurveyInfosType {
   KOBO = "kobo",
@@ -28,9 +29,22 @@ export interface TKSurveyInfosRidl extends TKSurveyBase {
 }
 
 // ////////////////////////////////////////////////////////////////////////////
+// infos
+// ////////////////////////////////////////////////////////////////////////////
+
+export interface TKAbstractSurveyInfos {
+  readonly name: string;
+  readonly fdf: TKFDFInfos;
+  options: TKSurveyOptions;
+  additionalFiltersDescription: TKAdditionalFilterDescription[];
+  readonly spatial: TKFDFSpatialDescription;
+  readonly indicators: TKFDFIndicators;
+}
+
+// ////////////////////////////////////////////////////////////////////////////
 // Specialization of TKSurveyInfo for KOBO Inputs
 // ////////////////////////////////////////////////////////////////////////////
-export interface TKSurveyInfosKobo extends TKSurveyBase {
+export interface TKSurveyInfosKobo extends TKAbstractSurveyInfos {
   readonly type: TKSurveyInfosType.KOBO;
   readonly url: string;
   readonly token: string;
@@ -40,7 +54,7 @@ export interface TKSurveyInfosKobo extends TKSurveyBase {
 // Specialization of TKSurveyInfo for CSV Inputs
 // ////////////////////////////////////////////////////////////////////////////
 
-export interface TKSurveyInfosCSV extends TKSurveyBase {
+export interface TKSurveyInfosCSV extends TKAbstractSurveyInfos {
   readonly type: TKSurveyInfosType.CSV;
   readonly submissionsLocalUrl: string;
   readonly submissionsTrLocalUrl: string;
@@ -50,7 +64,7 @@ export interface TKSurveyInfosCSV extends TKSurveyBase {
 // Specialization of TKSurveyInfo for CSV Inputs
 // ////////////////////////////////////////////////////////////////////////////
 
-export interface TKSurveyInfosGSheet extends TKSurveyBase {
+export interface TKSurveyInfosGSheet extends TKAbstractSurveyInfos {
   readonly type: TKSurveyInfosType.GSHEET;
   readonly submissionsUrl: string;
   readonly submissionsTrUrl: string;

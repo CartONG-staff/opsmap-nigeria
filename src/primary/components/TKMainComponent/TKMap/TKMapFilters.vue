@@ -102,7 +102,7 @@ export default class TKMapFilter extends Vue {
       )) {
         const site = this.dataset.currentSurvey.fdf.siteTypes[siteKeys];
         this.sites.push({
-          type: site.formattedName,
+          type: site.id,
           title: site.thematicLabel,
           iconUrl: TKIconUrl(site.iconFileName.normal),
           active: true,
@@ -128,7 +128,7 @@ export default class TKMapFilter extends Vue {
   updateCount() {
     for (let idx = 0; idx < this.sites.length; idx++) {
       this.sites[idx].count = this.dataset.filteredSitesList.filter(
-        site => site.type.formattedName === this.sites[idx].type
+        site => site.type.id === this.sites[idx].type
       ).length;
     }
   }

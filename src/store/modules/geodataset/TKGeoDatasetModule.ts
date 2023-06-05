@@ -6,15 +6,16 @@ import {
 } from "vuex-module-decorators";
 import store from "@/store";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 
 @Module({ dynamic: true, store, name: "TKGeoDatasetModule" })
 class TKGeoDatasetModule extends VuexModule {
   _geoDataset: TKGeoDataset = {
-    admin1: {
+    [TKAdminLevel.ADMIN1]: {
       type: "FeatureCollection",
       features: []
     },
-    admin2: {
+    [TKAdminLevel.ADMIN2]: {
       type: "FeatureCollection",
       features: []
     }

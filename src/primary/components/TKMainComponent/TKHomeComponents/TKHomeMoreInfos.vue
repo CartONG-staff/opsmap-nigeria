@@ -23,7 +23,7 @@ import TKConfigurationModule from "@/store/modules/configuration/TKConfiguration
 import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
-export default class TKHomeIndicators extends Vue {
+export default class TKHomeMoreInfos extends Vue {
   content = TKGetLocalValue(
     TKConfigurationModule.configuration.opsmapDescr,
     this.$root.$i18n.locale
@@ -46,7 +46,6 @@ export default class TKHomeIndicators extends Vue {
   row-gap: 30px;
   justify-content: space-between;
   align-items: top;
-  background-color: var(--v-background-base);
   width: 100%;
 }
 

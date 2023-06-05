@@ -1,0 +1,86 @@
+field_name;field_label_en;field_label_sk
+today;Date of report:;Dátum správy:
+region;Region:;Kraj:
+district;District:;Okres:
+site_name;Site Name:;Názov centra:
+site_management;Site Management:;Spravuje dané centrum
+site_ownership;Site Ownership:;Vlastnícky status tohto centra:
+site_typology;Site Typology:;Typ centra:
+building_type;Building Type:;Typ budovy centra:
+site_staff;Volunteers managing this site?;Centrum riadené zamestnancami a/alebo dobrovoľníkmi?
+site_staff_female_concerns;Women prioritized for sensitive roles:;Sú ženy uprednostňované pre citlivé úlohy:
+site_capacity;Site Capacity:;Lôžková kapacita centra
+hh_site;Households at the Site:;Domácností v súčasnosti ubytovaných v centre:
+How_many_people_are_te_dissagregated_by_child_ind_male;Child male:;Dieťa muž:
+How_many_people_are_te_dissagregated_by_child_ind_female;Child female:;Dieťa žena:
+How_many_people_are_te_dissagregated_by_child_ind_nonb;Child non binary:;Dieťa nebinárne:
+How_many_people_are_te_dissagregated_by_adults_ind_male;Adults male:;Dospelí muži:
+How_many_people_are_te_dissagregated_by_adults_ind_female;Adults female:;Dospelé ženy:
+How_many_people_are_te_dissagregated_by_adults_ind_nonb;Adults non binary:;Dospelí nebinárne:
+How_many_people_are_te_dissagregated_by_older_ind_male;Older male:;Starší muž:
+How_many_people_are_te_dissagregated_by_older_ind_female;Older female:;Staršia žena:
+How_many_people_are_te_dissagregated_by_older_ind_nonb;Older non binary:;Staršie nebinárne:
+site_purpose;Site Purpose:;Na čo slúži toto centrum?
+geographic_context;Geographic Context:;Geografický kontext:
+site_duration;Duration of the site for the purpose of accommodating Ukranian refugees:;Trvanie centra:
+vulnerable_groups;Vulnerable groups present at the site:;Zraniteľné skupiny aktuálne nachádzajú v centre:
+referal_system;Referral system available for services for people with specific medical needs at the site:;Systém služieb pre ľudí so špeciálnymi zdravotnými potrebami:
+referal_system_mechanisms;Referal system mechanisms available:;Dostupné mechanizmy systému odporúčaní:
+stay_duration;Stay duration:;Ako dlho zvyčajne ľudia zostávajú v tomto centre?
+needs_items_needs_foodadults_needs_foodadults;Food for adults available at the site:;Potravinové produkty pre dospelých:
+needs_items_needs_foodbabies_needs_foodadults;Food for babies available at the site:;Potravinové produkty pre bábätká:
+needs_items_needs_hotmeals_needs_foodadults;Hotmeals available at the site:;Teplé jedlá:
+needs_items_needs_kitchen_needs_foodadults;Kitchen available at the site:;Kuchynské zariadenie a potreby na varenie:
+needs_items_needs_sleepingitems_needs_foodadults;Sleeping items available at the site:;Pomôcky určené na spanie
+needs_items_needs_hygieneitems_needs_foodadults;Hygiene items available at the site:;Hygienické potreby
+needs_items_needs_cleaningitems_needs_foodadults;Cleaning items available at the site:;Čistiace potreby
+needs_items_needs_suppliesinfants_needs_foodadults;Supplies for infants available at the site:;Potreby pre malé deti a batoľatá
+needs_items_needs_supplieschild_needs_foodadults;Supplies for children available at the site:;Pomôcky do priestorov vhodných pre deti
+needs_items_needs_clothesforchildren_needs_foodadults;Clothes for children available at the site:;Oblečenie pre deti
+needs_items_needs_clothesforadults_needs_foodadults;Clothes for adults available at the site:;Oblečenie pre dospelých
+needs_items_needs_babycots_needs_foodadults;Babycots available at the site:;Detské postieľky
+needs_items_needs_firstaid_needs_foodadults;Firstaid medical kits available at the site:;Zdravotnícke pomôcky pre prvú pomoc
+needs_items_needs_suppliesolder_needs_foodadults;Supplies for older persons available at the site:;Pomôcky pre staršie osoby a osoby so zdravotným znevýhodnením
+number_meals;Number of meals provided at this site per day:;Koľko jedál denne sa poskytuje v tomto centre?
+site_accessible_disabilities;Site accessible for persons with disabilities:;Potreby centra: prístupnosť pre osoby so zdravotným znevýhodnením a staršie osoby
+site_need_disabilities_fixes;Site requires to be adapted to facilitate accesibility:;Vyžaduje si toto centrum prispôsobenie, aby bolo prístupné starším osobám a ľuďom so zdravotným znevýhodnením?
+site_need_education_supplies;Site needs education supplies:;Potrebuje toto centrum nejaké vzdelávacie pomôcky?
+site_need_education_supplies_items;Education supply needs at the site:;Ak áno, aký typ vzdelávacích pomôcok by potrebovalo?
+shower_facillities;Shower facillities available at the site:;Má toto centrum sprchy?
+shower_facilities_g_separated;Shower facilities separated by gender:;Ak áno, sú oddelené podľa pohlavia?
+shower_facilities_disabilities;Shower facilities accessible for persons with disabilities:;Ak áno, sú sprchy prístupné aj pre ľudí so zdravotným znevýhodnením?
+toilet_g_separated;Toilets separated by gender:;Sú toalety oddelené podľa pohlavia?
+toilet_disabilities;Toilets accessible for persons with disabilities:;Sú toalety prístupné pre ľudí so zdravotným znevýhodnením?
+toilet_status_clean;Shower and toilet facilities regularly cleaned:;Sú všetky tieto zariadenia pravidelne čistené?
+waste_management;Adequate waste management system at the site:;Má toto centrum primerane vyriešený odpadový manažment?
+legal_advice;Legal aid and counselling available:;Je v centre prístupná právna pomoc alebo poradenstvo?
+legal_provider;Legal aid service provider:;Ak áno, kto ju zabezpečuje?
+specialised_child_protection_services;Child protection services available:;Sú v centre služby na ochranu detí (na identifikáciu a nahlásenie ohrozených detí)?
+specialised_child_protection_services_provider;Child protection service provider:;Ak áno, kto ich zabezpečuje?
+specialised_gender_based__violence_services;Services for persons experiencing gender-based (GBV) violence such as domestic violence available:;Existujú v tomto centre služby pre osoby zažívajúce rodovo podmienené násilie, ako je napr. domáce násilie?
+specialised_GBV_services_provider;GBV service provider:;Ak áno, kto ich zabezpečuje?
+services_available_disabilities;Services available for people with disabilities at this site:;Sú v tomto centre dostupné služby pre ľudí so zdravotným znevýhodnením?
+site_need_disabilities_support_children;Support available for children with disabilities and their families:;Existuje v tomto centre nejaká podpora pre deti so zdravotným znevýhodnením a ich rodiny?
+protection_information_desk;Protection information desk available for counselling and referrals to required service or assistance:;Je v centre dostupné poradenstvo o ochrane zraniteľných skupín a možnosti využitia služieb a asistencie?
+protection_information_desk_provider;Protection information desk service provider:;Ak áno, kto ho zabezpečuje?
+privacy_gbv_protec_desk_legal;Privacy is protected while providing legal advice, GBV specialised and protection desk services;Je chránené súkromie utečencov pri poskytovaní právneho poradenstva a služieb spojených s ochranou a rodovo podmieneným násilím?
+information_available;Information available:;Sú v centre dostupné informácie o nasledujúcich témach:
+information_disabilities;Information available on where to refer people when they need disability-specific services:;Viete vy alebo iní ľudia, ktorí podávajú informácie, poradiť ľuďom so zdravotným znevýhodnením, kam sa majú obrátiť v prípade potreby špecifických služieb?
+transportation;Transportation services available at the site:;Viete, či niekto prevádzkuje prepravu z/do centra?
+transportation_services;Transportation service provider:;Ak áno, kto ju prevádzkuje?
+designated_space_recreational;Space for recreational activities and child-friendly / nursing spaces available:;Sú v centre vyčlenené priestory na rekreačné aktivity, priestory vhodné pre deti alebo priestory vyčlenené na kojenie?
+designated_space_recreational_type;Designated recreational space:;Ak áno, ktoré z nich?
+feedback_complaint_mechanism;Feedback and complaint mechanisms available:;Okrem rozhovoru s manažérom centra, sú na mieste dostupné nejaké ďalšie mechanizmy pre podávanie spätnej väzby a stažností?
+feedback_complaint_mechanism_type;Feedback complaint mechanism:;Ak áno, akým spôsobom sú zabezpečené?
+free_wifi;Free Wifi available:;Je v centre dostupná wifi sieť?
+data_sim_card;Data/SIM card provided:;Sú v centre poskytované SIM karty alebo mobilné dáta?
+mental_health_psychological_support;Mental health and psychosocial support and services available (MHPSS):;Sú na mieste dostupné služby a podpora v psychosociálnej oblasti a oblasti mentálneho zdravia?
+mental_health_psychological_support_provider;MHPSS Service provider:;Ak áno, kto ich zabezpečuje?
+medical_care_services;Basic primary medical care services available:;Sú na mieste zabezpečené základné zdravotné služby?
+medical_serv_info;Medical services available:;Ak áno, sú nasledujúce zdravotné služby dostupné?
+refugee_edu_non_formal;Non-formal education activities available:;Koľko detí z centra je zapísaných (registrovaných) do slovenskej školy na akademický rok 2022/2023?
+staff_skills;Staff and volunteers trained on SEA, PFA, trafficking, etc:;Dostali od otvorenia centra dobrovoľníci a personál špeciálny tréning/vzdelávanie v oblasti sexuálneho obťažovania a zneužívania, psychologickej prvej pomoci, obchodovania s ľuďmi a pod.?
+translation;Interpretation/translation available:;Sú v centre dostupné tlmočnícke/prekladateľské služby?
+translation_language;Language available:;Ak áno, v ktorých jazykoch?
+site_issues;Site issues;Problémy so stránkami
+ind_site;Number of individuals at the site;Počet osôb na lokalite

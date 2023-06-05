@@ -76,8 +76,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
+            "admin1": "pcode",
+            "admin2": "pcode"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_moldova/map/admin0.geojson"
@@ -93,9 +93,9 @@
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmAAIXU5ZaUJ1Jqg_jbXRmeu6Pkt3QlSwMOljUth7FoIVvdLJMKzlDf4PnBDVNDSHMNW8w41CXdhoA/pub?gid=0&single=true&output=csv",
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmAAIXU5ZaUJ1Jqg_jbXRmeu6Pkt3QlSwMOljUth7FoIVvdLJMKzlDf4PnBDVNDSHMNW8w41CXdhoA/pub?gid=1444909534&single=true&output=csv",
             "options": {
-                "dateFormat": "DD/MM/YYYY",
-                "listSeparator": ";",
-                "anonymousMode": "azeazeaze"
+                "anonymousMode": "text",
+                "inputDateFormat": "DD/MM/YYYY",
+                "listSeparator": ";"
             },
             "spatial": {
                 "siteIDField": "site_id",
@@ -105,13 +105,13 @@
                 "siteLongitudeField": "longitude",
                 "siteManageByField": "GestionnaireSiteNom",
                 "siteTypeField": "shelter_type",
-                "adm1Pcode": "adm1_pcode",
-                "adm1Name": "raion",
-                "adm2Pcode": "adm2_pcode",
-                "adm2Name": "city"
+                "admin1Pcode": "adm1_pcode",
+                "admin1Name": "raion",
+                "admin2Pcode": "adm2_pcode",
+                "admin2Name": "city"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },

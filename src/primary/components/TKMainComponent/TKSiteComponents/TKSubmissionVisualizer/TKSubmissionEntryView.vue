@@ -21,6 +21,11 @@
         v-else-if="entry.type === 'polar'"
         :entry="entry"
       />
+      <TKSubmissionEntryRadarChart
+        class="tk-chart"
+        v-else-if="entry.type === 'radar'"
+        :entry="entry"
+      />
     </div>
     <div
       v-if="entry.type === 'text' || entry.type === 'bullet'"
@@ -36,6 +41,7 @@ import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
 import TKSubmissionEntryAgePyramidChart from "./TKSubmissionEntryAgePyramidChart.vue";
 import TKSubmissionEntryDoughnutChart from "./TKSubmissionEntryDoughnutChart.vue";
 import TKSubmissionEntryPolarChart from "./TKSubmissionEntryPolarChart.vue";
+import TKSubmissionEntryRadarChart from "./TKSubmissionEntryRadarChart.vue";
 import TKSubmissionEntryBulletView from "./TKSubmissionEntryBulletView.vue";
 import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
 
@@ -44,6 +50,7 @@ import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
     TKSubmissionEntryAgePyramidChart,
     TKSubmissionEntryDoughnutChart,
     TKSubmissionEntryPolarChart,
+    TKSubmissionEntryRadarChart,
     TKSubmissionEntryBulletView,
     TKSubmissionEntryTextView
   }

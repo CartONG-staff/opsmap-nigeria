@@ -86,12 +86,11 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
+            "admin1": "pcode",
+            "admin2": "admin2Pcode"
         },
         "localFiles": {
-            "admin0LocalURL": "/data/demo/DEMO_ethiopia/map/admin0.geojson",
-            "admin1LocalURL": ""
+            "admin0LocalURL": "/data/demo/DEMO_ethiopia/map/admin0.geojson"
         }
     },
     "surveys": [
@@ -104,11 +103,24 @@
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWB--WUoL4kvoVyWJA0pSvrutK2eKTRbKFUkDRJcY5drw52BtBKphuqb8P1_iD23hiBNZIoBSw70Vy/pub?gid=139925868&single=true&output=csv",
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWB--WUoL4kvoVyWJA0pSvrutK2eKTRbKFUkDRJcY5drw52BtBKphuqb8P1_iD23hiBNZIoBSw70Vy/pub?gid=471306203&single=true&output=csv",
             "options": {
-                "dateFormat": "DD/MM/YY",
+                "inputDateFormat": "DD/MM/YY",
                 "listSeparator": ";"
             },
+            "spatial": {
+                "siteIDField": "CCCM-SITE-ID",
+                "siteLastUpdateField": "last_update",
+                "siteLatitudeField": "GPS_LATITUDE",
+                "siteLongitudeField": "GPS_LONGITUDE",
+                "siteManageByField": "CCCM_AGENCY",
+                "siteNameField": "SITE_NAME",
+                "siteTypeField": "Site_Type",
+                "admin1Pcode": "ADM1_PCODE",
+                "admin1Name": "ADM1_EN",
+                "admin2Pcode": "ADM2_PCODE",
+                "admin2Name": "ADM2_EN"
+            },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },
@@ -155,25 +167,14 @@
                         "iconOchaName": "Selected"
                     }
                 ]
-            },
-            "spatial": {
-                "siteIDField": "CCCM-SITE-ID",
-                "siteLastUpdateField": "last_update",
-                "siteLatitudeField": "GPS_LATITUDE",
-                "siteLongitudeField": "GPS_LONGITUDE",
-                "siteManageByField": "CCCM_AGENCY",
-                "siteNameField": "SITE_NAME",
-                "siteTypeField": "Site_Type",
-                "adm1Pcode": "ADM1_PCODE",
-                "adm1Name": "ADM1_EN",
-                "adm2Pcode": "ADM2_PCODE",
-                "adm2Name": "ADM2_EN"
             }
         }
     ],
     "options": {
         "showCCCMLogo": true,
         "pdfColumnCount": 3,
-        "exportForEsite": false
+        "exportForEsite": false,
+        "showDemoBanner": false,
+        "exportAsCSVonHomePage": true
     }
 }

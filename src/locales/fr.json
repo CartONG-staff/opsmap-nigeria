@@ -1,7 +1,9 @@
 {
     "title": "Opsmap",
-    "infosAdmin1": "Etat",
-    "infosAdmin2": "Ville",
+    "infosAdmins": {
+        "admin1": "Etat",
+        "admin2": "Ville"
+    },
     "infosSiteType": "Type de site",
     "manageBy": "Géré par",
     "selectText": "Choisis un",

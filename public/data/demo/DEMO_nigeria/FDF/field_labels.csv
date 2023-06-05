@@ -2,9 +2,9 @@ field_name;field_label_en
 date;Date of Report:
 group_general_info/reporting_week;Reporting Week:
 group_general_info/organisation;Reporting organization:
-group_general_info/state;State:
-group_general_info/lga;LGA:
-group_general_info/ward;Ward:
+group_general_info/state_name;State:
+group_general_info/lga_name;LGA:
+group_general_info/ward_name;Ward:
 group_general_info/site_name;Site name:
 group_general_info/camp_management;Site managed by a government agency:
 group_general_info/crowded;Evidence of site being overcrowded:

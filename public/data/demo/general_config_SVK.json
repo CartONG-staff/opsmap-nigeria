@@ -1,0 +1,179 @@
+{
+    "languages": [
+        "en",
+        "sk"
+    ],
+    "languageDefault": "en",
+    "iso3": "SVK",
+    "name": {
+        "en": "Slovakia",
+        "sk": "Slovensko"
+    },
+    "opsmapDescr": {
+        "en": "As of the 30th of August 2022, more than 7 million refugees had reportedly fled Ukraine, among whom more than 800,000 people had crossed from Ukraine to Slovakia Republic (hereafter, Slovakia) since 24th February; more than 90,000 applied for Temporary Protection in Slovakia, during the same period. To respond to refugee's needs, accommodation sites were established across the country. To better understand the needs of refugees who are being hosted in these centres, UNHCR and IOM in partnership with REACH, conducted between 28-29 July and 22-31 August 2022 key informant interviews (KIIs) with purposefully selected Site focal points who reported on the situation in the centres. Findings should be considered indicative. <br /> <br />  <div style='clear: both;'> <p style ='float: left'> </p> <p style='float: right; white-space: nowrap; font-size: 14px; color: #b3b3b3; line-height: 1.375; text-justify: inter-word;'> <i> Collective centres: <br /> There are areas where existing buildings are used as temporary living accommodations, or so-called Collective Centres, for hosting displaced populations.<br /> The types of buildings used as Collective Centres vary widely. They include schools, hotels, community centres, hospitals, factories, religious buildings,…<br /></i> </p></div>",
+        "sk": "K 30. augustu 2022 údajne z Ukrajiny utieklo viac ako 7 miliónov utečencov, z toho od 24. februára prešlo z Ukrajiny do Slovenskej republiky (ďalej len Slovensku ) viac ako 800 000 osôb; v rovnakom období požiadalo na Slovensku o dočasnú ochranu viac ako 90 000 osôb. S cieľom reagovať na potreby utečencov boli po celej krajine zriadené ubytovacie miesta. S cieľom lepšie pochopiť potreby utečencov, ktorí sú ubytovaní v týchto strediskách, UNHCR a IOM v spolupráci s REACH uskutočnili v dňoch 28. - 29. júla a 22. - 31. augusta 2022 rozhovory s kľúčovými informátormi (KII) s cielene vybranými kontaktnými miestami, ktoré informovali o situácii v strediskách. Zistenia by sa mali považovať za orientačné. <br /> <br />  <div style='clear: both;'> <p style ='float: left'> </p> <p style='float: right; white-space: nowrap; font-size: 14px; color: #b3b3b3; line-height: 1.375; text-justify: inter-word;'> <i> Kolektívne centrá: <br /> Existujú oblasti, kde sa existujúce budovy využívajú ako dočasné ubytovacie zariadenia alebo takzvané kolektívne centrá, ktoré slúžia na ubytovanie vysídleného obyvateľstva.<br /> Typy budov používaných ako kolektívne centrá sa značne líšia. Patria medzi ne školy, hotely, komunitné centrá, nemocnice, továrne, náboženské budovy,...<br /></i> </p></div>"
+    },
+    "headerLogos": [],
+    "footerLogos": [
+        {
+            "title": {
+                "en": "Webdev",
+                "sk": "Webdev"
+            },
+            "logos": [
+                {
+                    "name": "CartONG",
+                    "urlLogo": "/data/demo/DEMO_slovakia/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlRedirection": "https://www.cartong.org"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Fieldwork",
+                "sk": "Práca v teréne"
+            },
+            "logos": [
+                {
+                    "name": "REACH",
+                    "urlLogo": "/data/demo/DEMO_slovakia/Logo/reach.png",
+                    "urlRedirection": "https://www.reach-initiative.org/"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Coordination and IM support",
+                "sk": "Koordinácia a podpora IM"
+            },
+            "logos": [
+                {
+                    "name": "UNHCR",
+                    "urlLogo": "/data/demo/DEMO_slovakia/Logo/unhcr.png",
+                    "urlRedirection": "https://data.unhcr.org/en/situations/ukraine/location/10785"
+                },
+                {
+                    "name": "IOM",
+                    "urlLogo": "/data/demo/DEMO_slovakia/Logo/iom.png",
+                    "urlRedirection": "https://dtm.iom.int/slovakia"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Sector Lead",
+                "sk": "Vedúci sektora"
+            },
+            "logos": [
+                {
+                    "name": "UNHCR",
+                    "urlLogo": "/data/demo/DEMO_slovakia/Logo/unhcr.png",
+                    "urlRedirection": "https://data.unhcr.org/en/situations/ukraine/location/10785"
+                }
+            ]
+        }
+    ],
+    "spatialConfiguration": {
+        "mapConfig": {
+            "bounds": [
+                17,
+                47.5,
+                22,
+                50
+            ]
+        },
+        "dbConfig": {
+            "admin1": "adm1_source_code",
+            "admin2": "adm2_source_code"
+        },
+        "localFiles": {
+            "admin0LocalURL": "/data/demo/DEMO_slovakia/map/admin0.geojson"
+        }
+    },
+    "surveys": [
+        {
+            "type": "gsheet",
+            "fdf": {
+                "folder": "/data/demo/DEMO_slovakia/FDF"
+            },
+            "name": "2022",
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJJCYz-cJZGdRQH2Mo3eijQvvRHg1d11p3-I3XFKKHKDffPE76FG04q2jKjwp54V4XxhGNGLy6J3Dm/pub?gid=0&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJJCYz-cJZGdRQH2Mo3eijQvvRHg1d11p3-I3XFKKHKDffPE76FG04q2jKjwp54V4XxhGNGLy6J3Dm/pub?gid=1921321003&single=true&output=csv",
+            "options": {
+                "anonymousMode": "text and map",
+                "inputDateFormat": "DD/MM/YYYY",
+                "listSeparator": ";"
+            },
+            "spatial": {
+                "siteIDField": "site_id",
+                "siteLastUpdateField": "today",
+                "siteLatitudeField": "latitud",
+                "siteLongitudeField": "longitud",
+                "siteManageByField": "site_management",
+                "siteNameField": "site_name",
+                "siteTypeField": "site_typology",
+                "admin1Pcode": "adm1Pcode",
+                "admin1Name": "region",
+                "admin2Pcode": "adm2Pcode",
+                "admin2Name": "district"
+            },
+            "indicators": {
+                "area": [
+                    {
+                        "type": "site_count"
+                    },
+                    {
+                        "type": "people_count",
+                        "entryCode": "ind_site"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site max capacity",
+                            "sk": "Maximálna kapacita lokality"
+                        },
+                        "entryCode": "site_capacity",
+                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
+                    }
+                ],
+                "site": [
+                    {
+                        "type": "site_occupation",
+                        "name": {
+                            "en": "Site at full capacity",
+                            "sk": "Miesto s plnou kapacitou"
+                        },
+                        "iconOchaName": "Camp-Coordination-and-Camp-Management",
+                        "entryCodeMaxCapacity": "site_capacity",
+                        "entryCodePeopleCount": "ind_site",
+                        "entryCodeMaxPeopleCount": "site_capacity"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site type",
+                            "sk": "Typické miesto"
+                        },
+                        "entryCode": "site_typology",
+                        "iconOchaName": "IDP-refugee-camp"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "No. of individuals",
+                            "sk": "Počet osôb"
+                        },
+                        "entryCode": "ind_site",
+                        "iconOchaName": "People-in-need"
+                    }
+                ]
+            }
+        }
+    ],
+    "options": {
+        "showCCCMLogo": false,
+        "pdfColumnCount": 3,
+        "showDemoBanner": false,
+        "exportAsCSVonHomePage": true
+    }
+}

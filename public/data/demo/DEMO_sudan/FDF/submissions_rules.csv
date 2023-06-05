@@ -18,7 +18,7 @@ Number_of_Males_in_SMC;integer;group_cccm;;doughnut_chart#1;male#Number of Males
 Number_of_Females_in_SMC;integer;group_cccm;;doughnut_chart#1;fem#Number of Females in site management committee SMC;;;
 list_of_IDP_representatives_by_the_government;list;group_cccm;yesno;;;;;boolean
 representant_of_persons_with_disabilities_involved;list;group_cccm;yesno;;;;;boolean
-other_available_committees;list;group_cccm;;;;;;zq4sp53
+other_available_committees;bullet;group_cccm;;;;;;zq4sp53
 Available_committees_Elderly_and_Disabled;integer;group_cccm;;;;;;
 street_light;list;group_cccm;yesno;;;;;boolean
 number_of_functioning_street_lights;integer;group_cccm;;;;;;
@@ -35,7 +35,7 @@ specify2;integer;group_cccm;;;;;;
 families_left_the_site_in_the_last_month;list;group_cccm;yesno;;;;;boolean
 specify3;integer;group_cccm;;;;;;
 specify4;integer;group_cccm;;;;;;
-available_shelter_types_for_IDPs;list;group_shelternfi;;;;;;nu4sc16
+available_shelter_types_for_IDPs;bullet;group_shelternfi;;;;;;nu4sc16
 presence_of_new_arrivals_with_no_shelter;list;group_shelternfi;noyes;;;;;boolean
 Percentage_of_shelter_having_electricity_at_night;list;group_shelternfi;electricity_cov;;;;;electricity_coverage
 visible_emergency_damaged_shelter;list;group_shelternfi;noyes;;;;;boolean
@@ -44,7 +44,7 @@ not_adequate_space_to_walk_between_shelters;list;group_shelternfi;noyes;;;;;bool
 NFI_assistance_on_this_site_in_the_last_one_month;list;group_shelternfi;yesno;;;;;boolean
 how_many_households_beneficiaries_of_NFI_distribution;integer;group_shelternfi;;;;;;
 specify_the_last_NFI_distribution_date;list;group_shelternfi;nfi_per;;;;;nfi_periods
-specify_the_most_needed_NFI_item;list;group_shelternfi;;;;;;vx0di98
+specify_the_most_needed_NFI_item;bullet;group_shelternfi;;;;;;vx0di98
 Specify_the_last_emerency_shelter_assistance_date_on_this_site;list;group_shelternfi;nfi_per;;;;;nfi_periods
 How_far_is_the_closest_pre-education;list;group_shelternfi;education_faci;;;;;education_facilities
 How_far_is_the_closest_functioning_primary_school;list;group_shelternfi;education_faci;;;;;education_facilities
@@ -67,7 +67,7 @@ If_Yes_how_many_cases;integer;group_health;;;;;;
 Is_there_any_case_of_chronic_disease_reported_on_last_month;list;group_health;noyes;;;;;boolean
 Is_there_any_case_of_flooding_reported_on_the_last_3_months;list;group_health;noyes;;;;;boolean
 How_many_households_can_access_health_facilities_if_needed;list;group_health;pcentage_healthcare;;;;;pcentage_healthcare_access
-Which_type_of_services_are_provided_for_IDPs_on_this_site;list;group_health;;;;;;health_services_
+Which_type_of_services_are_provided_for_IDPs_on_this_site;bullet;group_health;;;;;;health_services_
 Are_there_any_impediments_to_accessing_healthcare_for_women_or_children;list;group_health;noyes;;;;;boolean
 If_YES_explain;string;group_health;;;;;;
 Are_there_any_traditional_healters_midwives_on_this_site;list;group_health;yesno;;;;;boolean
@@ -75,7 +75,7 @@ Is_there_any_nutrition_service_in_this_site;list;group_nutrition;yesno;;;;;boole
 If_YES_is_it_functioning;list;group_nutrition;yesno;;;;;boolean
 If_NO_Specify_the_walking_distance_to_the_nearest_nutrition_facility_out_of_site;list;group_nutrition;;;;;;fh1we28
 Frequency_of_providing_nutrition_service_per_week;list;group_nutrition;;;;;;bf6cj47
-Which_type_of_nutrition_services_are_provided_for_IDPs_on_this_site;list;group_nutrition;;;;;;sc54y00
+Which_type_of_nutrition_services_are_provided_for_IDPs_on_this_site;bullet;group_nutrition;;;;;;sc54y00
 How_long_are_people_queuing_for_at_the_nutrition_facilities;list;group_nutrition;;;;;;yc9vx02
 Are_people_queuing_in_a_shaded_area;list;group_nutrition;yesno;;;;;boolean
 Are_there_any_SAM_cases_referred_to_SC_during_this_month;list;group_nutrition;noyes;;;;;boolean
@@ -110,7 +110,7 @@ Most_common_type_of_latrines;list;group_wash;;;;;;latrines_types
 Is_there_any_source_of_water;list;group_wash;yesno;;;;;boolean
 If_NO_is_there_any_water_trucking_mechanism_on_this_site;list;group_wash;yesno;;;;;boolean
 If_there_is_water_truck_is_it_currently_functioning;string;group_wash;;;;;;
-Specify_available_water_sources_ON_THIS_SITE;list;group_wash;;;;;;water_sources
+Specify_available_water_sources_ON_THIS_SITE;bullet;group_wash;;;;;;water_sources
 What_is_the_average_queuing_time_to_get_water_at_the_nearest_water_point_on_this_site;integer;group_wash;;;;;;
 Percentage_of_household_who_access_to_potable_water_on_this_site;list;group_wash;;;;;;hh_pcentages
 Main_problem_with_drinking_water;list;group_wash;;;;;;nm8ny66
@@ -141,7 +141,7 @@ If_yes_why;list;group_protection;;;;;;out_school_reasons
 specify_the_reason_of_out_of_school_IDP_children;list;group_protection;;;;;;out_school_reasons
 Are_you_aware_of_children_associated_with_armed_forces_on_this_site;list;group_protection;noyes;;;;;boolean
 Perception_of_sexual_violence_trends_compared_to_previous_month;list;group_protection;;;;;;sex_violence_l
-Perception_regarding_GBV_perpetrators;list;group_protection;;;;;;gbv_follow_up
+Perception_regarding_GBV_perpetrators;bullet;group_protection;;;;;;gbv_follow_up
 Number_of_women_friendly_spaces;integer;group_protection;;;;;;
 Number_of_child_friendly_spaces;integer;group_protection;;;;;;
 Which_percentage_of_children_are_going_to_school;list;group_protection;;;;;;school_rate
@@ -156,7 +156,7 @@ Shelter_NFI_Emergency_shelter_assistance_to_IDP_households;integer;group_partner
 Shelter_NFI_NFI_distribution_to_IDP_households;integer;group_partner;;;;;;
 Emergency_shelter_assistance_to_IDP_households;string;group_partner;;;;;;
 NFI_distribution_to_IDP_households;string;group_partner;;;;;;
-Health;list;group_partner;;;;;;health_activities
+Health;bullet;group_partner;;;;;;health_activities
 Health_No_health_activity;integer;group_partner;;doughnut_chart#2;no#No health activity;;;
 Health_Provision_of_medical_consultations_and_procedures_on_IDP_gathering_site;integer;group_partner;;doughnut_chart#2;consul#Provision of medical consultations and procedures on IDP gathering site;;;
 Health_Providing_vaccination_for_children_aged_under_5_on_IDP_gathering_site;integer;group_partner;;doughnut_chart#2;vacc#Providing vaccination for children aged under 5 on IDP gathering site;;;
@@ -172,7 +172,7 @@ Providing_disease_surveillance_and_immediately_response_to_IDP_population_on_sit
 Health_promotion_to_rising_community_awareness_for_preventive_disease;string;group_partner;;;;;;
 Referral_of_complicated_cases_to_Hospital;string;group_partner;;;;;;
 Provision_of_medical_supplies;string;group_partner;;;;;;
-Nutrition;list;group_partner;;;;;;nut_activities
+Nutrition;bullet;group_partner;;;;;;nut_activities
 Nutrition_NO_nutrition-related_activities;integer;group_partner;;;;;;
 Nutrition_Providing_treatment_services_for_SAM_and_MAM_children_through_OTPs_TSFP;integer;group_partner;;;;;;
 Nutrition_Screening_of_children_U5_in_OTPs_catchment_areas;integer;group_partner;;;;;;
@@ -206,7 +206,7 @@ Food_Security_and_Livelihood_Food_assistance_to_displaced_households;integer;gro
 Food_Security_and_Livelihood_Biometric_data_verification_for_food_distribution;integer;group_partner;;;;;;
 Food_assistance_to_displaced_households;string;group_partner;;;;;;
 Biometric_data_verification_for_food_distribution;string;group_partner;;;;;;
-General_Protection;list;group_partner;;;;;;protection_activities
+General_Protection;bullet;group_partner;;;;;;protection_activities
 General_Protection_No_Protection_activity;integer;group_partner;;;;;;
 General_Protection_Protection_Monitoring;integer;group_partner;;;;;;
 General_Protection_Registration_of_IDPs;integer;group_partner;;;;;;
@@ -266,7 +266,7 @@ GBV_awareness_raising_sessions_to_IDP;string;group_partner;;;;;;
 Training_of_GBV_service_providers_on_GBV_prevention_and_response;string;group_partner;;;;;;
 GBV_safety_audits;string;group_partner;;;;;;
 GBV_counselling;string;group_partner;;;;;;
-WASH;list;group_partner;;;;;;wash_activities
+WASH;bullet;group_partner;;;;;;wash_activities
 WASH_No_WASH_activity;integer;group_partner;;polar_area_chart#3;publicfacility#No WASH activity;;;
 WASH_Hygiene_promotion_campaigns;integer;group_partner;;polar_area_chart#3;publicfacility#HH living in public facilities;;;
 WASH_Hygiene_promotion_training_to_volunteers;integer;group_partner;;polar_area_chart#3;;;;

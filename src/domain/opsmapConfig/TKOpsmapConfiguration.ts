@@ -7,6 +7,8 @@ import {
   TKSurveyAnonymousType,
   TKSurveyOptions
 } from "@/domain/survey/TKSurvey";
+import { TKAdminLevel, sortAdminLevelsRootFirst } from "./TKAdminLevel";
+import { TKAdditionalFilterDescription } from "../survey/TKAdditionalFilter";
 
 // ////////////////////////////////////////////////////////////////////////////
 // JSON format
@@ -35,13 +37,11 @@ interface TKMapboxConfiguration {
 
 export interface TKOpsmapSpatialConfiguration {
   mapConfig: TKMapboxConfiguration;
-  dbConfig: {
-    adm1DBPcode: string;
-    adm2DBPcode: string;
-  };
+  dbConfig: Record<TKAdminLevel, string>;
   localFiles: {
     admin0LocalURL: string;
   };
+  adminLevelsMap: Array<TKAdminLevel>;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -54,6 +54,7 @@ export interface TKOpsmapSpatialConfiguration {
 // ////////////////////////////////////////////////////////////////////////////
 
 export interface TKOpsmapConfiguration {
+  adminLevels: Array<TKAdminLevel>;
   readonly name: TKLabel;
   title: TKLabel;
   readonly languages: string[];
@@ -103,6 +104,15 @@ export async function TKReadGeneralConfiguration(
     ...json.title
   };
 
+  // ////////////////////////////////////////////////////////////////////////////
+  // admin
+  const adminLevels = [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2];
+  json.adminLevels = sortAdminLevelsRootFirst(json.adminLevels ?? adminLevels);
+  const adminLevelsMap = [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2];
+  json.spatialConfiguration.adminLevelsMap = json.spatialConfiguration
+    .adminLevelsMap
+    ? sortAdminLevelsRootFirst(json.spatialConfiguration.adminLevelsMap)
+    : adminLevelsMap;
   // ////////////////////////////////////////////////////////////////////////////
   // Mapbox configuration - handle default values
   // ////////////////////////////////////////////////////////////////////////////
@@ -168,7 +178,8 @@ export async function TKReadGeneralConfiguration(
 
   // TODO: move manage by in another spot. Not an otion, more a description
   const defaultSurveyOptions: TKSurveyOptions = {
-    dateFormat: "DD/MM/YYYY",
+    inputDateFormat: "DD/MM/YYYY",
+    displayDateFormat: "DD/MM/YYYY",
     listSeparator: ";",
     anonymousMode: TKSurveyAnonymousType.NONE
   };
@@ -186,6 +197,13 @@ export async function TKReadGeneralConfiguration(
     ) {
       json.surveys[i].options.anonymousMode =
         TKSurveyAnonymousType.TEXT_AND_MAP;
+    }
+  }
+
+  const additionalFilters: TKAdditionalFilterDescription[] = [];
+  for (let i = 0; i < json.surveys.length; i++) {
+    if (!json.surveys[i].additionalFiltersDescription) {
+      json.surveys[i].additionalFiltersDescription = additionalFilters;
     }
   }
 

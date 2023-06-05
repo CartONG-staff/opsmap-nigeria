@@ -40,7 +40,7 @@ export async function TKReadFDFThematicsCollection(
     for (let i = 1; i < rawThematics.length; i++) {
       const item = rawThematics[i];
       thematicsCollection[item[FORMATTED_NAME_INDEX]] = {
-        formattedName: item[FORMATTED_NAME_INDEX],
+        id: item[FORMATTED_NAME_INDEX],
         iconFileName: item[ICON_NAME_INDEX],
         thematicLabel: {}
       };

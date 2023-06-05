@@ -2,26 +2,36 @@
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKCreateSubmissionEntryText,
-  TKSubmissionEntryPolar,
-  TKSubmissionEntryDoughnut,
-  TKSubmissionEntryAgePyramid,
   TKSubmissionEntryType,
   TKCreateSubmissionEntryList,
-  TKCreateSubmissionEntryBullet
+  TKCreateSubmissionEntryBullet,
+  TKSubmissionRawEntries
 } from "./TKSubmissionEntry";
+import {
+  TKChartData,
+  TKCreateSubmissionChart
+} from "./TKCreateSubmissionChart";
 import {
   TKSubmissionThematic,
   TKCreateSubmissionThematic
 } from "./TKSubmissionThematic";
-import { TKIndicator, TKIndicatorType } from "@/domain/survey/TKIndicator";
+import {
+  TKIndicator,
+  TKIndicatorType,
+  TKIndicators
+} from "@/domain/survey/TKIndicator";
 import { TKLabel } from "../utils/TKLabel";
-import { TKFDFSubmissionItemType } from "../fdf/TKFDFSubmissionsRules";
+import {
+  TKFDFSubmissionItemType,
+  TKFDFSubmissionRule
+} from "../fdf/TKFDFSubmissionsRules";
 import { TKCompare, TKCompute } from "../utils/TKOperator";
 import { TKOperatorComputation } from "../utils/TKOperator";
 import { TKOperatorComparison } from "../utils/TKOperator";
 import { TKFDFIndicatorSite, TKFDFIndicatorType } from "../fdf/TKFDFIndicators";
 import { evaluate, round } from "mathjs";
 import { TKSurveyOptions } from "./TKSurvey";
+import { TKSubmissionEntries } from "./TKSubmissionEntries";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -29,8 +39,9 @@ import { TKSurveyOptions } from "./TKSurvey";
 
 export interface TKSubmission {
   date: string;
-  thematics: Record<string, TKSubmissionThematic>;
-  indicators: [TKIndicator, TKIndicator, TKIndicator];
+  entries: TKSubmissionEntries;
+  thematics: Array<TKSubmissionThematic>;
+  indicators: TKIndicators;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -38,46 +49,36 @@ export interface TKSubmission {
 // ////////////////////////////////////////////////////////////////////////////
 
 function getValueForIndicator(
-  data: Record<string, TKSubmissionThematic>,
+  data: TKSubmissionEntries,
   entryCode: string
 ): number | undefined {
-  for (const thematic in data) {
-    const them = data[thematic];
-    const item = them.data.find(
-      item =>
-        item.type === TKSubmissionEntryType.TEXT && item.field === entryCode
-    );
-    if (
-      item &&
-      item.type === TKSubmissionEntryType.TEXT &&
-      item.answerLabel &&
-      !isNaN(parseFloat(item.answerLabel.en))
-    ) {
-      return Number(item.answerLabel.en);
-    }
+  const entry = data[entryCode];
+  if (
+    entry &&
+    entry.type === TKSubmissionEntryType.TEXT &&
+    entry.answerLabel &&
+    !isNaN(parseFloat(entry.answerLabel.en))
+  ) {
+    return Number(entry.answerLabel.en);
   }
+
   return undefined;
 }
 
 function getLabelForIndicator(
-  data: Record<string, TKSubmissionThematic>,
+  data: TKSubmissionEntries,
   entryCode: string
 ): TKLabel {
-  for (const thematic in data) {
-    const them = data[thematic];
-    const item = them.data.find(
-      item =>
-        item.type === TKSubmissionEntryType.TEXT && item.field === entryCode
-    );
-    if (item && item.type === TKSubmissionEntryType.TEXT && item.answerLabel) {
-      return item.answerLabel;
-    }
+  const entry = data[entryCode];
+  if (entry && entry.type === TKSubmissionEntryType.TEXT && entry.answerLabel) {
+    return entry.answerLabel;
   }
   return { en: "-" };
 }
+
 function computeSubmissionIndicator(
   descr: TKFDFIndicatorSite,
-  data: Record<string, TKSubmissionThematic>
+  data: TKSubmissionEntries
 ): TKIndicator {
   if (descr.type === TKFDFIndicatorType.OCCUPATION) {
     // Should be two integers
@@ -154,142 +155,85 @@ function computeSubmissionIndicator(
 }
 
 // ////////////////////////////////////////////////////////////////////////////
-// Create the chart associated to the submission
+// displayStatus
 // ////////////////////////////////////////////////////////////////////////////
-
-type ChartData = {
-  id: string;
-  thematic: string;
-  data: Array<{
-    field: string;
-    value: string;
-    type: string;
-  }>;
-};
-
-function createChartInSubmission(
-  chartData: ChartData,
-  submission: Record<string, TKSubmissionThematic>,
-  surveyConfiguration: TKFDF
-) {
-  if (chartData.id.includes("age_pyramid")) {
-    const malesEntries = chartData.data
-      .filter(item => item.type === "m")
-      .reverse();
-    const femalesEntries = chartData.data
-      .filter(item => item.type === "f")
-      .reverse();
-
-    const entry: TKSubmissionEntryAgePyramid = {
-      type: TKSubmissionEntryType.CHART_PYRAMID,
-      chartid: chartData.id,
-      isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartData.id],
-      malesEntries: malesEntries.map(item => Number(item.value)),
-      femalesEntries: femalesEntries.map(item => Number(item.value)),
-      malesLabels: malesEntries.map(
-        item => surveyConfiguration.fieldsLabels[item.field]
-      ),
-      femalesLabels: femalesEntries.map(
-        item => surveyConfiguration.fieldsLabels[item.field]
-      )
-    };
-    submission[chartData.thematic].data.push(entry);
-  } else if (chartData.id.includes("doughnut")) {
-    const entry: TKSubmissionEntryDoughnut = {
-      type: TKSubmissionEntryType.CHART_DOUGHNUT,
-      chartid: chartData.id,
-      isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartData.id],
-      entries: chartData.data.map(item => {
-        return {
-          value: Number(item.value),
-          label: surveyConfiguration.fieldsLabels[item.field]
-        };
-      })
-    };
-    submission[chartData.thematic].data.push(entry);
-  } else if (chartData.id.includes("polar_area_chart")) {
-    const entry: TKSubmissionEntryPolar = {
-      type: TKSubmissionEntryType.CHART_POLAR,
-      chartid: chartData.id,
-      isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartData.id],
-      entries: chartData.data.map(item => {
-        return {
-          value: Number(item.value),
-          label: surveyConfiguration.fieldsLabels[item.field]
-        };
-      })
-    };
-    submission[chartData.thematic].data.push(entry);
+function handleDisplayStatus(
+  rawEntries: TKSubmissionRawEntries,
+  rule: TKFDFSubmissionRule
+): boolean {
+  // Handle display status
+  let display = true;
+  if (rule.displayCondition) {
+    try {
+      display = TKCompare(
+        rawEntries[rule.displayCondition.field],
+        rule.displayCondition.operator as TKOperatorComparison,
+        rule.displayCondition.value
+      );
+    } catch (error) {
+      display = false;
+    }
   }
+  return display;
 }
-
 // ////////////////////////////////////////////////////////////////////////////
 // Create the submission
 // ////////////////////////////////////////////////////////////////////////////
 
 export function TKCreateSubmission(
-  submissionItem: Record<string, string>,
+  submissionRawEntries: TKSubmissionRawEntries,
   fdf: TKFDF,
   options: TKSurveyOptions,
   languages: string[]
 ): TKSubmission {
   // Init all the thematics
-  const submission: Record<string, TKSubmissionThematic> = {};
+  const thematics: Record<
+    string,
+    {
+      thematic: TKSubmissionThematic;
+      isInEntries: boolean;
+    }
+  > = {};
   for (const thematic in fdf.thematics) {
-    submission[thematic] = TKCreateSubmissionThematic(fdf.thematics[thematic]);
+    thematics[thematic] = {
+      thematic: TKCreateSubmissionThematic(fdf.thematics[thematic]),
+      isInEntries: false
+    };
   }
 
-  // Init chart
-  const currentChart: ChartData = {
-    id: "",
-    thematic: "",
-    data: []
-  };
+  // Init all the entries
+  const entries: TKSubmissionEntries = {};
 
+  // Init chart accumulator
+  const charts: Record<string, TKChartData> = {};
+
+  // Iterate through all submission rules
   for (const key in fdf.submissionsRules) {
     const rule = fdf.submissionsRules[key];
+    const thematic = thematics[rule.thematicGroup];
 
-    if (submission[rule.thematicGroup]) {
+    // If a thematic is defined
+    // TODO: could be used to hide a field ?
+    if (thematic) {
       // Handle display status
-      let display = true;
-      if (rule.displayCondition) {
-        try {
-          display = TKCompare(
-            submissionItem[rule.displayCondition.field],
-            rule.displayCondition.operator as TKOperatorComparison,
-            rule.displayCondition.value
-          );
-        } catch (error) {
-          display = false;
-        }
-      }
+      const display = handleDisplayStatus(submissionRawEntries, rule);
       if (display) {
-        // If charts
+        thematic.isInEntries = true;
+        // If charts: fill the charts record
         if (rule.chartId) {
-          const value = submissionItem[rule.fieldName];
-
-          // If exists chart
-          if (currentChart.id && rule.chartId !== currentChart.id) {
-            createChartInSubmission(currentChart, submission, fdf);
-
-            // Clear current submission
-            currentChart.id = "";
-            currentChart.thematic = "";
-            currentChart.data = [];
-          }
+          const value = submissionRawEntries[rule.fieldName];
 
           // Init currentChart
-          if (!currentChart.id) {
-            currentChart.id = rule.chartId;
-            currentChart.thematic = rule.thematicGroup;
-            currentChart.data = [];
+          if (!charts[rule.chartId]) {
+            charts[rule.chartId] = {
+              id: rule.chartId,
+              thematic: thematic.thematic,
+              data: []
+            };
           }
 
           // Accumulate Chart data
-          currentChart.data.push({
+          charts[rule.chartId].data.push({
             field: rule.fieldName,
             value: value,
             type: rule.chartData
@@ -305,46 +249,48 @@ export function TKCreateSubmission(
                 if (rule.computed) {
                   value = Math.round(
                     TKCompute(
-                      Number(submissionItem[rule.computed.field1]),
+                      Number(submissionRawEntries[rule.computed.field1]),
                       rule.computed.operator as TKOperatorComputation,
-                      Number(submissionItem[rule.computed.field2])
+                      Number(submissionRawEntries[rule.computed.field2])
                     )
                   ).toString();
                 } else {
-                  value = submissionItem[rule.fieldName];
+                  value = submissionRawEntries[rule.fieldName];
                 }
               } catch (error) {
                 value = "";
               }
 
-              submission[rule.thematicGroup].data.push(
-                TKCreateSubmissionEntryText(value, rule.fieldName, fdf)
+              entries[rule.fieldName] = TKCreateSubmissionEntryText(
+                value,
+                rule,
+                fdf,
+                thematic.thematic
               );
+
               break;
             case TKFDFSubmissionItemType.LIST:
-              value = submissionItem[rule.fieldName];
+              value = submissionRawEntries[rule.fieldName];
               if (value !== undefined) {
-                submission[rule.thematicGroup].data.push(
-                  TKCreateSubmissionEntryList(
-                    value,
-                    rule.fieldName,
-                    options.listSeparator,
-                    fdf,
-                    languages
-                  )
+                entries[rule.fieldName] = TKCreateSubmissionEntryList(
+                  value,
+                  rule,
+                  fdf,
+                  thematic.thematic,
+                  options.listSeparator,
+                  languages
                 );
               }
               break;
             case TKFDFSubmissionItemType.BULLET:
-              value = submissionItem[rule.fieldName];
+              value = submissionRawEntries[rule.fieldName];
               if (value !== undefined) {
-                submission[rule.thematicGroup].data.push(
-                  TKCreateSubmissionEntryBullet(
-                    value,
-                    rule.fieldName,
-                    options.listSeparator,
-                    fdf
-                  )
+                entries[rule.fieldName] = TKCreateSubmissionEntryBullet(
+                  value,
+                  rule,
+                  fdf,
+                  thematic.thematic,
+                  options.listSeparator
                 );
               }
               break;
@@ -352,23 +298,16 @@ export function TKCreateSubmission(
             case TKFDFSubmissionItemType.DATE:
             case TKFDFSubmissionItemType.INTEGER:
             case TKFDFSubmissionItemType.STRING:
-              value = submissionItem[rule.fieldName];
+              value = submissionRawEntries[rule.fieldName];
               if (value !== undefined) {
-                submission[rule.thematicGroup].data.push(
-                  TKCreateSubmissionEntryText(value, rule.fieldName, fdf)
+                entries[rule.fieldName] = TKCreateSubmissionEntryText(
+                  value,
+                  rule,
+                  fdf,
+                  thematic.thematic
                 );
               }
               break;
-          }
-
-          // If exists chart
-          if (currentChart.id) {
-            createChartInSubmission(currentChart, submission, fdf);
-
-            // Clear current submission
-            currentChart.id = "";
-            currentChart.thematic = "";
-            currentChart.data = [];
           }
         }
       }
@@ -376,25 +315,25 @@ export function TKCreateSubmission(
   }
 
   // if a current pyramid is ongoing - push it before ending
-  if (currentChart.id) {
-    createChartInSubmission(currentChart, submission, fdf);
+  for (const chart of Object.values(charts)) {
+    TKCreateSubmissionChart(chart, fdf, entries);
   }
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
-  const submissionFiltered: Record<string, TKSubmissionThematic> = {};
-  for (const key in submission) {
-    if (submission[key].data.length > 0) {
-      submissionFiltered[key] = submission[key];
-    }
-  }
+  const thematicsFiltered: Array<TKSubmissionThematic> = Object.values(
+    thematics
+  )
+    .filter(thematic => thematic.isInEntries)
+    .map(thematic => thematic.thematic);
 
   return {
-    date: submissionItem[fdf.spatialDescription.siteLastUpdateField],
-    thematics: submissionFiltered,
+    date: submissionRawEntries[fdf.spatialDescription.siteLastUpdateField],
+    entries: entries,
+    thematics: thematicsFiltered,
     indicators: [
-      computeSubmissionIndicator(fdf.indicators.site[0], submission),
-      computeSubmissionIndicator(fdf.indicators.site[1], submission),
-      computeSubmissionIndicator(fdf.indicators.site[2], submission)
+      computeSubmissionIndicator(fdf.indicators.site[0], entries),
+      computeSubmissionIndicator(fdf.indicators.site[1], entries),
+      computeSubmissionIndicator(fdf.indicators.site[2], entries)
     ]
   };
 }

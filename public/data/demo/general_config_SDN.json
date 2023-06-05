@@ -6,11 +6,11 @@
     "iso3": "SDN",
     "name": {
         "en": "Sudan",
-        "arab": "السودان"
+        "ar": "السودان"
     },
     "opsmapDescr": {
         "en": "In the span of a little over a year, El Geneina and nearby localities experienced successive waves of displacement (more than 40,000 at the end of December 2019 and other two around 116,000 in January and April 2021), due to inter-communal clashes that started at IDP camps (Krinding 1 & 2, Sultan House and Abuzar), have expanded into nearby villages and some town neighbourhoods (Al Jabal area).",
-        "arab": "في فترة تزيد قليلاً عن عام ، شهدت الجنينة والمحليات المجاورة موجات متتالية من النزوح (أكثر من 40.000 في نهاية ديسمبر 2019 واثنان آخران حوالي 116.000 في يناير وأبريل 2021) ، بسبب الاشتباكات الطائفية التي بدأت في مخيمات النازحين (كريندينج 1 و 2 ، سلطان هاوس وأبوزر) ، امتدت إلى القرى المجاورة وبعض أحياء البلدة (منطقة الجبل)."
+        "ar": "في فترة تزيد قليلاً عن عام ، شهدت الجنينة والمحليات المجاورة موجات متتالية من النزوح (أكثر من 40.000 في نهاية ديسمبر 2019 واثنان آخران حوالي 116.000 في يناير وأبريل 2021) ، بسبب الاشتباكات الطائفية التي بدأت في مخيمات النازحين (كريندينج 1 و 2 ، سلطان هاوس وأبوزر) ، امتدت إلى القرى المجاورة وبعض أحياء البلدة (منطقة الجبل)."
     },
     "headerLogos": [],
     "footerLogos": [
@@ -73,8 +73,8 @@
             ]
         },
         "dbConfig": {
-            "adm1DBPcode": "pcode",
-            "adm2DBPcode": "pcode"
+            "admin1": "pcode",
+            "admin2": "pcode"
         },
         "localFiles": {
             "admin0LocalURL": "/data/demo/DEMO_sudan/map/admin0.geojson"
@@ -90,7 +90,7 @@
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6ABYLmhxjPRcE9WUYkhcjoIHT5_RL1vP0Gs6sx0BHxsCYnVXmUzOECL6Qf460mBFZM_F2k8yl6CDf/pub?gid=0&single=true&output=csv",
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6ABYLmhxjPRcE9WUYkhcjoIHT5_RL1vP0Gs6sx0BHxsCYnVXmUzOECL6Qf460mBFZM_F2k8yl6CDf/pub?gid=2105275364&single=true&output=csv",
             "options": {
-                "dateFormat": "DD/MM/YYYY",
+                "inputDateFormat": "DD/MM/YYYY",
                 "listSeparator": ";"
             },
             "spatial": {
@@ -101,13 +101,13 @@
                 "siteManageByField": "",
                 "siteNameField": "SITE_NAME",
                 "siteTypeField": "Site_Typology",
-                "adm1Pcode": "adm1pcode",
-                "adm1Name": "STATE",
-                "adm2Pcode": "adm2pcode",
-                "adm2Name": "ZONE"
+                "admin1Pcode": "admin1Pcode",
+                "admin1Name": "STATE",
+                "admin2Pcode": "admin2Pcode",
+                "admin2Name": "ZONE"
             },
             "indicators": {
-                "home": [
+                "area": [
                     {
                         "type": "site_count"
                     },
@@ -119,7 +119,7 @@
                         "type": "standard",
                         "name": {
                             "en": "Households",
-                            "arab": "الأسر"
+                            "ar": "الأسر"
                         },
                         "entryCode": "HOUSEHOLDS",
                         "iconOchaName": "Children"
@@ -130,7 +130,7 @@
                         "type": "standard",
                         "name": {
                             "en": "Individual",
-                            "arab": "الفرد"
+                            "ar": "الفرد"
                         },
                         "entryCode": "INDIVIDUAL",
                         "iconOchaName": "People-in-need"
@@ -139,7 +139,7 @@
                         "type": "standard",
                         "name": {
                             "en": "Households",
-                            "arab": "الأسر"
+                            "ar": "الأسر"
                         },
                         "entryCode": "HOUSEHOLDS",
                         "iconOchaName": "Children"
@@ -148,7 +148,7 @@
                         "type": "standard",
                         "name": {
                             "en": "Source of water",
-                            "arab": "مصدر للمياه"
+                            "ar": "مصدر للمياه"
                         },
                         "entryCode": "Is_there_any_source_of_water",
                         "iconOchaName": "Potable-water"
@@ -159,6 +159,7 @@
     ],
     "options": {
         "pdfColumnCount": 3,
-        "showDemoBanner": true
+        "showDemoBanner": false,
+        "exportAsCSVonHomePage": true
     }
 }

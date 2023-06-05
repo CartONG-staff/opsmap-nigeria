@@ -1,44 +1,74 @@
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import { TKFDFSiteTypeCollection } from "../fdf/TKFDFSiteTypes";
 import { TKColors } from "../utils/TKColors";
+import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
 
-// admin1Source, admin2Source, countryMask, selectedSite, notSelectedSites
-export enum TKMapLayersSource {
-  COUNTRYMASKSOURCE = "countryMask",
-  ADMIN1SOURCE = "admin1Source",
-  ADMIN2SOURCE = "admin2Source",
-  SELECTEDSITESOURCE = "selectedSite",
-  NOTSELECTEDSITESSOURCE = "notSelectedSites"
+export enum TKMapSource {
+  COUNTRY_MASK = "countryMask",
+  ADMIN1 = "admin1",
+  ADMIN2 = "admin2",
+  ADMIN3 = "admin3",
+  ADMIN4 = "admin4",
+  SELECTED_SITE = "selectedSite",
+  NOT_SELECTED_SITES = "notSelectedSites"
 }
-export enum TKMapLayers {
-  ADMIN1LAYER = "admin1Layer",
-  ADMIN1BORDERLAYER = "admin1BorderLayer",
-  ADMIN2LAYER = "admin2Layer",
-  ADMIN2BORDERLAYER = "admin2BorderLayer",
-  COUNTRYMASKLAYER = "countryMaskLayer",
-  SELECTEDSITELAYER = "selectedSiteLayer",
-  NOTSELECTEDSITESLAYER = "notSelectedSitesLayer",
-  CLUSTERSCIRCLELAYER = "clustersCircle",
-  CLUSTERSCOUNTLAYER = "clustersCount"
-}
+
+export const COUNTRY_MASK = "countryMask";
+export const ADMIN1 = "admin1";
+export const ADMIN1_BORDER = "admin1:border";
+export const ADMIN2 = "admin2";
+export const ADMIN2_BORDER = "admin2:border";
+export const ADMIN3 = "admin3";
+export const ADMIN3_BORDER = "admin3:border";
+export const ADMIN4 = "admin4";
+export const ADMIN4_BORDER = "admin4:border";
+export const SELECTED_SITE = "selectedSite";
+export const NOT_SELECTED_SITES = "notSelectedSites";
+export const CLUSTERS_CIRCLE = "clustersCircle";
+export const CLUSTERS_COUNT = "clustersCount";
+
+export type TKMapLayerStyles = {
+  [COUNTRY_MASK]: {};
+  [TKAdminLevel.ADMIN1]?: {
+    fill: {};
+    border: {};
+  };
+  [TKAdminLevel.ADMIN2]?: {
+    fill: {};
+    border: {};
+  };
+  [TKAdminLevel.ADMIN3]?: {
+    fill: {};
+    border: {};
+  };
+  [TKAdminLevel.ADMIN4]?: {
+    fill: {};
+    border: {};
+  };
+  [SELECTED_SITE]: {};
+  [NOT_SELECTED_SITES]: {};
+  [CLUSTERS_CIRCLE]: {};
+  [CLUSTERS_COUNT]: {};
+};
 
 export function computeMapLayersStyle(
   siteTypesCollection: TKFDFSiteTypeCollection
-): Record<TKMapLayers, {}> {
+): TKMapLayerStyles {
   const siteTypes: Array<string> = [];
   const siteSelectedTypes: Array<string> = [];
   for (const siteIndex of Object.keys(siteTypesCollection)) {
     const site = siteTypesCollection[siteIndex];
-    siteTypes.push(site.formattedName);
+    siteTypes.push(site.id);
     siteTypes.push(site.iconFileName.normal);
-    siteSelectedTypes.push(site.formattedName);
+    siteSelectedTypes.push(site.id);
     siteSelectedTypes.push(site.iconFileName.selected);
   }
 
-  return {
-    [TKMapLayers.COUNTRYMASKLAYER]: {
-      id: TKMapLayers.COUNTRYMASKLAYER,
+  const styles: TKMapLayerStyles = {
+    [COUNTRY_MASK]: {
+      id: COUNTRY_MASK,
       type: "fill",
-      source: TKMapLayersSource.COUNTRYMASKSOURCE,
+      source: TKMapSource.COUNTRY_MASK,
       layout: {},
       paint: {
         "fill-color": TKColors.DARK_GREY,
@@ -48,122 +78,20 @@ export function computeMapLayersStyle(
         }
       }
     },
-    [TKMapLayers.ADMIN1LAYER]: {
-      id: TKMapLayers.ADMIN1LAYER,
-      type: "fill",
-      source: TKMapLayersSource.ADMIN1SOURCE,
-      layout: {},
-      paint: {
-        "fill-color": TKColors.ACCENT,
-        "fill-opacity": [
-          "match",
-          ["get", "display"],
-          "hide",
-          0.0,
-          "discrete",
-          0.1,
-          "focus",
-          0.1,
-          0.0
-        ]
-      }
-    },
-    [TKMapLayers.ADMIN1BORDERLAYER]: {
-      id: TKMapLayers.ADMIN1BORDERLAYER,
-      type: "line",
-      source: TKMapLayersSource.ADMIN1SOURCE,
-      layout: {},
-      paint: {
-        "line-color": TKColors.ACCENT,
-        "line-width": [
-          "match",
-          ["get", "display"],
-          "hide",
-          0,
-          "discrete",
-          2,
-          "focus",
-          4,
-          0.0
-        ],
-        "line-opacity": [
-          "match",
-          ["get", "display"],
-          "hide",
-          0.0,
-          "discrete",
-          1.0,
-          "focus",
-          1.0,
-          0.0
-        ]
-      }
-    },
-    [TKMapLayers.ADMIN2LAYER]: {
-      id: TKMapLayers.ADMIN2LAYER,
-      type: "fill",
-      source: TKMapLayersSource.ADMIN2SOURCE,
-      layout: {},
-      paint: {
-        "fill-color": TKColors.ACCENT,
-        "fill-opacity": [
-          "match",
-          ["get", "display"],
-          "hide",
-          0.0,
-          "discrete",
-          0.1,
-          "focus",
-          0.1,
-          0.0
-        ]
-      }
-    },
-    [TKMapLayers.ADMIN2BORDERLAYER]: {
-      id: TKMapLayers.ADMIN2BORDERLAYER,
-      type: "line",
-      source: TKMapLayersSource.ADMIN2SOURCE,
-      layout: {},
-      paint: {
-        "line-color": TKColors.ACCENT,
-        "line-width": [
-          "match",
-          ["get", "display"],
-          "hide",
-          0,
-          "discrete",
-          2,
-          "focus",
-          4,
-          0.0
-        ],
-        "line-opacity": [
-          "match",
-          ["get", "display"],
-          "hide",
-          0.0,
-          "discrete",
-          1.0,
-          "focus",
-          1.0,
-          0.0
-        ]
-      }
-    },
-    [TKMapLayers.CLUSTERSCIRCLELAYER]: {
-      id: TKMapLayers.CLUSTERSCIRCLELAYER,
+    [CLUSTERS_CIRCLE]: {
+      id: CLUSTERS_CIRCLE,
       type: "circle",
-      source: TKMapLayersSource.NOTSELECTEDSITESSOURCE,
+      source: TKMapSource.NOT_SELECTED_SITES,
       filter: ["has", "point_count"],
       paint: {
         "circle-color": TKColors.DARK_GREY,
         "circle-radius": ["step", ["get", "point_count"], 10, 10, 15, 30, 20]
       }
     },
-    [TKMapLayers.CLUSTERSCOUNTLAYER]: {
-      id: TKMapLayers.CLUSTERSCOUNTLAYER,
+    [CLUSTERS_COUNT]: {
+      id: CLUSTERS_COUNT,
       type: "symbol",
-      source: TKMapLayersSource.NOTSELECTEDSITESSOURCE,
+      source: TKMapSource.NOT_SELECTED_SITES,
       filter: ["has", "point_count"],
       layout: {
         "text-field": "{point_count_abbreviated}",
@@ -174,10 +102,10 @@ export function computeMapLayersStyle(
         "text-color": TKColors.WHITE
       }
     },
-    [TKMapLayers.NOTSELECTEDSITESLAYER]: {
-      id: TKMapLayers.NOTSELECTEDSITESLAYER,
+    [NOT_SELECTED_SITES]: {
+      id: NOT_SELECTED_SITES,
       type: "symbol",
-      source: TKMapLayersSource.NOTSELECTEDSITESSOURCE,
+      source: TKMapSource.NOT_SELECTED_SITES,
       filter: ["!", ["has", "point_count"]],
       layout: {
         "icon-image": [
@@ -189,10 +117,10 @@ export function computeMapLayersStyle(
         "icon-size": 0.5
       }
     },
-    [TKMapLayers.SELECTEDSITELAYER]: {
-      id: TKMapLayers.SELECTEDSITELAYER,
+    [SELECTED_SITE]: {
+      id: SELECTED_SITE,
       type: "symbol",
-      source: TKMapLayersSource.SELECTEDSITESOURCE,
+      source: TKMapSource.SELECTED_SITE,
       layout: {
         "icon-image": [
           "match",
@@ -204,4 +132,62 @@ export function computeMapLayersStyle(
       }
     }
   };
+
+  for (const level of TKConfigurationModule.configuration.spatialConfiguration
+    .adminLevelsMap) {
+    styles[level] = {
+      fill: {
+        id: level,
+        type: "fill",
+        source: level,
+        layout: {},
+        paint: {
+          "fill-color": TKColors.ACCENT,
+          "fill-opacity": [
+            "match",
+            ["get", "display"],
+            "hide",
+            0.0,
+            "discrete",
+            0.1,
+            "focus",
+            0.1,
+            0.0
+          ]
+        }
+      },
+      border: {
+        id: `${level}:border`,
+        type: "line",
+        source: level,
+        layout: {},
+        paint: {
+          "line-color": TKColors.ACCENT,
+          "line-width": [
+            "match",
+            ["get", "display"],
+            "hide",
+            0,
+            "discrete",
+            2,
+            "focus",
+            4,
+            0.0
+          ],
+          "line-opacity": [
+            "match",
+            ["get", "display"],
+            "hide",
+            0.0,
+            "discrete",
+            1.0,
+            "focus",
+            1.0,
+            0.0
+          ]
+        }
+      }
+    };
+  }
+  return styles;
 }

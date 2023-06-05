@@ -1,7 +1,7 @@
 <template>
   <div>
     <TKSubmissionVisualizerToolbar
-      v-show="showVisualizerOptions"
+      v-if="showVisualizerOptions"
       class="toolbar"
     />
     <TKSubmissionVisualizer />

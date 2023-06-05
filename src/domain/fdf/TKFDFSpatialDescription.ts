@@ -2,6 +2,8 @@
 // Description of the spatial configuration
 // field name, etc.
 
+import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
+
 // ////////////////////////////////////////////////////////////////////////////
 
 // TODO: rename this
@@ -14,8 +16,5 @@ export interface TKFDFSpatialDescription {
   siteLatitudeField?: string;
   siteLongitudeField?: string;
   siteTypeField: string;
-  adm1Pcode: string; //pcode field in dataset
-  adm1Name: string;
-  adm2Pcode: string; //pcode field in dataset
-  adm2Name: string;
+  admins: Partial<Record<TKAdminLevel, { pcode: string; name: string }>>;
 }

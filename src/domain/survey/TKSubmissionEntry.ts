@@ -6,6 +6,8 @@ import {
 } from "../fdf/TKFDFTrafficLight";
 import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKLabel } from "../utils/TKLabel";
+import { TKSubmissionThematic } from "./TKSubmissionThematic";
+import { TKFDFSubmissionRule } from "../fdf/TKFDFSubmissionsRules";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Entry abstract concept definition
@@ -16,10 +18,12 @@ export enum TKSubmissionEntryType {
   BULLET = "bullet",
   CHART_PYRAMID = "age_pyramid",
   CHART_DOUGHNUT = "doughnut",
-  CHART_POLAR = "polar"
+  CHART_POLAR = "polar",
+  CHART_RADAR = "radar"
 }
 export interface TKSubmissionEntryText {
   type: TKSubmissionEntryType.TEXT;
+  thematic: TKSubmissionThematic;
   field: string;
   fieldLabel: TKLabel;
   answerLabel: TKLabel;
@@ -30,6 +34,7 @@ export interface TKSubmissionEntryText {
 
 export interface TKSubmissionEntryBullet {
   type: TKSubmissionEntryType.BULLET;
+  thematic: TKSubmissionThematic;
   field: string;
   fieldLabel: TKLabel;
   answersLabels: TKLabel[];
@@ -39,6 +44,7 @@ export interface TKSubmissionEntryBullet {
 }
 export interface TKSubmissionEntryAgePyramid {
   type: TKSubmissionEntryType.CHART_PYRAMID;
+  thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
   malesEntries: Array<number>;
@@ -50,6 +56,7 @@ export interface TKSubmissionEntryAgePyramid {
 
 export interface TKSubmissionEntryDoughnut {
   type: TKSubmissionEntryType.CHART_DOUGHNUT;
+  thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
   isAnswered: true;
@@ -57,6 +64,16 @@ export interface TKSubmissionEntryDoughnut {
 }
 export interface TKSubmissionEntryPolar {
   type: TKSubmissionEntryType.CHART_POLAR;
+  thematic: TKSubmissionThematic;
+  chartid: string;
+  title: TKLabel;
+  isAnswered: true;
+  entries: Array<{ value: number; label: TKLabel }>;
+}
+
+export interface TKSubmissionEntryRadar {
+  type: TKSubmissionEntryType.CHART_RADAR;
+  thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
   isAnswered: true;
@@ -67,12 +84,15 @@ export interface TKSubmissionEntryPolar {
 // Alltogether type
 // ////////////////////////////////////////////////////////////////////////////
 
+export type TKSubmissionRawEntries = Record<string, string>;
+
 export type TKSubmissionEntry =
   | TKSubmissionEntryText
   | TKSubmissionEntryBullet
   | TKSubmissionEntryAgePyramid
   | TKSubmissionEntryDoughnut
-  | TKSubmissionEntryPolar;
+  | TKSubmissionEntryPolar
+  | TKSubmissionEntryRadar;
 
 // ////////////////////////////////////////////////////////////////////////////
 // helpers method
@@ -124,9 +144,10 @@ function getTrafficLightColor(
 
 export function TKCreateSubmissionEntryBullet(
   value: string,
-  field: string,
-  listSeparator: string,
-  surveyConfiguration: TKFDF
+  rule: TKFDFSubmissionRule,
+  surveyConfiguration: TKFDF,
+  thematic: TKSubmissionThematic,
+  listSeparator: string
 ): TKSubmissionEntryBullet {
   const isAnswered = value !== "";
   let correctedValue: Array<TKLabel> = [];
@@ -140,31 +161,37 @@ export function TKCreateSubmissionEntryBullet(
   }
 
   if (
-    surveyConfiguration.submissionsRules[field].trafficLightName &&
+    surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName &&
     !(
-      surveyConfiguration.submissionsRules[field].trafficLightName in
+      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName in
       surveyConfiguration.trafficLights
     )
   ) {
-    console.log(
-      `[WARNING] Traffic light category "${surveyConfiguration.submissionsRules[field].trafficLightName}" does not exist`
+    console.warn(
+      `[WARNING] Traffic light category "${
+        surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+      }" does not exist`
     );
   }
 
   return {
     type: TKSubmissionEntryType.BULLET,
-    field: field,
-    fieldLabel: surveyConfiguration.fieldsLabels[field],
+    thematic: thematic,
+    field: rule.fieldName,
+    fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
     answersLabels: correctedValue,
     isAnswered: isAnswered,
     trafficLight:
-      surveyConfiguration.submissionsRules[field].trafficLightName.length > 0,
+      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+        .length > 0,
     trafficLightColor:
-      surveyConfiguration.submissionsRules[field].trafficLightName.length > 0
+      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+        .length > 0
         ? getTrafficLightColor(
             value,
             surveyConfiguration.trafficLights[
-              surveyConfiguration.submissionsRules[field].trafficLightName
+              surveyConfiguration.submissionsRules[rule.fieldName]
+                .trafficLightName
             ]
           )
         : TKTrafficLightValues.UNDEFINED
@@ -173,9 +200,10 @@ export function TKCreateSubmissionEntryBullet(
 
 export function TKCreateSubmissionEntryList(
   value: string,
-  field: string,
-  listSeparator: string,
+  rule: TKFDFSubmissionRule,
   surveyConfiguration: TKFDF,
+  thematic: TKSubmissionThematic,
+  listSeparator: string,
   languages: string[]
 ): TKSubmissionEntryText {
   const isAnswered = value !== "";
@@ -212,31 +240,37 @@ export function TKCreateSubmissionEntryList(
   }
 
   if (
-    surveyConfiguration.submissionsRules[field].trafficLightName &&
+    surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName &&
     !(
-      surveyConfiguration.submissionsRules[field].trafficLightName in
+      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName in
       surveyConfiguration.trafficLights
     )
   ) {
-    console.log(
-      `[WARNING] Traffic light category "${surveyConfiguration.submissionsRules[field].trafficLightName}" does not exist`
+    console.info(
+      `[WARNING] Traffic light category "${
+        surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+      }" does not exist`
     );
   }
 
   return {
     type: TKSubmissionEntryType.TEXT,
-    field: field,
-    fieldLabel: surveyConfiguration.fieldsLabels[field],
+    thematic: thematic,
+    field: rule.fieldName,
+    fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
     answerLabel: correctedValue,
     isAnswered: isAnswered,
     trafficLight:
-      surveyConfiguration.submissionsRules[field].trafficLightName.length > 0,
+      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+        .length > 0,
     trafficLightColor:
-      surveyConfiguration.submissionsRules[field].trafficLightName.length > 0
+      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+        .length > 0
         ? getTrafficLightColor(
             value,
             surveyConfiguration.trafficLights[
-              surveyConfiguration.submissionsRules[field].trafficLightName
+              surveyConfiguration.submissionsRules[rule.fieldName]
+                .trafficLightName
             ]
           )
         : TKTrafficLightValues.UNDEFINED
@@ -245,8 +279,9 @@ export function TKCreateSubmissionEntryList(
 
 export function TKCreateSubmissionEntryText(
   value: string,
-  field: string,
-  surveyConfiguration: TKFDF
+  rule: TKFDFSubmissionRule,
+  surveyConfiguration: TKFDF,
+  thematic: TKSubmissionThematic
 ): TKSubmissionEntryText {
   const isAnswered = value !== "";
 
@@ -256,31 +291,37 @@ export function TKCreateSubmissionEntryText(
       : { en: value };
 
   if (
-    surveyConfiguration.submissionsRules[field].trafficLightName &&
+    surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName &&
     !(
-      surveyConfiguration.submissionsRules[field].trafficLightName in
+      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName in
       surveyConfiguration.trafficLights
     )
   ) {
-    console.log(
-      `[WARNING] Traffic light category "${surveyConfiguration.submissionsRules[field].trafficLightName}" does not exist`
+    console.info(
+      `[WARNING] Traffic light category "${
+        surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+      }" does not exist`
     );
   }
 
   return {
     type: TKSubmissionEntryType.TEXT,
-    field: field,
-    fieldLabel: surveyConfiguration.fieldsLabels[field],
+    thematic: thematic,
+    field: rule.fieldName,
+    fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
     answerLabel: correctedValue,
     isAnswered: isAnswered,
     trafficLight:
-      surveyConfiguration.submissionsRules[field].trafficLightName.length > 0,
+      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+        .length > 0,
     trafficLightColor:
-      surveyConfiguration.submissionsRules[field].trafficLightName.length > 0
+      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+        .length > 0
         ? getTrafficLightColor(
             value,
             surveyConfiguration.trafficLights[
-              surveyConfiguration.submissionsRules[field].trafficLightName
+              surveyConfiguration.submissionsRules[rule.fieldName]
+                .trafficLightName
             ]
           )
         : TKTrafficLightValues.UNDEFINED

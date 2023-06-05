@@ -140,6 +140,7 @@ h3 {
   display: none !important;
 }
 
+.tk-autocomplete .v-select__selection,
 .tk-autocomplete input {
   color: var(--v-autocomplete-base) !important;
   font-family: "Arial" !important;

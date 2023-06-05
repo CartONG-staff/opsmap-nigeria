@@ -14,7 +14,7 @@
           :loading="generating"
         >
           <v-icon>
-            mdi-file-delimited-outline
+            mdi-file-export-outline
           </v-icon>
         </v-btn>
       </template>
@@ -27,9 +27,7 @@
               v-on="{ ...dialog }"
             >
               <v-list-item-icon>
-                <v-icon color="selectedButton"
-                  >mdi-file-delimited-outline</v-icon
-                >
+                <v-icon color="accent">{{ "$vuetify.icons.filePDF" }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title
@@ -45,7 +43,7 @@
         </v-dialog>
         <v-list-item @click="exportToCSV()">
           <v-list-item-icon>
-            <v-icon color="selectedButton">mdi-file-delimited-outline</v-icon>
+            <v-icon color="accent">{{ "$vuetify.icons.fileCSV" }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title

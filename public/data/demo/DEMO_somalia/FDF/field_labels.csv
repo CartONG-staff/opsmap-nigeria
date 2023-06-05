@@ -1,0 +1,163 @@
+field_name;field_label_en;field_label_so
+last_update;Last update;Cusboonaysiinta ugu dambeysay
+localisation_region_label;Region;Gobolka
+localisation_district_label;District;Degmo
+settlement_name;Settlement name;Magaca dejinta
+settlement_type;Settlement Setting Type;Nooca Dejinta Dejinta
+cccm_populationestimates_families;No. of Households;Maya. ee guryaha
+cccm_populationestimates_individuals;No. of Individuals;Maya. Shakhsiyaadka
+cccm_site_capacity;Site ability to accommodate 20% of its capacity as New Arrivals;Awoodda goobta si ay u dejiso 20% awooddeeda sida Imaanshaha Cusub
+cccm_idps_arrival;Date Majority of IDPs arrived at the Site;Taariikhda Aqlabiyadda barakacayaasha ayaa yimid Goobta
+duration_site_established_in_months;How long the site has been established (months);Muddo intee la eg ayaa goobta la aasaasay ( bishii )
+cccm_management;Camp Management by;Maareynta Xerada
+cccm_committees;CCCM Commitees;Guddiyada CCCM
+cccm_committees.residents_committee;Residents committee;Guddiga dadka deegaanka
+cccm_committees.camp_mgmt_committee;Camp management committee;Gudiga maareynta xerada
+cccm_committees.women_committee;Women committee;Guddiga haweenka
+cccm_committees.elder;Elder;Oday
+cccm_committees.wash_committee;Wash committee;Gudiga dhaqida
+cccm_committees.health_committee;Health committee;Guddiga caafimaadka
+cccm_committees.edu_committee;Edu committee;Gudiga Edu
+cccm_committees.food_committee;Food committee;Gudiga cuntada
+cccm_committees.youth_commitee;Youth commitee;Dhalinta dhalinyarada
+cccm_committees.no_committees;No committees;Guddiyo ma leh
+cccm_committees.dnk;Do not know;Ma ogi
+cccm_committees.other;Other;Kale
+decision_making_committees;Decision Making Committees;Go'aan Go'aan Go'aan Go'aan Go'aan
+children_under_5;Children (0-4);Caruurta ka yar 5 sano
+boys_5-12;Males (5-12);Wiilasha (5-12)
+girls_5-12;Females (5-12);Gabdhaha (5-12)
+boys_12-18;Males (12-18);Wiilasha (12-18)
+girls_12-18;Females (12-18);Gabdhaha (12-18)
+men_18-59;Males (18-59);Ragga (18-59)
+women_18-59;Females (18-59);Haweenka (18-59)
+elderly_above_60;Elderly (60+);Waayeel ka sarreeya 60
+idps_groups_residing.pwd;PWDs present;PWDs ayaa jooga
+idps_groups_residing.minority_clan_affiliation;Minority Clan Groups present;Kooxaha Clan Yar ayaa jooga
+belonging_minority_group;Belonging to a Minority/Marginalized group;Ku-tiirsanaanta koox laga tirada badan yahay / la-dagaallanka
+cccm_idps_origin_first;Region of first origin;Gobolka asal ahaan asalka ah
+cccm_district_origin_first;District of first origin;Degmada asalka koowaad
+reason_displacement;Reason of displacement;Sababta barakac
+displaced_go_back_origin;Would most displaced go back to point of origin;Inta badan barakacayaashu waxay ku noqon doonaan meeshii ay ka yimaadeen
+difficulty_seeing;Persons with difficulty seeing;Dadka dhib ku qaba aragtida
+difficulty_hearing;Persons with difficulty hearing;Dadka maqalka dhib badan
+difficulty_walking;Persons with difficulty walking;Dadka dhib ku ah socodka
+diffculty_remembering;Persons with difficulty remembering;Dadka dhib ku qaba xusuusinta
+self_care;Persons with difficulty in self care;Dadka ku dhib badan daryeelka is-xilqaanka
+difficulty_communicating;Persons with difficulty in communicating;Dadka dhib ku qaba isgaarsiinta
+evictions_landowner;Who owns the land which site is established;Ayaa leh dhulka la aasaasay
+evictions_tenureagreement;Tenureship agreement present;Heshiiska kireysiga ayaa jira
+type_land_agreement;Agreement type;Nooca heshiiska
+evictions_tenureagreement_holder;Who holds land agreement for this site;Ayaa haysta heshiiska dhulka ee boggan
+evictions_tenureagreement_renewal;When Tenureship agreement is to be renewed;Marka heshiiska kireysiga la cusbooneysiinayo
+evictions_tenureagreement_rentpayment;Rent payment form;Foomka lacag bixinta kirada
+evictions_tenureagreement_rentfrequency;How frequently do residents pay rent;Sida ugu badan ee ay dadka degganuhu u bixiyaan kirada
+evictions_notice;Evictions notice issued;Ogeysiiska ka saarida ayaa la soo saaray
+evictions_notice_leavedate;Leave date issued in evictions notice;Taariikhda fasaxa ee lagu soo saaray ogeysiiska ka saarida
+rate_likelihood_eviction;Likelihood of eviction;Suurtagalnimada ka saarida
+factors_contributing_forced_evictions;Factors contributing to forced evictions;Waxyaabaha gacan ka geysata ka saarida qasabka ah
+protection_womenspace;Designated space women and girls can gather;Haweenka iyo gabdhaha loo qoondeeyay ayaa soo ururin kara
+housing_property_incidences;Housing and property incidences occuring in the past 3 months;Guriyeynta iyo dhacdooyinka guryaha ayaa dhacay 3dii bilood ee la soo dhaafay
+protection_childfriendlyspace;Are there any child friendly spaces;Ma jiraan meelo carruur saaxiibtinimo leh
+protection_incidents;Incidences occuring in the past 3 months;Dhacdooyinka dhacay 3dii bilood ee la soo dhaafay
+protection_restrictions_day;Are there restrictions of movement during the day;Ma jiraan xayiraad dhaqdhaqaaq inta lagu jiro maalinta
+protection_restrictions_night;Are there restrictions of movement during the day;Ma jiraan xayiraad dhaqdhaqaaq inta lagu jiro maalinta
+insecure_areas;Which are the areas people avoid because of insecurity;Waa kuwee meelaha dadku ka fogaadaan nabadgelyo darrida awgeed
+support_access_impediments;Groups facing impendiments to accessing support;Kooxaha wajahaya caqabado xagga helitaanka taageerada
+shelter_types;Shelter types;Noocyada hoyga
+shelter_fire;Fire occurred in the site in the past six months;Dabka ayaa ka dhacay goobta lixdii bilood ee la soo dhaafay
+shelter_flood;Flooding occurred in the site in the past six months;Daadad ayaa ka dhacday goobta lixdii bilood ee la soo dhaafay
+shelter_publiclighting;Any public lighting around the site;Iftiimin kasta oo dadweynaha ah oo ku xeeran goobta
+nfi_access;Market where NFI/construction materials can be purchased;Suuqa halka NFI / qalabka dhismaha lagu iibsan karo
+nfi_items_available;Are NFI/construction materials available for purchase in the market;Ma jiraan agabyo NFI / dhisme oo laga heli karo iibsashada suuqa
+nfi_access_impediments;Impediments to accessing NFI/construction materials;Saamaynta helitaanka qalabka NFI / dhismaha
+water_sources_present;How many water sources are present;Immisa ilo biyo ah ayaa jira
+water_sources_working;Portion of water sources that are working;Qayb ka mid ah ilaha biyaha ee shaqaynaya
+water_sources_functional;Water sources protected from contamination;Ilaha biyaha laga ilaaliyo faddaraynta
+water_sources_primary;Primary water source;Isha biyaha aasaasiga ah
+water_sources_domestic;Main Domestic water source;Isha biyaha gudaha
+water_treatment_proportion;Portion of the residents that treat water;Qayb ka mid ah dadka deggan biyaha
+water_treatment_methods;Water treatment methods;Hababka daaweynta biyaha
+water_collection_responsible;Who is primarily responsible for water collection;Ayaa ugu horreyn mas'uul ka ah ururinta biyaha
+water_access_distance_min;Walking time to nearest water point;Waqtiga loo lugeeyo barta biyaha ee kuugu dhow
+water_access_problem;Do residents have problems in accessing water;Dadka deegaanka ma dhibaato ku qabaan helitaanka biyaha
+water_access_barriers;What are the barriers;Maxay yihiin caqabadaha
+sanitation_toilets_male;Male-only latrines;Maraq-kaliya
+sanitation_toilets_female;Female-only latrines;Maraqyo-dheddig-kaliya
+sanitation_toilets_nongendered;Non-Gendered Latrines;Latrines aan la soo koobi karin
+sanitation_toilets_total;Total Latrines;Wadarta Latrines
+latrines_accessible_pwd;Are latrines accessible to PWDs;Musqulaha ma loo heli karaa PWDs
+bathing_male;Male-only Bathing facilities;Qalabka wax lagu maydho ee ragga oo keliya
+bathing_female;Female-only Bathing facilities;Xarumaha maydhashada dumarka oo keliya
+bathing_non_gendered;Non-Gendered Bathing facilities;Xarumaha Wax-ka-qabashada Aan La-Gacin
+hygiene_handwashingfacilities;Access to handwashing facilities;Helitaanka xarumaha gacanta lagu dhaqo
+sanitation_lockabletoilets;Toilets with locks on the inside;Musqulaha leh qufullo gudaha ah
+sanitation_toiletlighting;Toilets with internal lighting;Musqulaha leh nalalka gudaha
+sanitation_toilet_access_pwd;Portion of latrine types used by PWDs;Kala-soocidda noocyada musqulaha ee ay adeegsato PWDs
+sanitation_desludging;Frequency of latrines desludging;Soo noqnoqoshada musqulaha musqulaha
+sanitation_solidwastedisposal;Disposal or management of solid waste;Tuurista ama maaraynta qashinka adag
+sanitation_access_distance_min;Walking distance to the nearest functional latrine;Masaafada u lugaynta musqulaha shaqada ee ugu dhow
+sanitation_access_impediments;Population groups facing impediments to accessing latrines;Kooxaha dadka ayaa wajahaya caqabado ku saabsan helitaanka musqulaha
+problems_sanitation_facilities;Problems to accessing to sanitation facilities;Dhibaatooyinka helitaanka xarumaha fayadhowrka
+hygiene_access_impediments;Barriers faced in accessing sanitation facilities;Caqabadaha horyaala helitaanka xarumaha fayadhowrka
+health_facilities;Available health facilities within or around the site;Xarumaha caafimaadka ee laga heli karo gudaha ama agagaarka goobta
+health_services;Available health services;Adeegyada caafimaadka ee la heli karo
+male_sickness;Male sickness;Cudurro lab
+male_wounds;Male wounds;Ragga ayaa dhaawacaa
+male_disabilities;Male disabilities;Ragga naafada ah
+male_mental_health;Male mental health;Caafimaadka maskaxda
+female_sickness; Female sickness; Dhedig xanuun
+female_wounds; Female wounds; Dheddig xanuun
+female_disabilities;Female disabilities;Haweenka naafada ah
+female_mental_health;Female mental health;Caafimaadka maskaxda ee haweenka
+adeqaute_health_men;Proportion of men unable to receive adequate health care;Saami qaybsiga ragga aan heli karin daryeel caafimaad oo ku filan
+adeqaute_health_women;Proportion of women unable to receive adequate health care;Saami qaybsiga haweenka aan heli karin daryeel caafimaad oo ku filan
+male_health_problems;Common Health problems among men;Dhibaatooyinka caafimaad ee guud ee ragga
+female_health_problems;Common Health problems among women;Dhibaatooyinka caafimaad ee guud ee haweenka
+health_women_unskilledhealthpersonnel;Women giving birth with unskilled attendants;Haweenka dhalaya kaqeyb galayaasha aan xirfadda lahayn
+health_access_distance_min;Walking distance to the nearest health care facility;Masaafada u lugaynta xarunta daryeelka caafimaadka ee kuugu dhow
+health_barriers;Difficulties experienced by residents in accessing health services or treatment;Dhibaatooyinka ay kala kulmaan dadka deggan helitaanka adeegyada caafimaadka ama daaweynta
+nutrition_distributions;Nutrition distributions;Qaybinta nafaqada
+nutrition_access_distance_min;Walking distance to the nearest nutrition centre/child-feeding centre;Masaafada u lugaynta xarunta nafaqada ee ugu dhow / xarunta quudinta carruurta
+nutrition_services;Difficulties experienced by residents in accessing nutrition services;Dhibaatooyinka ay kala kulmaan dadka deggan helitaanka adeegyada nafaqada
+education_facilities;Available school, learning types, within or around the site;Iskuulka la heli karo
+education_facilities_furniture;Schools or learning facilities with sufficient furniture - tables, benches, boards;Iskuulada ama xarumaha barashada oo leh qalab ku filan - miisas
+education_facilities_segregated;Schools or learning facilities with gender segregated latrines;Iskuulada ama xarumaha barashada ee leh musqulaha jinsiga
+education_facilities_washing;Schools or learning facilities with hand washing facilities;Iskuulada ama xarumaha waxbarashada oo leh xarumaha dharka lagu dhaqo
+education_facilities_physical_damages;Schools or learning facilities with damaged wall roof or floors;Iskuulada ama xarumaha barashada oo leh saqaf derbi burburay ama dabaqyo
+education_facilities_latrines_accessible_pwd;Schools or learning facilities with latrines accessible by PWDs;Iskuulada ama xarumaha barashada ee musqulaha ay heli karaan PWDs
+education_facilities_fences;Schools or learning facilities have fences or clear demarcation;Iskuulada ama xarumaha waxbarashadu waxay leeyihiin dayrar ama kala goyn cad
+education_access_distance_min;Walking distance to the nearest education facility;Masaafada u lugaynta xarunta waxbarashada ee kuugu dhow
+education_barriers_boys;Top three barriers boys face in accessing education;Saddexda caqabadood ee ugu sarreeya wiilasha ayaa wajahaya helitaanka waxbarashada
+education_barriers_girls;Top three barriers girls face in accessing education;Saddexda caqabadood ee ugu sarreeya gabdhaha ayaa wajahaya helitaanka waxbarashada
+foodsecurity_primary; Primary source of food for most residents in this site; Isha ugu horeysa ee cuntada loogu talagalay dadka deggan badankood ee boggan ku nool
+foodsecurity_land_livestock;Land available to residents in this site for raising livestock;Dhul ay heli karaan dadka deggan boggan si ay kor ugu qaadaan xoolaha
+foodsecurity_land_agriculture;Land available to residents in this site for crop cultivation;Dhul ay heli karaan dadka deggan boggan si ay u beero dalagga
+foodsecurity_livelihood;Proportion of residents not able to access food;Saami qaybsiga dadka deggan ma awoodaan inay helaan cuntada
+residents_no_food;Groups of residents without access to food;Kooxaha degganeyaasha aan helin cuntada
+foodsecurity_access_barriers;Main reasons why most cant access food in the settlement;Sababaha ugu waaweyn ee inta badan aysan cuntada ugu heli karin dejinta
+foodsecurity_access;Access to a  food market within or around the site;Helitaanka suuq cunto gudaha ama hareeraha goobta
+foodsecurity_access_distance_min;Walking distance to the nearest functional market or foodstore;Masaafada u lugaynta suuqa ugu dhow ee shaqada ama dukaanka cuntada
+responsible_going_market;Responsible going market;Suuqa socda ee mas'uul ka ah
+aap_informationsources;Main source of information on availability of Humanitarian Aid ;Isha ugu weyn ee macluumaadka ku saabsan helitaanka Gargaarka Bani'aadamnimada 
+aap_humanitarianassistanceproblems;Barriers faced in trying to access Humanitarian Aid;Caqabadaha ayaa wajahay isku dayga helitaanka Gargaarka Bani'aadamnimada
+aap_feedbackmechanism;Presence of a Complaints Feedback Mechanism (CFM);Joogitaanka Nidaamka Jawaab-celinta Cabashooyinka ( CFM )
+cccm_cfm;Which portion of residents make use of the Complaints Feedback Mechanism;Qaybtee ka mid ah dadka deggan ayaa adeegsada Nidaamka Jawaab celinta Cabashada
+reason_nt_using_complaint_mechanisms;Reasons for not using Complaints Feedback Mechanisms;Sababaha aan loo isticmaalin Hababka Jawaab celinta Cabashooyinka
+aap_language;Most common language spoken in this site;Luqadda ugu badan ee lagu hadlo boggan
+localisation_region;Region pcode; Gobolka pcode
+district;District pcode;Degmada  pcode
+idp_code; ID; ID
+gps_latitude; lat.;Loolka
+gps_longitude; long.;Longitude
+Score out of 5;Site Prioritization score;Dhibcaha kala hormarinta goobta
+snfi_need;Shelter NFI Severity Score;Heerarka NFI Dhibicda darnaanta
+fs_need;Food Security Severity Score;Dhibcaha darnaanta haqab-beelka cuntada
+health_need;Health Severity Score;Dhibcaha Darnaanta Caafimaadka
+nutrition_need;Nutrition Severity score;Dhibcaha darnaanta nafaqada
+additional_minorities_index;Minorities Facing Barriers;Dadka laga tirada badan yahay ee wajahaya caqabadaha
+additional_pwd_index;PWDs Facing Barriers;Naafada soo food saartay caqabado
+education_need;Education Severity score;Dhibcaha darnaanta waxbarashada
+wash_need;WASH Severity Score;Dhibcaha darnaanta nadaafadda
+protection_need;Protection Severity Score;Dhibcaha darnaanta ilaalinta
+hlp_need;Eviction Likelyhood Score;Dhibcaha Suuragalnimada Ka saarida Dhibcaha Kala hormarinta
