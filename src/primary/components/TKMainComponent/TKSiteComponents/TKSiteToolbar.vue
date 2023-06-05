@@ -40,7 +40,11 @@
     <TKSiteToolbarExportButton class="tk-site-toolbar-container" />
     <v-tooltip top>
       <template v-slot:activator="{ on: tooltip, attrs }">
-        <v-btn-toggle rounded class="tk-site-toolbar-toggle">
+        <v-btn-toggle
+          rounded
+          class="tk-site-toolbar-toggle"
+          v-model="showVisualizerOptions"
+        >
           <v-btn
             icon
             height="44"
@@ -48,7 +52,6 @@
             :disabled="!dataset.currentSite"
             v-bind="attrs"
             v-on="tooltip"
-            v-model="showVisualizerOptions"
             class="tk-site-toolbar-toggle-button"
           >
             <v-icon>
@@ -75,12 +78,12 @@ import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisua
   }
 })
 export default class TKSiteToolbar extends Vue {
-  get showVisualizerOptions() {
-    return TKVisualizerOptionsModule.showVisualizerOptions;
+  get showVisualizerOptions(): number | undefined {
+    return TKVisualizerOptionsModule.showVisualizerOptions ? 0 : undefined;
   }
 
-  set showVisualizerOptions(value: boolean) {
-    TKVisualizerOptionsModule.setShowVisualizerOptions(value);
+  set showVisualizerOptions(value: number | undefined) {
+    TKVisualizerOptionsModule.setShowVisualizerOptions(value !== undefined);
   }
 
   get dataset() {
@@ -131,6 +134,10 @@ export default class TKSiteToolbar extends Vue {
 
 .tk-site-toolbar-toggle .v-btn--active:not(:hover) {
   color: transparent !important;
+}
+
+.tk-site-toolbar-toggle .v-btn {
+  background-color: var(--v-appBackground-base) !important;
 }
 
 .tk-site-toolbar-toggle .v-btn > .v-btn__content > .v-icon {

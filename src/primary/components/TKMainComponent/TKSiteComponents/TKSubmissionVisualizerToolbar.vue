@@ -18,8 +18,9 @@
       <v-btn-toggle
         class="tk-submissionvisualizer-toggle"
         color="selectedButton"
+        v-model="hideUnanswered"
       >
-        <v-btn class="toggle-button" v-model="hideUnanswered" plain>
+        <v-btn class="toggle-button" plain>
           <v-icon left>mdi-draw-pen</v-icon
           >{{ $t("site.hideUnanswered") }}</v-btn
         >
@@ -27,8 +28,9 @@
       <v-btn-toggle
         class="tk-submissionvisualizer-toggle"
         color="selectedButton"
+        v-model="sortByTrafficLight"
       >
-        <v-btn class="toggle-button" v-model="sortByTrafficLight" plain>
+        <v-btn class="toggle-button" plain>
           <v-icon left>mdi-traffic-light-outline</v-icon
           >{{ $t("site.sortByTrafficLight") }}
         </v-btn>
@@ -75,20 +77,20 @@ export default class TKSubmissionVisualizerToolbar extends Vue {
     TKVisualizerOptionsModule.setSearchFilter(this._search);
   }
 
-  get hideUnanswered() {
-    return TKVisualizerOptionsModule.hideUnanswered;
+  get sortByTrafficLight(): number | undefined {
+    return TKVisualizerOptionsModule.sortByTrafficLight ? 0 : undefined;
   }
 
-  set hideUnanswered(value: boolean) {
-    TKVisualizerOptionsModule.setHideUnanswered(value);
+  set sortByTrafficLight(value: number | undefined) {
+    TKVisualizerOptionsModule.setSortByTrafficLight(value !== undefined);
   }
 
-  get sortByTrafficLight() {
-    return TKVisualizerOptionsModule.sortByTrafficLight;
+  get hideUnanswered(): number | undefined {
+    return TKVisualizerOptionsModule.hideUnanswered ? 0 : undefined;
   }
 
-  set sortByTrafficLight(value: boolean) {
-    TKVisualizerOptionsModule.setSortByTrafficLight(value);
+  set hideUnanswered(value: number | undefined) {
+    TKVisualizerOptionsModule.setHideUnanswered(value !== undefined);
   }
 }
 </script>
@@ -111,7 +113,8 @@ export default class TKSubmissionVisualizerToolbar extends Vue {
   column-gap: 20px;
 }
 
-.toggle-button {
+.tk-submissionvisualizer-toggle .v-btn {
   border: none !important;
+  background-color: var(--v-appBackground-base) !important;
 }
 </style>
