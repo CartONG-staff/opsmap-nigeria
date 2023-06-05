@@ -99,7 +99,7 @@ export default class TKMap extends Vue {
         TKDatasetModule.dataset.currentSite
       );
       if (this.mapBoundaries) {
-        this.mapBoundaries.updateBoundariesStyle();
+        this.mapBoundaries.updateBoundariesStyle(this.map, this.bound);
       }
     }
   }
@@ -110,7 +110,7 @@ export default class TKMap extends Vue {
   @Watch("geoDataset")
   currentSiteChanged() {
     if (this.mapBoundaries) {
-      this.mapBoundaries.updateBoundariesStyle();
+      this.mapBoundaries.updateBoundariesStyle(this.map, this.bound);
     }
     this.mapSites = new TKMapSites(
       TKDatasetModule.dataset.filteredTypedSitesList,
@@ -142,9 +142,7 @@ export default class TKMap extends Vue {
       this.mapBoundaries = new TKMapBoundaries(
         this.geoDataset,
         TKConfigurationModule.configuration.spatialConfiguration.dbConfig,
-        this.dataset.currentSurvey.fdf.spatialDescription,
-        this.bound,
-        this.map
+        this.dataset.currentSurvey.fdf.spatialDescription
       );
     }
   }
@@ -216,13 +214,9 @@ export default class TKMap extends Vue {
         this.addImages();
 
         if (this.mapBoundaries) {
-          this.mapBoundaries.updateBoundariesStyle();
+          this.mapBoundaries.updateBoundariesStyle(this.map, this.bound);
         }
       });
-
-      if (this.mapBoundaries && !this.mapBoundaries.map) {
-        this.mapBoundaries.map = this.map;
-      }
     }
   }
 
@@ -254,7 +248,7 @@ export default class TKMap extends Vue {
     if (!this.map.getSource(TKMapSource.COUNTRY_MASK)) {
       this.map.addSource(TKMapSource.COUNTRY_MASK, {
         type: "geojson",
-        data: `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${TKConfigurationModule.configuration.spatialConfiguration.localFiles.admin0LocalURL}`
+        data: `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${TKConfigurationModule.configuration.spatialConfiguration.admin0LocalURL}`
       });
     }
 
