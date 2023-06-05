@@ -11,23 +11,6 @@ export enum TKSurveyInfosType {
   RIDL = "ridl"
 }
 
-interface TKSurveyBase {
-  readonly name: string;
-  readonly fdf: TKFDFInfos;
-  options: TKSurveyOptions;
-  readonly spatial: TKFDFSpatialDescription;
-  readonly indicators: TKFDFIndicators;
-}
-
-// ////////////////////////////////////////////////////////////////////////////
-// Specialization of TKSurveyInfo for RIDL Inputs
-// ////////////////////////////////////////////////////////////////////////////
-export interface TKSurveyInfosRidl extends TKSurveyBase {
-  readonly type: TKSurveyInfosType.RIDL;
-  readonly url: string;
-  readonly submissionsTrLocalUrl: string;
-}
-
 // ////////////////////////////////////////////////////////////////////////////
 // infos
 // ////////////////////////////////////////////////////////////////////////////
@@ -66,8 +49,15 @@ export interface TKSurveyInfosCSV extends TKAbstractSurveyInfos {
 
 export interface TKSurveyInfosGSheet extends TKAbstractSurveyInfos {
   readonly type: TKSurveyInfosType.GSHEET;
+
   readonly submissionsUrl: string;
   readonly submissionsTrUrl: string;
+}
+
+export interface TKSurveyInfosRidl extends TKAbstractSurveyInfos {
+  readonly type: TKSurveyInfosType.RIDL;
+  readonly url: string;
+  readonly submissionsTrLocalUrl: string;
 }
 
 // ////////////////////////////////////////////////////////////////////////////

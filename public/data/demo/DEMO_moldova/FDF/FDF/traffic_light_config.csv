@@ -1,8 +1,0 @@
-traffic_light_name;type;value;color
-yesno;string;Da;green
-yesno;string;Nu;red
-noyes;string;Da;red
-noyes;string;Nu;green
-y_n_ns;string;Da;green
-y_n_ns;string;Nu;red
-y_n_ns;string;Nu sunt sigur;yellow
