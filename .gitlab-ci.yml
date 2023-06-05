@@ -55,7 +55,7 @@ pages:
   needs: ["test"]
   stage: deploy
   script:
-    - npm run build-brazil
+    - npm run build-burkina-faso
     - rm -rf public
     - mkdir public
     - cp -r dist/* public
