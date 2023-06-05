@@ -124,13 +124,6 @@
                 -33.57,
                 5.02
             ]
-        },
-        "dbConfig": {
-            "admin1": "pcode",
-            "admin2": "pcode"
-        },
-        "localFiles": {
-            "admin0LocalURL": "map/admin0.geojson"
         }
     },
     "surveys": [
