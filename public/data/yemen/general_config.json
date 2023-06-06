@@ -3,7 +3,21 @@
         "locales": [
             "en",
             "ar"
-        ]
+        ],
+        "override": {
+            "en": {
+                "infosAdmins": {
+                    "admin1": "Governorate",
+                    "admin2": "District"
+                }
+            },
+            "ar": {
+                "infosAdmins": {
+                    "admin1": "محافظة",
+                    "admin2": "يصرف"
+                }
+            }
+        }
     },
     "textContent": {
         "name": {
