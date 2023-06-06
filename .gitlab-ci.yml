@@ -36,9 +36,9 @@ install_dependencies:
   tags:
     - opsmap
   rules:
-    - if: $CI_COMMIT_BRANCH == "pages"
+    - if: $CI_COMMIT_BRANCH == "release/deploy-gitlab-pages"
       when: always
-    - if: $CI_COMMIT_BRANCH != "pages"
+    - if: $CI_COMMIT_BRANCH != "release/deploy-gitlab-pages"
       when: manual
 
 # job: test
