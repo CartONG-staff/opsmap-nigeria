@@ -82,7 +82,6 @@
     "surveys": [
         {
             "type": "gsheet",
-            "name": "Form A",
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7-kFmhJUq9S1-yT8vRW_qDX3Vq51ypB3EniL8ggGpoSauKcOWsPSkb0tE20DrmIHFd2E6nNWRnWVJ/pub?gid=0&single=true&output=csv",
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7-kFmhJUq9S1-yT8vRW_qDX3Vq51ypB3EniL8ggGpoSauKcOWsPSkb0tE20DrmIHFd2E6nNWRnWVJ/pub?gid=232605089&single=true&output=csv",
             "options": {

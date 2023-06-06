@@ -95,9 +95,6 @@
     "surveys": [
         {
             "type": "gsheet",
-            "fdf": {
-                "folder": "FDF"
-            },
             "name": "Survey 2022",
             "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWB--WUoL4kvoVyWJA0pSvrutK2eKTRbKFUkDRJcY5drw52BtBKphuqb8P1_iD23hiBNZIoBSw70Vy/pub?gid=139925868&single=true&output=csv",
             "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWB--WUoL4kvoVyWJA0pSvrutK2eKTRbKFUkDRJcY5drw52BtBKphuqb8P1_iD23hiBNZIoBSw70Vy/pub?gid=471306203&single=true&output=csv",
