@@ -1,0 +1,290 @@
+field_name;field_label_en;field_label_ar
+STATE;STATE;حالة
+ZONE;ZONE;منطقة
+SITE_CODE;Site Code;رمز الموقع
+SITE_NAME;Site Name;اسم الموقع
+Latitude;Latitude;خط العرض
+Longitude;Longitude;خط الطول
+openning_date;Openning Date;تاريخ الافتتاح
+assessment_date;Assessment Date;تاريخ التقييم
+HOUSEHOLDS;HOUSEHOLDS;عائلات
+INDIVIDUAL;INDIVIDUAL;فرد
+Access_to_the_site_from_the_Center_of_AgGeneina_town;Access to the site from the Center of AgGeneina town;الوصول إلى الموقع من مركز بلدة أجينينة
+Site_Typology;Site_Typology;تصنيف الموقع
+Settle_authorization;Settle authorization;إذن التسوية
+functionnal_SMC;Is there a functionnal site management committee (SMC) on site including IDP community members?;هل هناك لجنة إدارة موقع وظيفية (SMC) في الموقع بما في ذلك أعضاء مجتمع النازحين؟
+Total_members_of_SMC;Total members of site management committee (SMC);إجمالي أعضاء لجنة إدارة الموقع (SMC)
+Number_of_Males_in_SMC;Number of Males in site management committee SMC;عدد الذكور في لجنة ادارة الموقع SMC
+Number_of_Females_in_SMC;Number of Females in site management committee SMC;عدد الاناث في لجنة ادارة الموقع SMC
+list_of_IDP_representatives_by_the_government;Is there any officially list of IDP representatives provided and validated by the government (HAC)?;هل هناك أي قائمة رسمية بممثلي النازحين داخليًا مقدمة ومصدق عليها من قبل الحكومة (HAC)؟
+representant_of_persons_with_disabilities_involved;Are there any representant of persons with disabilities involved in SMC ?;هل يوجد أي ممثل للأشخاص ذوي الإعاقة يشاركون في SMC؟
+other_available_committees;Please specify other available committees;يرجى تحديد اللجان الأخرى المتاحة
+Available_committees_Elderly_and_Disabled;Available committees/Elderly and Disabled committee;اللجان المتاحة / لجنة كبار السن والمعوقين
+street_light;Is there any street light inside the site at night ?;هل يوجد أعمدة إنارة داخل الموقع ليلاً؟
+number_of_functioning_street_lights;Please specify the number of functioning street lights;يرجى تحديد عدد مصابيح الشوارع العاملة
+owns_the_land;Who owns the land on which the site is settled?;من يملك الأرض التي يسكن عليها الموقع؟
+documentation_prove_ownership;Did you see any documentation that prove that ownership of site land ?;هل رأيت أي وثائق تثبت ملكية أرض الموقع؟
+communication_to_keep_IDP_aware;Is there any communication to keep IDP aware of that site owner’s land?;هل هناك أي اتصال لإبقاء IDP على علم بأرض مالك الموقع؟
+Last_physical_registration;Last physical registration on this site;آخر تسجيل مادي على هذا الموقع
+registration_type;Explain the registration type;اشرح نوع التسجيل
+conducted_the_registration;Who conducted the Registration;من أجرى التسجيل
+complaint_mechanism;Is there any complaint mechanism on this site?;هل توجد آلية للشكوى على هذا الموقع؟
+new_arrival_families_in_the_last_month;Have there been new arrival families in the last month?;هل كانت هناك عائلات قادمة جديدة في الشهر الماضي؟
+specify;New Household Arrival;وصول منزلية جديدة
+specify2;New Individuals Arrival;وصول أفراد جدد
+families_left_the_site_in_the_last_month;Have some families left the site in the last month?;هل غادرت بعض العائلات الموقع في الشهر الماضي؟
+specify3;Households Left the Site;غادرت الأسر الموقع
+specify4;Individuals Left the Site;غادر الأفراد الموقع
+available_shelter_types_for_IDPs;What are the available shelter types for IDPs in this site?;ما هي أنواع المأوى المتوفرة للنازحين في هذا الموقع؟
+presence_of_new_arrivals_with_no_shelter;Walking around have you noticed the presence of new arrivals with no shelter?;تتجول هل لاحظت وجود وافدين جدد بلا مأوى؟
+Percentage_of_shelter_having_electricity_at_night;Percentage of shelter having electricity at night;نسبة المأوى الذي يحتوي على كهرباء ليلاً
+visible_emergency_damaged_shelter;Is there any visible emergency (occupied) damaged shelter that needs to be replace/repair ?;هل هناك أي مأوى ظاهر للطوارئ (مشغول) متضرر يحتاج إلى استبدال / إصلاح؟
+specify_how_many;Shelter Need to be replaced / Repair;يجب استبدال المأوى / إصلاحه
+not_adequate_space_to_walk_between_shelters;Are there areas where there is not adequate space to walk between shelters and other structures?;هل توجد مناطق لا توجد فيها مساحة كافية للسير بين الملاجئ والمباني الأخرى؟
+NFI_assistance_on_this_site_in_the_last_one_month;Does NFI assistance take place on this site in the last one month?;هل يتم تقديم مساعدة المواد غير الغذائية على هذا الموقع في الشهر الماضي؟
+how_many_households_beneficiaries_of_NFI_distribution;If yes please specify how many households’ beneficiaries of NFI distribution;إذا كانت الإجابة بنعم ، يرجى تحديد عدد المستفيدين من الأسر من توزيع المواد غير الغذائية
+specify_the_last_NFI_distribution_date;If No specify the last NFI distribution date;إذا كانت الإجابة "لا" ، حدد آخر تاريخ لتوزيع المواد غير الغذائية
+specify_the_most_needed_NFI_item;If last distribution date >6 months specify the most needed NFI item;إذا كان تاريخ التوزيع الأخير> 6 أشهر ، حدد العنصر غير الغذائي الأكثر حاجة
+Specify_the_last_emerency_shelter_assistance_date_on_this_site;Specify the last emerency shelter assistance date on this site;حدد آخر موعد طارئ لمساعدة المأوى على هذا الموقع
+How_far_is_the_closest_pre-education;How far is the closest pre-education (Kindergarten) to this site ?;كم تبعد أقرب مرحلة ما قبل التعليم (روضة أطفال) عن هذا الموقع؟
+How_far_is_the_closest_functioning_primary_school;How far is the closest functioning primary school to this site ?;كم تبعد أقرب مدرسة ابتدائية عاملة لهذا الموقع؟
+How_far_is_the_closest_functioning_intermediate_school_;How far is the closest functioning intermediate school to this site ?;كم تبعد أقرب مدرسة متوسطة عاملة إلى هذا الموقع؟
+How_far_is_the_closest_functioning_secondary_schoo;How far is the closest functioning secondary school to this site ?;كم تبعد أقرب مدرسة ثانوية عاملة لهذا الموقع؟
+Estimated_of_school-aged_children_with_access_to_formal_school;Estimated % of school-aged children with access to formal school?;النسبة المقدرة للأطفال في سن المدرسة الذين يمكنهم الالتحاق بمدرسة رسمية؟
+Estimated_of_school-aged_children_with_access_to_informal_school;Estimated % of school-aged children with access to informal school?;النسبة المقدرة للأطفال في سن المدرسة الذين يمكنهم الالتحاق بمدرسة غير رسمية؟
+school_facility_occupied_by_IDPs_on_this_site;Is there any school facility occupied by IDPs on this site ?;هل هناك أي منشأة مدرسية يشغلها نازحون على هذا الموقع؟
+IDP_households_in_school_facilities;IDP households in school facilities;الأسر النازحة في المرافق المدرسية
+IDP_individuals_in_school_facilities;IDP individuals in school facilities;الأفراد النازحين في المرافق المدرسية
+Specify_the_walking_distance_to_the_nearest_health_facility_to_site;Specify the walking distance to the nearest health facility to site;حدد مسافة المشي لأقرب مرفق صحي إلى الموقع
+Is_there_any_healthcare_facility_ON_this_site;Is there any healthcare facility ON this site?;هل يوجد أي مرفق رعاية صحية على هذا الموقع؟
+If_YES_is_it_functioning;If YES is it functioning ?;إذا كانت الإجابة بنعم ، هل تعمل؟
+If_YES_how_long_are_people_queuing_for_at_the_health_facilities;If YES how long are people queuing for at the health facilities?;إذا كانت الإجابة بنعم ، ما هي المدة التي ينتظرها الأشخاص في طابور الانتظار في المرافق الصحية؟
+if_YES_are_prople_queuing_in_a_shaded_area;if YES are prople queuing in a shaded area ?;إذا كانت الإجابة بنعم هي قائمة انتظار في منطقة مظللة؟
+Is_there_any_case_of_measles_fever_or_rash_last_month;Is there any case of measles fever or rash last month ?;هل هناك أي حالة من الإصابة بحمى الحصبة أو الطفح الجلدي الشهر الماضي؟
+If_Yes_how_many_cases;If Yes how many cases ?;إذا كانت الإجابة بنعم ، فكم عدد الحالات؟
+Is_there_any_suspected_case_of_cholera_acute_watery_diarrhea;Is there any suspected case of cholera/acute watery diarrhea?;هل هناك أي حالة مشتبه بإصابتها بالكوليرا / الإسهال المائي الحاد؟
+If_Yes_how_many_cases;If Yes how many cases ?5;إذا كانت الإجابة بنعم ، فكم عدد الحالات؟
+Is_there_any_case_of_chronic_disease_reported_on_last_month;Is there any case of chronic disease reported on last month?;هل تم الإبلاغ عن أي حالة مرض مزمن الشهر الماضي؟
+Is_there_any_case_of_flooding_reported_on_the_last_3_months;Is there any case of flooding reported on the last 3 months?;هل تم الإبلاغ عن أي حالة فيضان خلال الأشهر الثلاثة الماضية؟
+How_many_households_can_access_health_facilities_if_needed;How many households can access health facilities if needed?;كم عدد الأسر التي يمكنها الوصول إلى المرافق الصحية إذا لزم الأمر؟
+Which_type_of_services_are_provided_for_IDPs_on_this_site;Which type of services are provided for IDPs on this site?;ما هي أنواع الخدمات المقدمة للنازحين على هذا الموقع؟
+Are_there_any_impediments_to_accessing_healthcare_for_women_or_children;Are there any impediments to accessing healthcare for women or children?;هل هناك عوائق تحول دون وصول النساء أو الأطفال إلى الرعاية الصحية؟
+If_YES_explain;If YES explain;إذا كانت الإجابة بنعم شرح
+Are_there_any_traditional_healters_midwives_on_this_site;Are there any traditional healters/midwives on this site?;هل يوجد أي معالجين / قابلات تقليديين في هذا الموقع؟
+Is_there_any_nutrition_service_in_this_site;Is there any nutrition service in this site?;هل يوجد أي خدمة تغذية في هذا الموقع؟
+If_YES_is_it_functioning;If YES is it functioning?;إذا كانت الإجابة بنعم ، هل تعمل؟
+If_NO_Specify_the_walking_distance_to_the_nearest_nutrition_facility_out_of_site;If NO Specify the walking distance to the nearest nutrition facility out of site ;إذا لم يكن الأمر كذلك ، حدد مسافة المشي لأقرب مرفق تغذية خارج الموقع
+Frequency_of_providing_nutrition_service_per_week;Frequency of providing nutrition service per week?;تواتر تقديم خدمة التغذية أسبوعيا؟
+Which_type_of_nutrition_services_are_provided_for_IDPs_on_this_site;Which type of nutrition services are provided for IDPs on this site?;ما نوع خدمات التغذية المقدمة للنازحين على هذا الموقع؟
+How_long_are_people_queuing_for_at_the_nutrition_facilities;How long are people queuing for at the nutrition facilities?;ما هي المدة التي ينتظرها الناس في طابور مرافق التغذية؟
+Are_people_queuing_in_a_shaded_area;Are people queuing in a shaded area?;هل يصطف الناس في منطقة مظللة؟
+Are_there_any_SAM_cases_referred_to_SC_during_this_month;Are there any SAM cases referred to SC during this month?;هل هناك حالات سوء التغذية الحاد الشديد التي تمت إحالتها إلى اللجنة العليا خلال هذا الشهر؟
+If_Yes_how_many_cases;If Yes how many cases?;إذا كانت الإجابة بنعم ، فكم عدد الحالات؟
+Are_there_any_U5_death_cases_reported_this_month;Are there any U5 death cases reported this month?;هل تم الإبلاغ عن أي حالات وفاة دون سن الخامسة هذا الشهر؟
+If_Yes_how_many_cases;If Yes how many cases?6;إذا كانت الإجابة بنعم ، فكم عدد الحالات؟
+Is_there_any_MUAC_screening_for_U_5_PLW_done_on_this_month;Is there any MUAC screening for U 5 /PLW done on this month?;هل هناك أي فحص لمحيط منتصف الذراع لـ U 5 / PLW تم إجراؤه في هذا الشهر؟
+Are_there_any_micronutrient_deficiencies_reported_on_this_month;Are there any micronutrient deficiencies reported on this month ;هل تم الإبلاغ عن أي نقص في المغذيات الدقيقة هذا الشهر
+If_yes_specify;If yes specify?;إذا كان الجواب نعم حدد؟
+Which_type_of_nutrition_education_introduced;Which type of nutrition education introduced?;ما هو نوع التثقيف الغذائي الذي تم تقديمه؟
+Are_there_any_harmful_feeding__weaning_practices_practiced_by_mothers;Are there any harmful feeding/ weaning practices practiced by mothers?;هل هناك أي ممارسات تغذية / فطام ضارة تمارسها الأمهات؟
+please_explain;If YES please explain ;إذا كانت الإجابة بنعم، رجاء التوضيح
+Are_there_any_sharing_selling_of_therapeutic_foods;Are there any sharing / selling (Leakage) of therapeutic foods? ;هل هناك أي مشاركة / بيع (تسرب) للأغذية العلاجية؟
+Walking_distance_to_the_nearest_market_from_this_site;Walking distance to the nearest market from this site;على مسافة قريبة من أقرب سوق من هذا الموقع
+Most_common_source_for_IDP_to_obtain_food;Most common source for IDP to obtain food;المصدر الأكثر شيوعًا للنازحين للحصول على الطعام
+Please_explain_the_food_source;Please explain the food source;يرجى توضيح مصدر الغذاء
+For_when_the_last_food_distribution;For when the last food distribution?;متى آخر توزيع غذاء؟
+Are_IDP_women_working_in_food_distribution;Are IDP women working in food distribution ?;هل تعمل النساء النازحات في توزيع الغذاء؟
+Is_there_any_recent_pressures_on_IDPs_by_other_parties_after_food_distribution_on_this_site;Is there any recent pressures on IDPs by other parties (not humanitarian) after food distribution on this site?;هل هناك أي ضغوط حديثة على النازحين من قبل أطراف أخرى (غير إنسانية) بعد توزيع الغذاء على هذا الموقع؟
+Is_there_any_supplementary_feeding_for_pregnant_breastfeeding_mothers;Is there any supplementary feeding for pregnant / breastfeeding mothers?;هل هناك تغذية تكميلية للأمهات الحوامل / المرضعات؟
+Which_proportion_of_households_have_access_to_generating_income;Which proportion of households have access to generating income?;ما هي نسبة الأسر التي لديها إمكانية الحصول على دخل مدر؟
+What_is_the_actual_livelihoods-relate_coping_strategy_for_te_majority_of_IDP_households_regarding_livelihoods;What is the actual livelihoods-relate coping strategy for te majority of IDP households regarding livelihoods?;ما هي إستراتيجية المواجهة الفعلية ذات الصلة بسبل العيش لغالبية الأسر النازحة فيما يتعلق بسبل العيش؟
+If_other_please_explain7;If other please explain7;إذا كان غير ذلك ، يرجى التوضيح 7
+Is_there_any_latrines;Is there any latrines on this site?;هل يوجد أي مراحيض في هذا الموقع؟
+Total_number_of_latrines_facilities;Total number of latrines facilities on this site;العدد الإجمالي لمرافق المراحيض في هذا الموقع
+Number_of_damaged_latrines;Number of damaged latrines;عدد المراحيض المتضررة
+Number_of_latrines_in_need_of_disludging;Number of latrines in need of disludging;عدد المراحيض التي تحتاج إلى إبعاد
+Percentage_of_latrines_having_safety_lock;Percentage of latrines having safety lock;النسبة المئوية للمراحيض المزودة بقفل أمان
+Percentage_of_latrines_with_lighting_at_night;Percentage of latrines with lighting at night;نسبة المراحيض ذات الإضاءة الليلية
+Percentage_of_men_women_gender-separated_latrines;Percentage of men/women gender-separated latrines;النسبة المئوية للمراحيض التي يفصل بينها جنس الرجال والنساء
+Most_common_type_of_latrines;Most common type of latrines on the site;أكثر أنواع المراحيض شيوعًا في الموقع
+Is_there_any_source_of_water;Is there any source of water in this site?;هل يوجد أي مصدر للمياه في هذا الموقع؟
+If_NO_is_there_any_water_trucking_mechanism_on_this_site;If NO is there any water trucking mechanism on this site?;إذا كان الجواب بالنفي ، فهل توجد أي آلية لنقل المياه بالشاحنات في هذا الموقع؟
+If_there_is_water_truck_is_it_currently_functioning;If there is water truck is it currently functioning?;إذا كان هناك شاحنة لنقل المياه ، هل تعمل حاليًا؟
+Specify_available_water_sources_ON_THIS_SITE;Specify available water sources ON THIS SITE;حدد مصادر المياه المتاحة في هذا الموقع
+What_is_the_average_queuing_time_to_get_water_at_the_nearest_water_point_on_this_site;What is the average queuing time to get water at the nearest water point on this site?;ما هو متوسط ​​وقت الانتظار للحصول على المياه في أقرب نقطة مياه في هذا الموقع؟
+Percentage_of_household_who_access_to_potable_water_on_this_site;Percentage of household who access to potable water on this site;النسبة المئوية للأسرة التي تصل إلى مياه الشرب في هذا الموقع
+Main_problem_with_drinking_water;Main problem with drinking water (Quality);المشكلة الرئيسية في مياه الشرب (الجودة)
+Water_Liters_per_person_per_day;Water (Liters per person per day);الماء (لتر للفرد في اليوم)
+Are_water_collection_points_safely_and_easily_accessible_to_women_and_kid;Are water collection points safely and easily accessible to women and kid?;هل يمكن الوصول إلى نقاط تجميع المياه بشكل آمن وسهل للنساء والأطفال؟
+Is_there_any_evidence_of_open_defecation;Is there any evidence of open defecation on site?;هل هناك أي دليل على التغوط في العراء في الموقع؟
+Is_there_any_waste_collection_mechanism;Is there any waste collection mechanism on this site?;هل توجد أي آلية لجمع النفايات في هذا الموقع؟
+If_YES_specify_the_frequency_of_solid_waste_disposal_here;If YES specify the frequency of solid waste disposal here;إذا كانت الإجابة بنعم ، حدد عدد مرات التخلص من النفايات الصلبة هنا
+If_Other_please_explain8;If Other please explain8;إذا كان غير ذلك ، يرجى التوضيح 8
+Do_all_group_have_access_to_complaint_mechanism;Do all group have access to complaint mechanism in place?;هل تتمتع كل المجموعات بإمكانية الوصول إلى آلية تقديم الشكاوى؟
+What_is_your_general_perception_regarding_feedback_mechanism;What is your general perception regarding feedback mechanism on this site ?;ما هو تصورك العام بشأن آلية التغذية الراجعة على هذا الموقع؟
+Does_IDP_men_feel_safe;Does IDP men feel safe on site ?;هل يشعر رجال النازحين بالأمان في الموقع؟
+Does_IDP_women_feel_safe;Does IDP women feel safe on site ?;هل تشعر النساء النازحات بالأمان في الموقع؟
+Does_IDP_children_feel_safe;Does IDP children feel safe on site ?;هل يشعر الأطفال النازحون بالأمان في الموقع؟
+danger_zones_in_or_near_the_site_where_women_girls_are_at_increased_risk_for_violence;Are there known danger zones in or near the site where women/girls are at increased risk for violence?;هل توجد مناطق خطر معروفة في الموقع أو بالقرب منه حيث تتعرض النساء / الفتيات لخطر متزايد للعنف؟
+If_YES_specify_which_zones_are_unsafe;If YES specify which zones are unsafe;إذا كانت الإجابة بنعم ، حدد المناطق غير الآمنة
+Who_is_the_main_security_provider_for_the_site;Who is the main security provider for the site?;من هو مزود الأمان الرئيسي للموقع؟
+Specify_the_security_provider_please;Specify the security provider please;حدد مزود الأمن من فضلك
+any_existing_tension_between_IDP_and_host_community_that_remain_unsolved;Is there any existing tension between IDP and host community that remain unsolved?;هل هناك أي توتر قائم بين النازحين والمجتمع المضيف لا يزال دون حل؟
+please_explain;If yes please explain;إذا كانت الإجابة بنعم، رجاء التوضيح
+which_percentage_of_IDP_can_temporarily_leave_the_site;Which percentage of IDP can temporarily leave the site;ما هي النسبة المئوية من IDP التي يمكنها مغادرة الموقع مؤقتًا
+Is_there_facilities_or_services_for_individuals_with_physical_and_mental_disabilities;Is there facilities or services for individuals with physical and mental disabilities?;هل توجد مرافق أو خدمات للأفراد ذوي الإعاقات الجسدية والعقلية؟
+GBV_related_incident_on_the_site_this_month;Is there any GBV related incident on the site this month?;هل هناك أي حادث متعلق بالعنف المبني على النوع الاجتماعي على الموقع هذا الشهر؟
+clearly_communicated_process_of_making_IDPs_aware_of_how_to_report_GBV_incident;Is there a clearly communicated process of making IDPs aware of how to report GBV incident?;هل هناك عملية معلنة بوضوح لجعل النازحين على دراية بكيفية الإبلاغ عن حادثة العنف القائم على النوع الاجتماعي؟
+Other_incidents_reported_this_month_on_this_site;Other incidents reported this month on this site;تم الإبلاغ عن حوادث أخرى هذا الشهر على هذا الموقع
+Is_there_any_IDP_children_in_age_of_schooling_but_not_going_to_school;Is there any IDP children in age of schooling but not going to school?;هل هناك أي أطفال نازحين في سن الدراسة ولكنهم لا يذهبون إلى المدرسة؟
+If_yes_why;If yes why?;إذا كانت الإجابة بنعم ، فلماذا؟
+specify_the_reason_of_out_of_school_IDP_children;specify the reason of out of school IDP children;تحديد سبب خروج الأطفال النازحين من المدرسة
+Are_you_aware_of_children_associated_with_armed_forces_on_this_site;Are you aware of children associated with armed forces on this site?;هل تعلم بوجود أطفال مرتبطين بالقوات المسلحة في هذا الموقع؟
+Perception_of_sexual_violence_trends_compared_to_previous_month;Perception of sexual violence trends compared to previous month;تصور اتجاهات العنف الجنسي مقارنة بالشهر السابق
+Perception_regarding_GBV_perpetrators;Perception regarding GBV perpetrators;التصور بشأن مرتكبي العنف القائم على النوع الاجتماعي
+Number_of_women_friendly_spaces;Number of women friendly spaces;عدد المساحات الصديقة للسيدات
+Number_of_child_friendly_spaces;Number of child friendly spaces;عدد الأماكن الملائمة للأطفال
+Which_percentage_of_children_are_going_to_school;Which percentage of children are going to school?;ما هي نسبة الأطفال الذين يذهبون إلى المدرسة؟
+Is_there_any_supported_process_of_providing_documentation_to_IDPs;Is there any supported process of providing documentation to IDPs;هل هناك أي عملية مدعومة لتوفير الوثائق للنازحين
+Which_percentage_of_IDP_have_actually_a_valid_documentation_on_this_site;Which percentage of IDP have actually a valid documentation on this site?;ما هي نسبة النازحين الذين لديهم بالفعل وثائق صالحة على هذا الموقع؟
+Does_the_community_receive_sufficient_information_on_humanitarian_services;Does the community receive sufficient information on humanitarian services?;هل يتلقى المجتمع معلومات كافية عن الخدمات الإنسانية؟
+Main_topic_of_information_urgently_requested;Main topic of information urgently requested;الموضوع الرئيسي للمعلومات المطلوبة بشكل عاجل
+specify_the_other_relief_assistance;specify the other relief assistance;تحديد مساعدات الإغاثة الأخرى
+Shelter_NFI;Shelter / NFI;المأوى / المواد غير الغذائية
+Shelter_NFI_No_Shelter_NFI_Assistance;No Shelter / NFI Assistance;لا يوجد مأوى / مساعدة من المواد غير الغذائية
+Shelter_NFI_Emergency_shelter_assistance_to_IDP_households;Emergency shelter assistance to IDP households;مساعدة المأوى في حالات الطوارئ للأسر النازحة
+Shelter_NFI_NFI_distribution_to_IDP_households;NFI distribution to IDP households;توزيع المواد غير الغذائية على الأسر النازحة
+Emergency_shelter_assistance_to_IDP_households;Emergency shelter assistance to IDP households;مساعدة المأوى في حالات الطوارئ للأسر النازحة
+NFI_distribution_to_IDP_households;NFI distribution to IDP households;توزيع المواد غير الغذائية على الأسر النازحة
+Health;Health;صحة
+Health_No_health_activity;No health activity;لا يوجد نشاط صحي
+Health_Provision_of_medical_consultations_and_procedures_on_IDP_gathering_site;Provision of medical consultations and procedures on IDP gathering site;تقديم الاستشارات والإجراءات الطبية في موقع تجمع النازحين
+Health_Providing_vaccination_for_children_aged_under_5_on_IDP_gathering_site;Providing vaccination for children aged under 5 on IDP gathering site;توفير التطعيم للأطفال دون سن الخامسة في مواقع تجمع النازحين
+Health_Providing_reproductive_health_and_support_on_IDP_gathering_site;Providing reproductive health and support on IDP gathering site;توفير الصحة الإنجابية والدعم في موقع تجمع النازحين
+Health_Providing_disease_surveillance_and_immediately_response_to_IDP_population_on_site;Providing disease surveillance and immediately response to IDP population on site;توفير مراقبة الأمراض والاستجابة الفورية للسكان النازحين في الموقع
+Health_Health_promotion_to_rising_community_awareness_for_preventive_disease;Health promotion to rising community awareness for preventive disease;تعزيز الصحة لرفع الوعي المجتمعي بالأمراض الوقائية
+Health_Referral_of_complicated_cases_to_Hospital;Referral of complicated cases to Hospital;تحويل الحالات المعقدة للمستشفى
+Health_Provision_of_medical_supplies;Provision of medical supplies;توفير المستلزمات الطبية
+Provision_of_medical_procedures_on_IDP_gathering_site;Provision of medical procedures on IDP gathering site;توفير الإجراءات الطبية في موقع تجمع النازحين
+Provision_of_medical_consultations_and_procedures_on_IDP_gathering_site;Provision of medical consultations and procedures on IDP gathering site;تقديم الاستشارات والإجراءات الطبية في موقع تجمع النازحين
+Providing_reproductive_health_and_support_on_IDP_gathering_site;Providing reproductive health and support on IDP gathering site;توفير الصحة الإنجابية والدعم في موقع تجمع النازحين
+Providing_disease_surveillance_and_immediately_response_to_IDP_population_on_site;Providing disease surveillance and immediately response to IDP population on site;توفير مراقبة الأمراض والاستجابة الفورية للسكان النازحين في الموقع
+Health_promotion_to_rising_community_awareness_for_preventive_disease;Health promotion to rising community awareness for preventive disease;تعزيز الصحة لرفع الوعي المجتمعي بالأمراض الوقائية
+Referral_of_complicated_cases_to_Hospital;Referral of complicated cases to Hospital;تحويل الحالات المعقدة للمستشفى
+Provision_of_medical_supplies;Provision of medical supplies;توفير المستلزمات الطبية
+Nutrition;Nutrition;تَغذِيَة
+Nutrition_NO_nutrition-related_activities;NO nutrition-related activities;لا توجد أنشطة متعلقة بالتغذية
+Nutrition_Providing_treatment_services_for_SAM_and_MAM_children_through_OTPs_TSFP;Providing treatment services for SAM and MAM children through OTPs/TSFP;تقديم خدمات العلاج للأطفال الذين يعانون من سوء التغذية الحاد الشديد و MAM من خلال OTPs / TSFP
+Nutrition_Screening_of_children_U5_in_OTPs_catchment_areas;Screening of children U5 in OTPs catchment areas;فحص الأطفال دون سن الخامسة في مناطق تجمعات العيادات الخارجية
+Nutrition_SAM_children_6-59_months_admitted_for_treatment;SAM children 6-59 months admitted for treatment;تم قبول الأطفال الذين تتراوح أعمارهم بين 6 و 59 شهرًا لتلقي العلاج
+Nutrition_MAM_children_6-59_months_admitted_for_treatment;MAM children 6-59 months admitted for treatment;تم إدخال أطفال MAM من عمر 6 إلى 59 شهرًا لتلقي العلاج
+Nutrition_Referral_of_SAM_with_medical_complications_to_Stabilization_centers;Referral of SAM with medical complications to Stabilization centers;إحالة سوء التغذية الحاد الشديد الذي يعاني من مضاعفات طبية إلى مراكز تحقيق الاستقرار
+Nutrition_Provision_of_emergency_food_ration_for_children;Provision of emergency food ration for children;توفير حصص غذائية طارئة للأطفال
+Nutrition_Screening_of_PLW;Screening of PLW;فحص النساء الحوامل والمرضعات
+Nutrition_PLW_admitted_for_treatment;PLW admitted for treatment;أدخلت PLW لتلقي العلاج
+Nutrition_IYCF_breast_feeding_corners_and_MSGs_established;IYCF breast feeding corners and MSGs established;تم إنشاء زوايا الرضاعة الطبيعية IYCF و MSGs
+Nutrition_IYCF_counselling_services_through_HFs_and_community;IYCF counselling services through HFs and community;خدمات استشارية IYCF من خلال HFs والمجتمع
+Providing_treatment_services_for_SAM_and_MAM_children_through_OTPs_TSFP;Providing treatment services for SAM and MAM children through OTPs/TSFP;تقديم خدمات العلاج للأطفال الذين يعانون من سوء التغذية الحاد الشديد و MAM من خلال OTPs / TSFP
+Screening_of_children_U5_in_OTPs_catchment_areas;Screening of children U5 in OTPs catchment areas;فحص الأطفال دون سن الخامسة في مناطق تجمعات العيادات الخارجية
+SAM_children_6-59_months_admitted_for_treatment;SAM children 6-59 months admitted for treatment;تم قبول الأطفال الذين تتراوح أعمارهم بين 6 و 59 شهرًا لتلقي العلاج
+MAM_children_6-59_months_admitted_for_treatment;MAM children 6-59 months admitted for treatment;تم إدخال أطفال MAM من عمر 6 إلى 59 شهرًا لتلقي العلاج
+Reference_of_SAM_medical_complications;Reference of SAM medical complications;إشارة المضاعفات الطبية SAM
+Provision_of_emergency_food_ration_for_children;Provision of emergency food ration for children;توفير حصص غذائية طارئة للأطفال
+PLW_screened;PLW screened;تم فحص النساء الحوامل والمرضعات
+PLW_admitted_for_treatment;PLW admitted for treatment;أدخلت PLW لتلقي العلاج
+IYCF_breast_feeding_corners_and_MSGs_established;IYCF breast feeding corners and MSGs established;تم إنشاء زوايا الرضاعة الطبيعية IYCF و MSGs
+IYCF_counselling_services_through_HFs_and_community;IYCF counselling services through HFs and community;خدمات استشارية IYCF من خلال HFs والمجتمع
+Education;Education;تعليم
+Education_No_education-related_activities;No education-related activities;لا توجد أنشطة متعلقة بالتعليم
+Education_Awareness_training_on_importance_of_education;Awareness training on importance of education;تدريب للتوعية بأهمية التعليم
+Education_Enrolment_campaigns_to_support_Education;Enrolment campaigns to support Education;حملات التسجيل لدعم التعليم
+Awareness_training_on_importance_of_education;Awareness training on importance of education;تدريب للتوعية بأهمية التعليم
+Enrolment_campaigns_to_support_Education;Enrolment campaigns to support Education;حملات التسجيل لدعم التعليم
+Food_Security_and_Livelihood;Food Security and Livelihood;الأمن الغذائي وسبل العيش
+Food_Security_and_Livelihood_No_Food_Assistance;No Food Assistance;لا توجد مساعدة غذائية
+Food_Security_and_Livelihood_Food_assistance_to_displaced_households;Food assistance to displaced households;المساعدات الغذائية للأسر النازحة
+Food_Security_and_Livelihood_Biometric_data_verification_for_food_distribution;Biometric data verification for food distribution;التحقق من البيانات البيومترية لتوزيع الغذاء
+Food_assistance_to_displaced_households;Food assistance to displaced households;المساعدات الغذائية للأسر النازحة
+Biometric_data_verification_for_food_distribution;Biometric data verification for food distribution;التحقق من البيانات البيومترية لتوزيع الغذاء
+General_Protection;General Protection;الحماية العامة
+General_Protection_No_Protection_activity;No Protection activity;لا يوجد نشاط حماية
+General_Protection_Protection_Monitoring;Protection Monitoring;مراقبة الحماية
+General_Protection_Registration_of_IDPs;Registration of IDPs;تسجيل النازحين
+General_Protection_Assistance_for_Civil_documentation_delivery;Assistance for Civil documentation delivery;المساعدة في تسليم الوثائق المدنية
+General_Protection_Birth_certificate_delivery;Birth certificate delivery;تسليم شهادة الميلاد
+General_Protection_Legal_assistance_or_counselling;Legal assistance or counselling (detention documentation law …);المساعدة أو الاستشارة القانونية (قانون توثيق الاحتجاز ...)
+General_Protection_Awareness_sessions_on_rights_remedies_and_services;Awareness sessions on rights remedies and services;جلسات توعية حول التعويضات والخدمات الحقوقية
+General_Protection_Legal_representation_assistance_before_courts_or_tribunal;Legal representation assistance before courts or tribunal;المساعدة في التمثيل القانوني أمام المحاكم أو الهيئات القضائية
+General_Protection_Establishment_or_support_of_community-based_protection_structures;Establishment or support of community-based protection structures;إنشاء أو دعم هياكل الحماية المجتمعية
+General_Protection_Establishment_of_Referral_pathway_for_IDPs;Establishment of Referral pathway for IDPs;إنشاء مسار الإحالة للنازحين
+General_Protection_Participatory_protection_assessment;Participatory protection assessment;تقييم الحماية التشاركي
+General_Protection_Community-based_complaint_mechanism;Community-based complaint mechanism;آلية الشكاوى المجتمعية
+Protection_Monitoring;Protection Monitoring;مراقبة الحماية
+Registration_of_IDPs;Registration of IDPs;تسجيل النازحين
+Assistance_for_Civil_documentation_delivery;Assistance for Civil documentation delivery;المساعدة في تسليم الوثائق المدنية
+Birth_certificate_delivery;Birth certificate delivery;تسليم شهادة الميلاد
+Legal_assistance_or_counselling;Legal assistance or counselling (detention documentation law …);المساعدة أو الاستشارة القانونية (قانون توثيق الاحتجاز ...)
+Awareness_sessions_on_rights_remedies_and_services;Awareness sessions on rights remedies and services;جلسات توعية حول التعويضات والخدمات الحقوقية
+Legal_representation_assistance_before_courts_or_tribunal;Legal representation assistance before courts or tribunal;المساعدة في التمثيل القانوني أمام المحاكم أو الهيئات القضائية
+Establishment_or_support_of_community-based_protection_structures;Establishment or support of community-based protection structures;إنشاء أو دعم هياكل الحماية المجتمعية
+Establishment_of_Referral_pathway_for_IDPs;Establishment of Referral pathway for IDPs;إنشاء مسار الإحالة للنازحين
+Participatory_protection_assessment;Participatory protection assessment;تقييم الحماية التشاركي
+Community-based_complaint_mechanism;Community-based complaint mechanism;آلية الشكاوى المجتمعية
+Child_Protection;Child Protection;حماية الطفل
+Child_Protection_No_CHILD_PROTECTION_activity;No CHILD PROTECTION activity;لا يوجد نشاط لحماية الطفل
+Child_Protection_Case_Management_services_for_children;Case Management services for children;خدمات إدارة الحالة للأطفال
+Child_Protection_BIA_for_children;BIA for children;BIA للأطفال
+Child_Protection_Referral_Pathway_for_children_at_risk;Referral Pathway for children at risk;مسار الإحالة للأطفال المعرضين للخطر
+Child_Protection_Assistance_to_disabilities_children;Assistance to disabilities children;مساعدة الأطفال المعوقين
+Child_Protection_Awareness_sessions_on_rights_remedies_and_services_on_CP;Awareness sessions on rights remedies and services on CP;جلسات توعية حول حقوق الانتصاف والخدمات على الإنتاج الأنظف
+Child_Protection_Training_of_Child_Protection_workers;Training of Child Protection workers;تدريب العاملين في مجال حماية الطفل
+Child_Protection_Sustainable_psychosocial_support;Sustainable psychosocial support;الدعم النفسي والاجتماعي المستدام
+Child_Protection_Establishment_of_child_protection_community-based_protection_structures;Establishment of child protection community-based protection structures;إنشاء هياكل حماية مجتمعية لحماية الطفل
+Child_Protection_Establishment_and_support_of_adolescent_clubs;Establishment and support of adolescent clubs;إنشاء ودعم نوادي المراهقين
+Child_Protection_Training_of_community-based_child_protection_structure;Training of community-based child protection structure;تدريب هيكل حماية الطفل المجتمعي
+Case_Management_services_for_children;Case Management services for children;خدمات إدارة الحالة للأطفال
+BIA_for_children;BIA for children;BIA للأطفال
+Referral_Pathway_for_children_at_risk;Referral Pathway for children at risk;مسار الإحالة للأطفال المعرضين للخطر
+Assistance_to_disabilities_children;Assistance to disabilities children;مساعدة الأطفال المعوقين
+Awareness_sessions_on_rights_remedies_and_services_on_CP;Awareness sessions on rights remedies and services on CP;جلسات توعية حول حقوق الانتصاف والخدمات على الإنتاج الأنظف
+Training_of_Child_Protection_workers;Training of Child Protection workers;تدريب العاملين في مجال حماية الطفل
+Sustainable_psychosocial_support;Sustainable psychosocial support;الدعم النفسي والاجتماعي المستدام
+Establishment_of_child_protection_community-based_protection_structures;Establishment of child protection community-based protection structures;إنشاء هياكل حماية مجتمعية لحماية الطفل
+Establishment_and_support_of_adolescent_clubs;Establishment and support of adolescent clubs;إنشاء ودعم نوادي المراهقين
+Training_of_community-based_child_protection_structure;Training of community-based child protection structure;تدريب هيكل حماية الطفل المجتمعي
+GBV;GBV;العنف القائم على النوع الاجتماعي
+No_GBV_activity;No GBV activity;لا يوجد نشاط للعنف القائم على النوع الاجتماعي
+GBV_case_management_services;GBV case management services;خدمات إدارة حالات العنف القائم على النوع الاجتماعي
+Distribution_of_GBV_dignity_kit;Distribution of GBV dignity kit;توزيع حقيبة الكرامة الخاصة بالعنف القائم على النوع الاجتماعي
+GBV_awareness_raising_sessions_to_IDP;GBV awareness raising sessions to IDP;جلسات توعية حول العنف المبني على النوع الإجتماعي للنازحين
+Training_of_GBV_service_providers_on_GBV_prevention_and_response;Training of GBV service providers on GBV prevention and response;تدريب مقدمي خدمات العنف المبني على النوع الاجتماعي على الوقاية من العنف المبني على النوع الاجتماعي والاستجابة له
+GBV_safety_audits;GBV safety audits;عمليات تدقيق سلامة العنف القائم على النوع الاجتماعي
+GBV_counselling;GBV counselling (not including recreational activities);استشارات العنف المبني على النوع الاجتماعي (لا تشمل الأنشطة الترفيهية)
+GBV_case_management_services;GBV case management services;خدمات إدارة حالات العنف القائم على النوع الاجتماعي
+Distribution_of_GBV_dignity_kit;Distribution of GBV dignity kit;توزيع حقيبة الكرامة الخاصة بالعنف القائم على النوع الاجتماعي
+GBV_awareness_raising_sessions_to_IDP;GBV awareness raising sessions to IDP;جلسات توعية حول العنف المبني على النوع الإجتماعي للنازحين
+Training_of_GBV_service_providers_on_GBV_prevention_and_response;Training of GBV service providers on GBV prevention and response;تدريب مقدمي خدمات العنف المبني على النوع الاجتماعي على الوقاية من العنف المبني على النوع الاجتماعي والاستجابة له
+GBV_safety_audits;GBV safety audits;عمليات تدقيق سلامة العنف القائم على النوع الاجتماعي
+GBV_counselling;GBV counselling (not including recreational activities);استشارات العنف المبني على النوع الاجتماعي (لا تشمل الأنشطة الترفيهية)
+WASH;WASH;غسل
+WASH_No_WASH_activity;No WASH activity;لا يوجد نشاط WASH
+WASH_Hygiene_promotion_campaigns;Hygiene promotion campaigns (house to house);حملات تعزيز النظافة (من منزل إلى منزل)
+WASH_Hygiene_promotion_training_to_volunteers;Hygiene promotion training to volunteers;تدريب تعزيز النظافة للمتطوعين
+WASH_Latrines_rehabilitation_and_construction;Latrines rehabilitation and construction;إعادة تأهيل وبناء المراحيض
+WASH_provision_of_hygiene_kits_to_IDP_households;provision of hygiene kits to IDP households;توفير أدوات النظافة للأسر النازحة
+WASH_Water_infrastructure_rehabilitation;Water infrastructure rehabilitation or construction/upgrading;إعادة تأهيل البنية التحتية للمياه أو تشييدها / تطويرها
+WASH_Water_trucking_tankering;Water trucking/tankering;نقل المياه بالصهاريج / بالصهاريج
+WASH_Provision_of_Latrine_dislodging_services;Provision of Latrine dislodging services;توفير خدمات طرد المرحاض
+Hygiene_promotion_campaigns;Hygiene promotion campaigns (house to house);حملات تعزيز النظافة (من منزل إلى منزل)
+Hygiene_promotion_training_to_volunteers;Hygiene promotion training to volunteers;تدريب تعزيز النظافة للمتطوعين
+Latrines_rehabilitation_and_construction;Latrines rehabilitation and construction;إعادة تأهيل وبناء المراحيض
+provision_of_hygiene_kits_to_IDP_households;provision of hygiene kits to IDP households;توفير أدوات النظافة للأسر النازحة
+Water_infrastructure_rehabilitation;Water infrastructure rehabilitation or construction/upgrading;إعادة تأهيل البنية التحتية للمياه أو تشييدها / تطويرها
+Water_trucking_tankering;Water trucking/tankering;نقل المياه بالصهاريج / بالصهاريج
+Provision_of_Latrine_dislodging_services;Provision of Latrine dislodging services;توفير خدمات طرد المرحاض
+CBI;CBI;CBI
+CBI_No_CASH_related_activity;No CASH related activity;لا يوجد نشاط متعلق بالنقد النقدي
+CBI_Cash_grants;Cash grants (in case of return only);المنح النقدية (في حالة العائد فقط)
+CBI_Emergency_cash_assistance_to_vulnerable_PoC;Emergency cash assistance to vulnerable PoC;المساعدة النقدية الطارئة لحماية حماية المستهلك الضعيفة
+Cash_grants;Cash grants (in case of return only);المنح النقدية (في حالة العائد فقط)
+Emergency_cash_assistance_to_vulnerable_PoC;Emergency cash assistance to vulnerable PoC;المساعدة النقدية الطارئة لحماية حماية المستهلك الضعيفة

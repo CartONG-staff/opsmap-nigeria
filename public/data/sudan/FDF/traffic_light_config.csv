@@ -1,0 +1,33 @@
+traffic_light_name;type;value;color
+yesno;string;Yes;green
+yesno;string;No;red
+noyes;string;Yes;red
+noyes;string;No;green
+sex_violence;string;Increase;red
+sex_violence;string;Decrease;green
+sex_violence;string;No change;orange
+electricity_cov;string;< 30%;red
+electricity_cov;string;30-50%;orange
+electricity_cov;string;>50%;green
+electricity_cov;string;all (100%);green
+nfi_per;string;Never;red
+nfi_per;string;<3 months;green
+nfi_per;string;3 - 6 months;orange
+nfi_per;string;6-12 months;red
+nfi_per;string;> 12 months;red
+education_faci;string;On site;green
+education_faci;string;Around (< 2 km);orange
+education_faci;string;Around (3-5 km);red
+education_faci;string;Around (> 5 km);red
+pcentage_formal;string;< 25%;red
+pcentage_formal;string;25-50 %;red
+pcentage_formal;string;>50 %;orange
+pcentage_formal;string;all IDP children (100%);green
+queuing_health;string;> 30 min;green
+queuing_health;string;30-60 min;orange
+queuing_health;string;60-90 min;red
+queuing_health;string;> 90 min;red
+pcentage_healthcare;string;< 25%;red
+pcentage_healthcare;string;25-50 %;orange
+pcentage_healthcare;string;>50 %;green
+pcentage_healthcare;string;all IDP households (100%);green
