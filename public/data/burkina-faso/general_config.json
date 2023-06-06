@@ -4,7 +4,21 @@
             "en",
             "fr"
         ],
-        "default": "fr"
+        "default": "fr",
+        "override": {
+            "en": {
+                "infosAdmins": {
+                    "admin1": "Region",
+                    "admin2": "Province"
+                }
+            },
+            "fr": {
+                "infosAdmins": {
+                    "admin1": "Région",
+                    "admin2": "Province"
+                }
+            }
+        }
     },
     "textContent": {
         "name": {
