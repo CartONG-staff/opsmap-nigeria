@@ -103,6 +103,7 @@ export async function TKReadGeneralConfiguration(
   }
 
   json.locale.default = json.locale.default ?? "en";
+  json.locale.override = json.locale.override ?? {};
 
   // ////////////////////////////////////////////////////////////////////////////
   // Mapbox configuration - handle default values
