@@ -58,7 +58,7 @@ pages:
   needs: ["test"]
   stage: deploy
   script:
-    - npm run build-burkina-faso
+    - npm run build-$CI_OPSMAP_NAME
     - rm -rf public
     - mkdir public
     - cp -r dist/* public
