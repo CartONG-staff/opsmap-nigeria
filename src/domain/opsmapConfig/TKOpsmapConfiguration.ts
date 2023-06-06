@@ -208,6 +208,11 @@ export async function TKReadGeneralConfiguration(
     };
 
     // fdf folder set to fdf by default
+    if (!json.surveys[i].fdf) {
+      json.surveys[i].fdf = {
+        folder: "FDF"
+      };
+    }
     json.surveys[i].fdf.folder = json.surveys[i].fdf.folder ?? "FDF";
 
     // Force to global if lat or long are undefined

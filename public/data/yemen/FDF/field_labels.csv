@@ -1,0 +1,220 @@
+field_name;field_label_en;field_label_ar
+reporting_month;Reporting month;شهر التقرير
+hub;hub;المحور
+governorate;governorate;المحافظة
+district;district;المديرية
+sub_district;sub_district;العزلة
+site_name_en;Site Name;إسم الموقع
+site;Site ID;رقم الموقع
+site_single_clustered;single or clustered site;هل هذا الموقع منفرد أم مُجمًّع
+site_report_main_subsite;main or subsite site;هل الموقع رئيسي أو فرعي؟
+number_subsites;Number of subsites;عدد المواقع الفرعية ذكرت في هذا النموذج
+name_subsites;Name of subsites;إسم المواقع الفرعية ذكرت في هذا النموذج
+type_of_settlement;Type of settlement;نوع الموقع/المخيم
+degree_of_urbanization;Degree of urbanization;درجة التحضّر
+settlement_attributes;Settlement attributes;سمات الموقع/المخيم
+site_purpose;Site purpose;الغرض من إنشاء الموقع
+site_occupation_date;Site occupation date;تاريخ الإستقرار في الموقع (شهر /سنة)
+land_ownership;Land ownership;ملكية الأرض
+occupancy_agreement;Occupancy agreement;إتفاقية الإنشاء
+isolated_location;Is the site in an isolated location;هل الموقع في موقع معزول مقارنة بأقرب مجتمع؟
+smc_agency;Site Management & Coordination (SMC) Agency;وكالة تنسيق وإدارة الموقع (SMC)
+smc_physical_space;Adequate physical SMC office space available?;مساحة مكتبية كافية متاحة لتنسيق وإدارة الموقع(SMC)؟
+smc_stationary_mobile;Is SMC team stationary or mobile?;هل فريق تنسيق وإدارة الموقع (SMC) ثابت أم متنقل؟
+smc_presence_days;How many days per week is SMC present in the site?;كم يوما في الأسبوع يتواجد فريق تنسيق وإدارة الموقع(SMC) في الموقع؟
+smc_female;No. SMC Female Staff;موظفات إدارة وتنسيق الموقع الإناث
+smc_male;No. SMC Male Staff;موظفوا إدارة وتنسيق الموقع الذكور
+smc_total;Total number of SMC Staff;العدد الكلي لموظفي إدارة وتنسيق الموقع
+smc_code_of_conduct_number;# SMC staff signed a Code of Conduct;عدد موظفي تنسيق وإدارة الموقع (SMC) الذين وقّعوا على مدونة قواعد السلوك
+"smc_training_number;# SMC staff completed adequate training related to their role;عدد موظفي تنسيق وإدارة الموقع (SMC) الذين أكملوا
+التدريب الكافي المتعلق بدورهم"
+camp_committee_total;# Camp Management Committee present at the site Staff;(لجنة إدارة الموقع ) عدد الاعضاء
+camp_committee_female;Female;إناث
+camp_committee_male;Male;ذكور
+wash_committee_total;# WASH committee Staff;(لجنة كبار السن ) عدد الاعضاء
+wash_committee_female;Female;إناث
+wash_committee_male;Male;ذكور
+health_committee_total;# Health committee Staff;(لجنة الصحة ) عدد الاعضاء
+health_committee_female;Female;إناث
+health_committee_male;Male;ذكور
+education_committee_total;# Education committee Staff;(لجنة التعليم ) عدد الاعضاء
+education_committee_female;Female;إناث
+education_committee_male;Male;ذكور
+fs_agriculture_committee_total;# Food security & Agriculture committee Staff;(لجنة الأمن الغذائي والزراعة ) عدد الاعضاء
+fs_agriculture_committee_female;Female;إناث
+fs_agriculture_committee_male;Male;ذكور
+livelihoods_committee_total;# Livelihoods & business committee Staff;(لجنة سبل العيش والأعمال) عدد الاعضاء
+livelihoods_committee_female;Female;إناث
+livelihoods_committee_male;Male;ذكور
+youth_education_committee_total;# Youth & Education committee Staff;(لجنة الشباب والتعليم ) عدد الاعضاء
+youth_education_committee_female;Female;إناث
+youth_education_committee_male;Male;ذكور
+care_maintenance_committee_total;# Care & Maintenance committee Staff;(لجنة الرعاية والصيانة )عدد الاعضاء
+care_maintenance_committee_female;Female;إناث
+care_maintenance_committee_male;Male;ذكور
+fire_warden_committee_total;# Fire warden Staff;(مشرف الحريق )عدد الاعضاء
+fire_warden_committee_female;Female;إناث
+fire_warden_committee_male;Male;ذكور
+representative_persons_disability_total;# Representative for persons with disability Staff;(ممثل (ممثلون) للأشخاص ذوي الإعاقة ) عدد الاعضاء
+representative_persons_disability_female;Female;إناث
+representative_persons_disability_male;Male;ذكور
+consultations_with_site_residents;Consultations with site residents about their needs has taken place in the last month to inform programme planning;التشاور مع سكان الموقع حول احتياجاتهم في الشهر الماضي لتوجيه تخطيط البرامج
+"consultations_with_site_residents_no_why;If no, why did consultations with site residents not take 
+place in the last month?;إذا لا، فلماذا لم تتم المشاورات مع سكان الموقع مكان في الشهر الماضي؟"
+"complaint_fedback_mechanism_available;Functional complaint and feedback mechanism available in the site
+available in site;آلية الشكاوى والتغذية الراجعة التشغيلية متوفرة في الموقع"
+main_areas_complaints;Main areas of complaints received in last month;المجالات الرئيسية التي تم تلقي الشكاوى بشأنها في الشهر الماضي
+information_board_available;information board available in the site?;هل تتوفر لوحة معلومات في الموقع؟
+nb_info_food;# Food information board;عدد لوح التعليمات بخصوص الغذاء
+nb_info_water;# Water information board;عدد لوح التعليمات بخصوص المياه
+nb_info_education;# Education information board;عدد لوح التعليمات بخصوص التعليم
+nb_info_cash;# Cash assistance information board;عدد لوح التعليمات بخصوص المساعدة نقدية
+nb_info_nfi;# NFI information board;عدد لوح التعليمات بخصوص المواد غير الغذائية
+nb_info_shelter;# Shelter\maintenance information board;عدد لوح التعليمات بخصوص المأوى/ الصيانة
+nb_info_sanitation;# Sanitation\hygiene services information board;عدد لوح التعليمات بخصوص خدمات النظافة/ الصرف الصحي
+nb_info_protection;# Protection services information board;عدد لوح التعليمات بخصوص خدمات الحماية
+nb_info_nutrition;# Nutrition services information board;عدد لوح التعليمات بخصوص الخدمات التغذوية
+nb_info_healthcare;# Healthcare services information board;عدد لوح التعليمات بخصوص خدمات الرعاية الصحية
+nb_info_livelihood;# Livelihood services information board;خدمات سيل العيش
+nb_info_covid_19;# COVID-19 information board;كوفيد – 19
+nb_info_cfm;# CFM information board;آلية الشكاوى والتغذية الراجعة
+site_accessibility_physical_barriers;Site accessibility (physical barriers);إمكانية الوصول إلى الموقع (الحواجز المادية)
+"natural_hazards_site;Natural and endomorphic hazards to site
+Includes both the RISK and previous OCCURANCE of threats to the safety and security of the site;المخاطر الطبيعية والباطنية على الموقع 
+يشمل كل من المخاطر والحدوث السابق للتهديدات لسلامة وأمن الموقع."
+exposure_to_flooding;In your opinion, how dangerous is the exposure to flooding in this site for people, shelter and infrastructure?;برأيك ، ما مدى خطورة التعرض للفيضانات في هذا الموقع على الناس والمأوى والبنية التحتية؟
+flood_occurrance;In the past month, has flooding occurred in this site;في الشهر الماضي ، هل حدثت فيضانات في هذا الموقع؟
+number_of_floods;Indicate number of floods;يرجى تحديد عدد الفيضانات
+flooding_impact_injuries_death;Flood-related injuries\death;الإصابات المرتبطة بالفيضانات / الوفاة
+flooding_impact_shelters;Damage to shelters - related to floodings;الأضرار التي لُحقت بالمأوى
+flooding_impact_roads_access;Damage to access roads;الأضرار التي لُحقت بالوصول للطرق
+flooding_impact_infrastructure;Damage to critical infrastructure;الأضرار التي لحقت بالبنية التحتية الحيوية
+main_source_flooding;Main source of flooding;المصادر الرئيسي للفيضانات
+flood_contingency_plan;Does this site have any flood contingency plans in place?;هل لدى هذا الموقع أي خطط طوارئ للفيضانات؟
+if_yes_explain;If yes, Please explain;اذا نعم, يرجى التوضيح
+fire_occurrance;In the past month, has fire occurred in this site?;في الشهر الماضي ، هل حدث حريق في هذا الموقع؟
+number_of_fires;If yes, please indicate number of fires;اذا نعم, يرجى إدخال عدد الحرائق
+fire_impact_injuries_death;impact of the fire on Fire-related injuries\death;الإصابات المرتبطة بالحرائق/الوفاة
+fire_impact_shelters;Damage to shelters - related to fires;الأضرار التي لُحقت بالمأوى - المرتبطة بالحرائق
+fire_impact_infrastructure;impact of the fire on Damage to critical infrastructure;الأضرار التي لُحقت بالوصول للطرق - المرتبطة بالحرائق
+source_fire;Source of for fire;مصدر الحريق
+fire_safety_measures;Fire safety measures;ممارسات السلامة من الحرائق
+dangerous_structures;Are there any dangerous structures in the site?;هل هناك أي هيكل مبناء خطر في الموقع؟
+nb_site_residents_hh;# site residents - Households;ادخل عدد سكان الموقع - الأسر
+nb_site_residents_ind;# site residents - Individuals;ادخل إجمالي عدد سكان الموقع - الأفراد
+site_residents_registration_frequency_update;Frequency of update of site resident registration;تواتر تحديث تسجيل المقيمين في الموقع
+methodology_pop_demographics;Methodology to determine population demographics;منهجية تحديد التركيبة السكانية
+source_pop_demographics;Source of population demographics;مصدر التركيبة السكانية للسكان
+pop_groups_outside_site_assistance_in_site;In the past month, were there any population groups that live outside the site, but receive assistance in the site?;في الشهر الماضي، هل كانت هناك أي مجموعات سكانية تعيش خارج الموقع، ولكنها تتلقى المساعدة في الموقع؟
+nb_shelters;Number of shelters in the site;عدد المآوي في الموقع
+site_capacity;Site capacity;سعة الموقع
+nb_available_shelters;# available shelters;عدد الملاجئ المتاحة
+nb_new_shelters_land_for_extension;# new shelters could be built on the available land for extension;كم عدد الملاجئ الجديدة التي يمكن بناؤها على الأرض المتاحة للتوسيع؟
+nb_public_building;# Public building (school, mosque, etc.);مباني عامة (مدرسة، مسجد، الخ..)
+nb_makeshift_shelter;# Makeshift shelter;مأوى مؤقت
+nb_emergency_shelter;# Emergency shelter;مأوى في حالات الطوارئ
+nb_transitional_shelter;# Transitional shelter;مأوى انتقالي
+nb_tents;# Tent;خيمة
+nb_unfinished_building;# Unfinished\vacant building;مبنى غير مكتمل / شاغر
+need_repair_maintenance;In need of repair\maintenance (for emergency shelter, transitional shelter, buildings);بحاجة إلى إصلاح / صيانة (للمأوى في حالات الطوارئ ، والمأوى الانتقالي ، والمباني)
+need_replacement;In need of replacement (for emergency shelter, transitional shelter, makeshift shelter, tents);بحاجة إلى إستبدال (للمأوى في حالات الطوارئ، والمأوى الانتقالي، والمأوى المؤقت، والخيم)
+need_rehabilitation_reconstruction;In need of rehabilitation\reconstruction (for public buildings, unfinished/vacant building);بحاجة إلى إعادة التأهيل / إعادة الإعمار (للمباني العامة ،غير مكتمل / المباني الشاغرة)
+need_extension_new_shelters;In need of extension/new shelter (overcrowded, new HHs);بحاجة إلى توسيع / مأوى جديد (مكتظ ، أسر جديدة)
+blankets;Blankets;بطانيات
+mattresses;Mattress;فرشات
+sleeping_matt;Sleeping matt;حصيرة للنوم
+water_containers_buckets;Water containers \buckets;حاويات مياه/ دلاء
+oven_stoves;Oven\stoves;فرن/مواقد
+fuel_for_cooking;Fuel for cooking;وقود للطهي
+kitchen_items;Kitchen items;أدوات المطبخ
+hygiene_items_pct;Hygiene items;مواد النظافة
+feminine_hygiene_items_pct;Feminine hygiene items;مواد النظافة النسائية
+plastic_sheet;Plastic sheet;غطاء بلاستيكي/ شادر
+mosquito_nets;Mosquito nets;ناموسيات
+solar_lamps;Solar lamps;مصابيح الطاقة الشمسية
+primary_latrine_types;Primary latrine types used by majority of the households in the site;أنواع المراحيض الأولية التي تستخدمها غالبية الأسر في الموقع
+primary_shower_type;Primary shower type used by majority of the households in the site:;نوع الدش الأساسي المستخدم من قبل غالبية الأسر في الموقع
+nb_latrines;Number of latrines;عدد المراحيض
+nb_showers;Number of showers;عدد دشات
+pct_sanitation_gndr_separated_latrines;Proportion of sanitation facilities gender separated - Latrines;النسبة المئوية لمرافق الصرف الصحي المنفصلة حسب نوع الجنس- مرحاض
+pct_sanitation_gndr_separated_showers;Proportion of sanitation facilities gender separated - Showers;النسبة المئوية لمرافق الصرف الصحي المنفصلة حسب نوع الجنس- دش
+pct_latrines_functional_locks;Proportion of sanitation facilities with functional locks on the inside - latrines;النسبة المئوية لمرافق الصرف الصحي ذات الأقفال العاملة من الداخل - مرحاض
+pct_showers_functional_locks;Proportion of sanitation facilities with functional locks on the inside - Showers;النسبة المئوية لمرافق الصرف الصحي ذات الأقفال العاملة من الداخل - دش
+pct_delegable_used_latrine;What proportion of the latrine types commonly used by the people on site are delegable?;ما هي نسبة أنواع المراحيض التي يشيع استخدامها من قبل الأشخاص في الموقع التي تكون قابلة للشفط/ التخلص من القاذورات؟
+frequency_desludging_latrines;How frequently does desludging of latrines occur?;كم مرة يتم تكرار عمل شفط/ التخلص للمراحيض؟
+primary_water_source;Primary water source for all household purposes for majority of households in the site (drinking, cooking, bathing, washing);مصدر المياه الأساسي لدى معظم الأسر في الموقعلجميع الأغراض المنزلية (الشرب والطبخ والاستحمام والغسيل)
+"nb_litres_available_water;Litres / person / day:
+available through any primary water source in the site:;لتر / شخص/ يوم المتوفرة من أي مصدر مياه رئيسي في الموقع"
+primary_water_source_drinkible;Is the primary water source drinkable;هل مصدر المياه الرئيسي صالح للشرب؟
+drinkable_water_sources;If not, what is the drinkable water source;إذا لا، ما هو المصدر الصالح للشرب؟
+pct_hh_access_water;Approximately what proportion of households in the site have a sufficient quantity of safe and clean water for drinking, cooking, bathing and washing in the last three month?;ما هي تقريبا نسبة الأسر في الموقع التي لديها كمية كافية من المياه لنظيفة والصالحة وا للشرب والطهي والاستحمام والغسيل في الأشهر الثلاثة الماضية؟
+water_maintenance_committee_presence;Presence of water maintenance committee;وجود لجنة صيانة المياه
+nb_communal_wastebins;Number of communal wastebins;عدد حاويات النفايات المشتركة
+solid_waste_management;How is solid waste mainly disposed of or managed by residents of this site?;كيف يتم التخلص من النفايات الصلبة أو إدارتها بشكل رئيسي من قبل سكان هذا الموقع؟
+main_health_issues;In the last month, what were the main health issues reported in the site?;في الشهر الماضي ، ما هي المشكلات الصحية الرئيسية التي تم الإبلاغ عنها في الموقع؟
+avg_time_reach_primary_health_facility;Average minutes for MOST site residents to reach a functional, accessible primary health facility with normal mode of local transport;متوسط الدقائق لوصول معظم سكان الموقع إلى مرفق صحي أولي، شغّال وممكن الوصول إليه مع وضع النقل المحلي العادي
+avg_time_reach_secondary_health_facility;Average minutes for MOST site residents to reach a functional, accessible secondary health facility with normal mode of local transport;متوسط الدقائق الدقائق لوصول معظم سكان الموقع إلى مرفق صحي ثانوي شغّال وممكن الوصول إليه مع وضع النقل المحلي العادي
+health_services_available;In the past month, within or around this site, what types of health services are available?;في الشهر الماضي داخل أو حول هذا الموقع، ما هي أنواع الخدمات الصحية المتاحة؟
+pct_ind_access_food;In the last month, what was the proportion of site residents able to access food?;في الشهر الماضي، ما هي نسبة سكان الموقع القادرين على الوصول إلى الغذاء؟
+how_ind_access_food;In the last month, how did site residents access food?;في الشهر الماضي ، كيف تمكن سكان الموقع من الوصول إلى الطعام؟
+nb_distribution_centres;Number of distribution centres \ areas in the site;عدد مراكز / مناطق التوزيع في الموقع
+lack_birth_certificates;Birth Certificates;شهادات الميلاد
+lack_personal_identity_cards;Personal Identity Cards;بطاقات الهوية الشخصية
+lack_family_identity_cards;Family Identity Cards;بطاقات هوية العائلة
+available_communal_spaces;What are the available functional communal spaces in the site?;ما هي المساحات المشتركة الشغّالة المتاحة في الموقع؟
+persons_with_disabilities_food_nfi_distribution_points;Persons with disabilities - Food \ NFI Distribution points;الأشخاص ذوو الإعاقة - نقاط توزيع المواد الغذائية / المواد غير الغذائية
+persons_with_disabilities_latrines;Persons with disabilities - Latrines;الأشخاص ذوو الإعاقة - المراحيض
+persons_with_disabilities_shower;Persons with disabilities - Shower;الأشخاص ذوو الإعاقة - دش
+persons_with_disabilities_water_points;Persons with disabilities - Water points;الأشخاص ذوو الإعاقة - نقاط المياه
+boys_food_nfi_distribution_points;Boys - Food \ NFI Distribution points;بنين - نقاط توزيع الغذاء \ NFI
+boys_latrines;Boys - Latrines;ذكور - المراحيض
+boys_shower;Boys - Shower;ذكور - دش
+boys_water_points;Boys - Water points;ذكور - نقاط المياه
+girls_food_nfi_distribution_points;Girls - Food \ NFI Distribution points;البنات - نقاط توزيع المواد الغذائية / المواد غير الغذائية
+girls_latrines;Girls - Latrines;بنات - مراحيض
+girls_shower;Girls - Shower;بنات - دش
+girls_water_points;Girls - Water points;بنات - نقاط المياه
+women_food_nfi_distribution_points;Women - Food \ NFI Distribution points;النساء - نقاط توزيع المواد الغذائية / المواد غير الغذائية
+women_latrines;Women - Latrines;النساء - المراحيض
+women_shower;Women - Shower;نساء - دش
+women_water_points;Women - Water points;النساء - نقاط المياه
+avg_time_reach_primary_school;Average minutes for MOST children of school age to reach a functional primary school with normal mode of local transport;متوسط الدقائق لوصول أغلب الأطفال في سن المدرسة إلى مدرسة ابتدائية عاملة مع وسيلة نقل محلية عادية
+pct_girls_primary_school;the % girls in Primary school;النسبة المئوية للفتيات في المدرسة الابتدائية
+pct_boys_primary_school;the % Boys in Primary school;النسبة المئوية ذكور في المدرسة الابتدائية
+avg_time_reach_secondary_school;Average minutes for MOST children of school age to reach a functional secondary school with normal mode of local transport;متوسط الدقائق لوصول أغلب الأطفال في سن المدرسة إلى مدرسة ثانوية عاملة مع وسيلة نقل محلية عادية
+pct_girls_secondary_school;the % girls in Secondary school;النسبة المئوية للفتيات في المدرسة الثانوية
+pct_boys_secondary_school;the % boys in Sechondary school;النسبة المئوية ذكور في المدرسة الثانوية
+non_formal_education;Non-formal education for children in camp or nearby\accessible (i.e., catch-up, literacy and language classes);تعليم غير رسمي للأطفال في المخيم أو في مكان قريب / يمكن الوصول إليه (أي المتابعة ومحو الأمية ودروس اللغة)
+pct_girls_non_formal_edu;the % girls in Non formal education;النسبة المئوية للفتيات في التعليم غير الرسمي
+pct_boys_non_formal_edu;the % Boys in Non formal education;النسبة المئوية ذكور في التعليم غير الرسمي
+avg_time_reach_functional_food_market;Average minutes for MOST site residents to reach a functional FOOD market place or grocery store with normal mode of local transport (travelling one way)?;متوسط الدقائق لوصول معظم سكان الموقع إلى سوقغذاء عامل أو متجر بقالة في الوضع العادي للنقل المحلي (التنقل في اتجاه واحد)؟
+avg_time_reach_functional_nfi_market;Average minutes for MOST site residents to reach a functional market for NFIs and construction material with normal mode of local transport (travelling one way);متوسط الدقائق لوصول معظم سكان الموقع إلى سوق للمواد غير الغذائية و مواد البناء في الوضع العادي للنقل المحلي (التنقل في اتجاه واحد)؟
+items_not_available_affordable_market;In the past month, were there any items that are not available OR not affordable at the market that site residents need?;في الشهر الماضي ، هل كانت هناك أي مواد غير متوفرة أو غير محتَملة التكلفة في السوق التي يحتاجها سكان الموقع؟
+main_source_electricity;Main source of electricity in the site;مصدر الكهرباء الرئيسي في هذا الموقع
+protection_services_specific_needs;Protection Services - priority items/services that are missing;خدمات الحماية
+rrm_distributions_specific_needs;RRM distributions - priority items/services that are missing;توزيعات آلية الإستجابة السريعة
+food_distributions_specific_needs;Food distributions - priority items/services that are missing;توزيعات الغذاء
+non_food_item_distributions_specific_needs;Non-food item distributions - priority items/services that are missing;توزيعات المواد غير الغذائية
+nutrition_services_specific_needs;Nutrition services - priority items/services that are missing;الخدمات التغذوية
+shelter_maintenance_services_specific_needs;Shelter\maintenance services - priority items/services that are missing;خدمات / صيانة المأوى
+healthcare_services_specific_needs;Healthcare services - priority items/services that are missing;خدمات الرعاية الصحية
+wash_services_specific_needs;WASH services - priority items/services that are missing;خدمات المياه والصرف الصحي والنظافة
+waste_disposal_services_specific_needs;Waste disposal services - priority items/services that are missing;خدمات التخلص من النفايات
+education_services_specific_needs;Education services - priority items/services that are missing;خدمات التعليم
+livelihoods_services_specific_needs;Livelihoods services - priority items/services that are missing;خدمات سبل العيش
+site_maintenance_specific_needs;Site maintenance - priority items/services that are missing;صيانة الموقع
+security_safety_drr_specific_needs;Security \ Safety & DRR - priority items/services that are missing;الأمن / السلامة والحد من مخاطر الكوارث
+rrm_distributions_orgnization_type;RRM distributions - Service provider;مزود الخدمة توزيعات آلية الإستجابة السريعة
+food_distributions_orgnization_type;Food distributions - Service provider;مزود الخدمة توزيعات الغذاء
+non_food_item_distributions_orgnization_type;Non-food item distributions - Service provider;مزود الخدمة توزيعات المواد غير الغذائية
+nutrition_services_orgnization_type;Nutrition services - Service provider;مزود الخدمة الخدمات التغذوية
+shelter_maintenance_services_orgnization_type;Shelter\maintenance services - Service provider;مزود الخدمة خدمات / صيانة المأوى
+wash_services_orgnization_type;WASH services - Service provider;مزود الخدمة المياه والصرف الصحي والنظافة
+waste_disposal_services_orgnization_type;Waste disposal services - Service provider;مزود الخدمة خدمات التخلص من النفايات
+healthcare_services_orgnization_type;Healthcare services - Service provider;مزود الخدمة خدمات الرعاية الصحية
+protection_services_orgnization_type;Protection services - Service provider;مزود الخدمة خدمات الحماية
+education_services_orgnization_type;Education services - Service provider;مزود الخدمة خدمات التعليم
+livelihoods_services_orgnization_type;Livelihoods services - Service provider;مزود الخدمة خدمات سبل العيش
+cash_distributions_multi_purpose_orgnization_type;Cash distributions (multi-purpose) - Service provider;مزود الخدمة توزيعات النقد (متعدد الأغراض)
+site_maintenance_orgnization_type;Site maintenance - Service provider;مزود الخدمة صيانة الموقع
+security_safety_drr_orgnization_type;Security \ safety & DRR - Service provider;مزود الخدمة الأمن / السلامة والحد من مخاطر الكوارث
