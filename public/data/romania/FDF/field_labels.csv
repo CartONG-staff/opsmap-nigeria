@@ -1,0 +1,209 @@
+field_name;field_label_en;field_label_ro
+site_id;Site ID;ID-ul sitului
+date_assessment;Date of assessment;data evaluÄƒrii
+judet;County ;judetul
+site_name;Site code;Codul site-ului
+address_info;Site address ;Adresa site-ului
+site_management;Management ;management
+site_management_other;Management - Other type;Management - Alt tip
+site_manage_name;Site manager;Manager de site
+contact_info;Manager - contact information;Manager - informații de contact
+site_ownership;Ownership status ;Statutul de proprietate
+site_ownership_other;Ownership status - other;Statutul de proprietate - altul
+gps_coordinates; GPS coordinates of the site; Coordonatele GPS ale site-ului
+site_typology;Site type;Tipul site-ului
+site_typology_other;Site type;Tipul site-ului
+building_type;Building type;Tipul clădirii
+building_type_other;Building type;Tipul clădirii
+site_staff;Staff;Personal
+population_groups;Population groups in site;Grupuri de populație în site
+ukranian;Ukrainian refugees in site;Refugiați ucraineni la fața locului
+num_ukranian;Ukrainian refugees in site;Refugiați ucraineni la fața locului
+tcn;Third country nationals population in site;Populația de resortisanți ai țărilor terțe la fața locului
+num_tcn;Third country nationals population in site;Populația de resortisanți ai țărilor terțe la fața locului
+site_purpose;Site purpose;Scopul site-ului
+site_purpose_other;Site purpose - other;Scopul site-ului - altul
+geographic_context;Geographical constring ;Constrângere geografică
+site_duration;Site duration;Durata site-ului
+site_capacity;Site capacity;Capacitatea amplasamentului
+hh_site;Household hosted in site;Gospodărie găzduită în site
+ind_site;Individuals hosted in site;Persoane găzduite pe site
+boys_0_17;Boys 0-17 years;Băieți 0-17 ani
+num_boys_0_17;Boys 0-17 years;Băieți 0-17 ani
+girls_0_17;Girls 0-17 years;Fete 0-17 ani
+num_girls_0_17;Girls 0-17 years;Fete 0-17 ani
+men_18_64;Men 18-64 years;Barbati 18-64 ani
+num_men_18_64;Men 18-64 years;Barbati 18-64 ani
+women_18_64;Women 18-64 years;Femei 18-64 ani
+num_women_18_64;Women 18-64 years;Femei 18-64 ani
+older_persons_60_plus;Older persons (65+);Persoane în vârstă (65+)
+num_older_persons_60_plus;Older persons (65+);Persoane în vârstă (65+)
+unaccompanied_older_persons;Presence of unaccompanied older persons;Prezența persoanelor vârstnice neînsoțite
+vulnerable_groups;Vulnerable groups present at the site;Grupuri vulnerabile prezente pe site
+vulnerable_groups_other;Vulnerable groups present at the site;Grupuri vulnerabile prezente pe site
+referal_system;Referral system for services for people with specific medical needs ;Sistem de trimitere pentru servicii pentru persoane cu nevoi medicale specifice
+referal_system_mechanisms;Referral system for services for people with specific medical needs ;Sistem de trimitere pentru servicii pentru persoane cu nevoi medicale specifice
+stay_duration;Duration of people staying in site;Durata persoanelor care stau pe site
+meals_available;Meals available;Mese disponibile
+meals_available_other;Meals available;Mese disponibile
+cooking_meals;Functioning kitchen ;Bucatarie functionala
+site_need_food;Food products needs;Nevoile produselor alimentare
+site_need_food_product;Food products needs;Nevoile produselor alimentare
+site_need_food_product_other;Food products needs;Nevoile produselor alimentare
+site_received_food;Food Products Received;Produse Alimentare Primite
+site_received_food_product;Food Products Received;Produse Alimentare Primite
+site_received_food_product_other;Food Products Received;Produse Alimentare Primite
+organization_food_product;Food products providers;Furnizori de produse alimentare
+organization_food_product_other;Food products providers;Furnizori de produse alimentare
+site_need_babyfood;Babyfood Products needs;Nevoi de produse alimentare pentru copii
+site_need_babyfood_product;Babyfood Products needs;Nevoi de produse alimentare pentru copii
+site_need_babyfood_product_other;Babyfood Products needs;Nevoi de produse alimentare pentru copii
+site_received_babyfood;Babyfood Products Received;Produse pentru copii primite
+site_received_babyfood_product;Babyfood Products Received;Produse pentru copii primite
+site_received_babyfood_product_other;Babyfood Products Received;Produse pentru copii primite
+organization_babyfood_product;Babyfood Products Providers;Furnizori de produse alimentare pentru copii
+organization_babyfood_product_other;Babyfood Products Providers;Furnizori de produse alimentare pentru copii
+site_need_cooking;Cooking and eating items needs;Nevoile pentru gătit și mâncare
+site_need_cooking_items;Cooking and eating items needs;Nevoile pentru gătit și mâncare
+site_need_cooking_items_other;Cooking and eating items needs;Nevoile pentru gătit și mâncare
+site_received_cooking; Cooking and Eating items received; Articole de gătit și mâncare primite
+site_received_cooking_items; Cooking and Eating items received; Articole de gătit și mâncare primite
+site_received_cooking_items_other; Cooking and Eating items received; Articole de gătit și mâncare primite
+organization_cooking_items;Cooking and eating items providers;Furnizori de articole pentru gătit și mâncare
+organization_cooking_items_other;Cooking and eating items providers;Furnizori de articole pentru gătit și mâncare
+site_need_sleeping;Sleeping items needs;Necesită articole de dormit
+site_need_sleeping_items;Sleeping items needs;Necesită articole de dormit
+site_need_sleeping_items_other;Sleeping items needs;Necesită articole de dormit
+number_sleeping_items_needed;Sleeping items needs;Necesită articole de dormit
+site_received_sleeping;Sleeping items received;Articole de dormit primite
+site_received_sleeping_items;Sleeping items received;Articole de dormit primite
+site_received_sleeping_items_other;Sleeping items received;Articole de dormit primite
+organization_sleeping_items;Sleeping items providers;Furnizori de articole de dormit
+organization_sleeping_items_other;Sleeping items providers;Furnizori de articole de dormit
+site_need_hygiene; Hygiene items needs; Nevoi de articole de igienă
+site_need_hygiene_items; Hygiene items needs; Nevoi de articole de igienă
+site_need_hygiene_items_other; Hygiene items needs; Nevoi de articole de igienă
+site_received_hygiene;Hygiene items received;Articole de igienă primite
+site_received_hygiene_items;Hygiene items received;Articole de igienă primite
+site_received_hygiene_items_other;Hygiene items received;Articole de igienă primite
+organization_hygiene_items;Hygiene items providers;Furnizori de articole de igienă
+organization_hygiene_items_other;Hygiene items providers;Furnizori de articole de igienă
+site_need_cleaning; Cleaning items needs; Necesită articole de curățenie
+site_need_cleaning_items; Cleaning items needs; Necesită articole de curățenie
+site_need_cleaning_items_other; Cleaning items needs;Necesită articole de curățenie
+site_received_cleaning;Cleaning items received;Articole de curățenie primite
+site_received_cleaning_items;Cleaning items received;Articole de curățenie primite
+site_received_cleaning_items_other;Cleaning items received;Articole de curățenie primite
+organization_cleaning_items;Cleaning items providers;Furnizori de articole de curățenie
+organization_cleaning_items_other;Cleaning items providers;Furnizori de articole de curățenie
+site_need_infant_supplies;Supplies for Infants and Toddlers needs;Rechizite pentru sugari și copii mici
+site_need_infant_supplies_items;Supplies for Infants and Toddlers needs;Rechizite pentru sugari și copii mici
+site_need_infant_supplies_other;Supplies for Infants and Toddlers needs;Rechizite pentru sugari și copii mici
+site_received_infant_supplies;Supplies for Infants and Toddlers received;Rechizite pentru sugari și copii mici primite
+site_received_infant_supplies_items;Supplies for Infants and Toddlers received;Rechizite pentru sugari și copii mici primite
+site_received_infant_supplies_items_other;Supplies for Infants and Toddlers received;Rechizite pentru sugari și copii mici primite
+organization_infant_supplies;Supplies for Infants and Toddlers providers;Furnizori de consumabile pentru sugari și copii mici
+organization_infant_supplies_other;Supplies for Infants and Toddlers providers;Furnizori de consumabile pentru sugari și copii mici
+site_need_cloth_children;Clothes for Children needs;Nevoi de haine pentru copii
+site_need_cloth_children_items;Clothes for Children needs;Nevoi de haine pentru copii
+site_need_cloth_children_other;Clothes for Children needs;Nevoi de haine pentru copii
+number_cloth_children_needed;Clothes for Children needs;Nevoi de haine pentru copii
+site_received_cloth_children;Clothes for Children received;Haine pentru copii primite
+site_received_cloth_children_items;Clothes for Children received;Haine pentru copii primite
+site_received_cloth_children_items_other;Clothes for Children received;Haine pentru copii primite
+organization_cloth_children;Clothes for Children providers;Furnizori de haine pentru copii
+organization_cloth_children_other;Clothes for Children providers;Furnizori de haine pentru copii
+site_need_cloth_adults; Clothes for Adults needs; Nevoi de haine pentru adulți
+site_need_cloth_adults_items; Clothes for Adults needs; Nevoi de haine pentru adulți
+site_need_cloth_adults_other; Clothes for Adults needs; Nevoi de haine pentru adulți
+number_cloth_adults_needed; Clothes for Adults needs; Nevoi de haine pentru adulți
+site_received_cloth_adults; Clothes for Adults; Haine pentru adulți
+site_received_cloth_adults_items; Clothes for Adults received; Haine pentru Adulti primite
+site_received_cloth_adults_items_other; Clothes for Adults received; Haine pentru Adulti primite
+organization_cloth_adults;Clothes for Adults providers;Furnizori de haine pentru adulți
+organization_cloth_adults_other;Clothes for Adults providers;Furnizori de haine pentru adulți
+site_need_medical_supplies;Medical Supplies needs;Nevoi de consumabile medicale
+site_need_medical_supplies_items;Medical Supplies needs;Nevoi de consumabile medicale
+site_need_medical_supplies_other;Medical Supplies needs;Nevoi de consumabile medicale
+site_received_medical_supplies;Medical Supplies received;Rechizite medicale primite
+site_received_medical_supplies_items;Medical Supplies received;Rechizite medicale primite
+site_received_medical_supplies_items_other;Medical Supplies received;Rechizite medicale primite
+organization_medical_supplies;Medical Supplies providers;Furnizori de consumabile medicale
+organization_medical_supplies_other;Medical Supplies providers;Furnizori de consumabile medicale
+site_need_disabilities_people_of_age_supplies;People of Age and Disabilities Supplies needs;Persoane majore și cu dizabilități Necesar de provizii
+site_need_disabilities_people_of_age_supplies_items;People of Age and Disabilities Supplies needs;Persoane majore și cu dizabilități Necesar de provizii
+site_need_disabilities_people_of_age_supplies_other;People of Age and Disabilities Supplies needs;Persoane majore și cu dizabilități Necesar de provizii
+number_disabilities_people_of_age_supplies_needed;People of Age and Disabilities Supplies needs;Persoane majore și cu dizabilități Necesar de provizii
+site_received_disabilities_people_of_age_supplies;People of Age and Disabilities Supplies received;Persoane majore și cu dizabilități Rechizite primite
+site_received_disabilities_people_of_age_supplies_items;People of Age and Disabilities Supplies received;Persoane majore și cu dizabilități Rechizite primite
+site_received_disabilities_people_of_age_supplies_items_other;People of Age and Disabilities Supplies received;Persoane majore și cu dizabilități Rechizite primite
+organization_disabilities_people_of_age_supplies;People of Age and Disabilities Supplies Providers;Persoane majore și furnizori de materiale cu dizabilități
+organization_disabilities_people_of_age_supplies_other;People of Age and Disabilities Supplies Providers;Persoane majore și furnizori de materiale cu dizabilități
+site_need_other_appliances; Other Appliances needs; Nevoi de alte aparate
+site_need_other_appliances_items; Other Appliances needs; Nevoi de alte aparate
+site_need_other_appliances_other; Other Appliances needs; Nevoi de alte aparate
+site_received_other_appliances;Other Appliances received;Alte aparate primite
+site_received_other_appliances_items;Other Appliances received;Alte aparate primite
+site_received_other_appliances_items_other;Other Appliances received;Alte aparate primite
+organization_other_appliances; Other Appliances providers; Alți furnizori de electrocasnice
+organization_other_appliances_other; Other Appliances providers; Alți furnizori de electrocasnice
+site_need_education_supplies;Education supplies needs;Nevoi de materiale educaționale
+site_need_education_supplies_items;Education supplies needs;Nevoi de materiale educaționale
+site_need_education_supplies_other;Education supplies needs;Nevoi de materiale educaționale
+site_electricity;Site electricity;Electricitate pe amplasament
+bathing_facillities;Site bathing facilities;Facilități de baie pe amplasament
+bathing_facilities_total;Bathing facilities total;Facilitati de baie total
+bathing_facilities_g_separated;Bathing facilities - gender separation;Facilități de baie - separare de gen
+bathing_facilities_hot_water;Bathing facilities - hot water;Facilitati de baie - apa calda
+bathing_facilities_disabilities;Bathing facilities - accessible for persons with disabilities;Facilități de baie - accesibile persoanelor cu dizabilități
+bathing_facilities_running_water;Bathing facilities -  running water;Facilități de scăldat - apă curentă
+portable_toilets;Bathing facilities - portable toilets ;Facilități pentru baie - toalete portabile
+toilet_sewage_system;Bathing facilities -  toilets with sewage system;Facilitati de baie - toalete cu canalizare
+toilet_latrines_g_separated;Toilets/latrines separated by gender;Toalete/latrine separate după sex
+toilet_latrines_disabilities;Toilets/latrines accessible for persons with disabilities;Toalete/latrine accesibile persoanelor cu dizabilități
+hand_washing;Hand washing facilities (sinks) near all toilets/latrines;Facilități de spălat mâini (chiuvete) lângă toate toaletele/latrinele
+soap;Soap available at all hand washing facilities;Săpun disponibil la toate unitățile de spălat mâini
+toilet_status;Facilities adequately cleaned;Facilități curățate corespunzător
+toilet_status_clean;Facilities regularly cleaned;Facilități curățate regulat
+waste_management;Waste management;Gestionarea deșeurilor
+legal_advice;Legal advice/asylum counseling ;Consiliere juridică/consiliere pentru azil
+legal_provider;Legal advice/asylum counseling  - provider;Consultanta juridica/consiliere azil - furnizor
+legal_provider_other;Legal advice/asylum counseling ;Consiliere juridică/consiliere pentru azil
+specialised_child_protection_services;Specialised child protection services ;Servicii specializate de protectie a copilului
+specialised_child_protection_services_provider;Specialised child protection services - provider;Servicii specializate de protectie a copilului - furnizor
+specialised_child_protection_services_provider_other;Specialised child protection services ;Servicii specializate de protectie a copilului
+specialised_gender_based__violence_services;GBV services ;Servicii GBV
+specialised_GBV_services_provider;GBV services provider;Furnizor de servicii GBV
+specialised_GBV_services_provider_other;GBV services ;Servicii GBV
+information_transportation;Information about transportation;Informații despre transport
+transportation;Transportation services;Servicii de transport
+transportation_services;Transportation services provider;Furnizor de servicii de transport
+transportation_services_other;Transportation services;Servicii de transport
+mid_long_accomodation;Mid-long term accomodation ;Cazare pe termen mediu lung
+designated_space_recreational;Space for recreational activities;Spatiu pentru activitati recreative
+designated_space_recreational_type;Space for recreational activities;Spatiu pentru activitati recreative
+feedback_complaint_mechanism;Feedback and complaint mechanisms;Mecanisme de feedback și reclamație
+feedback_complaint_mechanism_type;Feedback and complaint mechanisms;Mecanisme de feedback și reclamație
+feedback_complaint_mechanism_type_other;Feedback and complaint mechanisms;Mecanisme de feedback și reclamație
+free_wifi;Wifi available ;Wifi disponibil
+data_sim_card;Data/sim card ;Card de date/sim
+mental_health_psychological_support;Mental health and psychosocial  services ;Servicii de sănătate mintală și psihosociale
+mental_health_psychological_support_provider;Mental health and psychosocial  services providers;Furnizorii de servicii de sănătate mintală și psihosociale
+mental_health_psychological_support_provider_other;Mental health and psychosocial  services ;Servicii de sănătate mintală și psihosociale
+medical_care_services;Primary medical care services ;Servicii de asistență medicală primară
+medical_serv_info;Primary medical care services ;Servicii de asistență medicală primară
+medical_serv_info_other;Primary medical care services ;Servicii de asistență medicală primară
+twenty_four_seven_amb;Ambulance- service provided 24/7;Ambulanță - serviciu oferit 24/7
+refugee_edu_formal;Site - access formal education ;Site - acces la educație formală
+refugee_edu_online;Formal education - study online at a Ukrainian school;Educație formală - studiază online la o școală ucraineană
+refugee_edu_non_formal;Site - access non-formal education;Site - acces la educație non-formală
+staff_skills;Site staff and volunteers received information on SEA, PFA, trafficking, etc.;Personalul șantierului și voluntarii au primit informații despre SEA, PFA, trafic etc.
+translation;Interpretation/translation services;Servicii de interpretare/traducere
+translation_language;Interpretation/translation services;Servicii de interpretare/traducere
+translation_language_other;Interpretation/translation services;Servicii de interpretare/traducere
+site_accessible_disabilities;Site accessible for persons with disabilities;Site accesibil persoanelor cu dizabilități
+stairs;Stairs in the site equipped with railings;Scari in santier dotate cu balustrade
+site_issues;Site issues;Probleme de site
+site_issues_other;Site issues;Probleme de site
+other_information;Other information about the center;Alte informatii despre centru
+other_information_comment;Other information about the center ;Alte informatii despre centru

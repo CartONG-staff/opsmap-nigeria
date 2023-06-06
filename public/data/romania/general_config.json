@@ -1,0 +1,166 @@
+{
+    "locale": {
+        "locales": [
+            "en",
+            "ro"
+        ]
+    },
+    "textContent": {
+        "name": {
+            "en": "Romania",
+            "ro": "România"
+        },
+        "opsmapDescr": {
+            "en": "As of 30th of September 2022, more than 7 million refugees have reportedly fled Ukraine, with 1,887,081 refugees crossing the border into Romania, around 80,498 of whom have remained in the country (UNHCR). To respond to their needs, the Romanian government and civil society organisations have established 1,379 Refugee Accommodation Sites across the country. As of 1st of September, these centres had a reported capacity to host 49,841 refugees. To understand the needs of these centres, REACH, with the support of Departamentul pentru Situatii de Urgenta (DSU - Department for Emergency situations) and in partnership with UNHCR, conducted key informant interviews (KIIs) in accessible sites with site focal points who reported on the situation in the centres.",
+            "ro": "Până la 30 septembrie 2022, peste 7 milioane de refugiați ar fi fugit din Ucraina, 1 887 081 de refugiați au trecut granița în România, dintre care aproximativ 80 498 au rămas în țară (UNHCR). Pentru a răspunde nevoilor acestora, guvernul român și organizațiile societății civile au înființat 1.379 de locuri de cazare pentru refugiați în întreaga țară. La 1 septembrie, aceste centre aveau o capacitate declarată de a găzdui 49.841 de refugiați. Pentru a înțelege nevoile acestor centre, REACH, cu sprijinul Departamentului pentru Situații de Urgență (DSU - Departamentul pentru Situații de Urgență) și în parteneriat cu UNHCR, a realizat interviuri cu informatori cheie (KII) în locații accesibile cu punctele focale ale locațiilor, care au raportat situația din centre."
+        }
+    },
+    "footerLogos": [
+        {
+            "title": {
+                "en": "Webdev",
+                "ro": "Webdev"
+            },
+            "logos": [
+                {
+                    "name": "CartONG",
+                    "urlLogo": "Logo/CartONG_logo_long_0_0_0.png",
+                    "urlRedirection": "https://www.cartong.org"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Fieldwork",
+                "ro": "Muncă de teren"
+            },
+            "logos": [
+                {
+                    "name": "REACH",
+                    "urlLogo": "Logo/reach.png",
+                    "urlRedirection": "https://www.reach-initiative.org/"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Coordination and IM support",
+                "ro": "Coordonarea și sprijinul GI"
+            },
+            "logos": [
+                {
+                    "name": "UNHCR",
+                    "urlLogo": "Logo/unhcr.png",
+                    "urlRedirection": "https://www.unhcr.org/"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Cluster Lead",
+                "ro": "Lider de grup"
+            },
+            "logos": [
+                {
+                    "name": "REACH",
+                    "urlLogo": "Logo/reach.png",
+                    "urlRedirection": "https://www.reach-initiative.org/"
+                }
+            ]
+        }
+    ],
+    "spatial": {
+        "mapConfig": {
+            "bounds": [
+                19.59,
+                43.46,
+                30.34,
+                48.53
+            ]
+        }
+    },
+    "surveys": [
+        {
+            "type": "gsheet",
+            "name": "Form A",
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7-kFmhJUq9S1-yT8vRW_qDX3Vq51ypB3EniL8ggGpoSauKcOWsPSkb0tE20DrmIHFd2E6nNWRnWVJ/pub?gid=0&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7-kFmhJUq9S1-yT8vRW_qDX3Vq51ypB3EniL8ggGpoSauKcOWsPSkb0tE20DrmIHFd2E6nNWRnWVJ/pub?gid=232605089&single=true&output=csv",
+            "options": {
+                "anonymousMode": "text and map"
+            },
+            "spatial": {
+                "siteFields": {
+                    "id": "site_id",
+                    "lastUpdate": "date_assessment",
+                    "latitude": "latitude",
+                    "longitude": "longitude",
+                    "manageBy": "site_management",
+                    "name": "site_name",
+                    "type": "site_typology"
+                },
+                "admins": {
+                    "admin1": {
+                        "pcode": "adm1_pcode",
+                        "name": "judet"
+                    },
+                    "admin2": {
+                        "pcode": "adm2_pcode",
+                        "name": "oras"
+                    }
+                }
+            },
+            "indicators": {
+                "area": [
+                    {
+                        "type": "site_count"
+                    },
+                    {
+                        "type": "people_count",
+                        "entryCode": "ind_site"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site capacity",
+                            "ro": "Capacitatea sitului"
+                        },
+                        "entryCode": "site_capacity",
+                        "iconOchaName": "IDP-refugee-camp"
+                    }
+                ],
+                "site": [
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site type",
+                            "ro": "Site tipic"
+                        },
+                        "entryCode": "site_typology",
+                        "iconOchaName": "House-not-affected"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Food products needs",
+                            "ro": "Nevoi de produse alimentare"
+                        },
+                        "entryCode": "site_need_food_product",
+                        "iconOchaName": "Tent"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site management",
+                            "ro": "Managementul site-ului"
+                        },
+                        "entryCode": "site_management",
+                        "iconOchaName": "Missing"
+                    }
+                ]
+            }
+        }
+    ],
+    "options": {
+        "showCCCMLogo": false
+    }
+}
