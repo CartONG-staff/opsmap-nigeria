@@ -178,7 +178,7 @@ export async function TKReadGeneralConfiguration(
     pdfColumnCount: 3,
     exportForEsite: false,
     showDemoBanner: false,
-    exportAsCSVonHomePage: false,
+    exportAsCSVonHomePage: true,
     keepThematicOrderFromFDF: false
   };
 

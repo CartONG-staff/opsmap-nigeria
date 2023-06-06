@@ -1,0 +1,271 @@
+{
+    "textContent": {
+        "name": {
+            "en": "Bulgaria",
+            "bg": "България",
+            "ru": "Болгария"
+        },
+        "opsmapDescr": {
+            "en": "Between 24 February and 11 July 2022, 121,480 persons fleeing Ukraine have registered for Temporary Protection in Bulgaria. It is unclear how many of them would want to remain in the country, but estimates as of 10 July suggest there are at least 80,000 Ukrainian refugees staying in Bulgaria.",
+            "bg": "Между 24 февруари и 11 юли 2022 г. 121 480 лица, бягащи от Украйна, са се регистрирали за временна закрила в България. Не е ясно колко от тях биха искали да останат в страната, но според оценки към 10 юли в България са останали поне 80 000 украински бежанци",
+            "ru": "В период с 24 февраля по 11 июля 2022 года 121 480 человек, бежавших из Украины, зарегистрировались для получения временной защиты в Болгарии. Неясно, сколько из них захотят остаться в стране, но, по оценкам на 10 июля, в Болгарии остаются не менее 80 000 украинских беженцев."
+        }
+    },
+    "locale": {
+        "locales": [
+            "en",
+            "bg",
+            "ru"
+        ]
+    },
+    "footerLogos": [
+        {
+            "title": {
+                "en": "Webdev",
+                "bg": "Уебдеив",
+                "ru": "Вебдев"
+            },
+            "logos": [
+                {
+                    "name": "CartONG",
+                    "urlLogo": "Logo/CartONG_logo_long_0_0_0.png",
+                    "urlRedirection": "https://www.cartong.org"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Fieldwork",
+                "bg": "Работа на терен"
+            },
+            "logos": [
+                {
+                    "name": "UNHCR",
+                    "urlLogo": "Logo/unhcr_logo.png",
+                    "urlRedirection": "https://www.unhcr.org"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Coordination and IM support",
+                "bg": "Координация и поддръжка на IM",
+                "ru": "Координация и поддержка IM"
+            },
+            "logos": [
+                {
+                    "name": "UNHCR",
+                    "urlLogo": "Logo/unhcr_logo.png",
+                    "urlRedirection": "https://www.unhcr.org"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Sector Lead",
+                "bg": "Ръководител на сектор",
+                "ru": "Руководитель сектора"
+            },
+            "logos": [
+                {
+                    "name": "UNHCR",
+                    "urlLogo": "Logo/unhcr_logo.png",
+                    "urlRedirection": "https://www.unhcr.org"
+                }
+            ]
+        }
+    ],
+    "spatial": {
+        "mapConfig": {
+            "bounds": [
+                22.170410,
+                41.145570,
+                28.674316,
+                44.292401
+            ]
+        }
+    },
+    "surveys": [
+        {
+            "type": "gsheet",
+            "fdf": {
+                "folder": "FDF_distribution"
+            },
+            "name": "Distribution",
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=392014172&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=876995416&single=true&output=csv",
+            "options": {
+                "anonymousMode": "text"
+            },
+            "spatial": {
+                "siteFields": {
+                    "id": "site_id",
+                    "lastUpdate": "Date_of_the_Monitoring_Visit",
+                    "latitude": "latitude",
+                    "longitude": "longitude",
+                    "manageBy": "Who_is_managing_the_site",
+                    "name": "site_name",
+                    "type": "General_Site_Type"
+                },
+                "admins": {
+                    "admin1": {
+                        "pcode": "adm1_pcode",
+                        "name": "Province_of_the_monitored_location"
+                    },
+                    "admin2": {
+                        "pcode": "adm2_pcode",
+                        "name": "Municipality_of_monitored_location"
+                    }
+                }
+            },
+            "indicators": {
+                "area": [
+                    {
+                        "type": "site_count"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Number of volunteers",
+                            "bg": "Брой доброволци",
+                            "ru": "Количество добровольцев"
+                        },
+                        "entryCode": "Number_of_volunteers_mobilised",
+                        "iconOchaName": "Staff-management"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Number of interprets",
+                            "bg": "Брой устни преводачи",
+                            "ru": "Количество переводчиков"
+                        },
+                        "entryCode": "Number_of_interpreters_engaged",
+                        "iconOchaName": "Staff-management"
+                    }
+                ],
+                "site": [
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Does Site works 24/7?",
+                            "bg": "Работи ли сайтът 24/7?",
+                            "ru": "Работает ли сайт 24/7?"
+                        },
+                        "entryCode": "Does_Site_works_24_7",
+                        "iconOchaName": "Time"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Accomodation available ?",
+                            "bg": "Налично настаняване ?",
+                            "ru": "Размещение доступно?"
+                        },
+                        "entryCode": "Is_accomodation_for_short_rest_overnight_available_within_the_Site",
+                        "iconOchaName": "Distribution-site"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Food provided ?",
+                            "bg": "Осигурена храна ?",
+                            "ru": "Питание предоставляется ?"
+                        },
+                        "entryCode": "Is_food_provided_to_the_site",
+                        "iconOchaName": "Food"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "gsheet",
+            "fdf": {
+                "folder": "FDF_accomodation"
+            },
+            "name": "Accommodation",
+            "submissionsUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=0&single=true&output=csv",
+            "submissionsTrUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSp5dhD38qRP3GQIyA4iakdYPYPxOmHZvjq3u85fTJFJYxZg7TDSmej_J8NuTzih9TrmVhGKRNBiD78/pub?gid=860086775&single=true&output=csv",
+            "options": {
+                "anonymousMode": "text"
+            },
+            "spatial": {
+                "siteFields": {
+                    "id": "site_id",
+                    "lastUpdate": "Date_of_the_Monitoring_Visit",
+                    "latitude": "latitude",
+                    "longitude": "longitude",
+                    "manageBy": "Who_is_managing_the_site",
+                    "name": "site_name",
+                    "type": "General_Site_Type"
+                },
+                "admins": {
+                    "admin1": {
+                        "pcode": "adm1_pcode",
+                        "name": "Province_of_the_monitored_location"
+                    },
+                    "admin2": {
+                        "pcode": "adm2_pcode",
+                        "name": "Municipality_of_monitored_location"
+                    }
+                }
+            },
+            "indicators": {
+                "area": [
+                    {
+                        "type": "site_count"
+                    },
+                    {
+                        "type": "people_count",
+                        "entryCode": "How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Household",
+                            "bg": "Домакинство",
+                            "ru": "Домашнее хозяйство"
+                        },
+                        "entryCode": "How_many_household_are_currently_being_accomodated_at_the_site",
+                        "iconOchaName": "Children"
+                    }
+                ],
+                "site": [
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Individuals",
+                            "bg": "Физически лица",
+                            "ru": "Индивидуалки"
+                        },
+                        "entryCode": "How_many_individuals_can_be_hosted_at_the_site_ie_what_is_the_total_sleeping_capacity_of_the_site",
+                        "iconOchaName": "People-in-need"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Household",
+                            "bg": "Домакинство",
+                            "ru": "Домашнее хозяйство"
+                        },
+                        "entryCode": "How_many_household_are_currently_being_accomodated_at_the_site",
+                        "iconOchaName": "Children"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Heating System",
+                            "bg": "Отоплителна система",
+                            "ru": "Система отопления"
+                        },
+                        "entryCode": "Does_the_facility_have_a_heating_system_in_place",
+                        "iconOchaName": "Food"
+                    }
+                ]
+            }
+        }
+    ],
+    "options": {
+        "showCCCMLogo": false
+    }
+}
