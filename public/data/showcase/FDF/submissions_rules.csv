@@ -1,0 +1,112 @@
+"field_name";"type";"thematic_group";"traffic_light_name";"chart_id";"chart_data";"display_condition";"indicator_operation";"list_name"
+"country";"string";"group_general_info";;;;;;
+"region";"string";"group_general_info";;;;;;
+"dep";"string";"group_general_info";;;;;;
+"city";"string";"group_general_info";;;;;;
+"address";"string";"group_general_info";;;;;;
+"site_id";"string";"group_general_info";;;;;;
+"cccm_shelter_max_capacity";"integer";"group_cccm";;;;;;
+"cccm_site_at_full_capacity";"list";"group_cccm";"noyes";;;;;"Boolean"
+"cccm_possibility_expand_site";"list";"group_cccm";"yesno";;;;;"Boolean"
+"HebergementCapacite";"integer";"group_cccm";"niveaucongestionsite";;;;;
+"nfi_distributed";"string";"group_cccm";"nfidistrange";;;;;
+"cccm_shelter_type";"list";"group_cccm";;;;;;
+"cccm_shelter_opened";"date";"group_cccm";;;;;;
+"cccm_shelter_admin";"string";"group_cccm";;;;;;
+"cccm_shelter_coordination";"string";"group_cccm";;;;;;
+"cccm_shelter__mangmt";"string";"group_cccm";;;;;;
+"cccm_num_of_staff";"integer";"group_cccm";;;;;;
+"cccm_num_of_RHUs";"integer";"group_cccm";;;;;;
+"makeshi_localmaterial";"integer";"group_cccm";;"polar_area_chart#3";"makeshift#HH living in makeshift shelters";;;
+"makeshi_blankets";"integer";"group_cccm";;"polar_area_chart#3";"makeshift#HH living in makeshift shelters";;;
+"school_shel";"integer";"group_cccm";;"polar_area_chart#3";"publicfacility#HH living in public facilities";;;
+"health_shel";"integer";"group_cccm";;"polar_area_chart#3";"publicfacility#HH living in public facilities";;;
+"other_shel";"integer";"group_cccm";;"polar_area_chart#3";"publicfacility#HH living in public facilities";;;
+"transi_shel";"integer";"group_cccm";;"polar_area_chart#3";"publicfacility#HH living in public facilities";;;
+"commu_partitioned";"integer";"group_cccm";;"polar_area_chart#3";"communal#HH living in communal shelters";;;
+"commu_unpartitioned";"integer";"group_cccm";;"polar_area_chart#3";"communal#HH living in communal shelters";;;
+"emerge_shel";"integer";"group_cccm";;"polar_area_chart#3";"emergency#HH living in  emergency shelters";;;
+"cccm_avg_stay_in_shelter_months";"integer";"group_cccm";;;;;;
+"cccm_num_of_entries_in_last_month";"integer";"group_cccm";;;;;;
+"cccm_num_of_exits_in_last_month";"integer";"group_cccm";;;;;;
+"demo_num_indv";"integer";"group_demo";;;;;;
+"demo_num_hh";"integer";"group_demo";;;;;;
+"demo_female_0_4";"integer";"group_demo";;"age_pyramid#1";"f";;;
+"demo_female_5_11";"integer";"group_demo";;"age_pyramid#1";"f";;;
+"demo_female_12_17";"integer";"group_demo";;"age_pyramid#1";"f";;;
+"demo_female_18_59";"integer";"group_demo";;"age_pyramid#1";"f";;;
+"demo_female_60+";"integer";"group_demo";;"age_pyramid#1";"f";;;
+"demo_male_0_4";"integer";"group_demo";;"age_pyramid#1";"m";;;
+"demo_male_5_11";"integer";"group_demo";;"age_pyramid#1";"m";;;
+"demo_male_12_17";"integer";"group_demo";;"age_pyramid#1";"m";;;
+"demo_male_18_59";"integer";"group_demo";;"age_pyramid#1";"m";;;
+"demo_male_60+";"integer";"group_demo";;"age_pyramid#1";"m";;;
+"demo_num_indigs";"integer";"group_demo";;;;;;
+"demo_num_asy";"integer";"group_demo";;;;;;
+"demo_num_ref";"integer";"group_demo";;;;;;
+"demo_num_ooc";"integer";"group_demo";;;;;;
+"demo_num_temp_resd";"integer";"group_demo";;;;;;
+"demo_num_undocud";"integer";"group_demo";;;;;;
+"litreEauPersonn";"integer";"group_wash";;;;;;
+"Sourceeau";"bullet";"group_wash";;;;;;"SourceEau"
+"eauqualite";"string";"group_wash";"yesno";;;;;
+"water_quality_access";"string";"group_wash";"yesno";;;;;
+"Disponibilitesavon";"string";"group_wash";"yesno";;;;;
+"Inondations";"string";"group_wash";"yesno";;;;;
+"eliminationdechets";"string";"group_wash";;;;;;"eliminationdechets"
+"latrines";"list";"group_wash";;;;;;"latrines"
+"NombreLatrines";"integer";"group_wash";;;;;;
+"Typesdouche";"list";"group_wash";;;;;;
+"NumberShowers";"integer";"group_wash";"TotalShowersVsIndidual";;"NumberShowers_calcPopulationVsShowers";;"IndividualPopulation/NumberShowers";
+"douchesepare";"string";"group_wash";"yesno";;;;;
+"latrinevidance";"string";"group_wash";"yesno";;;;;
+"latrinevidanceMois";"string";"group_wash";;;;;;
+"LatrinesEclairage";"string";"group_wash";"yesno";;;;;
+"problemeSante";"bullet";"group_health";;;;;;
+"SoinSanteFonctionnel";"string";"group_health";"yesno";;;;;
+"PresenceSite";"string";"group_health";"yesno";;;;;
+"Distance";"integer";"group_health";;;;;;
+"ServicesUrgences";"string";"group_health";"yesno";;;;;
+"ServicesChirurgicaux";"string";"group_health";"yesno";;;;;
+"ServicesPediatriq";"string";"group_health";"yesno";;;;;
+"PrenatalServices";"string";"group_health";"yesno";;;;;
+"Ambulance";"string";"group_health";"yesno";;;;;
+"ProblemAccesSante";"list";"group_health";;;;;;
+"Vaccination";"integer";"group_health";;;;;;
+"TypeSupport";"list";"group_health";;;;;;
+"covidinfo";"string";"group_covid";"yesno";;;;;
+"covidprevention";"string";"group_covid";"yesno";;;;;
+"Enfnonaccp";"integer";"group_vulpop";;;;;;
+"HandicapPhysiq";"integer";"group_vulpop";;;;;;
+"Besoinsspeciaux";"integer";"group_vulpop";;;;;;
+"Maladiechronique";"integer";"group_vulpop";;;;;;
+"PersonnAgeeisol";"integer";"group_vulpop";;;;;;
+"FemaleHoHH";"integer";"group_vulpop";;"doughnut_chart#2";"FHoHH#Female Headed households  (18-59 years old)";;;
+"ChildHoHH";"integer";"group_vulpop";;"doughnut_chart#2";"CHoHH#Child headed household  (Below 18-59 years old)";;;
+"PhysicalDisability";"integer";"group_vulpop";;"doughnut_chart#2";"Pdisability#Persons with permanent disabilities";;;
+"SpecialNeeds";"integer";"group_vulpop";;"doughnut_chart#2";"Sneeds#Persons with mental health disabilities";;;
+"SingleElderly";"integer";"group_vulpop";;"doughnut_chart#2";"Selderly#Single elderly  households";;;
+"number_of_unacc";"integer";"group_vulpop";;"doughnut_chart#2";"Unacc#Unaccompanied children";;;
+"number_of_preglac_dis";"integer";"group_vulpop";;"doughnut_chart#2";"Preglact#Pregnant / lactating women";;;
+"envrn_envrntl_issues";"string";"group_environment";;;;;;
+"envrn_flood_prone_areas";"list";"group_environment";"yesno";;;;;"Boolean"
+"envrn_active_veg_med_plant_gardens";"list";"group_environment";"yesno";;;;;"Boolean"
+"envrn_afforestn_progs";"string";"group_environment";;;;;;
+"envrn_rnwble_enrgy_gen_sln";"list";"group_environment";"yesno";;;;;"Boolean"
+"envrn_prim_enrgy_srce_typ";"string";"group_environment";;;;;;
+"envrn_active_envrntl_educ_progs";"list";"group_environment";"yesno";;;;;"Boolean"
+"envrn_active_comnl_kitchen";"list";"group_environment";;;;;;"TBC"
+"envrn_srce_fuel_cooking";"string";"group_environment";;;;;;
+"envrn_active_assmt_wtr_quality";"list";"group_environment";"yesno";;;;;"Boolean"
+"envrn_wtr_quality";"string";"group_environment";;;;;;
+"envrn_wtr_quality_assmt_dt";"date";"group_environment";;;;;;
+"envrn_solid_wste_colln";"list";"group_environment";"yesno";;;;;"Boolean"
+"envrn_gnrl_sntry_hygiene_behavior";"list";"group_environment";"lowurgent";;;;;"Level"
+"envrn_hlth_issues_pollution";"list";"group_environment";"noyes";;;;;"Boolean"
+"envrn_hlth_issues_sntry_vector-borne_dseas";"list";"group_environment";"noyes";;;;;"Boolean"
+"educ_num_trains_wrkshp_year";"integer";"group_education";;;;;;
+"educ_educ_provided_in_shelter";"list";"group_education";"yesno";;;;;"Boolean"
+"educ_num_chldrn_in_frml_schl";"integer";"group_education";;;;;;
+"educ_num_adolsct_in_frml_schl";"integer";"group_education";;;;;;
+"educ_portug_class_avlble";"list";"group_education";"yesno";;;;;"Boolean"
+"educ_vocnl_course_avlbe";"list";"group_education";"yesno";;;;;"Boolean"
