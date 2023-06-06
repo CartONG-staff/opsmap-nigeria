@@ -9,6 +9,7 @@
     "build-bulgaria": "vue-cli-service build --mode bulgaria",
     "build-burkina-faso": "vue-cli-service build --mode burkina-faso",
     "build-ethiopia": "vue-cli-service build --mode ethiopia",
+    "build-hungary": "vue-cli-service build --mode hungary",
     "build-moldova": "vue-cli-service build --mode moldova",
     "build-nigeria": "vue-cli-service build --mode nigeria",
     "build-romania": "vue-cli-service build --mode romania",
