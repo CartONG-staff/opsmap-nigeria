@@ -32,6 +32,7 @@ interface TKTextContent {
 interface TKLocaleDescription {
   default: string;
   locales: string[];
+  override: Record<string, VueI18n.LocaleMessages>;
 }
 
 interface TKIFrameDescription {
@@ -93,7 +94,8 @@ export async function TKReadGeneralConfiguration(
   if (!json.locale) {
     json.locale = {
       locales: ["en"],
-      default: "en"
+      default: "en",
+      override: {}
     };
   }
   if (!json.locale.locales.includes("en")) {

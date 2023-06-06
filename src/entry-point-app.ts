@@ -24,10 +24,14 @@ TKReadGeneralConfiguration(
   TKConfigurationModule.setConfiguration(config);
 
   // i18n
-  //Handle locale definition + default
+  // Handle locale definition + default
+  // TODO: strong condition on locale override
   const messages: LocaleMessages = {};
   for (const locale of TKConfigurationModule.configuration.locale.locales) {
-    messages[locale] = messagesCandidates[locale];
+    messages[locale] = {
+      ...messagesCandidates[locale],
+      ...(TKConfigurationModule.configuration.locale.override[locale] ?? [])
+    };
   }
 
   const i18n = new VueI18n({
