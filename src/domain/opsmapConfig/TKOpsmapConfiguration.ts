@@ -213,6 +213,7 @@ export async function TKReadGeneralConfiguration(
       ...json.surveys[i].options
     };
 
+    json.surveys[i].name = json.surveys[i].name ?? "Form A";
     // fdf folder set to fdf by default
     if (!json.surveys[i].fdf) {
       json.surveys[i].fdf = {

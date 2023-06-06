@@ -1,0 +1,62 @@
+traffic_light_name;type;value;color
+yesno;string;yes;green
+yesno;string;no;red
+noyes;string;yes;red
+noyes;string;no;green
+eviction;string;3_months;red
+eviction;string;1_month;red
+eviction;string;6_months;red
+eviction;string;7_months_1_year;red
+eviction;string;1_2_year;orange
+eviction;string;no_renewal;green
+eviction;string;more_2_years;green
+eviction;string;dnk;green
+eviction_risk;string;low;green
+eviction_risk;string;moderate_moderate;orange
+eviction_risk;string;NC;green
+eviction_risk;string;very_high;red
+eviction_risk;string;pnta;green
+cccm_cfm;string;none;red
+cccm_cfm;string;few;orange
+cccm_cfm;string;some;orange
+cccm_cfm;string;many;green
+cccm_cfm;string;all;green
+cccm_cfm;string;NC;red
+water_sources_present;math;==0;red
+water_sources_present;math;>0 and <=2;orange
+water_sources_present;math;>2;green
+water_sources_working;string;none;red
+water_sources_working;string;some;orange
+water_sources_working;string;few;orange
+water_sources_working;string;many;green
+water_access_distance_min;string;less_15;green
+water_access_distance_min;string;15_30;orange
+water_access_distance_min;string;31_60;orange
+water_access_distance_min;string;more_60;red
+water_access_distance_min;string;NC;red
+sanitation_desludging;string;no_desludging;red
+sanitation_desludging;string;daily;green
+sanitation_desludging;string;weekly;green
+sanitation_desludging;string;1_3_months;green
+sanitation_desludging;string;4_6_months;orange
+sanitation_desludging;string;1_2_years;orange
+sanitation_desludging;string;more_2_years;red
+sanitation_desludging;string;dnk;red
+adeqaute_health_men;string;none;green
+adeqaute_health_men;string;few;orange
+adeqaute_health_men;string;some;orange
+adeqaute_health_men;string;many;red
+adeqaute_health_men;string;all;red
+adeqaute_health_men;string;NC;green
+type_agreement;string;oral;orange
+type_agreement;string;written;green
+type_agreement;string;dnk;red
+sanitation;math;<= 5;red
+sanitation;math;>5 and <=10;orange
+sanitation;math;> 10;green
+score_g;math;>= 4;red
+score_g;math;>2 and <4;orange
+score_g;math;>= 2;green
+score;math;== 2;red
+score;math;==1;orange
+score;math;==0;green

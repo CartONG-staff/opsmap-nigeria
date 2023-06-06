@@ -16,7 +16,7 @@ export enum TKSurveyInfosType {
 // ////////////////////////////////////////////////////////////////////////////
 
 export interface TKAbstractSurveyInfos {
-  readonly name: string;
+  name: string;
   fdf: TKFDFInfos;
   options: TKSurveyOptions;
   additionalFiltersDescription: TKAdditionalFilterDescription[];
