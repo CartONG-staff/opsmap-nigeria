@@ -23,7 +23,7 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/sudan/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -35,7 +35,7 @@
             "logos": [
                 {
                     "name": "NRC",
-                    "urlLogo": "/data/sudan/Logo/nrc_logo.png",
+                    "urlLogo": "Logo/nrc_logo.png",
                     "urlRedirection": "https://www.nrc.no"
                 }
             ]
@@ -47,7 +47,7 @@
             "logos": [
                 {
                     "name": "IOM",
-                    "urlLogo": "/data/sudan/Logo/iom_logo.png",
+                    "urlLogo": "Logo/iom_logo.png",
                     "urlRedirection": "https://www.iom.int"
                 }
             ]
@@ -59,7 +59,7 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/sudan/Logo/unhcr_logo.png",
+                    "urlLogo": "Logo/unhcr_logo.png",
                     "urlRedirection": "https://www.unhcr.org"
                 }
             ]

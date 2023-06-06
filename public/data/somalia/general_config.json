@@ -24,7 +24,7 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/somalia/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -37,12 +37,12 @@
             "logos": [
                 {
                     "name": "REACH",
-                    "urlLogo": "/data/somalia/Logo/reach.png",
+                    "urlLogo": "Logo/reach.png",
                     "urlRedirection": "https://www.impact-initiatives.org/"
                 },
                 {
                     "name": "CCCM Somalia Cluster",
-                    "urlLogo": "/data/somalia/Logo/cccm.png",
+                    "urlLogo": "Logo/cccm.png",
                     "urlRedirection": "https://cccmcluster.org/operations/somalia"
                 }
             ]
@@ -55,12 +55,12 @@
             "logos": [
                 {
                     "name": "CCCM Somalia Cluster",
-                    "urlLogo": "/data/somalia/Logo/cccm.png",
+                    "urlLogo": "Logo/cccm.png",
                     "urlRedirection": "https://cccmcluster.org/operations/somalia"
                 },
                 {
                     "name": "REACH",
-                    "urlLogo": "/data/somalia/Logo/reach.png",
+                    "urlLogo": "Logo/reach.png",
                     "urlRedirection": "https://www.impact-initiatives.org/"
                 }
             ]
@@ -73,12 +73,12 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/somalia/Logo/unhcr.png",
+                    "urlLogo": "Logo/unhcr.png",
                     "urlRedirection": "https://www.unhcr.org/"
                 },
                 {
                     "name": "IOM",
-                    "urlLogo": "/data/somalia/Logo/iom.png",
+                    "urlLogo": "Logo/iom.png",
                     "urlRedirection": "https://www.iom.int/"
                 }
             ]

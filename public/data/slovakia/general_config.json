@@ -24,7 +24,7 @@
             "logos": [
                 {
                     "name": "CartONG",
-                    "urlLogo": "/data/slovakia/Logo/CartONG_logo_long_0_0_0.png",
+                    "urlLogo": "Logo/CartONG_logo_long_0_0_0.png",
                     "urlRedirection": "https://www.cartong.org"
                 }
             ]
@@ -37,7 +37,7 @@
             "logos": [
                 {
                     "name": "REACH",
-                    "urlLogo": "/data/slovakia/Logo/reach.png",
+                    "urlLogo": "Logo/reach.png",
                     "urlRedirection": "https://www.reach-initiative.org/"
                 }
             ]
@@ -50,12 +50,12 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/slovakia/Logo/unhcr.png",
+                    "urlLogo": "Logo/unhcr.png",
                     "urlRedirection": "https://data.unhcr.org/en/situations/ukraine/location/10785"
                 },
                 {
                     "name": "IOM",
-                    "urlLogo": "/data/slovakia/Logo/iom.png",
+                    "urlLogo": "Logo/iom.png",
                     "urlRedirection": "https://dtm.iom.int/slovakia"
                 }
             ]
@@ -68,7 +68,7 @@
             "logos": [
                 {
                     "name": "UNHCR",
-                    "urlLogo": "/data/slovakia/Logo/unhcr.png",
+                    "urlLogo": "Logo/unhcr.png",
                     "urlRedirection": "https://data.unhcr.org/en/situations/ukraine/location/10785"
                 }
             ]
