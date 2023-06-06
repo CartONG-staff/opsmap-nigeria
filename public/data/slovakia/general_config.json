@@ -3,7 +3,15 @@
         "locales": [
             "en",
             "sk"
-        ]
+        ],
+        "override": {
+            "en": {
+                "infosAdmins": {
+                    "admin1": "Region",
+                    "admin2": "District"
+                }
+            }
+        }
     },
     "textContent": {
         "name": {
