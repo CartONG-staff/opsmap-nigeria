@@ -66,7 +66,7 @@ export interface TKOpsmapSpatialConfiguration {
 
 export interface TKOpsmapConfiguration {
   readonly textContent: TKTextContent;
-  readonly locale: TKLocaleDescription;
+  locale: TKLocaleDescription;
   readonly spatial: TKOpsmapSpatialConfiguration;
   readonly footerLogos: TKLogoGroup[];
   readonly iframe?: TKIFrameDescription;
@@ -90,6 +90,12 @@ export async function TKReadGeneralConfiguration(
   // ////////////////////////////////////////////////////////////////////////////
   // Locale
   // Always has english, is never empty.
+  if (!json.locale) {
+    json.locale = {
+      locales: ["en"],
+      default: "en"
+    };
+  }
   if (!json.locale.locales.includes("en")) {
     json.locale.locales.push("en");
   }

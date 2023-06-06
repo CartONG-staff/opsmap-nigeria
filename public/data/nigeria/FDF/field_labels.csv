@@ -1,0 +1,186 @@
+field_name;field_label_en
+date;Date of Report:
+group_general_info/reporting_week;Reporting Week:
+group_general_info/organisation;Reporting organization:
+group_general_info/state_name;State:
+group_general_info/lga_name;LGA:
+group_general_info/ward_name;Ward:
+group_general_info/site_name;Site name:
+group_general_info/camp_management;Site managed by a government agency:
+group_general_info/crowded;Evidence of site being overcrowded:
+group_pop_change/familiespopulation;Families resident in the site:
+group_pop_change/individualpopulation;Individuals resident in the site:
+group_pop_change/numberofindividuals/male0_5;Males 0-5 years:
+group_pop_change/numberofindividuals/fema0_5;Females 0-5 years:
+group_pop_change/numberofindividuals/male6_17;Males 6-17 years:
+group_pop_change/numberofindividuals/fema6_17;Females 6-17 year:
+group_pop_change/numberofindividuals/male5_35;Males 18-35 years:
+group_pop_change/numberofindividuals/fema5_35;Females 18-35 years:
+group_pop_change/numberofindividuals/male5_59;Males 36-59 years:
+group_pop_change/numberofindividuals/fema5_59;Females 36-59 years:
+group_pop_change/numberofindividuals/male5_60;Males 60 or older:
+group_pop_change/numberofindividuals/fema5_60;Females 60 or older:
+specificgroups/femalehohh;Female headed households (18-59 years old):
+specificgroups/childhohh;Child headed households (Below 18 years old):
+specificgroups/physicaldisability;Persons with permanent physical disabilities:
+specificgroups/specialneeds;Persons with mental health disabilities:
+specificgroups/singleelderly;Single elderly households (above 60 years old):
+specificgroups/number_of_unacc;Number of unaccompanied children:
+specificgroups/number_of_preglac_dis;Number of pregnant/lactating women:
+group_cccm/campmanagementoffice;Camp management office on site:
+group_cccm/site_facilitation_type;Site facilitation being provided:
+group_cccm/site_facilitators;Site facilitators covering the site:
+site_facilitator_calcpopulationvsdedicated;Population per dedicated site facilitator:
+site_facilitator_calcpopulationvsmobile;Population per mobile site facilitator:
+group_cccm/femalesitefacilitators;Female site facilitators staff covering the site:
+group_cccm/numberofsites;Site facilitators cover more than one site:
+group_cccm/numbersitescovered;Number of sites covered:
+group_cccm/overallpopulation;Number of individuals:
+group_cccm/date_last_coord_meeting;Date of last site coordination meeting:
+group_cccm/minute_coord_meeting;Minute of coordination meeting shared with the sector:
+group_cccm/cccm_activities;CCCM sector activities in the site:
+group_cccm/other_cccm_activities;Other CCCM activities in the site:
+group_livelihoods/erl_activities;Early recovery and livelihoods sector activities in the site:
+group_livelihoods/other_erl_activities;Other Early recovery and livelihood activities in the site:
+group_livelihoods/vocational_activities;Vocational skills training available at the site:
+group_livelihoods/marketinsidecamp;Market inside the site:
+group_livelihoods/marketdistance;Distance to the nearest easily accessible functional market (km):
+group_livelihoods/livelihoodsources;Families' primary livelihoods sources:
+group_livelihoods/otherlivelihoodsources;Other livelihood sources:
+group_livelihoods/partners_livelihood;Early Recovery & Livelihood partners on site:
+group_livelihoods/other_livelihood_partner;Other Early Recovery & Livelihood partners on site:
+group_education/edu_activity;Education sector activities in the site:
+group_education/other_edu_activity;Other Education activities in the site:
+group_education/primaryschoolpresence;Functional primary school inside the site:
+group_education/primaryschool;Distance of the closest functioning primary school:
+group_education/secondaryschoolpresence;Functional secondary school inside the site:
+group_education/secondaryschool;Distance of the closest functioning secondary school:
+group_education/numberchildren;School-aged children with access to formal school:
+group_education/childrennoschool;Primary challenges to accessing formal education:
+group_education/informalactivities;Availability or accesibility of informal education activities in the site:
+group_education/informaleducation;School-aged children with access to informal school:
+group_education/partners_ed;Education partners on site:
+group_education/other_education_partner;Other Education partners on site:
+group_fs/number_of_families_that_received_cash_for_food;Families that received cash for food last month:
+group_fs/number_of_families_that_reived food_in_kind;Families that received food in kind last month:
+group_fs/number_of_families_that_received_agricultural;Families that received agricultural livelihood assistance last month:
+group_fs/number_of_families_that_received_fes;Families that received fuel efficient stoves (FES) last month:
+group_fs/partners_fs;Food Security partners on site:
+group_fs/other_fs_partner;Other Food Security partners on site:
+group_health/health;Health sector activities available:
+group_health/other_health;Other Health activities in the site:
+group_health/primaryhealthcare/functionalhealthcare;Availability of functional primary health care provider for the site residents:
+group_health/primaryhealthcare/insidecamp;Primary healthcare provider present inside the site:
+group_health/primaryhealthcare/distance;If no, how far (km):
+group_health/primaryhealthcare/emergencyservices;Provide emergency services:
+group_health/primaryhealthcare/surgicalservices;Provide surgical services:
+group_health/primaryhealthcare/pediatricservices;Provide pediatric services:
+group_health/primaryhealthcare/prenatalservices;Provide prenatal services:
+group_health/primaryhealthcare/vaccination;Vaccination services availability:
+group_health/primaryhealthcare/ambulance;Ambulance:
+group_health/secondaryhealthcare/functionalsecondaryhealth;Availability of functional secondary health care provider for the site residents:
+group_health/secondaryhealthcare/secondaryinsidecamp;Secondary healthcare provider present inside the site:
+group_health/secondaryhealthcare/secondaryhealthdistance;If no, how far (km):
+group_health/secondaryhealthcare/emergencysecondaryhealth;Provide emergency services:
+group_health/secondaryhealthcare/surgicalsecondaryhealth;Provide surgical services:
+group_health/secondaryhealthcare/pediatricsecondaryhealth;Provide pediatric services:
+group_health/secondaryhealthcare/prenatalsecondaryhealth;Provide prenatal services:
+group_health/covid19/poe_screening;COVID-19 Point of entry screening:
+group_health/covid19/hand_washing;Hand washing points on site:
+group_health/covid19/screened_na;New arrivals screened for COVID-19:
+group_health/covid19/screened_highrisk;Number of new arrivals from COVID-19 high risk area:
+group_health/healthissues;Health issues site residents experienced in the last 30 days:
+group_health/healthaccessproblems;Problems families encounter accessing health care when they needed it in the last 30 days:
+group_health/partners_health;Health partners on site:
+group_health/other_health_partner;Other Health partners on site:
+group_nutrition/nutrition;Nutrition activities available:
+group_nutrition/other_nutrition;Other Nutrition activities in the site:
+group_nutrition/malnutrition;Evident cases of malnutrition:
+group_nutrition/malnutritionverification;Information verified with a nutrition partner on the site:
+group_nutrition/casesofmanlutrition;Malnutrition cases:
+group_nutrition/partners_nutrition;Nutrition partners on site:
+group_nutrition/other_nutrition_partner;Other Nutrition partners on site:
+group_protection/protection;Protection sector activities in the site:
+group_protection/cp_act;Child Protection activities in the site:
+group_protection/other_cp_act;Other Child Protection activities in the site:
+group_protection/gbv_act;GBV activities in the site:
+group_protection/other_gbv_act;Other GBV activities in the site:
+group_protection/prot_act;Protection activities in the site:
+group_protection/other_prot_act;Other Protection activities in the site:
+group_protection/perceived_security_adequate_on_site;Security being provided in site:
+group_protection/idps_relationship_with_the_security;IDPs relationship with the security:
+group_protection/prot_focal_point;Protection focal point on site:
+group_protection/movementrestrictions;Movement restriction within the reporting period:
+group_protection/typerestrictions;Movement restrictions faced:
+group_protection/tension;Tension between host community families and the IDPs:
+group_protection/securityincident;Security incidents occurred on or near the site in the last 30 days:
+group_protection/feelingsafety;IDPs feel safe in the site area:
+group_protection/unsafefeeling;Reason IDPs feel unsafe in the site area:
+group_protection/safe_pace_women;Safe spaces for women:
+group_protection/safe_pace_children;Safe spaces for children:
+group_protection/adolescentacivities;Specific child protection activities for adoloescent:
+group_protection/disabled_fc;Female children with disabilities (CWDs):
+group_protection/disabled_mc;Male children with disabilities (CWDs):
+group_protection/disabled_fadult;Female adults with disabilities (PWDs):
+group_protection/disabled_madult;Male adults with disabilities (PWDs):
+group_protection/partners_prot;Protection partners on site:
+group_protection/other_prot_partner;Other Protection partners on site:
+group_shelternfi/shelter_act;Shelter/ NFI sector activities on site:
+group_shelternfi/other_shelter_act;Other Shelter/NFI activities in the site:
+group_shelternfi/sheltertype;Type of shelters in site:
+group_shelternfi/commu_partitioned;Households in communal/ collective shelters (partitioned):
+group_shelternfi/commu_unpartitioned;Households in collective/ communal shelters (unpartitioned):
+group_shelternfi/emerge_shel;Households in emergency shelters:
+group_shelternfi/makeshi_localmaterial;Households in makeshift shelters built using local materials:
+group_shelternfi/makeshi_blankets;Households in makeshift shelters built using blankets/ nets:
+group_shelternfi/school_shel;Households in public facility- school:
+group_shelternfi/health_shel;Households in public facility- health facility:
+group_shelternfi/other_shel;Households in public facility- other:
+group_shelternfi/transi_shel;Households in transitional shelters:
+group_shelternfi/no_outside;Households living outside:
+group_shelternfi/sharing_shelter;Households sharing shelter:
+group_shelternfi/no_shelters_damaged;Transitional damaged shelters:
+group_shelternfi/shelteremergencydamages;Emergency damaged shelter:
+group_shelternfi/no_shelters_repaired;Shelters repaired/rehabilitated:
+group_shelternfi/nfi_distributed;Last time NFI were distributed:
+group_shelternfi/please_specify_other;Please specify other:
+group_shelternfi/households_in_need_of_nfi;Households in need of NFI:
+group_shelternfi/newhhnfi;New arrival household in need of NFI:
+group_shelternfi/nfi1;Most needed NFI:
+group_shelternfi/nfi2;Second needed NFI:
+group_shelternfi/nfi3;Third needed NFI:
+group_shelternfi/electricitysite;Electricty in the whole site:
+group_shelternfi/partners_shelter;Shelter/ NFI partners on site:
+group_shelternfi/other_shelter_partner;Other Shelter partners on site:
+group_wash/washact;WASH sector activities in the site:
+group_wash/other_washact;Other WASH activities in the site:
+group_wash/main_water_source;Main source(s) of drinking water:
+group_wash/specify_other;Other source(s) of drinking water:
+group_wash/av_litre_pperson_day;Average available liters of water per day/person:
+group_wash/water_pointsno;Water collection points:
+group_wash/waterquality;Acceptable primary source of drinking water:
+group_wash/defecation;Evidence of open defecation at the site:
+group_wash/soapavailibility;Soap available for washing hands at the site:
+group_wash/wating_time;Average Waiting time at water point:
+group_wash/wastedisposal;Primary method of waste disposal:
+group_wash/wastebins_no;Communal waste bins:
+group_wash/numberlatrines;Total latrines in the site:
+numberlatrines_calcpopulationvslatrines;Rate number of latrines by population
+group_wash/latrines_nonf;Damaged latrines:
+group_wash/latrines_func;Functional latrines
+group_wash/latrines_desludgement;Latrines in need of dislodgement:
+group_wash/segregation;Segregated latrines:
+group_wash/gendermarked;Gender marked latrines:
+group_wash/numbershowers;Total showers in the site:
+numbershowers_calcpopulationvsshowers;Rate number of showers by population
+group_wash/showers_nonshw;Damaged showers:
+group_wash/showers_func;Functional showers:
+group_wash/segregationbath;Segregated showers:
+group_wash/gendermarkedbath;Gender marked showers:
+group_wash/latrineslighting;Lighting around the latrines at night:
+group_wash/bathlighting;Lighting around the shower/bathing facilities at night:
+group_wash/partners_wash;WASH partners on site:
+group_wash/other_wash_partner;Other WASH partners on site:
+age_pyramid#1;Age pyramid
+doughnut_chart#1;Specific groups
+polar_area_chart#1;Shelter types

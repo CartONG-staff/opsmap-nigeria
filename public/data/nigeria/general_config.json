@@ -1,0 +1,227 @@
+{
+    "textContent": {
+        "name": {
+            "en": "Nigeria"
+        },
+        "opsmapDescr": {
+            "en": "<p>The site tracker tool aims to provide relevant and adequate current situation on the IDP settlements by assessing information and services at site level to improve humanitarian assistance in IDP sites.Site profiles and displayed data are collected by CCCM Partners in Nigeria through key informant interview for each IDP site with the camp managers/site facilitators. The data is collected and updated on a bi-weekly basis. The tool consists of both open and closed-ended questions that were provided by Sector leads.</p><p>For the full datasets or further questions please contact:<br><span class=\"font-weight-medium\">Irene Mugambwa: +234 913 133 4346 || Ibrahim Mahammat: +234 901 066 0575</span><br><span class=\"font-weight-medium\">Email: <a href=\"mailto:cccmshelternga@humanitarianresponse.info\">cccmshelternga@humanitarianresponse.info</a> | Website: <a href=\"https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi\" target=\"_blank\">https://www.humanitarianresponse.info/en/operations/nigeria/shelter-and-nfi</a></span></p>"
+        }
+    },
+    "footerLogos": [
+        {
+            "title": {
+                "en": "Cluster Lead"
+            },
+            "logos": [
+                {
+                    "name": "iom",
+                    "urlLogo": "Logo/iom.png",
+                    "urlRedirection": "https://www.iom.int"
+                },
+                {
+                    "name": "unhcr",
+                    "urlLogo": "Logo/unhcr.png",
+                    "urlRedirection": "https://www.unhcr.org"
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Fieldwork"
+            },
+            "logos": [
+                {
+                    "name": "acted",
+                    "urlLogo": "Logo/ACTED.jpg",
+                    "urlRedirection": "https://www.acted.org/en/"
+                },
+                {
+                    "name": "care_aid",
+                    "urlLogo": "Logo/caire_aid.jpeg",
+                    "urlRedirection": "https://careaidsupportinitiative.org/"
+                },
+                {
+                    "name": "boaid",
+                    "urlLogo": "Logo/boaid.png",
+                    "urlRedirection": ""
+                },
+                {
+                    "name": "ggsi",
+                    "urlLogo": "Logo/ggsi.png",
+                    "urlRedirection": "http://ggsisuccour.org/"
+                },
+                {
+                    "name": "haraf",
+                    "urlLogo": "Logo/haraf.png",
+                    "urlRedirection": "https://www.haraf.org.ng/"
+                },
+                {
+                    "name": "greencode",
+                    "urlLogo": "Logo/greencode.png",
+                    "urlRedirection": "https://www.greencodeng.org"
+                },
+                {
+                    "name": "hope_360",
+                    "urlLogo": "Logo/hope_360.png",
+                    "urlRedirection": "https://www.hope360initiative.org.ng/360"
+                },
+                {
+                    "name": "intersos",
+                    "urlLogo": "Logo/intersos.png",
+                    "urlRedirection": "https://www.intersos.org/en/"
+                },
+                {
+                    "name": "loc_din",
+                    "urlLogo": "Logo/locdin.png",
+                    "urlRedirection": "https://locdin.org/"
+                },
+                {
+                    "name": "nrc",
+                    "urlLogo": "Logo/NRC.png",
+                    "urlRedirection": "https://www.nrc.no"
+                },
+                {
+                    "name": "palri",
+                    "urlLogo": "Logo/palri.png",
+                    "urlRedirection": ""
+                },
+                {
+                    "name": "ppgw",
+                    "urlLogo": "Logo/ppgw.png",
+                    "urlRedirection": ""
+                },
+                {
+                    "name": "pride",
+                    "urlLogo": "Logo/pride.png",
+                    "urlRedirection": "https://www.pride-ng.org"
+                },
+                {
+                    "name": "sheriff_aid_foundation",
+                    "urlLogo": "Logo/sheriff_aid_foundation.png",
+                    "urlRedirection": "https://www.sheriffaidfoundation.org/"
+                },
+                {
+                    "name": "salient",
+                    "urlLogo": "Logo/salient.png",
+                    "urlRedirection": "https://salientho.org"
+                },
+                {
+                    "name": "shi",
+                    "urlLogo": "Logo/shi.png",
+                    "urlRedirection": "https://shiinternational.org/"
+                },
+                {
+                    "name": "ypho",
+                    "urlLogo": "Logo/ypho.png",
+                    "urlRedirection": ""
+                }
+            ]
+        },
+        {
+            "title": {
+                "en": "Webdev"
+            },
+            "logos": [
+                {
+                    "name": "CartONG",
+                    "urlLogo": "Logo/CartONG_logo_long_0_0_0.png",
+                    "urlRedirection": "https://www.cartong.org"
+                }
+            ]
+        }
+    ],
+    "surveys": [
+        {
+            "type": "kobo",
+            "name": "2020-2021",
+            "url": "https://kobo.humanitarianresponse.info/api/v2/assets/aJ7uW4DUnpfsn6kRjvQWFq/data.json",
+            "token": "c6d24e0275d1ca5be2231496a3ceeddd5e78bdc4",
+            "spatial": {
+                "siteFields": {
+                    "id": "group_general_info/site",
+                    "lastUpdate": "date",
+                    "latitude": "group_general_info/latitude",
+                    "longitude": "group_general_info/longitude",
+                    "name": "group_general_info/site_name",
+                    "type": "group_general_info/site_type"
+                },
+                "admins": {
+                    "admin1": {
+                        "pcode": "group_general_info/state",
+                        "name": "group_general_info/state_name"
+                    },
+                    "admin2": {
+                        "pcode": "group_general_info/lga",
+                        "name": "group_general_info/lga_name"
+                    }
+                }
+            },
+            "options": {
+                "inputDateFormat": "YYYY-MM-DD",
+                "displayDateFormat": "YYYY-MM-DD",
+                "manageByField": "organisation",
+                "manageByAltValue": "cccm",
+                "listSeparator": " "
+            },
+            "indicators": {
+                "area": [
+                    {
+                        "type": "site_count"
+                    },
+                    {
+                        "type": "people_count",
+                        "entryCode": "group_pop_change/individualpopulation"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Families"
+                        },
+                        "entryCode": "group_pop_change/familiespopulation",
+                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
+                    }
+                ],
+                "site": [
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site at Full Capacity"
+                        },
+                        "iconOchaName": "Camp-Coordination-and-Camp-Management",
+                        "entryCode": "group_general_info/crowded"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Managed by a Government Agency"
+                        },
+                        "entryCode": "group_general_info/camp_management",
+                        "iconOchaName": "Government-office"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "No. of Individuals"
+                        },
+                        "entryCode": "group_pop_change/individualpopulation",
+                        "iconOchaName": "People-in-need"
+                    }
+                ]
+            }
+        }
+    ],
+    "spatial": {
+        "mapConfig": {
+            "bounds": [
+                2.460938,
+                3.995781,
+                14.941406,
+                14.221789
+            ]
+        },
+        "dbConfig": {
+            "admin1": "dscodeadm1",
+            "admin2": "dscodeadm2"
+        }
+    }
+}
