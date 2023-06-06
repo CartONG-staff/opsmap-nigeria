@@ -25,7 +25,7 @@ export async function TKReadFDFSiteTypesCollection(
     false
   );
 
-  // Parse header to find out coumn - language correspondance
+  // Parse header to find out coumn - locale correspondance
   const header: string[] = Object.values(rawSiteTypes[0]);
   const localesValuesForIndexes: string[] = [
     "ignore-0",

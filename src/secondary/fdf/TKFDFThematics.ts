@@ -28,7 +28,7 @@ export async function TKReadFDFThematicsCollection(
   const thematicsCollection: TKTFDFhematicsCollection = {};
 
   if (rawThematics.length) {
-    // Parse header to find out coumn - language correspondance
+    // Parse header to find out coumn - locale correspondance
     const header: string[] = Object.values(rawThematics[0]);
     const localesValuesForIndexes: string[] = ["ignore-0", "ignore-1"]; // ignore first col --> choice name
     for (let i = 2; i < header.length; i++) {

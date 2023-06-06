@@ -22,7 +22,7 @@ async function parseCSVContent(
     return labelsCollection;
   }
 
-  // Parse header to find out coumn - language correspondance
+  // Parse header to find out coumn - locale correspondance
   const header: string[] = Object.values(rawLabels[0]);
 
   const localesValuesForIndexes: string[] = ["ignore"]; // ignore first col --> choice name

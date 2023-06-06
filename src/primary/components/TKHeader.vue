@@ -40,7 +40,7 @@
       </div>
 
       <v-btn-toggle
-        v-model="language"
+        v-model="locale"
         mandatory
         group
         dense
@@ -88,10 +88,10 @@ export default class TKHeader extends Vue {
     return TKConfigurationModule.configuration;
   }
 
-  language = this.$root.$i18n.locale;
-  @Watch("language")
+  locale = this.$root.$i18n.locale;
+  @Watch("locale")
   // whenever question changes, this function will run
-  onLanguageChanged(val: string) {
+  onLocaleChanged(val: string) {
     this.$root.$i18n.locale = val;
     if (val === "ar") {
       this.$vuetify.rtl = true;
@@ -109,7 +109,7 @@ export default class TKHeader extends Vue {
 
 <style>
 .tk-header-buttons .v-btn--active > .v-btn__content {
-  color: var(--v-selectedLanguage-base) !important;
+  color: var(--v-selectedLocale-base) !important;
 }
 
 .tk-header-buttons
@@ -203,7 +203,7 @@ export default class TKHeader extends Vue {
 .tk-header-buttons-sep {
   height: 10px;
   width: 2px;
-  background-color: var(--v-notSelectedLanguage-base);
+  background-color: var(--v-notSelectedLocale-base);
 }
 
 button:active {

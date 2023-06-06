@@ -4,7 +4,7 @@
       <img
         class="tk-maincomponent-png"
         src="img/bg-isoline.png"
-        :class="{ 'tk-maincomponent-png-arab': language === 'ar' }"
+        :class="{ 'tk-maincomponent-png-arab': locale === 'ar' }"
       />
     </div>
     <div class="tk-maincomponent-container">
@@ -62,7 +62,7 @@ import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisua
   }
 })
 export default class TKMainComponent extends Vue {
-  get language() {
+  get locale() {
     return this.$root.$i18n.locale;
   }
 

@@ -54,8 +54,8 @@ export default new Vuetify({
         placeholder: "#f3f3f3",
         placeholderAccent: "#f6f6f6",
         disabled: "#bdbdbd",
-        selectedLanguage: "#EC6B4D",
-        notSelectedLanguage: TKColors.DARK_GREY,
+        selectedLocale: "#EC6B4D",
+        notSelectedLocale: TKColors.DARK_GREY,
         selectedButton: TKColors.DARK_GREY,
         notSelectedButton: "#919191",
         boxShadow: "#000000"
