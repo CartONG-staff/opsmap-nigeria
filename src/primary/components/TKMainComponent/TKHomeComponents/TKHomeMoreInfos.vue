@@ -6,7 +6,7 @@
           $t("home.moreInfosTitle")
             .toString()
             .toUpperCase()
-        }}:
+        }}
       </div>
     </transition>
     <transition mode="out-in" name="fade-in">
