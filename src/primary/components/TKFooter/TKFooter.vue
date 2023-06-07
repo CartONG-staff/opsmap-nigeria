@@ -8,7 +8,7 @@
               $t("footer.moreInfos")
                 .toString()
                 .toUpperCase()
-            }}:
+            }}
           </p>
         </div>
         <div class="tk-footer-disclaimer-text">
