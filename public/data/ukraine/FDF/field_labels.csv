@@ -1,0 +1,171 @@
+field_name;field_label_en;field_label_uk
+latitude;Latitude;Широта
+longitude;Longitude;Довгота
+start;Start date;Дата початку
+end;End date;Дата закінчення
+date_assessment;Assessment date;Дата оцінювання
+organization;Organization/authority responsible for the site;Організація, відповідальна за МКП
+settlement;Settlement;Населений пункт
+site_type;Site type;Тип МКП
+gender;Gender;Гендер
+site_ownership;Site ownership;Форма власності 
+building_type;Type of building;Тип будівлі
+original_function;Educational facility serving original function during the last 5 years;Навчальний заклад, що виконував первісну функцію протягом останніх 5 років
+previous_function;Building performs the original function while hosting IDPs;Будівля виконує первісну функцію, приймаючи ВПО
+site_closure;Potential site closure in the nearest future;Потенційне закриття МКП в найближчому майбутньому
+site_closure_reasons;Reasons for site potential closure ;Причини потенційного закриття МКП
+site_active;Current status of the site (IDP hosting);Поточний статус МКП (розміщення ВПО)
+responsible;Organization/authority responsible for the site;Організація, відповідальна за МКП
+organization;Name of the organization/authority responsible;Назва організації, відповідальної за МКП
+focal_point;Organization's focal point availability ;Доступність контактної особи організації 
+enroll_system;Enrollment system for newly-arrived site residents ;Система реєстрації для новоприбулих мешканців МКП
+enroll_type;Type of enrollment system;Тип системи реєстрації
+writing_rules;Written Rules of Stay availability;Наявність письмових правил перебування
+idp_charged;IDPs are being charged to stay at the site;Перебування ВПО в МКП є платним
+charged_money;Daily fee for individual (in UAH);Добова плата для однієї особи (у гривнях)
+stay_long;Usual lenght of stay;Середня тривалість перебування
+hum_assist;Has this center received any humanitarian assistance last 7 days? ;Чи отримував цей центр гуманітарну допомогу протягом останніх 7 днів? 
+hum_assist_type;Type of the humanitarian assistance received  over last 7 days;Тип гуманітарної допомоги, отриманої за останні 7 днів
+hhs_number;No. of HHs hosted in the site;Кількість домогосподарств, розміщених в МКП
+site_individuals;No. of individuals hosted in the site;Кількість осіб, розміщених в МКП
+individuals_male_over_18;No. of male 18+;Кількість чоловіків 18+
+individuals_female_over_18;No. of female 18+;Кількість жінок віком від 18 років
+children_no_5;No. of children (0-5 years old);Кількість дітей (0-5 років)
+children_6_17;No. of children (6-17 years old);Кількість дітей (6-17 років)
+disabilities;No. of people with disabilities ;Кількість людей з інвалідністю 
+uccompanied_children;Presence of unaccompanied children ;Наявність дітей без супроводу дорослих 
+vulnerable;Vulnerable groups;Вразливі групи населення
+pregnant_lactating_number;No. of pregnant or lactating mothers;Кількість вагітних або годуючих матерів
+female_headed_number;No. of female-headed households;Кількість домогосподарств, очолюваних жінками
+older_women_number;No. of older women (60+);Кількість жінок старшого віку (60+)
+older_men_number;No. of older men (60+);Кількість літніх чоловіків (60+)
+with_health_issues_number;No. of persons with serious medical conditions;Кількість осіб із серйозними захворюваннями
+foreign_nationals_number;No. of foreign nationals;Кількість іноземних громадян
+without_nationality_number;No. of people without nationality;Кількість осіб без громадянства
+lgbtiq_number;No. of LGBTIQ+;Кількість ЛГБТІК+
+minority_groups_number;No. of minority groups (such as Roma);Кількість представників меншин (наприклад, ромів)
+idp_move;Proportion of IDPs planning to move/ leave within 2 weeks;Частка ВПО, які планують переїхати/виїхати протягом 2 тижнів
+idp_groups;Destination planned (among those who plan to move);Запланований пункт призначення (серед тих, хто планує переїхати)
+hh_evicted;Eviction cases (over 1 month before data collection);Випадки виселення (за 1 місяць до збору даних)
+eviction_reason;Reasons for eviction ;Причини виселення 
+people_can_hosted;Site host maximum capacity;Максимальна місткість МКП, що приймає переселенців
+accommodated;Modes of residents accomodation;Способи розміщення мешканців
+rooms_independent;No. of rooms to accommodate HHs separately;Кількість кімнат для окремого розміщення ПГС
+gender_rooms;Separation of rooms by gender;Розподіл кімнат за статтю
+allocation_plan;Allocation plan for IDPs with specific needs;План розміщення ВПО з особливими потребами
+shelter_issues_living_conditions;Shelter issues (living conditions);Питання житла (умови проживання)
+shelter_issues_infrastructure;Shelter issues (infrastructure condition);Питання житла (стан інфраструктури)
+need_rehabilitation;Rehabilitation, small construction or earthworks needs ;Потреби у відновленні, невеликому будівництві або земляних роботах 
+playgrounds;Playgrounds or recreational areas for children available ;Наявність ігрових майданчиків або зон відпочинку для дітей 
+recreatiol_area;Recreational/common areas for adults available;Наявність рекреаційних/загальних зон для дорослих
+lockers;Lockers to store belongings available ;Наявність шафок для зберігання речей 
+bomb_shelter;Bomb shelter less than 10 min on foot or available in the site;Бомбосховище менш ніж за 10 хвилин пішки або доступне на території МКП
+site_safe;Site is located in a safe area and far from military activities;Об'єкт розташований у безпечній зоні та далеко від військових дій
+public_transport;Public transport available in a walking distance (less than 2 km);Громадський транспорт доступний в пішій доступності (менше 2 км)
+time_pension_facility;Average time to reach the nearest Pension Fund;Середній час, необхідний для того, щоб дістатися до найближчого Пенсійного фонду
+time_bank;Average time to reach the nearest bank;Середній час до найближчого банку
+atm;ATMs available in a walking distance (less than 2 km) ;Банкомати в пішохідній доступності (менше 2 км) 
+organizations_provide_shelter;Organisations providing shelter services for the site;Організації, що надають послуги притулку на території МКП
+organizations_provide_shelter_international_ngo;International NGOs providing shelter services for the site;Міжнародні НУО, що надають послуги притулку на території МКП
+organizations_provide_shelter_local_ngo;Local NGOs providing shelter services for the site;Місцеві НУО, що надають послуги з надання притулку на території МКП
+electricity_availability; Sufficiency of the site buildings' electricity capacity;Достатність електричної потужності будівелі МКП
+wifi_connection;Wifi connection available;Наявність Wifi з'єднання
+wifi_free;Type of Wifi connection;Тип Wifi з'єднання
+mobile_signal;Mobile network signal strength;Рівень сигналу мобільного зв'язку
+charging_points;Sufficiency of access to plugs;Достатність доступу до розеток
+sleeping_items;Needs in sleeping items;Потреба у спальному приладді
+sleeping_items_type;Type of sleeping items needed;Тип необхідних спальних речей
+clothes_shoes_bank;Clothes/shoes donation bank available;Наявність складу одягу/взуття
+organizations_provide_nfi;Organisations providing NFIs for the site;Організації, що надають нефінансову допомогу на території МКП
+organizations_provide_nfi_international_ngo;International NGOs providing NFIs for the site;Міжнародні НУО, що надають нефінансову допомогу на території МКП
+organizations_provide_nfi_local_ngo;Local NGOs providing NFIs for the site;Місцеві НУО, що надають негрошові фінансові ресурси на території МКП
+access_food;Food provider(s);Постачальники продуктів харчування
+travel_foot_store;% of households that need to walk more than 1 hour to reach the nearest marketplace or grocery store;% домогосподарств, яким потрібно йти пішки більше 1 години, щоб дістатися до найближчого ринку або продуктового магазину
+kitchen_availability;Kitchen for residents available;Наявність кухні для мешканців
+kitchen_enmities;Sufficiency of kitchen equipments available ;Достатність наявного кухонного обладнання 
+kitchen_cleaner;Current mode of common kitchen cleaning ;Поточний режим прибирання спільної кухні 
+communal_spaces;Communal spaces on site for eating food available;Наявність місць загального користування для вживання їжі на території МКП
+utensils;Need in cooking and eating utensils ;Потреба у кухонному та побутовому приладді 
+utensils_type;Type of cooking and eating utensils needed ;Тип необхідного посуду для приготування та вживання їжі 
+food_products;Need in food products;Потреба в продуктах харчування
+food_products_type;Types of food products needed ;Види необхідних продуктів харчування 
+babyfood_products;Need in babyfood products;Потреба в продуктах дитячого харчування
+babyfood_products_type;Type of babyfood products needed ;Потреба в продуктах дитячого харчування 
+organizations_provide_food;Organisations providing food services for the site;Організації, що надають послуги з харчування на території МКП
+organizations_provide_food_international_ngo;International NGOs providing food services for the site;Міжнародні НУО, що надають продовольчі послуги на території МКП
+organizations_provide_food_local_ngo;Local NGOs providing food services for the site;Місцеві НУО, що надають послуги з харчування на території МКП
+access_water;Drinking water sources;Джерела питної води
+bathing_facilities;Showers/baths available;Душові кабіни/ванни в наявності
+number_showers;Sufficiency of showers/baths for the current level of occupation;Достатність душових/лазень для поточного рівня зайнятості
+shower_gender;Separation of bathing facilities by gender;Розділення лазень за статтю
+shower_hot_water;Availability of hot water in bathing facilities;Наявність гарячої води в лазнях
+all_bathing_facilities_have_hot_water;Availability of hot water in all bathing facilities;Наявність гарячої води в усіх лазнях
+bathing_facilities_have_hot_water_number;The number of bathing facilities not having hot water;Кількість лазень без гарячої води
+disability_showers;Disability-friendly showers available;Наявність душових кабін, пристосованих для людей з інвалідністю
+hot_water_source;Source of hot water supply ;Джерело гарячого водопостачання 
+hot_water_available;Availabitity of hot water in this site;Наявність гарячої води на цій ділянці
+number_toilets;Sufficiency of functioning toilets for the current level of occupation;Достатність функціонуючих туалетів для поточного рівня зайнятості
+toilet_gender;Separation of toilets by gender;Поділ туалетів за статтю
+cleaning_items;Need in cleaning items;Потреба в засобах для прибирання
+cleaning_items_type;Type of cleaning items needed ;Тип необхідних засобів для прибирання 
+washing_machines;Availability and accessibility of washing machines ;Наявність та доступність пральних машин 
+washing_machines_capacity;Capacity of washing mashines:;Потужність пральних машин:
+compact_washer_washing_machines_number;No. of compact washing machines;Кількість компактних пральних машин
+standard_front_washing_machines_number;No. of standard front load washing mashines;Кількість стандартних пральних машин з фронтальним завантаженням
+high_front_washing_machines_number;No. of high capacity front load washing mashines;Кількість пральних машин з фронтальним завантаженням великої місткості
+standard_top_washing_machines_number;No. of standard top load washing mashines;Кількість стандартних пральних машин з верхнім завантаженням
+high_top_washing_machines_number;No. of high capacity top load washing mashines;Кількість пральних машин з верхнім завантаженням великої місткості
+drying_machines;Availability of accessibility of dryer machines for the residents of the site;Доступність сушильних машин для мешканців МКП
+waste_disposal_capacity;Sufficiency of waste disposal capacity ;Достатність потужностей для утилізації відходів 
+hygiene_items;Need in hygiene items;Потреба в предметах гігієни
+hygiene_items_type;Types of hygiene items needed;Типи необхідних засобів гігієни
+often_cleaned;Frequency of cleaning communal spaces;Частота прибирання місць загального користування
+cleaning_responsible;Responsible for cleaning the site:;Відповідальні за прибирання території:
+organizations_provide_wash;Orgsanisations providing WASH services;Організації, що надають послуги ВСГ на території МКП
+organizations_provide_wash_international_ngo;International NGOs providing WASH services  ;Міжнародні НУО, що надають послуги ВСГ на території МКП
+organizations_provide_wash_local_ngo;Local NGOs providing WASH services ;Місцеві НУО, що надають послуги ВСГ на території МКП
+access_pss;Psychological support for residents available ;Наявність психологічної підтримки для мешканців 
+known_pss;Awareness of residents how to access PSS services;Поінформованість мешканців про те, як отримати доступ до послуг ВСС
+walking_tsnap;Administrative services centres distant less than 2km away;Адміністративні центри (ЦНАПИ) менш ніж за 2 км. від МКП
+social_workers_visit;Social workers visit the site;Соціальні працівники відвідують МКП
+social_workers_visit_frequency;Frequency of social workers visits ;Частота візитів соціальних працівників 
+adult_pss;PSS for adults ;ПСС для дорослих 
+adult_pss_yes;PSS services available ;Доступні послуги ПСС 
+referral_system;Referral protection system ;Система перенаправлення та захисту 
+gbv_report;Report GBV and human trafficking system available;Доступна система повідомлення про ГОН та торгівлю людьми
+organizations_provide_protection;Organisations providing protection services for the site;Організації, що надають послуги захисту для МКП
+organizations_provide_protection_international_ngo;International NGOs providing protection services for the site;Міжнародні НУО, що надають послуги захисту на території МКП
+organizations_provide_protection_local_ngo;Local NGOs providing protection services for the site;Місцеві НУО, що надають послуги з захисту на території МКП
+time_healthcare;Average time to reach the nearest healthcare facility;Середній час дороги до найближчого закладу охорони здоров'я
+reachable_by_ambulance;Is the site reachable by ambulance;Чи може швидка допомога дістатися до МКП?
+number_primary_healthcare;No. of primary healthcare facilities existing within 1 hour;Кількість закладів первинної медичної допомоги в межах 1 години
+number_secondary_healthcare;No. of secondary healthcare facilities existing within 1 hour;Кількість закладів вторинної медичної допомоги в межах 1 години
+first_aid;Availability of first aid kits ;Наявність аптечок першої допомоги 
+organizations_provide_health;Organisations providing health services for the site;Організації, що надають медичні послуги на території МКП
+organizations_provide_health_international_ngo;International NGOs providing health services for the site;Міжнародні неурядові організації, що надають медичні послуги на території МКП
+organizations_provide_health_local_ngo;Local NGOs providing health services for the site;Місцеві НУО, що надають медичні послуги на території центру
+access_edu;Accessibility of education services in the area of collective site (enrollment in a school / kindergartens);Доступність освітніх послуг в районі місця компактного проживання (зарахування до школи/дитячого садка)
+time_school;Average time for residents to reach the nearest school;Середній час, за який мешканці МКП добираються до найближчої школи
+time_kindergarden;Average time for site residents to reach the nearest kindergarten;Середній час, за який мешканці МКП можуть дістатися до найближчого дитячого садочка
+info_desk;Availability of help and information desk for residents;Наявність довідково-інформаційного пункту для мешканців
+info_accomodation;Availability of information about accommodation options outside of the site;Наявність інформації про варіанти проживання за межами центру
+info_legal;Availability of information about legal aid ;Наявність інформації про правову допомогу 
+info_psea;Availability of information about PSEA ;Наявність інформації про PSEA 
+info_explosive;Availability of information about Explosive Ordinance Risk Education ;Наявність інформації про інформування про ризики, пов'язані з вибухонебезпечними предметами 
+info_medical;Availability of information about medical support;Наявність інформації про медичну допомогу
+info_edu;Availability of information about education ;Наявність інформації про освіту 
+info_gov_programs;Availability of information about governmental programs and local programs providing cash or in-kind support ;Наявність інформації про державні програми та місцеві програми, що надають грошову або натуральну допомогу 
+feedback_mechanism;Availability of feedback and complaint mechanism for the residents;Наявність механізму зворотного зв'язку та подання скарг для мешканців
+info_idp_reg;Availability of information about the IDPs registration (state level);Наявність інформації про реєстрацію ВПО (на державному рівні)
+info_state_programs;Availability of information about the state programs for the site residents;Наявність інформації про державні програми для мешканців МКП
+info_employment;Availability of information about employment opportunities ;Наявність інформації про можливості працевлаштування 
+organizations_provide_info;Organisations providing information and communication services ;Організації, що надають інформаційно-комунікаційні послуги на території МКП
+organizations_provide_info_international_ngo;International NGOs providing information and communication services;Міжнародні НУО, що надають інформаційно-комунікаційні послуги на території МКП
+organizations_provide_info_local_ngo;Local NGOs providing information and communication services for the site;Місцеві НУО, що надають інформаційно-комунікаційні послуги на території МКП
+urgent_need;Urgent needs of the site according the site managers;Нагальні потреби МКП на думку керівництва 
+site_id;Site unique identifier;Унікальний ідентифікатор МКП
+_uuid;Universally unique identifier;Універсальний унікальний ідентифікатор
+strata;Oblast ;Область 
+raion_name;Raion;Район
+hromada_name;Hromada;Громада
+settlement_name;Settlement;Населений пункт

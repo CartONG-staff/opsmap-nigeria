@@ -105,6 +105,7 @@
               :label="$t('infosSite')"
               v-model="dataset.currentSite"
               :items="dataset.filteredTypedSitesList"
+              :disabled="!dataset.filteredTypedSitesList.length"
               item-text="name"
               return-object
             ></v-autocomplete>

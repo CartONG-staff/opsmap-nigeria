@@ -1,0 +1,17 @@
+traffic_light_name;type;value;color
+yesno;string;yes;green
+yesno;string;no;red
+noyes;string;yes;red
+noyes;string;no;green
+moreless;string;less_15;green
+moreless;string;less_hour;orange
+moreless;string;more_hour;red
+yesnodont;string;yes;green
+yesnodont;string;no;red
+yesnodont;string;dont_know;orange
+yesnosure;string;yes;green
+yesnosure;string;no;red
+yesnosure;string;not_sure;orange
+yesnohost;string;yes;green
+yesnohost;string;no;red
+yesnohost;string;no_host;orange
