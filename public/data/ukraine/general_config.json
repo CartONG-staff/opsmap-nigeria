@@ -142,5 +142,85 @@
             "admin2": "adm2_source_code"
         }
     },
-    "surveys": []
+    "surveys": [
+        {
+            "type": "ridl",
+            "name": "Round 1 (Jun.22)",
+            "url": "https://ridl.unhcr.org/dataset/76557510-cead-4ae5-a04a-f88dfe231a54/resource/1f5adf36-f355-442e-aa0f-ce5eec841cbc/download/ua_data_110722_fdf_combined_18apr.xlsx",
+            "submissionsTrLocalUrl": "",
+            "options": {
+                "anonymousMode": "text"
+            },
+            "spatial": {
+                "siteFields": {
+                    "id": "sites_pcode_updated",
+                    "lastUpdate": "date_assessment",
+                    "latitude": "latitude",
+                    "longitude": "longitude",
+                    "manageBy": "organization",
+                    "name": "site_name_eng",
+                    "type": "site_type"
+                },
+                "admins": {
+                    "admin1": {
+                        "pcode": "adm1_pcode",
+                        "name": "strata"
+                    },
+                    "admin2": {
+                        "pcode": "adm2_pcode",
+                        "name": "raion_name"
+                    }
+                }
+            },
+            "indicators": {
+                "area": [
+                    {
+                        "type": "site_count"
+                    },
+                    {
+                        "type": "people_count",
+                        "entryCode": "site_individuals"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "People can be hosted",
+                            "uk": "Людей можна приймати"
+                        },
+                        "entryCode": "people_can_hosted",
+                        "iconOchaName": "Camp-Coordination-and-Camp-Management"
+                    }
+                ],
+                "site": [
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Site active ?",
+                            "uk": "Активний сайт?"
+                        },
+                        "entryCode": "site_active",
+                        "iconOchaName": "Selected"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Food products ?",
+                            "uk": "Продукти харчування?"
+                        },
+                        "entryCode": "food_products",
+                        "iconOchaName": "Food-Security"
+                    },
+                    {
+                        "type": "standard",
+                        "name": {
+                            "en": "Individuals",
+                            "uk": "Фізичні особи"
+                        },
+                        "entryCode": "site_individuals",
+                        "iconOchaName": "People-in-need"
+                    }
+                ]
+            }
+        }
+    ]
 }
