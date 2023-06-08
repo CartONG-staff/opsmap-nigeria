@@ -168,8 +168,8 @@ strata;string;group_general_info;strata;;;;Y
 raion_name;string;group_general_info;raion_name;;;;Y
 hromada_name;string;group_general_info;hromada_name;;;;Y
 settlement_name;string;group_general_info;settlement_name;;;;Y
-site_id;string;group_general_info;site_id;;;;Y
-site_name_proxy_eng;string;group_general_info;site_id;;;;Y
+sites_pcode_updated;string;group_general_info;site_id;;;;Y
+site_name_eng;string;group_general_info;site_id;;;;Y
 street_name;string;group_general_info;site_id;;;;Y
 sreet_name_eng;string;group_general_info;site_id;;;;Y
 house_number;string;group_general_info;site_id;;;;Y
