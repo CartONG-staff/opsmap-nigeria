@@ -2,7 +2,7 @@
   <transition mode="out-in" name="fade-in">
     <div :key="$root.$i18n.locale" class="tk-title">
       <span class="tk-title-base">
-        {{ title }}
+        {{ $t("title") }}
       </span>
 
       <br />
@@ -28,11 +28,6 @@ export default class TKTitle extends Vue {
     )
   );
 
-  title = TKGetLocalValue(
-    TKConfigurationModule.configuration.textContent.title,
-    this.$root.$i18n.locale
-  );
-
   @Watch("$root.$i18n.locale")
   handeLocale() {
     this.appName = toTitleCase(
@@ -40,11 +35,6 @@ export default class TKTitle extends Vue {
         TKConfigurationModule.configuration.textContent.name,
         this.$root.$i18n.locale
       )
-    );
-
-    this.title = TKGetLocalValue(
-      TKConfigurationModule.configuration.textContent.title,
-      this.$root.$i18n.locale
     );
   }
 }

@@ -26,7 +26,6 @@ interface TKAppOptions {
 
 interface TKTextContent {
   readonly name: TKLabel;
-  title: TKLabel;
   readonly opsmapDescr: TKLabel;
 }
 
@@ -82,8 +81,7 @@ export interface TKOpsmapConfiguration {
 // ////////////////////////////////////////////////////////////////////////////
 
 export async function TKReadGeneralConfiguration(
-  configFileName: string,
-  translations: VueI18n.LocaleMessages
+  configFileName: string
 ): Promise<TKOpsmapConfiguration> {
   const json: TKOpsmapConfiguration = await fetch(configFileName, {
     cache: "no-store"
@@ -105,20 +103,6 @@ export async function TKReadGeneralConfiguration(
 
   json.locale.default = json.locale.default ?? "en";
   json.locale.override = json.locale.override ?? {};
-
-  // ////////////////////////////////////////////////////////////////////////////
-  // Mapbox configuration - handle default values
-  // ////////////////////////////////////////////////////////////////////////////
-
-  const title: TKLabel = {};
-  json.locale.locales.map(locale => {
-    title[locale] = translations[locale]["appName"].toString();
-  });
-
-  json.textContent.title = {
-    ...title,
-    ...json.textContent.title
-  };
 
   // ////////////////////////////////////////////////////////////////////////////
   // Admin level

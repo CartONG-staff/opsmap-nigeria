@@ -18,8 +18,7 @@ Vue.config.productionTip = false;
 
 const messagesCandidates = loadLocaleMessages();
 TKReadGeneralConfiguration(
-  `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}general_config.json`,
-  messagesCandidates
+  `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}general_config.json`
 ).then(config => {
   TKConfigurationModule.setConfiguration(config);
 
