@@ -8,6 +8,8 @@ import {
   TKSurveyOptions
 } from "@/domain/survey/TKSurvey";
 import { TKBasemapsLayer } from "../map/TKBasemaps";
+import { TKAdminLevel, sortAdminLevelsRootFirst } from "./TKAdminLevel";
+import { TKAdditionalFilterDescription } from "../survey/TKAdditionalFilter";
 
 // ////////////////////////////////////////////////////////////////////////////
 // JSON format
@@ -21,6 +23,19 @@ interface TKAppOptions {
   readonly exportAsCSVonHomePage: boolean;
   readonly keepThematicOrderFromFDF: boolean;
 }
+
+interface TKTextContent {
+  readonly name: TKLabel;
+  title: TKLabel;
+  readonly opsmapDescr: TKLabel;
+}
+
+interface TKLocaleDescription {
+  default: string;
+  locales: string[];
+  override: Record<string, VueI18n.LocaleMessages>;
+}
+
 interface TKIFrameDescription {
   readonly url: string;
   readonly display: boolean;
@@ -36,13 +51,10 @@ interface TKMapboxConfiguration {
 
 export interface TKOpsmapSpatialConfiguration {
   mapConfig: TKMapboxConfiguration;
-  dbConfig: {
-    adm1DBPcode: string;
-    adm2DBPcode: string;
-  };
-  localFiles: {
-    admin0LocalURL: string;
-  };
+  dbConfig: Record<TKAdminLevel, string>;
+  admin0LocalURL: string;
+  adminLevels: Array<TKAdminLevel>;
+  adminLevelsMap: Array<TKAdminLevel>;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -55,13 +67,9 @@ export interface TKOpsmapSpatialConfiguration {
 // ////////////////////////////////////////////////////////////////////////////
 
 export interface TKOpsmapConfiguration {
-  readonly name: TKLabel;
-  title: TKLabel;
-  readonly languages: string[];
-  languageDefault: string;
-  readonly iso3: string;
-  readonly opsmapDescr: TKLabel;
-  readonly spatialConfiguration: TKOpsmapSpatialConfiguration;
+  readonly textContent: TKTextContent;
+  locale: TKLocaleDescription;
+  readonly spatial: TKOpsmapSpatialConfiguration;
   readonly footerLogos: TKLogoGroup[];
   readonly iframe?: TKIFrameDescription;
   readonly surveys: TKSurveyInfos[];
@@ -77,61 +85,72 @@ export async function TKReadGeneralConfiguration(
   configFileName: string,
   translations: VueI18n.LocaleMessages
 ): Promise<TKOpsmapConfiguration> {
-  const json: TKOpsmapConfiguration = await fetch(
-    configFileName
-  ).then(response => response.json());
+  const json: TKOpsmapConfiguration = await fetch(configFileName, {
+    cache: "no-store"
+  }).then(response => response.json());
 
   // ////////////////////////////////////////////////////////////////////////////
-  // Languages
+  // Locale
   // Always has english, is never empty.
-  if (!json.languages.includes("en")) {
-    json.languages.push("en");
+  if (!json.locale) {
+    json.locale = {
+      locales: ["en"],
+      default: "en",
+      override: {}
+    };
+  }
+  if (!json.locale.locales.includes("en")) {
+    json.locale.locales.push("en");
   }
 
-  json.languageDefault = json.languageDefault ?? "en";
-
-  // ////////////////////////////////////////////////////////////////////////////
-  // Update urlLogo
-  // Could be improved
-  // Webdev is not modified, because it isn't a local url.
-
-  // TODO UPDATE ALL OF THIS
-  for (const logo of json.headerLogos) {
-    logo.urlLogo = `${process.env.BASE_URL}/${logo.urlLogo}`;
-  }
-
-  // TODO UPDATE ALL OF THIS
-  for (const descr of json.footerLogos) {
-    for (const logo of descr.logos) {
-      logo.urlLogo = `${process.env.BASE_URL}/${logo.urlLogo}`;
-    }
-  }
+  json.locale.default = json.locale.default ?? "en";
+  json.locale.override = json.locale.override ?? {};
 
   // ////////////////////////////////////////////////////////////////////////////
   // Mapbox configuration - handle default values
   // ////////////////////////////////////////////////////////////////////////////
 
   const title: TKLabel = {};
-  json.languages.map(locale => {
+  json.locale.locales.map(locale => {
     title[locale] = translations[locale]["appName"].toString();
   });
 
-  json.title = {
+  json.textContent.title = {
     ...title,
-    ...json.title
+    ...json.textContent.title
   };
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Admin level
+  // ////////////////////////////////////////////////////////////////////////////
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // Spatial Configuration
+  // ////////////////////////////////////////////////////////////////////////////
+
+  // admin0 geojson
+  json.spatial.admin0LocalURL =
+    json.spatial.admin0LocalURL ?? "map/admin0.geojson";
+
+  // dbConfig
+  json.spatial.dbConfig = json.spatial.dbConfig ?? {
+    admin1: "pcode",
+    admin2: "pcode"
+  };
+
+  // adminLevels
+  json.spatial.adminLevels = sortAdminLevelsRootFirst(
+    json.spatial.adminLevels ?? [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2]
+  );
+
+  // adminLevelsMap
+  json.spatial.adminLevelsMap = json.spatial.adminLevelsMap
+    ? sortAdminLevelsRootFirst(json.spatial.adminLevelsMap)
+    : json.spatial.adminLevels ?? [TKAdminLevel.ADMIN1, TKAdminLevel.ADMIN2];
 
   // ////////////////////////////////////////////////////////////////////////////
   // Mapbox configuration - handle default values
   // ////////////////////////////////////////////////////////////////////////////
-  // Provide defaults values to mapbox config
-  // UNHCR account
-  // token: "pk.eyJ1IjoidW5oY3IiLCJhIjoiY2tveWJlcDV5MDVycTJ2and3ZXllcW1leCJ9.Vp5XDh5OhDXxZCZUvgEuDg",
-  // style: "mapbox://styles/unhcr/ckok20x8h03ma18qp76mxi3u4",
-
-  // OPSMAP account
-  // token: "pk.eyJ1Ijoib3BzbWFwcGVyIiwiYSI6ImNrbW5xMWFuYzBqejMydnBnN2VjMTBj;cG8ifQ.OtWWd9kzJdJjogrY7gb-sw",
-  // style: "mapbox://styles/opsmapper/ckmnq4jfb12r217o7yon9r383",
 
   const defaultMapBoxConfig: TKMapboxConfiguration = {
     token:
@@ -144,9 +163,9 @@ export async function TKReadGeneralConfiguration(
 
   // Init with defaultMApBoxConfig, then replace existing key with mapConfig.
   // Order matter !
-  json.spatialConfiguration.mapConfig = {
+  json.spatial.mapConfig = {
     ...defaultMapBoxConfig,
-    ...json.spatialConfiguration.mapConfig
+    ...json.spatial.mapConfig
   };
 
   // ////////////////////////////////////////////////////////////////////////////
@@ -169,7 +188,7 @@ export async function TKReadGeneralConfiguration(
     pdfColumnCount: 3,
     exportForEsite: false,
     showDemoBanner: false,
-    exportAsCSVonHomePage: false,
+    exportAsCSVonHomePage: true,
     keepThematicOrderFromFDF: false
   };
 
@@ -186,7 +205,8 @@ export async function TKReadGeneralConfiguration(
 
   // TODO: move manage by in another spot. Not an otion, more a description
   const defaultSurveyOptions: TKSurveyOptions = {
-    dateFormat: "DD/MM/YYYY",
+    inputDateFormat: "DD/MM/YYYY",
+    displayDateFormat: "DD/MM/YYYY",
     listSeparator: ";",
     anonymousMode: TKSurveyAnonymousType.NONE
   };
@@ -197,13 +217,29 @@ export async function TKReadGeneralConfiguration(
       ...json.surveys[i].options
     };
 
+    json.surveys[i].name = json.surveys[i].name ?? "Form A";
+    // fdf folder set to fdf by default
+    if (!json.surveys[i].fdf) {
+      json.surveys[i].fdf = {
+        folder: "FDF"
+      };
+    }
+    json.surveys[i].fdf.folder = json.surveys[i].fdf.folder ?? "FDF";
+
     // Force to global if lat or long are undefined
     if (
-      !json.surveys[i].spatial.siteLatitudeField ||
-      !json.surveys[i].spatial.siteLongitudeField
+      !json.surveys[i].spatial.siteFields.latitude ||
+      !json.surveys[i].spatial.siteFields.longitude
     ) {
       json.surveys[i].options.anonymousMode =
         TKSurveyAnonymousType.TEXT_AND_MAP;
+    }
+  }
+
+  const additionalFilters: TKAdditionalFilterDescription[] = [];
+  for (let i = 0; i < json.surveys.length; i++) {
+    if (!json.surveys[i].additionalFiltersDescription) {
+      json.surveys[i].additionalFiltersDescription = additionalFilters;
     }
   }
 

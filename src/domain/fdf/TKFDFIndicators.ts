@@ -51,6 +51,12 @@ export interface TKFDFIndicatorComputation {
   readonly numberStrategy?: "round";
 }
 
+export type TKFDFIndicatorArea =
+  | TKFDFIndicatorSiteCount
+  | TKFDFIndicatorPeopleCount
+  | TKFDFIndicatorStandard
+  | TKFDFIndicatorValueCount;
+
 export type TKFDFIndicatorSite =
   | TKFDFIndicatorStandard
   | TKFDFIndicatorSiteOccupation
@@ -64,7 +70,7 @@ export type TKFDFIndicator =
   | TKFDFIndicatorComputation
   | TKFDFIndicatorSiteOccupation;
 export interface TKFDFIndicators {
-  home: [
+  area: [
     TKFDFIndicatorSiteCount,
     TKFDFIndicatorPeopleCount,
     TKFDFIndicatorStandard | TKFDFIndicatorValueCount

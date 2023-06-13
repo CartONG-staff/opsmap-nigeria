@@ -3,18 +3,18 @@ import {
   TKSurveyInfosType
 } from "@/domain/opsmapConfig/TKSurveyInfos";
 import { TKCSVParse } from "@/secondary/csv/TKCSV";
-import { TKGetKoboRawData } from "../kobo/TKGetKoboRawData";
+import { TKGetKoboRawData } from "@/secondary/kobo/TKGetKoboRawData";
+import { TKGetRidlRawData } from "@/secondary/ridl/TKGetRidlRawData";
 
 export async function TKReadRawDataset(info: TKSurveyInfos) {
-  if (info.type === TKSurveyInfosType.CSV) {
-    return TKCSVParse(
-      `${process.env.BASE_URL}/${info.submissionsLocalUrl}`,
-      true
-    );
-    info;
-  } else if (info.type === TKSurveyInfosType.GSHEET) {
-    return TKCSVParse(info.submissionsUrl, true);
-  } else if (info.type === TKSurveyInfosType.KOBO) {
-    return TKGetKoboRawData(info);
+  switch (info.type) {
+    case TKSurveyInfosType.CSV:
+      return TKCSVParse(`${info.submissionsLocalUrl}`, true);
+    case TKSurveyInfosType.GSHEET:
+      return TKCSVParse(info.submissionsUrl, true);
+    case TKSurveyInfosType.KOBO:
+      return TKGetKoboRawData(info);
+    case TKSurveyInfosType.RIDL:
+      return TKGetRidlRawData(info.submissionsUrl);
   }
 }

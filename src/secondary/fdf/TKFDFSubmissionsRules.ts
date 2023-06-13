@@ -8,7 +8,7 @@ import {
   TKOperatorComparison,
   TKOperatorComputation
 } from "@/domain/utils/TKOperator";
-import { TKFDFFiles } from "@/secondary/fdf/TKFDFInfos";
+import { TKFDFFiles } from "@/secondary/fdf/TKFDFFiles";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Submission rules datatype
@@ -35,7 +35,7 @@ export async function TKReadSubmissionsRulesCollection(
   const rawSubmissionsRules: TKFDFSubmissionRuleRaw[] = await TKCSVParse<
     TKFDFSubmissionRuleRaw[]
   >(
-    `${process.env.BASE_URL}/${infos.folder}/${TKFDFFiles.SUBMISSION_RULES}.csv`,
+    `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.folder}/${TKFDFFiles.SUBMISSION_RULES}.csv`,
     true
   );
   const submissionsRules: TKFDFSubmissionsRulesCollection = {};

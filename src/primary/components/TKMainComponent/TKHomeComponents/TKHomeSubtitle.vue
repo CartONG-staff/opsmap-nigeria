@@ -45,17 +45,27 @@ export default class TKHomeSubtitle extends Vue {
   @Watch("dataset", { immediate: true })
   onSurveyChanged() {
     if (TKDatasetModule.dataset) {
-      let lastDate = "01/01/1970";
+      let lastDate = null;
       for (const surveyIndex in TKDatasetModule.dataset.surveys) {
         const survey = TKDatasetModule.dataset.surveys[surveyIndex];
         for (const site of survey.sites) {
           const dateCandidate = site.submissions[0].date;
-          if (TKDateCompare(lastDate, dateCandidate) > 0) {
+          if (lastDate === null) {
             lastDate = dateCandidate;
+          } else {
+            if (
+              TKDateCompare(
+                lastDate,
+                dateCandidate,
+                survey.options.displayDateFormat
+              ) > 0
+            ) {
+              lastDate = dateCandidate;
+            }
           }
         }
       }
-      this.lastUpdate = lastDate === "01/01/1970" ? "-" : lastDate;
+      this.lastUpdate = lastDate === null ? "-" : lastDate;
     }
   }
 

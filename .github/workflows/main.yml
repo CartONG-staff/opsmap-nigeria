@@ -5,7 +5,7 @@ name: "Build and deploy Github page"
 on:
   push: # <- Déclenché lorsque l'on pousse du code...
     branches:
-      - pages # <- ... mais seulement sur la branche "master"
+      - release/deploy-gitlab-pages # <- ... mais seulement sur la branche "release/deploy-gitlab-pages"
 
 jobs:
   # Notre job
@@ -14,7 +14,6 @@ jobs:
 
     # Tâches à effectuer, comme expliquées ci-dessus
     steps:
-
       # 1. On récupère le contenu du dépôt
       - name: "Checkout"
         uses: actions/checkout@v2

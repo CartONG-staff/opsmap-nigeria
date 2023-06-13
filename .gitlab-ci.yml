@@ -1,13 +1,16 @@
 image: node:16
 
+# stages
 stages:
   - install_dependencies
   - test
   - deploy
 
+# variables
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
 
+# cache
 cache:
   key:
     files:
@@ -17,7 +20,7 @@ cache:
     - node_modules
   policy: pull
 
-# Install dependencies
+# install dependencies
 install_dependencies:
   stage: install_dependencies
   cache:
@@ -33,12 +36,12 @@ install_dependencies:
   tags:
     - opsmap
   rules:
-    - if: $CI_COMMIT_BRANCH == "pages"
+    - if: $CI_COMMIT_BRANCH == "release/deploy-gitlab-pages"
       when: always
-    - if: $CI_COMMIT_BRANCH != "pages"
+    - if: $CI_COMMIT_BRANCH != "release/deploy-gitlab-pages"
       when: manual
 
-# Job: test
+# job: test
 test:
   needs: ["install_dependencies"]
   stage: test
@@ -55,7 +58,7 @@ pages:
   needs: ["test"]
   stage: deploy
   script:
-    - npm run build-gitlab
+    - npm run build-opsmap -- $CI_OPSMAP_NAME
     - rm -rf public
     - mkdir public
     - cp -r dist/* public

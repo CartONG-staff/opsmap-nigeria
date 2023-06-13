@@ -1,14 +1,12 @@
 import { TKFDFThematic } from "@/domain/fdf/TKFDFThematics";
 import { TKLabel } from "../utils/TKLabel";
-import { TKSubmissionEntry } from "./TKSubmissionEntry";
 
 // ////////////////////////////////////////////////////////////////////////////
 // TKSubmissionThematic Concept description.
 // ////////////////////////////////////////////////////////////////////////////
 
 export interface TKSubmissionThematic {
-  data: Array<TKSubmissionEntry>;
-  formattedName: string;
+  id: string; // id
   iconFileName: string;
   nameLabel: TKLabel;
 }
@@ -21,8 +19,7 @@ export function TKCreateSubmissionThematic(
   thematic: TKFDFThematic
 ): TKSubmissionThematic {
   return {
-    data: [],
-    formattedName: thematic.formattedName,
+    id: thematic.id,
     iconFileName: thematic.iconFileName,
     nameLabel: thematic.thematicLabel
   };

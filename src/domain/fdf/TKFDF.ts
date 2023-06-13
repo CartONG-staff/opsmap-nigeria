@@ -25,6 +25,6 @@ export interface TKFDF {
   submissionsRules: TKFDFSubmissionsRulesCollection;
   urls: TKFDFUrlsCollection;
   indicators: TKFDFIndicators;
-  spatialDescription: TKFDFSpatialDescription;
+  spatial: TKFDFSpatialDescription;
   siteTypes: TKFDFSiteTypeCollection;
 }

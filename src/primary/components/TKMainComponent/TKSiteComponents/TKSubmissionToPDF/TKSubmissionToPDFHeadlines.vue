@@ -1,6 +1,6 @@
 <template>
   <div class="headlines">
-    <img src="@/assets/LogoOpsmap.png" class="header-logo" />
+    <img src="img/LogoOpsmap.png" class="header-logo" />
     <div class="headlines-left">
       <div class="headlines-title">{{ siteName }} - {{ date }}</div>
 
@@ -22,7 +22,7 @@
           <tr>
             <td class="headlines-infos-field">
               {{
-                $t("infosAdmin1")
+                $t("infosAdmins.admin1")
                   .toString()
                   .toUpperCase()
               }}
@@ -35,7 +35,7 @@
           <tr>
             <td class="headlines-infos-field">
               {{
-                $t("infosAdmin2")
+                $t("infosAdmins.admin2")
                   .toString()
                   .toUpperCase()
               }}
@@ -80,6 +80,7 @@
 </template>
 
 <script lang="ts">
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKSurveyAnonymousType } from "@/domain/survey/TKSurvey";
 import { IconPosition, TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
@@ -130,8 +131,10 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
   siteChanged() {
     if (this.dataset && this.dataset.currentSite) {
       this.siteName = toTitleCase(this.dataset.currentSite.name.toUpperCase());
-      this.admin1 = this.dataset.currentSite.admin1.name;
-      this.admin2 = this.dataset.currentSite.admin2.name;
+      this.admin1 =
+        this.dataset.currentSite.admins[TKAdminLevel.ADMIN1]?.name ?? "-";
+      this.admin2 =
+        this.dataset.currentSite.admins[TKAdminLevel.ADMIN2]?.name ?? "-";
       this.coordinates =
         this.dataset.currentSite.coordinates.lat +
         "," +
@@ -190,7 +193,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
       staticMapUrl += "640x480@2x";
 
       // Token
-      staticMapUrl += `?access_token=${TKConfigurationModule.configuration.spatialConfiguration.mapConfig.token}`;
+      staticMapUrl += `?access_token=${TKConfigurationModule.configuration.spatial.mapConfig.token}`;
 
       // Upadte img URL
       this.mapImg = staticMapUrl;

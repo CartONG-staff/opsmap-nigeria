@@ -9,7 +9,7 @@ import { TKReadRawDataset } from "@/secondary/survey/TKReadRawDataset";
 
 export async function TKCreateDataset(
   surveyDescription: TKSurveyInfos[],
-  languages: Array<string>
+  locales: Array<string>
 ): Promise<TKDataset> {
   // prepare output
   const surveys: TKSurvey[] = [];
@@ -19,13 +19,13 @@ export async function TKCreateDataset(
     // Retrieve raw data
     const before = Date.now();
     const rawData = await TKReadRawDataset(info);
-    console.log(
+    console.info(
       `Raw data ${info.name} retrieved in ${(Date.now() - before) /
         1000} seconds.`
     );
 
     if (!rawData) {
-      console.log("An issue happend while retrieving rawdata. Skipping.");
+      console.info("An issue happend while retrieving rawdata. Skipping.");
       continue;
     }
 
@@ -34,17 +34,24 @@ export async function TKCreateDataset(
     // Retrieve config
     const fdf = await TKReadFDF(info);
 
-    console.log(
+    console.info(
       `FDF  ${info.name} retrieved in ${(Date.now() - beforeFDF) /
         1000} seconds.`
     );
     const beforeSurvey = Date.now();
 
     // Create survey
-    console.log(info);
-    surveys.push(TKCreateSurvey(rawData, fdf, languages, info.options));
+    surveys.push(
+      TKCreateSurvey(
+        rawData,
+        fdf,
+        locales,
+        info.options,
+        info.additionalFiltersDescription
+      )
+    );
 
-    console.log(
+    console.info(
       `Survey  ${info.name} computed in ${(Date.now() - beforeSurvey) /
         1000} seconds.`
     );

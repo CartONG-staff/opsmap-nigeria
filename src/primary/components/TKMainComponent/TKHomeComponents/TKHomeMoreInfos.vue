@@ -23,16 +23,16 @@ import TKConfigurationModule from "@/store/modules/configuration/TKConfiguration
 import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
-export default class TKHomeIndicators extends Vue {
+export default class TKHomeMoreInfos extends Vue {
   content = TKGetLocalValue(
-    TKConfigurationModule.configuration.opsmapDescr,
+    TKConfigurationModule.configuration.textContent.opsmapDescr,
     this.$root.$i18n.locale
   );
 
   @Watch("$root.$i18n.locale", { immediate: true })
   handleLocale() {
     this.content = TKGetLocalValue(
-      TKConfigurationModule.configuration.opsmapDescr,
+      TKConfigurationModule.configuration.textContent.opsmapDescr,
       this.$root.$i18n.locale
     );
   }

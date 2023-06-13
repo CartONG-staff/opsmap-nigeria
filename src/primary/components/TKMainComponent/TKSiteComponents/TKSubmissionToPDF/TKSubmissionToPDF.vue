@@ -28,6 +28,11 @@ import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
 import { TKColors } from "@/domain/utils/TKColors";
+import {
+  applyVisualizerOptions,
+  getEntriesForThematic,
+  TKSubmissionEntries
+} from "@/domain/survey/TKSubmissionEntries";
 
 @Component({
   components: {
@@ -57,6 +62,7 @@ export default class TKSubmissionToPDF extends Vue {
 
       ///
       const submission = TKDatasetModule.dataset.currentSubmission;
+
       this.$nextTick(function() {
         const divContent = this.$refs["pdf-document"] as HTMLElement;
         pdf
@@ -100,9 +106,7 @@ export default class TKSubmissionToPDF extends Vue {
             }
 
             let indexColumn = 0;
-            for (const key in submission.thematics) {
-              const thematic = submission.thematics[key];
-
+            for (const thematic of submission.thematics) {
               const p = drawPosition[indexColumn];
 
               pdf.setPage(p.pageNumber);
@@ -113,6 +117,7 @@ export default class TKSubmissionToPDF extends Vue {
                   p.startY,
                   margins[indexColumn],
                   thematic,
+                  submission.entries,
                   COLUMN_WIDTH
                 )
               );
@@ -169,6 +174,7 @@ export default class TKSubmissionToPDF extends Vue {
     startY: number,
     margins: MarginPaddingInput,
     thematic: TKSubmissionThematic,
+    entries: TKSubmissionEntries,
     columnWidth: number
   ): UserOptions {
     const headerHeight = 25;
@@ -191,12 +197,14 @@ export default class TKSubmissionToPDF extends Vue {
         height: number;
       }
     > = {};
+    const entriesForThematic = applyVisualizerOptions(
+      getEntriesForThematic(entries, thematic)
+    );
 
-    for (let i = 0; i < thematic.data.length; i++) {
-      const item = thematic.data[i];
-      if (item.type === TKSubmissionEntryType.TEXT) {
+    for (const entry of entriesForThematic) {
+      if (entry.type === TKSubmissionEntryType.TEXT) {
         let color = TKColors.DARK_GREY as string;
-        switch (item.trafficLightColor) {
+        switch (entry.trafficLightColor) {
           case TKTrafficLightValues.OK:
             color = TKColors.TRAFFICLIGHT_PDF_OK;
             break;
@@ -214,7 +222,7 @@ export default class TKSubmissionToPDF extends Vue {
         }
 
         const field: CellDef = {
-          content: TKGetLocalValue(item.fieldLabel, this.$i18n.locale),
+          content: TKGetLocalValue(entry.fieldLabel, this.$i18n.locale),
           styles: {
             halign: "left",
             fontSize: 7,
@@ -224,7 +232,7 @@ export default class TKSubmissionToPDF extends Vue {
           }
         };
         const answer: CellDef = {
-          content: TKGetLocalValue(item.answerLabel, this.$i18n.locale),
+          content: TKGetLocalValue(entry.answerLabel, this.$i18n.locale),
           styles: {
             halign: "left",
             textColor: color,
@@ -241,13 +249,13 @@ export default class TKSubmissionToPDF extends Vue {
         body.push([answer]);
       } else {
         if (
-          item.type === TKSubmissionEntryType.CHART_PYRAMID ||
-          item.type === TKSubmissionEntryType.CHART_DOUGHNUT ||
-          item.type === TKSubmissionEntryType.CHART_POLAR ||
-          item.type === TKSubmissionEntryType.CHART_RADAR
+          entry.type === TKSubmissionEntryType.CHART_PYRAMID ||
+          entry.type === TKSubmissionEntryType.CHART_DOUGHNUT ||
+          entry.type === TKSubmissionEntryType.CHART_POLAR ||
+          entry.type === TKSubmissionEntryType.CHART_RADAR
         ) {
           const props = pdf.getImageProperties(
-            TKPDFInfosModule.currentChartsBase64[item.chartid]
+            TKPDFInfosModule.currentChartsBase64[entry.chartid]
           );
           const maxWidth = Math.min(columnWidth - 20, 150);
           const width = props.width > maxWidth ? maxWidth : props.width;
@@ -260,7 +268,7 @@ export default class TKSubmissionToPDF extends Vue {
               minCellHeight: height
             }
           });
-          const str = TKPDFInfosModule.currentChartsBase64[item.chartid];
+          const str = TKPDFInfosModule.currentChartsBase64[entry.chartid];
           charts[body.length] = {
             base64: str,
             width: width,

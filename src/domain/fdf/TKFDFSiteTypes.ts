@@ -4,7 +4,7 @@ import { TKLabel } from "../utils/TKLabel";
 // Thematic datatype
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKFDFSiteType {
-  formattedName: string;
+  id: string;
   iconFileName: {
     normal: string;
     selected: string;

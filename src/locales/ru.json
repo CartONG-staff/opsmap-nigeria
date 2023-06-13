@@ -1,7 +1,9 @@
 {
     "title": "Opsmap",
-    "infosAdmin1": "Государство",
-    "infosAdmin2": "Город",
+    "infosAdmins": {
+        "admin1": "Государство",
+        "admin2": "Город"
+    },
     "infosSiteType": "Тип участка",
     "manageBy": "Управление",
     "selectText": "Выберите",

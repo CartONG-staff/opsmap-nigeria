@@ -4,7 +4,7 @@
 import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
 import { TKFDFSiteTypeCollection } from "@/domain/fdf/TKFDFSiteTypes";
 import { TKCSVParse } from "@/secondary/csv/TKCSV";
-import { TKFDFFiles } from "./TKFDFInfos";
+import { TKFDFFiles } from "./TKFDFFiles";
 
 // ////////////////////////////////////////////////////////////////////////////
 const FORMATTED_NAME_INDEX = 0;
@@ -21,11 +21,11 @@ export async function TKReadFDFSiteTypesCollection(
   infos: TKFDFInfos
 ): Promise<TKFDFSiteTypeCollection> {
   const rawSiteTypes: TKFDFSiteTypeRaw[] = await TKCSVParse<TKFDFSiteTypeRaw[]>(
-    `${process.env.BASE_URL}/${infos.folder}/${TKFDFFiles.SITE_TYPES}.csv`,
+    `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.folder}/${TKFDFFiles.SITE_TYPES}.csv`,
     false
   );
 
-  // Parse header to find out coumn - language correspondance
+  // Parse header to find out coumn - locale correspondance
   const header: string[] = Object.values(rawSiteTypes[0]);
   const localesValuesForIndexes: string[] = [
     "ignore-0",
@@ -45,7 +45,7 @@ export async function TKReadFDFSiteTypesCollection(
   for (let i = 1; i < rawSiteTypes.length; i++) {
     const item = rawSiteTypes[i];
     siteTypesCollection[item[FORMATTED_NAME_INDEX]] = {
-      formattedName: item[FORMATTED_NAME_INDEX],
+      id: item[FORMATTED_NAME_INDEX],
       iconFileName: {
         normal: item[ICON_NAME_INDEX],
         selected: item[ICON_SELECTED_NAME_INDEX]

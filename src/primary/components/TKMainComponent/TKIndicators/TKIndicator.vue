@@ -3,17 +3,17 @@
     <img
       v-if="backgroundType === 1"
       class="tk-indicator-bg"
-      src="@/assets/bg-indicator-1.png"
+      src="img/bg-indicator-1.png"
     />
     <img
       v-if="backgroundType === 2"
       class="tk-indicator-bg"
-      src="@/assets/bg-indicator-2.png"
+      src="img/bg-indicator-2.png"
     />
     <img
       v-if="backgroundType === 3"
       class="tk-indicator-bg"
-      src="@/assets/bg-indicator-3.png"
+      src="img/bg-indicator-3.png"
     />
     <TKIndicatorStandard v-if="!isSiteOccupation" :indicator="indicator" />
     <TKIndicatorSiteOccupation v-if="isSiteOccupation" :indicator="indicator" />
@@ -22,8 +22,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import TKIndicatorStandard from "@/primary/components/TKMainComponent/TKIndicators/TKIndicatorStandard.vue";
-import TKIndicatorSiteOccupation from "@/primary/components/TKMainComponent/TKIndicators/TKIndicatorSiteOccupation.vue";
+import TKIndicatorStandard from "./TKIndicatorStandard.vue";
+import TKIndicatorSiteOccupation from "./TKIndicatorSiteOccupation.vue";
 import {
   TKIndicator as TKIndicatorDefinition,
   TKIndicatorType

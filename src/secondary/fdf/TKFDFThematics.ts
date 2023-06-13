@@ -4,7 +4,7 @@
 import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
 import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 import { TKCSVParse } from "@/secondary/csv/TKCSV";
-import { TKFDFFiles } from "./TKFDFInfos";
+import { TKFDFFiles } from "./TKFDFFiles";
 
 // ////////////////////////////////////////////////////////////////////////////
 const FORMATTED_NAME_INDEX = 0;
@@ -20,7 +20,7 @@ export async function TKReadFDFThematicsCollection(
   infos: TKFDFInfos
 ): Promise<TKTFDFhematicsCollection> {
   const rawThematics: TKFDFThematicRaw[] = await TKCSVParse<TKFDFThematicRaw[]>(
-    `${process.env.BASE_URL}/${infos.folder}/${TKFDFFiles.THEMATICS}.csv`,
+    `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.folder}/${TKFDFFiles.THEMATICS}.csv`,
     false
   );
 
@@ -28,7 +28,7 @@ export async function TKReadFDFThematicsCollection(
   const thematicsCollection: TKTFDFhematicsCollection = {};
 
   if (rawThematics.length) {
-    // Parse header to find out coumn - language correspondance
+    // Parse header to find out coumn - locale correspondance
     const header: string[] = Object.values(rawThematics[0]);
     const localesValuesForIndexes: string[] = ["ignore-0", "ignore-1"]; // ignore first col --> choice name
     for (let i = 2; i < header.length; i++) {
@@ -40,7 +40,7 @@ export async function TKReadFDFThematicsCollection(
     for (let i = 1; i < rawThematics.length; i++) {
       const item = rawThematics[i];
       thematicsCollection[item[FORMATTED_NAME_INDEX]] = {
-        formattedName: item[FORMATTED_NAME_INDEX],
+        id: item[FORMATTED_NAME_INDEX],
         iconFileName: item[ICON_NAME_INDEX],
         thematicLabel: {}
       };

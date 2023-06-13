@@ -1,4 +1,4 @@
-import { TKFDFFiles } from "@/secondary/fdf/TKFDFInfos";
+import { TKFDFFiles } from "@/secondary/fdf/TKFDFFiles";
 import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import {
   TKFDFTrafficLightsCollection,
@@ -28,7 +28,7 @@ export async function TKReadFDFTrafficLightsCollection(
   const rawTrafficLights: TKFDFTrafficLightItem[] = await TKCSVParse<
     TKFDFTrafficLightItem[]
   >(
-    `${process.env.BASE_URL}/${infos.folder}/${TKFDFFiles.TRAFFIC_LIGHTS}.csv`,
+    `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.folder}/${TKFDFFiles.TRAFFIC_LIGHTS}.csv`,
     true
   );
 

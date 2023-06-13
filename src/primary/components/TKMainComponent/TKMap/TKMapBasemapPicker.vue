@@ -13,7 +13,7 @@
       </v-btn>
     </div>
     <transition name="fade-in">
-      <div v-show="showBasemap">
+      <div v-if="showBasemap">
         <v-tooltip right v-for="item in basemaps.basemapsList" :key="item.id">
           <template v-slot:activator="{ on, attrs }">
             <div

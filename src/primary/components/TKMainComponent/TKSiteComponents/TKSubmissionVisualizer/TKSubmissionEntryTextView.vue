@@ -4,7 +4,7 @@
       <div
         :key="question"
         class="tk-entry-field-name"
-        :class="{ 'tk-entry-field-name-arab': language === 'ar' }"
+        :class="{ 'tk-entry-field-name-arab': locale === 'ar' }"
       >
         {{ question }}
       </div>
@@ -13,29 +13,31 @@
       <div
         :key="answer"
         class="tk-entry-field-value"
-        :class="{ 'tk-entry-field-value-arab': language === 'ar' }"
+        :class="{ 'tk-entry-field-value-arab': locale === 'ar' }"
       >
         {{ answer !== "" ? (isNaN(+answer) ? answer : $n(answer)) : answer }}
       </div>
     </transition>
 
     <div>
-      <div class="tk-trafficlight-container">
-        <div v-if="displayTrafficLight">
-          <v-tooltip right>
-            <template v-slot:activator="{ on, attrs }">
-              <div
-                v-bind="attrs"
-                v-on="on"
-                class="tk-trafficlight"
-                :style="trafficLightColor"
-              ></div>
-            </template>
-            <span>{{ $t(trafficLightCategory) }}</span>
-          </v-tooltip>
+      <transition mode="out-in" name="fade-in">
+        <div class="tk-trafficlight-container" :key="displayTrafficLight">
+          <div v-if="displayTrafficLight">
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <div
+                  v-bind="attrs"
+                  v-on="on"
+                  class="tk-trafficlight"
+                  :style="trafficLightColor"
+                ></div>
+              </template>
+              <span>{{ $t(trafficLightCategory) }}</span>
+            </v-tooltip>
+          </div>
+          <div v-else class="tk-trafficlight"></div>
         </div>
-        <div v-else class="tk-trafficlight"></div>
-      </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -60,7 +62,7 @@ export default class TKSubmissionentryView extends Vue {
     backgroundColor: "none"
   };
 
-  get language() {
+  get locale() {
     return this.$root.$i18n.locale;
   }
 

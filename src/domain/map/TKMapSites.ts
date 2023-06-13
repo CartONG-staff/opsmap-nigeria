@@ -4,6 +4,8 @@ import { TKGeoDataset } from "./TKGeoDataset";
 import mapboxgl, { LngLat } from "mapbox-gl";
 import centroid from "@turf/centroid";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
+import { TKBoundaries } from "../survey/TKBoundaries";
 interface TKFilteredSites {
   selectedSite: FeatureCollection | string;
   otherSites: FeatureCollection;
@@ -28,6 +30,15 @@ export class TKMapSites {
     return {
       type: "FeatureCollection",
       features: sitesArray.map((site: TKSite) => {
+        const adminsProperties: Partial<Record<
+          TKAdminLevel,
+          TKBoundaries
+        >> = {};
+        for (const level of TKConfigurationModule.configuration.spatial
+          .adminLevelsMap) {
+          adminsProperties[level] = site.admins[level];
+        }
+
         return {
           type: "Feature",
           geometry: {
@@ -37,12 +48,11 @@ export class TKMapSites {
           properties: {
             id: site.id,
             name: site.name,
-            type: site.type.formattedName,
+            type: site.type.id,
             lastSubmission: site.submissions[0].date,
             lat: site.coordinates.lat,
             lng: site.coordinates.lng,
-            admin1: site.admin1,
-            admin2: site.admin2
+            admins: adminsProperties
           }
         };
       })
@@ -67,40 +77,25 @@ export function computeCentroid(
   site: TKSite,
   geoDataset: TKGeoDataset
 ): TKSiteCoordinates | false {
-  // Compute Admin2 Centroid
-  const admin2Feature = geoDataset.admin2.features.filter(
-    x =>
-      // eslint-disable-next-line
-      x.properties![
-        TKConfigurationModule.configuration.spatialConfiguration.dbConfig
-          .adm2DBPcode
-      ] === site.admin2.pcode
-  );
-
-  if (admin2Feature.length > 0) {
-    // eslint-disable-next-line
-    const center = centroid(admin2Feature[0] as any);
-    site.coordinates = {
-      lng: center.geometry.coordinates[0],
-      lat: center.geometry.coordinates[1]
-    };
-  } else {
-    // Compute Admin1 Centroid
-    const admin1Feature = geoDataset.admin1.features.filter(
+  // Loop through parent admins, more specific to more generic
+  for (const level of [
+    ...TKConfigurationModule.configuration.spatial.adminLevelsMap
+  ].reverse()) {
+    const feature = geoDataset[level]?.features.filter(
       x =>
         // eslint-disable-next-line
         x.properties![
-          TKConfigurationModule.configuration.spatialConfiguration.dbConfig
-            .adm1DBPcode
-        ] === site.admin1.pcode
+          TKConfigurationModule.configuration.spatial.dbConfig[level]
+        ] === (site.admins[level] as TKBoundaries).pcode
     );
-    if (admin1Feature.length > 0) {
+    if (feature && feature.length > 0) {
       // eslint-disable-next-line
-      const center = centroid(admin1Feature[0] as any);
+      const center = centroid(feature[0] as any);
       site.coordinates = {
         lng: center.geometry.coordinates[0],
         lat: center.geometry.coordinates[1]
       };
+      return site.coordinates;
     }
   }
 

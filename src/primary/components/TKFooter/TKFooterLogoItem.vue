@@ -9,7 +9,7 @@
       <div v-for="item in logoGroup.logos" :key="item.name">
         <a :href="item.urlRedirection" target="_blank">
           <img
-            :src="item.urlLogo"
+            :src="logoDirectory + item.urlLogo"
             :alt="item.name"
             class="tk-footer-logos-item-logo"
           />
@@ -31,6 +31,9 @@ export default class TKFooterLogoItem extends Vue {
 
   title = "";
 
+  get logoDirectory() {
+    return process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY;
+  }
   @Watch("logoGroup", { immediate: true })
   @Watch("$root.$i18n.locale")
   handeLocale() {

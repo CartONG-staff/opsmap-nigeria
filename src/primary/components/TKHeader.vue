@@ -3,7 +3,7 @@
     <div class="tk-header-left">
       <button class="tk-header-logo-opsmap-container" v-on:click="logoClicked">
         <img
-          src="@/assets/LogoOpsmap.png"
+          src="img/LogoOpsmap.png"
           alt="Opsmap"
           class="tk-header-logo-cccm"
         />
@@ -18,7 +18,7 @@
       <div v-for="item in appConfig.headerLogos" :key="item.name">
         <a :href="item.urlRedirection" target="_blank">
           <img
-            :src="item.urlLogo"
+            :src="logoDirectory + item.urlLogo"
             :alt="item.name"
             class="tk-header-logo-config"
           />
@@ -28,11 +28,11 @@
     <div class="tk-header-right">
       <div
         class="tk-header-logo-cccm-container"
-        v-show="appConfig.options.showCCCMLogo"
+        v-if="appConfig.options.showCCCMLogo"
       >
         <a href="https://cccmcluster.org" target="_blank">
           <img
-            src="@/assets/LogoCluster.png"
+            src="img/LogoCluster.png"
             alt="CCCM"
             class="tk-header-logo-cccm"
           />
@@ -40,7 +40,7 @@
       </div>
 
       <v-btn-toggle
-        v-model="language"
+        v-model="locale"
         mandatory
         group
         dense
@@ -69,25 +69,29 @@ import TKConfigurationModule from "@/store/modules/configuration/TKConfiguration
 
 @Component
 export default class TKHeader extends Vue {
-  locales = TKConfigurationModule.configuration.languages;
+  locales = TKConfigurationModule.configuration.locale.locales;
 
-  appName = TKConfigurationModule.configuration.name.en;
+  appName = TKConfigurationModule.configuration.textContent.name.en;
   @Watch("$root.$i18n.locale")
   handeLocale() {
     this.appName = TKGetLocalValue(
-      TKConfigurationModule.configuration.name,
+      TKConfigurationModule.configuration.textContent.name,
       this.$root.$i18n.locale
     );
+  }
+
+  get logoDirectory() {
+    return process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY;
   }
 
   get appConfig() {
     return TKConfigurationModule.configuration;
   }
 
-  language = this.$root.$i18n.locale;
-  @Watch("language")
+  locale = this.$root.$i18n.locale;
+  @Watch("locale")
   // whenever question changes, this function will run
-  onLanguageChanged(val: string) {
+  onLocaleChanged(val: string) {
     this.$root.$i18n.locale = val;
     if (val === "ar") {
       this.$vuetify.rtl = true;
@@ -105,7 +109,7 @@ export default class TKHeader extends Vue {
 
 <style>
 .tk-header-buttons .v-btn--active > .v-btn__content {
-  color: var(--v-selectedLanguage-base) !important;
+  color: var(--v-selectedLocale-base) !important;
 }
 
 .tk-header-buttons
@@ -199,7 +203,7 @@ export default class TKHeader extends Vue {
 .tk-header-buttons-sep {
   height: 10px;
   width: 2px;
-  background-color: var(--v-notSelectedLanguage-base);
+  background-color: var(--v-notSelectedLocale-base);
 }
 
 button:active {

@@ -3,8 +3,8 @@
     <div class="tk-maincomponent-decoration">
       <img
         class="tk-maincomponent-png"
-        src="@/assets/bg-isoline.png"
-        :class="{ 'tk-maincomponent-png-arab': language === 'ar' }"
+        src="img/bg-isoline.png"
+        :class="{ 'tk-maincomponent-png-arab': locale === 'ar' }"
       />
     </div>
     <div class="tk-maincomponent-container">
@@ -26,13 +26,11 @@
       </div>
 
       <div class="tk-main-content-layout">
-        <transition mode="out-in" name="fade">
-          <div class="tk-main-content-layout" v-if="!isDatasetInitialized">
-            <TKPlaceHolderIndicators />
-            <TKPlaceHolderGeneric class="tk-main-content-placeholder" />
-          </div>
-          <router-view name="indicators" v-else></router-view>
-        </transition>
+        <div class="tk-main-content-layout" v-if="!isDatasetInitialized">
+          <TKPlaceHolderIndicators />
+          <TKPlaceHolderGeneric class="tk-main-content-placeholder" />
+        </div>
+        <TKIndicators />
         <transition mode="out-in" name="fade" appear>
           <router-view name="content" v-if="isDatasetInitialized"></router-view>
         </transition>
@@ -48,12 +46,14 @@ import TKPlaceHolderIndicators from "./TKPlaceHolders/TKPlaceHolderIndicators.vu
 import TKPlaceHolderGeneric from "./TKPlaceHolders/TKPlaceHolderGeneric.vue";
 import TKTitle from "./TKTitle.vue";
 import TKMap from "./TKMap";
+import TKIndicators from "./TKIndicators/TKIndicators.vue";
 
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 
 @Component({
   components: {
+    TKIndicators,
     TKMap,
     TKPlaceHolderLeft,
     TKPlaceHolderIndicators,
@@ -62,7 +62,7 @@ import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisua
   }
 })
 export default class TKMainComponent extends Vue {
-  get language() {
+  get locale() {
     return this.$root.$i18n.locale;
   }
 

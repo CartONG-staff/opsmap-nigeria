@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  opsmaps:
+    container_name: opsmaps
+    build:
+      context: .
+      args:
+        opsmaps: "brazil burkina-faso"
+    ports:
+      - 8891:8891
+      - 8892:8892
+

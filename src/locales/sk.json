@@ -1,7 +1,9 @@
 {
     "title": "Opsmap",
-    "infosAdmin1": "Región",
-    "infosAdmin2": "Okres",
+    "infosAdmins": {
+        "admin1": "Región",
+        "admin2": "Okres"
+    },
     "infosSiteType": "Typ lokality",
     "manageBy": "Spravovať podľa",
     "selectText": "Vyberte si",

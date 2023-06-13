@@ -4,7 +4,7 @@
       <div
         :key="question"
         class="tk-entry-field-name"
-        :class="{ 'tk-entry-field-name-arab': language === 'ar' }"
+        :class="{ 'tk-entry-field-name-arab': locale === 'ar' }"
       >
         {{ question }}
       </div>
@@ -62,7 +62,7 @@ export default class TKSubmissionentryView extends Vue {
     backgroundColor: "none"
   };
 
-  get language() {
+  get locale() {
     return this.$root.$i18n.locale;
   }
 

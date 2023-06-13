@@ -7,12 +7,11 @@
       <img class="tk-submission-icon" :src="iconurl" />
     </div>
     <div class="tk-submission-thematic-content">
-      <div
-        v-for="(entry, key) in thematicData"
-        :key="key"
-        v-show="!hideUnanswered || (hideUnanswered && entry.isAnswered)"
-      >
-        <TKSubmissionEntryView :entry="entry" />
+      <div v-for="(entry, key) in entries" :key="key">
+        <TKSubmissionEntryView
+          :entry="entry"
+          v-if="!hideUnanswered || (hideUnanswered && entry.isAnswered)"
+        />
       </div>
     </div>
   </div>
@@ -23,13 +22,15 @@ import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import TKSubmissionEntryView from "./TKSubmissionEntryView.vue";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
-import {
-  TKSubmissionEntry,
-  TKSubmissionEntryType
-} from "@/domain/survey/TKSubmissionEntry";
+import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
-import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
+import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import { TKSubmission } from "@/domain/survey/TKSubmission";
+import {
+  applyVisualizerOptions,
+  getEntriesForThematic
+} from "@/domain/survey/TKSubmissionEntries";
 
 @Component({
   components: {
@@ -49,10 +50,14 @@ export default class TKSubmissionThematicView extends Vue {
   }
 
   get sortByTrafficLight() {
-    return TKVisualizerOptionsModule.sortByTrafficLigh;
+    return TKVisualizerOptionsModule.sortByTrafficLight;
   }
 
-  thematicData: Array<TKSubmissionEntry> = [];
+  get currentSubmission(): TKSubmission | null {
+    return TKDatasetModule.dataset.currentSubmission;
+  }
+
+  entries: Array<TKSubmissionEntry> = [];
 
   title = "";
   iconurl = "";
@@ -64,7 +69,7 @@ export default class TKSubmissionThematicView extends Vue {
     } else {
       this.iconurl = "";
     }
-    this.updateThematcData();
+    this.updateThematicData();
   }
 
   @Watch("$root.$i18n.locale")
@@ -79,80 +84,17 @@ export default class TKSubmissionThematicView extends Vue {
     }
   }
 
-  getRankValue(entry: TKSubmissionEntry): number {
-    // rank:
-    //       CRITICAL = 0
-    //       DANGER = 1
-    //       WARNING = 2
-    //       OK = 3
-    //       UNDEFINED = 4
-    //       NOTL = 5
-    if (entry.type === TKSubmissionEntryType.TEXT) {
-      if (entry.trafficLight) {
-        switch (entry.trafficLightColor) {
-          case TKTrafficLightValues.CRITICAL:
-            return 0;
-          case TKTrafficLightValues.DANGER:
-            return 1;
-          case TKTrafficLightValues.WARNING:
-            return 2;
-          case TKTrafficLightValues.OK:
-            return 3;
-          case TKTrafficLightValues.UNDEFINED:
-            return 4;
-        }
-      }
-    }
-
-    return 5;
-  }
-
   @Watch("hideUnanswered", { immediate: true })
   @Watch("sortByTrafficLight", { immediate: true })
   @Watch("searchFilter", { immediate: true })
-  updateThematcData() {
-    if (this.submissionThematic) {
-      if (this.sortByTrafficLight) {
-        this.thematicData = [...this.submissionThematic.data].sort(
-          (a: TKSubmissionEntry, b: TKSubmissionEntry): number => {
-            const rankA = this.getRankValue(a);
-            const rankB = this.getRankValue(b);
-            if (rankA < rankB) {
-              return -1;
-            }
-            if (rankA === rankB) {
-              return 0;
-            }
-            return 1;
-          }
-        );
-      } else {
-        this.thematicData = this.submissionThematic.data;
-      }
-    } else {
-      this.thematicData = [];
-    }
-
-    if (this.searchFilter) {
-      this.thematicData = this.thematicData.filter(
-        (item: TKSubmissionEntry) => {
-          if (item.type !== TKSubmissionEntryType.TEXT) {
-            return true;
-          }
-          for (const value of Object.values(item.answerLabel)) {
-            if (value.toLowerCase().includes(this.searchFilter.toLowerCase())) {
-              return true;
-            }
-          }
-          for (const value of Object.values(item.fieldLabel)) {
-            if (value.toLowerCase().includes(this.searchFilter.toLowerCase())) {
-              return true;
-            }
-          }
-
-          return false;
-        }
+  updateThematicData() {
+    this.entries = [];
+    if (this.submissionThematic && this.currentSubmission) {
+      const entries = getEntriesForThematic(
+        this.currentSubmission.entries,
+        this.submissionThematic
       );
+      this.entries = applyVisualizerOptions(entries);
     }
   }
 }

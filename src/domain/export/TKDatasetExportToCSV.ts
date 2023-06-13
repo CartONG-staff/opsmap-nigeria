@@ -1,8 +1,9 @@
 import { TKDataset } from "@/domain/survey/TKDataset";
 import {
-  TKCSVWrite as TKCSVWriteCurrentSite,
+  TKCSVWrite,
   TKCSVWriteCurrentSelection
 } from "@/secondary/export/TKCSVWriter";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods
@@ -24,17 +25,19 @@ function computeSiteExportFileBasename(dataset: TKDataset): string {
 function computeSelectionExportFileBasename(dataset: TKDataset): string {
   if (dataset) {
     let filename = "export";
-    if (dataset.currentAdmin1) {
-      filename += "_" + dataset.currentAdmin1.name;
-
-      if (dataset.currentAdmin2) {
-        filename += "_" + dataset.currentAdmin2.name;
-
-        if (dataset.currentSite) {
-          filename += "_" + dataset.currentSite.name;
-        }
+    filename += TKConfigurationModule.configuration.spatial.adminLevels.map(
+      level => {
+        const admin = dataset.getCurrentAdmin(level);
+        if (admin) {
+          return "_" + admin.name;
+        } else return "";
       }
+    );
+
+    if (dataset.currentSite) {
+      filename += "_" + dataset.currentSite.name;
     }
+
     return filename;
   }
   return "selection-export";
@@ -70,11 +73,7 @@ export function TKDatasetExportCurrentSiteToCSV(
   dataset: TKDataset,
   locale: string
 ) {
-  TKCSVWriteCurrentSite(
-    dataset,
-    TKComputeSiteExportFilename(dataset, "csv"),
-    locale
-  );
+  TKCSVWrite(dataset, TKComputeSiteExportFilename(dataset, "csv"), locale);
 }
 
 // ////////////////////////////////////////////////////////////////////////////
