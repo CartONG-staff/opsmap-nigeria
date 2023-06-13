@@ -84,9 +84,9 @@ export async function TKReadGeneralConfiguration(
   configFileName: string,
   translations: VueI18n.LocaleMessages
 ): Promise<TKOpsmapConfiguration> {
-  const json: TKOpsmapConfiguration = await fetch(
-    configFileName
-  ).then(response => response.json());
+  const json: TKOpsmapConfiguration = await fetch(configFileName, {
+    cache: "no-store"
+  }).then(response => response.json());
 
   // ////////////////////////////////////////////////////////////////////////////
   // Locale
