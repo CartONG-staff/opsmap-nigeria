@@ -7,9 +7,9 @@ import {
   TKSurveyAnonymousType,
   TKSurveyOptions
 } from "@/domain/survey/TKSurvey";
-import { TKBasemapsLayer } from "../map/TKBasemaps";
+import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
 import { TKAdminLevel, sortAdminLevelsRootFirst } from "./TKAdminLevel";
-import { TKAdditionalFilterDescription } from "../survey/TKAdditionalFilter";
+import { TKAdditionalFilterDescription } from "@/domain/survey/TKAdditionalFilter";
 
 // ////////////////////////////////////////////////////////////////////////////
 // JSON format
