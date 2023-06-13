@@ -16,6 +16,7 @@ import { TKReadFDFThematicsCollection } from "@/secondary/fdf/TKFDFThematics";
 import { TKReadFDFTrafficLightsCollection } from "@/secondary/fdf/TKFDFTrafficLight";
 import { TKReadFDFURLsCollection } from "@/secondary/fdf/TKFDFURLs";
 import { TKReadFDFSiteTypesCollection } from "./TKFDFSiteTypes";
+import { TKGetRidlTranslationsData } from "../ridl/TKGetRidlRawData";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Method that creates the FDF object from the fdf folder
@@ -31,11 +32,15 @@ export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
         `${infos.submissionsTrLocalUrl}`
       );
       break;
-    case TKSurveyInfosType.KOBO:
+
     case TKSurveyInfosType.RIDL:
+      answersLabels = await TKGetRidlTranslationsData(infos.submissionsTrUrl);
+      break;
+    case TKSurveyInfosType.KOBO:
       answersLabels = await TKReadFDFLabelCollection(
         `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.fdf.folder}/${TKFDFFiles.ANSWERS}.csv`
       );
+      break;
   }
 
   return {

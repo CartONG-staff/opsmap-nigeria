@@ -15,6 +15,6 @@ export async function TKReadRawDataset(info: TKSurveyInfos) {
     case TKSurveyInfosType.KOBO:
       return TKGetKoboRawData(info);
     case TKSurveyInfosType.RIDL:
-      return TKGetRidlRawData(info);
+      return TKGetRidlRawData(info.submissionsUrl);
   }
 }

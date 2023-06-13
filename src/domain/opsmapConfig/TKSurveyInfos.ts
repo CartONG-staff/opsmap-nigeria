@@ -58,8 +58,8 @@ export interface TKSurveyInfosKobo extends TKAbstractSurveyInfos {
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKSurveyInfosRidl extends TKAbstractSurveyInfos {
   readonly type: TKSurveyInfosType.RIDL;
-  readonly url: string;
-  readonly submissionsTrLocalUrl: string;
+  readonly submissionsUrl: string;
+  readonly submissionsTrUrl: string;
 }
 
 // ////////////////////////////////////////////////////////////////////////////

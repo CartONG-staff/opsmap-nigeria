@@ -1,4 +1,4 @@
-import { TKSurveyInfosRidl } from "@/domain/opsmapConfig/TKSurveyInfos";
+import { TKFDFLabelCollection } from "@/domain/fdf/TKFDFParseMultiLang";
 import { parse } from "papaparse";
 
 import { read, utils } from "xlsx";
@@ -7,9 +7,9 @@ import { read, utils } from "xlsx";
 // Retrieve raw data from kobo
 // ////////////////////////////////////////////////////////////////////////////
 
-export async function TKGetRidlRawData(config: TKSurveyInfosRidl) {
+export async function TKGetRidlRawData(url: string) {
   try {
-    const file = `${config.url}`;
+    const file = `${url}`;
     const f = await (
       await fetch(file, {
         method: "get",
@@ -28,4 +28,26 @@ export async function TKGetRidlRawData(config: TKSurveyInfosRidl) {
   } catch (error) {
     console.error(error);
   }
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Retrieve raw data from kobo
+// ////////////////////////////////////////////////////////////////////////////
+
+export async function TKGetRidlTranslationsData(url: string) {
+  const data = await TKGetRidlRawData(url);
+
+  // Parse xslx content
+  const labelsCollection: TKFDFLabelCollection = {};
+  for (const entry of data as Array<Record<string, string>>) {
+    labelsCollection[entry["choice_name"]] = {};
+    for (const localKey of Object.keys(entry).filter(key =>
+      key.startsWith("choice_label_")
+    )) {
+      labelsCollection[entry["choice_name"]][
+        localKey.replace("choice_label_", "")
+      ] = entry[localKey];
+    }
+  }
+  return labelsCollection;
 }
