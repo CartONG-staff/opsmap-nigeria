@@ -17,6 +17,7 @@
     "build-slovakia": "vue-cli-service build --mode slovakia",
     "build-somalia": "vue-cli-service build --mode somalia",
     "build-sudan": "vue-cli-service build --mode sudan",
+    "build-ukraine": "vue-cli-service build --mode ukraine",
     "build-yemen": "vue-cli-service build --mode yemen",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
