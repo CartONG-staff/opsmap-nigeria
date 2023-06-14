@@ -6,8 +6,21 @@ services:
     build:
       context: .
       args:
-        opsmaps: "brazil burkina-faso"
+        opsmaps: "brazil burkina-faso ethiopia moldova nigeria romania showcase slovakia somalia sudan ukraine yemen"
     ports:
-      - 8891:8891
-      - 8892:8892
+      - 8891:8891 # welcomepage
+      - 8892:8892 # brazil
+      # - 8893:8893 # bulgaria
+      - 8894:8894 # burkina faso
+      - 8895:8895 # ethiopia
+      - 8896:8896 # moldova
+      - 8897:8897 # nigeria
+      - 8898:8898 # romania
+      - 8899:8899 # showcase
+      - 8900:8900 # slovakia
+      - 8901:8901 # somalia
+      - 8902:8902 # sudan
+      - 8903:8903 # ukraine
+      - 8904:8904 # yemen
+
 

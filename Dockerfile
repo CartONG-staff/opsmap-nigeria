@@ -50,6 +50,10 @@ RUN npm run build -- --mode dockerized
 WORKDIR /var/www/html/
 
 # Build
+RUN mkdir -p /var/www/html/welcome; \
+  cp -r /var/www/html/build/dist/welcomepage/* /var/www/html/welcome;
+
+# Build
 RUN for opsmap in $opsmaps; do \
   echo "$opsmap"; \
   # create opsmap directory
