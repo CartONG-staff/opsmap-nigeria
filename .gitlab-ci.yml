@@ -69,3 +69,20 @@ pages:
       - public
   tags:
     - opsmap
+
+# job: build docker image and deploy
+docker-build:
+  # Official docker image.
+  image: docker:stable
+  stage: deploy
+  services:
+    - docker:19.03.0-dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - docker push "$CI_REGISTRY_IMAGE"
+  tags:
+    - dind
+  only:
+    - release/deploy-docker
