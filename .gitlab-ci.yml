@@ -36,10 +36,10 @@ install_dependencies:
   tags:
     - opsmap
   rules:
-    - if: ($CI_COMMIT_BRANCH == "release/deploy-gitlab-pages" || $CI_COMMIT_BRANCH == "release/deploy-docker")
+    - if: $CI_COMMIT_BRANCH == "release/deploy-gitlab-pages"
+    - if: $CI_COMMIT_BRANCH == "release/deploy-docker"
       when: always
-    - if: ($CI_COMMIT_BRANCH != "release/deploy-gitlab-pages" && || $CI_COMMIT_BRANCH != "release/deploy-docker")
-      when: manual
+    - when: manual
 
 # job: test
 test:
