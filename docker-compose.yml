@@ -3,6 +3,8 @@ version: '3.3'
 services:
   opsmaps:
     container_name: opsmaps
+    environment:
+      - VUE_APP_RIDL_TOKEN=tobedetermined
     build:
       context: .
       args:
@@ -22,5 +24,3 @@ services:
       - 8902:8902 # sudan
       - 8903:8903 # ukraine
       - 8904:8904 # yemen
-
-

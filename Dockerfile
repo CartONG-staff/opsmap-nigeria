@@ -9,10 +9,15 @@ RUN addgroup -S node && adduser -S node -G node
 
 # Configure nginx
 COPY config-docker/opsmap-nginx.conf /etc/nginx/nginx.conf
-COPY config-docker/opsmap-supervisord.conf etc/supervisor/conf.d/supervisord.conf
+COPY config-docker/opsmap-supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup document root
 RUN mkdir -p /var/www/html/
+
+# add environment variable to be run when container is upped
+COPY config-docker/handle-environment-variable.sh /handle-environment-variable.sh
+RUN chmod +x /handle-environment-variable.sh
+ENTRYPOINT ["/handle-environment-variable.sh"]
 
 # Setup build root
 RUN mkdir -p /var/www/html/build/.npm/
@@ -36,7 +41,7 @@ WORKDIR /var/www/html/build
 # Build the app
 # #############################################################################
 
-# npm install -- all 
+# npm install -- all
 RUN npm ci --no-progress --no-audit --legacy-peer-deps
 
 # npm build -- production mode
@@ -54,19 +59,20 @@ RUN mkdir -p /var/www/html/welcome; \
   cp -r /var/www/html/build/dist/welcomepage/* /var/www/html/welcome;
 
 # Build
+RUN mkdir -p /var/www/html/readonly;
 RUN for opsmap in $opsmaps; do \
   echo "$opsmap"; \
-  # create opsmap directory
-  mkdir -p /var/www/html/"$opsmap"; \
+  # recreate opsmap directory
+  rm -rf /var/www/html/readonly/"$opsmap"; \
+  mkdir -p /var/www/html/readonly/"$opsmap"; \
   \
   # copy app
-  cp -r /var/www/html/build/dist/img /var/www/html/"$opsmap"; \
-  cp -r /var/www/html/build/dist/js /var/www/html/"$opsmap"; \
-  cp /var/www/html/build/dist/favicon.ico /var/www/html/"$opsmap"; \
-  cp /var/www/html/build/dist/index.html /var/www/html/"$opsmap"; \
+  cp -rf /var/www/html/build/dist/img /var/www/html/readonly/"$opsmap"/img; \
+  cp -rf /var/www/html/build/dist/js /var/www/html/readonly/"$opsmap"/js; \
+  cp /var/www/html/build/dist/favicon.ico /var/www/html/readonly/"$opsmap"/favicon.ico; \
+  cp /var/www/html/build/dist/index.html /var/www/html/readonly/"$opsmap"/index.html; \
   \
   # upadte the data dir. This path must match the one in the .env file
-  mv /var/www/html/build/dist/data/"$opsmap" /var/www/html/"$opsmap"/data; \
   done;
 
 # #############################################################################
@@ -82,6 +88,20 @@ RUN rm -rf /var/www/html/build
 # Expose the port nginx is reachable on
 EXPOSE 8891
 EXPOSE 8892
+# EXPOSE 8893
+EXPOSE 8894
+EXPOSE 8895
+EXPOSE 8896
+EXPOSE 8898
+EXPOSE 8899
+EXPOSE 8900
+EXPOSE 8901
+EXPOSE 8902
+EXPOSE 8903
+
+# #############################################################################
+# Expose nginx ports
+# #############################################################################
 
 WORKDIR /var/www/html/
 
