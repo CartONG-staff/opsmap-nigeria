@@ -1,6 +1,8 @@
 FROM alpine:3.12
 
 ARG opsmaps
+ARG configNginx
+ARG ports
 
 RUN apk --no-cache add nginx npm supervisor && \
   rm /etc/nginx/conf.d/default.conf
@@ -8,7 +10,7 @@ RUN apk --no-cache add nginx npm supervisor && \
 RUN addgroup -S node && adduser -S node -G node
 
 # Configure nginx
-COPY config-docker/opsmap-nginx.conf /etc/nginx/nginx.conf
+COPY $configNginx /etc/nginx/nginx.conf
 COPY config-docker/opsmap-supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup document root
@@ -86,18 +88,7 @@ RUN rm -rf /var/www/html/build
 # #############################################################################
 
 # Expose the port nginx is reachable on
-EXPOSE 8891
-EXPOSE 8892
-# EXPOSE 8893
-EXPOSE 8894
-EXPOSE 8895
-EXPOSE 8896
-EXPOSE 8898
-EXPOSE 8899
-EXPOSE 8900
-EXPOSE 8901
-EXPOSE 8902
-EXPOSE 8903
+EXPOSE $ports
 
 # #############################################################################
 # Expose nginx ports
