@@ -57,6 +57,8 @@ test:
 pages:
   needs: ["test"]
   stage: deploy
+  variables:
+    VUE_APP_RIDL_TOKEN: $VUE_APP_RIDL_TOKEN
   script:
     - npm run build-opsmap -- $CI_OPSMAP_NAME
     - rm -rf public
