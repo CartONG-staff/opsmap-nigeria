@@ -104,7 +104,7 @@ docker-build-ukraine:
   script:
     # opsmap list as --build-arg
     - docker build --pull -t "$CI_REGISTRY_IMAGE_UKRAINE" . --build-arg configNginx="config-docker/opsmap-nginx-ukraine.conf" --build-arg opsmaps="ukraine" --build-arg ports="8903"
-    - docker push "$CI_REGISTRY_IMAGE_PUBLIC"
+    - docker push "$CI_REGISTRY_IMAGE_UKRAINE"
   tags:
     - dind
   only:
