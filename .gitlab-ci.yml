@@ -85,7 +85,7 @@ docker-build-public:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     # opsmap list as --build-arg
-    - docker build --pull -t "$CI_REGISTRY_IMAGE_PUBLIC" . --build-arg opsmaps="brazil burkina-faso ethiopia moldova nigeria romania showcase slovakia somalia sudan ukraine yemen"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE_PUBLIC" . --build-arg opsmaps="brazil burkina-faso ethiopia moldova nigeria romania showcase slovakia somalia sudan yemen"
     - docker push "$CI_REGISTRY_IMAGE_PUBLIC"
   tags:
     - dind
