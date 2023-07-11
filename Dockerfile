@@ -1,8 +1,6 @@
 FROM alpine:3.12
 
 ARG opsmaps
-ARG configNginx
-ARG ports
 
 RUN apk --no-cache add nginx npm supervisor && \
   rm /etc/nginx/conf.d/default.conf
@@ -10,7 +8,7 @@ RUN apk --no-cache add nginx npm supervisor && \
 RUN addgroup -S node && adduser -S node -G node
 
 # Configure nginx
-COPY $configNginx /etc/nginx/nginx.conf
+COPY config-docker/opsmap-nginx.conf /etc/nginx/nginx.conf
 COPY config-docker/opsmap-supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup document root
