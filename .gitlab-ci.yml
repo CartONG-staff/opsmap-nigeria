@@ -85,8 +85,10 @@ docker-build-public:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     # opsmap list as --build-arg
-    - docker build --pull -t "$CI_REGISTRY_IMAGE_PUBLIC" . --build-arg opsmaps="brazil burkina-faso ethiopia moldova nigeria romania showcase slovakia somalia sudan yemen"
-    - docker push "$CI_REGISTRY_IMAGE_PUBLIC"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE_PUBLIC:$(git describe --tags --abbrev=0)" . --build-arg opsmaps="brazil burkina-faso ethiopia moldova nigeria romania showcase slovakia somalia sudan yemen"
+    - docker tag "$CI_REGISTRY_IMAGE_PUBLIC:$(git describe --tags --abbrev=0)" "$CI_REGISTRY_IMAGE_PUBLIC:latest"
+    - docker push "$CI_REGISTRY_IMAGE_PUBLIC:$(git describe --tags --abbrev=0)"
+    - docker push "$CI_REGISTRY_IMAGE_PUBLIC:latest"
   tags:
     - dind
   only:
@@ -103,8 +105,10 @@ docker-build-ukraine:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     # opsmap list as --build-arg
-    - docker build --pull -t "$CI_REGISTRY_IMAGE_UKRAINE" . --build-arg opsmaps="ukraine"
-    - docker push "$CI_REGISTRY_IMAGE_UKRAINE"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE_UKRAINE:$(git describe --tags --abbrev=0)" . --build-arg opsmaps="ukraine"
+    - docker tag "$CI_REGISTRY_IMAGE_UKRAINE:$(git describe --tags --abbrev=0)" "$CI_REGISTRY_IMAGE_UKRAINE:latest"
+    - docker push "$CI_REGISTRY_IMAGE_UKRAINE:$(git describe --tags --abbrev=0)"
+    - docker push "$CI_REGISTRY_IMAGE_UKRAINE:latest"
   tags:
     - dind
   only:

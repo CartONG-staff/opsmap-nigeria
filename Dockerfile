@@ -86,7 +86,7 @@ RUN rm -rf /var/www/html/build
 # #############################################################################
 
 # Expose the port nginx is reachable on
-EXPOSE 8080
+EXPOSE 8891
 
 # #############################################################################
 # Expose nginx ports
