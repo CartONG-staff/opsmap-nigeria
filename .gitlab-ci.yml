@@ -82,6 +82,7 @@ docker-build-public:
   services:
     - docker:19.03.0-dind
   before_script:
+    - apk add git
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     # opsmap list as --build-arg
@@ -102,6 +103,7 @@ docker-build-ukraine:
   services:
     - docker:19.03.0-dind
   before_script:
+    - apk add git
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     # opsmap list as --build-arg
