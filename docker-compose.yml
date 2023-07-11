@@ -12,29 +12,15 @@ services:
         ports: "8891 8892 8894 8895 8896 8897 8898 8899 8900 8901 8902 8904"
         configNginx: "config-docker/opsmap-nginx-public.conf"
     ports:
-      - 8891:8891 # welcomepage
-      - 8892:8892 # brazil
-      # - 8893:8893 # bulgaria
-      - 8894:8894 # burkina faso
-      - 8895:8895 # ethiopia
-      - 8896:8896 # moldova
-      - 8897:8897 # nigeria
-      - 8898:8898 # romania
-      - 8899:8899 # showcase
-      - 8900:8900 # slovakia
-      - 8901:8901 # somalia
-      - 8902:8902 # sudan
-      - 8904:8904 # yemen
+      - 8892:8891
 
-  opsmaps-ukraine:
-    container_name: opsmaps-ukraine
-    environment:
-      - VUE_APP_RIDL_TOKEN=tobedetermined
-    build:
-      context: .
-      args:
-        opsmaps: "ukraine"
-        ports: "8903"
-        configNginx: "config-docker/opsmap-nginx-ukraine.conf"
-    ports:
-      - 8903:8903 # ukraine
+  # opsmaps-ukraine:
+  #   container_name: ukraine
+  #   environment:
+  #     - VUE_APP_RIDL_TOKEN=*
+  #   build:
+  #     context: .
+  #     args:
+  #       opsmaps: "ukraine"
+  #   ports:
+  #     - 8891:8891
