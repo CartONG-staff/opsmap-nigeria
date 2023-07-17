@@ -20,7 +20,7 @@ import autoTable, {
 
 import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
 
-import { TKGetLocalValue } from "@/domain/utils/TKLabel";
+import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { IconPosition, TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
@@ -169,6 +169,50 @@ export default class TKSubmissionToPDF extends Vue {
     }
   }
 
+  getField(label: TKLabel): CellDef {
+    return {
+      content: TKGetLocalValue(label, this.$i18n.locale),
+      styles: {
+        halign: "left",
+        fontSize: 7,
+        cellPadding: {
+          top: 5
+        }
+      }
+    };
+  }
+
+  getAnswerColor(trafficLightColor: TKTrafficLightValues): TKColors {
+    switch (trafficLightColor) {
+      case TKTrafficLightValues.OK:
+        return TKColors.TRAFFICLIGHT_PDF_OK;
+      case TKTrafficLightValues.WARNING:
+        return TKColors.TRAFFICLIGHT_PDF_WARNING;
+      case TKTrafficLightValues.DANGER:
+        return TKColors.TRAFFICLIGHT_PDF_DANGER;
+      case TKTrafficLightValues.CRITICAL:
+        return TKColors.TRAFFICLIGHT_PDF_CRITICAL;
+      default:
+        return TKColors.TRAFFICLIGHT_PDF_UNDEFINED;
+    }
+  }
+
+  getAnswer(answerLabel: TKLabel, color: TKColors): CellDef {
+    return {
+      content: TKGetLocalValue(answerLabel, this.$i18n.locale),
+      styles: {
+        halign: "left",
+        textColor: color,
+        fontSize: 7,
+        fontStyle: "bold",
+        cellPadding: {
+          left: 0,
+          top: 2
+        }
+      }
+    };
+  }
+
   createTable(
     pdf: jsPDF,
     startY: number,
@@ -203,80 +247,49 @@ export default class TKSubmissionToPDF extends Vue {
 
     for (const entry of entriesForThematic) {
       if (entry.type === TKSubmissionEntryType.TEXT) {
-        let color = TKColors.DARK_GREY as string;
-        switch (entry.trafficLightColor) {
-          case TKTrafficLightValues.OK:
-            color = TKColors.TRAFFICLIGHT_PDF_OK;
-            break;
-          case TKTrafficLightValues.WARNING:
-            color = TKColors.TRAFFICLIGHT_PDF_WARNING;
-            break;
-          case TKTrafficLightValues.DANGER:
-            color = TKColors.TRAFFICLIGHT_PDF_DANGER;
-            break;
-          case TKTrafficLightValues.CRITICAL:
-            color = TKColors.TRAFFICLIGHT_PDF_CRITICAL;
-            break;
-          default:
-            color = TKColors.TRAFFICLIGHT_PDF_UNDEFINED;
-        }
-
-        const field: CellDef = {
-          content: TKGetLocalValue(entry.fieldLabel, this.$i18n.locale),
-          styles: {
-            halign: "left",
-            fontSize: 7,
-            cellPadding: {
-              top: 5
-            }
-          }
-        };
-        const answer: CellDef = {
-          content: TKGetLocalValue(entry.answerLabel, this.$i18n.locale),
-          styles: {
-            halign: "left",
-            textColor: color,
-            fontSize: 7,
-            fontStyle: "bold",
-            cellPadding: {
-              left: 0,
-              top: 2
-            }
-          }
-        };
-
+        const field = this.getField(entry.fieldLabel);
         body.push([field]);
+
+        const color = this.getAnswerColor(entry.trafficLightColor);
+        const answer = this.getAnswer(entry.answerLabel, color);
         body.push([answer]);
-      } else {
-        if (
-          entry.type === TKSubmissionEntryType.CHART_PYRAMID ||
-          entry.type === TKSubmissionEntryType.CHART_DOUGHNUT ||
-          entry.type === TKSubmissionEntryType.CHART_POLAR ||
-          entry.type === TKSubmissionEntryType.CHART_RADAR
-        ) {
-          const props = pdf.getImageProperties(
-            TKPDFInfosModule.currentChartsBase64[entry.chartid]
-          );
-          const maxWidth = Math.min(columnWidth - 20, 150);
-          const width = props.width > maxWidth ? maxWidth : props.width;
-          const height = (props.height / props.width) * width;
+      } else if (entry.type === TKSubmissionEntryType.BULLET) {
+        const field = this.getField(entry.fieldLabel);
+        body.push([field]);
 
-          const row: RowInput = [];
-          row.push({
-            content: "",
-            styles: {
-              minCellHeight: height
-            }
-          });
-          const str = TKPDFInfosModule.currentChartsBase64[entry.chartid];
-          charts[body.length] = {
-            base64: str,
-            width: width,
-            height: height
-          };
-
-          body.push(row);
+        const color = this.getAnswerColor(entry.trafficLightColor);
+        for (const answerLabel of entry.answersLabels) {
+          const answer = this.getAnswer(answerLabel, color);
+          body.push([answer]);
         }
+      } else if (
+        entry.type === TKSubmissionEntryType.CHART_PYRAMID ||
+        entry.type === TKSubmissionEntryType.CHART_DOUGHNUT ||
+        entry.type === TKSubmissionEntryType.CHART_POLAR ||
+        entry.type === TKSubmissionEntryType.CHART_RADAR
+      ) {
+        const props = pdf.getImageProperties(
+          TKPDFInfosModule.currentChartsBase64[entry.chartid]
+        );
+        const maxWidth = Math.min(columnWidth - 20, 150);
+        const width = props.width > maxWidth ? maxWidth : props.width;
+        const height = (props.height / props.width) * width;
+
+        const row: RowInput = [];
+        row.push({
+          content: "",
+          styles: {
+            minCellHeight: height
+          }
+        });
+        const str = TKPDFInfosModule.currentChartsBase64[entry.chartid];
+        charts[body.length] = {
+          base64: str,
+          width: width,
+          height: height
+        };
+
+        body.push(row);
       }
     }
 
