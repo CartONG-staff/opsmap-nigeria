@@ -1,24 +1,13 @@
 version: '3.3'
 
 services:
-  opsmaps-public:
-    container_name: public
+  opsmaps:
+    container_name: opsmaps
     environment:
       - VUE_APP_RIDL_TOKEN=*
     build:
       context: .
       args:
-        opsmaps: "brazil burkina-faso ethiopia moldova nigeria romania showcase slovakia somalia sudan yemen"
+        opsmaps: "brazil burkina-faso ethiopia moldova nigeria romania showcase slovakia somalia sudan ukraine yemen"
     ports:
-      - 8892:8891
-
-  # opsmaps-ukraine:
-  #   container_name: ukraine
-  #   environment:
-  #     - VUE_APP_RIDL_TOKEN=*
-  #   build:
-  #     context: .
-  #     args:
-  #       opsmaps: "ukraine"
-  #   ports:
-  #     - 8891:8891
+      - 8080:8080
