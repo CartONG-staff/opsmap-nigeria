@@ -8,7 +8,8 @@ import {
   arrayLevelBelowToLeaf,
   arrayLevelToLeaf,
   arrayLevelUpToRoot,
-  arrayRootToLeaf
+  arrayRootToLeaf,
+  parent
 } from "../opsmapConfig/TKAdminLevel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import {
@@ -481,6 +482,34 @@ export class TKDataset {
             site.admins[mostGranularAdminLevelFilter]?.pcode ===
               currentAdmin?.pcode
         );
+      }
+
+      // Update all admin filter
+      for (const level of levels) {
+        const levelParent = parent(level);
+        // Top level never filtered
+        if (levelParent) {
+          // parent admin has selection
+          const parentAdmin = this._currentAdmins[levelParent];
+          if (parentAdmin) {
+            const pcodes = this._currentSurvey.sites
+              .filter(
+                site => site.admins[levelParent]?.pcode === parentAdmin.pcode
+              )
+              .map(site => site.admins[level]?.pcode);
+            this._filteredAdminList[level] = this._filteredAdminList[
+              level
+            ]?.filter(admin => pcodes.includes(admin.pcode));
+          } else {
+            // parent admin not selected: list based on sites selected list
+            const pcodes = this._filteredSitesList.map(
+              site => site.admins[level]?.pcode
+            );
+            this._filteredAdminList[level] = this._filteredAdminList[
+              level
+            ]?.filter(admin => pcodes.includes(admin.pcode));
+          }
+        }
       }
 
       // Update filtered typed sites list
