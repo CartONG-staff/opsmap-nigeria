@@ -16,7 +16,7 @@ for opsmap in */ ; do
     for file in $OPSMAP_ROOT_DIR/js/*.js* $OPSMAP_ROOT_DIR/index.html ; do
         if test -f "$file"; then
             sed -i 's|VUE_APP_AFTERBUILDENV_GENERAL_CONFIG_DIRECTORY|'${OPSMAP_DATASET_ROOT_DIR}${opsmap}'/|g' $file
-            sed -i 's|VUE_APP_AFTERBUILDENV_RIDL_TOKEN|'${VUE_APP_RIDL_TOKEN}'/|g' $file
+            sed -i 's|VUE_APP_AFTERBUILDENV_RIDL_TOKEN|'${VUE_APP_RIDL_TOKEN}'|g' $file
         fi
     done
 done
