@@ -66,7 +66,9 @@ RUN for opsmap in $opsmaps; do \
   rm -rf /var/www/html/readonly/"$opsmap"; \
   mkdir -p /var/www/html/readonly/"$opsmap"; \
   \
-  # copy app
+  # copy datadir if 'ukraine'
+  if [ $opsmap = ukraine ] ; then cp -rf /var/www/html/build/dist/data /var/www/html/readonly/"$opsmap"/data; \  ; fi \
+
   cp -rf /var/www/html/build/dist/img /var/www/html/readonly/"$opsmap"/img; \
   cp -rf /var/www/html/build/dist/js /var/www/html/readonly/"$opsmap"/js; \
   cp /var/www/html/build/dist/favicon.ico /var/www/html/readonly/"$opsmap"/favicon.ico; \
