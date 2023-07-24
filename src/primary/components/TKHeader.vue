@@ -124,6 +124,7 @@ export default class TKHeader extends Vue {
   background-color: var(--v-background-base);
   display: flex;
   flex-flow: row wrap;
+  direction: ltr;
   justify-content: space-between;
   align-items: center;
   min-height: 70px;
