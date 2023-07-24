@@ -79,9 +79,7 @@
               :items="filter.candidates"
               :value="filter.filterValues"
               @input="additionalFilterChanged(filter, $event)"
-              :item-text="currentLocale"
-              return-object
-              multiple
+              :item-text="item => getLocalValue(item)"
             ></v-autocomplete>
           </div>
         </template>
@@ -160,6 +158,8 @@ export default class TKHomeCombos extends Vue {
   }
 
   get additionalFilters(): TKAdditionalFilter[] {
+    console.log("hop hop hop ");
+    console.log(this.dataset.additionalFilters);
     return this.dataset.additionalFilters;
   }
 

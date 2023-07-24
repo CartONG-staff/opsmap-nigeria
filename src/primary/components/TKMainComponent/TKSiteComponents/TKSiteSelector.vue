@@ -69,7 +69,7 @@
               :items="filter.candidates"
               :value="filter.filterValues"
               @input="additionalFilterChanged(filter, $event)"
-              :item-text="currentLocale"
+              :item-text="item => getLocalValue(item)"
               return-object
               multiple
             ></v-autocomplete>
