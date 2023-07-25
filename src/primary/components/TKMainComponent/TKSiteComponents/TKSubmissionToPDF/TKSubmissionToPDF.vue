@@ -1,7 +1,11 @@
 <template>
   <div class="pdf-document-container">
     <div class="pdf-document" ref="pdf-document">
-      <div class="pdf-document-content">
+      <div
+        class="pdf-document-content"
+        :class="{ 'pdf-document-content--arabic': isLocaleArabic }"
+        :dir="isLocaleArabic ? 'rtl' : 'ltr'"
+      >
         <TKSubmissionToPDFHeadlines />
       </div>
     </div>
@@ -34,6 +38,17 @@ import {
   TKSubmissionEntries
 } from "@/domain/survey/TKSubmissionEntries";
 
+import {
+  AmiriBold,
+  AmiriBoldItalic,
+  AmiriItalic,
+  AmiriNormal,
+  RobotoBold,
+  RobotoBoldItalic,
+  RobotoItalic,
+  RobotoNormal
+} from "@/domain/fonts";
+
 @Component({
   components: {
     TKSubmissionToPDFHeadlines
@@ -44,9 +59,22 @@ export default class TKSubmissionToPDF extends Vue {
     this.exportToPDF();
   }
 
+  get isLocaleArabic() {
+    return this.$i18n.locale === "ar";
+  }
+
+  get fontFromLocale() {
+    return this.isLocaleArabic ? "Amiri" : "Roboto";
+  }
+
+  generateName(): string {
+    return `${TKDatasetModule.dataset.currentSite?.name} - ${TKDatasetModule.dataset.currentSubmission?.date}`;
+  }
+
   // ////////////////////////////////////////////////////////////////////////////////////////////////
   // EXPORT TO PDF
   // ////////////////////////////////////////////////////////////////////////////////////////////////
+
   /* eslint-disable @typescript-eslint/no-explicit-any */
   exportToPDF() {
     if (
@@ -57,8 +85,30 @@ export default class TKSubmissionToPDF extends Vue {
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "pt",
-        format: "a4"
+        format: "a4",
+        compress: true
       });
+      pdf.setR2L(this.isLocaleArabic);
+
+      if (this.isLocaleArabic) {
+        pdf.addFileToVFS("Amiri-bolditalic.ttf", AmiriBoldItalic);
+        pdf.addFont("Amiri-bolditalic.ttf", "Amiri", "bolditalic");
+        pdf.addFileToVFS("Amiri-bold.ttf", AmiriBold);
+        pdf.addFont("Amiri-bold.ttf", "Amiri", "bold");
+        pdf.addFileToVFS("Amiri-italic.ttf", AmiriItalic);
+        pdf.addFont("Amiri-italic.ttf", "Amiri", "italic");
+        pdf.addFileToVFS("Amiri-normal.ttf", AmiriNormal);
+        pdf.addFont("Amiri-normal.ttf", "Amiri", "normal");
+      } else {
+        pdf.addFileToVFS("Roboto-bolditalic.ttf", RobotoBoldItalic);
+        pdf.addFont("Roboto-bolditalic.ttf", "Roboto", "bolditalic");
+        pdf.addFileToVFS("Roboto-bold.ttf", RobotoBold);
+        pdf.addFont("Roboto-bold.ttf", "Roboto", "bold");
+        pdf.addFileToVFS("Roboto-italic.ttf", RobotoItalic);
+        pdf.addFont("Roboto-italic.ttf", "Roboto", "italic");
+        pdf.addFileToVFS("Roboto-normal.ttf", RobotoNormal);
+        pdf.addFont("Roboto-normal.ttf", "Roboto", "normal");
+      }
 
       ///
       const submission = TKDatasetModule.dataset.currentSubmission;
@@ -72,6 +122,7 @@ export default class TKSubmissionToPDF extends Vue {
             html2canvas: { scale: 0.75 }
           })
           .then(() => {
+            // PDF CONSTANTS
             const PAGE_WIDTH = 595;
             const SPACING = 10;
             const TOTAL_SPACING_COUNT = 2 + TKPDFInfosModule.columnCount - 1;
@@ -147,7 +198,8 @@ export default class TKSubmissionToPDF extends Vue {
               //   indexColumn = 0;
               // }
             }
-
+          })
+          .then(() => {
             const pageCount = pdf.getNumberOfPages(); //Total Page Number
             for (let i = 0; i < pageCount; i++) {
               const pageCurrent = i + 1;
@@ -160,9 +212,9 @@ export default class TKSubmissionToPDF extends Vue {
                 pdf.internal.pageSize.height - 10
               );
             }
-
-            const pdfDocument = pdf.output("bloburi");
-            window.open(pdfDocument.toString(), "_blank");
+          })
+          .then(() => {
+            pdf.save(this.generateName());
             this.$emit("close-dialog");
           });
       });
@@ -313,6 +365,7 @@ export default class TKSubmissionToPDF extends Vue {
           }
         ]
       ],
+      styles: { font: this.fontFromLocale },
       body: body,
 
       // Position in the document
@@ -382,5 +435,9 @@ export default class TKSubmissionToPDF extends Vue {
   flex-flow: column nowrap;
   row-gap: 3mm;
   overflow: hidden;
+  font-family: "Roboto";
+}
+.pdf-document-content--arabic {
+  font-family: "Amiri";
 }
 </style>
