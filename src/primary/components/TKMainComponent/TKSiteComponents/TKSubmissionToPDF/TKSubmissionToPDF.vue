@@ -66,6 +66,9 @@ export default class TKSubmissionToPDF extends Vue {
   get fontFromLocale() {
     return this.isLocaleArabic ? "Amiri" : "Roboto";
   }
+  get alignmentFromLocale() {
+    return this.isLocaleArabic ? "right" : "left";
+  }
 
   generateName(): string {
     return `${TKDatasetModule.dataset.currentSite?.name} - ${TKDatasetModule.dataset.currentSubmission?.date}`;
@@ -88,7 +91,6 @@ export default class TKSubmissionToPDF extends Vue {
         format: "a4",
         compress: true
       });
-      pdf.setR2L(this.isLocaleArabic);
 
       if (this.isLocaleArabic) {
         pdf.addFileToVFS("Amiri-bolditalic.ttf", AmiriBoldItalic);
@@ -225,7 +227,7 @@ export default class TKSubmissionToPDF extends Vue {
     return {
       content: TKGetLocalValue(label, this.$i18n.locale),
       styles: {
-        halign: "left",
+        halign: this.alignmentFromLocale,
         fontSize: 7,
         cellPadding: {
           top: 5
@@ -253,7 +255,7 @@ export default class TKSubmissionToPDF extends Vue {
     return {
       content: TKGetLocalValue(answerLabel, this.$i18n.locale),
       styles: {
-        halign: "left",
+        halign: this.alignmentFromLocale,
         textColor: color,
         fontSize: 7,
         fontStyle: "bold",
@@ -282,6 +284,7 @@ export default class TKSubmissionToPDF extends Vue {
       (iconProps.width / iconProps.height) * iconDisplayHeight;
     const iconDisplayX = iconContainerWidth / 2.0 - iconDisplayWidth / 2.0;
     const iconDisplayY = headerHeight / 2.0 - iconDisplayHeight / 2.0;
+    const isLocaleArabic = this.isLocaleArabic;
 
     const body = [];
 
@@ -353,8 +356,10 @@ export default class TKSubmissionToPDF extends Vue {
             content: TKGetLocalValue(thematic.nameLabel, this.$i18n.locale),
             styles: {
               valign: "middle",
-              halign: "left",
-              cellPadding: { left: iconContainerWidth },
+              halign: this.alignmentFromLocale,
+              cellPadding: this.isLocaleArabic
+                ? { right: iconContainerWidth }
+                : { left: iconContainerWidth },
               fillColor: TKColors.BACKGROUND,
               textColor: TKColors.DARK_GREY,
               lineColor: TKColors.DARK_GREY,
@@ -376,18 +381,23 @@ export default class TKSubmissionToPDF extends Vue {
       // Style
       theme: "plain",
 
-      // Thematic logo inside the header
       didDrawCell: function(data) {
+        // Thematic logo inside the header
         if (data.row.section === "head") {
+          const iconDisplayStartX = isLocaleArabic
+            ? data.cell.width - iconContainerWidth + iconDisplayX
+            : iconDisplayX;
           pdf.addImage(
             iconURL,
             "PNG",
-            data.cell.x + iconDisplayX,
+            data.cell.x + iconDisplayStartX,
             data.cell.y + iconDisplayY,
             iconDisplayWidth,
             iconDisplayHeight
           );
-        } else {
+        }
+        // Insert charts as png
+        else {
           if ((data.row.raw as RowInput).length === 1) {
             if (charts[data.row.index]) {
               const width = charts[data.row.index].width;
