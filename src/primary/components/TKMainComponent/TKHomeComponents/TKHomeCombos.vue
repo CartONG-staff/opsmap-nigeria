@@ -158,8 +158,6 @@ export default class TKHomeCombos extends Vue {
   }
 
   get additionalFilters(): TKAdditionalFilter[] {
-    console.log("hop hop hop ");
-    console.log(this.dataset.additionalFilters);
     return this.dataset.additionalFilters;
   }
 
