@@ -231,7 +231,7 @@ export async function TKReadGeneralConfiguration(
   // Return final json
   // ////////////////////////////////////////////////////////////////////////////
 
-  console.log(json);
+  console.info(json);
 
   return json;
 }
