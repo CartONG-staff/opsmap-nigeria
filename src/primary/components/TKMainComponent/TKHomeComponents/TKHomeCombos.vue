@@ -80,6 +80,8 @@
               :value="filter.filterValues"
               @input="additionalFilterChanged(filter, $event)"
               :item-text="item => getLocalValue(item)"
+              return-object
+              multiple
             ></v-autocomplete>
           </div>
         </template>

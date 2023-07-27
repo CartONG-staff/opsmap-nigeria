@@ -35,7 +35,7 @@ TKReadGeneralConfiguration(
 
   const i18n = new VueI18n({
     locale: TKConfigurationModule.configuration.locale.default,
-    fallbackLocale: "en",
+    fallbackLocale: TKConfigurationModule.configuration.locale.default,
     messages: messages
   });
 

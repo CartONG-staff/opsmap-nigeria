@@ -8,6 +8,7 @@ import { PEOPLE_COUNT_LABEL, SITE_COUNT_LABEL } from "./TKIndicatorLabels";
 import { TKSite } from "./TKSite";
 import { TKSubmissionEntryType } from "./TKSubmissionEntry";
 import { TKSurvey } from "./TKSurvey";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 export enum TKIndicatorType {
   STANDARD = "standard",
@@ -43,23 +44,31 @@ export function TKIndicatorDefault(ref: TKFDFIndicator): TKIndicator {
       return {
         type: TKIndicatorType.OCCUPATION,
         valueNumber: -1,
-        valueYesNoLabel: { en: "-" },
+        valueYesNoLabel: {
+          [TKConfigurationModule.configuration.locale.default]: "-"
+        },
         nameLabel: ref.name,
-        valueLabel: { en: "-" },
+        valueLabel: {
+          [TKConfigurationModule.configuration.locale.default]: "-"
+        },
         iconOchaName: ref.iconOchaName
       };
     case TKFDFIndicatorType.SITE_COUNT:
       return {
         type: TKIndicatorType.STANDARD,
         nameLabel: SITE_COUNT_LABEL,
-        valueLabel: { en: "-" },
+        valueLabel: {
+          [TKConfigurationModule.configuration.locale.default]: "-"
+        },
         iconOchaName: SITE_COUNT_ICON
       };
     case TKFDFIndicatorType.PEOPLE_COUNT:
       return {
         type: TKIndicatorType.STANDARD,
         nameLabel: PEOPLE_COUNT_LABEL,
-        valueLabel: { en: "-" },
+        valueLabel: {
+          [TKConfigurationModule.configuration.locale.default]: "-"
+        },
         iconOchaName: PEOPLE_COUNT_ICON
       };
 
@@ -70,7 +79,9 @@ export function TKIndicatorDefault(ref: TKFDFIndicator): TKIndicator {
       return {
         type: TKIndicatorType.STANDARD,
         nameLabel: ref.name,
-        valueLabel: { en: "-" },
+        valueLabel: {
+          [TKConfigurationModule.configuration.locale.default]: "-"
+        },
         iconOchaName: ref.iconOchaName
       };
   }
@@ -90,7 +101,9 @@ export function computeAreaIndicator(
       type: TKIndicatorType.STANDARD,
       nameLabel: SITE_COUNT_LABEL,
       valueLabel: {
-        en: String(sites.length)
+        [TKConfigurationModule.configuration.locale.default]: String(
+          sites.length
+        )
       },
       iconOchaName: SITE_COUNT_ICON
     };
@@ -108,7 +121,9 @@ export function computeAreaIndicator(
         item.type === TKSubmissionEntryType.TEXT &&
         item.answerLabel
       ) {
-        results.push(item.answerLabel.en);
+        results.push(
+          item.answerLabel[TKConfigurationModule.configuration.locale.default]
+        );
       }
     }
   }
@@ -138,7 +153,9 @@ export function computeAreaIndicator(
     return {
       type: TKIndicatorType.STANDARD,
       nameLabel: PEOPLE_COUNT_LABEL,
-      valueLabel: { en: result },
+      valueLabel: {
+        [TKConfigurationModule.configuration.locale.default]: result
+      },
       iconOchaName: PEOPLE_COUNT_ICON
     };
   }
@@ -147,7 +164,7 @@ export function computeAreaIndicator(
     type: TKIndicatorType.STANDARD,
     iconOchaName: descr.iconOchaName,
     nameLabel: descr.name,
-    valueLabel: { en: result }
+    valueLabel: { [TKConfigurationModule.configuration.locale.default]: result }
   };
 }
 

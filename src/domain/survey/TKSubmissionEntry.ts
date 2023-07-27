@@ -8,6 +8,7 @@ import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKLabel } from "../utils/TKLabel";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
 import { TKFDFSubmissionRule } from "../fdf/TKFDFSubmissionsRules";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Entry abstract concept definition
@@ -156,7 +157,7 @@ export function TKCreateSubmissionEntryBullet(
       x = x.trim();
       return surveyConfiguration.answersLabels[x]
         ? surveyConfiguration.answersLabels[x]
-        : { en: x };
+        : { [TKConfigurationModule.configuration.locale.default]: x };
     });
   }
 
@@ -236,7 +237,7 @@ export function TKCreateSubmissionEntryList(
     correctedValue =
       isAnswered && surveyConfiguration.answersLabels[value]
         ? surveyConfiguration.answersLabels[value]
-        : { en: value };
+        : { [TKConfigurationModule.configuration.locale.default]: value };
   }
 
   if (
@@ -288,7 +289,7 @@ export function TKCreateSubmissionEntryText(
   const correctedValue =
     isAnswered && surveyConfiguration.answersLabels[value]
       ? surveyConfiguration.answersLabels[value]
-      : { en: value };
+      : { [TKConfigurationModule.configuration.locale.default]: value };
 
   if (
     surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName &&

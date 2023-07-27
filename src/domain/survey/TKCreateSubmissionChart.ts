@@ -10,6 +10,7 @@ import {
 import { TKLabel } from "../utils/TKLabel";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
 import { TKSubmissionEntries } from "./TKSubmissionEntries";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 export type TKChartData = {
   id: string;
@@ -53,7 +54,7 @@ function applyOptions(
     for (const vote in votes) {
       chartDataLabeled.data.push({
         field: surveyConfiguration.answersLabels[vote] ?? {
-          en: vote
+          [TKConfigurationModule.configuration.locale.default]: vote
         },
         value: String(votes[vote]),
         type: "string"
@@ -70,7 +71,7 @@ function applyOptions(
         value: item.value,
         type: item.type,
         field: surveyConfiguration.fieldsLabels[item.field] ?? {
-          en: item.field
+          [TKConfigurationModule.configuration.locale.default]: item.field
         }
       };
     });

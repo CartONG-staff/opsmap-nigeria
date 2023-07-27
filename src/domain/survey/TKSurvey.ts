@@ -115,16 +115,18 @@ export function TKCreateSurvey(
 
         managedBy: submission[fdf.spatial.siteFields.manageBy]
           ? fdf.answersLabels[submission[fdf.spatial.siteFields.manageBy]] ?? {
-              en: submission[fdf.spatial.siteFields.manageBy]
+              [TKConfigurationModule.configuration.locale.default]:
+                submission[fdf.spatial.siteFields.manageBy]
             }
           : fdf.spatial.siteFields.manageByAlt &&
             submission[fdf.spatial.siteFields.manageByAlt]
           ? fdf.answersLabels[
               submission[fdf.spatial.siteFields.manageByAlt]
             ] ?? {
-              en: submission[fdf.spatial.siteFields.manageByAlt]
+              [TKConfigurationModule.configuration.locale.default]:
+                submission[fdf.spatial.siteFields.manageByAlt]
             }
-          : { en: "-" },
+          : { [TKConfigurationModule.configuration.locale.default]: "-" },
         submissions: [computedSubmission],
         coordinates: {
           lat: DEFAULT_SITE_COORDINATES.lat,

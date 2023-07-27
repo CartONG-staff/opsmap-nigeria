@@ -67,8 +67,14 @@ function computeChartRadarScore(chart: TKSubmissionEntryRadar): number {
 function computeTextScore(text: TKSubmissionEntryText): number {
   const AVERAGE_CHAR_COUNT_PER_LINE = 90;
   return Math.ceil(
-    (TKGetLocalValue(text.fieldLabel, "en").length +
-      TKGetLocalValue(text.answerLabel, "en").length) /
+    (TKGetLocalValue(
+      text.fieldLabel,
+      TKConfigurationModule.configuration.locale.default
+    ).length +
+      TKGetLocalValue(
+        text.answerLabel,
+        TKConfigurationModule.configuration.locale.default
+      ).length) /
       AVERAGE_CHAR_COUNT_PER_LINE
   );
 }

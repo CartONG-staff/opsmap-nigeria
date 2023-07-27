@@ -116,7 +116,7 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
       this.manageBy = TKGetLocalValue(
         this.dataset.currentSite
           ? this.dataset.currentSite?.managedBy
-          : { en: "-" },
+          : { [TKConfigurationModule.configuration.locale.default]: "-" },
         this.$root.$i18n.locale
       );
 

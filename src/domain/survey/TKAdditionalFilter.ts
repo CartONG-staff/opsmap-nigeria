@@ -1,3 +1,4 @@
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import { TKGetLocalValue, TKLabel } from "../utils/TKLabel";
 import { TKSite } from "./TKSite";
 import { TKSubmissionEntryType } from "./TKSubmissionEntry";
@@ -29,7 +30,10 @@ export function computeAdditionalFilterCandidates(
       if (entry.type !== TKSubmissionEntryType.TEXT) {
         continue;
       }
-      const key = TKGetLocalValue(entry.answerLabel, "en");
+      const key = TKGetLocalValue(
+        entry.answerLabel,
+        TKConfigurationModule.configuration.locale.default
+      );
       if (!labelsUnique.includes(key)) {
         labelsUnique.push(key);
         labels.push(entry.answerLabel);
@@ -53,11 +57,19 @@ export function applyAdditionalFilter(
       return false;
     }
 
-    const answerInEnglish = TKGetLocalValue(entry.answerLabel, "en");
+    const answerInDefaultLocale = TKGetLocalValue(
+      entry.answerLabel,
+      TKConfigurationModule.configuration.locale.default
+    );
     if (
       !filter.filterValues
-        .map(value => TKGetLocalValue(value, "en"))
-        .includes(answerInEnglish)
+        .map(value =>
+          TKGetLocalValue(
+            value,
+            TKConfigurationModule.configuration.locale.default
+          )
+        )
+        .includes(answerInDefaultLocale)
     ) {
       return false;
     }

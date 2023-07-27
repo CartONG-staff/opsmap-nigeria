@@ -115,6 +115,7 @@ import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKSurveyAnonymousType } from "@/domain/survey/TKSurvey";
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Component, Vue, Watch } from "vue-property-decorator";
 
@@ -157,11 +158,11 @@ export default class TKSiteInfos extends Vue {
   onSubmissionChange() {
     this.manageByLabel = this.dataset.currentSite
       ? this.dataset.currentSite.managedBy
-      : { en: "-" };
+      : { [TKConfigurationModule.configuration.locale.default]: "-" };
 
     if (this.dataset && this.dataset.currentSurvey) {
       this.manageByUrl = this.dataset.currentSurvey.fdf.urls[
-        this.manageByLabel["en"]
+        this.manageByLabel[TKConfigurationModule.configuration.locale.default]
       ];
     } else {
       this.manageByUrl = "";

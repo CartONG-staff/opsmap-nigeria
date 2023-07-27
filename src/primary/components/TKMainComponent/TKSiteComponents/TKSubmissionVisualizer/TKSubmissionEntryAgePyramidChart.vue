@@ -19,6 +19,7 @@ import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
 import { TKColors } from "@/domain/utils/TKColors";
 import { v4 } from "uuid";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
 
 Chart.register(
@@ -196,7 +197,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   generateLabels(): Array<string> {
     if (this.entry) {
       return this.entry.femalesLabels.map(item =>
-        item.en
+        item[TKConfigurationModule.configuration.locale.default]
           .replace("Females ", "")
           .replace("(", "")
           .replace(")", "")

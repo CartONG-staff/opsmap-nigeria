@@ -32,6 +32,7 @@ import { TKFDFIndicatorSite, TKFDFIndicatorType } from "../fdf/TKFDFIndicators";
 import { evaluate, round } from "mathjs";
 import { TKSurveyOptions } from "./TKSurvey";
 import { TKSubmissionEntries } from "./TKSubmissionEntries";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 // ////////////////////////////////////////////////////////////////////////////
 //  Submission concept definition
@@ -57,9 +58,15 @@ function getValueForIndicator(
     entry &&
     entry.type === TKSubmissionEntryType.TEXT &&
     entry.answerLabel &&
-    !isNaN(parseFloat(entry.answerLabel.en))
+    !isNaN(
+      parseFloat(
+        entry.answerLabel[TKConfigurationModule.configuration.locale.default]
+      )
+    )
   ) {
-    return Number(entry.answerLabel.en);
+    return Number(
+      entry.answerLabel[TKConfigurationModule.configuration.locale.default]
+    );
   }
 
   return undefined;
@@ -73,7 +80,7 @@ function getLabelForIndicator(
   if (entry && entry.type === TKSubmissionEntryType.TEXT && entry.answerLabel) {
     return entry.answerLabel;
   }
-  return { en: "-" };
+  return { [TKConfigurationModule.configuration.locale.default]: "-" };
 }
 
 function computeSubmissionIndicator(
@@ -121,9 +128,13 @@ function computeSubmissionIndicator(
         type: TKIndicatorType.OCCUPATION,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { en: "-" },
+        valueLabel: {
+          [TKConfigurationModule.configuration.locale.default]: "-"
+        },
         valueNumber: -1,
-        valueYesNoLabel: { en: "-" }
+        valueYesNoLabel: {
+          [TKConfigurationModule.configuration.locale.default]: "-"
+        }
       };
     }
   } else {
@@ -141,7 +152,9 @@ function computeSubmissionIndicator(
         type: TKIndicatorType.STANDARD,
         iconOchaName: descr.iconOchaName,
         nameLabel: descr.name,
-        valueLabel: { en: result }
+        valueLabel: {
+          [TKConfigurationModule.configuration.locale.default]: result
+        }
       };
     }
     const label = getLabelForIndicator(data, descr.entryCode);

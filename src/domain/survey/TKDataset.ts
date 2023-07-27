@@ -116,7 +116,12 @@ export class TKDataset {
       this._lastModification = `additionalfilter:${
         filter.description
       }-${filter.filterValues
-        .map(value => TKGetLocalValue(value, "en"))
+        .map(value =>
+          TKGetLocalValue(
+            value,
+            TKConfigurationModule.configuration.locale.default
+          )
+        )
         .join("-")}}`;
       this.updateFiltering();
     }

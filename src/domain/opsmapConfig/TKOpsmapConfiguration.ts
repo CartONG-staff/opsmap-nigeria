@@ -89,20 +89,20 @@ export async function TKReadGeneralConfiguration(
 
   // ////////////////////////////////////////////////////////////////////////////
   // Locale
-  // Always has english, is never empty.
   if (!json.locale) {
     json.locale = {
-      locales: ["en"],
+      locales: [],
       default: "en",
       override: {}
     };
   }
-  if (!json.locale.locales.includes("en")) {
-    json.locale.locales.push("en");
-  }
 
   json.locale.default = json.locale.default ?? "en";
   json.locale.override = json.locale.override ?? {};
+  // Add default to locale if missing
+  if (!json.locale.locales.includes(json.locale.default)) {
+    json.locale.locales.push(json.locale.default);
+  }
 
   // ////////////////////////////////////////////////////////////////////////////
   // Admin level
