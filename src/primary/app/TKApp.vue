@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <div v-if="showDemoBanner" class="tk-demo-banner">
-      {{ $t("disclaimer.text") }}
+      {{
+        $t("disclaimer.text") +
+          `  ---  app: ${appVersion},  data: ${appConfig.version}`
+      }}
     </div>
     <v-main>
       <div class="tk-main">
@@ -35,6 +38,11 @@ import { TKCreateDataset } from "@/domain/survey/TKCreateDataset";
   }
 })
 export default class TKApp extends Vue {
+  appVersion = process.env.VUE_APP_APP_VERSION;
+
+  get appConfig() {
+    return TKConfigurationModule.configuration;
+  }
   get showDemoBanner(): boolean {
     return TKConfigurationModule.configuration.options.showDemoBanner;
   }

@@ -66,6 +66,7 @@ export interface TKOpsmapSpatialConfiguration {
 // ////////////////////////////////////////////////////////////////////////////
 
 export interface TKOpsmapConfiguration {
+  version: string;
   readonly textContent: TKTextContent;
   locale: TKLocaleDescription;
   readonly spatial: TKOpsmapSpatialConfiguration;
@@ -86,6 +87,10 @@ export async function TKReadGeneralConfiguration(
   const json: TKOpsmapConfiguration = await fetch(configFileName, {
     cache: "no-store"
   }).then(response => response.json());
+
+  // ////////////////////////////////////////////////////////////////////////////
+  // version
+  json.version = json.version ?? process.env.VUE_APP_APP_VERSION;
 
   // ////////////////////////////////////////////////////////////////////////////
   // Locale

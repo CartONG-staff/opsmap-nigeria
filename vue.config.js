@@ -1,3 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { gitDescribeSync } = require("git-describe");
+process.env.VUE_APP_APP_VERSION = gitDescribeSync().tag;
+
 module.exports = {
   configureWebpack: {
     output: {

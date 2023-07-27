@@ -14,7 +14,11 @@
         <div class="tk-footer-disclaimer-text">
           <p>
             <span
-              v-html="$t('footer.moreInfosText', { version: version })"
+              v-html="
+                $t('footer.moreInfosText', {
+                  version: `app: ${appVersion},  data: ${appConfig.version}`
+                })
+              "
             ></span>
           </p>
         </div>
@@ -41,7 +45,7 @@ import TKConfigurationModule from "@/store/modules/configuration/TKConfiguration
   }
 })
 export default class TKFooter extends Vue {
-  version = process.env.VUE_APP_VERSION;
+  appVersion = process.env.VUE_APP_APP_VERSION;
 
   get appConfig() {
     return TKConfigurationModule.configuration;
