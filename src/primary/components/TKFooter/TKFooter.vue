@@ -26,6 +26,7 @@
     </transition>
     <div class="tk-footer-logos">
       <TKFooterLogoItem
+        class="tk-footer-logos-item"
         v-for="(item, key) in appConfig.footerLogos"
         :key="key"
         :logoGroup="item"
@@ -101,8 +102,12 @@ export default class TKFooter extends Vue {
 .tk-footer-logos {
   display: flex;
   flex-flow: row nowrap;
-  padding-bottom: var(--padding-large);
-  padding-top: var(--padding-large);
+  padding: var(--padding-large);
   justify-content: space-evenly;
+}
+
+.tk-footer-logos-item {
+  flex-grow: 2;
+  min-width: 15%;
 }
 </style>
