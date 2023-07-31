@@ -30,7 +30,7 @@
                 v-bind="attrs"
                 v-on="on"
                 class="tk-trafficlight"
-                :style="trafficLightColor"
+                :style="trafficLight"
               ></div>
             </template>
             <span>{{ $t(trafficLightCategory) }}</span>
@@ -60,7 +60,7 @@ export default class TKSubmissionentryView extends Vue {
   answers: Array<string> = [];
   displayTrafficLight = false;
   trafficLightCategory = "";
-  trafficLightColor = {
+  trafficLight = {
     backgroundColor: "none"
   };
 
@@ -70,13 +70,11 @@ export default class TKSubmissionentryView extends Vue {
 
   @Watch("entry", { immediate: true })
   onentryChanged() {
-    this.trafficLightColor.backgroundColor = getColorFromValue(
-      this.entry.trafficLightColor
+    this.trafficLight.backgroundColor = getColorFromValue(
+      this.entry.trafficLight
     );
-    this.trafficLightCategory = getTradIndexFromValue(
-      this.entry.trafficLightColor
-    );
-    this.displayTrafficLight = this.entry.trafficLight && this.entry.isAnswered;
+    this.trafficLightCategory = getTradIndexFromValue(this.entry.trafficLight);
+    this.entry.trafficLight ? this.entry.isAnswered : false;
     this.handleLocale();
   }
 

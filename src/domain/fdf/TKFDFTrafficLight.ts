@@ -20,8 +20,13 @@ export enum TKTrafficLightValues {
   UNDEFINED = "grey"
 }
 
-export function getColorFromValue(trafficLightColor: TKTrafficLightValues) {
-  switch (trafficLightColor) {
+export function getColorFromValue(
+  trafficLight: TKTrafficLightValues | undefined
+) {
+  if (!trafficLight) {
+    return TKColors.TRAFFICLIGHT_UNDEFINED;
+  }
+  switch (trafficLight) {
     case TKTrafficLightValues.OK:
       return TKColors.TRAFFICLIGHT_OK;
     case TKTrafficLightValues.CAUTION:
@@ -37,8 +42,13 @@ export function getColorFromValue(trafficLightColor: TKTrafficLightValues) {
   }
 }
 
-export function getTradIndexFromValue(trafficLightColor: TKTrafficLightValues) {
-  switch (trafficLightColor) {
+export function getTradIndexFromValue(
+  trafficLight: TKTrafficLightValues | undefined
+) {
+  if (!trafficLight) {
+    return TKColors.TRAFFICLIGHT_UNDEFINED;
+  }
+  switch (trafficLight) {
     case TKTrafficLightValues.OK:
       return "trafficlight.ok";
     case TKTrafficLightValues.CAUTION:
@@ -60,7 +70,9 @@ export function getTradIndexFromValue(trafficLightColor: TKTrafficLightValues) {
 export function getMaxRankValue(): number {
   return 5;
 }
-export function getRankValue(trafficLight: TKTrafficLightValues): number {
+export function getRankValue(
+  trafficLight: TKTrafficLightValues | undefined
+): number {
   // rank:
   //       CRITICAL = 0
   //       DANGER = 1
@@ -68,6 +80,9 @@ export function getRankValue(trafficLight: TKTrafficLightValues): number {
   //       CAUTION = 3
   //       OK = 4
   //       UNDEFINED = 5
+  if (!trafficLight) {
+    return getMaxRankValue();
+  }
   switch (trafficLight) {
     case TKTrafficLightValues.CRITICAL:
       return 0;
@@ -80,10 +95,9 @@ export function getRankValue(trafficLight: TKTrafficLightValues): number {
     case TKTrafficLightValues.OK:
       return 4;
     case TKTrafficLightValues.UNDEFINED:
+    default:
       return 5;
   }
-
-  return getMaxRankValue();
 }
 
 export interface TKFDFTrafficLightGrouped {

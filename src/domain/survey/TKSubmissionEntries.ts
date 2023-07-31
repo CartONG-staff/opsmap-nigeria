@@ -29,13 +29,9 @@ function sortEntriesByTrafficLight(
   return [...entries].sort(
     (a: TKSubmissionEntry, b: TKSubmissionEntry): number => {
       const rankA =
-        "trafficLightColor" in a
-          ? getRankValue(a.trafficLightColor)
-          : getMaxRankValue();
+        "trafficLight" in a ? getRankValue(a.trafficLight) : getMaxRankValue();
       const rankB =
-        "trafficLightColor" in b
-          ? getRankValue(b.trafficLightColor)
-          : getMaxRankValue();
+        "trafficLight" in b ? getRankValue(b.trafficLight) : getMaxRankValue();
       if (rankA < rankB) {
         return -1;
       }

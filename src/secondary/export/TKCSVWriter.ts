@@ -37,9 +37,7 @@ function computeCurrentSiteCSVContent(
             ";",
             ","
           );
-          const trafficlight = entry.trafficLight
-            ? entry.trafficLightColor
-            : "";
+          const trafficlight = entry.trafficLight ? entry.trafficLight : "";
 
           rows.push([thematicName, itemName, answer, trafficlight]);
         } else if (entry.type === TKSubmissionEntryType.BULLET) {
@@ -47,9 +45,7 @@ function computeCurrentSiteCSVContent(
           const answer = entry.answersLabels
             .map(label => TKGetLocalValue(label, locale).replaceAll(";", ","))
             .join(", ");
-          const trafficlight = entry.trafficLight
-            ? entry.trafficLightColor
-            : "";
+          const trafficlight = entry.trafficLight ? entry.trafficLight : "";
           rows.push([thematicName, itemName, answer, trafficlight]);
         } else if (entry.type === TKSubmissionEntryType.CHART_PYRAMID) {
           const itemName = "age_pyramid";

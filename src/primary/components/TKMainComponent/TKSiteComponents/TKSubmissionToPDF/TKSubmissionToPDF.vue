@@ -27,10 +27,7 @@ import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { IconPosition, TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
-import {
-  getColorFromValue,
-  TKTrafficLightValues
-} from "@/domain/fdf/TKFDFTrafficLight";
+import { getColorFromValue } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
@@ -239,10 +236,6 @@ export default class TKSubmissionToPDF extends Vue {
     };
   }
 
-  getAnswerColor(trafficLightColor: TKTrafficLightValues): TKColors {
-    return getColorFromValue(trafficLightColor);
-  }
-
   getAnswer(answerLabel: TKLabel, color: TKColors): CellDef {
     return {
       content: TKGetLocalValue(answerLabel, this.$i18n.locale),
@@ -297,14 +290,14 @@ export default class TKSubmissionToPDF extends Vue {
         const field = this.getField(entry.fieldLabel);
         body.push([field]);
 
-        const color = this.getAnswerColor(entry.trafficLightColor);
+        const color = getColorFromValue(entry.trafficLight);
         const answer = this.getAnswer(entry.answerLabel, color);
         body.push([answer]);
       } else if (entry.type === TKSubmissionEntryType.BULLET) {
         const field = this.getField(entry.fieldLabel);
         body.push([field]);
 
-        const color = this.getAnswerColor(entry.trafficLightColor);
+        const color = getColorFromValue(entry.trafficLight);
         for (const answerLabel of entry.answersLabels) {
           const answer = this.getAnswer(answerLabel, color);
           body.push([answer]);

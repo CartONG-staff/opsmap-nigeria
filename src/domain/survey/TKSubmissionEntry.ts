@@ -28,8 +28,7 @@ export interface TKSubmissionEntryText {
   field: string;
   fieldLabel: TKLabel;
   answerLabel: TKLabel;
-  trafficLight: boolean;
-  trafficLightColor: TKTrafficLightValues;
+  trafficLight?: TKTrafficLightValues;
   isAnswered: boolean;
 }
 
@@ -39,8 +38,7 @@ export interface TKSubmissionEntryBullet {
   field: string;
   fieldLabel: TKLabel;
   answersLabels: TKLabel[];
-  trafficLight: boolean;
-  trafficLightColor: TKTrafficLightValues;
+  trafficLight?: TKTrafficLightValues;
   isAnswered: boolean;
 }
 export interface TKSubmissionEntryAgePyramid {
@@ -184,9 +182,6 @@ export function TKCreateSubmissionEntryBullet(
     isAnswered: isAnswered,
     trafficLight:
       surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
-        .length > 0,
-    trafficLightColor:
-      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
         .length > 0
         ? getTrafficLightColor(
             value,
@@ -195,7 +190,7 @@ export function TKCreateSubmissionEntryBullet(
                 .trafficLightName
             ]
           )
-        : TKTrafficLightValues.UNDEFINED
+        : undefined
   };
 }
 
@@ -263,9 +258,6 @@ export function TKCreateSubmissionEntryList(
     isAnswered: isAnswered,
     trafficLight:
       surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
-        .length > 0,
-    trafficLightColor:
-      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
         .length > 0
         ? getTrafficLightColor(
             value,
@@ -274,7 +266,7 @@ export function TKCreateSubmissionEntryList(
                 .trafficLightName
             ]
           )
-        : TKTrafficLightValues.UNDEFINED
+        : undefined
   };
 }
 
@@ -314,9 +306,6 @@ export function TKCreateSubmissionEntryText(
     isAnswered: isAnswered,
     trafficLight:
       surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
-        .length > 0,
-    trafficLightColor:
-      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
         .length > 0
         ? getTrafficLightColor(
             value,
@@ -325,6 +314,6 @@ export function TKCreateSubmissionEntryText(
                 .trafficLightName
             ]
           )
-        : TKTrafficLightValues.UNDEFINED
+        : undefined
   };
 }
