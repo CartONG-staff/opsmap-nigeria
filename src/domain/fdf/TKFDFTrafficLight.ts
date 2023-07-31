@@ -2,6 +2,8 @@
 // TrafficLights collection datatype
 // ////////////////////////////////////////////////////////////////////////////
 
+import { TKColors } from "../utils/TKColors";
+
 export enum TKFDFTrafficLightTypes {
   STRING = "string",
   MATH = "math",
@@ -11,10 +13,77 @@ export enum TKFDFTrafficLightTypes {
 
 export enum TKTrafficLightValues {
   OK = "green",
-  WARNING = "yellow",
-  DANGER = "orange",
-  CRITICAL = "red",
-  UNDEFINED = "purple"
+  CAUTION = "yellow",
+  WARNING = "orange",
+  DANGER = "red",
+  CRITICAL = "darkred",
+  UNDEFINED = "grey"
+}
+
+export function getColorFromValue(trafficLightColor: TKTrafficLightValues) {
+  switch (trafficLightColor) {
+    case TKTrafficLightValues.OK:
+      return TKColors.TRAFFICLIGHT_OK;
+    case TKTrafficLightValues.CAUTION:
+      return TKColors.TRAFFICLIGHT_CAUTION;
+    case TKTrafficLightValues.WARNING:
+      return TKColors.TRAFFICLIGHT_WARNING;
+    case TKTrafficLightValues.DANGER:
+      return TKColors.TRAFFICLIGHT_DANGER;
+    case TKTrafficLightValues.CRITICAL:
+      return TKColors.TRAFFICLIGHT_CRITICAL;
+    default:
+      return TKColors.TRAFFICLIGHT_UNDEFINED;
+  }
+}
+
+export function getTradIndexFromValue(trafficLightColor: TKTrafficLightValues) {
+  switch (trafficLightColor) {
+    case TKTrafficLightValues.OK:
+      return "trafficlight.ok";
+    case TKTrafficLightValues.CAUTION:
+      return "trafficlight.caution";
+    case TKTrafficLightValues.WARNING:
+      return "trafficlight.warning";
+    case TKTrafficLightValues.DANGER:
+      return "trafficlight.danger";
+    case TKTrafficLightValues.CRITICAL:
+      return "trafficlight.critical";
+    default:
+      return "trafficlight.other";
+  }
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// helper:Sorting
+// ////////////////////////////////////////////////////////////////////////////
+export function getMaxRankValue(): number {
+  return 5;
+}
+export function getRankValue(trafficLight: TKTrafficLightValues): number {
+  // rank:
+  //       CRITICAL = 0
+  //       DANGER = 1
+  //       WARNING = 2
+  //       CAUTION = 3
+  //       OK = 4
+  //       UNDEFINED = 5
+  switch (trafficLight) {
+    case TKTrafficLightValues.CRITICAL:
+      return 0;
+    case TKTrafficLightValues.DANGER:
+      return 1;
+    case TKTrafficLightValues.WARNING:
+      return 2;
+    case TKTrafficLightValues.CAUTION:
+      return 3;
+    case TKTrafficLightValues.OK:
+      return 4;
+    case TKTrafficLightValues.UNDEFINED:
+      return 5;
+  }
+
+  return getMaxRankValue();
 }
 
 export interface TKFDFTrafficLightGrouped {

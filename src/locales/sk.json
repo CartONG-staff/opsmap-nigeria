@@ -25,6 +25,7 @@
     },
     "trafficlight": {
         "ok": "OK",
+        "caution": "opatrnosť",
         "warning": "Upozornenie",
         "danger": "Nebezpečenstvo",
         "critical": "Kritické",

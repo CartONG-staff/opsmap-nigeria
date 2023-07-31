@@ -25,7 +25,8 @@
     },
     "trafficlight": {
         "ok": "OK",
-        "warning": "Attention",
+        "caution": "Attention",
+        "warning": "Avertissement",
         "danger": "Danger",
         "critical": "Critique",
         "other": "Autre"

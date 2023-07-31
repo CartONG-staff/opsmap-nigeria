@@ -25,6 +25,7 @@
     },
     "trafficlight": {
         "ok": "ОК",
+        "caution": "предпазливост",
         "warning": "Предупреждение",
         "danger": "Опасност",
         "critical": "Критичен",

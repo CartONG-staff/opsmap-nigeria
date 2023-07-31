@@ -44,10 +44,12 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
+import {
+  getColorFromValue,
+  getTradIndexFromValue
+} from "@/domain/fdf/TKFDFTrafficLight";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKSubmissionEntryBullet } from "@/domain/survey/TKSubmissionEntry";
-import { TKColors } from "@/domain/utils/TKColors";
 
 @Component
 export default class TKSubmissionentryView extends Vue {
@@ -68,29 +70,12 @@ export default class TKSubmissionentryView extends Vue {
 
   @Watch("entry", { immediate: true })
   onentryChanged() {
-    switch (this.entry.trafficLightColor) {
-      case TKTrafficLightValues.OK:
-        this.trafficLightColor.backgroundColor = TKColors.TRAFFICLIGHT_OK;
-        this.trafficLightCategory = "trafficlight.ok";
-        break;
-      case TKTrafficLightValues.WARNING:
-        this.trafficLightColor.backgroundColor = TKColors.TRAFFICLIGHT_WARNING;
-        this.trafficLightCategory = "trafficlight.warning";
-        break;
-      case TKTrafficLightValues.DANGER:
-        this.trafficLightColor.backgroundColor = TKColors.TRAFFICLIGHT_DANGER;
-        this.trafficLightCategory = "trafficlight.danger";
-        break;
-      case TKTrafficLightValues.CRITICAL:
-        this.trafficLightColor.backgroundColor = TKColors.TRAFFICLIGHT_CRITICAL;
-        this.trafficLightCategory = "trafficlight.critical";
-        break;
-      default:
-        this.trafficLightColor.backgroundColor =
-          TKColors.TRAFFICLIGHT_UNDEFINED;
-        this.trafficLightCategory = "trafficlight.other";
-        break;
-    }
+    this.trafficLightColor.backgroundColor = getColorFromValue(
+      this.entry.trafficLightColor
+    );
+    this.trafficLightCategory = getTradIndexFromValue(
+      this.entry.trafficLightColor
+    );
     this.displayTrafficLight = this.entry.trafficLight && this.entry.isAnswered;
     this.handleLocale();
   }

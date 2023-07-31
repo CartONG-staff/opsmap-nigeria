@@ -1,5 +1,5 @@
 import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
-import { TKTrafficLightValues } from "../fdf/TKFDFTrafficLight";
+import { getMaxRankValue, getRankValue } from "../fdf/TKFDFTrafficLight";
 import { TKSubmissionEntry, TKSubmissionEntryType } from "./TKSubmissionEntry";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
 
@@ -23,41 +23,19 @@ export function getEntriesForThematic(
 // helper:Sorting
 // ////////////////////////////////////////////////////////////////////////////
 
-function getRankValue(entry: TKSubmissionEntry): number {
-  // rank:
-  //       CRITICAL = 0
-  //       DANGER = 1
-  //       WARNING = 2
-  //       OK = 3
-  //       UNDEFINED = 4
-  //       NOTL = 5
-  if (entry.type === TKSubmissionEntryType.TEXT) {
-    if (entry.trafficLight) {
-      switch (entry.trafficLightColor) {
-        case TKTrafficLightValues.CRITICAL:
-          return 0;
-        case TKTrafficLightValues.DANGER:
-          return 1;
-        case TKTrafficLightValues.WARNING:
-          return 2;
-        case TKTrafficLightValues.OK:
-          return 3;
-        case TKTrafficLightValues.UNDEFINED:
-          return 4;
-      }
-    }
-  }
-
-  return 5;
-}
-
 function sortEntriesByTrafficLight(
   entries: TKSubmissionEntry[]
 ): TKSubmissionEntry[] {
   return [...entries].sort(
     (a: TKSubmissionEntry, b: TKSubmissionEntry): number => {
-      const rankA = getRankValue(a);
-      const rankB = getRankValue(b);
+      const rankA =
+        "trafficLightColor" in a
+          ? getRankValue(a.trafficLightColor)
+          : getMaxRankValue();
+      const rankB =
+        "trafficLightColor" in b
+          ? getRankValue(b.trafficLightColor)
+          : getMaxRankValue();
       if (rankA < rankB) {
         return -1;
       }

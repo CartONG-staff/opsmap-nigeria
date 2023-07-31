@@ -25,6 +25,7 @@
     },
     "trafficlight": {
         "ok": "موافق",
+        "caution": "أنذر",
         "warning": "تحذير",
         "danger": "خطر",
         "critical": "حرج",

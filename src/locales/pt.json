@@ -28,6 +28,7 @@
     },
     "trafficlight": {
         "ok": "OK",
+        "caution": "Cuidado",
         "warning": "Aviso",
         "danger": "Perigo",
         "critical": "Crítico",

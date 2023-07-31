@@ -25,6 +25,7 @@
     },
     "trafficlight": {
         "ok": "OK",
+        "caution": "Prudență",
         "warning": "Avertisment",
         "danger": "Pericol",
         "critical": "Critic",

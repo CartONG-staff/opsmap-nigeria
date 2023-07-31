@@ -25,6 +25,7 @@
     },
     "trafficlight": {
         "ok": "OK",
+        "caution": "Dareenka",
         "warning": "Digniin",
         "danger": "Khatar",
         "critical": "Halis",

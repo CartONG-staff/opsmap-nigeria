@@ -27,7 +27,10 @@ import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { IconPosition, TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
-import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
+import {
+  getColorFromValue,
+  TKTrafficLightValues
+} from "@/domain/fdf/TKFDFTrafficLight";
 import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
@@ -237,18 +240,7 @@ export default class TKSubmissionToPDF extends Vue {
   }
 
   getAnswerColor(trafficLightColor: TKTrafficLightValues): TKColors {
-    switch (trafficLightColor) {
-      case TKTrafficLightValues.OK:
-        return TKColors.TRAFFICLIGHT_PDF_OK;
-      case TKTrafficLightValues.WARNING:
-        return TKColors.TRAFFICLIGHT_PDF_WARNING;
-      case TKTrafficLightValues.DANGER:
-        return TKColors.TRAFFICLIGHT_PDF_DANGER;
-      case TKTrafficLightValues.CRITICAL:
-        return TKColors.TRAFFICLIGHT_PDF_CRITICAL;
-      default:
-        return TKColors.TRAFFICLIGHT_PDF_UNDEFINED;
-    }
+    return getColorFromValue(trafficLightColor);
   }
 
   getAnswer(answerLabel: TKLabel, color: TKColors): CellDef {
