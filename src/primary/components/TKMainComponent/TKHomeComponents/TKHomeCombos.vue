@@ -47,6 +47,7 @@
             @input="currentAdminsChanged(level, $event)"
             :items="filteredAdminList[level]"
             :disabled="!filteredAdminList[level]"
+            :filter="filterAdmin"
             item-text="name"
             return-object
             clearable
@@ -106,6 +107,7 @@
               v-model="dataset.currentSite"
               :items="dataset.filteredTypedSitesList"
               :disabled="!dataset.filteredTypedSitesList.length"
+              :filter="filterSite"
               item-text="name"
               return-object
             ></v-autocomplete>
@@ -128,6 +130,7 @@
 import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKAdditionalFilter } from "@/domain/survey/TKAdditionalFilter";
 import { TKBoundaries } from "@/domain/survey/TKBoundaries";
+import { TKSite } from "@/domain/survey/TKSite";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
@@ -141,6 +144,19 @@ export default class TKHomeCombos extends Vue {
 
   getLocalValue(label: TKLabel) {
     return TKGetLocalValue(label, this.$i18n.locale);
+  }
+
+  filterAdmin(item: TKBoundaries, queryText: string): boolean {
+    return (
+      item.pcode.toLowerCase().includes(queryText.toLowerCase()) ||
+      item.name.toLowerCase().includes(queryText.toLowerCase())
+    );
+  }
+  filterSite(item: TKSite, queryText: string): boolean {
+    return (
+      item.id.toLowerCase().includes(queryText.toLowerCase()) ||
+      item.name.toLowerCase().includes(queryText.toLowerCase())
+    );
   }
 
   get dataset() {
