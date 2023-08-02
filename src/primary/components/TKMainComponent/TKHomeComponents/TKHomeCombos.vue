@@ -36,34 +36,6 @@
         >
       </v-tooltip>
 
-      <v-tooltip v-for="level in levels" :key="level" top>
-        <template v-slot:activator="{ on, attrs }">
-          <v-autocomplete
-            class="tk-autocomplete"
-            flat
-            dense
-            :label="$t(`infosAdmins.${level}`)"
-            :value="currentAdmins[level]"
-            @input="currentAdminsChanged(level, $event)"
-            :items="filteredAdminList[level]"
-            :disabled="!filteredAdminList[level]"
-            :filter="filterAdmin"
-            item-text="name"
-            return-object
-            clearable
-            v-bind="attrs"
-            v-on="on"
-          ></v-autocomplete>
-        </template>
-        <span
-          >{{ $t("selectText") }}
-          {{
-            $t(`infosAdmins.${level}`)
-              .toString()
-              .toLowerCase()
-          }}</span
-        >
-      </v-tooltip>
       <v-tooltip
         v-for="filter in additionalFilters"
         :key="filter.description.field"
@@ -95,6 +67,36 @@
           }}</span
         >
       </v-tooltip>
+
+      <v-tooltip v-for="level in levels" :key="level" top>
+        <template v-slot:activator="{ on, attrs }">
+          <v-autocomplete
+            class="tk-autocomplete"
+            flat
+            dense
+            :label="$t(`infosAdmins.${level}`)"
+            :value="currentAdmins[level]"
+            @input="currentAdminsChanged(level, $event)"
+            :items="filteredAdminList[level]"
+            :disabled="!filteredAdminList[level]"
+            :filter="filterAdmin"
+            item-text="name"
+            return-object
+            clearable
+            v-bind="attrs"
+            v-on="on"
+          ></v-autocomplete>
+        </template>
+        <span
+          >{{ $t("selectText") }}
+          {{
+            $t(`infosAdmins.${level}`)
+              .toString()
+              .toLowerCase()
+          }}</span
+        >
+      </v-tooltip>
+
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <div multiple v-on="on" v-bind="attrs">
