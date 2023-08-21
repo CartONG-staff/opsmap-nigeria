@@ -4,7 +4,6 @@ import {
   TKFDFIndicatorArea,
   TKFDFIndicatorType
 } from "@/domain/fdf/TKFDFIndicators";
-import { PEOPLE_COUNT_LABEL, SITE_COUNT_LABEL } from "./TKIndicatorLabels";
 import { TKSite } from "./TKSite";
 import { TKSubmissionEntryType } from "./TKSubmissionEntry";
 import { TKSurvey } from "./TKSurvey";
@@ -17,7 +16,7 @@ export enum TKIndicatorType {
 
 export interface TKIndicatorStandard {
   readonly type: TKIndicatorType.STANDARD;
-  readonly nameLabel: TKLabel;
+  readonly nameLabel: TKLabel | string;
   readonly valueLabel: TKLabel;
   readonly iconOchaName: string;
 }
@@ -56,7 +55,7 @@ export function TKIndicatorDefault(ref: TKFDFIndicator): TKIndicator {
     case TKFDFIndicatorType.SITE_COUNT:
       return {
         type: TKIndicatorType.STANDARD,
-        nameLabel: SITE_COUNT_LABEL,
+        nameLabel: "indicator.siteCount",
         valueLabel: {
           [TKConfigurationModule.configuration.locale.default]: "-"
         },
@@ -65,7 +64,7 @@ export function TKIndicatorDefault(ref: TKFDFIndicator): TKIndicator {
     case TKFDFIndicatorType.PEOPLE_COUNT:
       return {
         type: TKIndicatorType.STANDARD,
-        nameLabel: PEOPLE_COUNT_LABEL,
+        nameLabel: "indicator.peopleCount",
         valueLabel: {
           [TKConfigurationModule.configuration.locale.default]: "-"
         },
@@ -99,7 +98,7 @@ export function computeAreaIndicator(
   if (descr.type === TKFDFIndicatorType.SITE_COUNT) {
     return {
       type: TKIndicatorType.STANDARD,
-      nameLabel: SITE_COUNT_LABEL,
+      nameLabel: "indicator.siteCount",
       valueLabel: {
         [TKConfigurationModule.configuration.locale.default]: String(
           sites.length
@@ -152,7 +151,7 @@ export function computeAreaIndicator(
   if (descr.type === TKFDFIndicatorType.PEOPLE_COUNT) {
     return {
       type: TKIndicatorType.STANDARD,
-      nameLabel: PEOPLE_COUNT_LABEL,
+      nameLabel: "indicator.peopleCount",
       valueLabel: {
         [TKConfigurationModule.configuration.locale.default]: result
       },
