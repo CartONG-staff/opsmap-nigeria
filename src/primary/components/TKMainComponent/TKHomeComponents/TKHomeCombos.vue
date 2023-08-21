@@ -10,9 +10,9 @@
           }}
         </p>
       </transition>
-      <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-          <div multiple v-on="on" v-bind="attrs">
+      <div v-if="dataset.surveys.length > 1">
+        <v-tooltip top>
+          <template v-slot:activator="{ on, attrs }">
             <v-autocomplete
               class="tk-autocomplete"
               flat
@@ -21,21 +21,22 @@
               v-model="dataset.currentSurvey"
               :items="dataset.surveys"
               item-text="name"
-              :disabled="dataset.surveys.length < 2"
               return-object
+              multiple
+              v-on="on"
+              v-bind="attrs"
             ></v-autocomplete>
-          </div>
-        </template>
-        <span
-          >{{ $t("selectText") }}
-          {{
-            $t("survey")
-              .toString()
-              .toLowerCase()
-          }}</span
-        >
-      </v-tooltip>
-
+          </template>
+          <span
+            >{{ $t("selectText") }}
+            {{
+              $t("survey")
+                .toString()
+                .toLowerCase()
+            }}</span
+          >
+        </v-tooltip>
+      </div>
       <v-tooltip
         v-for="filter in additionalFilters"
         :key="filter.description.field"
@@ -60,11 +61,7 @@
         </template>
         <span
           >{{ $t("selectText") }}
-          {{
-            $t("infosSite")
-              .toString()
-              .toLowerCase()
-          }}</span
+          {{ getLocalValue(filter.description.name) }}</span
         >
       </v-tooltip>
 

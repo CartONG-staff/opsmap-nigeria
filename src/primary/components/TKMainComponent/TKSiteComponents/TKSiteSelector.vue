@@ -1,36 +1,38 @@
 <template lang="html">
   <transition mode="out-in" name="fade">
     <div :key="$root.$i18n.locale" class="tk-site-selector">
-      <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-          <v-autocomplete
-            class="tk-autocomplete"
-            flat
-            dense
-            :label="$t('survey')"
-            v-model="dataset.currentSurvey"
-            :items="dataset.surveys"
-            item-text="name"
-            :disabled="dataset.surveys.length < 2"
-            return-object
-            v-bind="attrs"
-            v-on="on"
-          ></v-autocomplete>
-        </template>
-        <span
-          >{{ $t("selectText") }}
-          {{
-            $t("survey")
-              .toString()
-              .toLowerCase()
-          }}</span
-        >
-      </v-tooltip>
+      <div v-if="dataset.surveys.length > 1">
+        <v-tooltip top>
+          <template v-slot:activator="{ on, attrs }">
+            <v-autocomplete
+              class="tk-autocomplete"
+              flat
+              dense
+              :label="$t('survey')"
+              v-model="dataset.currentSurvey"
+              :items="dataset.surveys"
+              item-text="name"
+              :disabled="dataset.surveys.length < 2"
+              return-object
+              v-bind="attrs"
+              v-on="on"
+            ></v-autocomplete>
+          </template>
+          <span
+            >{{ $t("selectText") }}
+            {{
+              $t("survey")
+                .toString()
+                .toLowerCase()
+            }}</span
+          >
+        </v-tooltip>
+      </div>
 
       <v-tooltip
         v-for="filter in additionalFilters"
         :key="filter.description.field"
-        right
+        top
       >
         <template v-slot:activator="{ on, attrs }">
           <div multiple v-on="on" v-bind="attrs">
@@ -51,11 +53,7 @@
         </template>
         <span
           >{{ $t("selectText") }}
-          {{
-            $t("infosSite")
-              .toString()
-              .toLowerCase()
-          }}</span
+          {{ getLocalValue(filter.description.name) }}</span
         >
       </v-tooltip>
 
