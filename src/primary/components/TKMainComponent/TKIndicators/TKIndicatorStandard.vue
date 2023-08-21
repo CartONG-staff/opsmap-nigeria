@@ -1,5 +1,5 @@
 <template>
-  <div class="tk-indicator-container">
+  <div class="tk-indicator-container" :style="cssVars(value)">
     <v-tooltip top>
       <template v-slot:activator="{ on, attrs }">
         <div class="tk-indicator-subcontainer">
@@ -69,6 +69,12 @@ export default class TKIndicatorStandard extends Vue {
       this.name = "";
     }
   }
+
+  cssVars(value: string) {
+    return {
+      "--ideal-value-font-size": "40px"
+    };
+  }
 }
 </script>
 
@@ -103,7 +109,7 @@ export default class TKIndicatorStandard extends Vue {
 .tk-indicator-value {
   display: flex;
   flex-flow: column nowrap;
-  font-size: 40px;
+  font-size: var(--ideal-value-font-size);
   padding-top: 13px;
   padding-bottom: 13px;
   line-height: 1.25;

@@ -53,13 +53,6 @@ export default class TKIndicator extends Vue {
       this.isSiteOccupation = false;
     }
   }
-
-  fontSize = 0;
-  computeFont(): void {
-    // FontSize: 35px ok --> 18 charactères pour 330px;
-    // FontSize: 28px ok --> 23 charactères pour 330px;
-    this.fontSize = 40;
-  }
 }
 </script>
 
