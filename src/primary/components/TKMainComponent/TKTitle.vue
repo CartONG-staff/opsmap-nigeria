@@ -44,6 +44,7 @@ export default class TKTitle extends Vue {
 .tk-title-base {
   color: var(--v-accent-base);
   font-size: 40px;
+  font-variant: small-caps;
 }
 
 .tk-title-country {
