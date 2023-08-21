@@ -51,5 +51,6 @@ export default class TKTitle extends Vue {
   color: var(--v-autocomplete-base);
   font-size: 40px;
   font-weight: bold;
+  font-variant: small-caps;
 }
 </style>
