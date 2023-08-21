@@ -71,9 +71,16 @@ export function TKComputeSelectionExportFilename(
 
 export function TKDatasetExportCurrentSiteToCSV(
   dataset: TKDataset,
-  locale: string
+  locale: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  translationMethod: any
 ) {
-  TKCSVWrite(dataset, TKComputeSiteExportFilename(dataset, "csv"), locale);
+  TKCSVWrite(
+    dataset,
+    TKComputeSiteExportFilename(dataset, "csv"),
+    locale,
+    translationMethod
+  );
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -82,11 +89,14 @@ export function TKDatasetExportCurrentSiteToCSV(
 
 export function TKDatasetExportCurrentSelectionToCSV(
   dataset: TKDataset,
-  locale: string
+  locale: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  translationMethod: any
 ) {
   TKCSVWriteCurrentSelection(
     dataset,
     TKComputeSelectionExportFilename(dataset, "csv"),
-    locale
+    locale,
+    translationMethod
   );
 }

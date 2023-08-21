@@ -79,7 +79,8 @@ export default class TKSiteToolbarExportButton extends Vue {
     if (TKDatasetModule.dataset && TKDatasetModule.dataset.currentSubmission) {
       TKDatasetExportCurrentSiteToCSV(
         TKDatasetModule.dataset,
-        this.$root.$i18n.locale
+        this.$root.$i18n.locale,
+        this.$t
       );
     }
     this.generating = false;
