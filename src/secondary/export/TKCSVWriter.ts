@@ -18,7 +18,9 @@ import {
 
 function computeCurrentSiteCSVContent(
   submission: TKSubmission,
-  locale: string
+  locale: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  translationMethod: any
 ): string {
   if (submission) {
     const rows = [["thematic", "label", "value", "trafficlight"]];
@@ -71,10 +73,14 @@ function computeCurrentSiteCSVContent(
       if (thematic.id === "group_general_info") {
         for (const index in submission.indicators) {
           const thematicName = "indicators";
-          const field = TKGetLocalValue(
-            submission.indicators[index].nameLabel,
-            locale
-          );
+
+          const label = submission.indicators[index].nameLabel;
+          let field = "";
+          if (typeof label === "string") {
+            field = translationMethod(label).toString();
+          } else {
+            field = TKGetLocalValue(label, locale);
+          }
           const value = TKGetLocalValue(
             submission.indicators[index].valueLabel,
             locale
@@ -98,7 +104,9 @@ function computeCurrentSiteCSVContent(
 
 function computeCurrentSelectionCSVContent(
   sites: TKSite[],
-  locale: string
+  locale: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  translationMethod: any
 ): string {
   const adminRef: Array<string> =
     TKConfigurationModule.configuration.spatial.adminLevels;
@@ -114,7 +122,14 @@ function computeCurrentSelectionCSVContent(
     // FILL HEADER
 
     for (const indicator of firstSubmission.indicators) {
-      rows[0].push("Indicator/" + TKGetLocalValue(indicator.nameLabel, locale));
+      const label = indicator.nameLabel;
+      let field = "";
+      if (typeof label === "string") {
+        field = translationMethod(label).toString();
+      } else {
+        field = TKGetLocalValue(label, locale);
+      }
+      rows[0].push("Indicator/" + field);
     }
     for (const thematic of firstSubmission.thematics) {
       const entriesForThematic: Array<TKSubmissionEntry> = Object.values(
@@ -218,12 +233,15 @@ function computeCurrentSelectionCSVContent(
 export function TKCSVWrite(
   dataset: TKDataset,
   filename: string,
-  locale: string
+  locale: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  translationMethod: any
 ) {
   if (dataset.currentSubmission) {
     const csvContent = computeCurrentSiteCSVContent(
       dataset.currentSubmission,
-      locale
+      locale,
+      translationMethod
     );
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
@@ -241,11 +259,14 @@ export function TKCSVWrite(
 export function TKCSVWriteCurrentSelection(
   dataset: TKDataset,
   filename: string,
-  locale: string
+  locale: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  translationMethod: any
 ) {
   const csvContent = computeCurrentSelectionCSVContent(
     dataset.filteredTypedSitesList,
-    locale
+    locale,
+    translationMethod
   );
   const encodedUri = encodeURI(csvContent);
   const link = document.createElement("a");

@@ -75,7 +75,8 @@ export default class TKHomeSubtitle extends Vue {
   exportToCSV() {
     TKDatasetExportCurrentSelectionToCSV(
       TKDatasetModule.dataset,
-      this.$root.$i18n.locale
+      this.$root.$i18n.locale,
+      this.$t
     );
   }
 }

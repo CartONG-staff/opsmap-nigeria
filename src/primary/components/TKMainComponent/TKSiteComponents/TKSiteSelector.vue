@@ -1,62 +1,38 @@
 <template lang="html">
   <transition mode="out-in" name="fade">
     <div :key="$root.$i18n.locale" class="tk-site-selector">
-      <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-          <v-autocomplete
-            class="tk-autocomplete"
-            flat
-            dense
-            :label="$t('survey')"
-            v-model="dataset.currentSurvey"
-            :items="dataset.surveys"
-            item-text="name"
-            :disabled="dataset.surveys.length < 2"
-            return-object
-            v-bind="attrs"
-            v-on="on"
-          ></v-autocomplete>
-        </template>
-        <span
-          >{{ $t("selectText") }}
-          {{
-            $t("survey")
-              .toString()
-              .toLowerCase()
-          }}</span
-        >
-      </v-tooltip>
-      <v-tooltip v-for="level in levels" :key="level" top>
-        <template v-slot:activator="{ on, attrs }">
-          <v-autocomplete
-            class="tk-autocomplete"
-            flat
-            dense
-            :label="$t(`infosAdmins.${level}`)"
-            :value="currentAdmins[level]"
-            @input="currentAdminsChanged(level, $event)"
-            :items="filteredAdminList[level]"
-            :disabled="!filteredAdminList[level]"
-            item-text="name"
-            return-object
-            clearable
-            v-bind="attrs"
-            v-on="on"
-          ></v-autocomplete>
-        </template>
-        <span
-          >{{ $t("selectText") }}
-          {{
-            $t(`infosAdmins.${level}`)
-              .toString()
-              .toLowerCase()
-          }}</span
-        >
-      </v-tooltip>
+      <div v-if="dataset.surveys.length > 1">
+        <v-tooltip top>
+          <template v-slot:activator="{ on, attrs }">
+            <v-autocomplete
+              class="tk-autocomplete"
+              flat
+              dense
+              :label="$t('survey')"
+              v-model="dataset.currentSurvey"
+              :items="dataset.surveys"
+              item-text="name"
+              :disabled="dataset.surveys.length < 2"
+              return-object
+              v-bind="attrs"
+              v-on="on"
+            ></v-autocomplete>
+          </template>
+          <span
+            >{{ $t("selectText") }}
+            {{
+              $t("survey")
+                .toString()
+                .toLowerCase()
+            }}</span
+          >
+        </v-tooltip>
+      </div>
+
       <v-tooltip
         v-for="filter in additionalFilters"
         :key="filter.description.field"
-        right
+        top
       >
         <template v-slot:activator="{ on, attrs }">
           <div multiple v-on="on" v-bind="attrs">
@@ -77,13 +53,39 @@
         </template>
         <span
           >{{ $t("selectText") }}
+          {{ getLocalValue(filter.description.name) }}</span
+        >
+      </v-tooltip>
+
+      <v-tooltip v-for="level in levels" :key="level" top>
+        <template v-slot:activator="{ on, attrs }">
+          <v-autocomplete
+            class="tk-autocomplete"
+            flat
+            dense
+            :label="$t(`infosAdmins.${level}`)"
+            :value="currentAdmins[level]"
+            @input="currentAdminsChanged(level, $event)"
+            :items="filteredAdminList[level]"
+            :disabled="!filteredAdminList[level]"
+            :filter="filterAdmin"
+            item-text="name"
+            return-object
+            clearable
+            v-bind="attrs"
+            v-on="on"
+          ></v-autocomplete>
+        </template>
+        <span
+          >{{ $t("selectText") }}
           {{
-            $t("infosSite")
+            $t(`infosAdmins.${level}`)
               .toString()
               .toLowerCase()
           }}</span
         >
       </v-tooltip>
+
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <v-autocomplete
@@ -94,6 +96,7 @@
             v-model="dataset.currentSite"
             :items="dataset.filteredTypedSitesList"
             :disabled="!dataset.filteredTypedSitesList.length"
+            :filter="filterSite"
             item-text="name"
             return-object
             clearable
@@ -118,6 +121,7 @@
 import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKAdditionalFilter } from "@/domain/survey/TKAdditionalFilter";
 import { TKBoundaries } from "@/domain/survey/TKBoundaries";
+import { TKSite } from "@/domain/survey/TKSite";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
@@ -131,6 +135,19 @@ export default class TKSiteSelector extends Vue {
 
   getLocalValue(label: TKLabel) {
     return TKGetLocalValue(label, this.$i18n.locale);
+  }
+
+  filterAdmin(item: TKBoundaries, queryText: string): boolean {
+    return (
+      item.pcode.toLowerCase().includes(queryText.toLowerCase()) ||
+      item.name.toLowerCase().includes(queryText.toLowerCase())
+    );
+  }
+  filterSite(item: TKSite, queryText: string): boolean {
+    return (
+      item.id.toLowerCase().includes(queryText.toLowerCase()) ||
+      item.name.toLowerCase().includes(queryText.toLowerCase())
+    );
   }
 
   get dataset() {
