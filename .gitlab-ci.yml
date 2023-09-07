@@ -71,8 +71,6 @@ pages:
       - public
   tags:
     - opsmap
-  only:
-    - release/deploy-gitlab-pages
 
 # job: build docker image and deploy
 docker-build:
