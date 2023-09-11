@@ -32,7 +32,8 @@
         "warning": "Aviso",
         "danger": "Perigo",
         "critical": "Crítico",
-        "other": "Outro"
+        "undefined": "Indefinido",
+        "error": "Erro"
     },
     "home": {
         "lastUpdate": "Última atualização",

@@ -29,7 +29,8 @@
         "warning": "تحذير",
         "danger": "خطر",
         "critical": "حرج",
-        "other": "أخرى"
+        "undefined": "غير معرف",
+        "error": "خطأ"
     },
     "main": {
         "switchPage": "تبديل الصفحة"

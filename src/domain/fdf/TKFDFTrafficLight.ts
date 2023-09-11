@@ -17,14 +17,15 @@ export enum TKTrafficLightValues {
   WARNING = "orange",
   DANGER = "red",
   CRITICAL = "darkred",
-  UNDEFINED = "grey"
+  UNDEFINED = "grey",
+  ERROR = "purple"
 }
 
 export function getColorFromValue(
   trafficLight: TKTrafficLightValues | undefined
 ) {
   if (!trafficLight) {
-    return TKColors.TRAFFICLIGHT_UNDEFINED;
+    return TKColors.TRAFFICLIGHT_ERROR;
   }
   switch (trafficLight) {
     case TKTrafficLightValues.OK:
@@ -37,8 +38,12 @@ export function getColorFromValue(
       return TKColors.TRAFFICLIGHT_DANGER;
     case TKTrafficLightValues.CRITICAL:
       return TKColors.TRAFFICLIGHT_CRITICAL;
-    default:
+    case TKTrafficLightValues.UNDEFINED:
       return TKColors.TRAFFICLIGHT_UNDEFINED;
+    case TKTrafficLightValues.ERROR:
+      return TKColors.TRAFFICLIGHT_ERROR;
+    default:
+      return TKColors.TRAFFICLIGHT_ERROR;
   }
 }
 
@@ -59,6 +64,10 @@ export function getTradIndexFromValue(
       return "trafficlight.danger";
     case TKTrafficLightValues.CRITICAL:
       return "trafficlight.critical";
+    case TKTrafficLightValues.UNDEFINED:
+      return "trafficlight.undefined";
+    case TKTrafficLightValues.ERROR:
+      return "trafficlight.error";
     default:
       return "trafficlight.other";
   }
@@ -95,8 +104,11 @@ export function getRankValue(
     case TKTrafficLightValues.OK:
       return 4;
     case TKTrafficLightValues.UNDEFINED:
-    default:
       return 5;
+    case TKTrafficLightValues.ERROR:
+      return 6;
+    default:
+      return 7;
   }
 }
 

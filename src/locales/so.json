@@ -29,7 +29,8 @@
         "warning": "Digniin",
         "danger": "Khatar",
         "critical": "Halis",
-        "other": "Kale"
+        "undefined": "Aan la qeexin",
+        "error": "Khalad"
     },
     "main": {
         "switchPage": "Bog"

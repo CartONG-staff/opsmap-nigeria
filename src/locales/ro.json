@@ -29,7 +29,8 @@
         "warning": "Avertisment",
         "danger": "Pericol",
         "critical": "Critic",
-        "other": "Altele"
+        "undefined": "Nedefinit",
+        "error": "Eroare"
     },
     "main": {
         "switchPage": "Pagina de comutare"

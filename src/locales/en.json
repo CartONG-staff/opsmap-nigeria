@@ -29,7 +29,8 @@
         "warning": "Warning",
         "danger": "Danger",
         "critical": "Critical",
-        "other": "Other"
+        "undefined": "Undefined",
+        "error": "Error"
     },
     "main": {
         "switchPage": "Switch Page"

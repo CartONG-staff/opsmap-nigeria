@@ -29,7 +29,8 @@
         "warning": "Upozornenie",
         "danger": "Nebezpečenstvo",
         "critical": "Kritické",
-        "other": "Iné"
+        "undefined": "Nedefinované",
+        "error": "Chyba"
     },
     "main": {
         "switchPage": "Stránka prepínača"

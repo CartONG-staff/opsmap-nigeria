@@ -102,14 +102,14 @@ function getTrafficLightColor(
   trafficLight: TKFDFTrafficLightGrouped
 ): TKTrafficLightValues {
   if (!value) {
-    return TKTrafficLightValues.UNDEFINED;
+    return TKTrafficLightValues.ERROR;
   }
   if (trafficLight.type === TKFDFTrafficLightTypes.STRING) {
     const match = trafficLight.values
       .filter(x => x.value.toLowerCase() === value.toLowerCase())
       .map(x => x.color)
       .pop();
-    return match === undefined ? TKTrafficLightValues.UNDEFINED : match;
+    return match === undefined ? TKTrafficLightValues.ERROR : match;
   }
   if (trafficLight.type === TKFDFTrafficLightTypes.MATH) {
     let match;
@@ -121,7 +121,7 @@ function getTrafficLightColor(
         match = item.color;
       }
     }
-    return match === undefined ? TKTrafficLightValues.UNDEFINED : match;
+    return match === undefined ? TKTrafficLightValues.ERROR : match;
   }
   if (trafficLight.type === TKFDFTrafficLightTypes.LIST) {
     const match = trafficLight.values
@@ -134,7 +134,7 @@ function getTrafficLightColor(
     const condition = value !== "none";
     return condition ? TKTrafficLightValues.OK : TKTrafficLightValues.CRITICAL;
   }
-  return TKTrafficLightValues.UNDEFINED;
+  return TKTrafficLightValues.ERROR;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
