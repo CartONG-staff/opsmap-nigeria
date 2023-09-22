@@ -7,7 +7,7 @@
 
       <br />
       <span class="tk-title-country">
-        {{ appName }}
+        {{ appName.toUpperCase() }}
       </span>
     </div>
   </transition>
