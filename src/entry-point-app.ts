@@ -7,19 +7,23 @@ import { initializeMatomo } from "./matomo";
 import { initializeRouter } from "./router";
 import store from "./store";
 
-// ////////////////////////////////////////////////////////////////////////////
-// MATOMO
-// ////////////////////////////////////////////////////////////////////////////
-
 import TKConfigurationModule from "./store/modules/configuration/TKConfigurationModule";
 import { TKReadGeneralConfiguration } from "./domain/opsmapConfig/TKOpsmapConfiguration";
 
+// ////////////////////////////////////////////////////////////////////////////
+//
+// ////////////////////////////////////////////////////////////////////////////
+
 Vue.config.productionTip = false;
 
+// Load messages
 const messagesCandidates = loadLocaleMessages();
+
+// Read general_config
 TKReadGeneralConfiguration(
   `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}general_config.json`
 ).then(config => {
+  // Set up app config
   TKConfigurationModule.setConfiguration(config);
 
   // i18n
@@ -49,6 +53,7 @@ TKReadGeneralConfiguration(
   vuetify.framework.theme.dark =
     TKConfigurationModule.configuration.options.dark;
 
+  // intialize vue app
   new Vue({
     router,
     vuetify,
