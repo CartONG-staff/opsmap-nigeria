@@ -30,10 +30,10 @@
                 v-bind="attrs"
                 v-on="on"
                 class="tk-trafficlight"
-                :style="trafficLight"
+                :style="trafficLightStyle"
               ></div>
             </template>
-            <span>{{ $t(trafficLightCategory) }}</span>
+            <span>{{ $t(trafficLightText) }}</span>
           </v-tooltip>
         </div>
         <div v-else class="tk-trafficlight"></div>
@@ -44,11 +44,8 @@
 
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from "vue-property-decorator";
-import {
-  getColorFromValue,
-  getTradIndexFromValue
-} from "@/domain/fdf/TKFDFTrafficLight";
-import { TKGetLocalValue } from "@/domain/utils/TKLabel";
+
+import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { TKSubmissionEntryBullet } from "@/domain/survey/TKSubmissionEntry";
 
 @Component
@@ -58,9 +55,10 @@ export default class TKSubmissionentryView extends Vue {
 
   question = "";
   answers: Array<string> = [];
+  trafficLightText = "";
   displayTrafficLight = false;
-  trafficLightCategory = "";
-  trafficLight = {
+  trafficLightLabel: TKLabel = {};
+  trafficLightStyle = {
     backgroundColor: "none"
   };
 
@@ -70,16 +68,21 @@ export default class TKSubmissionentryView extends Vue {
 
   @Watch("entry", { immediate: true })
   onentryChanged() {
-    this.trafficLight.backgroundColor = getColorFromValue(
-      this.entry.trafficLight
-    );
-    this.trafficLightCategory = getTradIndexFromValue(this.entry.trafficLight);
-    this.entry.trafficLight ? this.entry.isAnswered : false;
+    if (this.entry && this.entry.trafficLight) {
+      this.displayTrafficLight = true;
+      this.trafficLightStyle.backgroundColor = this.entry.trafficLight.value.color;
+      this.trafficLightLabel = this.entry.trafficLight.value.label;
+    } else {
+      this.displayTrafficLight = false;
+      this.trafficLightStyle.backgroundColor = "none";
+      this.trafficLightLabel = {};
+    }
     this.handleLocale();
   }
 
   @Watch("$root.$i18n.locale")
   handleLocale() {
+    // Question Answer
     if (this.entry && this.entry.fieldLabel && this.entry.answersLabels) {
       this.question = TKGetLocalValue(
         this.entry.fieldLabel,
@@ -91,6 +94,16 @@ export default class TKSubmissionentryView extends Vue {
     } else {
       this.question = "";
       this.answers = [];
+    }
+
+    // Traffic Light
+    if (this.entry && this.entry.trafficLight) {
+      this.trafficLightText = TKGetLocalValue(
+        this.entry.trafficLight.value.label,
+        this.$root.$i18n.locale
+      );
+    } else {
+      this.trafficLightText = "";
     }
   }
 }

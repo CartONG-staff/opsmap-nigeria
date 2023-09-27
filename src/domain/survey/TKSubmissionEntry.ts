@@ -1,14 +1,24 @@
-import { evaluate } from "mathjs";
 import { TKFDF } from "../fdf/TKFDF";
-import {
-  TKFDFTrafficLightGrouped,
-  TKFDFTrafficLightTypes
-} from "../fdf/TKFDFTrafficLight";
-import { TKTrafficLightValues } from "@/domain/fdf/TKFDFTrafficLight";
 import { TKLabel } from "../utils/TKLabel";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
 import { TKFDFSubmissionRule } from "../fdf/TKFDFSubmissionsRules";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import {
+  TKFDFTrafficLightConfiguration,
+  TKFDFTrafficLightType
+} from "../fdf/TKFDFTrafficLights/TKFDFTrafficLightConfiguration";
+import { TKFDFTrafficLightItem } from "../fdf/TKFDFTrafficLights/TKFDFTrafficLightItem";
+import { DEFAULT_ERROR_TRAFFICLIGHT } from "../fdf/TKFDFTrafficLights/TKFDFTrafficLightsDefaultProperties";
+import {
+  UNDEFINED_RANK_VALUE,
+  getRankValue
+} from "../fdf/TKFDFTrafficLights/TKFDFTrafficLightRank";
+
+export interface TKSubmissionEntryTrafficLight {
+  configuration: TKFDFTrafficLightConfiguration;
+  rank: number;
+  value: TKFDFTrafficLightItem;
+}
 
 // ////////////////////////////////////////////////////////////////////////////
 // Entry abstract concept definition
@@ -28,7 +38,7 @@ export interface TKSubmissionEntryText {
   field: string;
   fieldLabel: TKLabel;
   answerLabel: TKLabel;
-  trafficLight?: TKTrafficLightValues;
+  trafficLight?: TKSubmissionEntryTrafficLight;
   isAnswered: boolean;
 }
 
@@ -38,7 +48,7 @@ export interface TKSubmissionEntryBullet {
   field: string;
   fieldLabel: TKLabel;
   answersLabels: TKLabel[];
-  trafficLight?: TKTrafficLightValues;
+  trafficLight?: TKSubmissionEntryTrafficLight;
   isAnswered: boolean;
 }
 export interface TKSubmissionEntryAgePyramid {
@@ -94,47 +104,127 @@ export type TKSubmissionEntry =
   | TKSubmissionEntryRadar;
 
 // ////////////////////////////////////////////////////////////////////////////
-// helpers method
+// TrafficLight helpers method
 // ////////////////////////////////////////////////////////////////////////////
 
-function getTrafficLightColor(
+function getTrafficLightConfiguration(
+  rule: TKFDFSubmissionRule,
+  surveyConfiguration: TKFDF
+): TKFDFTrafficLightConfiguration | undefined {
+  if (
+    !surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName ||
+    !surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+      .length
+  ) {
+    return undefined;
+  }
+  if (
+    !(
+      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName in
+      surveyConfiguration.trafficLights.trafficLights
+    )
+  ) {
+    console.warn(
+      `[WARNING] Traffic light category "${
+        surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+      }" does not exist`
+    );
+    return undefined;
+  }
+
+  return surveyConfiguration.trafficLights.trafficLights[
+    surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
+  ];
+}
+
+function getTrafficLight(
   value: string,
-  trafficLight: TKFDFTrafficLightGrouped
-): TKTrafficLightValues {
-  if (!value) {
-    return TKTrafficLightValues.ERROR;
-  }
-  if (trafficLight.type === TKFDFTrafficLightTypes.STRING) {
-    const match = trafficLight.values
-      .filter(x => x.value.toLowerCase() === value.toLowerCase())
-      .map(x => x.color)
-      .pop();
-    return match === undefined ? TKTrafficLightValues.ERROR : match;
-  }
-  if (trafficLight.type === TKFDFTrafficLightTypes.MATH) {
-    let match;
-    for (const item of trafficLight.values) {
-      const conditions = item.value.split("and");
-      // TODO: remove evaluate. Only depencey to mathjs.
-      const result = conditions.map(x => evaluate(Number(value) + x));
-      if (!result.includes(false)) {
-        match = item.color;
-      }
+  configuration: TKFDFTrafficLightConfiguration | undefined
+):
+  | {
+      configuration: TKFDFTrafficLightConfiguration;
+      rank: number;
+      value: TKFDFTrafficLightItem;
     }
-    return match === undefined ? TKTrafficLightValues.ERROR : match;
+  | undefined {
+  if (!configuration) {
+    return undefined;
   }
-  if (trafficLight.type === TKFDFTrafficLightTypes.LIST) {
-    const match = trafficLight.values
-      .filter(x => x.value.toLowerCase() === value.toLowerCase())
-      .map(x => x.color)
-      .pop();
-    return match === undefined ? TKTrafficLightValues.CRITICAL : match;
+  // TODO: update structure to remove this check
+  if (
+    !configuration.properties ||
+    !configuration.properties.colormap ||
+    !configuration.properties.colorerror
+  ) {
+    return {
+      configuration: configuration,
+      rank: UNDEFINED_RANK_VALUE,
+      value: DEFAULT_ERROR_TRAFFICLIGHT
+    };
   }
-  if (trafficLight.type === TKFDFTrafficLightTypes.NOTINLIST) {
-    const condition = value !== "none";
-    return condition ? TKTrafficLightValues.OK : TKTrafficLightValues.CRITICAL;
+  if (!value) {
+    const colormapKey = configuration.properties.colorerror;
+    return {
+      configuration: configuration,
+      rank: getRankValue(colormapKey, configuration),
+      value: configuration.properties.colormap[colormapKey]
+    };
   }
-  return TKTrafficLightValues.ERROR;
+
+  // Type Key Value
+  if (configuration.type === TKFDFTrafficLightType.KEY_VALUE) {
+    if (!(value in configuration.values)) {
+      const colormapKey = configuration.properties.colorerror;
+      return {
+        configuration: configuration,
+        rank: getRankValue(colormapKey, configuration),
+        value: configuration.properties.colormap[colormapKey]
+      };
+    }
+    const colormapKey = configuration.values[value];
+    if (!(colormapKey in configuration.properties.colormap)) {
+      return {
+        configuration: configuration,
+        rank: getRankValue(colormapKey, configuration),
+        value: configuration.properties.colormap[colormapKey]
+      };
+    }
+
+    return {
+      configuration: configuration,
+      rank: getRankValue(colormapKey, configuration),
+      value: configuration.properties.colormap[colormapKey]
+    };
+  }
+  //   if (trafficLight.type === TKFDFTrafficLightTypes.MATH) {
+  //     let match;
+  //     for (const item of trafficLight.values) {
+  //       const conditions = item.value.split("and");
+  //       // TODO: remove evaluate. Only depencey to mathjs.
+  //       const result = conditions.map(x => evaluate(Number(value) + x));
+  //       if (!result.includes(false)) {
+  //         match = item.color;
+  //       }
+  //     }
+  //     return match === undefined ? TKTrafficLightValues.ERROR : match;
+  //   }
+  //   if (trafficLight.type === TKFDFTrafficLightTypes.LIST) {
+  //     const match = trafficLight.values
+  //       .filter(x => x.value.toLowerCase() === value.toLowerCase())
+  //       .map(x => x.color)
+  //       .pop();
+  //     return match === undefined ? TKTrafficLightValues.CRITICAL : match;
+  //   }
+  //   if (trafficLight.type === TKFDFTrafficLightTypes.NOTINLIST) {
+  //     const condition = value !== "none";
+  //     return condition ? TKTrafficLightValues.OK : TKTrafficLightValues.CRITICAL;
+  //   }
+  //   return TKTrafficLightValues.ERROR;
+  return {
+    configuration: configuration,
+    rank: UNDEFINED_RANK_VALUE,
+    value: DEFAULT_ERROR_TRAFFICLIGHT
+  };
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -159,20 +249,6 @@ export function TKCreateSubmissionEntryBullet(
     });
   }
 
-  if (
-    surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName &&
-    !(
-      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName in
-      surveyConfiguration.trafficLights
-    )
-  ) {
-    console.warn(
-      `[WARNING] Traffic light category "${
-        surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
-      }" does not exist`
-    );
-  }
-
   return {
     type: TKSubmissionEntryType.BULLET,
     thematic: thematic,
@@ -180,17 +256,10 @@ export function TKCreateSubmissionEntryBullet(
     fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
     answersLabels: correctedValue,
     isAnswered: isAnswered,
-    trafficLight:
-      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
-        .length > 0
-        ? getTrafficLightColor(
-            value,
-            surveyConfiguration.trafficLights[
-              surveyConfiguration.submissionsRules[rule.fieldName]
-                .trafficLightName
-            ]
-          )
-        : undefined
+    trafficLight: getTrafficLight(
+      value,
+      getTrafficLightConfiguration(rule, surveyConfiguration)
+    )
   };
 }
 
@@ -235,20 +304,6 @@ export function TKCreateSubmissionEntryList(
         : { [TKConfigurationModule.configuration.locale.default]: value };
   }
 
-  if (
-    surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName &&
-    !(
-      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName in
-      surveyConfiguration.trafficLights
-    )
-  ) {
-    console.info(
-      `[WARNING] Traffic light category "${
-        surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
-      }" does not exist`
-    );
-  }
-
   return {
     type: TKSubmissionEntryType.TEXT,
     thematic: thematic,
@@ -256,17 +311,10 @@ export function TKCreateSubmissionEntryList(
     fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
     answerLabel: correctedValue,
     isAnswered: isAnswered,
-    trafficLight:
-      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
-        .length > 0
-        ? getTrafficLightColor(
-            value,
-            surveyConfiguration.trafficLights[
-              surveyConfiguration.submissionsRules[rule.fieldName]
-                .trafficLightName
-            ]
-          )
-        : undefined
+    trafficLight: getTrafficLight(
+      value,
+      getTrafficLightConfiguration(rule, surveyConfiguration)
+    )
   };
 }
 
@@ -283,20 +331,6 @@ export function TKCreateSubmissionEntryText(
       ? surveyConfiguration.answersLabels[value]
       : { [TKConfigurationModule.configuration.locale.default]: value };
 
-  if (
-    surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName &&
-    !(
-      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName in
-      surveyConfiguration.trafficLights
-    )
-  ) {
-    console.info(
-      `[WARNING] Traffic light category "${
-        surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
-      }" does not exist`
-    );
-  }
-
   return {
     type: TKSubmissionEntryType.TEXT,
     thematic: thematic,
@@ -304,16 +338,9 @@ export function TKCreateSubmissionEntryText(
     fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
     answerLabel: correctedValue,
     isAnswered: isAnswered,
-    trafficLight:
-      surveyConfiguration.submissionsRules[rule.fieldName].trafficLightName
-        .length > 0
-        ? getTrafficLightColor(
-            value,
-            surveyConfiguration.trafficLights[
-              surveyConfiguration.submissionsRules[rule.fieldName]
-                .trafficLightName
-            ]
-          )
-        : undefined
+    trafficLight: getTrafficLight(
+      value,
+      getTrafficLightConfiguration(rule, surveyConfiguration)
+    )
   };
 }

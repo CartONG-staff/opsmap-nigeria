@@ -23,15 +23,6 @@
         "partnerFieldwork": "Travail de terrain",
         "partnerWebdev": "Développement web"
     },
-    "trafficlight": {
-        "ok": "OK",
-        "caution": "Attention",
-        "warning": "Avertissement",
-        "danger": "Danger",
-        "critical": "Critique",
-        "undefined": "Indéfini",
-        "error": "Erreur"
-    },
     "main": {
         "switchPage": "Changer de page"
     },

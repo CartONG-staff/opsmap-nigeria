@@ -1,7 +1,7 @@
 import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
-import { getMaxRankValue, getRankValue } from "../fdf/TKFDFTrafficLight";
 import { TKSubmissionEntry, TKSubmissionEntryType } from "./TKSubmissionEntry";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
+import { UNDEFINED_RANK_VALUE } from "../fdf/TKFDFTrafficLights/TKFDFTrafficLightRank";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type TKSubmissionEntries = Record<string, TKSubmissionEntry>;
@@ -29,16 +29,21 @@ function sortEntriesByTrafficLight(
   return [...entries].sort(
     (a: TKSubmissionEntry, b: TKSubmissionEntry): number => {
       const rankA =
-        "trafficLight" in a ? getRankValue(a.trafficLight) : getMaxRankValue();
+        "trafficLight" in a && a.trafficLight
+          ? a.trafficLight?.rank
+          : UNDEFINED_RANK_VALUE;
       const rankB =
-        "trafficLight" in b ? getRankValue(b.trafficLight) : getMaxRankValue();
+        "trafficLight" in b && b.trafficLight
+          ? b.trafficLight?.rank
+          : UNDEFINED_RANK_VALUE;
+
       if (rankA < rankB) {
-        return -1;
+        return 1;
       }
       if (rankA === rankB) {
         return 0;
       }
-      return 1;
+      return -1;
     }
   );
 }
