@@ -89,11 +89,11 @@ export default class TKIndicatorSiteOccupation extends Vue {
   }
   get siteOccupationColor() {
     if (this.value === undefined || this.value < 0)
-      return TKColors.TRAFFICLIGHT_UNDEFINED;
-    if (this.value < 80) return TKColors.TRAFFICLIGHT_OK;
-    if (this.value < 90) return TKColors.TRAFFICLIGHT_WARNING;
-    if (this.value < 100) return TKColors.TRAFFICLIGHT_DANGER;
-    return TKColors.TRAFFICLIGHT_CRITICAL;
+      return TKColors.SITE_OCCUPATION_UNDEFINED;
+    if (this.value < 80) return TKColors.SITE_OCCUPATION_OK;
+    if (this.value < 90) return TKColors.SITE_OCCUPATION_WARNING;
+    if (this.value < 100) return TKColors.SITE_OCCUPATION_DANGER;
+    return TKColors.SITE_OCCUPATION_CRITICAL;
   }
 }
 </script>
