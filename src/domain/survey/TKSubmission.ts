@@ -2,10 +2,10 @@
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKCreateSubmissionEntryText,
-  TKSubmissionEntryType,
   TKCreateSubmissionEntryList,
   TKCreateSubmissionEntryBullet,
-  TKSubmissionRawEntries
+  TKSubmissionRawEntries,
+  TKSubmissionEntryTextType
 } from "./TKSubmissionEntry";
 import {
   TKChartData,
@@ -59,7 +59,7 @@ function getValueForIndicator(
   const entry = data[entryCode];
   if (
     entry &&
-    entry.type === TKSubmissionEntryType.TEXT &&
+    entry.type === TKSubmissionEntryTextType.TEXT &&
     entry.answerLabel &&
     !isNaN(
       parseFloat(
@@ -80,7 +80,11 @@ function getLabelForIndicator(
   entryCode: string
 ): TKLabel {
   const entry = data[entryCode];
-  if (entry && entry.type === TKSubmissionEntryType.TEXT && entry.answerLabel) {
+  if (
+    entry &&
+    entry.type === TKSubmissionEntryTextType.TEXT &&
+    entry.answerLabel
+  ) {
     return entry.answerLabel;
   }
   return { [TKConfigurationModule.configuration.locale.default]: "-" };

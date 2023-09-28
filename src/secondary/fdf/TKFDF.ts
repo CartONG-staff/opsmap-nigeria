@@ -14,6 +14,7 @@ import { TKReadSubmissionsRulesCollection } from "@/secondary/fdf/TKFDFSubmissio
 import { TKReadFDFTerminologyCollection } from "@/secondary/fdf/TKFDFTerminology";
 import { TKReadFDFThematicsCollection } from "@/secondary/fdf/TKFDFThematics";
 import { TKFDFReadTrafficLights } from "@/domain/fdf/TKFDFTrafficLights/TKFDFReadTrafficLights";
+import { TKFDFReadGraphs } from "@/domain/fdf/TKFDFGraphs/TKFDFReadGraphs";
 import { TKReadFDFURLsCollection } from "@/secondary/fdf/TKFDFURLs";
 import { TKReadFDFSiteTypesCollection } from "./TKFDFSiteTypes";
 import { TKGetRidlTranslationsData } from "@/secondary/ridl/TKGetRidlRawData";
@@ -49,6 +50,9 @@ export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
     thematics: await TKReadFDFThematicsCollection(infos.fdf),
     trafficLights: await TKFDFReadTrafficLights(
       `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.fdf.folder}/${TKFDFFiles.TRAFFIC_LIGHTS}.json`
+    ),
+    graphs: await await TKFDFReadGraphs(
+      `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.fdf.folder}/${TKFDFFiles.GRAPHS}.json`
     ),
     fieldsLabels: await TKReadFDFLabelCollection(
       `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.fdf.folder}/${TKFDFFiles.FIELDS}.csv`

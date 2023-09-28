@@ -26,11 +26,12 @@ import {
   TKSubmissionEntryPolar,
   TKSubmissionEntryRadar,
   TKSubmissionEntryText,
-  TKSubmissionEntryType
+  TKSubmissionEntryTextType
 } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import { TKSubmissionEntries } from "@/domain/survey/TKSubmissionEntries";
+import { TKFDFGraphType } from "@/domain/fdf/TKFDFGraphs/TKFDFGraphConfiguration";
 
 const LEFT = 0;
 const MIDDLE = 1;
@@ -88,22 +89,22 @@ function computeScore(
     .reduce((previousScore, thematicData) => {
       let score = 1;
       switch (thematicData.type) {
-        case TKSubmissionEntryType.BULLET:
+        case TKSubmissionEntryTextType.BULLET:
           score = thematicData.answersLabels.length;
           break;
-        case TKSubmissionEntryType.CHART_DOUGHNUT:
+        case TKFDFGraphType.DOUGHNUT:
           score = computeChartDoughnutScore(thematicData);
           break;
-        case TKSubmissionEntryType.CHART_POLAR:
+        case TKFDFGraphType.POLAR_AREA:
           score = computeChartPolarScore(thematicData);
           break;
-        case TKSubmissionEntryType.CHART_PYRAMID:
+        case TKFDFGraphType.AGE_PYRAMID:
           score = computeChartPyramidScore(thematicData);
           break;
-        case TKSubmissionEntryType.CHART_RADAR:
+        case TKFDFGraphType.RADAR:
           score = computeChartRadarScore(thematicData);
           break;
-        case TKSubmissionEntryType.TEXT:
+        case TKSubmissionEntryTextType.TEXT:
           score = computeTextScore(thematicData);
           break;
       }

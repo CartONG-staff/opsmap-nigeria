@@ -1,5 +1,8 @@
 import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
-import { TKSubmissionEntry, TKSubmissionEntryType } from "./TKSubmissionEntry";
+import {
+  TKSubmissionEntry,
+  TKSubmissionEntryTextType
+} from "./TKSubmissionEntry";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
 import { UNDEFINED_RANK_VALUE } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightRank";
 
@@ -57,7 +60,7 @@ function filterEntriesBySearch(
   searchFilter: string
 ): TKSubmissionEntry[] {
   return entries.filter((entry: TKSubmissionEntry) => {
-    if (entry.type !== TKSubmissionEntryType.TEXT) {
+    if (entry.type !== TKSubmissionEntryTextType.TEXT) {
       return true;
     }
     for (const value of Object.values(entry.answerLabel)) {

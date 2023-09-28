@@ -3,7 +3,7 @@ import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKSubmission } from "@/domain/survey/TKSubmission";
 import {
   TKSubmissionEntry,
-  TKSubmissionEntryType
+  TKSubmissionEntryTextType
 } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
@@ -11,6 +11,7 @@ import {
   applyVisualizerOptions,
   getEntriesForThematic
 } from "@/domain/survey/TKSubmissionEntries";
+import { TKFDFGraphType } from "@/domain/fdf/TKFDFGraphs/TKFDFGraphConfiguration";
 
 // ////////////////////////////////////////////////////////////////////////////
 // get trafficlight text
@@ -54,7 +55,7 @@ function computeCurrentSiteCSVContent(
 
       for (const entry of entriesForThematic) {
         // TEXT
-        if (entry.type === TKSubmissionEntryType.TEXT) {
+        if (entry.type === TKSubmissionEntryTextType.TEXT) {
           const itemName = TKGetLocalValue(entry.fieldLabel, locale);
           const answer = TKGetLocalValue(entry.answerLabel, locale).replaceAll(
             ";",
@@ -68,7 +69,7 @@ function computeCurrentSiteCSVContent(
           rows.push([thematicName, itemName, answer, trafficLight]);
         }
         // BULLET
-        else if (entry.type === TKSubmissionEntryType.BULLET) {
+        else if (entry.type === TKSubmissionEntryTextType.BULLET) {
           const itemName = TKGetLocalValue(entry.fieldLabel, locale);
           const answer = entry.answersLabels
             .map(label => TKGetLocalValue(label, locale).replaceAll(";", ","))
@@ -81,7 +82,7 @@ function computeCurrentSiteCSVContent(
           rows.push([thematicName, itemName, answer, trafficLight]);
         }
         // CHART_PYRAMID
-        else if (entry.type === TKSubmissionEntryType.CHART_PYRAMID) {
+        else if (entry.type === TKFDFGraphType.AGE_PYRAMID) {
           const itemName = "age_pyramid";
           for (const [index, value] of entry.malesEntries.entries()) {
             const chartItemName =
@@ -169,18 +170,18 @@ function computeCurrentSelectionCSVContent(
       ).filter(entry => entry.thematic.id === thematic.id);
       for (const entry of entriesForThematic) {
         switch (entry.type) {
-          case TKSubmissionEntryType.TEXT:
-          case TKSubmissionEntryType.BULLET:
+          case TKSubmissionEntryTextType.TEXT:
+          case TKSubmissionEntryTextType.BULLET:
             rows[0].push(
               TKGetLocalValue(thematic.nameLabel, locale) +
                 "/" +
                 TKGetLocalValue(entry.fieldLabel, locale)
             );
             break;
-          case TKSubmissionEntryType.CHART_PYRAMID:
-          case TKSubmissionEntryType.CHART_DOUGHNUT:
-          case TKSubmissionEntryType.CHART_POLAR:
-          case TKSubmissionEntryType.CHART_RADAR:
+          case TKFDFGraphType.AGE_PYRAMID:
+          case TKFDFGraphType.DOUGHNUT:
+          case TKFDFGraphType.POLAR_AREA:
+          case TKFDFGraphType.RADAR:
             rows[0].push(
               TKGetLocalValue(thematic.nameLabel, locale) +
                 "/" +
@@ -212,12 +213,12 @@ function computeCurrentSelectionCSVContent(
         for (const entry of entriesForThematic) {
           let val = "";
           switch (entry.type) {
-            case TKSubmissionEntryType.TEXT:
+            case TKSubmissionEntryTextType.TEXT:
               row.push(
                 TKGetLocalValue(entry.answerLabel, locale).replaceAll(";", ",")
               );
               break;
-            case TKSubmissionEntryType.BULLET:
+            case TKSubmissionEntryTextType.BULLET:
               row.push(
                 entry.answersLabels
                   .map(label =>
@@ -226,7 +227,7 @@ function computeCurrentSelectionCSVContent(
                   .join(", ")
               );
               break;
-            case TKSubmissionEntryType.CHART_PYRAMID:
+            case TKFDFGraphType.AGE_PYRAMID:
               val =
                 "females:" +
                 entry.femalesEntries.join(",") +
@@ -234,8 +235,8 @@ function computeCurrentSelectionCSVContent(
                 entry.malesEntries.join(",");
               row.push(val);
               break;
-            case TKSubmissionEntryType.CHART_DOUGHNUT:
-            case TKSubmissionEntryType.CHART_POLAR:
+            case TKFDFGraphType.DOUGHNUT:
+            case TKFDFGraphType.POLAR_AREA:
               row.push(
                 entry.entries
                   .map(

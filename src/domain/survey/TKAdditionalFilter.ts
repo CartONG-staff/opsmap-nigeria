@@ -1,7 +1,7 @@
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { TKSite } from "./TKSite";
-import { TKSubmissionEntryType } from "./TKSubmissionEntry";
+import { TKSubmissionEntryTextType } from "./TKSubmissionEntry";
 
 export interface TKAdditionalFilterDescription {
   field: string;
@@ -27,7 +27,7 @@ export function computeAdditionalFilterCandidates(
       if (!entry) {
         continue;
       }
-      if (entry.type !== TKSubmissionEntryType.TEXT) {
+      if (entry.type !== TKSubmissionEntryTextType.TEXT) {
         continue;
       }
       const key = TKGetLocalValue(
@@ -53,7 +53,7 @@ export function applyAdditionalFilter(
       return false;
     }
     const entry = site.submissions[0].entries[filter.description.field];
-    if (!entry || entry.type !== TKSubmissionEntryType.TEXT) {
+    if (!entry || entry.type !== TKSubmissionEntryTextType.TEXT) {
       return false;
     }
 

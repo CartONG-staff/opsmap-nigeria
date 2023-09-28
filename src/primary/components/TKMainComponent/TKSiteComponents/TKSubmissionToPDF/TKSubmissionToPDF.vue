@@ -29,7 +29,7 @@ import { IconPosition, TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import {
   TKSubmissionEntry,
-  TKSubmissionEntryType
+  TKSubmissionEntryTextType
 } from "@/domain/survey/TKSubmissionEntry";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
@@ -50,6 +50,7 @@ import {
   RobotoItalic,
   RobotoNormal
 } from "@/domain/fonts";
+import { TKFDFGraphType } from "@/domain/fdf/TKFDFGraphs/TKFDFGraphConfiguration";
 
 @Component({
   components: {
@@ -297,14 +298,14 @@ export default class TKSubmissionToPDF extends Vue {
     );
 
     for (const entry of entriesForThematic) {
-      if (entry.type === TKSubmissionEntryType.TEXT) {
+      if (entry.type === TKSubmissionEntryTextType.TEXT) {
         const field = this.getField(entry.fieldLabel);
         body.push([field]);
 
         const color = this.getColorFromEntry(entry);
         const answer = this.getAnswer(entry.answerLabel, color);
         body.push([answer]);
-      } else if (entry.type === TKSubmissionEntryType.BULLET) {
+      } else if (entry.type === TKSubmissionEntryTextType.BULLET) {
         const field = this.getField(entry.fieldLabel);
         body.push([field]);
 
@@ -314,10 +315,10 @@ export default class TKSubmissionToPDF extends Vue {
           body.push([answer]);
         }
       } else if (
-        entry.type === TKSubmissionEntryType.CHART_PYRAMID ||
-        entry.type === TKSubmissionEntryType.CHART_DOUGHNUT ||
-        entry.type === TKSubmissionEntryType.CHART_POLAR ||
-        entry.type === TKSubmissionEntryType.CHART_RADAR
+        entry.type === TKFDFGraphType.AGE_PYRAMID ||
+        entry.type === TKFDFGraphType.DOUGHNUT ||
+        entry.type === TKFDFGraphType.POLAR_AREA ||
+        entry.type === TKFDFGraphType.RADAR
       ) {
         const props = pdf.getImageProperties(
           TKPDFInfosModule.currentChartsBase64[entry.chartid]

@@ -9,6 +9,13 @@ import {
   getTrafficLightConfiguration
 } from "./TKSubmissionEntryTrafficLightProcesser";
 import { TKFDFTrafficLightColormapItem } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightColormap";
+import {
+  TKFDFGraphAgePyramid,
+  TKFDFGraphDoughnut,
+  TKFDFGraphPolarArea,
+  TKFDFGraphRadar,
+  TKFDFGraphType
+} from "../fdf/TKFDFGraphs/TKFDFGraphConfiguration";
 
 export interface TKSubmissionEntryTrafficLight {
   configuration: TKFDFTrafficLightConfiguration;
@@ -20,16 +27,13 @@ export interface TKSubmissionEntryTrafficLight {
 // Entry abstract concept definition
 // ////////////////////////////////////////////////////////////////////////////
 
-export enum TKSubmissionEntryType {
+export enum TKSubmissionEntryTextType {
   TEXT = "text",
-  BULLET = "bullet",
-  CHART_PYRAMID = "age_pyramid",
-  CHART_DOUGHNUT = "doughnut",
-  CHART_POLAR = "polar",
-  CHART_RADAR = "radar"
+  BULLET = "bullet"
 }
+
 export interface TKSubmissionEntryText {
-  type: TKSubmissionEntryType.TEXT;
+  type: TKSubmissionEntryTextType.TEXT;
   thematic: TKSubmissionThematic;
   field: string;
   fieldLabel: TKLabel;
@@ -39,7 +43,7 @@ export interface TKSubmissionEntryText {
 }
 
 export interface TKSubmissionEntryBullet {
-  type: TKSubmissionEntryType.BULLET;
+  type: TKSubmissionEntryTextType.BULLET;
   thematic: TKSubmissionThematic;
   field: string;
   fieldLabel: TKLabel;
@@ -47,7 +51,8 @@ export interface TKSubmissionEntryBullet {
   isAnswered: boolean;
 }
 export interface TKSubmissionEntryAgePyramid {
-  type: TKSubmissionEntryType.CHART_PYRAMID;
+  type: TKFDFGraphType.AGE_PYRAMID;
+  config: TKFDFGraphAgePyramid;
   thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
@@ -59,7 +64,8 @@ export interface TKSubmissionEntryAgePyramid {
 }
 
 export interface TKSubmissionEntryDoughnut {
-  type: TKSubmissionEntryType.CHART_DOUGHNUT;
+  type: TKFDFGraphType.DOUGHNUT;
+  config: TKFDFGraphDoughnut;
   thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
@@ -67,7 +73,8 @@ export interface TKSubmissionEntryDoughnut {
   entries: Array<{ value: number; label: TKLabel }>;
 }
 export interface TKSubmissionEntryPolar {
-  type: TKSubmissionEntryType.CHART_POLAR;
+  type: TKFDFGraphType.POLAR_AREA;
+  config: TKFDFGraphPolarArea;
   thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
@@ -76,7 +83,8 @@ export interface TKSubmissionEntryPolar {
 }
 
 export interface TKSubmissionEntryRadar {
-  type: TKSubmissionEntryType.CHART_RADAR;
+  type: TKFDFGraphType.RADAR;
+  config: TKFDFGraphRadar;
   thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
@@ -140,7 +148,7 @@ export function TKCreateSubmissionEntryList(
   }
 
   return {
-    type: TKSubmissionEntryType.TEXT,
+    type: TKSubmissionEntryTextType.TEXT,
     thematic: thematic,
     field: rule.fieldName,
     fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
@@ -165,7 +173,7 @@ export function TKCreateSubmissionEntryText(
       : { [TKConfigurationModule.configuration.locale.default]: value };
 
   return {
-    type: TKSubmissionEntryType.TEXT,
+    type: TKSubmissionEntryTextType.TEXT,
     thematic: thematic,
     field: rule.fieldName,
     fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
@@ -202,7 +210,7 @@ export function TKCreateSubmissionEntryBullet(
   }
 
   return {
-    type: TKSubmissionEntryType.BULLET,
+    type: TKSubmissionEntryTextType.BULLET,
     thematic: thematic,
     field: rule.fieldName,
     fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],

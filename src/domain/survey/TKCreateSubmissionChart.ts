@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
-  TKSubmissionEntryType,
   TKSubmissionEntryRadar,
   TKSubmissionEntryAgePyramid,
   TKSubmissionEntryDoughnut,
@@ -11,6 +10,7 @@ import { TKLabel } from "@/domain/utils/TKLabel";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
 import { TKSubmissionEntries } from "./TKSubmissionEntries";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import { TKFDFGraphType } from "../fdf/TKFDFGraphs/TKFDFGraphConfiguration";
 
 export type TKChartData = {
   id: string;
@@ -82,11 +82,14 @@ function applyOptions(
 
 export function TKCreateSubmissionChart(
   chartData: TKChartData,
-  surveyConfiguration: TKFDF,
+  fdf: TKFDF,
   entries: TKSubmissionEntries
 ) {
-  const chartDataLabeled = applyOptions(chartData, surveyConfiguration);
-  if (chartDataLabeled.id.includes("age_pyramid")) {
+  const chartDataLabeled = applyOptions(chartData, fdf);
+
+  const chartConfiguration = fdf.graphs.graphs[chartDataLabeled.id];
+
+  if (chartConfiguration.type === TKFDFGraphType.AGE_PYRAMID) {
     const malesEntries = chartDataLabeled.data
       .filter(item => item.type === "m")
       .reverse();
@@ -95,24 +98,26 @@ export function TKCreateSubmissionChart(
       .reverse();
 
     const entry: TKSubmissionEntryAgePyramid = {
-      type: TKSubmissionEntryType.CHART_PYRAMID,
+      type: TKFDFGraphType.AGE_PYRAMID,
+      config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
+      title: fdf.fieldsLabels[chartDataLabeled.id],
       malesEntries: malesEntries.map(item => Number(item.value)),
       femalesEntries: femalesEntries.map(item => Number(item.value)),
       malesLabels: malesEntries.map(item => item.field),
       femalesLabels: femalesEntries.map(item => item.field)
     };
     entries[entry.chartid] = entry;
-  } else if (chartDataLabeled.id.includes("doughnut")) {
+  } else if (chartConfiguration.type === TKFDFGraphType.DOUGHNUT) {
     const entry: TKSubmissionEntryDoughnut = {
-      type: TKSubmissionEntryType.CHART_DOUGHNUT,
+      type: TKFDFGraphType.DOUGHNUT,
+      config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
+      title: fdf.fieldsLabels[chartDataLabeled.id],
       entries: chartDataLabeled.data.map(item => {
         return {
           value: Number(item.value),
@@ -121,13 +126,14 @@ export function TKCreateSubmissionChart(
       })
     };
     entries[entry.chartid] = entry;
-  } else if (chartDataLabeled.id.includes("polar_area_chart")) {
+  } else if (chartConfiguration.type === TKFDFGraphType.POLAR_AREA) {
     const entry: TKSubmissionEntryPolar = {
-      type: TKSubmissionEntryType.CHART_POLAR,
+      type: TKFDFGraphType.POLAR_AREA,
+      config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
+      title: fdf.fieldsLabels[chartDataLabeled.id],
       entries: chartDataLabeled.data.map(item => {
         return {
           value: Number(item.value),
@@ -136,13 +142,14 @@ export function TKCreateSubmissionChart(
       })
     };
     entries[entry.chartid] = entry;
-  } else if (chartDataLabeled.id.includes("radar_chart")) {
+  } else if (chartConfiguration.type === TKFDFGraphType.RADAR) {
     const entry: TKSubmissionEntryRadar = {
-      type: TKSubmissionEntryType.CHART_RADAR,
+      type: TKFDFGraphType.RADAR,
+      config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
+      title: fdf.fieldsLabels[chartDataLabeled.id],
       entries: chartDataLabeled.data.map(item => {
         return {
           value: Number(item.value),
