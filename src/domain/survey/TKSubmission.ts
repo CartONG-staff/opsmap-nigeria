@@ -278,6 +278,7 @@ export function TKCreateSubmission(
                 value,
                 rule,
                 fdf,
+                submissionRawEntries,
                 thematic.thematic
               );
 
@@ -317,6 +318,7 @@ export function TKCreateSubmission(
                   value,
                   rule,
                   fdf,
+                  submissionRawEntries,
                   thematic.thematic
                 );
               }

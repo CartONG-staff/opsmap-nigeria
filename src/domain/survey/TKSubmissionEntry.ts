@@ -154,6 +154,7 @@ export function TKCreateSubmissionEntryText(
   value: string,
   rule: TKFDFSubmissionRule,
   surveyConfiguration: TKFDF,
+  submissionRawEntries: TKSubmissionRawEntries,
   thematic: TKSubmissionThematic
 ): TKSubmissionEntryText {
   const isAnswered = value !== "";
@@ -172,6 +173,7 @@ export function TKCreateSubmissionEntryText(
     isAnswered: isAnswered,
     trafficLight: getTrafficLight(
       value,
+      submissionRawEntries,
       getTrafficLightConfiguration(rule, surveyConfiguration)
     )
   };

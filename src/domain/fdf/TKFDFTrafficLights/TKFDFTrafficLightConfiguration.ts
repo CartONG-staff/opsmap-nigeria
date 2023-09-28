@@ -6,8 +6,7 @@ import { TKFDFTrafficLightsProperties } from "./TKFDFTrafficLightProperties";
 
 export enum TKFDFTrafficLightType {
   KEY_VALUE = "key_value",
-  MATH = "math",
-  FROM_LIST = "from_list"
+  MATH = "math"
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -30,6 +29,7 @@ export interface TKFDFTrafficLightKeyValue extends TKFDFTrafficLight {
 
 export interface TKFDFTrafficLightMath extends TKFDFTrafficLight {
   type: TKFDFTrafficLightType.MATH;
+  scope?: Record<string, string>; // [variableName]: key
   values: Record<string, string>; // [formula]: value
 }
 
