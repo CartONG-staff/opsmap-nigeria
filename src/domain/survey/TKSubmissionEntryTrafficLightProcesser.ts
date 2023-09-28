@@ -62,7 +62,7 @@ function generateErrorOutput(configuration: TKFDFTrafficLightConfiguration) {
 // ////////////////////////////////////////////////////////////////////////////
 
 export function getTrafficLight(
-  input: string | Array<string>,
+  input: string,
   configuration: TKFDFTrafficLightConfiguration | undefined
 ):
   | {
@@ -86,7 +86,7 @@ export function getTrafficLight(
   switch (configuration.type) {
     // Type Key Value
     case TKFDFTrafficLightType.KEY_VALUE:
-      if (Array.isArray(input) || !(input in configuration.values)) {
+      if (!(input in configuration.values)) {
         return generateErrorOutput(configuration);
       } else {
         const colormapKey = configuration.values[input];
@@ -98,10 +98,6 @@ export function getTrafficLight(
 
     // Type Math
     case TKFDFTrafficLightType.MATH:
-      if (Array.isArray(input)) {
-        // Math: entry can't be an array
-        return generateErrorOutput(configuration);
-      }
       for (const operation in configuration.values) {
         const conditions = operation.split("and");
         // TODO: remove evaluate. Only depencey to mathjs.
@@ -113,34 +109,6 @@ export function getTrafficLight(
       }
       return generateErrorOutput(configuration);
 
-    // Type List
-    case TKFDFTrafficLightType.FROM_LIST:
-      if (!Array.isArray(input)) {
-        return generateErrorOutput(configuration);
-      }
-      switch (configuration.criteria) {
-        case TKFDFTrafficLightListCriteria.INCLUDED:
-          for (const inputItem in input) {
-            if (inputItem in configuration.values) {
-              return generateOutput(
-                configuration.values[inputItem],
-                configuration
-              );
-            }
-          }
-          return generateOutput(configuration.invalid, configuration);
-        case TKFDFTrafficLightListCriteria.NOT_INCLUDED:
-          for (const inputItem in input) {
-            if (!(inputItem in configuration.values)) {
-              return generateOutput(
-                configuration.values[inputItem],
-                configuration
-              );
-            }
-          }
-          return generateOutput(configuration.invalid, configuration);
-      }
-      break;
     default:
       return generateErrorOutput(configuration);
   }

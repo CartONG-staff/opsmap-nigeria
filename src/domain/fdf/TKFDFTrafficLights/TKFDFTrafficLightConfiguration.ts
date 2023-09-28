@@ -33,22 +33,10 @@ export interface TKFDFTrafficLightMath extends TKFDFTrafficLight {
   values: Record<string, string>; // [formula]: value
 }
 
-export enum TKFDFTrafficLightListCriteria {
-  INCLUDED = "included",
-  NOT_INCLUDED = "not_included"
-}
-export interface TKFDFTrafficLightFromList extends TKFDFTrafficLight {
-  type: TKFDFTrafficLightType.FROM_LIST;
-  criteria: TKFDFTrafficLightListCriteria;
-  values: Record<string, string>; // [formula]: value
-  invalid: string;
-}
-
 // ////////////////////////////////////////////////////////////////////////////
 // Union type
 // ////////////////////////////////////////////////////////////////////////////
 
 export type TKFDFTrafficLightConfiguration =
   | TKFDFTrafficLightKeyValue
-  | TKFDFTrafficLightFromList
   | TKFDFTrafficLightMath;

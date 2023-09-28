@@ -44,7 +44,6 @@ export interface TKSubmissionEntryBullet {
   field: string;
   fieldLabel: TKLabel;
   answersLabels: TKLabel[];
-  trafficLight?: TKSubmissionEntryTrafficLight;
   isAnswered: boolean;
 }
 export interface TKSubmissionEntryAgePyramid {
@@ -147,10 +146,7 @@ export function TKCreateSubmissionEntryList(
     fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
     answerLabel: correctedValue,
     isAnswered: isAnswered,
-    trafficLight: getTrafficLight(
-      value,
-      getTrafficLightConfiguration(rule, surveyConfiguration)
-    )
+    trafficLight: undefined
   };
 }
 
@@ -209,10 +205,6 @@ export function TKCreateSubmissionEntryBullet(
     field: rule.fieldName,
     fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
     answersLabels: correctedValue,
-    isAnswered: isAnswered,
-    trafficLight: getTrafficLight(
-      value,
-      getTrafficLightConfiguration(rule, surveyConfiguration)
-    )
+    isAnswered: isAnswered
   };
 }
