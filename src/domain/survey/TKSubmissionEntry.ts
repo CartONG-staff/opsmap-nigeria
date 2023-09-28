@@ -31,8 +31,10 @@ export enum TKSubmissionEntryTextType {
   TEXT = "text",
   BULLET = "bullet"
 }
-
-export interface TKSubmissionEntryText {
+interface AbstractTKSubmissionEntry {
+  type: TKSubmissionEntryTextType | TKFDFGraphType;
+}
+export interface TKSubmissionEntryText extends AbstractTKSubmissionEntry {
   type: TKSubmissionEntryTextType.TEXT;
   thematic: TKSubmissionThematic;
   field: string;
@@ -42,7 +44,7 @@ export interface TKSubmissionEntryText {
   isAnswered: boolean;
 }
 
-export interface TKSubmissionEntryBullet {
+export interface TKSubmissionEntryBullet extends AbstractTKSubmissionEntry {
   type: TKSubmissionEntryTextType.BULLET;
   thematic: TKSubmissionThematic;
   field: string;
@@ -50,7 +52,7 @@ export interface TKSubmissionEntryBullet {
   answersLabels: TKLabel[];
   isAnswered: boolean;
 }
-export interface TKSubmissionEntryAgePyramid {
+export interface TKSubmissionEntryAgePyramid extends AbstractTKSubmissionEntry {
   type: TKFDFGraphType.AGE_PYRAMID;
   config: TKFDFGraphAgePyramid;
   thematic: TKSubmissionThematic;
@@ -63,7 +65,7 @@ export interface TKSubmissionEntryAgePyramid {
   femalesLabels: Array<TKLabel>;
 }
 
-export interface TKSubmissionEntryDoughnut {
+export interface TKSubmissionEntryDoughnut extends AbstractTKSubmissionEntry {
   type: TKFDFGraphType.DOUGHNUT;
   config: TKFDFGraphDoughnut;
   thematic: TKSubmissionThematic;
@@ -72,7 +74,7 @@ export interface TKSubmissionEntryDoughnut {
   isAnswered: true;
   entries: Array<{ value: number; label: TKLabel }>;
 }
-export interface TKSubmissionEntryPolar {
+export interface TKSubmissionEntryPolar extends AbstractTKSubmissionEntry {
   type: TKFDFGraphType.POLAR_AREA;
   config: TKFDFGraphPolarArea;
   thematic: TKSubmissionThematic;
@@ -82,7 +84,7 @@ export interface TKSubmissionEntryPolar {
   entries: Array<{ value: number; label: TKLabel }>;
 }
 
-export interface TKSubmissionEntryRadar {
+export interface TKSubmissionEntryRadar extends AbstractTKSubmissionEntry {
   type: TKFDFGraphType.RADAR;
   config: TKFDFGraphRadar;
   thematic: TKSubmissionThematic;
