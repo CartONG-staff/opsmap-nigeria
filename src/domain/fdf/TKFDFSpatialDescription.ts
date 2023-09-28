@@ -2,7 +2,7 @@
 // Description of the spatial configuration
 // field name, etc.
 
-import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 
 // ////////////////////////////////////////////////////////////////////////////
 

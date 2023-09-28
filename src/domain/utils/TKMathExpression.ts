@@ -1,5 +1,5 @@
 import { evaluate } from "mathjs";
-import { TKSubmissionRawEntries } from "../survey/TKSubmissionEntry";
+import { TKSubmissionRawEntries } from "@/domain/survey/TKSubmissionEntry";
 
 export type TKMathExpressionScope = Record<string, number>;
 

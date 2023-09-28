@@ -13,10 +13,10 @@ import { TKReadFDFLabelCollection } from "@/secondary/fdf/TKFDFParseMultiLang";
 import { TKReadSubmissionsRulesCollection } from "@/secondary/fdf/TKFDFSubmissionsRules";
 import { TKReadFDFTerminologyCollection } from "@/secondary/fdf/TKFDFTerminology";
 import { TKReadFDFThematicsCollection } from "@/secondary/fdf/TKFDFThematics";
-import { TKFDFReadTrafficLights } from "@/secondary/fdf/TKFDFReadTrafficLights";
+import { TKFDFReadTrafficLights } from "@/domain/fdf/TKFDFTrafficLights/TKFDFReadTrafficLights";
 import { TKReadFDFURLsCollection } from "@/secondary/fdf/TKFDFURLs";
 import { TKReadFDFSiteTypesCollection } from "./TKFDFSiteTypes";
-import { TKGetRidlTranslationsData } from "../ridl/TKGetRidlRawData";
+import { TKGetRidlTranslationsData } from "@/secondary/ridl/TKGetRidlRawData";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Method that creates the FDF object from the fdf folder

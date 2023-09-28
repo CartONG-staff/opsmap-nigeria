@@ -1,11 +1,11 @@
 import { TKFDFTrafficLightConfiguration } from "./TKFDFTrafficLightConfiguration";
-import { TKFDFTrafficLightsProperties } from "./TKFDFTrafficLightProperties";
+import { TKFDFTrafficLightProperties } from "./TKFDFTrafficLightProperties";
 
-// ////////////////////////////////////////////////////////////////////////////
-//
-// ////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Configuration of the traffic light configuration. the traffic_light_json file shoudl match this definition
+ * The properties field is considered as default for all TrafficLightConfiguration, and can be overriden by local definitions
+ */
 export interface TKFDFTrafficLightsConfiguration {
-  properties?: TKFDFTrafficLightsProperties;
+  properties: TKFDFTrafficLightProperties;
   trafficLights: Record<string, TKFDFTrafficLightConfiguration>;
 }

@@ -1,3 +1,14 @@
-import { TKFDFTrafficLightItem } from "./TKFDFTrafficLightItem";
+import { TKLabel } from "@/domain/utils/TKLabel";
+import { TKFDFTrafficLightColor } from "./TKFDFTrafficLightColor";
 
-export type TKFDFTrafficLigthColormap = Record<string, TKFDFTrafficLightItem>;
+export interface TKFDFTrafficLightColormapItem {
+  color: TKFDFTrafficLightColor;
+  label: TKLabel | string;
+}
+/**
+ * A Map type that link a key and a traffic light item
+ */
+export type TKFDFTrafficLigthColormap = Record<
+  string,
+  TKFDFTrafficLightColormapItem
+>;

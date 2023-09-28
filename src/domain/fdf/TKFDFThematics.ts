@@ -1,4 +1,4 @@
-import { TKLabel } from "../utils/TKLabel";
+import { TKLabel } from "@/domain/utils/TKLabel";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Thematic datatype

@@ -1,61 +1,42 @@
-import { TKFDFTrafficLightItem } from "./TKFDFTrafficLightItem";
-import { TKFDFTrafficLightsProperties } from "./TKFDFTrafficLightProperties";
+import { TKFDFTrafficLightColormapItem } from "./TKFDFTrafficLightColormap";
+import { TKFDFTrafficLightProperties } from "./TKFDFTrafficLightProperties";
 
-// ////////////////////////////////////////////////////////////////////////////
-// Type
-// ////////////////////////////////////////////////////////////////////////////
-
-export const DEFAULT_ERROR_TRAFFICLIGHT: TKFDFTrafficLightItem = {
-  color: "pink",
-  label: {
-    fr: "Erreur",
-    en: "Error"
-  }
+/**
+ * Default error colormapitem
+ */
+export const DEFAULT_ERROR_TRAFFICLIGHT: TKFDFTrafficLightColormapItem = {
+  color: "purple",
+  label: "trafficlight.error"
 };
 
-export const DEFAULT_PROPERTIES: TKFDFTrafficLightsProperties = {
+/**
+ * Default color map used in the app
+ */
+export const DEFAULT_PROPERTIES: TKFDFTrafficLightProperties = {
   colormap: {
     grey: {
       color: "#999999",
-      label: {
-        fr: "Indéterminé",
-        en: "Undefined"
-      }
+      label: "trafficlight.undefined"
     },
     darkred: {
       color: "#C00000",
-      label: {
-        fr: "Critique",
-        en: "Critical"
-      }
+      label: "trafficlight.critical"
     },
     red: {
       color: "#FF0000",
-      label: {
-        fr: "Danger",
-        en: "Danger"
-      }
+      label: "trafficlight.danger"
     },
     orange: {
       color: "#FFC000",
-      label: {
-        fr: "Avertissement",
-        en: "Warning"
-      }
+      label: "trafficlight.warning"
     },
     yellow: {
       color: "#FFE599",
-      label: {
-        fr: "Attention",
-        en: "Caution"
-      }
+      label: "trafficlight.caution"
     },
     green: {
       color: "#A8D08D",
-      label: {
-        fr: "OK",
-        en: "OK"
-      }
+      label: "trafficlight.ok"
     },
     purple: DEFAULT_ERROR_TRAFFICLIGHT
   },

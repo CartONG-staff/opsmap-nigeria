@@ -1,8 +1,12 @@
-import { TKFDFTrafficLightItem } from "./TKFDFTrafficLightItem";
+import { TKFDFTrafficLigthColormap } from "./TKFDFTrafficLightColormap";
 
-export type TKFDFTrafficLigthColormap = Record<string, TKFDFTrafficLightItem>;
-
-export interface TKFDFTrafficLightsProperties {
+/**
+ * Property of a colormap
+ *
+ * - colormap of the trafficlight
+ * - colorerror: key in colormap that represents the error field
+ */
+export interface TKFDFTrafficLightProperties {
   colormap: TKFDFTrafficLigthColormap;
   colorerror: string; // index in colormap
 }

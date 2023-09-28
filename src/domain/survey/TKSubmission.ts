@@ -20,15 +20,18 @@ import {
   TKIndicatorType,
   TKIndicators
 } from "@/domain/survey/TKIndicator";
-import { TKLabel } from "../utils/TKLabel";
+import { TKLabel } from "@/domain/utils/TKLabel";
 import {
   TKFDFSubmissionItemType,
   TKFDFSubmissionRule
-} from "../fdf/TKFDFSubmissionsRules";
-import { TKCompare, TKCompute } from "../utils/TKOperator";
-import { TKOperatorComputation } from "../utils/TKOperator";
-import { TKOperatorComparison } from "../utils/TKOperator";
-import { TKFDFIndicatorSite, TKFDFIndicatorType } from "../fdf/TKFDFIndicators";
+} from "@/domain/fdf/TKFDFSubmissionsRules";
+import { TKCompare, TKCompute } from "@/domain/utils/TKOperator";
+import { TKOperatorComputation } from "@/domain/utils/TKOperator";
+import { TKOperatorComparison } from "@/domain/utils/TKOperator";
+import {
+  TKFDFIndicatorSite,
+  TKFDFIndicatorType
+} from "@/domain/fdf/TKFDFIndicators";
 import { evaluate, round } from "mathjs";
 import { TKSurveyOptions } from "./TKSurvey";
 import { TKSubmissionEntries } from "./TKSubmissionEntries";

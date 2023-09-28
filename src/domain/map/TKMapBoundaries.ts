@@ -1,14 +1,14 @@
 import { Feature, FeatureCollection } from "geojson";
 import mapboxgl, { LngLat, LngLatBounds, LngLatLike } from "mapbox-gl";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
-import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
-import { TKOpsmapSpatialConfiguration } from "../opsmapConfig/TKOpsmapConfiguration";
+import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
+import { TKOpsmapSpatialConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 import {
   TKAdminLevel,
   closestAncesterInAdminLevelMap,
   leaf
-} from "../opsmapConfig/TKAdminLevel";
-import { TKBoundaries } from "../survey/TKBoundaries";
+} from "@/domain/opsmapConfig/TKAdminLevel";
+import { TKBoundaries } from "@/domain/survey/TKBoundaries";
 import { COUNTRY_MASK } from "./TKMapLayers";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";

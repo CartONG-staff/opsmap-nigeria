@@ -4,8 +4,8 @@ import { TKSubmission } from "@/domain/survey/TKSubmission";
 import {
   TKSubmissionEntry,
   TKSubmissionEntryType
-} from "../../domain/survey/TKSubmissionEntry";
-import { TKGetLocalValue } from "../../domain/utils/TKLabel";
+} from "@/domain/survey/TKSubmissionEntry";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import {
   applyVisualizerOptions,

@@ -1,16 +1,16 @@
-import { TKFDF } from "../fdf/TKFDF";
-import { TKFDFSubmissionRule } from "../fdf/TKFDFSubmissionsRules";
+import { TKFDF } from "@/domain/fdf/TKFDF";
+import { TKFDFSubmissionRule } from "@/domain/fdf/TKFDFSubmissionsRules";
+import { TKFDFTrafficLightColormapItem } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightColormap";
 import {
   TKFDFTrafficLightConfiguration,
   TKFDFTrafficLightType
-} from "../fdf/TKFDFTrafficLights/TKFDFTrafficLightConfiguration";
-import { TKFDFTrafficLightItem } from "../fdf/TKFDFTrafficLights/TKFDFTrafficLightItem";
-import { getRankValue } from "../fdf/TKFDFTrafficLights/TKFDFTrafficLightRank";
+} from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightConfiguration";
+import { getRankValue } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightRank";
 import {
   TKMathExpressionBuildDefaultScope,
   TKMathExpressionBuildScope,
   TKMathExpressionEvaluate
-} from "../utils/TKMathExpression";
+} from "@/domain/utils/TKMathExpression";
 import { TKSubmissionRawEntries } from "./TKSubmissionEntry";
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,7 @@ export function getTrafficLight(
   | {
       configuration: TKFDFTrafficLightConfiguration;
       rank: number;
-      value: TKFDFTrafficLightItem;
+      value: TKFDFTrafficLightColormapItem;
     }
   | undefined {
   // If no traffic light for this value

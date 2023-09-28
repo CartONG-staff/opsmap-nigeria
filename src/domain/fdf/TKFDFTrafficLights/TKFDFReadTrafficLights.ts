@@ -1,7 +1,7 @@
-import { TKFDFTrafficLightsConfiguration } from "../../domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightsConfiguration";
-import { TKFDFTrafficLightConfiguration } from "../../domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightConfiguration";
-import { DEFAULT_PROPERTIES } from "../../domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightsDefaultProperties";
-import { TKFDFTrafficLightsProperties } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightProperties";
+import { TKFDFTrafficLightsConfiguration } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightsConfiguration";
+import { TKFDFTrafficLightConfiguration } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightConfiguration";
+import { DEFAULT_PROPERTIES } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightsDefaultProperties";
+import { TKFDFTrafficLightProperties } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightProperties";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Default property
@@ -9,7 +9,7 @@ import { TKFDFTrafficLightsProperties } from "@/domain/fdf/TKFDFTrafficLights/TK
 
 function applyDefaultProperty(
   json: TKFDFTrafficLightsConfiguration | TKFDFTrafficLightConfiguration,
-  defaultProperties: TKFDFTrafficLightsProperties
+  defaultProperties: TKFDFTrafficLightProperties
 ) {
   // Properties undefined
   if (!json.properties) {

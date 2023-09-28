@@ -1,19 +1,19 @@
-import { TKFDF } from "../fdf/TKFDF";
-import { TKLabel } from "../utils/TKLabel";
+import { TKFDF } from "@/domain/fdf/TKFDF";
+import { TKLabel } from "@/domain/utils/TKLabel";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
-import { TKFDFSubmissionRule } from "../fdf/TKFDFSubmissionsRules";
+import { TKFDFSubmissionRule } from "@/domain/fdf/TKFDFSubmissionsRules";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
-import { TKFDFTrafficLightConfiguration } from "../fdf/TKFDFTrafficLights/TKFDFTrafficLightConfiguration";
-import { TKFDFTrafficLightItem } from "../fdf/TKFDFTrafficLights/TKFDFTrafficLightItem";
+import { TKFDFTrafficLightConfiguration } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightConfiguration";
 import {
   getTrafficLight,
   getTrafficLightConfiguration
 } from "./TKSubmissionEntryTrafficLightProcesser";
+import { TKFDFTrafficLightColormapItem } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightColormap";
 
 export interface TKSubmissionEntryTrafficLight {
   configuration: TKFDFTrafficLightConfiguration;
   rank: number;
-  value: TKFDFTrafficLightItem;
+  value: TKFDFTrafficLightColormapItem;
 }
 
 // ////////////////////////////////////////////////////////////////////////////

@@ -1,7 +1,7 @@
 import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 import { TKSubmissionEntry, TKSubmissionEntryType } from "./TKSubmissionEntry";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
-import { UNDEFINED_RANK_VALUE } from "../fdf/TKFDFTrafficLights/TKFDFTrafficLightRank";
+import { UNDEFINED_RANK_VALUE } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightRank";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type TKSubmissionEntries = Record<string, TKSubmissionEntry>;
