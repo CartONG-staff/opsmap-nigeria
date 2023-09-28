@@ -31,7 +31,7 @@ import {
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import { TKSubmissionEntries } from "@/domain/survey/TKSubmissionEntries";
-import { TKFDFGraphType } from "@/domain/fdf/TKFDFGraphs/TKFDFGraphConfiguration";
+import { TKFDFChartType } from "@/domain/fdf/TKFDFCharts/TKFDFChartConfiguration";
 
 const LEFT = 0;
 const MIDDLE = 1;
@@ -92,16 +92,16 @@ function computeScore(
         case TKSubmissionEntryTextType.BULLET:
           score = thematicData.answersLabels.length;
           break;
-        case TKFDFGraphType.DOUGHNUT:
+        case TKFDFChartType.DOUGHNUT:
           score = computeChartDoughnutScore(thematicData);
           break;
-        case TKFDFGraphType.POLAR_AREA:
+        case TKFDFChartType.POLAR_AREA:
           score = computeChartPolarScore(thematicData);
           break;
-        case TKFDFGraphType.AGE_PYRAMID:
+        case TKFDFChartType.AGE_PYRAMID:
           score = computeChartPyramidScore(thematicData);
           break;
-        case TKFDFGraphType.RADAR:
+        case TKFDFChartType.RADAR:
           score = computeChartRadarScore(thematicData);
           break;
         case TKSubmissionEntryTextType.TEXT:

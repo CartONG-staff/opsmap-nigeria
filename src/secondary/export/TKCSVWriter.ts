@@ -11,7 +11,7 @@ import {
   applyVisualizerOptions,
   getEntriesForThematic
 } from "@/domain/survey/TKSubmissionEntries";
-import { TKFDFGraphType } from "@/domain/fdf/TKFDFGraphs/TKFDFGraphConfiguration";
+import { TKFDFChartType } from "@/domain/fdf/TKFDFCharts/TKFDFChartConfiguration";
 
 // ////////////////////////////////////////////////////////////////////////////
 // get trafficlight text
@@ -82,7 +82,7 @@ function computeCurrentSiteCSVContent(
           rows.push([thematicName, itemName, answer, trafficLight]);
         }
         // CHART_PYRAMID
-        else if (entry.type === TKFDFGraphType.AGE_PYRAMID) {
+        else if (entry.type === TKFDFChartType.AGE_PYRAMID) {
           const itemName = "age_pyramid";
           for (const [index, value] of entry.malesEntries.entries()) {
             const chartItemName =
@@ -178,10 +178,10 @@ function computeCurrentSelectionCSVContent(
                 TKGetLocalValue(entry.fieldLabel, locale)
             );
             break;
-          case TKFDFGraphType.AGE_PYRAMID:
-          case TKFDFGraphType.DOUGHNUT:
-          case TKFDFGraphType.POLAR_AREA:
-          case TKFDFGraphType.RADAR:
+          case TKFDFChartType.AGE_PYRAMID:
+          case TKFDFChartType.DOUGHNUT:
+          case TKFDFChartType.POLAR_AREA:
+          case TKFDFChartType.RADAR:
             rows[0].push(
               TKGetLocalValue(thematic.nameLabel, locale) +
                 "/" +
@@ -227,7 +227,7 @@ function computeCurrentSelectionCSVContent(
                   .join(", ")
               );
               break;
-            case TKFDFGraphType.AGE_PYRAMID:
+            case TKFDFChartType.AGE_PYRAMID:
               val =
                 "females:" +
                 entry.femalesEntries.join(",") +
@@ -235,8 +235,8 @@ function computeCurrentSelectionCSVContent(
                 entry.malesEntries.join(",");
               row.push(val);
               break;
-            case TKFDFGraphType.DOUGHNUT:
-            case TKFDFGraphType.POLAR_AREA:
+            case TKFDFChartType.DOUGHNUT:
+            case TKFDFChartType.POLAR_AREA:
               row.push(
                 entry.entries
                   .map(

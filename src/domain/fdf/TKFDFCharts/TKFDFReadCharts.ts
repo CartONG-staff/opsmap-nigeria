@@ -1,13 +1,13 @@
-import { TKFDFGraphsConfiguration } from "@/domain/fdf/TKFDFGraphs/TKFDFGraphsConfiguration";
+import { TKFDFChartsConfiguration } from "@/domain/fdf/TKFDFCharts/TKFDFChartsConfiguration";
 
 // ////////////////////////////////////////////////////////////////////////////
-// Read Graph Configuration json
+// Read Chart Configuration json
 // ////////////////////////////////////////////////////////////////////////////
 
-export async function TKFDFReadGraphs(
+export async function TKFDFReadCharts(
   file: string
-): Promise<TKFDFGraphsConfiguration> {
-  const json: TKFDFGraphsConfiguration = await fetch(file, {
+): Promise<TKFDFChartsConfiguration> {
+  const json: TKFDFChartsConfiguration = await fetch(file, {
     cache: "no-store"
   }).then(response => response.json());
 
@@ -15,9 +15,9 @@ export async function TKFDFReadGraphs(
   // Check errors in the file
   // ////////////////////////////////////////////////////////////////////////////
 
-  if (!json.graphs) {
-    json.graphs = {};
-    console.warn("[FDF] The Graphs field is missing in the json.");
+  if (!json.charts) {
+    json.charts = {};
+    console.warn("[FDF] The Charts field is missing in the json.");
   }
 
   return json;

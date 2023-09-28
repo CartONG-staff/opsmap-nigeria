@@ -3,11 +3,11 @@
 // ////////////////////////////////////////////////////////////////////////////
 
 /**
- * Enum - contains all graphs
+ * Enum - contains all charts
  * @Remarks
  * Helper Discrimation Types setup
  */
-export enum TKFDFGraphType {
+export enum TKFDFChartType {
   POLAR_AREA = "polar_area",
   AGE_PYRAMID = "age_pyramid",
   DOUGHNUT = "doughnut",
@@ -18,20 +18,20 @@ export enum TKFDFGraphType {
 // Key_values
 // ////////////////////////////////////////////////////////////////////////////
 
-export interface TKFDFGraphPolarArea {
-  type: TKFDFGraphType.POLAR_AREA;
+export interface TKFDFChartPolarArea {
+  type: TKFDFChartType.POLAR_AREA;
 }
 
-export interface TKFDFGraphAgePyramid {
-  type: TKFDFGraphType.AGE_PYRAMID;
+export interface TKFDFChartAgePyramid {
+  type: TKFDFChartType.AGE_PYRAMID;
 }
 
-export interface TKFDFGraphDoughnut {
-  type: TKFDFGraphType.DOUGHNUT;
+export interface TKFDFChartDoughnut {
+  type: TKFDFChartType.DOUGHNUT;
 }
 
-export interface TKFDFGraphRadar {
-  type: TKFDFGraphType.RADAR;
+export interface TKFDFChartRadar {
+  type: TKFDFChartType.RADAR;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -41,8 +41,8 @@ export interface TKFDFGraphRadar {
  * Discrimation Union type
  * The discriminatory field will be "type"
  */
-export type TKFDFGraphConfiguration =
-  | TKFDFGraphPolarArea
-  | TKFDFGraphAgePyramid
-  | TKFDFGraphDoughnut
-  | TKFDFGraphRadar;
+export type TKFDFChartConfiguration =
+  | TKFDFChartPolarArea
+  | TKFDFChartAgePyramid
+  | TKFDFChartDoughnut
+  | TKFDFChartRadar;

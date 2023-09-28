@@ -10,12 +10,12 @@ import {
 } from "./TKSubmissionEntryTrafficLightProcesser";
 import { TKFDFTrafficLightColormapItem } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightColormap";
 import {
-  TKFDFGraphAgePyramid,
-  TKFDFGraphDoughnut,
-  TKFDFGraphPolarArea,
-  TKFDFGraphRadar,
-  TKFDFGraphType
-} from "../fdf/TKFDFGraphs/TKFDFGraphConfiguration";
+  TKFDFChartAgePyramid,
+  TKFDFChartDoughnut,
+  TKFDFChartPolarArea,
+  TKFDFChartRadar,
+  TKFDFChartType
+} from "../fdf/TKFDFCharts/TKFDFChartConfiguration";
 
 export interface TKSubmissionEntryTrafficLight {
   configuration: TKFDFTrafficLightConfiguration;
@@ -32,7 +32,7 @@ export enum TKSubmissionEntryTextType {
   BULLET = "bullet"
 }
 interface AbstractTKSubmissionEntry {
-  type: TKSubmissionEntryTextType | TKFDFGraphType;
+  type: TKSubmissionEntryTextType | TKFDFChartType;
 }
 export interface TKSubmissionEntryText extends AbstractTKSubmissionEntry {
   type: TKSubmissionEntryTextType.TEXT;
@@ -53,8 +53,8 @@ export interface TKSubmissionEntryBullet extends AbstractTKSubmissionEntry {
   isAnswered: boolean;
 }
 export interface TKSubmissionEntryAgePyramid extends AbstractTKSubmissionEntry {
-  type: TKFDFGraphType.AGE_PYRAMID;
-  config: TKFDFGraphAgePyramid;
+  type: TKFDFChartType.AGE_PYRAMID;
+  config: TKFDFChartAgePyramid;
   thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
@@ -66,8 +66,8 @@ export interface TKSubmissionEntryAgePyramid extends AbstractTKSubmissionEntry {
 }
 
 export interface TKSubmissionEntryDoughnut extends AbstractTKSubmissionEntry {
-  type: TKFDFGraphType.DOUGHNUT;
-  config: TKFDFGraphDoughnut;
+  type: TKFDFChartType.DOUGHNUT;
+  config: TKFDFChartDoughnut;
   thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
@@ -75,8 +75,8 @@ export interface TKSubmissionEntryDoughnut extends AbstractTKSubmissionEntry {
   entries: Array<{ value: number; label: TKLabel }>;
 }
 export interface TKSubmissionEntryPolar extends AbstractTKSubmissionEntry {
-  type: TKFDFGraphType.POLAR_AREA;
-  config: TKFDFGraphPolarArea;
+  type: TKFDFChartType.POLAR_AREA;
+  config: TKFDFChartPolarArea;
   thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
@@ -85,8 +85,8 @@ export interface TKSubmissionEntryPolar extends AbstractTKSubmissionEntry {
 }
 
 export interface TKSubmissionEntryRadar extends AbstractTKSubmissionEntry {
-  type: TKFDFGraphType.RADAR;
-  config: TKFDFGraphRadar;
+  type: TKFDFChartType.RADAR;
+  config: TKFDFChartRadar;
   thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;

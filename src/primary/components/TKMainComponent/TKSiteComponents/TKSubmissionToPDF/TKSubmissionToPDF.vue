@@ -50,7 +50,7 @@ import {
   RobotoItalic,
   RobotoNormal
 } from "@/domain/fonts";
-import { TKFDFGraphType } from "@/domain/fdf/TKFDFGraphs/TKFDFGraphConfiguration";
+import { TKFDFChartType } from "@/domain/fdf/TKFDFCharts/TKFDFChartConfiguration";
 
 @Component({
   components: {
@@ -315,10 +315,10 @@ export default class TKSubmissionToPDF extends Vue {
           body.push([answer]);
         }
       } else if (
-        entry.type === TKFDFGraphType.AGE_PYRAMID ||
-        entry.type === TKFDFGraphType.DOUGHNUT ||
-        entry.type === TKFDFGraphType.POLAR_AREA ||
-        entry.type === TKFDFGraphType.RADAR
+        entry.type === TKFDFChartType.AGE_PYRAMID ||
+        entry.type === TKFDFChartType.DOUGHNUT ||
+        entry.type === TKFDFChartType.POLAR_AREA ||
+        entry.type === TKFDFChartType.RADAR
       ) {
         const props = pdf.getImageProperties(
           TKPDFInfosModule.currentChartsBase64[entry.chartid]

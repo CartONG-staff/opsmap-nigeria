@@ -13,7 +13,7 @@ import { TKTFDFhematicsCollection } from "./TKFDFThematics";
 
 import { TKFDFUrlsCollection } from "./TKFDFURLs";
 import { TKFDFTrafficLightsConfiguration } from "./TKFDFTrafficLights/TKFDFTrafficLightsConfiguration";
-import { TKFDFGraphsConfiguration } from "./TKFDFGraphs/TKFDFGraphsConfiguration";
+import { TKFDFChartsConfiguration } from "./TKFDFCharts/TKFDFChartsConfiguration";
 
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKFDF {
@@ -21,7 +21,7 @@ export interface TKFDF {
   terminology: TKFDFTerminologyCollection;
   thematics: TKTFDFhematicsCollection;
   trafficLights: TKFDFTrafficLightsConfiguration;
-  graphs: TKFDFGraphsConfiguration;
+  charts: TKFDFChartsConfiguration;
   fieldsLabels: TKFDFLabelCollection;
   answersLabels: TKFDFLabelCollection;
   submissionsRules: TKFDFSubmissionsRulesCollection;

@@ -10,7 +10,7 @@ import { TKLabel } from "@/domain/utils/TKLabel";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
 import { TKSubmissionEntries } from "./TKSubmissionEntries";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
-import { TKFDFGraphType } from "../fdf/TKFDFGraphs/TKFDFGraphConfiguration";
+import { TKFDFChartType } from "../fdf/TKFDFCharts/TKFDFChartConfiguration";
 
 export type TKChartData = {
   id: string;
@@ -87,9 +87,9 @@ export function TKCreateSubmissionChart(
 ) {
   const chartDataLabeled = applyOptions(chartData, fdf);
 
-  const chartConfiguration = fdf.graphs.graphs[chartDataLabeled.id];
+  const chartConfiguration = fdf.charts.charts[chartDataLabeled.id];
 
-  if (chartConfiguration.type === TKFDFGraphType.AGE_PYRAMID) {
+  if (chartConfiguration.type === TKFDFChartType.AGE_PYRAMID) {
     const malesEntries = chartDataLabeled.data
       .filter(item => item.type === "m")
       .reverse();
@@ -98,7 +98,7 @@ export function TKCreateSubmissionChart(
       .reverse();
 
     const entry: TKSubmissionEntryAgePyramid = {
-      type: TKFDFGraphType.AGE_PYRAMID,
+      type: TKFDFChartType.AGE_PYRAMID,
       config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
@@ -110,9 +110,9 @@ export function TKCreateSubmissionChart(
       femalesLabels: femalesEntries.map(item => item.field)
     };
     entries[entry.chartid] = entry;
-  } else if (chartConfiguration.type === TKFDFGraphType.DOUGHNUT) {
+  } else if (chartConfiguration.type === TKFDFChartType.DOUGHNUT) {
     const entry: TKSubmissionEntryDoughnut = {
-      type: TKFDFGraphType.DOUGHNUT,
+      type: TKFDFChartType.DOUGHNUT,
       config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
@@ -126,9 +126,9 @@ export function TKCreateSubmissionChart(
       })
     };
     entries[entry.chartid] = entry;
-  } else if (chartConfiguration.type === TKFDFGraphType.POLAR_AREA) {
+  } else if (chartConfiguration.type === TKFDFChartType.POLAR_AREA) {
     const entry: TKSubmissionEntryPolar = {
-      type: TKFDFGraphType.POLAR_AREA,
+      type: TKFDFChartType.POLAR_AREA,
       config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
@@ -142,9 +142,9 @@ export function TKCreateSubmissionChart(
       })
     };
     entries[entry.chartid] = entry;
-  } else if (chartConfiguration.type === TKFDFGraphType.RADAR) {
+  } else if (chartConfiguration.type === TKFDFChartType.RADAR) {
     const entry: TKSubmissionEntryRadar = {
-      type: TKFDFGraphType.RADAR,
+      type: TKFDFChartType.RADAR,
       config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
