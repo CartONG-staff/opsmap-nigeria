@@ -16,6 +16,11 @@ import { TKAdditionalFilterDescription } from "./TKAdditionalFilter";
 // Survey concept definition
 // ////////////////////////////////////////////////////////////////////////////
 
+export enum TKSurveyZoomSiteType {
+  SITE = "site",
+  CLOSEST_ADMIN_PARENT = "admin"
+}
+
 export enum TKSurveyAnonymousType {
   NONE = "none",
   TEXT = "text",
@@ -24,6 +29,8 @@ export enum TKSurveyAnonymousType {
 
 export interface TKSurveyOptions {
   anonymousMode: TKSurveyAnonymousType;
+  siteZoomMode: TKSurveyZoomSiteType;
+  siteZoomBuffer: number;
   inputDateFormat: string;
   displayDateFormat: string;
   listSeparator: string;

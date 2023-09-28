@@ -12,6 +12,7 @@ import { TKBoundaries } from "../survey/TKBoundaries";
 import { COUNTRY_MASK } from "./TKMapLayers";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import { TKSurveyZoomSiteType } from "@/domain/survey/TKSurvey";
 
 export class TKMapBoundaries {
   public geodataset: TKGeoDataset;
@@ -63,13 +64,19 @@ export class TKMapBoundaries {
     // If has boundary level
     if (boundaryLevel) {
       // Current site: set parent admin boundaries, zoom on site
-      if (TKDatasetModule.dataset.currentSite) {
+      if (
+        TKDatasetModule.dataset.currentSite &&
+        TKDatasetModule.dataset.currentSurvey.options.siteZoomMode ==
+          TKSurveyZoomSiteType.SITE
+      ) {
         this.setAdminStyle(boundaryLevel);
         map.fitBounds(
           new LngLat(
             TKDatasetModule.dataset.currentSite.coordinates.lng,
             TKDatasetModule.dataset.currentSite.coordinates.lat
-          ).toBounds(100)
+          ).toBounds(
+            TKDatasetModule.dataset.currentSurvey.options.siteZoomBuffer
+          )
         );
       }
       // Current admin: set admin boundaries, zoom on admin

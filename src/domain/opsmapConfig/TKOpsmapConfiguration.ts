@@ -5,7 +5,8 @@ import { TKLogo } from "@/domain/utils/TKLogo";
 import VueI18n from "vue-i18n";
 import {
   TKSurveyAnonymousType,
-  TKSurveyOptions
+  TKSurveyOptions,
+  TKSurveyZoomSiteType
 } from "@/domain/survey/TKSurvey";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
 import { TKAdminLevel, sortAdminLevelsRootFirst } from "./TKAdminLevel";
@@ -196,6 +197,8 @@ export async function TKReadGeneralConfiguration(
   const defaultSurveyOptions: TKSurveyOptions = {
     inputDateFormat: "DD/MM/YYYY",
     displayDateFormat: "DD/MM/YYYY",
+    siteZoomMode: TKSurveyZoomSiteType.SITE,
+    siteZoomBuffer: 100,
     listSeparator: ";",
     anonymousMode: TKSurveyAnonymousType.NONE
   };
