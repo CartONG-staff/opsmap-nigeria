@@ -3,5 +3,5 @@ import { TKFDFTrafficLightColor } from "./TKFDFTrafficLightColor";
 
 export interface TKFDFTrafficLightItem {
   color: TKFDFTrafficLightColor;
-  label: TKLabel;
+  label: TKLabel | string;
 }
