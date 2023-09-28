@@ -23,6 +23,15 @@
         "partnerFieldwork": "Fieldwork",
         "partnerWebdev": "Webdev"
     },
+    "trafficlight": {
+        "ok": "OK",
+        "caution": "Caution",
+        "warning": "Warning",
+        "danger": "Danger",
+        "critical": "Critical",
+        "undefined": "Undefined",
+        "error": "Error"
+    },
     "main": {
         "switchPage": "Switch Page"
     },
