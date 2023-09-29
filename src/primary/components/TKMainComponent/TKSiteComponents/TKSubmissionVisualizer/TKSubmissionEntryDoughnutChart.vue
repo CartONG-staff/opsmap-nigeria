@@ -30,13 +30,6 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
   chart!: Chart;
   readonly ctx = v4();
   readonly height = 300;
-  readonly colors = [
-    TKColors.CHART_COLOR_6,
-    TKColors.CHART_COLOR_7,
-    TKColors.CHART_COLOR_8,
-    TKColors.CHART_COLOR_4,
-    TKColors.CHART_COLOR_5
-  ];
 
   mounted() {
     if (this.entry) {
@@ -47,7 +40,7 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
           datasets: [
             {
               data: this.generateValues(),
-              backgroundColor: this.colors
+              backgroundColor: this.entry.config.colors
             }
           ]
         },

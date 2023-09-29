@@ -58,7 +58,8 @@
         "titleY": "Age Range",
         "titleX": "Population",
         "female": "Female",
-        "male": "Male"
+        "male": "Male",
+        "population": "Population"
     },
     "map": {
         "legendBasemaps": "Select a basemap",

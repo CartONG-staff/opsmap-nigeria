@@ -58,11 +58,9 @@ export interface TKSubmissionEntryAgePyramid extends AbstractTKSubmissionEntry {
   thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
-  malesEntries: Array<number>;
-  femalesEntries: Array<number>;
-  malesLabels: Array<TKLabel>;
+  values: Record<string, Array<number>>;
+  labels: Array<TKLabel>;
   isAnswered: true;
-  femalesLabels: Array<TKLabel>;
 }
 
 export interface TKSubmissionEntryDoughnut extends AbstractTKSubmissionEntry {

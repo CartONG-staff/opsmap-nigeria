@@ -58,7 +58,8 @@
         "titleY": "Interval d'Age",
         "titleX": "Population",
         "female": "Fille",
-        "male": "Garçon"
+        "male": "Garçon",
+        "population": "Population"
     },
     "map": {
         "legendBasemaps": "Sélectionner un fond de carte",

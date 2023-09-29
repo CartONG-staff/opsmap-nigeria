@@ -6,7 +6,7 @@ import {
   TKSubmissionEntryDoughnut,
   TKSubmissionEntryPolar
 } from "./TKSubmissionEntry";
-import { TKLabel } from "@/domain/utils/TKLabel";
+import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
 import { TKSubmissionEntries } from "./TKSubmissionEntries";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
@@ -90,12 +90,40 @@ export function TKCreateSubmissionChart(
   const chartConfiguration = fdf.charts.charts[chartDataLabeled.id];
 
   if (chartConfiguration.type === TKFDFChartType.AGE_PYRAMID) {
-    const malesEntries = chartDataLabeled.data
-      .filter(item => item.type === "m")
-      .reverse();
-    const femalesEntries = chartDataLabeled.data
-      .filter(item => item.type === "f")
-      .reverse();
+    // Process data: sort them by id and extract numbers
+    const values: Record<string, Array<number>> = {};
+    for (const data of chartDataLabeled.data) {
+      if (!values[data.type]) {
+        values[data.type] = [];
+      }
+      values[data.type].push(Number(data.value));
+    }
+    const key = Object.keys(values).length ? Object.keys(values)[0] : "";
+    const labels: Array<TKLabel> =
+      chartConfiguration.legendLabels ??
+      (key
+        ? chartDataLabeled.data
+            .filter(item => item.type == key)
+            .map(item => {
+              return {
+                [TKConfigurationModule.configuration.locale
+                  .default]: TKGetLocalValue(
+                  item.field,
+                  TKConfigurationModule.configuration.locale.default
+                )
+                  .replace("Females", "")
+                  .replace("Males", "")
+                  .replace("(", "")
+                  .replace(")", "")
+                  .trim()
+              };
+            })
+            .reverse()
+        : []);
+    // TODO: Reverse array --> could be removed ?
+    for (const type in values) {
+      values[type] = values[type].reverse();
+    }
 
     const entry: TKSubmissionEntryAgePyramid = {
       type: TKFDFChartType.AGE_PYRAMID,
@@ -104,10 +132,8 @@ export function TKCreateSubmissionChart(
       chartid: chartDataLabeled.id,
       isAnswered: true,
       title: fdf.fieldsLabels[chartDataLabeled.id],
-      malesEntries: malesEntries.map(item => Number(item.value)),
-      femalesEntries: femalesEntries.map(item => Number(item.value)),
-      malesLabels: malesEntries.map(item => item.field),
-      femalesLabels: femalesEntries.map(item => item.field)
+      values: values,
+      labels: labels
     };
     entries[entry.chartid] = entry;
   } else if (chartConfiguration.type === TKFDFChartType.DOUGHNUT) {

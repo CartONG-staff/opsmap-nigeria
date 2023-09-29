@@ -19,8 +19,12 @@ import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
 import { TKColors } from "@/domain/utils/TKColors";
 import { v4 } from "uuid";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
-import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
+import {
+  TKFDFChartAgePyramidType,
+  TKFDFChartAgePyramidConfigurationItem
+} from "@/domain/fdf/TKFDFCharts/TKFDFChartConfiguration";
+import { TKLabel } from "@/domain/utils/TKLabel";
 
 Chart.register(
   BarController,
@@ -48,8 +52,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 
   beforeMount() {
     if (this.entry) {
-      this.height =
-        this.entry.malesEntries.length * (this.barthickness - 1) + 240; // This is magic !
+      this.height = this.entry.labels.length * (this.barthickness - 1) + 240; // This is magic !
     }
   }
 
@@ -59,26 +62,17 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
         type: "bar",
         data: {
           labels: this.generateLabels(),
-          datasets: [
-            {
-              label: this.$root.$i18n.t("charts.female").toString(),
-              data: this.generateFemalesDataset(),
-              backgroundColor: TKColors.CHART_COLOR_1,
+          datasets: this.entry.config.population.map(item => {
+            return {
+              label: this.generateDatasetLabel(item.label),
+              data: this.generateDataset(item),
+              backgroundColor: item.color,
               barThickness: this.barthickness,
               minBarLength: 1,
               borderWidth: 2,
               borderColor: TKColors.DARK_GREY
-            },
-            {
-              label: this.$root.$i18n.t("charts.male").toString(),
-              data: this.generateMalesDataset(),
-              backgroundColor: TKColors.CHART_COLOR_2,
-              barThickness: this.barthickness,
-              minBarLength: 1,
-              borderWidth: 2,
-              borderColor: TKColors.DARK_GREY
-            }
-          ]
+            };
+          })
         },
         options: {
           indexAxis: "y", // Make bar horizontal !
@@ -164,8 +158,9 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   onEntryChanged() {
     // Update labels and data Labels
     this.chart.data.labels = this.generateLabels();
-    this.chart.data.datasets[0].data = this.generateFemalesDataset();
-    this.chart.data.datasets[1].data = this.generateMalesDataset();
+    for (const pop of this.entry.config.population) {
+      this.chart.data.datasets[pop.index].data = this.generateDataset(pop);
+    }
 
     this.chart.update();
   }
@@ -178,14 +173,12 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
         this.$i18n.locale
       );
     }
-
-    this.chart.data.datasets[0].label = this.$root.$i18n
-      .t("charts.female")
-      .toString();
-
-    this.chart.data.datasets[1].label = this.$root.$i18n
-      .t("charts.male")
-      .toString();
+    this.chart.data.labels = this.generateLabels();
+    for (const pop of this.entry.config.population) {
+      this.chart.data.datasets[pop.index].label = this.generateDatasetLabel(
+        pop.label
+      );
+    }
 
     if (this.chart.config.options) {
       this.chart.config.options.scales = this.generateScales();
@@ -195,36 +188,29 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
   }
 
   generateLabels(): Array<string> {
-    if (this.entry) {
-      return this.entry.femalesLabels.map(item =>
-        item[TKConfigurationModule.configuration.locale.default]
-          .replace("Females ", "")
-          .replace("(", "")
-          .replace(")", "")
-      );
-    } else {
+    if (!this.entry) {
       return [];
     }
+
+    return this.entry.labels.map(item =>
+      TKGetLocalValue(item, this.$i18n.locale)
+    );
   }
 
-  generateMalesDataset(): Array<number> {
-    if (this.entry) {
-      return this.entry.malesEntries.map(item => -1 * item);
-    } else {
-      return [];
-    }
+  generateDataset(pop: TKFDFChartAgePyramidConfigurationItem): Array<number> {
+    return this.entry.config.populationType == TKFDFChartAgePyramidType.DUO &&
+      pop.index == 0
+      ? this.entry.values[pop.id].map(item => -1 * item)
+      : this.entry.values[pop.id];
   }
 
-  generateFemalesDataset(): Array<number> {
-    if (this.entry) {
-      return this.entry.femalesEntries;
-    } else {
-      return [];
-    }
+  generateDatasetLabel(label: TKLabel | string): string {
+    return typeof label == "string"
+      ? this.$root.$i18n.t(label).toString()
+      : TKGetLocalValue(label, this.$root.$i18n.locale);
   }
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
-
   generateScales(): any {
     return {
       x: {

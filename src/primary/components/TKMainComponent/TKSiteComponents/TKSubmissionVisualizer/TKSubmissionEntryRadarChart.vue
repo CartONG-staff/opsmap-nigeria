@@ -43,8 +43,6 @@ export default class TKSubmissionItemRadarChart extends Vue {
   readonly ctx = v4();
   readonly height = 300;
 
-  readonly color = TKColors.CHART_COLOR_1;
-
   mounted() {
     if (this.entry) {
       const config: ChartConfiguration = {
@@ -54,7 +52,7 @@ export default class TKSubmissionItemRadarChart extends Vue {
           datasets: [
             {
               data: this.generateValues(),
-              backgroundColor: this.color
+              backgroundColor: this.entry.config.color
             }
           ]
         },
@@ -74,6 +72,7 @@ export default class TKSubmissionItemRadarChart extends Vue {
               },
               display: true,
               pointLabels: {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 callback: function(label: string, index: number): string {
                   return label.length > 25
                     ? label.substring(0, 25) + "..."

@@ -54,9 +54,7 @@ function computeChartPolarScore(chart: TKSubmissionEntryPolar): number {
 function computeChartPyramidScore(chart: TKSubmissionEntryAgePyramid): number {
   const CHART_PYRAMID_BASE = 4;
   const CHART_PYRAMID_LINE_FACTOR = 3;
-  return (
-    chart.femalesLabels.length / CHART_PYRAMID_LINE_FACTOR + CHART_PYRAMID_BASE
-  );
+  return chart.labels.length / CHART_PYRAMID_LINE_FACTOR + CHART_PYRAMID_BASE;
 }
 
 function computeChartRadarScore(chart: TKSubmissionEntryRadar): number {

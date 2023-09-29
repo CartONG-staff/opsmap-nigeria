@@ -33,14 +33,6 @@ export default class TKSubmissionItemPolarChart extends Vue {
   readonly ctx = v4();
   readonly height = 300;
 
-  readonly colors = [
-    TKColors.CHART_COLOR_1,
-    TKColors.CHART_COLOR_2,
-    TKColors.CHART_COLOR_3,
-    TKColors.CHART_COLOR_4,
-    TKColors.CHART_COLOR_5
-  ];
-
   mounted() {
     if (this.entry) {
       const config: ChartConfiguration = {
@@ -50,7 +42,7 @@ export default class TKSubmissionItemPolarChart extends Vue {
           datasets: [
             {
               data: this.generateValues(),
-              backgroundColor: this.colors
+              backgroundColor: this.entry.config.colors
             }
           ]
         },
