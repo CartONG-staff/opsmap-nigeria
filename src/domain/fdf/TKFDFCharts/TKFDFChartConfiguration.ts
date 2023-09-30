@@ -12,17 +12,17 @@ import { TKLabel } from "@/domain/utils/TKLabel";
  */
 export enum TKFDFChartType {
   POLAR_AREA = "polar",
-  AGE_PYRAMID = "age_pyramid",
+  BAR = "bar",
   DOUGHNUT = "doughnut",
   RADAR = "radar"
 }
 
-export enum TKFDFChartAgePyramidType {
+export enum TKFDFChartBarType {
   SINGLE = "single",
   DUO = "duo"
 }
 
-export enum TKFDFChartAgePyramidDirection {
+export enum TKFDFChartBarDirection {
   HORIZONTAL = "horizontal",
   VERTICAL = "vertical"
 }
@@ -30,27 +30,26 @@ export enum TKFDFChartAgePyramidDirection {
 // Key_values
 // ////////////////////////////////////////////////////////////////////////////
 
-export interface TKFDFChartAgePyramidConfigurationItem {
+export interface TKFDFChartBarConfigurationItem {
   id: string;
   index: number;
   color: TKColor;
   label: TKLabel | string;
 }
 
-// AGE PYRAMID ////////////////////////////////////////////////////////////////
-export interface TKFDFChartAgePyramidConfiguration {
-  direction: TKFDFChartAgePyramidDirection;
+// Bar ////////////////////////////////////////////////////////////////////////
+export interface TKFDFChartBarConfiguration {
+  direction: TKFDFChartBarDirection;
   valueLabels?: Array<TKLabel>;
   titleAxis: {
     value: string | TKLabel;
     notValue: string | TKLabel;
   };
-  populationType: TKFDFChartAgePyramidType;
-  population: Array<TKFDFChartAgePyramidConfigurationItem>;
+  populationType: TKFDFChartBarType;
+  population: Array<TKFDFChartBarConfigurationItem>;
 }
-export interface TKFDFChartAgePyramid
-  extends TKFDFChartAgePyramidConfiguration {
-  type: TKFDFChartType.AGE_PYRAMID;
+export interface TKFDFChartBar extends TKFDFChartBarConfiguration {
+  type: TKFDFChartType.BAR;
 }
 
 // DOUGHNUT ///////////////////////////////////////////////////////////////////
@@ -85,7 +84,7 @@ export interface TKFDFChartRadar extends TKFDFChartRadarConfiguration {
  * The discriminatory field will be "type"
  */
 export type TKFDFChartConfiguration =
-  | TKFDFChartAgePyramid
+  | TKFDFChartBar
   | TKFDFChartDoughnut
   | TKFDFChartPolarArea
   | TKFDFChartRadar;

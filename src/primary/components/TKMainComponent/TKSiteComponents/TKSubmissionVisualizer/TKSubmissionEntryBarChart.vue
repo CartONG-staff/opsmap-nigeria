@@ -15,15 +15,15 @@ import {
   Title,
   Tooltip
 } from "chart.js";
-import { TKSubmissionEntryAgePyramid } from "@/domain/survey/TKSubmissionEntry";
+import { TKSubmissionEntryBar } from "@/domain/survey/TKSubmissionEntry";
 import { TKColors } from "@/domain/utils/TKColors";
 import { v4 } from "uuid";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
 import {
-  TKFDFChartAgePyramidType,
-  TKFDFChartAgePyramidDirection,
-  TKFDFChartAgePyramidConfigurationItem
+  TKFDFChartBarType,
+  TKFDFChartBarDirection,
+  TKFDFChartBarConfigurationItem
 } from "@/domain/fdf/TKFDFCharts/TKFDFChartConfiguration";
 import { TKLabel } from "@/domain/utils/TKLabel";
 
@@ -38,9 +38,9 @@ Chart.register(
 );
 
 @Component
-export default class TKSubmissionItemAgePyramidChart extends Vue {
+export default class TKSubmissionItemBarChart extends Vue {
   @Prop()
-  readonly entry!: TKSubmissionEntryAgePyramid;
+  readonly entry!: TKSubmissionEntryBar;
 
   // charts
   chart!: Chart;
@@ -77,8 +77,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
         },
         options: {
           indexAxis:
-            this.entry.config.direction ==
-            TKFDFChartAgePyramidDirection.VERTICAL
+            this.entry.config.direction == TKFDFChartBarDirection.VERTICAL
               ? "y"
               : "x",
           responsive: true,
@@ -200,8 +199,8 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
     );
   }
 
-  generateDataset(pop: TKFDFChartAgePyramidConfigurationItem): Array<number> {
-    return this.entry.config.populationType == TKFDFChartAgePyramidType.DUO &&
+  generateDataset(pop: TKFDFChartBarConfigurationItem): Array<number> {
+    return this.entry.config.populationType == TKFDFChartBarType.DUO &&
       pop.index == 0
       ? this.entry.values[pop.id].map(item => -1 * item)
       : this.entry.values[pop.id];
@@ -255,11 +254,11 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
     };
     return {
       x:
-        this.entry.config.direction == TKFDFChartAgePyramidDirection.VERTICAL
+        this.entry.config.direction == TKFDFChartBarDirection.VERTICAL
           ? axis1
           : axis2,
       y:
-        this.entry.config.direction == TKFDFChartAgePyramidDirection.VERTICAL
+        this.entry.config.direction == TKFDFChartBarDirection.VERTICAL
           ? axis2
           : axis1
     };

@@ -2,7 +2,7 @@
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKSubmissionEntryRadar,
-  TKSubmissionEntryAgePyramid,
+  TKSubmissionEntryBar,
   TKSubmissionEntryDoughnut,
   TKSubmissionEntryPolar
 } from "./TKSubmissionEntry";
@@ -31,6 +31,15 @@ export type TKChartDataLabeled = {
     type: string;
   }>;
 };
+
+function parseNameBasedOnAgePyramidType(name: string): string {
+  return name
+    .replace("Females", "")
+    .replace("Males", "")
+    .replace("(", "")
+    .replace(")", "")
+    .trim();
+}
 
 function applyOptions(
   chartData: TKChartData,
@@ -89,7 +98,7 @@ export function TKCreateSubmissionChart(
 
   const chartConfiguration = fdf.charts.charts[chartDataLabeled.id];
 
-  if (chartConfiguration.type === TKFDFChartType.AGE_PYRAMID) {
+  if (chartConfiguration.type === TKFDFChartType.BAR) {
     // Process data: sort them by id and extract numbers
     const values: Record<string, Array<number>> = {};
     for (const data of chartDataLabeled.data) {
@@ -108,15 +117,12 @@ export function TKCreateSubmissionChart(
             .map(item => {
               return {
                 [TKConfigurationModule.configuration.locale
-                  .default]: TKGetLocalValue(
-                  item.field,
-                  TKConfigurationModule.configuration.locale.default
+                  .default]: parseNameBasedOnAgePyramidType(
+                  TKGetLocalValue(
+                    item.field,
+                    TKConfigurationModule.configuration.locale.default
+                  )
                 )
-                  .replace("Females", "")
-                  .replace("Males", "")
-                  .replace("(", "")
-                  .replace(")", "")
-                  .trim()
               };
             })
             .reverse()
@@ -125,8 +131,8 @@ export function TKCreateSubmissionChart(
     for (const type in values) {
       values[type] = values[type].reverse();
     }
-    const entry: TKSubmissionEntryAgePyramid = {
-      type: TKFDFChartType.AGE_PYRAMID,
+    const entry: TKSubmissionEntryBar = {
+      type: TKFDFChartType.BAR,
       config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,

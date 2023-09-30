@@ -1,7 +1,7 @@
 import {
-  TKFDFChartAgePyramidConfiguration,
-  TKFDFChartAgePyramidDirection,
-  TKFDFChartAgePyramidType,
+  TKFDFChartBarConfiguration,
+  TKFDFChartBarDirection,
+  TKFDFChartBarType,
   TKFDFChartDoughnutConfiguration,
   TKFDFChartPolarAreaConfiguration,
   TKFDFChartRadarConfiguration
@@ -21,18 +21,17 @@ export enum TKChartsColors {
 // ////////////////////////////////////////////////////////////////////////////
 // Charts Colors
 // ////////////////////////////////////////////////////////////////////////////
-export const DEFAULT_PROPERTIES_AGE_PYRAMID_TYPE = TKFDFChartAgePyramidType.DUO;
-export const DEFAULT_PROPERTIES_AGE_PYRAMID_DIRECTION =
-  TKFDFChartAgePyramidDirection.VERTICAL;
+export const DEFAULT_PROPERTIES_BAR_TYPE = TKFDFChartBarType.DUO;
+export const DEFAULT_PROPERTIES_BAR_DIRECTION = TKFDFChartBarDirection.VERTICAL;
 
-export const DEFAULT_PROPERTIES_AGE_PYRAMID_TITLEAXIS = {
+export const DEFAULT_PROPERTIES_BAR_TITLEAXIS = {
   value: "charts.titleX",
   notValue: "charts.titleY"
 };
 
-export const DEFAULT_PROPERTIES_AGE_PYRAMID_DUO: TKFDFChartAgePyramidConfiguration = {
-  direction: DEFAULT_PROPERTIES_AGE_PYRAMID_DIRECTION,
-  populationType: TKFDFChartAgePyramidType.DUO,
+export const DEFAULT_PROPERTIES_BAR_DUO: TKFDFChartBarConfiguration = {
+  direction: DEFAULT_PROPERTIES_BAR_DIRECTION,
+  populationType: TKFDFChartBarType.DUO,
   population: [
     {
       id: "m",
@@ -47,12 +46,12 @@ export const DEFAULT_PROPERTIES_AGE_PYRAMID_DUO: TKFDFChartAgePyramidConfigurati
       label: "charts.female"
     }
   ],
-  titleAxis: DEFAULT_PROPERTIES_AGE_PYRAMID_TITLEAXIS,
+  titleAxis: DEFAULT_PROPERTIES_BAR_TITLEAXIS,
   valueLabels: undefined
 };
-export const DEFAULT_PROPERTIES_AGE_PYRAMID_SINGLE: TKFDFChartAgePyramidConfiguration = {
-  direction: DEFAULT_PROPERTIES_AGE_PYRAMID_DIRECTION,
-  populationType: TKFDFChartAgePyramidType.SINGLE,
+export const DEFAULT_PROPERTIES_BAR_SINGLE: TKFDFChartBarConfiguration = {
+  direction: DEFAULT_PROPERTIES_BAR_DIRECTION,
+  populationType: TKFDFChartBarType.SINGLE,
   population: [
     {
       id: "p",
@@ -61,7 +60,7 @@ export const DEFAULT_PROPERTIES_AGE_PYRAMID_SINGLE: TKFDFChartAgePyramidConfigur
       label: "charts.population"
     }
   ],
-  titleAxis: DEFAULT_PROPERTIES_AGE_PYRAMID_TITLEAXIS,
+  titleAxis: DEFAULT_PROPERTIES_BAR_TITLEAXIS,
   valueLabels: undefined
 };
 

@@ -6,9 +6,9 @@
       :entry="entry"
     />
     <div v-else class="tk-chart-container">
-      <TKSubmissionEntryAgePyramidChart
+      <TKSubmissionEntryBarChart
         class="tk-chart"
-        v-if="entry.type === 'age_pyramid'"
+        v-if="entry.type === 'bar'"
         :entry="entry"
       />
       <TKSubmissionEntryDoughnutChart
@@ -38,7 +38,7 @@
 import { Vue, Prop, Component } from "vue-property-decorator";
 import { TKSubmissionEntry } from "@/domain/survey/TKSubmissionEntry";
 
-import TKSubmissionEntryAgePyramidChart from "./TKSubmissionEntryAgePyramidChart.vue";
+import TKSubmissionEntryBarChart from "./TKSubmissionEntryBarChart.vue";
 import TKSubmissionEntryDoughnutChart from "./TKSubmissionEntryDoughnutChart.vue";
 import TKSubmissionEntryPolarChart from "./TKSubmissionEntryPolarChart.vue";
 import TKSubmissionEntryRadarChart from "./TKSubmissionEntryRadarChart.vue";
@@ -47,7 +47,7 @@ import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
 
 @Component({
   components: {
-    TKSubmissionEntryAgePyramidChart,
+    TKSubmissionEntryBarChart,
     TKSubmissionEntryDoughnutChart,
     TKSubmissionEntryPolarChart,
     TKSubmissionEntryRadarChart,

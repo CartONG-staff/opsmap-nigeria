@@ -10,7 +10,7 @@ import {
 } from "./TKSubmissionEntryTrafficLightProcesser";
 import { TKFDFTrafficLightColormapItem } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightColormap";
 import {
-  TKFDFChartAgePyramid,
+  TKFDFChartBar,
   TKFDFChartDoughnut,
   TKFDFChartPolarArea,
   TKFDFChartRadar,
@@ -52,9 +52,9 @@ export interface TKSubmissionEntryBullet extends AbstractTKSubmissionEntry {
   answersLabels: TKLabel[];
   isAnswered: boolean;
 }
-export interface TKSubmissionEntryAgePyramid extends AbstractTKSubmissionEntry {
-  type: TKFDFChartType.AGE_PYRAMID;
-  config: TKFDFChartAgePyramid;
+export interface TKSubmissionEntryBar extends AbstractTKSubmissionEntry {
+  type: TKFDFChartType.BAR;
+  config: TKFDFChartBar;
   thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
@@ -101,7 +101,7 @@ export type TKSubmissionRawEntries = Record<string, string>;
 export type TKSubmissionEntry =
   | TKSubmissionEntryText
   | TKSubmissionEntryBullet
-  | TKSubmissionEntryAgePyramid
+  | TKSubmissionEntryBar
   | TKSubmissionEntryDoughnut
   | TKSubmissionEntryPolar
   | TKSubmissionEntryRadar;

@@ -21,7 +21,7 @@ import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import {
-  TKSubmissionEntryAgePyramid,
+  TKSubmissionEntryBar,
   TKSubmissionEntryDoughnut,
   TKSubmissionEntryPolar,
   TKSubmissionEntryRadar,
@@ -51,10 +51,10 @@ function computeChartPolarScore(chart: TKSubmissionEntryPolar): number {
   return chart.entries.length / CHART_POLAR_LINE_FACTOR + CHART_POLAR_BASE;
 }
 
-function computeChartPyramidScore(chart: TKSubmissionEntryAgePyramid): number {
-  const CHART_PYRAMID_BASE = 4;
-  const CHART_PYRAMID_LINE_FACTOR = 3;
-  return chart.labels.length / CHART_PYRAMID_LINE_FACTOR + CHART_PYRAMID_BASE;
+function computeChartBarScore(chart: TKSubmissionEntryBar): number {
+  const CHART_BAR_BASE = 4;
+  const CHART_BAR_LINE_FACTOR = 3;
+  return chart.labels.length / CHART_BAR_LINE_FACTOR + CHART_BAR_BASE;
 }
 
 function computeChartRadarScore(chart: TKSubmissionEntryRadar): number {
@@ -96,8 +96,8 @@ function computeScore(
         case TKFDFChartType.POLAR_AREA:
           score = computeChartPolarScore(thematicData);
           break;
-        case TKFDFChartType.AGE_PYRAMID:
-          score = computeChartPyramidScore(thematicData);
+        case TKFDFChartType.BAR:
+          score = computeChartBarScore(thematicData);
           break;
         case TKFDFChartType.RADAR:
           score = computeChartRadarScore(thematicData);

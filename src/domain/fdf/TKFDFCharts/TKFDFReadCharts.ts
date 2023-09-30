@@ -1,14 +1,11 @@
 import { TKFDFChartsConfiguration } from "@/domain/fdf/TKFDFCharts/TKFDFChartsConfiguration";
+import { TKFDFChartBarType, TKFDFChartType } from "./TKFDFChartConfiguration";
 import {
-  TKFDFChartAgePyramidType,
-  TKFDFChartType
-} from "./TKFDFChartConfiguration";
-import {
-  DEFAULT_PROPERTIES_AGE_PYRAMID_DIRECTION,
-  DEFAULT_PROPERTIES_AGE_PYRAMID_DUO,
-  DEFAULT_PROPERTIES_AGE_PYRAMID_SINGLE,
-  DEFAULT_PROPERTIES_AGE_PYRAMID_TITLEAXIS,
-  DEFAULT_PROPERTIES_AGE_PYRAMID_TYPE,
+  DEFAULT_PROPERTIES_BAR_DIRECTION,
+  DEFAULT_PROPERTIES_BAR_DUO,
+  DEFAULT_PROPERTIES_BAR_SINGLE,
+  DEFAULT_PROPERTIES_BAR_TITLEAXIS,
+  DEFAULT_PROPERTIES_BAR_TYPE,
   DEFAULT_PROPERTIES_DOUGHNUT,
   DEFAULT_PROPERTIES_POLAR_AREA,
   DEFAULT_PROPERTIES_RADAR
@@ -41,34 +38,30 @@ export async function TKFDFReadCharts(
   for (const chartName in json.charts) {
     const config = json.charts[chartName];
     switch (config.type) {
-      case TKFDFChartType.AGE_PYRAMID:
+      case TKFDFChartType.BAR:
         if (!config.populationType) {
-          config.populationType = DEFAULT_PROPERTIES_AGE_PYRAMID_TYPE;
+          config.populationType = DEFAULT_PROPERTIES_BAR_TYPE;
         }
         if (!config.direction) {
-          config.direction = DEFAULT_PROPERTIES_AGE_PYRAMID_DIRECTION;
+          config.direction = DEFAULT_PROPERTIES_BAR_DIRECTION;
         }
 
         if (!config.titleAxis) {
-          config.titleAxis = DEFAULT_PROPERTIES_AGE_PYRAMID_TITLEAXIS;
+          config.titleAxis = DEFAULT_PROPERTIES_BAR_TITLEAXIS;
         }
 
         switch (config.populationType) {
-          case TKFDFChartAgePyramidType.DUO:
+          case TKFDFChartBarType.DUO:
             config.valueLabels =
-              config.valueLabels ??
-              DEFAULT_PROPERTIES_AGE_PYRAMID_DUO.valueLabels;
+              config.valueLabels ?? DEFAULT_PROPERTIES_BAR_DUO.valueLabels;
             config.population =
-              config.population ??
-              DEFAULT_PROPERTIES_AGE_PYRAMID_DUO.population;
+              config.population ?? DEFAULT_PROPERTIES_BAR_DUO.population;
             break;
-          case TKFDFChartAgePyramidType.SINGLE:
+          case TKFDFChartBarType.SINGLE:
             config.valueLabels =
-              config.valueLabels ??
-              DEFAULT_PROPERTIES_AGE_PYRAMID_SINGLE.valueLabels;
+              config.valueLabels ?? DEFAULT_PROPERTIES_BAR_SINGLE.valueLabels;
             config.population =
-              config.population ??
-              DEFAULT_PROPERTIES_AGE_PYRAMID_SINGLE.population;
+              config.population ?? DEFAULT_PROPERTIES_BAR_SINGLE.population;
             break;
         }
         break;

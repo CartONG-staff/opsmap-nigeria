@@ -315,7 +315,7 @@ export default class TKSubmissionToPDF extends Vue {
           body.push([answer]);
         }
       } else if (
-        entry.type === TKFDFChartType.AGE_PYRAMID ||
+        entry.type === TKFDFChartType.BAR ||
         entry.type === TKFDFChartType.DOUGHNUT ||
         entry.type === TKFDFChartType.POLAR_AREA ||
         entry.type === TKFDFChartType.RADAR

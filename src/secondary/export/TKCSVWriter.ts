@@ -85,9 +85,9 @@ function computeCurrentSiteCSVContent(
           );
           rows.push([thematicName, itemName, answer, trafficLight]);
         }
-        // CHART_PYRAMID
-        else if (entry.type === TKFDFChartType.AGE_PYRAMID) {
-          const itemName = "age_pyramid";
+        // CHART_BAR
+        else if (entry.type === TKFDFChartType.BAR) {
+          const itemName = "bar";
           // Iterate through labels index
           for (const entryType in entry.values) {
             const config = entry.config.population.find(
@@ -196,7 +196,7 @@ function computeCurrentSelectionCSVContent(
                 TKGetLocalValue(entry.fieldLabel, locale)
             );
             break;
-          case TKFDFChartType.AGE_PYRAMID:
+          case TKFDFChartType.BAR:
           case TKFDFChartType.DOUGHNUT:
           case TKFDFChartType.POLAR_AREA:
           case TKFDFChartType.RADAR:
@@ -245,7 +245,7 @@ function computeCurrentSelectionCSVContent(
                   .join(", ")
               );
               break;
-            case TKFDFChartType.AGE_PYRAMID:
+            case TKFDFChartType.BAR:
               val = Object.keys(entry.values)
                 .map(key => {
                   return (

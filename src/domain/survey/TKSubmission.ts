@@ -336,7 +336,7 @@ export function TKCreateSubmission(
     }
   }
 
-  // if a current pyramid is ongoing - push it before ending
+  // if a current chart is ongoing - push it before ending
   for (const chart of Object.values(charts)) {
     TKCreateSubmissionChart(chart, fdf, entries);
   }
