@@ -1,11 +1,15 @@
 import { TKFDFChartsConfiguration } from "@/domain/fdf/TKFDFCharts/TKFDFChartsConfiguration";
 import {
+  TKFDFChartAgePyramidDirection,
   TKFDFChartAgePyramidType,
   TKFDFChartType
 } from "./TKFDFChartConfiguration";
 import {
+  DEFAULT_PROPERTIES_AGE_PYRAMID_DIRECTION,
   DEFAULT_PROPERTIES_AGE_PYRAMID_DUO,
   DEFAULT_PROPERTIES_AGE_PYRAMID_SINGLE,
+  DEFAULT_PROPERTIES_AGE_PYRAMID_TITLEAXIS,
+  DEFAULT_PROPERTIES_AGE_PYRAMID_TYPE,
   DEFAULT_PROPERTIES_DOUGHNUT,
   DEFAULT_PROPERTIES_POLAR_AREA,
   DEFAULT_PROPERTIES_RADAR
@@ -40,21 +44,28 @@ export async function TKFDFReadCharts(
     switch (config.type) {
       case TKFDFChartType.AGE_PYRAMID:
         if (!config.populationType) {
-          config.populationType = TKFDFChartAgePyramidType.DUO;
+          config.populationType = DEFAULT_PROPERTIES_AGE_PYRAMID_TYPE;
         }
+        if (!config.direction) {
+          config.direction = DEFAULT_PROPERTIES_AGE_PYRAMID_DIRECTION;
+        }
+        if (!config.titleAxis) {
+          config.titleAxis = DEFAULT_PROPERTIES_AGE_PYRAMID_TITLEAXIS;
+        }
+
         switch (config.populationType) {
           case TKFDFChartAgePyramidType.DUO:
-            config.legendLabels =
-              config.legendLabels ??
-              DEFAULT_PROPERTIES_AGE_PYRAMID_DUO.legendLabels;
+            config.valueLabels =
+              config.valueLabels ??
+              DEFAULT_PROPERTIES_AGE_PYRAMID_DUO.valueLabels;
             config.population =
               config.population ??
               DEFAULT_PROPERTIES_AGE_PYRAMID_DUO.population;
             break;
           case TKFDFChartAgePyramidType.SINGLE:
-            config.legendLabels =
-              config.legendLabels ??
-              DEFAULT_PROPERTIES_AGE_PYRAMID_SINGLE.legendLabels;
+            config.valueLabels =
+              config.valueLabels ??
+              DEFAULT_PROPERTIES_AGE_PYRAMID_SINGLE.valueLabels;
             config.population =
               config.population ??
               DEFAULT_PROPERTIES_AGE_PYRAMID_SINGLE.population;

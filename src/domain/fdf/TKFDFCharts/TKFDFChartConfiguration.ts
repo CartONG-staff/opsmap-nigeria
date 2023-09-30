@@ -21,6 +21,11 @@ export enum TKFDFChartAgePyramidType {
   SINGLE = "single",
   DUO = "duo"
 }
+
+export enum TKFDFChartAgePyramidDirection {
+  HORIZONTAL = "horizontal",
+  VERTICAL = "vertical"
+}
 // ////////////////////////////////////////////////////////////////////////////
 // Key_values
 // ////////////////////////////////////////////////////////////////////////////
@@ -34,7 +39,12 @@ export interface TKFDFChartAgePyramidConfigurationItem {
 
 // AGE PYRAMID ////////////////////////////////////////////////////////////////
 export interface TKFDFChartAgePyramidConfiguration {
-  legendLabels?: Array<TKLabel>;
+  direction: TKFDFChartAgePyramidDirection;
+  valueLabels?: Array<TKLabel>;
+  titleAxis: {
+    value: string | TKLabel;
+    notValue: string | TKLabel;
+  };
   populationType: TKFDFChartAgePyramidType;
   population: Array<TKFDFChartAgePyramidConfigurationItem>;
 }

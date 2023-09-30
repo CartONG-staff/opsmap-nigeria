@@ -22,6 +22,7 @@ import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
 import {
   TKFDFChartAgePyramidType,
+  TKFDFChartAgePyramidDirection,
   TKFDFChartAgePyramidConfigurationItem
 } from "@/domain/fdf/TKFDFCharts/TKFDFChartConfiguration";
 import { TKLabel } from "@/domain/utils/TKLabel";
@@ -64,7 +65,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           labels: this.generateLabels(),
           datasets: this.entry.config.population.map(item => {
             return {
-              label: this.generateDatasetLabel(item.label),
+              label: this.generateLabel(item.label),
               data: this.generateDataset(item),
               backgroundColor: item.color,
               barThickness: this.barthickness,
@@ -75,7 +76,11 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
           })
         },
         options: {
-          indexAxis: "y", // Make bar horizontal !
+          indexAxis:
+            this.entry.config.direction ==
+            TKFDFChartAgePyramidDirection.VERTICAL
+              ? "y"
+              : "x",
           responsive: true,
           maintainAspectRatio: false,
           font: {
@@ -175,9 +180,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
     }
     this.chart.data.labels = this.generateLabels();
     for (const pop of this.entry.config.population) {
-      this.chart.data.datasets[pop.index].label = this.generateDatasetLabel(
-        pop.label
-      );
+      this.chart.data.datasets[pop.index].label = this.generateLabel(pop.label);
     }
 
     if (this.chart.config.options) {
@@ -204,7 +207,7 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
       : this.entry.values[pop.id];
   }
 
-  generateDatasetLabel(label: TKLabel | string): string {
+  generateLabel(label: TKLabel | string): string {
     return typeof label == "string"
       ? this.$root.$i18n.t(label).toString()
       : TKGetLocalValue(label, this.$root.$i18n.locale);
@@ -212,44 +215,53 @@ export default class TKSubmissionItemAgePyramidChart extends Vue {
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   generateScales(): any {
-    return {
-      x: {
-        ticks: {
-          callback: (value: string): string => {
-            let mynumber = 0;
-            if (typeof value === "string") {
-              mynumber = parseInt(value);
-            } else if (typeof value === "number") {
-              mynumber = value;
-            }
-            mynumber = mynumber < 0 ? 0 - mynumber : mynumber;
-            return mynumber.toString();
-          },
-          color: TKColors.SECONDARY
+    const axis1 = {
+      ticks: {
+        callback: (value: string): string => {
+          let mynumber = 0;
+          if (typeof value === "string") {
+            mynumber = parseInt(value);
+          } else if (typeof value === "number") {
+            mynumber = value;
+          }
+          mynumber = mynumber < 0 ? 0 - mynumber : mynumber;
+          return mynumber.toString();
         },
-        title: {
-          align: "end",
-          color: TKColors.DARK_GREY,
-          display: true,
-          text: this.$root.$i18n.t("charts.titleX").toString()
-        }
+        color: TKColors.SECONDARY
       },
-      y: {
-        beginAtZero: true,
-        grid: {
-          display: false
-        },
-        stacked: true,
-        ticks: {
-          color: TKColors.SECONDARY
-        },
-        title: {
-          align: "end",
-          color: TKColors.DARK_GREY,
-          display: true,
-          text: this.$root.$i18n.t("charts.titleY").toString()
-        }
+      title: {
+        align: "end",
+        color: TKColors.DARK_GREY,
+        display: true,
+        text: this.generateLabel(this.entry.config.titleAxis.value)
       }
+    };
+
+    const axis2 = {
+      beginAtZero: true,
+      grid: {
+        display: false
+      },
+      stacked: true,
+      ticks: {
+        color: TKColors.SECONDARY
+      },
+      title: {
+        align: "end",
+        color: TKColors.DARK_GREY,
+        display: true,
+        text: this.generateLabel(this.entry.config.titleAxis.notValue)
+      }
+    };
+    return {
+      x:
+        this.entry.config.direction == TKFDFChartAgePyramidDirection.VERTICAL
+          ? axis1
+          : axis2,
+      y:
+        this.entry.config.direction == TKFDFChartAgePyramidDirection.VERTICAL
+          ? axis2
+          : axis1
     };
   }
 }

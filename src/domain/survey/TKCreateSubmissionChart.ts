@@ -98,9 +98,12 @@ export function TKCreateSubmissionChart(
       }
       values[data.type].push(Number(data.value));
     }
+    values["p"] = values["f"];
+    values["f"] = [];
+    values["m"] = [];
     const key = Object.keys(values).length ? Object.keys(values)[0] : "";
     const labels: Array<TKLabel> =
-      chartConfiguration.legendLabels ??
+      chartConfiguration.valueLabels ??
       (key
         ? chartDataLabeled.data
             .filter(item => item.type == key)

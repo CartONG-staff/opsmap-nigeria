@@ -1,5 +1,6 @@
 import {
   TKFDFChartAgePyramidConfiguration,
+  TKFDFChartAgePyramidDirection,
   TKFDFChartAgePyramidType,
   TKFDFChartDoughnutConfiguration,
   TKFDFChartPolarAreaConfiguration,
@@ -20,9 +21,17 @@ export enum TKChartsColors {
 // ////////////////////////////////////////////////////////////////////////////
 // Charts Colors
 // ////////////////////////////////////////////////////////////////////////////
+export const DEFAULT_PROPERTIES_AGE_PYRAMID_TYPE = TKFDFChartAgePyramidType.DUO;
+export const DEFAULT_PROPERTIES_AGE_PYRAMID_DIRECTION =
+  TKFDFChartAgePyramidDirection.VERTICAL;
+
+export const DEFAULT_PROPERTIES_AGE_PYRAMID_TITLEAXIS = {
+  value: "charts.titleX",
+  notValue: "charts.titleY"
+};
 
 export const DEFAULT_PROPERTIES_AGE_PYRAMID_DUO: TKFDFChartAgePyramidConfiguration = {
-  legendLabels: undefined,
+  direction: DEFAULT_PROPERTIES_AGE_PYRAMID_DIRECTION,
   populationType: TKFDFChartAgePyramidType.DUO,
   population: [
     {
@@ -37,10 +46,12 @@ export const DEFAULT_PROPERTIES_AGE_PYRAMID_DUO: TKFDFChartAgePyramidConfigurati
       color: TKChartsColors.CHART_COLOR_2,
       label: "charts.female"
     }
-  ]
+  ],
+  titleAxis: DEFAULT_PROPERTIES_AGE_PYRAMID_TITLEAXIS,
+  valueLabels: undefined
 };
 export const DEFAULT_PROPERTIES_AGE_PYRAMID_SINGLE: TKFDFChartAgePyramidConfiguration = {
-  legendLabels: undefined,
+  direction: DEFAULT_PROPERTIES_AGE_PYRAMID_DIRECTION,
   populationType: TKFDFChartAgePyramidType.SINGLE,
   population: [
     {
@@ -49,7 +60,9 @@ export const DEFAULT_PROPERTIES_AGE_PYRAMID_SINGLE: TKFDFChartAgePyramidConfigur
       color: TKChartsColors.CHART_COLOR_1,
       label: "charts.population"
     }
-  ]
+  ],
+  titleAxis: DEFAULT_PROPERTIES_AGE_PYRAMID_TITLEAXIS,
+  valueLabels: undefined
 };
 
 export const DEFAULT_PROPERTIES_DOUGHNUT: TKFDFChartDoughnutConfiguration = {

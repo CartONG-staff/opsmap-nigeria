@@ -228,11 +228,12 @@ function computeCurrentSelectionCSVContent(
               );
               break;
             case TKFDFChartType.AGE_PYRAMID:
-              val =
-                "females:" +
-                entry.femalesEntries.join(",") +
-                " males:" +
-                entry.malesEntries.join(",");
+              val = "TODO";
+              // val =
+              //   "females:" +
+              //   entry.femalesEntries.join(",") +
+              //   " males:" +
+              //   entry.malesEntries.join(",");
               row.push(val);
               break;
             case TKFDFChartType.DOUGHNUT:
