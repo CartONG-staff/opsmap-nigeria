@@ -1,6 +1,5 @@
 import { TKFDFChartsConfiguration } from "@/domain/fdf/TKFDFCharts/TKFDFChartsConfiguration";
 import {
-  TKFDFChartAgePyramidDirection,
   TKFDFChartAgePyramidType,
   TKFDFChartType
 } from "./TKFDFChartConfiguration";
@@ -49,6 +48,7 @@ export async function TKFDFReadCharts(
         if (!config.direction) {
           config.direction = DEFAULT_PROPERTIES_AGE_PYRAMID_DIRECTION;
         }
+
         if (!config.titleAxis) {
           config.titleAxis = DEFAULT_PROPERTIES_AGE_PYRAMID_TITLEAXIS;
         }

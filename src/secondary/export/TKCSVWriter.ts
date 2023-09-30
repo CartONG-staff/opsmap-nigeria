@@ -24,8 +24,12 @@ function getTrafficLightText(
   translationMethod: any
 ): string {
   if ("trafficLight" in entry && entry.trafficLight) {
-    if (typeof entry.trafficLight.value.label === "string") {
-      return translationMethod(entry.trafficLight.value.label).toString();
+    // console.log("-");
+    // console.log(translationMethod("trafficlight.ok"));
+    // console.log("------");
+    if (typeof entry.trafficLight.value.label == "string") {
+      // return translationMethod(entry.trafficLight.value.label).toString();
+      return entry.trafficLight.value.label;
     } else {
       return TKGetLocalValue(entry.trafficLight.value.label, locale);
     }
@@ -84,20 +88,34 @@ function computeCurrentSiteCSVContent(
         // CHART_PYRAMID
         else if (entry.type === TKFDFChartType.AGE_PYRAMID) {
           const itemName = "age_pyramid";
-          for (const [index, value] of entry.malesEntries.entries()) {
-            const chartItemName =
-              itemName +
-              " -- " +
-              TKGetLocalValue(entry.malesLabels[index], locale);
-            rows.push([thematicName, chartItemName, value.toString(), ""]);
-          }
+          // Iterate through labels index
+          for (const entryType in entry.values) {
+            const config = entry.config.population.find(
+              item => item.id === entryType
+            );
 
-          for (const [index, value] of entry.femalesEntries.entries()) {
-            const chartItemName =
-              itemName +
-              " -- " +
-              TKGetLocalValue(entry.femalesLabels[index], locale);
-            rows.push([thematicName, chartItemName, value.toString(), ""]);
+            if (config) {
+              const configName =
+                typeof config.label == "string"
+                  ? config.label //translationMethod(config.label, locale)
+                  : TKGetLocalValue(config.label, locale);
+              for (let i = 0; i < entry.labels.length; i++) {
+                // iterate through fields
+                const labelBefore = entry.labels[i];
+                const label =
+                  typeof labelBefore == "string"
+                    ? labelBefore // translationMethod(entry.labels[i], locale)
+                    : TKGetLocalValue(labelBefore, locale);
+                const chartItemName =
+                  itemName + " -- " + configName + " " + label;
+                rows.push([
+                  thematicName,
+                  chartItemName,
+                  entry.values[entryType][i].toString(),
+                  ""
+                ]);
+              }
+            }
           }
         }
       }
@@ -167,7 +185,7 @@ function computeCurrentSelectionCSVContent(
     for (const thematic of firstSubmission.thematics) {
       const entriesForThematic: Array<TKSubmissionEntry> = Object.values(
         firstSubmission
-      ).filter(entry => entry.thematic.id === thematic.id);
+      ).filter(entry => entry.thematic && entry.thematic.id === thematic.id);
       for (const entry of entriesForThematic) {
         switch (entry.type) {
           case TKSubmissionEntryTextType.TEXT:
@@ -228,12 +246,15 @@ function computeCurrentSelectionCSVContent(
               );
               break;
             case TKFDFChartType.AGE_PYRAMID:
-              val = "TODO";
-              // val =
-              //   "females:" +
-              //   entry.femalesEntries.join(",") +
-              //   " males:" +
-              //   entry.malesEntries.join(",");
+              val = Object.keys(entry.values)
+                .map(key => {
+                  return (
+                    key +
+                    ":" +
+                    entry.values[key].map(value => value.toString()).join(",")
+                  );
+                })
+                .join(" ");
               row.push(val);
               break;
             case TKFDFChartType.DOUGHNUT:

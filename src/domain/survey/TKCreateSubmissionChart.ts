@@ -98,9 +98,7 @@ export function TKCreateSubmissionChart(
       }
       values[data.type].push(Number(data.value));
     }
-    values["p"] = values["f"];
-    values["f"] = [];
-    values["m"] = [];
+
     const key = Object.keys(values).length ? Object.keys(values)[0] : "";
     const labels: Array<TKLabel> =
       chartConfiguration.valueLabels ??
@@ -127,7 +125,6 @@ export function TKCreateSubmissionChart(
     for (const type in values) {
       values[type] = values[type].reverse();
     }
-
     const entry: TKSubmissionEntryAgePyramid = {
       type: TKFDFChartType.AGE_PYRAMID,
       config: chartConfiguration,
