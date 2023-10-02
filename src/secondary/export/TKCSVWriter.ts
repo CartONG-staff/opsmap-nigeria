@@ -90,7 +90,7 @@ function computeCurrentSiteCSVContent(
           const itemName = "bar";
           // Iterate through labels index
           for (const entryType in entry.values) {
-            const config = entry.config.population.find(
+            const config = entry.config.series.find(
               item => item.id === entryType
             );
 

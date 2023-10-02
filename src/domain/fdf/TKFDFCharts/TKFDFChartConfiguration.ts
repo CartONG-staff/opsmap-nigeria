@@ -34,7 +34,7 @@ export interface TKFDFChartBarConfigurationItem {
   id: string;
   index: number;
   color: TKColor;
-  label: TKLabel | string;
+  label: string | TKLabel;
 }
 
 // Bar ////////////////////////////////////////////////////////////////////////
@@ -42,11 +42,11 @@ export interface TKFDFChartBarConfiguration {
   direction: TKFDFChartBarDirection;
   valueLabels?: Array<TKLabel>;
   titleAxis: {
-    value: string | TKLabel;
-    notValue: string | TKLabel;
+    x: string | TKLabel;
+    y: string | TKLabel;
   };
-  populationType: TKFDFChartBarType;
-  population: Array<TKFDFChartBarConfigurationItem>;
+  barType: TKFDFChartBarType;
+  series: Array<TKFDFChartBarConfigurationItem>;
 }
 export interface TKFDFChartBar extends TKFDFChartBarConfiguration {
   type: TKFDFChartType.BAR;

@@ -39,8 +39,8 @@ export async function TKFDFReadCharts(
     const config = json.charts[chartName];
     switch (config.type) {
       case TKFDFChartType.BAR:
-        if (!config.populationType) {
-          config.populationType = DEFAULT_PROPERTIES_BAR_TYPE;
+        if (!config.barType) {
+          config.barType = DEFAULT_PROPERTIES_BAR_TYPE;
         }
         if (!config.direction) {
           config.direction = DEFAULT_PROPERTIES_BAR_DIRECTION;
@@ -50,18 +50,17 @@ export async function TKFDFReadCharts(
           config.titleAxis = DEFAULT_PROPERTIES_BAR_TITLEAXIS;
         }
 
-        switch (config.populationType) {
+        switch (config.barType) {
           case TKFDFChartBarType.DUO:
             config.valueLabels =
               config.valueLabels ?? DEFAULT_PROPERTIES_BAR_DUO.valueLabels;
-            config.population =
-              config.population ?? DEFAULT_PROPERTIES_BAR_DUO.population;
+            config.series = config.series ?? DEFAULT_PROPERTIES_BAR_DUO.series;
             break;
           case TKFDFChartBarType.SINGLE:
             config.valueLabels =
               config.valueLabels ?? DEFAULT_PROPERTIES_BAR_SINGLE.valueLabels;
-            config.population =
-              config.population ?? DEFAULT_PROPERTIES_BAR_SINGLE.population;
+            config.series =
+              config.series ?? DEFAULT_PROPERTIES_BAR_SINGLE.series;
             break;
         }
         break;

@@ -25,14 +25,14 @@ export const DEFAULT_PROPERTIES_BAR_TYPE = TKFDFChartBarType.DUO;
 export const DEFAULT_PROPERTIES_BAR_DIRECTION = TKFDFChartBarDirection.VERTICAL;
 
 export const DEFAULT_PROPERTIES_BAR_TITLEAXIS = {
-  value: "charts.titleX",
-  notValue: "charts.titleY"
+  x: "charts.titleX",
+  y: "charts.titleY"
 };
 
 export const DEFAULT_PROPERTIES_BAR_DUO: TKFDFChartBarConfiguration = {
   direction: DEFAULT_PROPERTIES_BAR_DIRECTION,
-  populationType: TKFDFChartBarType.DUO,
-  population: [
+  barType: TKFDFChartBarType.DUO,
+  series: [
     {
       id: "m",
       index: 0,
@@ -51,13 +51,13 @@ export const DEFAULT_PROPERTIES_BAR_DUO: TKFDFChartBarConfiguration = {
 };
 export const DEFAULT_PROPERTIES_BAR_SINGLE: TKFDFChartBarConfiguration = {
   direction: DEFAULT_PROPERTIES_BAR_DIRECTION,
-  populationType: TKFDFChartBarType.SINGLE,
-  population: [
+  barType: TKFDFChartBarType.SINGLE,
+  series: [
     {
       id: "p",
       index: 0,
       color: TKChartsColors.CHART_COLOR_1,
-      label: "charts.population"
+      label: "charts.series"
     }
   ],
   titleAxis: DEFAULT_PROPERTIES_BAR_TITLEAXIS,

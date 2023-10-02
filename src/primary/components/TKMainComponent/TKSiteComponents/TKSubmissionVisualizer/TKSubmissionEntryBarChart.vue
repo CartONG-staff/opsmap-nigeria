@@ -63,7 +63,7 @@ export default class TKSubmissionItemBarChart extends Vue {
         type: "bar",
         data: {
           labels: this.generateLabels(),
-          datasets: this.entry.config.population.map(item => {
+          datasets: this.entry.config.series.map(item => {
             return {
               label: this.generateLabel(item.label),
               data: this.generateDataset(item),
@@ -162,7 +162,7 @@ export default class TKSubmissionItemBarChart extends Vue {
   onEntryChanged() {
     // Update labels and data Labels
     this.chart.data.labels = this.generateLabels();
-    for (const pop of this.entry.config.population) {
+    for (const pop of this.entry.config.series) {
       this.chart.data.datasets[pop.index].data = this.generateDataset(pop);
     }
 
@@ -178,7 +178,7 @@ export default class TKSubmissionItemBarChart extends Vue {
       );
     }
     this.chart.data.labels = this.generateLabels();
-    for (const pop of this.entry.config.population) {
+    for (const pop of this.entry.config.series) {
       this.chart.data.datasets[pop.index].label = this.generateLabel(pop.label);
     }
 
@@ -200,8 +200,7 @@ export default class TKSubmissionItemBarChart extends Vue {
   }
 
   generateDataset(pop: TKFDFChartBarConfigurationItem): Array<number> {
-    return this.entry.config.populationType == TKFDFChartBarType.DUO &&
-      pop.index == 0
+    return this.entry.config.barType == TKFDFChartBarType.DUO && pop.index == 0
       ? this.entry.values[pop.id].map(item => -1 * item)
       : this.entry.values[pop.id];
   }
@@ -214,7 +213,7 @@ export default class TKSubmissionItemBarChart extends Vue {
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   generateScales(): any {
-    const axis1 = {
+    const axisX = {
       ticks: {
         callback: (value: string): string => {
           let mynumber = 0;
@@ -232,11 +231,11 @@ export default class TKSubmissionItemBarChart extends Vue {
         align: "end",
         color: TKColors.DARK_GREY,
         display: true,
-        text: this.generateLabel(this.entry.config.titleAxis.value)
+        text: this.generateLabel(this.entry.config.titleAxis.x)
       }
     };
 
-    const axis2 = {
+    const axisY = {
       beginAtZero: true,
       grid: {
         display: false
@@ -249,18 +248,18 @@ export default class TKSubmissionItemBarChart extends Vue {
         align: "end",
         color: TKColors.DARK_GREY,
         display: true,
-        text: this.generateLabel(this.entry.config.titleAxis.notValue)
+        text: this.generateLabel(this.entry.config.titleAxis.y)
       }
     };
     return {
       x:
         this.entry.config.direction == TKFDFChartBarDirection.VERTICAL
-          ? axis1
-          : axis2,
+          ? axisX
+          : axisY,
       y:
         this.entry.config.direction == TKFDFChartBarDirection.VERTICAL
-          ? axis2
-          : axis1
+          ? axisY
+          : axisX
     };
   }
 }
