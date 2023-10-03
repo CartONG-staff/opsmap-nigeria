@@ -22,6 +22,8 @@ export enum TKFDFChartBarType {
   DUO = "duo"
 }
 
+// Same direction as https://www.chartjs.org/docs/latest/charts/bar.html#bar-chart
+// vertical bars or horizontal bars
 export enum TKFDFChartBarDirection {
   HORIZONTAL = "horizontal",
   VERTICAL = "vertical"

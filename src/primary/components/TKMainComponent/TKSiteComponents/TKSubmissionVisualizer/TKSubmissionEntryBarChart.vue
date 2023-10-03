@@ -78,8 +78,8 @@ export default class TKSubmissionItemBarChart extends Vue {
         options: {
           indexAxis:
             this.entry.config.direction == TKFDFChartBarDirection.VERTICAL
-              ? "y"
-              : "x",
+              ? "x"
+              : "y",
           responsive: true,
           maintainAspectRatio: false,
           font: {
@@ -162,8 +162,8 @@ export default class TKSubmissionItemBarChart extends Vue {
   onEntryChanged() {
     // Update labels and data Labels
     this.chart.data.labels = this.generateLabels();
-    for (const pop of this.entry.config.series) {
-      this.chart.data.datasets[pop.index].data = this.generateDataset(pop);
+    for (const serie of this.entry.config.series) {
+      this.chart.data.datasets[serie.index].data = this.generateDataset(serie);
     }
 
     this.chart.update();
@@ -254,12 +254,12 @@ export default class TKSubmissionItemBarChart extends Vue {
     return {
       x:
         this.entry.config.direction == TKFDFChartBarDirection.VERTICAL
-          ? axisX
-          : axisY,
+          ? axisY
+          : axisX,
       y:
         this.entry.config.direction == TKFDFChartBarDirection.VERTICAL
-          ? axisY
-          : axisX
+          ? axisX
+          : axisY
     };
   }
 }
