@@ -63,11 +63,11 @@ export default class TKSubmissionItemBarChart extends Vue {
         type: "bar",
         data: {
           labels: this.generateLabels(),
-          datasets: this.entry.config.series.map(item => {
+          datasets: this.entry.config.series.map(serie => {
             return {
-              label: this.generateLabel(item.label),
-              data: this.generateDataset(item),
-              backgroundColor: item.color,
+              label: this.generateLabel(serie.label),
+              data: this.generateDataset(serie),
+              backgroundColor: serie.color,
               barThickness: this.barthickness,
               minBarLength: 1,
               borderWidth: 2,
@@ -199,10 +199,11 @@ export default class TKSubmissionItemBarChart extends Vue {
     );
   }
 
-  generateDataset(pop: TKFDFChartBarConfigurationItem): Array<number> {
-    return this.entry.config.barType == TKFDFChartBarType.DUO && pop.index == 0
-      ? this.entry.values[pop.id].map(item => -1 * item)
-      : this.entry.values[pop.id];
+  generateDataset(serie: TKFDFChartBarConfigurationItem): Array<number> {
+    return this.entry.config.barType == TKFDFChartBarType.DUO &&
+      serie.index == 0
+      ? this.entry.values[serie.id].map(item => -1 * item)
+      : this.entry.values[serie.id];
   }
 
   generateLabel(label: TKLabel | string): string {
