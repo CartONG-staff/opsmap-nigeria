@@ -125,12 +125,7 @@ export function TKCreateSubmissionChart(
                 )
               };
             })
-            .reverse()
         : []);
-    // TODO: Reverse array --> could be removed ?
-    for (const type in values) {
-      values[type] = values[type].reverse();
-    }
     const entry: TKSubmissionEntryBar = {
       type: TKFDFChartType.BAR,
       config: chartConfiguration,
