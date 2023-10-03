@@ -52,13 +52,13 @@ export async function TKFDFReadCharts(
 
         switch (config.barType) {
           case TKFDFChartBarType.DUO:
-            config.valueLabels =
-              config.valueLabels ?? DEFAULT_PROPERTIES_BAR_DUO.valueLabels;
+            config.yLabels =
+              config.yLabels ?? DEFAULT_PROPERTIES_BAR_DUO.yLabels;
             config.series = config.series ?? DEFAULT_PROPERTIES_BAR_DUO.series;
             break;
           case TKFDFChartBarType.SINGLE:
-            config.valueLabels =
-              config.valueLabels ?? DEFAULT_PROPERTIES_BAR_SINGLE.valueLabels;
+            config.yLabels =
+              config.yLabels ?? DEFAULT_PROPERTIES_BAR_SINGLE.yLabels;
             config.series =
               config.series ?? DEFAULT_PROPERTIES_BAR_SINGLE.series;
             break;

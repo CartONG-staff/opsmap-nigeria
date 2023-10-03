@@ -40,7 +40,7 @@ export interface TKFDFChartBarConfigurationItem {
 // Bar ////////////////////////////////////////////////////////////////////////
 export interface TKFDFChartBarConfiguration {
   direction: TKFDFChartBarDirection;
-  valueLabels?: Array<TKLabel>;
+  yLabels?: Array<TKLabel>;
   titleAxis: {
     x: string | TKLabel;
     y: string | TKLabel;

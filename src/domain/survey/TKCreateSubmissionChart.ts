@@ -110,7 +110,7 @@ export function TKCreateSubmissionChart(
 
     const key = Object.keys(values).length ? Object.keys(values)[0] : "";
     const labels: Array<TKLabel> =
-      chartConfiguration.valueLabels ??
+      chartConfiguration.yLabels ??
       (key
         ? chartDataLabeled.data
             .filter(item => item.type == key)

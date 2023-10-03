@@ -47,7 +47,7 @@ export const DEFAULT_PROPERTIES_BAR_DUO: TKFDFChartBarConfiguration = {
     }
   ],
   titleAxis: DEFAULT_PROPERTIES_BAR_TITLEAXIS,
-  valueLabels: undefined
+  yLabels: undefined
 };
 export const DEFAULT_PROPERTIES_BAR_SINGLE: TKFDFChartBarConfiguration = {
   direction: DEFAULT_PROPERTIES_BAR_DIRECTION,
@@ -61,7 +61,7 @@ export const DEFAULT_PROPERTIES_BAR_SINGLE: TKFDFChartBarConfiguration = {
     }
   ],
   titleAxis: DEFAULT_PROPERTIES_BAR_TITLEAXIS,
-  valueLabels: undefined
+  yLabels: undefined
 };
 
 export const DEFAULT_PROPERTIES_DOUGHNUT: TKFDFChartDoughnutConfiguration = {
