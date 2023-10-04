@@ -110,9 +110,21 @@ export function TKCreateSurvey(
       site = {
         id: submission[fdf.spatial.siteFields.id],
         name: submission[fdf.spatial.siteFields.name],
+        label:
+          fdf.answersLabels[submission[fdf.spatial.siteFields.name]] ??
+          submission[fdf.spatial.siteFields.name],
         type: fdf.siteTypes[submission[fdf.spatial.siteFields.type]],
         admins: admins,
-
+        adminsLabels: Object.assign(
+          {},
+          ...Object.keys(admins).map(x => {
+            return {
+              [x]:
+                fdf.answersLabels[admins[x as TKAdminLevel]!.name] ??
+                admins[x as TKAdminLevel]!.name
+            };
+          })
+        ),
         managedBy: submission[fdf.spatial.siteFields.manageBy]
           ? fdf.answersLabels[submission[fdf.spatial.siteFields.manageBy]] ?? {
               [TKConfigurationModule.configuration.locale.default]:
