@@ -6,10 +6,10 @@ import { TKCreateSubmission, TKSubmission } from "./TKSubmission";
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import { TKSite, TKSiteBoundaries } from "@/domain/survey/TKSite";
 import { TKDateCompare, TKDateFormat } from "@/domain/utils/TKDate";
-import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
-import { getCenterOfBounds } from "../map/TKMapSites";
+import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
+import { getCenterOfBounds } from "@/domain/map/TKMapSites";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
-import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKAdditionalFilterDescription } from "./TKAdditionalFilter";
 
 // ////////////////////////////////////////////////////////////////////////////

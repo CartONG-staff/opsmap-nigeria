@@ -10,7 +10,7 @@ import {
   arrayLevelUpToRoot,
   arrayRootToLeaf,
   parent
-} from "../opsmapConfig/TKAdminLevel";
+} from "@/domain/opsmapConfig/TKAdminLevel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import {
   TKAdditionalFilter,
@@ -18,7 +18,7 @@ import {
   computeAdditionalFilterCandidates
 } from "./TKAdditionalFilter";
 
-import { TKGetLocalValue } from "../utils/TKLabel";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKIndicators, computeAreaIndicators } from "./TKIndicator";
 
 // ////////////////////////////////////////////////////////////////////////////

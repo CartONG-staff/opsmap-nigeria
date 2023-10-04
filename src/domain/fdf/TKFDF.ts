@@ -10,16 +10,16 @@ import { TKFDFSubmissionsRulesCollection } from "./TKFDFSubmissionsRules";
 import { TKFDFSiteTypeCollection } from "./TKFDFSiteTypes";
 import { TKFDFTerminologyCollection } from "./TKFDFTerminology";
 import { TKTFDFhematicsCollection } from "./TKFDFThematics";
-import { TKFDFTrafficLightsCollection } from "./TKFDFTrafficLight";
 
 import { TKFDFUrlsCollection } from "./TKFDFURLs";
+import { TKFDFTrafficLightsConfiguration } from "./TKFDFTrafficLights/TKFDFTrafficLightsConfiguration";
 
 // ////////////////////////////////////////////////////////////////////////////
 export interface TKFDF {
   name: string;
   terminology: TKFDFTerminologyCollection;
   thematics: TKTFDFhematicsCollection;
-  trafficLights: TKFDFTrafficLightsCollection;
+  trafficLights: TKFDFTrafficLightsConfiguration;
   fieldsLabels: TKFDFLabelCollection;
   answersLabels: TKFDFLabelCollection;
   submissionsRules: TKFDFSubmissionsRulesCollection;

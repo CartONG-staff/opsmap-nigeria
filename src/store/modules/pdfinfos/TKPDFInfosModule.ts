@@ -1,6 +1,6 @@
 import { Module, VuexModule, getModule } from "vuex-module-decorators";
 import store from "@/store";
-import TKConfigurationModule from "../configuration/TKConfigurationModule";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 @Module({ dynamic: true, store, name: "TKPDFInfosModule" })
 class TKPDFInfosModule extends VuexModule {

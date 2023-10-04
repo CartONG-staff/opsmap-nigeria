@@ -1,9 +1,9 @@
 import { ArcgisServerDataGetter } from "@/secondary/arcgis/TKArcgisServerDataGetter";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKDataset } from "@/domain/survey/TKDataset";
-import { TKOpsmapSpatialConfiguration } from "../opsmapConfig/TKOpsmapConfiguration";
-import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
-import { TKBoundaries } from "../survey/TKBoundaries";
+import { TKOpsmapSpatialConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
+import { TKBoundaries } from "@/domain/survey/TKBoundaries";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import { FeatureCollection } from "geojson";
 

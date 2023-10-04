@@ -1,5 +1,5 @@
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
-import { TKGetLocalValue, TKLabel } from "../utils/TKLabel";
+import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { TKSite } from "./TKSite";
 import { TKSubmissionEntryType } from "./TKSubmissionEntry";
 

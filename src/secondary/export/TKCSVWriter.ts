@@ -4,13 +4,33 @@ import { TKSubmission } from "@/domain/survey/TKSubmission";
 import {
   TKSubmissionEntry,
   TKSubmissionEntryType
-} from "../../domain/survey/TKSubmissionEntry";
-import { TKGetLocalValue } from "../../domain/utils/TKLabel";
+} from "@/domain/survey/TKSubmissionEntry";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import {
   applyVisualizerOptions,
   getEntriesForThematic
 } from "@/domain/survey/TKSubmissionEntries";
+
+// ////////////////////////////////////////////////////////////////////////////
+// get trafficlight text
+// ////////////////////////////////////////////////////////////////////////////
+
+function getTrafficLightText(
+  entry: TKSubmissionEntry,
+  locale: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  translationMethod: any
+): string {
+  if ("trafficLight" in entry && entry.trafficLight) {
+    if (typeof entry.trafficLight.value.label === "string") {
+      return translationMethod(entry.trafficLight.value.label).toString();
+    } else {
+      return TKGetLocalValue(entry.trafficLight.value.label, locale);
+    }
+  }
+  return "";
+}
 
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods
@@ -33,23 +53,35 @@ function computeCurrentSiteCSVContent(
       );
 
       for (const entry of entriesForThematic) {
+        // TEXT
         if (entry.type === TKSubmissionEntryType.TEXT) {
           const itemName = TKGetLocalValue(entry.fieldLabel, locale);
           const answer = TKGetLocalValue(entry.answerLabel, locale).replaceAll(
             ";",
             ","
           );
-          const trafficlight = entry.trafficLight ? entry.trafficLight : "";
-
-          rows.push([thematicName, itemName, answer, trafficlight]);
-        } else if (entry.type === TKSubmissionEntryType.BULLET) {
+          const trafficLight = getTrafficLightText(
+            entry,
+            locale,
+            translationMethod
+          );
+          rows.push([thematicName, itemName, answer, trafficLight]);
+        }
+        // BULLET
+        else if (entry.type === TKSubmissionEntryType.BULLET) {
           const itemName = TKGetLocalValue(entry.fieldLabel, locale);
           const answer = entry.answersLabels
             .map(label => TKGetLocalValue(label, locale).replaceAll(";", ","))
             .join(", ");
-          const trafficlight = entry.trafficLight ? entry.trafficLight : "";
-          rows.push([thematicName, itemName, answer, trafficlight]);
-        } else if (entry.type === TKSubmissionEntryType.CHART_PYRAMID) {
+          const trafficLight = getTrafficLightText(
+            entry,
+            locale,
+            translationMethod
+          );
+          rows.push([thematicName, itemName, answer, trafficLight]);
+        }
+        // CHART_PYRAMID
+        else if (entry.type === TKSubmissionEntryType.CHART_PYRAMID) {
           const itemName = "age_pyramid";
           for (const [index, value] of entry.malesEntries.entries()) {
             const chartItemName =

@@ -13,10 +13,10 @@ import { TKReadFDFLabelCollection } from "@/secondary/fdf/TKFDFParseMultiLang";
 import { TKReadSubmissionsRulesCollection } from "@/secondary/fdf/TKFDFSubmissionsRules";
 import { TKReadFDFTerminologyCollection } from "@/secondary/fdf/TKFDFTerminology";
 import { TKReadFDFThematicsCollection } from "@/secondary/fdf/TKFDFThematics";
-import { TKReadFDFTrafficLightsCollection } from "@/secondary/fdf/TKFDFTrafficLight";
+import { TKFDFReadTrafficLights } from "@/domain/fdf/TKFDFTrafficLights/TKFDFReadTrafficLights";
 import { TKReadFDFURLsCollection } from "@/secondary/fdf/TKFDFURLs";
 import { TKReadFDFSiteTypesCollection } from "./TKFDFSiteTypes";
-import { TKGetRidlTranslationsData } from "../ridl/TKGetRidlRawData";
+import { TKGetRidlTranslationsData } from "@/secondary/ridl/TKGetRidlRawData";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Method that creates the FDF object from the fdf folder
@@ -47,7 +47,9 @@ export async function TKReadFDF(infos: TKSurveyInfos): Promise<TKFDF> {
     name: infos.name,
     terminology: await TKReadFDFTerminologyCollection(infos.fdf),
     thematics: await TKReadFDFThematicsCollection(infos.fdf),
-    trafficLights: await TKReadFDFTrafficLightsCollection(infos.fdf),
+    trafficLights: await TKFDFReadTrafficLights(
+      `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.fdf.folder}/${TKFDFFiles.TRAFFIC_LIGHTS}.json`
+    ),
     fieldsLabels: await TKReadFDFLabelCollection(
       `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.fdf.folder}/${TKFDFFiles.FIELDS}.csv`
     ),

@@ -7,7 +7,7 @@ import {
   TKSubmissionEntryDoughnut,
   TKSubmissionEntryPolar
 } from "./TKSubmissionEntry";
-import { TKLabel } from "../utils/TKLabel";
+import { TKLabel } from "@/domain/utils/TKLabel";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
 import { TKSubmissionEntries } from "./TKSubmissionEntries";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";

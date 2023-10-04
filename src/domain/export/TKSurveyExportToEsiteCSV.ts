@@ -1,7 +1,7 @@
-import { TKIndicatorType } from "../survey/TKIndicator";
-import { TKSubmissionEntryType } from "../survey/TKSubmissionEntry";
-import { TKSurvey } from "../survey/TKSurvey";
-import { TKGetLocalValue } from "../utils/TKLabel";
+import { TKIndicatorType } from "@/domain/survey/TKIndicator";
+import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
+import { TKSurvey } from "@/domain/survey/TKSurvey";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods

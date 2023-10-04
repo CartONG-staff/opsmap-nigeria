@@ -1,7 +1,7 @@
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
-import { TKFDFSiteTypeCollection } from "../fdf/TKFDFSiteTypes";
-import { TKColors } from "../utils/TKColors";
-import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
+import { TKFDFSiteTypeCollection } from "@/domain/fdf/TKFDFSiteTypes";
+import { TKColors } from "@/domain/utils/TKColors";
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 
 export enum TKMapSource {
   COUNTRY_MASK = "countryMask",
