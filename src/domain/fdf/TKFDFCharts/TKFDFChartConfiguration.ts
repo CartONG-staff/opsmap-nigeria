@@ -49,6 +49,13 @@ export interface TKFDFChartBarConfiguration {
   };
   barType: TKFDFChartBarType;
   series: Array<TKFDFChartBarConfigurationItem>;
+  mapping?: Record<
+    string,
+    {
+      value: number;
+      label: TKLabel;
+    }
+  >;
 }
 export interface TKFDFChartBar extends TKFDFChartBarConfiguration {
   type: TKFDFChartType.BAR;

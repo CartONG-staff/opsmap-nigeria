@@ -100,12 +100,12 @@ export function TKCreateSubmissionChart(
 
   if (chartConfiguration.type === TKFDFChartType.BAR) {
     // Process data: sort them by id and extract numbers
-    const values: Record<string, Array<number>> = {};
+    const values: Record<string, Array<string>> = {};
     for (const data of chartDataLabeled.data) {
       if (!values[data.type]) {
         values[data.type] = [];
       }
-      values[data.type].push(Number(data.value));
+      values[data.type].push(data.value);
     }
 
     const key = Object.keys(values).length ? Object.keys(values)[0] : "";

@@ -106,26 +106,15 @@ export default class TKSubmissionItemBarChart extends Vue {
               callbacks: {
                 label: function(tooltipItem): string {
                   const value = Math.abs(Number(tooltipItem.raw));
-                  let label = tooltipItem.dataset.label;
-                  label = value > 1 ? label + "s" : label;
-                  if (!label?.endsWith(":")) {
-                    label += ":";
-                  }
-                  return label + value.toString();
-                },
-                title: function(tooltipItems): string {
-                  const sum = tooltipItems.reduce(function(
-                    accumulateur,
-                    valeurCourante
-                  ): number {
-                    return accumulateur + Math.abs(Number(valeurCourante.raw));
-                  },
-                  0);
-                  let label = tooltipItems[0].label;
-                  if (!label?.endsWith(":")) {
-                    label += ":";
-                  }
-                  return label + " " + sum.toString();
+                  const tickItem = tooltipItem.chart.scales.y.ticks.find(
+                    tick => tick.value == value
+                  );
+                  const tickItemTxt = tickItem
+                    ? tickItem.label
+                    : value.toString();
+
+                  const label = tooltipItem.dataset.label;
+                  return label + ": " + tickItemTxt;
                 }
               },
               titleFont: {
@@ -178,8 +167,10 @@ export default class TKSubmissionItemBarChart extends Vue {
       );
     }
     this.chart.data.labels = this.generateLabels();
-    for (const pop of this.entry.config.series) {
-      this.chart.data.datasets[pop.index].label = this.generateLabel(pop.label);
+    for (const serie of this.entry.config.series) {
+      this.chart.data.datasets[serie.index].label = this.generateLabel(
+        serie.label
+      );
     }
 
     if (this.chart.config.options) {
@@ -200,10 +191,16 @@ export default class TKSubmissionItemBarChart extends Vue {
   }
 
   generateDataset(serie: TKFDFChartBarConfigurationItem): Array<number> {
+    const values = this.entry.values[serie.id].map(item =>
+      this.entry.config.mapping
+        ? this.entry.config.mapping[item].value
+        : Number(item)
+    );
+
     return this.entry.config.barType == TKFDFChartBarType.DUO &&
       serie.index == 0
-      ? this.entry.values[serie.id].map(item => -1 * item)
-      : this.entry.values[serie.id];
+      ? values.map(item => -1 * item)
+      : values;
   }
 
   generateLabel(label: TKLabel | string): string {
@@ -224,6 +221,15 @@ export default class TKSubmissionItemBarChart extends Vue {
             mynumber = value;
           }
           mynumber = mynumber < 0 ? 0 - mynumber : mynumber;
+          if (this.entry.config.mapping) {
+            const value = Object.values(this.entry.config.mapping).find(
+              item => item.value == mynumber
+            );
+            return TKGetLocalValue(
+              value ? value.label : { fr: "" },
+              this.$root.$i18n.locale
+            );
+          }
           return mynumber.toString();
         },
         color: TKColors.SECONDARY

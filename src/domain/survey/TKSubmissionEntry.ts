@@ -58,7 +58,7 @@ export interface TKSubmissionEntryBar extends AbstractTKSubmissionEntry {
   thematic: TKSubmissionThematic;
   chartid: string;
   title: TKLabel;
-  values: Record<string, Array<number>>;
+  values: Record<string, Array<string>>;
   labels: Array<TKLabel>;
   isAnswered: true;
 }
