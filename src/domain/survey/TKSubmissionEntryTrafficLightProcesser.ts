@@ -100,6 +100,21 @@ export function getTrafficLight(
         }
         return generateOutput(colormapKey, configuration);
       }
+    // Type Key Value
+    case TKFDFTrafficLightType.EQUAL_VALUE:
+      if (input == configuration.value) {
+        const colormapKey = configuration.ok;
+        if (!(colormapKey in configuration.properties.colormap)) {
+          return generateErrorOutput(configuration);
+        }
+        return generateOutput(colormapKey, configuration);
+      } else {
+        const colormapKey = configuration.notok;
+        if (!(colormapKey in configuration.properties.colormap)) {
+          return generateErrorOutput(configuration);
+        }
+        return generateOutput(colormapKey, configuration);
+      }
 
     // Type Math
     case TKFDFTrafficLightType.MATH:

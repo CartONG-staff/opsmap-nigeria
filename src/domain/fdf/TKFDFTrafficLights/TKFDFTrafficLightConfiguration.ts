@@ -11,7 +11,8 @@ import { TKFDFTrafficLightProperties } from "./TKFDFTrafficLightProperties";
  */
 export enum TKFDFTrafficLightType {
   KEY_VALUE = "key_value",
-  MATH = "math"
+  MATH = "math",
+  EQUAL_VALUE = "equal_value"
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -53,6 +54,17 @@ export interface TKFDFTrafficLightMath extends AbstractTKFDFTrafficLight {
   values: Record<string, string>; // [formula]: colormapKey
 }
 
+/**
+ * "NotNone" type of traffic lights
+ *
+ */
+export interface TKFDFTrafficLightEqualValue extends AbstractTKFDFTrafficLight {
+  type: TKFDFTrafficLightType.EQUAL_VALUE;
+  value: string;
+  ok: string;
+  notok: string;
+}
+
 // ////////////////////////////////////////////////////////////////////////////
 // Union type
 // ////////////////////////////////////////////////////////////////////////////
@@ -62,4 +74,5 @@ export interface TKFDFTrafficLightMath extends AbstractTKFDFTrafficLight {
  */
 export type TKFDFTrafficLightConfiguration =
   | TKFDFTrafficLightKeyValue
-  | TKFDFTrafficLightMath;
+  | TKFDFTrafficLightMath
+  | TKFDFTrafficLightEqualValue;
