@@ -45,20 +45,20 @@ export async function TKFDFReadCharts(
         if (!config.direction) {
           config.direction = DEFAULT_PROPERTIES_BAR_DIRECTION;
         }
-
-        if (!config.titleAxis) {
-          config.titleAxis = DEFAULT_PROPERTIES_BAR_TITLEAXIS;
-        }
+        config.axis.x.title =
+          config.axis.x.title ?? DEFAULT_PROPERTIES_BAR_TITLEAXIS.x;
+        config.axis.y.title =
+          config.axis.y.title ?? DEFAULT_PROPERTIES_BAR_TITLEAXIS.y;
 
         switch (config.barType) {
           case TKFDFChartBarType.DUO:
-            config.yLabels =
-              config.yLabels ?? DEFAULT_PROPERTIES_BAR_DUO.yLabels;
+            config.axis.y.labels =
+              config.axis.y.labels ?? DEFAULT_PROPERTIES_BAR_DUO.axis.y.labels;
             config.series = config.series ?? DEFAULT_PROPERTIES_BAR_DUO.series;
             break;
           case TKFDFChartBarType.SINGLE:
-            config.yLabels =
-              config.yLabels ?? DEFAULT_PROPERTIES_BAR_SINGLE.yLabels;
+            config.axis.y.labels =
+              config.axis.y.labels ?? DEFAULT_PROPERTIES_BAR_DUO.axis.y.labels;
             config.series =
               config.series ?? DEFAULT_PROPERTIES_BAR_SINGLE.series;
             break;

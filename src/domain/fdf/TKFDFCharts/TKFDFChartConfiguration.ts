@@ -42,10 +42,17 @@ export interface TKFDFChartBarConfigurationItem {
 // Bar ////////////////////////////////////////////////////////////////////////
 export interface TKFDFChartBarConfiguration {
   direction: TKFDFChartBarDirection;
-  yLabels?: Array<TKLabel>;
-  titleAxis: {
-    x: string | TKLabel;
-    y: string | TKLabel;
+  axis: {
+    x: {
+      title: string | TKLabel;
+      min?: number;
+      max?: number;
+      interval?: number;
+    };
+    y: {
+      title: string | TKLabel;
+      labels?: Array<TKLabel>;
+    };
   };
   barType: TKFDFChartBarType;
   series: Array<TKFDFChartBarConfigurationItem>;

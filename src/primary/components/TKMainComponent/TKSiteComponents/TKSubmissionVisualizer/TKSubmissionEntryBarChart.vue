@@ -212,6 +212,8 @@ export default class TKSubmissionItemBarChart extends Vue {
   /* eslint-disable @typescript-eslint/no-explicit-any */
   generateScales(): any {
     const axisX = {
+      suggestedMin: this.entry.config.axis.x.min ?? undefined,
+      suggestedMax: this.entry.config.axis.x.max ?? undefined,
       ticks: {
         callback: (value: string): string => {
           let mynumber = 0;
@@ -232,13 +234,14 @@ export default class TKSubmissionItemBarChart extends Vue {
           }
           return mynumber.toString();
         },
-        color: TKColors.SECONDARY
+        color: TKColors.SECONDARY,
+        stepSize: this.entry.config.axis.x.interval ?? undefined
       },
       title: {
         align: "end",
         color: TKColors.DARK_GREY,
         display: true,
-        text: this.generateLabel(this.entry.config.titleAxis.x)
+        text: this.generateLabel(this.entry.config.axis.x.title)
       }
     };
 
@@ -255,7 +258,7 @@ export default class TKSubmissionItemBarChart extends Vue {
         align: "end",
         color: TKColors.DARK_GREY,
         display: true,
-        text: this.generateLabel(this.entry.config.titleAxis.y)
+        text: this.generateLabel(this.entry.config.axis.y.title)
       }
     };
     return {

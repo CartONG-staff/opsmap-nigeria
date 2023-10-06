@@ -46,8 +46,15 @@ export const DEFAULT_PROPERTIES_BAR_DUO: TKFDFChartBarConfiguration = {
       label: "charts.female"
     }
   ],
-  titleAxis: DEFAULT_PROPERTIES_BAR_TITLEAXIS,
-  yLabels: undefined
+  axis: {
+    x: {
+      title: DEFAULT_PROPERTIES_BAR_TITLEAXIS.x
+    },
+    y: {
+      title: DEFAULT_PROPERTIES_BAR_TITLEAXIS.y,
+      labels: undefined
+    }
+  }
 };
 export const DEFAULT_PROPERTIES_BAR_SINGLE: TKFDFChartBarConfiguration = {
   direction: DEFAULT_PROPERTIES_BAR_DIRECTION,
@@ -60,8 +67,15 @@ export const DEFAULT_PROPERTIES_BAR_SINGLE: TKFDFChartBarConfiguration = {
       label: "charts.series"
     }
   ],
-  titleAxis: DEFAULT_PROPERTIES_BAR_TITLEAXIS,
-  yLabels: undefined
+  axis: {
+    x: {
+      title: DEFAULT_PROPERTIES_BAR_TITLEAXIS.x
+    },
+    y: {
+      title: DEFAULT_PROPERTIES_BAR_TITLEAXIS.y,
+      labels: undefined
+    }
+  }
 };
 
 export const DEFAULT_PROPERTIES_DOUGHNUT: TKFDFChartDoughnutConfiguration = {
