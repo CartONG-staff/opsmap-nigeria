@@ -110,6 +110,7 @@ export function TKCreateSubmissionEntryList(
   value: string,
   rule: TKFDFSubmissionRule,
   surveyConfiguration: TKFDF,
+  submissionRawEntries: TKSubmissionRawEntries,
   thematic: TKSubmissionThematic,
   listSeparator: string,
   locales: string[]
@@ -154,7 +155,11 @@ export function TKCreateSubmissionEntryList(
     fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
     answerLabel: correctedValue,
     isAnswered: isAnswered,
-    trafficLight: undefined
+    trafficLight: getTrafficLight(
+      value,
+      submissionRawEntries,
+      getTrafficLightConfiguration(rule, surveyConfiguration)
+    )
   };
 }
 

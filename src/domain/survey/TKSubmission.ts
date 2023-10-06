@@ -297,6 +297,7 @@ export function TKCreateSubmission(
                   value,
                   rule,
                   fdf,
+                  submissionRawEntries,
                   thematic.thematic,
                   options.listSeparator,
                   locale
