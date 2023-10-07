@@ -6,7 +6,7 @@
       v-on:zoomout="zoomOut"
       v-on:zoomreset="zoomReset"
     />
-    <TKMapFilters class="tk-map-filters" />
+    <TKMapFilters v-if="showFilters" class="tk-map-filters" />
     <TKMapBasemapPicker class="tk-basemap-picker" :basemaps="basemaps" />
   </div>
 </template>
@@ -44,6 +44,7 @@ import { Point } from "geojson";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKGeoDatasetModule from "@/store/modules/geodataset/TKGeoDatasetModule";
+import { MapLegendDisplayStyle } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 
 @Component({
   components: {
@@ -62,12 +63,14 @@ export default class TKMap extends Vue {
   basemaps = TKBasemapsLayer;
 
   mapLayerStyle!: TKMapLayerStyles;
+  showFilters = TKConfigurationModule.configuration.options.mapLegendDisplayStyle !==
+    MapLegendDisplayStyle.HIDDEN;
 
   mounted() {
     this.initMap();
   }
 
-  // //////////////////////////////////////////////////////////////////////////
+  // ////////////////////////////////////////////////////////////TKConfigurationModule.configuration.options.mapLegendDisplayStyle//////////////
   //
   // //////////////////////////////////////////////////////////////////////////
 
