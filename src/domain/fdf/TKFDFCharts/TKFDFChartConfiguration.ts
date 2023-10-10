@@ -22,16 +22,30 @@ export enum TKFDFChartBarType {
   DUO = "duo"
 }
 
+// ////////////////////////////////////////////////////////////////////////////
+// Shared Configuration
+// ////////////////////////////////////////////////////////////////////////////
+
+interface TKFDFCommonChartConfiguration {
+  mapping?: Record<
+    string,
+    {
+      value: number;
+      label: TKLabel;
+    }
+  >;
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Key_values
+// ////////////////////////////////////////////////////////////////////////////
+
 // Same direction as https://www.chartjs.org/docs/latest/charts/bar.html#bar-chart
 // vertical bars or horizontal bars
 export enum TKFDFChartBarDirection {
   HORIZONTAL = "horizontal",
   VERTICAL = "vertical"
 }
-// ////////////////////////////////////////////////////////////////////////////
-// Key_values
-// ////////////////////////////////////////////////////////////////////////////
-
 export interface TKFDFChartBarConfigurationItem {
   id: string;
   index: number;
@@ -40,7 +54,8 @@ export interface TKFDFChartBarConfigurationItem {
 }
 
 // Bar ////////////////////////////////////////////////////////////////////////
-export interface TKFDFChartBarConfiguration {
+export interface TKFDFChartBarConfiguration
+  extends TKFDFCommonChartConfiguration {
   direction: TKFDFChartBarDirection;
   axis: {
     x: {
@@ -56,20 +71,14 @@ export interface TKFDFChartBarConfiguration {
   };
   barType: TKFDFChartBarType;
   series: Array<TKFDFChartBarConfigurationItem>;
-  mapping?: Record<
-    string,
-    {
-      value: number;
-      label: TKLabel;
-    }
-  >;
 }
 export interface TKFDFChartBar extends TKFDFChartBarConfiguration {
   type: TKFDFChartType.BAR;
 }
 
 // DOUGHNUT ///////////////////////////////////////////////////////////////////
-export interface TKFDFChartDoughnutConfiguration {
+export interface TKFDFChartDoughnutConfiguration
+  extends TKFDFCommonChartConfiguration {
   colors: Array<TKColor>;
 }
 export interface TKFDFChartDoughnut extends TKFDFChartDoughnutConfiguration {
@@ -77,7 +86,8 @@ export interface TKFDFChartDoughnut extends TKFDFChartDoughnutConfiguration {
 }
 
 // DOUGHNUT ///////////////////////////////////////////////////////////////////
-export interface TKFDFChartPolarAreaConfiguration {
+export interface TKFDFChartPolarAreaConfiguration
+  extends TKFDFCommonChartConfiguration {
   colors: Array<TKColor>;
 }
 export interface TKFDFChartPolarArea extends TKFDFChartPolarAreaConfiguration {
@@ -85,7 +95,8 @@ export interface TKFDFChartPolarArea extends TKFDFChartPolarAreaConfiguration {
 }
 
 // DOUGHNUT ///////////////////////////////////////////////////////////////////
-export interface TKFDFChartRadarConfiguration {
+export interface TKFDFChartRadarConfiguration
+  extends TKFDFCommonChartConfiguration {
   color: TKColor;
 }
 export interface TKFDFChartRadar extends TKFDFChartRadarConfiguration {

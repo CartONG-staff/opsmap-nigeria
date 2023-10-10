@@ -147,7 +147,7 @@ export function TKCreateSubmissionChart(
       title: fdf.fieldsLabels[chartDataLabeled.id],
       entries: chartDataLabeled.data.map(item => {
         return {
-          value: Number(item.value),
+          value: item.value,
           label: item.field
         };
       })
@@ -163,7 +163,7 @@ export function TKCreateSubmissionChart(
       title: fdf.fieldsLabels[chartDataLabeled.id],
       entries: chartDataLabeled.data.map(item => {
         return {
-          value: Number(item.value),
+          value: item.value,
           label: item.field
         };
       })
@@ -179,7 +179,7 @@ export function TKCreateSubmissionChart(
       title: fdf.fieldsLabels[chartDataLabeled.id],
       entries: chartDataLabeled.data.map(item => {
         return {
-          value: Number(item.value),
+          value: item.value,
           label: item.field
         };
       })

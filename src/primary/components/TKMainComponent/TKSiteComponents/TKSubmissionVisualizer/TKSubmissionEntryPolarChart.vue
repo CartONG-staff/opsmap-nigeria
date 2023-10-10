@@ -143,7 +143,13 @@ export default class TKSubmissionItemPolarChart extends Vue {
 
   generateValues(): Array<number> {
     if (this.entry) {
-      return this.entry.entries.map(item => item.value);
+      return this.entry.entries
+        .map(item => item.value)
+        .map(value =>
+          this.entry.config.mapping && this.entry.config.mapping[value]
+            ? Number(this.entry.config.mapping[value].value)
+            : Number(value)
+        );
     } else {
       return [];
     }

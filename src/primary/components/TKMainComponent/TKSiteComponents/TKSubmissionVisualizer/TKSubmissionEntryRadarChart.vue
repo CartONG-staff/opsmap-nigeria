@@ -45,6 +45,7 @@ export default class TKSubmissionItemRadarChart extends Vue {
 
   mounted() {
     if (this.entry) {
+      console.log(this.entry);
       const config: ChartConfiguration = {
         type: "radar",
         data: {
@@ -134,6 +135,7 @@ export default class TKSubmissionItemRadarChart extends Vue {
 
   @Watch("entry")
   onEntryChanged() {
+    console.log(this.entry);
     // Update labels and data Labels
     this.chart.data.labels = this.generateLabels();
     this.chart.data.datasets[0].data = this.generateValues();
@@ -149,7 +151,13 @@ export default class TKSubmissionItemRadarChart extends Vue {
 
   generateValues(): Array<number> {
     if (this.entry) {
-      return this.entry.entries.map(item => item.value);
+      return this.entry.entries
+        .map(item => item.value)
+        .map(value =>
+          this.entry.config.mapping && this.entry.config.mapping[value]
+            ? Number(this.entry.config.mapping[value].value)
+            : Number(value)
+        );
     } else {
       return [];
     }

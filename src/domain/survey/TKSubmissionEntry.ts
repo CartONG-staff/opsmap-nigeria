@@ -70,7 +70,7 @@ export interface TKSubmissionEntryDoughnut extends AbstractTKSubmissionEntry {
   chartid: string;
   title: TKLabel;
   isAnswered: true;
-  entries: Array<{ value: number; label: TKLabel }>;
+  entries: Array<{ value: string; label: TKLabel }>;
 }
 export interface TKSubmissionEntryPolar extends AbstractTKSubmissionEntry {
   type: TKFDFChartType.POLAR_AREA;
@@ -79,7 +79,7 @@ export interface TKSubmissionEntryPolar extends AbstractTKSubmissionEntry {
   chartid: string;
   title: TKLabel;
   isAnswered: true;
-  entries: Array<{ value: number; label: TKLabel }>;
+  entries: Array<{ value: string; label: TKLabel }>;
 }
 
 export interface TKSubmissionEntryRadar extends AbstractTKSubmissionEntry {
@@ -89,7 +89,7 @@ export interface TKSubmissionEntryRadar extends AbstractTKSubmissionEntry {
   chartid: string;
   title: TKLabel;
   isAnswered: true;
-  entries: Array<{ value: number; label: TKLabel }>;
+  entries: Array<{ value: string; label: TKLabel }>;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
