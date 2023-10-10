@@ -22,7 +22,6 @@
               :items="dataset.surveys"
               item-text="name"
               return-object
-              multiple
               v-on="on"
               v-bind="attrs"
             ></v-autocomplete>
