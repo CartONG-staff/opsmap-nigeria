@@ -95,7 +95,22 @@ export default class TKSubmissionThematicView extends Vue {
         this.submissionThematic
       );
       this.entries = applyVisualizerOptions(entries);
+      this.computeTrafficLightStatus();
     }
+  }
+
+  computeTrafficLightStatus() {
+    const trafficLights = this.entries
+      .filter(
+        entry =>
+          entry.isAnswered &&
+          "trafficLight" in entry &&
+          entry.trafficLight != null
+      )
+      .map(entry => ("trafficLight" in entry ? entry.trafficLight : null))
+      .filter(entry => entry != null);
+
+    console.log(trafficLights);
   }
 }
 </script>

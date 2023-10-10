@@ -2,13 +2,17 @@
 // Thematic datatype
 
 import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
-import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
+import {
+  TKFDFThematicTrafficLightRule,
+  TKTFDFhematicsCollection
+} from "@/domain/fdf/TKFDFThematics";
 import { TKCSVParse } from "@/secondary/csv/TKCSV";
 import { TKFDFFiles } from "./TKFDFFiles";
 
 // ////////////////////////////////////////////////////////////////////////////
 const FORMATTED_NAME_INDEX = 0;
 const ICON_NAME_INDEX = 1;
+const TRAFFIC_LIGHT_RULE_INDEX = 2;
 
 export type TKFDFThematicRaw = Array<string>;
 
@@ -42,10 +46,17 @@ export async function TKReadFDFThematicsCollection(
       thematicsCollection[item[FORMATTED_NAME_INDEX]] = {
         id: item[FORMATTED_NAME_INDEX],
         iconFileName: item[ICON_NAME_INDEX],
-        thematicLabel: {}
+        thematicLabel: {},
+        trafficLightRule: item[
+          TRAFFIC_LIGHT_RULE_INDEX
+        ] as TKFDFThematicTrafficLightRule
       };
 
-      for (let j = 2; j < Object.keys(item).length; j++) {
+      for (
+        let j = TRAFFIC_LIGHT_RULE_INDEX + 1;
+        j < Object.keys(item).length;
+        j++
+      ) {
         thematicsCollection[item[FORMATTED_NAME_INDEX]].thematicLabel[
           localesValuesForIndexes[j]
         ] = item[j];
