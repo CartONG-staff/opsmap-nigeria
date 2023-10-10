@@ -107,9 +107,8 @@ export default class TKSubmissionThematicView extends Vue {
           "trafficLight" in entry &&
           entry.trafficLight != null
       )
-      .map(entry => ("trafficLight" in entry ? entry.trafficLight : null))
+      .map(entry => ("trafficLight" in entry ? entry.trafficLight?.rank : null))
       .filter(entry => entry != null);
-
     console.log(trafficLights);
   }
 }
