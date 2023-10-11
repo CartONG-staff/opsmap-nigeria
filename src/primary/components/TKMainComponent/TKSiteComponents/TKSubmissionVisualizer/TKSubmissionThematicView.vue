@@ -1,6 +1,7 @@
 <template lang="html">
   <div class="tk-submission-thematic-container">
     <div class="tk-submission-thematic-header">
+      <TKSubmissionThematicTrafficLightComponent :trafficLight="trafficLight" />
       <transition mode="out-in" name="fade-in">
         <div :key="title" class="tk-submission-thematic-title">{{ title }}</div>
       </transition>
@@ -31,10 +32,15 @@ import {
   applyVisualizerOptions,
   getEntriesForThematic
 } from "@/domain/survey/TKSubmissionEntries";
+import { TKFDFThematicTrafficLightType } from "@/domain/fdf/TKFDFThematicTrafficLights/TKFDFThematicTrafficLightConfiguration";
+import { TKFDFTrafficLightColormapItem } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightColormap";
+
+import TKSubmissionThematicTrafficLightComponent from "./TKSubmissionThematicTrafficLightComponent.vue";
 
 @Component({
   components: {
-    TKSubmissionEntryView
+    TKSubmissionEntryView,
+    TKSubmissionThematicTrafficLightComponent
   }
 })
 export default class TKSubmissionThematicView extends Vue {
@@ -99,17 +105,43 @@ export default class TKSubmissionThematicView extends Vue {
     }
   }
 
+  trafficLight?: TKFDFTrafficLightColormapItem = undefined;
   computeTrafficLightStatus() {
-    const trafficLights = this.entries
-      .filter(
-        entry =>
+    if (this.submissionThematic.trafficLight) {
+      const trafficLightInputs: Array<number> = [];
+      for (const entry of this.entries) {
+        if (
           entry.isAnswered &&
           "trafficLight" in entry &&
           entry.trafficLight != null
-      )
-      .map(entry => ("trafficLight" in entry ? entry.trafficLight?.rank : null))
-      .filter(entry => entry != null);
-    console.log(trafficLights);
+        ) {
+          trafficLightInputs.push(entry.trafficLight.rank);
+        }
+      }
+
+      let trafficLightRankValue = 0;
+      switch (this.submissionThematic.trafficLight.type) {
+        case TKFDFThematicTrafficLightType.MAX:
+          trafficLightRankValue = Math.max(...trafficLightInputs);
+          break;
+        case TKFDFThematicTrafficLightType.MEAN:
+          trafficLightRankValue = Math.round(
+            trafficLightInputs.length
+              ? trafficLightInputs.reduce((a, b) => a + b, 0) /
+                  trafficLightInputs.length
+              : 0
+          );
+          break;
+        case TKFDFThematicTrafficLightType.MIN:
+          trafficLightRankValue = Math.min(...trafficLightInputs);
+          break;
+      }
+      const colormap = this.submissionThematic.trafficLight.properties.colormap;
+      this.trafficLight =
+        colormap[Object.keys(colormap)[trafficLightRankValue]];
+    } else {
+      this.trafficLight = undefined;
+    }
   }
 }
 </script>
@@ -141,6 +173,7 @@ export default class TKSubmissionThematicView extends Vue {
 .tk-submission-thematic-title {
   font-size: 16px;
   font-weight: bolder;
+  flex-grow: 2;
 }
 
 .tk-submission-chart {
