@@ -22,7 +22,7 @@ import { TKColors } from "@/domain/utils/TKColors";
 Chart.register(DoughnutController, ArcElement, Legend, Title, Tooltip);
 
 @Component
-export default class TKSubmissionItemDoughnutChart extends Vue {
+export default class TKSubmissionEntryDoughnutChart extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryDoughnut;
 

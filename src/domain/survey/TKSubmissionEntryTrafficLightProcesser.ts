@@ -9,9 +9,11 @@ import { getRankValue } from "@/domain/fdf/TKFDFTrafficLights/TKFDFTrafficLightR
 import {
   TKMathExpressionBuildDefaultScope,
   TKMathExpressionBuildScope,
-  TKMathExpressionEvaluate
+  TKMathExpressionEvaluate,
+  TKMathExpressionScope
 } from "@/domain/utils/TKMathExpression";
 import { TKSubmissionRawEntries } from "./TKSubmissionEntry";
+import { TKLabel } from "@/domain/utils/TKLabel";
 
 // ////////////////////////////////////////////////////////////////////////////
 // TrafficLight helpers method
@@ -68,7 +70,8 @@ function generateErrorOutput(configuration: TKFDFTrafficLightConfiguration) {
 export function getTrafficLight(
   input: string,
   submissionRawEntries: TKSubmissionRawEntries,
-  configuration: TKFDFTrafficLightConfiguration | undefined
+  configuration: TKFDFTrafficLightConfiguration | undefined,
+  inputList?: string[] | TKLabel[]
 ):
   | {
       configuration: TKFDFTrafficLightConfiguration;
@@ -87,10 +90,9 @@ export function getTrafficLight(
   }
 
   // Actually compute Traffic Lights ////////////////////////////////////////////
-
   switch (configuration.type) {
     // Type Key Value
-    case TKFDFTrafficLightType.KEY_VALUE:
+    case TKFDFTrafficLightType.KEY_VALUE: {
       if (!(input in configuration.values)) {
         return generateErrorOutput(configuration);
       } else {
@@ -100,8 +102,10 @@ export function getTrafficLight(
         }
         return generateOutput(colormapKey, configuration);
       }
-    // Type Key Value
-    case TKFDFTrafficLightType.EQUAL_VALUE:
+    }
+
+    // Type Equal Value
+    case TKFDFTrafficLightType.EQUAL_VALUE: {
       if (input == configuration.value) {
         const colormapKey = configuration.ok;
         if (!(colormapKey in configuration.properties.colormap)) {
@@ -115,16 +119,14 @@ export function getTrafficLight(
         }
         return generateOutput(colormapKey, configuration);
       }
+    }
 
     // Type Math
-    case TKFDFTrafficLightType.MATH:
+    case TKFDFTrafficLightType.MATH: {
+      const scope = configuration.scope
+        ? TKMathExpressionBuildScope(configuration.scope, submissionRawEntries)
+        : TKMathExpressionBuildDefaultScope(parseFloat(input));
       for (const operation in configuration.values) {
-        const scope = configuration.scope
-          ? TKMathExpressionBuildScope(
-              configuration.scope,
-              submissionRawEntries
-            )
-          : TKMathExpressionBuildDefaultScope(parseFloat(input));
         const isValid = TKMathExpressionEvaluate(operation, scope);
         if (isValid) {
           const colormapKey = configuration.values[operation];
@@ -132,8 +134,26 @@ export function getTrafficLight(
         }
       }
       return generateErrorOutput(configuration);
+    }
 
-    default:
+    case TKFDFTrafficLightType.ITEM_NUMBER: {
+      if (inputList !== undefined) {
+        const scope: TKMathExpressionScope = {
+          x: inputList.length
+        };
+        for (const operation in configuration.values) {
+          const isValid = TKMathExpressionEvaluate(operation, scope);
+          if (isValid) {
+            const colormapKey = configuration.values[operation];
+            return generateOutput(colormapKey, configuration);
+          }
+        }
+      }
       return generateErrorOutput(configuration);
+    }
+
+    default: {
+      return generateErrorOutput(configuration);
+    }
   }
 }

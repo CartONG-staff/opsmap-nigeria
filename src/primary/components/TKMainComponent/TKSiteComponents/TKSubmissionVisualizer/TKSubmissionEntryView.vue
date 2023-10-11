@@ -55,7 +55,7 @@ import TKSubmissionEntryTextView from "./TKSubmissionEntryTextView.vue";
     TKSubmissionEntryTextView
   }
 })
-export default class TKSubmissionentryView extends Vue {
+export default class TKSubmissionEntryView extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntry;
 }
