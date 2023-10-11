@@ -13,7 +13,7 @@ export enum TKFDFTrafficLightType {
   KEY_VALUE = "key_value",
   MATH = "math",
   EQUAL_VALUE = "equal_value",
-  ITEM_NUMBER = "item_number"
+  LIST_COUNT = "list_count"
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -67,11 +67,11 @@ export interface TKFDFTrafficLightEqualValue extends AbstractTKFDFTrafficLight {
 }
 
 /**
- * "item_number" type of traffic lights
+ * "list_count" type of traffic lights
  */
-export interface TKFDFTrafficLightItemNumber extends AbstractTKFDFTrafficLight {
-  type: TKFDFTrafficLightType.ITEM_NUMBER;
-  scope?: Record<string, string>; // [variableName]: key
+export interface TKFDFTrafficLightListCount extends AbstractTKFDFTrafficLight {
+  type: TKFDFTrafficLightType.LIST_COUNT;
+  scope?: Record<string, string>; // x: key
   values: Record<string, string>; // [formula]: colormapKey
 }
 
@@ -86,4 +86,4 @@ export type TKFDFTrafficLightConfiguration =
   | TKFDFTrafficLightKeyValue
   | TKFDFTrafficLightMath
   | TKFDFTrafficLightEqualValue
-  | TKFDFTrafficLightItemNumber;
+  | TKFDFTrafficLightListCount;
