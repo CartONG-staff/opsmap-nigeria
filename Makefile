@@ -24,20 +24,3 @@ down-remove-all: ## Stop and remove the docker hub
 dev-remove:
 	@$(DOCKER_COMP) rm -fvs
 
-## —— Utils 🪄 ————————————————————————————————————————————————————————————————
-run-local-dataset-server: ## To plug on a local opsmap-datasets repository
-	$(info )
-	$(info =================================================================)
-	$(info )
-	$(info Make sure to set the following variable in your .env.local :)
-	$(info )
-	$(info VUE_APP_GENERAL_CONFIG_DIRECTORY=http://127.0.0.1:9090/brazil/)
-	$(info )
-	$(info Then you can run "yarn serve" command)
-	$(info )
-	$(info =================================================================)
-	$(info )
-	$(info )
-	npx http-server ../opsmap-datasets -p 9090 --cors
-
-

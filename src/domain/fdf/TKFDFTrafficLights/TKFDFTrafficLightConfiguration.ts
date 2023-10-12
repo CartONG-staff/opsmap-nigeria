@@ -12,8 +12,7 @@ import { TKFDFTrafficLightProperties } from "./TKFDFTrafficLightProperties";
 export enum TKFDFTrafficLightType {
   KEY_VALUE = "key_value",
   MATH = "math",
-  EQUAL_VALUE = "equal_value",
-  LIST_COUNT = "list_count"
+  EQUAL_VALUE = "equal_value"
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -66,15 +65,6 @@ export interface TKFDFTrafficLightEqualValue extends AbstractTKFDFTrafficLight {
   notok: string;
 }
 
-/**
- * "list_count" type of traffic lights
- */
-export interface TKFDFTrafficLightListCount extends AbstractTKFDFTrafficLight {
-  type: TKFDFTrafficLightType.LIST_COUNT;
-  scope?: Record<string, string>; // x: key
-  values: Record<string, string>; // [formula]: colormapKey
-}
-
 // ////////////////////////////////////////////////////////////////////////////
 // Union type
 // ////////////////////////////////////////////////////////////////////////////
@@ -85,5 +75,4 @@ export interface TKFDFTrafficLightListCount extends AbstractTKFDFTrafficLight {
 export type TKFDFTrafficLightConfiguration =
   | TKFDFTrafficLightKeyValue
   | TKFDFTrafficLightMath
-  | TKFDFTrafficLightEqualValue
-  | TKFDFTrafficLightListCount;
+  | TKFDFTrafficLightEqualValue;

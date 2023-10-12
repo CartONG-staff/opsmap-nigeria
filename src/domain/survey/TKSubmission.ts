@@ -312,7 +312,6 @@ export function TKCreateSubmission(
                   rule,
                   fdf,
                   thematic.thematic,
-                  submissionRawEntries,
                   options.listSeparator
                 );
               }
@@ -342,6 +341,8 @@ export function TKCreateSubmission(
   for (const chart of Object.values(charts)) {
     TKCreateSubmissionChart(chart, fdf, entries);
   }
+
+  console.log(entries["radar#7"]);
 
   //  Solution to filter thematics if nothing has been answered. ////////////////////////
   const thematicsFiltered: Array<TKSubmissionThematic> = Object.values(

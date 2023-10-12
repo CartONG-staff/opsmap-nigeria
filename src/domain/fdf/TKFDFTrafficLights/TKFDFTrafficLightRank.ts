@@ -12,7 +12,7 @@ export const UNDEFINED_RANK_VALUE = -1;
 /**
  * Compute a rank value assocaited to the traffic light.
  * This value is used to sort the TL later in the UI.
- * Basically, it returns the index of the TL in the associated colormap
+ * Bascially, it returns the index of the TL in the associated colormap
  */
 export function getRankValue(
   index: string,
