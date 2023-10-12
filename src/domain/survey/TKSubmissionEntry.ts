@@ -50,8 +50,10 @@ export interface TKSubmissionEntryBullet extends AbstractTKSubmissionEntry {
   field: string;
   fieldLabel: TKLabel;
   answersLabels: TKLabel[];
+  trafficLight?: TKSubmissionEntryTrafficLight;
   isAnswered: boolean;
 }
+
 export interface TKSubmissionEntryBar extends AbstractTKSubmissionEntry {
   type: TKFDFChartType.BAR;
   config: TKFDFChartBar;
@@ -147,7 +149,6 @@ export function TKCreateSubmissionEntryList(
         ? surveyConfiguration.answersLabels[value]
         : { [TKConfigurationModule.configuration.locale.default]: value };
   }
-
   return {
     type: TKSubmissionEntryTextType.TEXT,
     thematic: thematic,
@@ -158,7 +159,8 @@ export function TKCreateSubmissionEntryList(
     trafficLight: getTrafficLight(
       value,
       submissionRawEntries,
-      getTrafficLightConfiguration(rule, surveyConfiguration)
+      getTrafficLightConfiguration(rule, surveyConfiguration),
+      valueSplitted
     )
   };
 }
@@ -201,6 +203,7 @@ export function TKCreateSubmissionEntryBullet(
   rule: TKFDFSubmissionRule,
   surveyConfiguration: TKFDF,
   thematic: TKSubmissionThematic,
+  submissionRawEntries: TKSubmissionRawEntries,
   listSeparator: string
 ): TKSubmissionEntryBullet {
   const isAnswered = value !== "";
@@ -220,6 +223,12 @@ export function TKCreateSubmissionEntryBullet(
     field: rule.fieldName,
     fieldLabel: surveyConfiguration.fieldsLabels[rule.fieldName],
     answersLabels: correctedValue,
-    isAnswered: isAnswered
+    isAnswered: isAnswered,
+    trafficLight: getTrafficLight(
+      value,
+      submissionRawEntries,
+      getTrafficLightConfiguration(rule, surveyConfiguration),
+      correctedValue
+    )
   };
 }
