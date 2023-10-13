@@ -38,7 +38,7 @@ Chart.register(
 );
 
 @Component
-export default class TKSubmissionItemBarChart extends Vue {
+export default class TKSubmissionEntryBarChart extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryBar;
 
