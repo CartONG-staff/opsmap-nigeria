@@ -34,7 +34,7 @@ Chart.register(
 );
 
 @Component
-export default class TKSubmissionEntryRadarChart extends Vue {
+export default class TKSubmissionItemRadarChart extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryRadar;
 

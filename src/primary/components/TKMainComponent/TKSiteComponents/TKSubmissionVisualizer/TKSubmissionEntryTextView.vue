@@ -35,7 +35,7 @@ import TKSubmissionEntryTrafficLightComponent from "./TKSubmissionEntryTrafficLi
     TKSubmissionEntryTrafficLightComponent
   }
 })
-export default class TKSubmissionEntryTextView extends Vue {
+export default class TKSubmissionentryView extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryText;
 
