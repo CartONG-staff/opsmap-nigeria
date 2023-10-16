@@ -1,48 +1,75 @@
 <template lang="html">
   <div class="tk-map-filters" ref="tk-map-filters">
     <transition name="hide-filters">
-      <div v-if="show" class="tk-map-filters-item">
-        <div v-for="(site, key) in sites" :key="key" class="tk-map-filter">
-          <img
-            :class="
-              site.enabled
-                ? 'tk-indicator-icon'
-                : 'tk-indicator-icon tk-indicator-icon-disabled'
-            "
-            :src="site.iconUrl"
-          />
-          <transition mode="out-in" name="fade-in">
-            <div
-              :key="$root.$i18n.locale"
-              :class="
-                site.enabled
-                  ? 'tk-map-filter-text'
-                  : 'tk-map-filter-text tk-map-filter-text-disabled'
-              "
-            >
-              {{ text(site.title) }}
-            </div>
-          </transition>
-          <transition mode="out-in" name="fade-in">
-            <div
-              :key="site.count"
-              :class="
-                site.enabled
-                  ? 'tk-map-filter-value'
-                  : 'tk-map-filter-value tk-map-filter-value-disabled'
-              "
-            >
-              {{ site.count }}
-            </div>
-          </transition>
-          <v-checkbox
-            v-model="site.active"
-            class="tk-map-filter-checkbox"
-            hide-details
-            :disabled="!site.enabled"
-            @change="checkboxChange(site.type, site.active)"
-          ></v-checkbox>
+      <div class="tk-map-filters-items-container">
+        <div
+          class="tk-map-filters-selectors"
+          v-if="visualisationMode.length > 1"
+        >
+          <v-radio-group v-model="mapVisualisation" row dense class="tk-map-filters-radio">
+            <v-radio
+              v-for="visualisation in visualisationMode"
+              :key="visualisation.label"
+              :label="visualisation.label"
+              :value="visualisation.type"
+            ></v-radio>
+          </v-radio-group>
         </div>
+        <template v-for="visualisation in visualisationMode">
+          <div
+            v-if="show"
+            class="tk-map-filters-item"
+            :key="visualisation.type"
+          >
+            <template v-if="visualisation.type === 'site_types'">
+              <div
+                v-for="(site, key) in sites"
+                :key="key"
+                class="tk-map-filter"
+              >
+                <img
+                  :class="
+                    site.enabled
+                      ? 'tk-indicator-icon'
+                      : 'tk-indicator-icon tk-indicator-icon-disabled'
+                  "
+                  :src="site.iconUrl"
+                />
+                <transition mode="out-in" name="fade-in">
+                  <div
+                    :key="$root.$i18n.locale"
+                    :class="
+                      site.enabled
+                        ? 'tk-map-filter-text'
+                        : 'tk-map-filter-text tk-map-filter-text-disabled'
+                    "
+                  >
+                    {{ text(site.title) }}
+                  </div>
+                </transition>
+                <transition mode="out-in" name="fade-in">
+                  <div
+                    :key="site.count"
+                    :class="
+                      site.enabled
+                        ? 'tk-map-filter-value'
+                        : 'tk-map-filter-value tk-map-filter-value-disabled'
+                    "
+                  >
+                    {{ site.count }}
+                  </div>
+                </transition>
+                <v-checkbox
+                  v-model="site.active"
+                  class="tk-map-filter-checkbox"
+                  hide-details
+                  :disabled="!site.enabled"
+                  @change="checkboxChange(site.type, site.active)"
+                ></v-checkbox>
+              </div>
+            </template>
+          </div>
+        </template>
       </div>
     </transition>
     <div class="tk-vseparator" />
@@ -67,7 +94,7 @@
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
-
+import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 
 @Component
@@ -75,6 +102,22 @@ export default class TKMapFilter extends Vue {
   get dataset() {
     return TKDatasetModule.dataset;
   }
+
+  get mapVisualisation() {
+    return TKVisualizerOptionsModule.mapVisualisation;
+  }
+
+  set mapVisualisation(visualisation: string) {
+    console.log(visualisation)
+    TKVisualizerOptionsModule.setMapVisualisation(visualisation);
+  }
+
+  visualisationMode = [
+    {
+      type: "site_types",
+      label: "Site types"
+    }
+  ];
 
   sites: Array<{
     type: string;
@@ -87,6 +130,17 @@ export default class TKMapFilter extends Vue {
 
   mounted() {
     this.updateSites();
+    if (this.dataset.currentSurvey.options.sitesMapVisualisation.length > 0) {
+      this.visualisationMode.push(
+        ...this.dataset.currentSurvey.options.sitesMapVisualisation.map(x => {
+          return {
+            type: x.visualisationType.type,
+            label: x.label
+          };
+        })
+      );
+    }
+    console.log(this.visualisationMode);
   }
 
   checkboxChange(type: string, active: boolean): void {
@@ -112,10 +166,10 @@ export default class TKMapFilter extends Vue {
       }
       this.updateCount();
     }
-    if (this.$refs["tk-map-filters"]) {
-      (this.$refs["tk-map-filters"] as HTMLBaseElement).style.height = `${this
-        .sites.length * 34}px`;
-    }
+    // if (this.$refs["tk-map-filters"]) {
+    //   (this.$refs["tk-map-filters"] as HTMLBaseElement).style.height = `${this
+    //     .sites.length * 34}px`;
+    // }
   }
 
   text(label: TKLabel): string {
@@ -144,7 +198,17 @@ export default class TKMapFilter extends Vue {
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
-  row-gap: 10px;
+  /* row-gap: 10px; */
+}
+
+/* .tk-map-filters-selectors{
+  display: flex;
+  flex-direction: column nowrap;
+} */
+
+.tk-map-filters-items-container {
+  display: block;
+  margin: 10px;
 }
 
 .tk-map-filters-item {
@@ -152,7 +216,7 @@ export default class TKMapFilter extends Vue {
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: left;
-  row-gap: 10px;
+  /* row-gap: 10px; */
   flex-grow: 1;
   opacity: 1;
   overflow: hidden;
@@ -208,5 +272,14 @@ export default class TKMapFilter extends Vue {
   width: 1px;
   height: 100%;
   margin-left: -1px;
+}
+
+.tk-map-filters-radio{
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.tk-map-filters-radio .v-input__control .v-messages{
+  display: none !important;
 }
 </style>

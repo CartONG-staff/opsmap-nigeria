@@ -200,7 +200,8 @@ export async function TKReadGeneralConfiguration(
     siteZoomMode: TKSurveyZoomSiteType.SITE,
     siteZoomBuffer: 100,
     listSeparator: ";",
-    anonymousMode: TKSurveyAnonymousType.NONE
+    anonymousMode: TKSurveyAnonymousType.NONE,
+    sitesMapVisualisation: []
   };
 
   for (let i = 0; i < json.surveys.length; i++) {

@@ -10,6 +10,7 @@ const DEFAULT_HIDE_UNANSWERED = true;
 const DEFAULT_SORT_BY_TRAFFICLIGHT = false;
 const DEFAULT_FILTER_VALUE = "";
 const DEFAULT_SHOW_VISUALIZER_OPTIONS = false;
+const DEFAULT_MAP_VISUALISATION = "site_types";
 
 @Module({ dynamic: true, store, name: "TKVisualizerOptionsModule" })
 class TKVisualizerOptionsModule extends VuexModule {
@@ -81,6 +82,19 @@ class TKVisualizerOptionsModule extends VuexModule {
 
   get searchFilter(): string {
     return this._searchFilter;
+  }
+  // //////////////////////////////////////////////////////////////////////////
+  // Map Visualisation
+  // //////////////////////////////////////////////////////////////////////////
+  _mapVisualisation = DEFAULT_MAP_VISUALISATION;
+
+  @Mutation
+  setMapVisualisation(mapVisualisation: string) {
+    this._mapVisualisation = mapVisualisation;
+  }
+
+  get mapVisualisation(): string {
+    return this._mapVisualisation;
   }
 }
 
