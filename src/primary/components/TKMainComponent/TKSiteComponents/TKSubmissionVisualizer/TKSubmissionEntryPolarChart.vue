@@ -24,7 +24,7 @@ import { TKColors } from "@/domain/utils/TKColors";
 Chart.register(PolarAreaController, RadialLinearScale, Legend, Title, Tooltip);
 
 @Component
-export default class TKSubmissionItemPolarChart extends Vue {
+export default class TKSubmissionEntryPolarChart extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryPolar;
 

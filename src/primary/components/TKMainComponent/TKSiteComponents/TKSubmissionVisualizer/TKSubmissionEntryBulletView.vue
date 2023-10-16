@@ -20,6 +20,9 @@
         </transition>
       </li>
     </ul>
+    <TKSubmissionEntryTrafficLightComponent
+      :trafficLight="entry.trafficLight"
+    />
   </div>
 </template>
 
@@ -29,8 +32,14 @@ import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import { TKSubmissionEntryBullet } from "@/domain/survey/TKSubmissionEntry";
 
-@Component
-export default class TKSubmissionentryView extends Vue {
+import TKSubmissionEntryTrafficLightComponent from "./TKSubmissionEntryTrafficLightComponent.vue";
+
+@Component({
+  components: {
+    TKSubmissionEntryTrafficLightComponent
+  }
+})
+export default class TKSubmissionEntryBulletView extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryBullet;
 
