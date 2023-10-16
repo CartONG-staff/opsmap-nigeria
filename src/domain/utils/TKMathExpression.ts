@@ -10,6 +10,7 @@ export function TKMathExpressionBuildDefaultScope(
 ): TKMathExpressionScope {
   return { [DEFAULT_SCOPE_VARIABLE]: value };
 }
+
 export function TKMathExpressionBuildScope(
   scopeDescription: Record<string, string>,
   rawEntries: TKSubmissionRawEntries

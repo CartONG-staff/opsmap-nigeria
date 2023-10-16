@@ -312,6 +312,7 @@ export function TKCreateSubmission(
                   rule,
                   fdf,
                   thematic.thematic,
+                  submissionRawEntries,
                   options.listSeparator
                 );
               }
