@@ -66,5 +66,9 @@
         "legendZoomOut": "تصغير",
         "legendBbox": "المدى الافتراضي",
         "legendFilters": "إظهار / إخفاء وسيلة الإيضاح"
+    },
+    "indicator": {
+        "siteCount": "موقع",
+        "peopleCount": "الناس"
     }
 }
