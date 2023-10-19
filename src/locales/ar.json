@@ -65,6 +65,11 @@
         "legendZoomIn": "تكبير",
         "legendZoomOut": "تصغير",
         "legendBbox": "المدى الافتراضي",
-        "legendFilters": "إظهار / إخفاء وسيلة الإيضاح"
+        "legendFilters": "إظهار / إخفاء وسيلة الإيضاح",
+        "populationCount": {
+            "cluster": "Sum of population by cluster of sites",
+            "notSelectedSite": "Population by not selected site",
+            "selectedSite": "Population by selected site"
+        }
     }
 }

@@ -20,61 +20,65 @@
             ></v-radio>
           </v-radio-group>
         </div>
-        <template v-for="visualisation in visualisationMode">
-          <div
-            v-if="show"
-            class="tk-map-filters-item"
-            :key="visualisation.type"
-          >
-            <template v-if="visualisation.type === 'site_types'">
-              <div
-                v-for="(site, key) in sites"
-                :key="key"
-                class="tk-map-filter"
-              >
-                <img
+        <div v-if="show" class="tk-map-filters-item">
+          <template v-if="mapVisualisation === 'site_types'">
+            <div v-for="(site, key) in sites" :key="key" class="tk-map-filter">
+              <img
+                :class="
+                  site.enabled
+                    ? 'tk-indicator-icon'
+                    : 'tk-indicator-icon tk-indicator-icon-disabled'
+                "
+                :src="site.iconUrl"
+              />
+              <transition mode="out-in" name="fade-in">
+                <div
+                  :key="$root.$i18n.locale"
                   :class="
                     site.enabled
-                      ? 'tk-indicator-icon'
-                      : 'tk-indicator-icon tk-indicator-icon-disabled'
+                      ? 'tk-map-filter-text'
+                      : 'tk-map-filter-text tk-map-filter-text-disabled'
                   "
-                  :src="site.iconUrl"
-                />
-                <transition mode="out-in" name="fade-in">
-                  <div
-                    :key="$root.$i18n.locale"
-                    :class="
-                      site.enabled
-                        ? 'tk-map-filter-text'
-                        : 'tk-map-filter-text tk-map-filter-text-disabled'
-                    "
-                  >
-                    {{ text(site.title) }}
-                  </div>
-                </transition>
-                <transition mode="out-in" name="fade-in">
-                  <div
-                    :key="site.count"
-                    :class="
-                      site.enabled
-                        ? 'tk-map-filter-value'
-                        : 'tk-map-filter-value tk-map-filter-value-disabled'
-                    "
-                  >
-                    {{ site.count }}
-                  </div>
-                </transition>
-                <v-checkbox
-                  v-model="site.active"
-                  class="tk-map-filter-checkbox"
-                  hide-details
-                  :disabled="!site.enabled"
-                  @change="checkboxChange(site.type, site.active)"
-                ></v-checkbox>
-              </div>
-            </template>
-          </div>
-        </template>
+                >
+                  {{ text(site.title) }}
+                </div>
+              </transition>
+              <transition mode="out-in" name="fade-in">
+                <div
+                  :key="site.count"
+                  :class="
+                    site.enabled
+                      ? 'tk-map-filter-value'
+                      : 'tk-map-filter-value tk-map-filter-value-disabled'
+                  "
+                >
+                  {{ site.count }}
+                </div>
+              </transition>
+              <v-checkbox
+                v-model="site.active"
+                class="tk-map-filter-checkbox"
+                hide-details
+                :disabled="!site.enabled"
+                @change="checkboxChange(site.type, site.active)"
+              ></v-checkbox>
+            </div>
+          </template>
+          <template v-if="mapVisualisation === 'population_count'">
+            <div class="tk-map-filter mb-2">
+              <div class="tk-population-count-cluster">x</div>
+              <div class="">{{ $t("map.populationCount.cluster") }}</div>
+            </div>
+            <div class="tk-map-filter mb-2">
+              <div class="tk-population-count-not-selected-site">x</div>
+              <div class="">Population by not selected site</div>
+            </div>
+            <div class="tk-map-filter mb-2">
+              <div class="tk-population-count-selected-site">x</div>
+              <div class="">Population by selected site</div>
+            </div>
+          </template>
+        </div>
       </div>
     </transition>
     <div class="tk-vseparator" />
@@ -269,6 +273,37 @@ export default class TKMapFilter extends Vue {
 
 .tk-indicator-icon-disabled {
   filter: grayscale(1);
+}
+
+.tk-population-count-cluster{
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  background-color: rgba(236, 107, 77, 0.8);
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.tk-population-count-not-selected-site{
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  background-color: rgba(27, 101, 124, 0.8);
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.tk-population-count-selected-site{
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  background-color: rgba(27, 101, 124, 0.8);
+  border: 2px black solid;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
 }
 
 .tk-vseparator {

@@ -219,8 +219,7 @@ export function computeMapLayersSiteTypesStyle(
 }
 
 export function computeMapLayersPopulationCountStyle(
-  populationField: string,
-  color: string
+  populationField: string
 ): TKMapLayerPopulationCountStyles {
   return {
     [POPULATION_COUNT_CLUSTERS_CIRCLE]: {
@@ -229,7 +228,8 @@ export function computeMapLayersPopulationCountStyle(
       source: TKMapSource.NOT_SELECTED_SITES,
       filter: ["has", "point_count"],
       paint: {
-        "circle-color": color,
+        "circle-color": COLOR_SELECTED,
+        "circle-opacity": 0.8,
         "circle-radius": [
           "step",
           ["get", "populationSum"],
@@ -261,10 +261,10 @@ export function computeMapLayersPopulationCountStyle(
       source: TKMapSource.SELECTED_SITE,
       filter: ["!", ["has", "point_count"]],
       paint: {
-        "circle-stroke-color": COLOR_SELECTED,
-        "circle-stroke-width": 2,
-        "circle-color": color,
-        "circle-opacity": 0.7,
+        "circle-stroke-color": TKColors.DARK_GREY,
+        "circle-stroke-width": 3,
+        "circle-color": TKColors.ACCENT,
+        "circle-opacity": 0.8,
         "circle-radius": [
           "step",
           ["get", populationField],
@@ -282,10 +282,8 @@ export function computeMapLayersPopulationCountStyle(
       source: TKMapSource.NOT_SELECTED_SITES,
       filter: ["!", ["has", "point_count"]],
       paint: {
-        "circle-color": color,
+        "circle-color": TKColors.ACCENT,
         "circle-opacity": 0.7,
-        "circle-stroke-color": TKColors.DARK_GREY,
-        "circle-stroke-width": 1,
         "circle-radius": [
           "step",
           ["get", populationField],

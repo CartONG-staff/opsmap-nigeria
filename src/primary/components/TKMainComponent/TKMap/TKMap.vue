@@ -50,7 +50,7 @@ import {
   SELECTED_SITE_POPULATION_CIRCLE
 } from "@/domain/map/TKMapLayers";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
-import { Point } from "geojson";
+import { FeatureCollection, Point } from "geojson";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKGeoDatasetModule from "@/store/modules/geodataset/TKGeoDatasetModule";
@@ -142,23 +142,28 @@ export default class TKMap extends Vue {
   @Watch("dataset.lastModification")
   @Watch("geoDataset")
   currentSiteChanged() {
+    console.log("yep")
     if (this.mapBoundaries) {
       this.mapBoundaries.updateBoundariesStyle(this.map, this.bound);
     }
+    console.log(TKDatasetModule.dataset)
     this.mapSites = new TKMapSites(
       TKDatasetModule.dataset.filteredTypedSitesList,
       TKDatasetModule.dataset.currentSite
     );
+    console.log(this.mapSites)
     this.addOtherVisualisationAttributesToMapSites();
+
+
 
     const otherSitesSource: mapboxgl.GeoJSONSource = this.map.getSource(
       TKMapSource.NOT_SELECTED_SITES
     ) as mapboxgl.GeoJSONSource;
     otherSitesSource?.setData(this.mapSites.filteredSites.otherSites);
+
     const selectedSiteSource: mapboxgl.GeoJSONSource = this.map.getSource(
       TKMapSource.SELECTED_SITE
     ) as mapboxgl.GeoJSONSource;
-
     selectedSiteSource?.setData(this.mapSites.filteredSites.selectedSite);
   }
 
@@ -175,19 +180,24 @@ export default class TKMap extends Vue {
               TKSiteMapVisualisationType.POPULATION_COUNT
           )[0].visualisationType.field;
 
-          const populationCountColor = this.dataset.currentSurvey.options.sitesMapVisualisation.filter(
-            x =>
-              x.visualisationType.type ===
-              TKSiteMapVisualisationType.POPULATION_COUNT
-          )[0].visualisationType.color;
-
           this.mapLayerPopulationCountStyle = computeMapLayersPopulationCountStyle(
-            populationCountField,
-            populationCountColor
+            populationCountField
           );
 
           for (const site of this.dataset.currentSurvey.sites) {
             this.mapSites?.filteredSites.otherSites.features.map(x => {
+              if (site.id === x.properties?.id) {
+                x.properties[populationCountField] =
+                  parseInt(
+                    (site.submissions[0].entries[
+                      populationCountField
+                    ] as TKSubmissionEntryText)?.answerLabel[
+                      this.$root.$i18n.locale
+                    ]
+                  ) || 0;
+              }
+            });
+            (this.mapSites?.filteredSites.selectedSite as FeatureCollection).features.map(x => {
               if (site.id === x.properties?.id) {
                 x.properties[populationCountField] =
                   parseInt(
@@ -512,6 +522,11 @@ export default class TKMap extends Vue {
       this.map.addLayer(
         this.mapLayerSiteTypesStyle[CLUSTERS_COUNT] as SymbolLayer
       );
+      this.map.addLayer(
+        this.mapLayerSiteTypesStyle[NOT_SELECTED_SITES] as SymbolLayer
+      );
+      this.map.addLayer(
+        this.mapLayerSiteTypesStyle[SELECTED_SITE] as SymbolLayer
     }
     this.mapVisualisationsLoaded[TKSiteMapVisualisationType.SITE_TYPES] = true;
   }
