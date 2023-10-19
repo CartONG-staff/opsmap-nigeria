@@ -14,6 +14,7 @@ interface TKSitePopulationMapVisualisation {
   color: string;
 }
 
-enum TKSiteMapVisualisationType {
+export enum TKSiteMapVisualisationType {
+  SITE_TYPES = "site_types",
   POPULATION_COUNT = "population_count"
 }

@@ -30,20 +30,33 @@ import TKMapFilters from "./TKMapFilters.vue";
 import { TKMapSites } from "@/domain/map/TKMapSites";
 import { TKMapBoundaries } from "@/domain/map/TKMapBoundaries";
 import {
-  computeMapLayersStyle,
+  computeMapLayersSiteTypesStyle,
+  computeMapLayersAdminStyle,
   TKMapSource,
-  TKMapLayerStyles,
+  TKMapLayerSiteTypesStyles,
+  TKMapLayerAdminStyles,
+  TKMapLayerPopulationCountStyles,
   CLUSTERS_CIRCLE,
   CLUSTERS_COUNT,
   NOT_SELECTED_SITES,
   SELECTED_SITE,
-  COUNTRY_MASK
+  COUNTRY_MASK,
+  computeMapLayersPopulationCountStyle,
+  POPULATION_COUNT_CLUSTERS_CIRCLE,
+  POPULATION_COUNT_CLUSTERS_COUNT,
+  SELECTED_SITE_POPULATION_COUNT,
+  NOT_SELECTED_SITES_POPULATION_COUNT,
+  NOT_SELECTED_SITES_POPULATION_CIRCLE,
+  SELECTED_SITE_POPULATION_CIRCLE
 } from "@/domain/map/TKMapLayers";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
 import { Point } from "geojson";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKGeoDatasetModule from "@/store/modules/geodataset/TKGeoDatasetModule";
+import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
+import { TKSiteMapVisualisationType } from "@/domain/survey/TKSurveyMapVisualisation";
+import { TKSubmissionEntryText } from "@/domain/survey/TKSubmissionEntry";
 
 @Component({
   components: {
@@ -60,8 +73,13 @@ export default class TKMap extends Vue {
   mapMarkersList: Array<string> = [];
   markersLoadedCount = 0;
   basemaps = TKBasemapsLayer;
-
-  mapLayerStyle!: TKMapLayerStyles;
+  mapLayerAdminStyle!: TKMapLayerAdminStyles;
+  mapLayerSiteTypesStyle!: TKMapLayerSiteTypesStyles;
+  mapLayerPopulationCountStyle!: TKMapLayerPopulationCountStyles;
+  mapVisualisationsLoaded = {
+    [TKSiteMapVisualisationType.SITE_TYPES]: false,
+    [TKSiteMapVisualisationType.POPULATION_COUNT]: false
+  };
 
   mounted() {
     this.initMap();
@@ -73,6 +91,18 @@ export default class TKMap extends Vue {
 
   get dataset() {
     return TKDatasetModule.dataset;
+  }
+
+  get visualisationMode() {
+    return TKVisualizerOptionsModule.mapVisualisation;
+  }
+
+  @Watch("visualisationMode")
+  visualisationModeChange() {
+    if (this.visualisationMode === TKSiteMapVisualisationType.SITE_TYPES)
+      this.addSiteTypesLayers();
+    if (this.visualisationMode === TKSiteMapVisualisationType.POPULATION_COUNT)
+      this.addSitePopulationCountLayers();
   }
 
   // Initialisation of component
@@ -90,7 +120,8 @@ export default class TKMap extends Vue {
 
       this.mapMarkersList = [...new Set(this.mapMarkersList)];
 
-      this.mapLayerStyle = computeMapLayersStyle(
+      this.mapLayerAdminStyle = computeMapLayersAdminStyle();
+      this.mapLayerSiteTypesStyle = computeMapLayersSiteTypesStyle(
         TKDatasetModule.dataset.currentSurvey.fdf.siteTypes
       );
 
@@ -98,6 +129,8 @@ export default class TKMap extends Vue {
         TKDatasetModule.dataset.filteredTypedSitesList,
         TKDatasetModule.dataset.currentSite
       );
+      this.addOtherVisualisationAttributesToMapSites();
+
       if (this.mapBoundaries) {
         this.mapBoundaries.updateBoundariesStyle(this.map, this.bound);
       }
@@ -116,6 +149,7 @@ export default class TKMap extends Vue {
       TKDatasetModule.dataset.filteredTypedSitesList,
       TKDatasetModule.dataset.currentSite
     );
+    this.addOtherVisualisationAttributesToMapSites();
 
     const otherSitesSource: mapboxgl.GeoJSONSource = this.map.getSource(
       TKMapSource.NOT_SELECTED_SITES
@@ -126,6 +160,49 @@ export default class TKMap extends Vue {
     ) as mapboxgl.GeoJSONSource;
 
     selectedSiteSource?.setData(this.mapSites.filteredSites.selectedSite);
+  }
+
+  addOtherVisualisationAttributesToMapSites() {
+    if (this.dataset.currentSurvey.options.sitesMapVisualisation.length > 0) {
+      this.dataset.currentSurvey.options.sitesMapVisualisation.map(x => {
+        if (
+          x.visualisationType.type ===
+          TKSiteMapVisualisationType.POPULATION_COUNT
+        ) {
+          const populationCountField = this.dataset.currentSurvey.options.sitesMapVisualisation.filter(
+            x =>
+              x.visualisationType.type ===
+              TKSiteMapVisualisationType.POPULATION_COUNT
+          )[0].visualisationType.field;
+
+          const populationCountColor = this.dataset.currentSurvey.options.sitesMapVisualisation.filter(
+            x =>
+              x.visualisationType.type ===
+              TKSiteMapVisualisationType.POPULATION_COUNT
+          )[0].visualisationType.color;
+
+          this.mapLayerPopulationCountStyle = computeMapLayersPopulationCountStyle(
+            populationCountField,
+            populationCountColor
+          );
+
+          for (const site of this.dataset.currentSurvey.sites) {
+            this.mapSites?.filteredSites.otherSites.features.map(x => {
+              if (site.id === x.properties?.id) {
+                x.properties[populationCountField] =
+                  parseInt(
+                    (site.submissions[0].entries[
+                      populationCountField
+                    ] as TKSubmissionEntryText)?.answerLabel[
+                      this.$root.$i18n.locale
+                    ]
+                  ) || 0;
+              }
+            });
+          }
+        }
+      });
+    }
   }
 
   // //////////////////////////////////////////////////////////////////////////
@@ -264,15 +341,26 @@ export default class TKMap extends Vue {
     }
     // Add Sites
     if (this.mapSites) {
+      const populationCountField =
+        this.dataset.currentSurvey.options.sitesMapVisualisation.filter(
+          x =>
+            x.visualisationType.type ===
+            TKSiteMapVisualisationType.POPULATION_COUNT
+        )[0].visualisationType?.field || "";
+
       if (!this.map.getSource(TKMapSource.NOT_SELECTED_SITES)) {
         this.map.addSource(TKMapSource.NOT_SELECTED_SITES, {
           type: "geojson",
           data: this.mapSites.filteredSites.otherSites,
           cluster: true,
           clusterMaxZoom: 14, // Max zoom to cluster points on
-          clusterRadius: 50
+          clusterRadius: 50,
+          clusterProperties: {
+            populationSum: ["+", ["get", populationCountField, ["properties"]]]
+          }
         });
       }
+
       if (!this.map.getSource(TKMapSource.SELECTED_SITE)) {
         this.map.addSource(TKMapSource.SELECTED_SITE, {
           type: "geojson",
@@ -280,100 +368,268 @@ export default class TKMap extends Vue {
         });
       }
     }
-    this.addLayers();
+    this.addAminLayers();
   }
 
-  addLayers() {
+  addAminLayers() {
     // ADD ADMIN BOUNDARIES
     if (!this.map.getLayer(COUNTRY_MASK)) {
-      this.map.addLayer(this.mapLayerStyle[COUNTRY_MASK] as FillLayer);
+      this.map.addLayer(this.mapLayerAdminStyle[COUNTRY_MASK] as FillLayer);
     }
     for (const level of TKConfigurationModule.configuration.spatial
       .adminLevelsMap) {
-      this.map.addLayer(this.mapLayerStyle[level]?.fill as FillLayer);
-      this.map.addLayer(this.mapLayerStyle[level]?.border as LineLayer);
+      this.map.addLayer(this.mapLayerAdminStyle[level]?.fill as FillLayer);
+      this.map.addLayer(this.mapLayerAdminStyle[level]?.border as LineLayer);
     }
-    // ADD CLUSTERS
-    this.map.addLayer(this.mapLayerStyle[CLUSTERS_CIRCLE] as CircleLayer);
-    this.map.addLayer(this.mapLayerStyle[CLUSTERS_COUNT] as SymbolLayer);
-    this.map.addLayer(this.mapLayerStyle[NOT_SELECTED_SITES] as SymbolLayer);
-    this.map.addLayer(this.mapLayerStyle[SELECTED_SITE] as SymbolLayer);
+    if (this.visualisationMode === TKSiteMapVisualisationType.SITE_TYPES)
+      this.addSiteTypesLayers();
+    if (this.visualisationMode === TKSiteMapVisualisationType.POPULATION_COUNT)
+      this.addSitePopulationCountLayers();
+    this.mapBoundaries?.initLayersStyle(this.map);
+  }
 
-    // // CLUSTERS BEHAVIOR
-    this.map.on("click", CLUSTERS_COUNT, e => {
-      const features = this.map.queryRenderedFeatures(e.point, {
-        layers: [CLUSTERS_COUNT as string]
-      });
-      const clusterId = features[0].properties?.cluster_id;
+  removeSitesLayers() {
+    if (this.map.getLayer(CLUSTERS_CIRCLE))
+      this.map.removeLayer(CLUSTERS_CIRCLE);
+    if (this.map.getLayer(CLUSTERS_COUNT)) this.map.removeLayer(CLUSTERS_COUNT);
+    if (this.map.getLayer(NOT_SELECTED_SITES))
+      this.map.removeLayer(NOT_SELECTED_SITES);
+    if (this.map.getLayer(SELECTED_SITE)) this.map.removeLayer(SELECTED_SITE);
+  }
 
-      const otherSitesSource: mapboxgl.GeoJSONSource = this.map.getSource(
-        TKMapSource.NOT_SELECTED_SITES
-      ) as mapboxgl.GeoJSONSource;
-      otherSitesSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
-        if (err) return;
-        this.map.easeTo({
-          center: (features[0].geometry as Point).coordinates as LngLatLike,
-          zoom: zoom
+  removeOtherVisualisationsLayers() {
+    if (this.map.getLayer(POPULATION_COUNT_CLUSTERS_CIRCLE))
+      this.map.removeLayer(POPULATION_COUNT_CLUSTERS_CIRCLE);
+    if (this.map.getLayer(POPULATION_COUNT_CLUSTERS_COUNT))
+      this.map.removeLayer(POPULATION_COUNT_CLUSTERS_COUNT);
+    if (this.map.getLayer(SELECTED_SITE_POPULATION_CIRCLE))
+      this.map.removeLayer(SELECTED_SITE_POPULATION_CIRCLE);
+    if (this.map.getLayer(NOT_SELECTED_SITES_POPULATION_CIRCLE))
+      this.map.removeLayer(NOT_SELECTED_SITES_POPULATION_CIRCLE);
+    if (this.map.getLayer(SELECTED_SITE_POPULATION_COUNT))
+      this.map.removeLayer(SELECTED_SITE_POPULATION_COUNT);
+    if (this.map.getLayer(NOT_SELECTED_SITES_POPULATION_COUNT))
+      this.map.removeLayer(NOT_SELECTED_SITES_POPULATION_COUNT);
+  }
+
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+  // Add Layers for visualisation by site types
+  // ////////////////////////////////////////////////////////////////////////////////////////////////
+  addSiteTypesLayers() {
+    this.removeOtherVisualisationsLayers();
+    if (!this.mapVisualisationsLoaded[TKSiteMapVisualisationType.SITE_TYPES]) {
+      // ADD CLUSTERS
+      this.map.addLayer(
+        this.mapLayerSiteTypesStyle[CLUSTERS_CIRCLE] as CircleLayer
+      );
+      this.map.addLayer(
+        this.mapLayerSiteTypesStyle[CLUSTERS_COUNT] as SymbolLayer
+      );
+      this.map.addLayer(
+        this.mapLayerSiteTypesStyle[NOT_SELECTED_SITES] as SymbolLayer
+      );
+      this.map.addLayer(
+        this.mapLayerSiteTypesStyle[SELECTED_SITE] as SymbolLayer
+      );
+
+      // CLUSTERS BEHAVIOR
+      this.map.on("click", CLUSTERS_COUNT, e => {
+        const features = this.map.queryRenderedFeatures(e.point, {
+          layers: [CLUSTERS_COUNT as string]
+        });
+        const clusterId = features[0].properties?.cluster_id;
+
+        const otherSitesSource: mapboxgl.GeoJSONSource = this.map.getSource(
+          TKMapSource.NOT_SELECTED_SITES
+        ) as mapboxgl.GeoJSONSource;
+        otherSitesSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
+          if (err) return;
+          this.map.easeTo({
+            center: (features[0].geometry as Point).coordinates as LngLatLike,
+            zoom: zoom
+          });
         });
       });
-    });
 
-    // SITES BEHAVIOR
-    this.map.on("click", NOT_SELECTED_SITES, e => {
-      if (e !== undefined && e.features && e.features?.length > 0) {
-        TKDatasetModule.dataset.setCurrentSiteByName(
-          e.features[0].properties?.name
-        );
-      }
-    });
-    const popup = new mapboxgl.Popup({
-      closeButton: false,
-      closeOnClick: false
-    });
-    this.map.on("mouseenter", NOT_SELECTED_SITES, e => {
-      this.map.getCanvas().style.cursor = "pointer";
-      if (e.features) {
-        const coordinates: [number, number] = [
-          e.features[0].properties?.lng,
-          e.features[0].properties?.lat
-        ];
-        const description = `<div>
+      // SITES BEHAVIOR
+      this.map.on("click", NOT_SELECTED_SITES, e => {
+        if (e !== undefined && e.features && e.features?.length > 0) {
+          TKDatasetModule.dataset.setCurrentSiteByName(
+            e.features[0].properties?.name
+          );
+        }
+      });
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+      });
+      this.map.on("mouseenter", NOT_SELECTED_SITES, e => {
+        this.map.getCanvas().style.cursor = "pointer";
+        if (e.features) {
+          const coordinates: [number, number] = [
+            e.features[0].properties?.lng,
+            e.features[0].properties?.lat
+          ];
+          const description = `<div>
                                 <h4 class="primary--text">${e.features[0].properties?.name} </h4>
                                 <h8 class="primary--text">${e.features[0].properties?.lastSubmission}</h8>
                              </div>`;
-        popup
-          .setLngLat(coordinates)
-          .setHTML(description)
-          .addTo(this.map);
-      }
-    });
-    this.map.on("mouseleave", SELECTED_SITE, () => {
-      this.map.getCanvas().style.cursor = "";
-      popup.remove();
-    });
-    this.map.on("mouseenter", SELECTED_SITE, e => {
-      this.map.getCanvas().style.cursor = "pointer";
-      if (e.features) {
-        const coordinates: [number, number] = [
-          e.features[0].properties?.lng,
-          e.features[0].properties?.lat
-        ];
-        const description = `<div>
+          popup
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(this.map);
+        }
+      });
+      this.map.on("mouseleave", SELECTED_SITE, () => {
+        this.map.getCanvas().style.cursor = "";
+        popup.remove();
+      });
+      this.map.on("mouseenter", SELECTED_SITE, e => {
+        this.map.getCanvas().style.cursor = "pointer";
+        if (e.features) {
+          const coordinates: [number, number] = [
+            e.features[0].properties?.lng,
+            e.features[0].properties?.lat
+          ];
+          const description = `<div>
                                 <h4 class="primary--text">${e.features[0].properties?.name} </h4>
                                 <h8 class="primary--text">${e.features[0].properties?.lastSubmission}</h8>
                              </div>`;
-        popup
-          .setLngLat(coordinates)
-          .setHTML(description)
-          .addTo(this.map);
-      }
-    });
-    this.map.on("mouseleave", NOT_SELECTED_SITES, () => {
-      this.map.getCanvas().style.cursor = "";
-      popup.remove();
-    });
+          popup
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(this.map);
+        }
+      });
+      this.map.on("mouseleave", NOT_SELECTED_SITES, () => {
+        this.map.getCanvas().style.cursor = "";
+        popup.remove();
+      });
+    } else {
+      this.map.addLayer(
+        this.mapLayerSiteTypesStyle[CLUSTERS_CIRCLE] as CircleLayer
+      );
+      this.map.addLayer(
+        this.mapLayerSiteTypesStyle[CLUSTERS_COUNT] as SymbolLayer
+      );
+    }
+    this.mapVisualisationsLoaded[TKSiteMapVisualisationType.SITE_TYPES] = true;
+  }
 
-    this.mapBoundaries?.initLayersStyle(this.map);
+  addSitePopulationCountLayers() {
+    this.removeSitesLayers();
+    if (
+      !this.mapVisualisationsLoaded[TKSiteMapVisualisationType.POPULATION_COUNT]
+    ) {
+      // CLUSTERS BEHAVIOR
+      this.map.on("click", POPULATION_COUNT_CLUSTERS_CIRCLE, e => {
+        const features = this.map.queryRenderedFeatures(e.point, {
+          layers: [POPULATION_COUNT_CLUSTERS_CIRCLE as string]
+        });
+        const clusterId = features[0].properties?.cluster_id;
+
+        const otherSitesSource: mapboxgl.GeoJSONSource = this.map.getSource(
+          TKMapSource.NOT_SELECTED_SITES
+        ) as mapboxgl.GeoJSONSource;
+        otherSitesSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
+          if (err) return;
+          this.map.easeTo({
+            center: (features[0].geometry as Point).coordinates as LngLatLike,
+            zoom: zoom
+          });
+        });
+      });
+
+      // SITES BEHAVIOR
+      this.map.on("click", NOT_SELECTED_SITES_POPULATION_CIRCLE, e => {
+        if (e !== undefined && e.features && e.features?.length > 0) {
+          TKDatasetModule.dataset.setCurrentSiteByName(
+            e.features[0].properties?.name
+          );
+        }
+      });
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+      });
+      this.map.on("mouseenter", NOT_SELECTED_SITES_POPULATION_CIRCLE, e => {
+        this.map.getCanvas().style.cursor = "pointer";
+        if (e.features) {
+          const coordinates: [number, number] = [
+            e.features[0].properties?.lng,
+            e.features[0].properties?.lat
+          ];
+          const description = `<div>
+                                <h4 class="primary--text">${e.features[0].properties?.name} </h4>
+                                <h8 class="primary--text">${e.features[0].properties?.lastSubmission}</h8>
+                             </div>`;
+          popup
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(this.map);
+        }
+      });
+      this.map.on("mouseleave", SELECTED_SITE_POPULATION_CIRCLE, () => {
+        this.map.getCanvas().style.cursor = "";
+        popup.remove();
+      });
+      this.map.on("mouseenter", SELECTED_SITE_POPULATION_CIRCLE, e => {
+        this.map.getCanvas().style.cursor = "pointer";
+        if (e.features) {
+          const coordinates: [number, number] = [
+            e.features[0].properties?.lng,
+            e.features[0].properties?.lat
+          ];
+          const description = `<div>
+                                <h4 class="primary--text">${e.features[0].properties?.name} </h4>
+                                <h8 class="primary--text">${e.features[0].properties?.lastSubmission}</h8>
+                             </div>`;
+          popup
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(this.map);
+        }
+      });
+      this.map.on("mouseleave", NOT_SELECTED_SITES_POPULATION_CIRCLE  , () => {
+        this.map.getCanvas().style.cursor = "";
+        popup.remove();
+      });
+    }
+
+    this.map.addLayer(
+      this.mapLayerPopulationCountStyle[
+        POPULATION_COUNT_CLUSTERS_CIRCLE
+      ] as CircleLayer
+    );
+    this.map.addLayer(
+      this.mapLayerPopulationCountStyle[
+        POPULATION_COUNT_CLUSTERS_COUNT
+      ] as SymbolLayer
+    );
+    this.map.addLayer(
+      this.mapLayerPopulationCountStyle[
+        SELECTED_SITE_POPULATION_CIRCLE
+      ] as CircleLayer
+    );
+    this.map.addLayer(
+      this.mapLayerPopulationCountStyle[
+        NOT_SELECTED_SITES_POPULATION_CIRCLE
+      ] as CircleLayer
+    );
+    this.map.addLayer(
+      this.mapLayerPopulationCountStyle[
+        SELECTED_SITE_POPULATION_COUNT
+      ] as SymbolLayer
+    );
+    this.map.addLayer(
+      this.mapLayerPopulationCountStyle[
+        NOT_SELECTED_SITES_POPULATION_COUNT
+      ] as SymbolLayer
+    );
+
+    this.mapVisualisationsLoaded[
+      TKSiteMapVisualisationType.POPULATION_COUNT
+    ] = true;
   }
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////

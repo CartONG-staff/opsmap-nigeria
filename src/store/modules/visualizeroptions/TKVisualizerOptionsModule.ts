@@ -5,12 +5,13 @@ import {
   Mutation
 } from "vuex-module-decorators";
 import store from "@/store";
+import { TKSiteMapVisualisationType } from "@/domain/survey/TKSurveyMapVisualisation";
 
 const DEFAULT_HIDE_UNANSWERED = true;
 const DEFAULT_SORT_BY_TRAFFICLIGHT = false;
 const DEFAULT_FILTER_VALUE = "";
 const DEFAULT_SHOW_VISUALIZER_OPTIONS = false;
-const DEFAULT_MAP_VISUALISATION = "site_types";
+const DEFAULT_MAP_VISUALISATION: TKSiteMapVisualisationType = TKSiteMapVisualisationType.SITE_TYPES;
 
 @Module({ dynamic: true, store, name: "TKVisualizerOptionsModule" })
 class TKVisualizerOptionsModule extends VuexModule {
@@ -89,11 +90,11 @@ class TKVisualizerOptionsModule extends VuexModule {
   _mapVisualisation = DEFAULT_MAP_VISUALISATION;
 
   @Mutation
-  setMapVisualisation(mapVisualisation: string) {
+  setMapVisualisation(mapVisualisation: TKSiteMapVisualisationType) {
     this._mapVisualisation = mapVisualisation;
   }
 
-  get mapVisualisation(): string {
+  get mapVisualisation(): TKSiteMapVisualisationType {
     return this._mapVisualisation;
   }
 }

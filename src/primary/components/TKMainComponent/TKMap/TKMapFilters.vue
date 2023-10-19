@@ -6,7 +6,12 @@
           class="tk-map-filters-selectors"
           v-if="visualisationMode.length > 1"
         >
-          <v-radio-group v-model="mapVisualisation" row dense class="tk-map-filters-radio">
+          <v-radio-group
+            v-model="mapVisualisation"
+            row
+            dense
+            class="tk-map-filters-radio"
+          >
             <v-radio
               v-for="visualisation in visualisationMode"
               :key="visualisation.label"
@@ -96,6 +101,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKVisualizerOptionsModule from "@/store/modules/visualizeroptions/TKVisualizerOptionsModule";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
+import { TKSiteMapVisualisationType } from "@/domain/survey/TKSurveyMapVisualisation";
 
 @Component
 export default class TKMapFilter extends Vue {
@@ -103,18 +109,17 @@ export default class TKMapFilter extends Vue {
     return TKDatasetModule.dataset;
   }
 
-  get mapVisualisation() {
+  get mapVisualisation(): TKSiteMapVisualisationType {
     return TKVisualizerOptionsModule.mapVisualisation;
   }
 
-  set mapVisualisation(visualisation: string) {
-    console.log(visualisation)
+  set mapVisualisation(visualisation: TKSiteMapVisualisationType) {
     TKVisualizerOptionsModule.setMapVisualisation(visualisation);
   }
 
   visualisationMode = [
     {
-      type: "site_types",
+      type: TKSiteMapVisualisationType.SITE_TYPES,
       label: "Site types"
     }
   ];
@@ -140,7 +145,6 @@ export default class TKMapFilter extends Vue {
         })
       );
     }
-    console.log(this.visualisationMode);
   }
 
   checkboxChange(type: string, active: boolean): void {
@@ -274,12 +278,12 @@ export default class TKMapFilter extends Vue {
   margin-left: -1px;
 }
 
-.tk-map-filters-radio{
+.tk-map-filters-radio {
   margin: 0px !important;
   padding: 0px !important;
 }
 
-.tk-map-filters-radio .v-input__control .v-messages{
+.tk-map-filters-radio .v-input__control .v-messages {
   display: none !important;
 }
 </style>
