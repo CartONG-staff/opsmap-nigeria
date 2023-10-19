@@ -1,8 +1,6 @@
 // Informations to add in configuration
-export interface TKSurveySitesMapVisualisation {
-  label: string;
-  visualisationType: TKSiteMapVisualisation;
-}
+
+import { TKLabel } from "../utils/TKLabel";
 
 // Union of interface if others are added
 export type TKSiteMapVisualisation = TKSitePopulationMapVisualisation;
@@ -11,10 +9,10 @@ export type TKSiteMapVisualisation = TKSitePopulationMapVisualisation;
 interface TKSitePopulationMapVisualisation {
   type: TKSiteMapVisualisationType.POPULATION_COUNT;
   field: string;
-  color: string;
+  label: TKLabel;
 }
 
 export enum TKSiteMapVisualisationType {
-  SITE_TYPES = "site_types",
-  POPULATION_COUNT = "population_count"
+  SITE_TYPES = "siteTypes",
+  POPULATION_COUNT = "populationCount"
 }

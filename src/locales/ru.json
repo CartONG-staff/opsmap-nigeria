@@ -65,6 +65,13 @@
         "legendZoomIn": "Увеличить",
         "legendZoomOut": "Уменьшить масштаб",
         "legendBbox": "Расширение по умолчанию",
-        "legendFilters": "Показать / Скрыть легенду"
+        "legendFilters": "Показать / Скрыть легенду",
+        "populationCount": "Численность населения",
+        "siteTypes": "Типы сайтов",
+        "legend": {
+            "populationCluster": "Сумма населения по кластерам сайтов",
+            "populationNotSelectedSite": "Население для не выбранного участка",
+            "populationSelectedSite": "Население выбранного участка"
+        }
     }
 }

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-parsing-error -->
 <template lang="html">
   <div class="tk-map-filters" ref="tk-map-filters">
     <transition name="hide-filters">
@@ -14,14 +15,14 @@
           >
             <v-radio
               v-for="visualisation in visualisationMode"
-              :key="visualisation.label"
-              :label="visualisation.label"
-              :value="visualisation.type"
+              :key="visualisation"
+              :label="$t(`map.${visualisation}`)"
+              :value="visualisation"
             ></v-radio>
           </v-radio-group>
         </div>
         <div v-if="show" class="tk-map-filters-item">
-          <template v-if="mapVisualisation === 'site_types'">
+          <template v-if="mapVisualisation === 'siteTypes'">
             <div v-for="(site, key) in sites" :key="key" class="tk-map-filter">
               <img
                 :class="
@@ -64,18 +65,18 @@
               ></v-checkbox>
             </div>
           </template>
-          <template v-if="mapVisualisation === 'population_count'">
+          <template v-if="mapVisualisation === 'populationCount'">
             <div class="tk-map-filter mb-2">
               <div class="tk-population-count-cluster">x</div>
-              <div class="">{{ $t("map.populationCount.cluster") }}</div>
+              <div class="">{{ $t("map.legend.populationCluster") }}</div>
             </div>
             <div class="tk-map-filter mb-2">
               <div class="tk-population-count-not-selected-site">x</div>
-              <div class="">Population by not selected site</div>
+              <div class="">{{ $t("map.legend.populationNotSelectedSite") }}</div>
             </div>
             <div class="tk-map-filter mb-2">
               <div class="tk-population-count-selected-site">x</div>
-              <div class="">Population by selected site</div>
+              <div class="">{{ $t("map.legend.populationSelectedSite") }}</div>
             </div>
           </template>
         </div>
@@ -121,12 +122,7 @@ export default class TKMapFilter extends Vue {
     TKVisualizerOptionsModule.setMapVisualisation(visualisation);
   }
 
-  visualisationMode = [
-    {
-      type: TKSiteMapVisualisationType.SITE_TYPES,
-      label: "Site types"
-    }
-  ];
+  visualisationMode = [TKSiteMapVisualisationType.SITE_TYPES];
 
   sites: Array<{
     type: string;
@@ -141,12 +137,9 @@ export default class TKMapFilter extends Vue {
     this.updateSites();
     if (this.dataset.currentSurvey.options.sitesMapVisualisation.length > 0) {
       this.visualisationMode.push(
-        ...this.dataset.currentSurvey.options.sitesMapVisualisation.map(x => {
-          return {
-            type: x.visualisationType.type,
-            label: x.label
-          };
-        })
+        ...this.dataset.currentSurvey.options.sitesMapVisualisation.map(
+          x => x.type
+        )
       );
     }
   }
@@ -275,7 +268,7 @@ export default class TKMapFilter extends Vue {
   filter: grayscale(1);
 }
 
-.tk-population-count-cluster{
+.tk-population-count-cluster {
   border-radius: 50%;
   height: 25px;
   width: 25px;
@@ -285,7 +278,7 @@ export default class TKMapFilter extends Vue {
   font-weight: 600;
 }
 
-.tk-population-count-not-selected-site{
+.tk-population-count-not-selected-site {
   border-radius: 50%;
   height: 25px;
   width: 25px;
@@ -295,7 +288,7 @@ export default class TKMapFilter extends Vue {
   font-weight: 600;
 }
 
-.tk-population-count-selected-site{
+.tk-population-count-selected-site {
   border-radius: 50%;
   height: 25px;
   width: 25px;

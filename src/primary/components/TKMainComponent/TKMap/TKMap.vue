@@ -171,14 +171,14 @@ export default class TKMap extends Vue {
     if (this.dataset.currentSurvey.options.sitesMapVisualisation.length > 0) {
       this.dataset.currentSurvey.options.sitesMapVisualisation.map(x => {
         if (
-          x.visualisationType.type ===
+          x.type ===
           TKSiteMapVisualisationType.POPULATION_COUNT
         ) {
           const populationCountField = this.dataset.currentSurvey.options.sitesMapVisualisation.filter(
             x =>
-              x.visualisationType.type ===
+              x.type ===
               TKSiteMapVisualisationType.POPULATION_COUNT
-          )[0].visualisationType.field;
+          )[0].field;
 
           this.mapLayerPopulationCountStyle = computeMapLayersPopulationCountStyle(
             populationCountField
@@ -354,9 +354,9 @@ export default class TKMap extends Vue {
       const populationCountField =
         this.dataset.currentSurvey.options.sitesMapVisualisation.filter(
           x =>
-            x.visualisationType.type ===
+            x.type ===
             TKSiteMapVisualisationType.POPULATION_COUNT
-        )[0].visualisationType?.field || "";
+        )[0]?.field || "";
 
       if (!this.map.getSource(TKMapSource.NOT_SELECTED_SITES)) {
         this.map.addSource(TKMapSource.NOT_SELECTED_SITES, {
@@ -527,6 +527,7 @@ export default class TKMap extends Vue {
       );
       this.map.addLayer(
         this.mapLayerSiteTypesStyle[SELECTED_SITE] as SymbolLayer
+      );
     }
     this.mapVisualisationsLoaded[TKSiteMapVisualisationType.SITE_TYPES] = true;
   }

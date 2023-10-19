@@ -67,10 +67,12 @@
         "legendZoomOut": "Zoom out",
         "legendBbox": "Default Extent",
         "legendFilters": "Show / Hide legend",
-        "populationCount": {
-            "cluster": "Sum of population by cluster of sites",
-            "notSelectedSite": "Population for not selected site",
-            "selectedSite": "Population for selected site"
+        "populationCount": "Population count",
+        "siteTypes": "Site types",
+        "legend": {
+            "populationCluster": "Sum of population by cluster of sites",
+            "populationNotSelectedSite": "Population for not selected site",
+            "populationSelectedSite": "Population for selected site"
         }
     },
     "indicator": {
