@@ -67,8 +67,10 @@
 import { TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
+import { MapLegendDisplayStyle } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
 
 @Component
 export default class TKMapFilter extends Vue {
@@ -122,7 +124,9 @@ export default class TKMapFilter extends Vue {
     return TKGetLocalValue(label, this.$root.$i18n.locale);
   }
 
-  show = true;
+  show =
+    TKConfigurationModule.configuration.options.mapLegendDisplayStyle ===
+    MapLegendDisplayStyle.DEFAULT;
 
   @Watch("dataset.filteredSitesList", { immediate: true })
   updateCount() {
