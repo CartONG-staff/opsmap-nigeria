@@ -11,6 +11,7 @@ import { getCenterOfBounds } from "@/domain/map/TKMapSites";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKAdditionalFilterDescription } from "./TKAdditionalFilter";
+import { TKSiteMapVisualisation } from "./TKSurveyMapVisualisation";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
@@ -34,6 +35,7 @@ export interface TKSurveyOptions {
   inputDateFormat: string;
   displayDateFormat: string;
   listSeparator: string;
+  sitesMapVisualisation: TKSiteMapVisualisation[];
 }
 
 export type TKAdminLevelsBoundariesArray = Partial<

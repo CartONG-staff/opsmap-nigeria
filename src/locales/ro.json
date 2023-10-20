@@ -65,7 +65,14 @@
         "legendZoomIn": "Măriți",
         "legendZoomOut": "Zoom out",
         "legendBbox": "Extindere implicită",
-        "legendFilters": "Afișați / Ascundeți legenda"
+        "legendFilters": "Afișați / Ascundeți legenda",
+        "populationCount": "Numărul populației",
+        "siteTypes": "Tipuri de site",
+        "legend": {
+            "populationCluster": "Suma populației pe grupe de situri",
+            "populationNotSelectedSite": "Populația pentru site-ul neselectat",
+            "populationSelectedSite": "Populația pentru site-ul selectat"
+        }
     },
     "indicator": {
         "siteCount": "Site-uri",

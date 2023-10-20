@@ -64,7 +64,14 @@
         "legendZoomIn": "Mais Zoom",
         "legendZoomOut": "Reduzir o zoom",
         "legendBbox": "Extensão padrão",
-        "legendFilters": "Mostrar / Ocultar legenda"
+        "legendFilters": "Mostrar / Ocultar legenda",
+        "populationCount": "Contagem populacional",
+        "siteTypes": "Tipos de sites",
+        "legend": {
+            "populationCluster": "Soma da população por cluster de sites",
+            "populationNotSelectedSite": "População do site não selecionado",
+            "populationSelectedSite": "População do site selecionado"
+        }
     },
     "indicator": {
         "siteCount": "Abrigos",
