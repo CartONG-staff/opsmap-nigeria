@@ -5,10 +5,12 @@ import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
 import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 import { TKCSVParse } from "@/secondary/csv/TKCSV";
 import { TKFDFFiles } from "./TKFDFFiles";
+import { TKFDFReadThematicTrafficLights } from "@/domain/fdf/TKFDFThematicTrafficLights/TKFDFReadThematicTrafficLights";
 
 // ////////////////////////////////////////////////////////////////////////////
 const FORMATTED_NAME_INDEX = 0;
 const ICON_NAME_INDEX = 1;
+const TRAFFIC_LIGHT_RULE_INDEX = 2;
 
 export type TKFDFThematicRaw = Array<string>;
 
@@ -22,6 +24,10 @@ export async function TKReadFDFThematicsCollection(
   const rawThematics: TKFDFThematicRaw[] = await TKCSVParse<TKFDFThematicRaw[]>(
     `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.folder}/${TKFDFFiles.THEMATICS}.csv`,
     false
+  );
+
+  const trafficLights = await TKFDFReadThematicTrafficLights(
+    `${process.env.VUE_APP_GENERAL_CONFIG_DIRECTORY}${infos.folder}/${TKFDFFiles.THEMATICS_TRAFFIC_LIGHT}.json`
   );
 
   // Parse all the other lines: fill matching label with proper column indexes.
@@ -42,10 +48,18 @@ export async function TKReadFDFThematicsCollection(
       thematicsCollection[item[FORMATTED_NAME_INDEX]] = {
         id: item[FORMATTED_NAME_INDEX],
         iconFileName: item[ICON_NAME_INDEX],
-        thematicLabel: {}
+        thematicLabel: {},
+        trafficLight: item[TRAFFIC_LIGHT_RULE_INDEX]
+          ? trafficLights.trafficLights[item[TRAFFIC_LIGHT_RULE_INDEX]] ??
+            undefined
+          : undefined
       };
 
-      for (let j = 2; j < Object.keys(item).length; j++) {
+      for (
+        let j = TRAFFIC_LIGHT_RULE_INDEX + 1;
+        j < Object.keys(item).length;
+        j++
+      ) {
         thematicsCollection[item[FORMATTED_NAME_INDEX]].thematicLabel[
           localesValuesForIndexes[j]
         ] = item[j];

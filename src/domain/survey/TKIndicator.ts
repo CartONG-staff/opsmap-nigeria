@@ -5,7 +5,7 @@ import {
   TKFDFIndicatorType
 } from "@/domain/fdf/TKFDFIndicators";
 import { TKSite } from "./TKSite";
-import { TKSubmissionEntryType } from "./TKSubmissionEntry";
+import { TKSubmissionEntryTextType } from "./TKSubmissionEntry";
 import { TKSurvey } from "./TKSurvey";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 
@@ -117,7 +117,7 @@ export function computeAreaIndicator(
       const item = submission.entries[descr.entryCode];
       if (
         item &&
-        item.type === TKSubmissionEntryType.TEXT &&
+        item.type === TKSubmissionEntryTextType.TEXT &&
         item.answerLabel
       ) {
         results.push(

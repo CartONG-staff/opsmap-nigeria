@@ -1,6 +1,6 @@
-import { TKCSVParse } from "../csv/TKCSV";
+import { TKCSVParse } from "@/secondary/csv/TKCSV";
 import { TKFDFFiles } from "./TKFDFFiles";
-import { TKFDFInfos } from "../../domain/fdf/TKFDFInfos";
+import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
 import { TKFDFUrlsCollection } from "@/domain/fdf/TKFDFURLs";
 
 // ////////////////////////////////////////////////////////////////////////////

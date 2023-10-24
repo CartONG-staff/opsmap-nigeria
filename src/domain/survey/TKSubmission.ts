@@ -2,10 +2,10 @@
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
   TKCreateSubmissionEntryText,
-  TKSubmissionEntryType,
   TKCreateSubmissionEntryList,
   TKCreateSubmissionEntryBullet,
-  TKSubmissionRawEntries
+  TKSubmissionRawEntries,
+  TKSubmissionEntryTextType
 } from "./TKSubmissionEntry";
 import {
   TKChartData,
@@ -20,15 +20,18 @@ import {
   TKIndicatorType,
   TKIndicators
 } from "@/domain/survey/TKIndicator";
-import { TKLabel } from "../utils/TKLabel";
+import { TKLabel } from "@/domain/utils/TKLabel";
 import {
   TKFDFSubmissionItemType,
   TKFDFSubmissionRule
-} from "../fdf/TKFDFSubmissionsRules";
-import { TKCompare, TKCompute } from "../utils/TKOperator";
-import { TKOperatorComputation } from "../utils/TKOperator";
-import { TKOperatorComparison } from "../utils/TKOperator";
-import { TKFDFIndicatorSite, TKFDFIndicatorType } from "../fdf/TKFDFIndicators";
+} from "@/domain/fdf/TKFDFSubmissionsRules";
+import { TKCompare, TKCompute } from "@/domain/utils/TKOperator";
+import { TKOperatorComputation } from "@/domain/utils/TKOperator";
+import { TKOperatorComparison } from "@/domain/utils/TKOperator";
+import {
+  TKFDFIndicatorSite,
+  TKFDFIndicatorType
+} from "@/domain/fdf/TKFDFIndicators";
 import { evaluate, round } from "mathjs";
 import { TKSurveyOptions } from "./TKSurvey";
 import { TKSubmissionEntries } from "./TKSubmissionEntries";
@@ -56,7 +59,7 @@ function getValueForIndicator(
   const entry = data[entryCode];
   if (
     entry &&
-    entry.type === TKSubmissionEntryType.TEXT &&
+    entry.type === TKSubmissionEntryTextType.TEXT &&
     entry.answerLabel &&
     !isNaN(
       parseFloat(
@@ -77,7 +80,11 @@ function getLabelForIndicator(
   entryCode: string
 ): TKLabel {
   const entry = data[entryCode];
-  if (entry && entry.type === TKSubmissionEntryType.TEXT && entry.answerLabel) {
+  if (
+    entry &&
+    entry.type === TKSubmissionEntryTextType.TEXT &&
+    entry.answerLabel
+  ) {
     return entry.answerLabel;
   }
   return { [TKConfigurationModule.configuration.locale.default]: "-" };
@@ -278,6 +285,7 @@ export function TKCreateSubmission(
                 value,
                 rule,
                 fdf,
+                submissionRawEntries,
                 thematic.thematic
               );
 
@@ -289,6 +297,7 @@ export function TKCreateSubmission(
                   value,
                   rule,
                   fdf,
+                  submissionRawEntries,
                   thematic.thematic,
                   options.listSeparator,
                   locale
@@ -303,6 +312,7 @@ export function TKCreateSubmission(
                   rule,
                   fdf,
                   thematic.thematic,
+                  submissionRawEntries,
                   options.listSeparator
                 );
               }
@@ -317,6 +327,7 @@ export function TKCreateSubmission(
                   value,
                   rule,
                   fdf,
+                  submissionRawEntries,
                   thematic.thematic
                 );
               }
@@ -327,7 +338,7 @@ export function TKCreateSubmission(
     }
   }
 
-  // if a current pyramid is ongoing - push it before ending
+  // if a current chart is ongoing - push it before ending
   for (const chart of Object.values(charts)) {
     TKCreateSubmissionChart(chart, fdf, entries);
   }

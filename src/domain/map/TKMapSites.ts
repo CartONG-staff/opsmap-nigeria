@@ -4,8 +4,8 @@ import { TKGeoDataset } from "./TKGeoDataset";
 import mapboxgl, { LngLat } from "mapbox-gl";
 import centroid from "@turf/centroid";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
-import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
-import { TKBoundaries } from "../survey/TKBoundaries";
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
+import { TKBoundaries } from "@/domain/survey/TKBoundaries";
 interface TKFilteredSites {
   selectedSite: FeatureCollection | string;
   otherSites: FeatureCollection;

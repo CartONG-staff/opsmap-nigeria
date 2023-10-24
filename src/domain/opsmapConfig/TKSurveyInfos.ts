@@ -1,8 +1,8 @@
-import { TKFDFSpatialDescription } from "../fdf/TKFDFSpatialDescription";
-import { TKSurveyOptions } from "../survey/TKSurvey";
-import { TKFDFIndicators } from "../fdf/TKFDFIndicators";
-import { TKAdditionalFilterDescription } from "../survey/TKAdditionalFilter";
-import { TKFDFInfos } from "../fdf/TKFDFInfos";
+import { TKFDFSpatialDescription } from "@/domain/fdf/TKFDFSpatialDescription";
+import { TKSurveyOptions } from "@/domain/survey/TKSurvey";
+import { TKFDFIndicators } from "@/domain/fdf/TKFDFIndicators";
+import { TKAdditionalFilterDescription } from "@/domain/survey/TKAdditionalFilter";
+import { TKFDFInfos } from "@/domain/fdf/TKFDFInfos";
 
 export enum TKSurveyInfosType {
   CSV = "csv",

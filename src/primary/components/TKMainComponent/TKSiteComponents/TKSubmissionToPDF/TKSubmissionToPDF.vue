@@ -27,8 +27,10 @@ import TKSubmissionToPDFHeadlines from "./TKSubmissionToPDFHeadlines.vue";
 import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { IconPosition, TKIconUrl } from "@/domain/utils/TKIconUrl";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
-import { getColorFromValue } from "@/domain/fdf/TKFDFTrafficLight";
-import { TKSubmissionEntryType } from "@/domain/survey/TKSubmissionEntry";
+import {
+  TKSubmissionEntry,
+  TKSubmissionEntryTextType
+} from "@/domain/survey/TKSubmissionEntry";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import TKPDFInfosModule from "@/store/modules/pdfinfos/TKPDFInfosModule";
 import { TKColors } from "@/domain/utils/TKColors";
@@ -48,6 +50,7 @@ import {
   RobotoItalic,
   RobotoNormal
 } from "@/domain/fonts";
+import { TKFDFChartType } from "@/domain/fdf/TKFDFCharts/TKFDFChartConfiguration";
 
 @Component({
   components: {
@@ -236,7 +239,7 @@ export default class TKSubmissionToPDF extends Vue {
     };
   }
 
-  getAnswer(answerLabel: TKLabel, color: TKColors): CellDef {
+  getAnswer(answerLabel: TKLabel, color: string): CellDef {
     return {
       content: TKGetLocalValue(answerLabel, this.$i18n.locale),
       styles: {
@@ -250,6 +253,15 @@ export default class TKSubmissionToPDF extends Vue {
         }
       }
     };
+  }
+
+  getColorFromEntry(entry: TKSubmissionEntry): string {
+    if (!("trafficLight" in entry)) {
+      return TKColors.DARK_GREY;
+    }
+    return entry.trafficLight
+      ? entry.trafficLight.value.color
+      : TKColors.DARK_GREY;
   }
 
   createTable(
@@ -286,27 +298,27 @@ export default class TKSubmissionToPDF extends Vue {
     );
 
     for (const entry of entriesForThematic) {
-      if (entry.type === TKSubmissionEntryType.TEXT) {
+      if (entry.type === TKSubmissionEntryTextType.TEXT) {
         const field = this.getField(entry.fieldLabel);
         body.push([field]);
 
-        const color = getColorFromValue(entry.trafficLight);
+        const color = this.getColorFromEntry(entry);
         const answer = this.getAnswer(entry.answerLabel, color);
         body.push([answer]);
-      } else if (entry.type === TKSubmissionEntryType.BULLET) {
+      } else if (entry.type === TKSubmissionEntryTextType.BULLET) {
         const field = this.getField(entry.fieldLabel);
         body.push([field]);
 
-        const color = getColorFromValue(entry.trafficLight);
+        const color = this.getColorFromEntry(entry);
         for (const answerLabel of entry.answersLabels) {
           const answer = this.getAnswer(answerLabel, color);
           body.push([answer]);
         }
       } else if (
-        entry.type === TKSubmissionEntryType.CHART_PYRAMID ||
-        entry.type === TKSubmissionEntryType.CHART_DOUGHNUT ||
-        entry.type === TKSubmissionEntryType.CHART_POLAR ||
-        entry.type === TKSubmissionEntryType.CHART_RADAR
+        entry.type === TKFDFChartType.BAR ||
+        entry.type === TKFDFChartType.DOUGHNUT ||
+        entry.type === TKFDFChartType.POLAR_AREA ||
+        entry.type === TKFDFChartType.RADAR
       ) {
         const props = pdf.getImageProperties(
           TKPDFInfosModule.currentChartsBase64[entry.chartid]

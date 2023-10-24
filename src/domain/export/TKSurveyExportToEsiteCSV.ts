@@ -1,7 +1,7 @@
-import { TKIndicatorType } from "../survey/TKIndicator";
-import { TKSubmissionEntryType } from "../survey/TKSubmissionEntry";
-import { TKSurvey } from "../survey/TKSurvey";
-import { TKGetLocalValue } from "../utils/TKLabel";
+import { TKIndicatorType } from "@/domain/survey/TKIndicator";
+import { TKSubmissionEntryTextType } from "@/domain/survey/TKSubmissionEntry";
+import { TKSurvey } from "@/domain/survey/TKSurvey";
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Helper methods
@@ -58,7 +58,7 @@ function computeEsiteCSVContent(
           if (rule.chartId === "") {
             const entry = submission.entries[rule.fieldName];
 
-            if (entry && entry.type === TKSubmissionEntryType.TEXT) {
+            if (entry && entry.type === TKSubmissionEntryTextType.TEXT) {
               siteAsCSVLine.push(
                 TKGetLocalValue(entry.answerLabel, locale).replace("\n", " ")
               );

@@ -24,7 +24,7 @@ import { TKColors } from "@/domain/utils/TKColors";
 Chart.register(PolarAreaController, RadialLinearScale, Legend, Title, Tooltip);
 
 @Component
-export default class TKSubmissionItemPolarChart extends Vue {
+export default class TKSubmissionEntryPolarChart extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryPolar;
 
@@ -32,14 +32,6 @@ export default class TKSubmissionItemPolarChart extends Vue {
   chart!: Chart;
   readonly ctx = v4();
   readonly height = 300;
-
-  readonly colors = [
-    TKColors.CHART_COLOR_1,
-    TKColors.CHART_COLOR_2,
-    TKColors.CHART_COLOR_3,
-    TKColors.CHART_COLOR_4,
-    TKColors.CHART_COLOR_5
-  ];
 
   mounted() {
     if (this.entry) {
@@ -50,7 +42,7 @@ export default class TKSubmissionItemPolarChart extends Vue {
           datasets: [
             {
               data: this.generateValues(),
-              backgroundColor: this.colors
+              backgroundColor: this.entry.config.colors
             }
           ]
         },
@@ -151,7 +143,13 @@ export default class TKSubmissionItemPolarChart extends Vue {
 
   generateValues(): Array<number> {
     if (this.entry) {
-      return this.entry.entries.map(item => item.value);
+      return this.entry.entries
+        .map(item => item.value)
+        .map(value =>
+          this.entry.config.mapping && this.entry.config.mapping[value]
+            ? Number(this.entry.config.mapping[value].value)
+            : Number(value)
+        );
     } else {
       return [];
     }

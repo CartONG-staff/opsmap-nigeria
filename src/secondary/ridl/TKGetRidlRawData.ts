@@ -1,5 +1,5 @@
 import { TKFDFLabelCollection } from "@/domain/fdf/TKFDFParseMultiLang";
-import { parse } from "papaparse";
+import { ParseConfig, parse } from "papaparse";
 
 import { read, utils } from "xlsx";
 
@@ -19,11 +19,14 @@ export async function TKGetRidlRawData(url: string) {
       })
     ).arrayBuffer();
     const wb = read(f);
-    const dataParsed = parse(utils.sheet_to_csv(wb.Sheets[wb.SheetNames[0]]), {
-      encoding: "utf-8",
+    const parseConfig: ParseConfig = {
       header: true,
       skipEmptyLines: true
-    });
+    };
+    const dataParsed = parse(
+      utils.sheet_to_csv(wb.Sheets[wb.SheetNames[0]]),
+      parseConfig
+    );
     return dataParsed.data;
   } catch (error) {
     console.error(error);

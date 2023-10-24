@@ -58,14 +58,22 @@
         "titleY": "Interval d'Age",
         "titleX": "Population",
         "female": "Fille",
-        "male": "Garçon"
+        "male": "Garçon",
+        "population": "Population"
     },
     "map": {
         "legendBasemaps": "Sélectionner un fond de carte",
         "legendZoomIn": "Zoomer",
         "legendZoomOut": "Dézoomer",
         "legendBbox": "Etendue par défault",
-        "legendFilters": "Montrer / masquer la légende"
+        "legendFilters": "Montrer / masquer la légende",
+        "populationCount": "Nombre de personnes",
+        "siteTypes": "Types de site",
+        "legend": {
+            "populationCluster": "Somme de population par grappe de site",
+            "populationNotSelectedSite": "Population par site non sélectionné",
+            "populationSelectedSite": "Population par site sélectionné"
+        }
     },
     "indicator": {
         "siteCount": "Nombre de sites",

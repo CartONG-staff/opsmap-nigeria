@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TKFDF } from "@/domain/fdf/TKFDF";
 import {
-  TKSubmissionEntryType,
   TKSubmissionEntryRadar,
-  TKSubmissionEntryAgePyramid,
+  TKSubmissionEntryBar,
   TKSubmissionEntryDoughnut,
   TKSubmissionEntryPolar
 } from "./TKSubmissionEntry";
-import { TKLabel } from "../utils/TKLabel";
+import { TKGetLocalValue, TKLabel } from "@/domain/utils/TKLabel";
 import { TKSubmissionThematic } from "./TKSubmissionThematic";
 import { TKSubmissionEntries } from "./TKSubmissionEntries";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
+import { TKFDFChartType } from "../fdf/TKFDFCharts/TKFDFChartConfiguration";
 
 export type TKChartData = {
   id: string;
@@ -31,6 +31,15 @@ export type TKChartDataLabeled = {
     type: string;
   }>;
 };
+
+function parseNameBasedOnAgePyramidType(name: string): string {
+  return name
+    .replace("Females", "")
+    .replace("Males", "")
+    .replace("(", "")
+    .replace(")", "")
+    .trim();
+}
 
 function applyOptions(
   chartData: TKChartData,
@@ -82,70 +91,95 @@ function applyOptions(
 
 export function TKCreateSubmissionChart(
   chartData: TKChartData,
-  surveyConfiguration: TKFDF,
+  fdf: TKFDF,
   entries: TKSubmissionEntries
 ) {
-  const chartDataLabeled = applyOptions(chartData, surveyConfiguration);
-  if (chartDataLabeled.id.includes("age_pyramid")) {
-    const malesEntries = chartDataLabeled.data
-      .filter(item => item.type === "m")
-      .reverse();
-    const femalesEntries = chartDataLabeled.data
-      .filter(item => item.type === "f")
-      .reverse();
+  const chartDataLabeled = applyOptions(chartData, fdf);
 
-    const entry: TKSubmissionEntryAgePyramid = {
-      type: TKSubmissionEntryType.CHART_PYRAMID,
+  const chartConfiguration = fdf.charts.charts[chartDataLabeled.id];
+
+  if (chartConfiguration.type === TKFDFChartType.BAR) {
+    // Process data: sort them by id and extract numbers
+    const values: Record<string, Array<string>> = {};
+    for (const data of chartDataLabeled.data) {
+      if (!values[data.type]) {
+        values[data.type] = [];
+      }
+      values[data.type].push(data.value);
+    }
+
+    const key = Object.keys(values).length ? Object.keys(values)[0] : "";
+    const labels: Array<TKLabel> =
+      chartConfiguration.axis.y.labels ??
+      (key
+        ? chartDataLabeled.data
+            .filter(item => item.type == key)
+            .map(item => {
+              return {
+                [TKConfigurationModule.configuration.locale
+                  .default]: parseNameBasedOnAgePyramidType(
+                  TKGetLocalValue(
+                    item.field,
+                    TKConfigurationModule.configuration.locale.default
+                  )
+                )
+              };
+            })
+        : []);
+    const entry: TKSubmissionEntryBar = {
+      type: TKFDFChartType.BAR,
+      config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
-      malesEntries: malesEntries.map(item => Number(item.value)),
-      femalesEntries: femalesEntries.map(item => Number(item.value)),
-      malesLabels: malesEntries.map(item => item.field),
-      femalesLabels: femalesEntries.map(item => item.field)
+      title: fdf.fieldsLabels[chartDataLabeled.id],
+      values: values,
+      labels: labels
     };
     entries[entry.chartid] = entry;
-  } else if (chartDataLabeled.id.includes("doughnut")) {
+  } else if (chartConfiguration.type === TKFDFChartType.DOUGHNUT) {
     const entry: TKSubmissionEntryDoughnut = {
-      type: TKSubmissionEntryType.CHART_DOUGHNUT,
+      type: TKFDFChartType.DOUGHNUT,
+      config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
+      title: fdf.fieldsLabels[chartDataLabeled.id],
       entries: chartDataLabeled.data.map(item => {
         return {
-          value: Number(item.value),
+          value: item.value,
           label: item.field
         };
       })
     };
     entries[entry.chartid] = entry;
-  } else if (chartDataLabeled.id.includes("polar_area_chart")) {
+  } else if (chartConfiguration.type === TKFDFChartType.POLAR_AREA) {
     const entry: TKSubmissionEntryPolar = {
-      type: TKSubmissionEntryType.CHART_POLAR,
+      type: TKFDFChartType.POLAR_AREA,
+      config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
+      title: fdf.fieldsLabels[chartDataLabeled.id],
       entries: chartDataLabeled.data.map(item => {
         return {
-          value: Number(item.value),
+          value: item.value,
           label: item.field
         };
       })
     };
     entries[entry.chartid] = entry;
-  } else if (chartDataLabeled.id.includes("radar_chart")) {
+  } else if (chartConfiguration.type === TKFDFChartType.RADAR) {
     const entry: TKSubmissionEntryRadar = {
-      type: TKSubmissionEntryType.CHART_RADAR,
+      type: TKFDFChartType.RADAR,
+      config: chartConfiguration,
       thematic: chartData.thematic,
       chartid: chartDataLabeled.id,
       isAnswered: true,
-      title: surveyConfiguration.fieldsLabels[chartDataLabeled.id],
+      title: fdf.fieldsLabels[chartDataLabeled.id],
       entries: chartDataLabeled.data.map(item => {
         return {
-          value: Number(item.value),
+          value: item.value,
           label: item.field
         };
       })

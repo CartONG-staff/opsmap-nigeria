@@ -22,7 +22,7 @@ import { TKColors } from "@/domain/utils/TKColors";
 Chart.register(DoughnutController, ArcElement, Legend, Title, Tooltip);
 
 @Component
-export default class TKSubmissionItemDoughnutChart extends Vue {
+export default class TKSubmissionEntryDoughnutChart extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryDoughnut;
 
@@ -30,13 +30,6 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
   chart!: Chart;
   readonly ctx = v4();
   readonly height = 300;
-  readonly colors = [
-    TKColors.CHART_COLOR_6,
-    TKColors.CHART_COLOR_7,
-    TKColors.CHART_COLOR_8,
-    TKColors.CHART_COLOR_4,
-    TKColors.CHART_COLOR_5
-  ];
 
   mounted() {
     if (this.entry) {
@@ -47,7 +40,7 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
           datasets: [
             {
               data: this.generateValues(),
-              backgroundColor: this.colors
+              backgroundColor: this.entry.config.colors
             }
           ]
         },
@@ -129,7 +122,13 @@ export default class TKSubmissionItemDoughnutChart extends Vue {
 
   generateValues(): Array<number> {
     if (this.entry) {
-      return this.entry.entries.map(item => item.value);
+      return this.entry.entries
+        .map(item => item.value)
+        .map(value =>
+          this.entry.config.mapping && this.entry.config.mapping[value]
+            ? Number(this.entry.config.mapping[value].value)
+            : Number(value)
+        );
     } else {
       return [];
     }

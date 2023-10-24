@@ -1,6 +1,6 @@
-import { TKFDFSiteType } from "../fdf/TKFDFSiteTypes";
-import { TKAdminLevel } from "../opsmapConfig/TKAdminLevel";
-import { TKLabel } from "../utils/TKLabel";
+import { TKFDFSiteType } from "@/domain/fdf/TKFDFSiteTypes";
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
+import { TKLabel } from "@/domain/utils/TKLabel";
 import { TKBoundaries } from "./TKBoundaries";
 import { TKSubmission } from "./TKSubmission";
 

@@ -65,6 +65,13 @@
         "legendZoomIn": "Увеличаване на мащаба",
         "legendZoomOut": "Увеличаване на мащаба",
         "legendBbox": "Обхват по подразбиране",
-        "legendFilters": "Показване / скриване на легендата"
+        "legendFilters": "Показване / скриване на легендата",
+        "populationCount": "Преброяване на населението",
+        "siteTypes": "Видове сайтове",
+        "legend": {
+            "populationCluster": "Сума от населението по клъстер от обекти",
+            "populationNotSelectedSite": "Население за неизбран сайт",
+            "populationSelectedSite": "Население за избран сайт"
+        }
     }
 }

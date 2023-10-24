@@ -5,7 +5,8 @@ import { TKLogo } from "@/domain/utils/TKLogo";
 import VueI18n from "vue-i18n";
 import {
   TKSurveyAnonymousType,
-  TKSurveyOptions
+  TKSurveyOptions,
+  TKSurveyZoomSiteType
 } from "@/domain/survey/TKSurvey";
 import { TKBasemapsLayer } from "@/domain/map/TKBasemaps";
 import { TKAdminLevel, sortAdminLevelsRootFirst } from "./TKAdminLevel";
@@ -22,6 +23,13 @@ interface TKAppOptions {
   readonly showDemoBanner: boolean;
   readonly exportAsCSVonHomePage: boolean;
   readonly keepThematicOrderFromFDF: boolean;
+  readonly mapLegendDisplayStyle: MapLegendDisplayStyle;
+}
+
+export enum MapLegendDisplayStyle {
+  DEFAULT = "default",
+  FOLDED = "folded",
+  HIDDEN = "hidden"
 }
 
 interface TKTextContent {
@@ -178,7 +186,8 @@ export async function TKReadGeneralConfiguration(
     exportForEsite: false,
     showDemoBanner: false,
     exportAsCSVonHomePage: true,
-    keepThematicOrderFromFDF: false
+    keepThematicOrderFromFDF: false,
+    mapLegendDisplayStyle: MapLegendDisplayStyle.DEFAULT
   };
 
   // Init with defaultOptions, then replace existing key with options.
@@ -196,8 +205,11 @@ export async function TKReadGeneralConfiguration(
   const defaultSurveyOptions: TKSurveyOptions = {
     inputDateFormat: "DD/MM/YYYY",
     displayDateFormat: "DD/MM/YYYY",
+    siteZoomMode: TKSurveyZoomSiteType.SITE,
+    siteZoomBuffer: 100,
     listSeparator: ";",
-    anonymousMode: TKSurveyAnonymousType.NONE
+    anonymousMode: TKSurveyAnonymousType.NONE,
+    sitesMapVisualisation: []
   };
 
   for (let i = 0; i < json.surveys.length; i++) {

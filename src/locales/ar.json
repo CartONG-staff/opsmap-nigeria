@@ -65,6 +65,17 @@
         "legendZoomIn": "تكبير",
         "legendZoomOut": "تصغير",
         "legendBbox": "المدى الافتراضي",
-        "legendFilters": "إظهار / إخفاء وسيلة الإيضاح"
+        "legendFilters": "إظهار / إخفاء وسيلة الإيضاح",
+        "populationCount": "عدد السكان",
+        "siteTypes": "أنواع المواقع",
+        "legend": {
+            "populationCluster": "مجموع السكان حسب مجموعة المواقع",
+            "populationNotSelectedSite": "عدد سكان الموقع غير المحدد",
+            "populationSelectedSite": "عدد السكان للموقع المحدد"
+        }
+    },
+    "indicator": {
+        "siteCount": "موقع",
+        "peopleCount": "الناس"
     }
 }

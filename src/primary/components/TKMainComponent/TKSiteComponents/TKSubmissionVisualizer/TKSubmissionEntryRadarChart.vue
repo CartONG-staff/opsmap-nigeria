@@ -34,7 +34,7 @@ Chart.register(
 );
 
 @Component
-export default class TKSubmissionItemRadarChart extends Vue {
+export default class TKSubmissionEntryRadarChart extends Vue {
   @Prop()
   readonly entry!: TKSubmissionEntryRadar;
 
@@ -42,8 +42,6 @@ export default class TKSubmissionItemRadarChart extends Vue {
   chart!: Chart;
   readonly ctx = v4();
   readonly height = 300;
-
-  readonly color = TKColors.CHART_COLOR_1;
 
   mounted() {
     if (this.entry) {
@@ -54,7 +52,7 @@ export default class TKSubmissionItemRadarChart extends Vue {
           datasets: [
             {
               data: this.generateValues(),
-              backgroundColor: this.color
+              backgroundColor: this.entry.config.color
             }
           ]
         },
@@ -74,6 +72,7 @@ export default class TKSubmissionItemRadarChart extends Vue {
               },
               display: true,
               pointLabels: {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 callback: function(label: string, index: number): string {
                   return label.length > 25
                     ? label.substring(0, 25) + "..."
@@ -150,7 +149,13 @@ export default class TKSubmissionItemRadarChart extends Vue {
 
   generateValues(): Array<number> {
     if (this.entry) {
-      return this.entry.entries.map(item => item.value);
+      return this.entry.entries
+        .map(item => item.value)
+        .map(value =>
+          this.entry.config.mapping && this.entry.config.mapping[value]
+            ? Number(this.entry.config.mapping[value].value)
+            : Number(value)
+        );
     } else {
       return [];
     }

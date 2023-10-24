@@ -21,16 +21,17 @@ import { TKTFDFhematicsCollection } from "@/domain/fdf/TKFDFThematics";
 import { TKSubmissionThematic } from "@/domain/survey/TKSubmissionThematic";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import {
-  TKSubmissionEntryAgePyramid,
+  TKSubmissionEntryBar,
   TKSubmissionEntryDoughnut,
   TKSubmissionEntryPolar,
   TKSubmissionEntryRadar,
   TKSubmissionEntryText,
-  TKSubmissionEntryType
+  TKSubmissionEntryTextType
 } from "@/domain/survey/TKSubmissionEntry";
 import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import { TKSubmissionEntries } from "@/domain/survey/TKSubmissionEntries";
+import { TKFDFChartType } from "@/domain/fdf/TKFDFCharts/TKFDFChartConfiguration";
 
 const LEFT = 0;
 const MIDDLE = 1;
@@ -50,12 +51,10 @@ function computeChartPolarScore(chart: TKSubmissionEntryPolar): number {
   return chart.entries.length / CHART_POLAR_LINE_FACTOR + CHART_POLAR_BASE;
 }
 
-function computeChartPyramidScore(chart: TKSubmissionEntryAgePyramid): number {
-  const CHART_PYRAMID_BASE = 4;
-  const CHART_PYRAMID_LINE_FACTOR = 3;
-  return (
-    chart.femalesLabels.length / CHART_PYRAMID_LINE_FACTOR + CHART_PYRAMID_BASE
-  );
+function computeChartBarScore(chart: TKSubmissionEntryBar): number {
+  const CHART_BAR_BASE = 4;
+  const CHART_BAR_LINE_FACTOR = 3;
+  return chart.labels.length / CHART_BAR_LINE_FACTOR + CHART_BAR_BASE;
 }
 
 function computeChartRadarScore(chart: TKSubmissionEntryRadar): number {
@@ -88,22 +87,22 @@ function computeScore(
     .reduce((previousScore, thematicData) => {
       let score = 1;
       switch (thematicData.type) {
-        case TKSubmissionEntryType.BULLET:
+        case TKSubmissionEntryTextType.BULLET:
           score = thematicData.answersLabels.length;
           break;
-        case TKSubmissionEntryType.CHART_DOUGHNUT:
+        case TKFDFChartType.DOUGHNUT:
           score = computeChartDoughnutScore(thematicData);
           break;
-        case TKSubmissionEntryType.CHART_POLAR:
+        case TKFDFChartType.POLAR_AREA:
           score = computeChartPolarScore(thematicData);
           break;
-        case TKSubmissionEntryType.CHART_PYRAMID:
-          score = computeChartPyramidScore(thematicData);
+        case TKFDFChartType.BAR:
+          score = computeChartBarScore(thematicData);
           break;
-        case TKSubmissionEntryType.CHART_RADAR:
+        case TKFDFChartType.RADAR:
           score = computeChartRadarScore(thematicData);
           break;
-        case TKSubmissionEntryType.TEXT:
+        case TKSubmissionEntryTextType.TEXT:
           score = computeTextScore(thematicData);
           break;
       }
