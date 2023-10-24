@@ -9,6 +9,7 @@
 </template>
 
 <script lang="ts">
+import { TKGetLocalValue } from "@/domain/utils/TKLabel";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
 import { Component, Vue, Watch } from "vue-property-decorator";
 @Component
@@ -22,7 +23,7 @@ export default class TKSiteSubtitle extends Vue {
   @Watch("dataset.currentSite", { immediate: true })
   onChange() {
     this.name = this.dataset.currentSite
-      ? this.dataset.currentSite.name
+      ? TKGetLocalValue(this.dataset.currentSite.label, this.$root.$i18n.locale)
       : this.$root.$i18n.t("site.subtitlePlaceholder").toString();
   }
 }

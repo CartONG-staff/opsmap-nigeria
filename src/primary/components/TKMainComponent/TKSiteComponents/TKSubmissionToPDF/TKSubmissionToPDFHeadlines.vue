@@ -124,17 +124,35 @@ export default class TKSubmissionToPDFHeadlines extends Vue {
         this.dataset.currentSite.type.thematicLabel,
         this.$root.$i18n.locale
       ).toUpperCase();
+
+      this.admin1 = TKGetLocalValue(
+        this.dataset.currentSite.adminsLabels[TKAdminLevel.ADMIN1],
+        this.$root.$i18n.locale
+      );
+      this.admin2 = TKGetLocalValue(
+        this.dataset.currentSite.adminsLabels[TKAdminLevel.ADMIN2],
+        this.$root.$i18n.locale
+      );
     }
   }
 
   @Watch("dataset.currentSite", { immediate: true })
   siteChanged() {
     if (this.dataset && this.dataset.currentSite) {
-      this.siteName = toTitleCase(this.dataset.currentSite.name.toUpperCase());
-      this.admin1 =
-        this.dataset.currentSite.admins[TKAdminLevel.ADMIN1]?.name ?? "-";
-      this.admin2 =
-        this.dataset.currentSite.admins[TKAdminLevel.ADMIN2]?.name ?? "-";
+      this.siteName = toTitleCase(
+        TKGetLocalValue(
+          this.dataset.currentSite.label,
+          this.$root.$i18n.locale
+        ).toUpperCase()
+      );
+      this.admin1 = TKGetLocalValue(
+        this.dataset.currentSite.adminsLabels[TKAdminLevel.ADMIN1],
+        this.$root.$i18n.locale
+      );
+      this.admin2 = TKGetLocalValue(
+        this.dataset.currentSite.adminsLabels[TKAdminLevel.ADMIN2],
+        this.$root.$i18n.locale
+      );
       this.coordinates =
         this.dataset.currentSite.coordinates.lat +
         "," +

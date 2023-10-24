@@ -11,6 +11,7 @@ import { getCenterOfBounds } from "@/domain/map/TKMapSites";
 import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule";
 import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 import { TKAdditionalFilterDescription } from "./TKAdditionalFilter";
+import { TKSiteMapVisualisation } from "./TKSurveyMapVisualisation";
 
 // ////////////////////////////////////////////////////////////////////////////
 // Survey concept definition
@@ -34,6 +35,7 @@ export interface TKSurveyOptions {
   inputDateFormat: string;
   displayDateFormat: string;
   listSeparator: string;
+  sitesMapVisualisation: TKSiteMapVisualisation[];
 }
 
 export type TKAdminLevelsBoundariesArray = Partial<
@@ -117,9 +119,21 @@ export function TKCreateSurvey(
       site = {
         id: submission[fdf.spatial.siteFields.id],
         name: submission[fdf.spatial.siteFields.name],
+        label:
+          fdf.answersLabels[submission[fdf.spatial.siteFields.name]] ??
+          submission[fdf.spatial.siteFields.name],
         type: fdf.siteTypes[submission[fdf.spatial.siteFields.type]],
         admins: admins,
-
+        adminsLabels: Object.assign(
+          {},
+          ...Object.keys(admins).map(x => {
+            return {
+              [x]:
+                fdf.answersLabels[admins[x as TKAdminLevel]!.name] ??
+                admins[x as TKAdminLevel]!.name
+            };
+          })
+        ),
         managedBy: submission[fdf.spatial.siteFields.manageBy]
           ? fdf.answersLabels[submission[fdf.spatial.siteFields.manageBy]] ?? {
               [TKConfigurationModule.configuration.locale.default]:

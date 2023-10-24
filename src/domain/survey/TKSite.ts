@@ -17,9 +17,11 @@ export type TKSiteBoundaries = Partial<Record<TKAdminLevel, TKBoundaries>>;
 export interface TKSite {
   id: string;
   name: string;
+  label: TKLabel | string;
   type: TKFDFSiteType; // from fdf
   coordinates: TKSiteCoordinates;
   admins: TKSiteBoundaries;
+  adminsLabels: Partial<Record<TKAdminLevel, TKLabel | string>>;
   managedBy: TKLabel;
 
   submissions: [TKSubmission, ...TKSubmission[]]; // At least one element!

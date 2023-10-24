@@ -66,7 +66,14 @@
         "legendZoomIn": "Zoomer",
         "legendZoomOut": "Dézoomer",
         "legendBbox": "Etendue par défault",
-        "legendFilters": "Montrer / masquer la légende"
+        "legendFilters": "Montrer / masquer la légende",
+        "populationCount": "Nombre de personnes",
+        "siteTypes": "Types de site",
+        "legend": {
+            "populationCluster": "Somme de population par grappe de site",
+            "populationNotSelectedSite": "Population par site non sélectionné",
+            "populationSelectedSite": "Population par site sélectionné"
+        }
     },
     "indicator": {
         "siteCount": "Nombre de sites",

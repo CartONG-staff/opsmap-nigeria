@@ -227,4 +227,8 @@ h3 {
 .v-slider__thumb-label {
   transform: translateY(60%) translateY(30px) translateX(-50%) rotate(225deg) !important;
 }
+
+.tk-map-filters-radio .v-input__control .v-messages{
+  display: none !important;
+}
 </style>
