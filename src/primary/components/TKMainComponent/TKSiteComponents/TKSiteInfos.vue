@@ -138,12 +138,14 @@ export default class TKSiteInfos extends Vue {
   @Watch("dataset.currentSite", { immediate: true })
   onChange() {
     if (this.dataset) {
-      this.admin1 = this.dataset.currentSite
-        ? this.dataset.currentSite.admins[TKAdminLevel.ADMIN1]?.name ?? "-"
-        : "-";
-      this.admin2 = this.dataset.currentSite
-        ? this.dataset.currentSite.admins[TKAdminLevel.ADMIN2]?.name ?? "-"
-        : "-";
+      this.admin1 = TKGetLocalValue(
+        this.dataset.currentSite?.adminsLabels[TKAdminLevel.ADMIN1],
+        this.$root.$i18n.locale
+      );
+      this.admin2 = TKGetLocalValue(
+        this.dataset.currentSite?.adminsLabels[TKAdminLevel.ADMIN2],
+        this.$root.$i18n.locale
+      );
 
       this.coordinates = this.dataset.currentSite
         ? this.dataset.currentSite.coordinates.lat +
@@ -190,6 +192,15 @@ export default class TKSiteInfos extends Vue {
         this.dataset.currentSite.type.thematicLabel,
         this.$root.$i18n.locale
       ).toUpperCase();
+
+      this.admin1 = TKGetLocalValue(
+        this.dataset.currentSite?.adminsLabels[TKAdminLevel.ADMIN1],
+        this.$root.$i18n.locale
+      );
+      this.admin2 = TKGetLocalValue(
+        this.dataset.currentSite?.adminsLabels[TKAdminLevel.ADMIN2],
+        this.$root.$i18n.locale
+      );
     }
   }
 
