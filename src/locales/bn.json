@@ -1,0 +1,82 @@
+{
+    "title": "অপসম্যাপ",
+    "infosAdmins": {
+        "admin1": "অবস্থা",
+        "admin2": "শহর"
+    },
+    "infosSiteType": "সাইটের ধরন",
+    "manageBy": "দ্বারা পরিচালনা করুন",
+    "selectText": "একটি নির্বাচন করুন",
+    "survey": "জরিপ",
+    "infosSite": "সাইট",
+    "dashboardCredits": "OPSMAP ড্যাশবোর্ড হল MIT লাইসেন্সের অধীনে একটি ওপেনসোর্স সমাধান",
+    "ochaCredits": "মানবিক ফন্ট পিকটোগ্রামগুলি CC BY 3.0 এর অধীনে লাইসেন্সপ্রাপ্ত",
+    "appName": "সাইট প্রোফাইল",
+    "disclaimer": {
+        "text": "বিটা সংস্করণ"
+    },
+    "footer": {
+        "moreInfos": "Opsmap সম্পর্কে",
+        "moreInfosText": "OPSMAP-এর লক্ষ্য মানবতাবাদী অভিনেতাদের এমন একটি সমাধান প্রদান করা যা তাদেরকে বাস্তুচ্যুত ব্যক্তিদের হোস্ট করা বিভিন্ন সাইটের পরিষেবার অবস্থার সংক্ষিপ্ত বিবরণ দিতে দেয়। স্বয়ংক্রিয়ভাবে \"site profiles\" তৈরি করে, OPSMAPs মানবিক অভিনেতাদের দ্রুত সাইট পরিচালনার জন্য প্রয়োজনীয় তথ্যের একটি ওভারভিউ পেতে অনুমতি দেয়। ব্যবহারকারীরা সহজেই ওয়েব ইন্টারফেসের (ড্যাশবোর্ড) মাধ্যমে তথ্য পেতে পারে এবং জরুরী পদক্ষেপের প্রয়োজন এমন পয়েন্টগুলি সনাক্ত করতে এটি ব্যবহার করতে পারে। OPSMAP এর দুটি সংস্করণ উপলব্ধ: একটি \"standard\" সংস্করণ এবং একটি \"custom\" সংস্করণ। <br /> স্ট্যান্ডার্ড সংস্করণ হল একটি ওপেন সোর্স সলিউশন, যা 2021 সালে UNHCR GDS সেকশন (MIT লাইসেন্স, বর্তমান সংস্করণ: {version}) এর সমর্থনে CartONG দ্বারা তৈরি করা হয়েছে। ব্যবহৃত পিকটোগ্রামগুলি \"মানবিক আইকন\" ডাটাবেস থেকে এসেছে (ক্রেডিট OCHA, CC BY 3.0 এর অধীনে লাইসেন্সপ্রাপ্ত)",
+        "partnerLed": "ক্লাস্টার লিড",
+        "partnerCoordination": "সমন্বয় এবং IM সমর্থন",
+        "partnerFieldwork": "মাঠকর্ম",
+        "partnerWebdev": "ওয়েবডেভ"
+    },
+    "trafficlight": {
+        "ok": "ঠিক আছে",
+        "caution": "সতর্ক করা",
+        "warning": "সতর্কতা",
+        "danger": "বিপদ",
+        "critical": "সমালোচনামূলক",
+        "undefined": "অনির্ধারিত",
+        "error": "ত্রুটি"
+    },
+    "main": {
+        "switchPage": "পৃষ্ঠা পরিবর্তন করুন"
+    },
+    "home": {
+        "lastUpdate": "সর্বশেষ আপডেট",
+        "moreInfosTitle": "More Information",
+        "combosTitle": "মানচিত্রে জুম করুন",
+        "exportToCSV": "বর্তমান নির্বাচন CSV-এ রপ্তানি করুন"
+    },
+    "site": {
+        "exportPreffix": "হিসাবে রপ্তানি করুন",
+        "infosCoordinates": "জিপিএস স্থানাঙ্ক",
+        "hideUnanswered": "শুধুমাত্র উত্তর দিয়ে",
+        "sortByTrafficLight": "সাজান",
+        "subtitlePlaceholder": "কোন সাইট নির্বাচিত",
+        "extraTools": "অতিরিক্ত সরঞ্জাম",
+        "datePreffix": "রিপোর্ট",
+        "filter": "অনুসন্ধান করুন.."
+    },
+    "charts": {
+        "agePyramidTitle": "বয়সের পিরামিড",
+        "doughnutTitle": "নির্দিষ্ট গ্রুপ",
+        "polarTitle": "প্রকারভেদ",
+        "titleY": "বয়স পরিসীমা",
+        "titleX": "জনসংখ্যা",
+        "female": "মহিলা",
+        "male": "পুরুষ",
+        "population": "জনসংখ্যা"
+    },
+    "map": {
+        "legendBasemaps": "একটি বেসম্যাপ নির্বাচন করুন",
+        "legendZoomIn": "প্রসারিত করো",
+        "legendZoomOut": "ছোট করা",
+        "legendBbox": "ডিফল্ট ব্যাপ্তি",
+        "legendFilters": "কিংবদন্তি দেখান/লুকান",
+        "populationCount": "জনসংখ্যা গণনা",
+        "siteTypes": "সাইটের ধরন",
+        "legend": {
+            "populationCluster": "সাইটের ক্লাস্টার দ্বারা জনসংখ্যার যোগফল",
+            "populationNotSelectedSite": "নির্বাচিত সাইটের জন্য জনসংখ্যা",
+            "populationSelectedSite": "নির্বাচিত সাইটের জনসংখ্যা"
+        }
+    },
+    "indicator": {
+        "siteCount": "সাইট",
+        "peopleCount": "জনগণ"
+    }
+}
