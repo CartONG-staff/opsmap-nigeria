@@ -4,8 +4,8 @@
         "admin1": "Держава",
         "admin2": "Місто"
     },
-    "infosSiteType": "Типовий сайт",
-    "manageBy": "Керування",
+    "infosSiteType": "Тип МКП",
+    "manageBy": "Організація / уповноважений орган, яка керує МКП",
     "selectText": "Виберіть",
     "survey": "Опитування",
     "infosSite": "Сайт",
@@ -65,7 +65,9 @@
         "legendZoomIn": "Збільшити",
         "legendZoomOut": "Зменшити",
         "legendBbox": "За замовчуванням Екстенсивність",
-        "legendFilters": "Показати / Приховати легенду"
+        "legendFilters": "Показати / Приховати легенду",
+        "populationCount": "Population count",
+        "siteTypes": "Site types"
     },
     "indicator": {
         "siteCount": "сайт",
