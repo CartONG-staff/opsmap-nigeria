@@ -251,7 +251,7 @@ function computeCurrentSelectionCSVContent(
                   return (
                     key +
                     ":" +
-                    entry.values[key].map(value => value.toString()).join(",")
+                    entry.values[key].map(value => value != null ? value.toString() : '').join(",")
                   );
                 })
                 .join(" ");
