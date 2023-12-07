@@ -48,7 +48,7 @@
         "sortByTrafficLight": "Сортування",
         "subtitlePlaceholder": "Сайт не обрано",
         "extraTools": "Додаткові інструменти",
-        "datePreffix": "Звіт",
+        "datePreffix": "Дата моніторингу",
         "filter": "Фільтр"
     },
     "charts": {
@@ -66,8 +66,8 @@
         "legendZoomOut": "Зменшити",
         "legendBbox": "За замовчуванням Екстенсивність",
         "legendFilters": "Показати / Приховати легенду",
-        "populationCount": "Population count",
-        "siteTypes": "Site types"
+        "populationCount": "Кількість Внутрішньо переміщених осіб (ВПО)",
+        "siteTypes": "Тип МКП"
     },
     "indicator": {
         "siteCount": "сайт",

@@ -67,7 +67,7 @@
         "legendZoomOut": "Zoom out",
         "legendBbox": "Default Extent",
         "legendFilters": "Show / Hide legend",
-        "populationCount": "Population count",
+        "populationCount": "Population",
         "siteTypes": "Site types",
         "legend": {
             "populationCluster": "Sum of population by cluster of sites",
