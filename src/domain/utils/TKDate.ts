@@ -7,14 +7,13 @@ export function TKDateCompare(
 ): number {
   const date1Moment = moment(date1, displayDateFormat);
   const date2Moment = moment(date2, displayDateFormat);
-
   if (date1Moment.isSame(date2Moment)) {
     return 0;
   }
   if (date1Moment.isBefore(date2Moment)) {
-    return -1;
+    return 1;
   }
-  return 1;
+  return -1;
 }
 
 // ////////////////////////////////////////////////////////////////////////////
