@@ -188,6 +188,15 @@ export function TKCreateSurvey(
             pcode:
               submission[(fdf.spatial.admins[level] as TKBoundaries).pcode],
             name:
+              submission[
+                (fdf.spatial.admins[level] as TKBoundaries).name ?? ""
+              ],
+            label:
+              fdf.answersLabels[
+                submission[
+                  (fdf.spatial.admins[level] as TKBoundaries).name ?? ""
+                ]
+              ] ??
               submission[(fdf.spatial.admins[level] as TKBoundaries).name ?? ""]
           });
         }
