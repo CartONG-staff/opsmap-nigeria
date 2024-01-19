@@ -24,6 +24,7 @@ interface TKAppOptions {
   readonly exportAsCSVonHomePage: boolean;
   readonly keepThematicOrderFromFDF: boolean;
   readonly mapLegendDisplayStyle: MapLegendDisplayStyle;
+  readonly desactivateGlobalIndicatorsAtIndermediateLevels: boolean;
 }
 
 export enum MapLegendDisplayStyle {
@@ -187,7 +188,8 @@ export async function TKReadGeneralConfiguration(
     showDemoBanner: false,
     exportAsCSVonHomePage: true,
     keepThematicOrderFromFDF: false,
-    mapLegendDisplayStyle: MapLegendDisplayStyle.DEFAULT
+    mapLegendDisplayStyle: MapLegendDisplayStyle.DEFAULT,
+    desactivateGlobalIndicatorsAtIndermediateLevels: false,
   };
 
   // Init with defaultOptions, then replace existing key with options.
