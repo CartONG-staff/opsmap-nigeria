@@ -11,6 +11,8 @@ import { Component, Vue } from "vue-property-decorator";
 import TKIndicatorComponent from "./TKIndicator.vue";
 import { TKIndicators } from "@/domain/survey/TKIndicator";
 import TKDatasetModule from "@/store/modules/dataset/TKDatasetModule";
+import TKConfigurationModule from "@/store/modules/configuration/TKConfigurationModule"
+import { TKAdminLevel } from "@/domain/opsmapConfig/TKAdminLevel";
 
 @Component({
   components: {
@@ -21,9 +23,26 @@ export default class TKSiteIndicators extends Vue {
   get dataset() {
     return TKDatasetModule.dataset;
   }
+  get configuration() {
+    return TKConfigurationModule.configuration;
+  }
   get indicators(): TKIndicators | null {
     if (this.dataset.currentSubmission) {
       return this.dataset.currentSubmission.indicators;
+    }
+    // Hide indicators stats at intermediate levels (for some political reasons)
+    if (this.configuration.options.desactivateGlobalIndicatorsAtIndermediateLevels){
+      let innerlevel = false
+      for (const admin in this.dataset.currentAdmins) {
+        if (this.dataset.currentAdmins[admin as TKAdminLevel]) {
+          innerlevel = true
+        }
+      }
+      if (innerlevel) {
+        this.dataset.currentAreaIndicators?.map(x => {
+          x.valueLabel[this.$root.$i18n.locale] = "-"
+        })
+      }
     }
     return this.dataset.currentAreaIndicators;
   }
