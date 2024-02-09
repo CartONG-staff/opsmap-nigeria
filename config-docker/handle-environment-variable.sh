@@ -1,5 +1,5 @@
 #!/bin/sh
-OPSMAP_DATASET_ROOT_DIR=https://raw.githubusercontent.com/CartONG/opsmap-datasets/main/
+OPSMAP_DATASET_ROOT_DIR=https://raw.githubusercontent.com/GDS-ODSSS/opsmaps//main/
 ROOT_DIR=/var/www/html/;
 OPSMAP_DIR=/var/www/html/readonly;
 
