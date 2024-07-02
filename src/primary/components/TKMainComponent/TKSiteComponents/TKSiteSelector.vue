@@ -69,7 +69,7 @@
             :items="filteredAdminList[level]"
             :disabled="!filteredAdminList[level]"
             :filter="filterAdmin"
-            item-text="name"
+            :item-text="item => getAdminLocaleValue(item)"
             return-object
             clearable
             v-bind="attrs"
@@ -129,6 +129,7 @@ import { Vue, Component } from "vue-property-decorator";
 
 @Component
 export default class TKSiteSelector extends Vue {
+[x: string]: any;
   get currentLocale() {
     return this.$i18n.locale;
   }
@@ -182,6 +183,10 @@ export default class TKSiteSelector extends Vue {
 
   get filteredAdminList() {
     return this.dataset.filteredAdminList;
+  }
+
+  getAdminLocaleValue(item: TKBoundaries) {
+    return TKGetLocalValue(item.label, this.$i18n.locale);
   }
 }
 </script>
