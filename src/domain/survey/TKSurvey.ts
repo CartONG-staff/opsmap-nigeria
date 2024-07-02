@@ -112,7 +112,12 @@ export function TKCreateSurvey(
       for (const level of ADMIN_LEVELS_ARRAY) {
         admins[level] = {
           pcode: submission[fdf.spatial.admins[level]?.pcode ?? ""],
-          name: submission[fdf.spatial.admins[level]?.name ?? ""]
+          name: submission[fdf.spatial.admins[level]?.name ?? ""],
+          label:
+            fdf.answersLabels[
+              submission[(fdf.spatial.admins[level] as TKBoundaries).name ?? ""]
+            ] ??
+            submission[(fdf.spatial.admins[level] as TKBoundaries).name ?? ""]
         };
       }
 
@@ -188,6 +193,15 @@ export function TKCreateSurvey(
             pcode:
               submission[(fdf.spatial.admins[level] as TKBoundaries).pcode],
             name:
+              submission[
+                (fdf.spatial.admins[level] as TKBoundaries).name ?? ""
+              ],
+            label:
+              fdf.answersLabels[
+                submission[
+                  (fdf.spatial.admins[level] as TKBoundaries).name ?? ""
+                ]
+              ] ??
               submission[(fdf.spatial.admins[level] as TKBoundaries).name ?? ""]
           });
         }
