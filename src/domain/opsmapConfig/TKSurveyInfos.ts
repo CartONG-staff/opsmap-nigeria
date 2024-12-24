@@ -8,7 +8,8 @@ export enum TKSurveyInfosType {
   CSV = "csv",
   GSHEET = "gsheet",
   KOBO = "kobo",
-  RIDL = "ridl"
+  RIDL = "ridl",
+  ARCGIS_SERVER = "arcgis_server"
 }
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -63,6 +64,16 @@ export interface TKSurveyInfosRidl extends TKAbstractSurveyInfos {
 }
 
 // ////////////////////////////////////////////////////////////////////////////
+// Specialization of TKSurveyInfo for ridl inputs
+// ////////////////////////////////////////////////////////////////////////////
+export interface TKSurveyInfosArcgisServer extends TKAbstractSurveyInfos {
+  readonly type: TKSurveyInfosType.ARCGIS_SERVER;
+  readonly dataServiceNumber: number;
+  readonly fieldMappingServiceNumber: number;
+  readonly submissionsTrUrl: string;
+}
+
+// ////////////////////////////////////////////////////////////////////////////
 // Alltogether type
 // ////////////////////////////////////////////////////////////////////////////
 
@@ -70,4 +81,5 @@ export type TKSurveyInfos =
   | TKSurveyInfosCSV
   | TKSurveyInfosGSheet
   | TKSurveyInfosKobo
-  | TKSurveyInfosRidl;
+  | TKSurveyInfosRidl
+  | TKSurveyInfosArcgisServer;

@@ -1,4 +1,4 @@
-export class ArcgisServerDataGetter {
+export class ArcgisServerGeoDataGetter {
   constructor(
     public service: string,
     public whereClause: string,
@@ -15,7 +15,7 @@ export class ArcgisServerDataGetter {
     const boundaries = await fetch(
       `https://gis.unhcr.org/arcgis/rest/services/${this.service}/query?where=${this.whereClause}&outFields=*&returnGeometry=${this.geometry}&f=${this.output}`
     );
-    const plop = boundaries.json();
-    return plop;
+    const formattedBoundaries = boundaries.json();
+    return formattedBoundaries;
   }
 }
