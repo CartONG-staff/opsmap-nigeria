@@ -1,4 +1,4 @@
-import { ArcgisServerDataGetter } from "@/secondary/arcgis/TKArcgisServerDataGetter";
+import { ArcgisServerGeoDataGetter } from "@/secondary/arcgis/TKArcgisServerGeoDataGetter";
 import { TKGeoDataset } from "@/domain/map/TKGeoDataset";
 import { TKDataset } from "@/domain/survey/TKDataset";
 import { TKOpsmapSpatialConfiguration } from "@/domain/opsmapConfig/TKOpsmapConfiguration";
@@ -20,7 +20,7 @@ async function queryAdmins(
   const adminQuery =
     primaryKey + " in (" + adminList.map(adm => `'${adm}'`).join(", ") + ")";
 
-  return await new ArcgisServerDataGetter(
+  return await new ArcgisServerGeoDataGetter(
     encodeURI(dbUrl),
     encodeURI(adminQuery),
     true,
